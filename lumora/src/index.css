@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ *
+ * Base typography
+ * The display face is Instrument Serif; body copy opts into
+ * system-ui inline (see App.tsx) for legibility at small sizes.
+ * ------------------------------------------------------------------ */
+html,
+body {
+  font-family: 'Instrument Serif', serif;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ------------------------------------------------------------------ *
+ * Liquid glass
+ * A faint luminosity-blended pane with a soft inner highlight and a
+ * masked gradient hairline border rendered via ::before.
+ * ------------------------------------------------------------------ */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.15) 80%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------ *
+ * Train-bob
+ * A gentle vertical drift for the transparent foreground plate. The
+ * constant scale(1.03) keeps its edges outside the viewport while it
+ * moves so no seams are exposed during the oscillation.
+ * ------------------------------------------------------------------ */
+@keyframes train-bob {
+  0%,
+  100% {
+    transform: translateY(0) scale(1.03);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.03);
+  }
+}
+
+.animate-train-bob {
+  animation: train-bob 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Placeholder tone for the email input, tuned to inherit the current
+   foreground so it dims correctly in the dark "Deep Woods" scene. */
+.email-field::placeholder {
+  color: currentColor;
+  opacity: 0.55;
+}
+
+/* ------------------------------------------------------------------ *
+ * Scene-aware foreground
+ * Hero content shifts from white to slate (#182C41) when the third
+ * scene ("Deep Woods") is active. The 700ms color transition is
+ * declared here so it applies even though the color value itself is
+ * driven inline from React state.
+ * ------------------------------------------------------------------ */
+.hero-fg {
+  transition: color 700ms ease;
+}
+
+.switch-btn {
+  transition:
+    color 700ms ease,
+    border-color 300ms ease,
+    opacity 300ms ease;
+}
+
+.switch-btn[data-active='false'] {
+  opacity: 0.5;
+}
+
+.switch-btn[data-active='false']:hover {
+  opacity: 0.8;
+}
+
+.switch-btn[data-active='true'] {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------ *
+ * Motion preferences
+ * ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-train-bob {
+    animation: none;
+    transform: scale(1.03);
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
