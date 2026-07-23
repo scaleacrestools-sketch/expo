@@ -118,26 +118,49 @@ p{margin:0}
 .nav.on-hero .burger{color:var(--ivory)}
 .burger span{width:24px;height:1.5px;background:currentColor;transition:.3s}
 
-/* ===== HERO — magazine cover ===== */
-.hero{position:relative;height:100svh;min-height:640px;overflow:hidden;background:var(--ink)}
+/* ===== HERO — split: copy left, portrait right ===== */
+.hero{position:relative;min-height:100svh;overflow:hidden;background:var(--ink);display:flex;align-items:center;padding:118px 0 56px}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
-.hero .veil{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(15,22,40,.35) 0%,rgba(15,22,40,.05) 38%,rgba(15,22,40,.35) 74%,rgba(15,22,40,.7) 100%)}
-.hero .frame{position:absolute;inset:clamp(16px,2.2vw,30px);z-index:3;border:1px solid rgba(176,137,78,.42);pointer-events:none}
-.hero .wrap{position:relative;z-index:4;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding-top:130px;padding-bottom:clamp(34px,5vw,64px)}
-.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;color:rgba(246,241,231,.72)}
-.hero-top .kicker{color:var(--gold)}
-.hero-top .meta{text-align:right;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;line-height:1.9}
-.hero-mid{max-width:19ch}
-.hero h1{color:#f7f2e8;font-weight:400;font-size:clamp(2.3rem,5.3vw,4.4rem);line-height:1.03}
+.hero .veil{position:absolute;inset:0;z-index:2;background:radial-gradient(90% 80% at 74% 42%, rgba(191,87,22,.12), transparent 46%), linear-gradient(180deg,rgba(15,22,40,.5) 0%,rgba(15,22,40,.15) 38%,rgba(15,22,40,.35) 72%,rgba(15,22,40,.82) 100%)}
+.hero .frame{position:absolute;inset:clamp(16px,2.2vw,30px);z-index:3;border:1px solid rgba(176,137,78,.4);pointer-events:none}
+.hero .wrap{position:relative;z-index:4;width:100%}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(24px,4vw,56px);align-items:center}
+.hero-copy{max-width:600px}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:.8em;font-size:.72rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.hero .eyebrow::before{content:"";width:30px;height:1px;background:var(--gold);opacity:.8}
+.hero h1{color:#f7f2e8;font-weight:400;font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.04;margin:20px 0 0}
 .hero h1 em{font-style:italic;color:var(--gold)}
-.hero-bot{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
-.hero-bot .sub{max-width:44ch;color:rgba(240,235,222,.86);font-size:clamp(1rem,1.3vw,1.15rem)}
-.hero-bot .acts{display:flex;gap:14px;flex-wrap:wrap}
-.hero-index{position:absolute;right:clamp(30px,4vw,60px);top:50%;transform:translateY(-50%);z-index:4;display:flex;flex-direction:column;gap:12px;text-align:right}
-.hero-index span{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,231,.5);transition:color .3s}
-.hero-index span b{font-family:var(--ff-display);font-style:italic;color:var(--gold);font-weight:400;margin-right:8px}
-.hero-index span:hover{color:var(--ivory)}
-@media (max-width:900px){.hero-index{display:none}}
+.hero .sub{margin-top:22px;font-size:clamp(1.02rem,1.35vw,1.2rem);color:rgba(240,235,222,.85);max-width:46ch;line-height:1.7}
+.hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.hero-badges .b{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:500;color:#e9e4d6;background:rgba(255,255,255,.05);border:1px solid rgba(176,137,78,.3);border-radius:999px;padding:9px 15px;backdrop-filter:blur(6px);transition:border-color .3s,transform .3s}
+.hero-badges .b:hover{border-color:var(--gold);transform:translateY(-2px)}
+.hero-badges .b svg{width:15px;height:15px;color:var(--gold);flex:none}
+.hero-cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:32px}
+.hero-note{margin-top:22px;font-size:.8rem;color:rgba(240,235,222,.6);display:flex;align-items:center;gap:9px}
+.hero-note svg{width:15px;height:15px;color:var(--gold)}
+
+/* portrait */
+.hero-portrait{position:relative;justify-self:center;width:min(430px,92%);aspect-ratio:5/6}
+.floaty{animation:floaty 7s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.hp-glow{position:absolute;left:50%;top:44%;width:78%;height:78%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(191,87,22,.34),rgba(176,137,78,.16) 42%,transparent 66%);filter:blur(6px);z-index:1}
+.hp-ring{position:absolute;left:50%;top:44%;width:99%;height:99%;transform:translate(-50%,-50%);z-index:2}
+.hp-ring .r-out{animation:spin 90s linear infinite;transform-origin:center}
+.hp-ring .r-in{animation:spin 60s linear infinite reverse;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hp-fig{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);width:70%;z-index:3;filter:drop-shadow(0 26px 34px rgba(0,0,0,.55))}
+.hp-photo{position:absolute;left:50%;bottom:1%;transform:translateX(-50%);width:84%;height:90%;object-fit:cover;object-position:top center;border-radius:170px 170px 22px 22px;z-index:3;box-shadow:0 30px 50px rgba(0,0,0,.5);-webkit-mask-image:linear-gradient(180deg,#000 74%,transparent 99%);mask-image:linear-gradient(180deg,#000 74%,transparent 99%)}
+.hp-base{position:absolute;left:50%;bottom:1%;width:66%;height:40px;transform:translateX(-50%);z-index:2;background:radial-gradient(ellipse at center,rgba(176,137,78,.3),transparent 70%);filter:blur(3px)}
+.hp-mask{position:absolute;inset:-8%;z-index:4;pointer-events:none;background:radial-gradient(closest-side at 50% 44%, transparent 64%, rgba(15,22,40,.5) 100%)}
+.hp-cap{position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);z-index:5;white-space:nowrap;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,235,222,.45);border:1px solid rgba(176,137,78,.28);padding:4px 11px;border-radius:999px}
+.hp-spark{position:absolute;border-radius:50%;background:var(--gold);z-index:3;box-shadow:0 0 8px 1px rgba(176,137,78,.7)}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:20px}
+  .hero-copy{max-width:none;order:2}
+  .hero-portrait{order:1;width:min(320px,74%);margin-bottom:6px}
+  .hero{padding-top:112px}
+}
+@media (prefers-reduced-motion:reduce){.floaty,.hp-ring .r-out,.hp-ring .r-in{animation:none}}
 
 /* reveal */
 .reveal{transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
@@ -329,23 +352,53 @@ section[id]{scroll-margin-top:84px}
   <div class="veil" aria-hidden="true"></div>
   <div class="frame" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="hero-top">
-      <span class="kicker reveal in">Vedic Astrology · Vastu · Energy Healing</span>
-      <div class="meta reveal in d1">Est. — · Agra, India<br>By appointment</div>
-    </div>
-    <div class="hero-mid">
-      <h1 class="reveal in d1">Read the <em>unseen</em> order of your life.</h1>
-    </div>
-    <div class="hero-bot">
-      <p class="sub reveal in d2">A quiet, considered practice of Vedic astrology, Vastu and healing — where every reading begins with your chart and ends with a clear next step.</p>
-      <div class="acts reveal in d2">
-        <a href="#contact" class="btn on-dark ember" data-ripple>Book a Consultation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a href="#practice" class="btn on-dark" data-ripple>Free Assessment Call</a>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow reveal in">Vedic Astrology · Vastu · Healing · Counsel</span>
+        <h1 class="reveal in d1">Clarity for life's most<br><em>important</em> questions.</h1>
+        <p class="sub reveal in d2">Personal, confidential guidance from Anant Shivom — Vedic astrology, Vastu and energy healing that turn uncertainty into a clear, grounded next step.</p>
+        <div class="hero-badges reveal in d2">
+          <span class="b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>Personalized Guidance</span>
+          <span class="b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3"/></svg>Online &amp; Offline Consultation</span>
+          <span class="b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Secure Booking</span>
+        </div>
+        <div class="hero-cta reveal in d3">
+          <a href="#contact" class="btn on-dark ember" data-ripple>Book Consultation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#practice" class="btn on-dark" data-ripple>Free 5-Min Assessment</a>
+        </div>
+        <div class="hero-note reveal in d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Trusted, personal &amp; 100% confidential · Agra, India</div>
+      </div>
+
+      <div class="hero-portrait floaty reveal in d2">
+        <div class="hp-glow" aria-hidden="true"></div>
+        <svg class="hp-ring" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+          <g class="r-out" stroke="#b0894e">
+            <circle cx="100" cy="100" r="95" stroke-opacity=".5"/>
+            <circle cx="100" cy="100" r="89" stroke-opacity=".4" stroke-dasharray="1.4 6"/>
+            <g fill="#b0894e" stroke="none">
+              <circle cx="195" cy="100" r="1.7"/><circle cx="182" cy="147" r="1.7"/><circle cx="147" cy="182" r="1.7"/><circle cx="100" cy="195" r="1.7"/><circle cx="53" cy="182" r="1.7"/><circle cx="18" cy="147" r="1.7"/><circle cx="5" cy="100" r="1.7"/><circle cx="18" cy="53" r="1.7"/><circle cx="53" cy="18" r="1.7"/><circle cx="100" cy="5" r="1.7"/><circle cx="147" cy="18" r="1.7"/><circle cx="182" cy="53" r="1.7"/>
+            </g>
+          </g>
+          <g class="r-in" stroke="#b0894e">
+            <circle cx="100" cy="100" r="76" stroke-opacity=".3" stroke-dasharray="2 11"/>
+            <polygon points="100,36 155,131 45,131" stroke-opacity=".26"/>
+            <polygon points="100,164 45,69 155,69" stroke-opacity=".26"/>
+          </g>
+        </svg>
+        <!-- Real portrait embeds here once committed to assets/; hidden until it loads, so preview stays clean -->
+        <img class="hp-photo" src="assets/pandit-ji.jpg" alt="Pandit Ji, founder of Anant Shivom" style="display:none" onload="this.style.display='block';var f=document.getElementById('hpFig');if(f)f.style.display='none';var c=document.querySelector('.hp-cap');if(c)c.remove();" onerror="this.remove();">
+        <svg id="hpFig" class="hp-fig" viewBox="0 0 240 300" aria-hidden="true">
+          <defs><linearGradient id="rimG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c6a15b" stop-opacity=".55"/><stop offset=".55" stop-color="#c6a15b" stop-opacity="0"/></linearGradient></defs>
+          <circle cx="120" cy="70" r="30" fill="#1c2540"/>
+          <path d="M120 100 C150 100 173 122 180 156 C194 176 204 196 208 208 C190 226 156 236 120 236 C84 236 50 226 32 208 C36 196 46 176 60 156 C67 122 90 100 120 100 Z" fill="#18213b"/>
+          <circle cx="120" cy="70" r="30" fill="none" stroke="url(#rimG)" stroke-width="2"/>
+          <path d="M120 100 C150 100 173 122 180 156 C194 176 204 196 208 208 C190 226 156 236 120 236 C84 236 50 226 32 208 C36 196 46 176 60 156 C67 122 90 100 120 100 Z" fill="none" stroke="url(#rimG)" stroke-width="2"/>
+        </svg>
+        <div class="hp-base" aria-hidden="true"></div>
+        <div class="hp-mask" aria-hidden="true"></div>
+        <span class="hp-cap">Portrait placeholder · Pandit Ji's photo</span>
       </div>
     </div>
-  </div>
-  <div class="hero-index" aria-hidden="true">
-    <span><b>I</b> Astrology</span><span><b>II</b> Vastu</span><span><b>III</b> Couple &amp; Family</span><span><b>IV</b> Aura Healing</span><span><b>V</b> Crystal &amp; Rudraksha</span>
   </div>
 </section>
 
