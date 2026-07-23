@@ -177,10 +177,13 @@ section[id]{scroll-margin-top:84px}
 .dropcap::first-letter{font-family:var(--ff-display);font-size:4.6em;line-height:.72;float:left;margin:.06em .12em 0 0;color:var(--gold-2);font-weight:500}
 .mani-grid p+p{margin-top:20px}
 .mani-side{position:sticky;top:120px}
-.figure{position:relative;overflow:hidden;background:#0f1628}
-.figure canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.figure .cap{position:absolute;left:0;bottom:0;right:0;padding:14px 16px;background:linear-gradient(0deg,rgba(15,22,40,.9),transparent);color:rgba(246,241,231,.82);font-size:.66rem;letter-spacing:.08em;line-height:1.5;z-index:2}
-.figure .cap b{color:var(--gold);font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.figure{position:relative;overflow:hidden;background:linear-gradient(155deg,#fbf8f1,#ece2ce);border:1px solid var(--gold-line);border-radius:3px}
+.figure .ph-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;z-index:2}
+.figure .ph{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;text-align:center;padding:22px}
+.figure .ph .pic{width:52px;height:52px;border-radius:50%;border:1px solid var(--gold-line);display:grid;place-items:center;color:var(--gold-2);background:rgba(255,255,255,.5)}
+.figure .ph .pic svg{width:23px;height:23px}
+.figure .ph b{font-family:var(--ff-body);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2)}
+.figure .ph span{font-size:.82rem;color:var(--muted);max-width:25ch;line-height:1.55}
 .figure.tall{aspect-ratio:3/4}
 .figure.wide{aspect-ratio:4/3}
 .figure.pano{aspect-ratio:16/9}
@@ -218,7 +221,7 @@ section[id]{scroll-margin-top:84px}
 
 /* ===== PACKAGE — dark spread ===== */
 .pkg{position:relative;background:var(--ink);color:var(--ivory);overflow:hidden}
-.pkg canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.5}
+.pkg canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.22}
 .pkg .veil{position:absolute;inset:0;z-index:1;background:linear-gradient(110deg,rgba(15,22,40,.94),rgba(15,22,40,.6))}
 .pkg .wrap{position:relative;z-index:2}
 .pkg .shead .rule{background:rgba(246,241,231,.2)}
@@ -408,9 +411,9 @@ section[id]{scroll-margin-top:84px}
     <div class="shead reveal"><span class="idx">I</span><span class="kicker">The Practice</span><hr class="rule"></div>
     <div class="mani-grid">
       <div class="mani-side reveal">
-        <div class="figure tall" data-art="cosmos">
-          <canvas></canvas>
-          <div class="cap"><b>Fig. 01 · placeholder art</b><br>Suggested: a calm, low-lit portrait of the practitioner at work, or hands over a birth chart. AI prompt: "editorial photograph, warm low light, hands and an astrological chart on dark wood, shallow depth of field, muted navy &amp; gold, film grain".</div>
+        <div class="figure tall">
+          <img class="ph-img" src="assets/consultation.jpg" alt="Pandit Ji in consultation" onload="this.style.display='block'">
+          <div class="ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></span><b>Consultation</b><span>Pandit Ji with a client — warm, editorial light</span></div>
         </div>
       </div>
       <div class="reveal d1">
@@ -431,7 +434,7 @@ section[id]{scroll-margin-top:84px}
 
     <!-- feature 1 -->
     <div class="svc-feature reveal">
-      <div class="fig-col"><div class="figure wide" data-art="cosmos"><canvas></canvas><div class="cap"><b>Fig. 02 · placeholder art</b><br>Suggested: night sky / constellation macro. Royalty-free: search "starry night long exposure". AI prompt: "deep indigo night sky, faint gold constellations, minimal, fine grain".</div></div></div>
+      <div class="fig-col"><div class="figure wide"><img class="ph-img" src="assets/astrology.jpg" alt="Hands reading a Kundli chart" onload="this.style.display='block'"><div class="ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3" opacity=".6"/></svg></span><b>Astrology</b><span>Hands reading a Kundli chart</span></div></div></div>
       <div class="txt">
         <span class="idx">Reading I</span>
         <h3>Astrology Consultation</h3>
@@ -442,7 +445,7 @@ section[id]{scroll-margin-top:84px}
     </div>
     <!-- feature 2 (flipped) -->
     <div class="svc-feature flip reveal">
-      <div class="fig-col"><div class="figure wide" data-art="stone"><canvas></canvas><div class="cap"><b>Fig. 03 · placeholder art</b><br>Suggested: serene minimalist interior / architectural light. Royalty-free: "minimal interior warm light". AI prompt: "sunlit minimal room, warm neutral tones, soft shadows, architectural, calm".</div></div></div>
+      <div class="fig-col"><div class="figure wide"><img class="ph-img" src="assets/vastu.jpg" alt="Modern luxury home with Vastu compass" onload="this.style.display='block'"><div class="ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10l9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M10 20v-6h4v6"/></svg></span><b>Vastu Shastra</b><span>Modern luxury home · Vastu compass overlay</span></div></div></div>
       <div class="txt">
         <span class="idx">Reading II</span>
         <h3>Vastu Shastra</h3>
@@ -469,7 +472,7 @@ section[id]{scroll-margin-top:84px}
   <div class="wrap">
     <div class="shead reveal"><span class="idx">III</span><span class="kicker">The Founder</span><hr class="rule"></div>
     <div class="founder-grid">
-      <div class="reveal"><div class="figure tall" data-art="portrait"><canvas></canvas><div class="cap"><b>Fig. 04 · portrait placeholder</b><br>Replace with a real editorial portrait of Anant Shivom. Royalty-free stand-in only if needed. AI prompt: "dignified editorial portrait, soft window light, warm neutral background, calm expression, film".</div></div></div>
+      <div class="reveal"><div class="figure tall"><img class="ph-img" src="assets/pandit-ji.jpg" alt="Portrait of Pandit Ji, founder of Anant Shivom" onload="this.style.display='block'"><div class="ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></span><b>Portrait · Pandit Ji</b><span>Elegant portrait in his office · commit to assets/pandit-ji.jpg</span></div></div></div>
       <div class="reveal d1">
         <p class="kicker" style="color:var(--gold-2)">Anant Shivom</p>
         <p class="pullquote">A reading is not a prediction to fear — it is <em>a map you learn to read</em> for yourself.</p>
@@ -545,9 +548,9 @@ section[id]{scroll-margin-top:84px}
   <div class="wrap">
     <div class="shead reveal"><span class="idx">VI</span><span class="kicker">From the Journal</span><hr class="rule"></div>
     <div class="jgrid">
-      <article class="jcard reveal"><div class="figure" data-art="cosmos"><canvas></canvas></div><div class="jm">Astrology · 5 min</div><h3>Reading your birth chart, gently explained</h3><p>A calm introduction to what your chart reveals — and what it doesn't.</p></article>
-      <article class="jcard reveal d1"><div class="figure" data-art="stone"><canvas></canvas></div><div class="jm">Vastu · 4 min</div><h3>Five simple Vastu shifts for a calmer home</h3><p>Small, practical changes that help a space feel lighter and balanced.</p></article>
-      <article class="jcard reveal d2"><div class="figure" data-art="aura"><canvas></canvas></div><div class="jm">Healing · 6 min</div><h3>How the right crystal is actually chosen</h3><p>Why matching stones to your chart matters more than colour.</p></article>
+      <article class="jcard reveal"><div class="figure"><img class="ph-img" src="assets/blog-astrology.jpg" alt="Astrology birth chart" onload="this.style.display='block'"><div class="ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/></svg></span><b>Editorial image</b><span>Birth chart / astrology</span></div></div><div class="jm">Astrology · 5 min</div><h3>Reading your birth chart, gently explained</h3><p>A calm introduction to what your chart reveals — and what it doesn't.</p></article>
+      <article class="jcard reveal d1"><div class="figure"><img class="ph-img" src="assets/blog-vastu.jpg" alt="Vastu home" onload="this.style.display='block'"><div class="ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10l9-7 9 7"/><path d="M5 9v11h14V9"/></svg></span><b>Editorial image</b><span>Calm, balanced home</span></div></div><div class="jm">Vastu · 4 min</div><h3>Five simple Vastu shifts for a calmer home</h3><p>Small, practical changes that help a space feel lighter and balanced.</p></article>
+      <article class="jcard reveal d2"><div class="figure"><img class="ph-img" src="assets/blog-crystal.jpg" alt="Healing crystals" onload="this.style.display='block'"><div class="ph"><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18" opacity=".6"/></svg></span><b>Editorial image</b><span>Crystals &amp; Rudraksha</span></div></div><div class="jm">Healing · 6 min</div><h3>How the right crystal is actually chosen</h3><p>Why matching stones to your chart matters more than colour.</p></article>
     </div>
     <p style="margin-top:26px;font-size:.8rem;color:var(--muted-2)"><span class="tag-ph">placeholder</span> &nbsp;Real articles (if any) will be extracted from the existing site and rewritten.</p>
   </div>
