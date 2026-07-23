@@ -1,0 +1,9 @@
+# Dependencies (fonts are embedded directly into the HTML deliverables)
+node_modules/
+package.json
+package-lock.json
+# Local render artifacts
+shots/
+*.cjs
+*.mjs
+fonts/
