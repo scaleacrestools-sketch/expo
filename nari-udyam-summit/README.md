@@ -3,16 +3,43 @@
 Premium, conversion-focused landing page for **Smart Vision Nari Udyam Summit & Expo**
 (Delhi | 19–20 September 2026 | 5-Star Hotel).
 
-Fully static — no build step, no dependencies. Deploy the three files anywhere
+**Live site:** https://smart-vision-nari-udyam-summit-expo.netlify.app
+(Netlify project: `smart-vision-nari-udyam-summit-expo` on the `scaleacres` team)
+
+Fully static — no build step, no dependencies. Deploy the files anywhere
 (Netlify, Vercel, GitHub Pages, cPanel, S3):
 
 ```
 nari-udyam-summit/
-├── index.html    # All 24 content sections, SEO meta, JSON-LD event schema
-├── styles.css    # Design system (burgundy/wine/plum + royal gold palette)
-├── script.js     # Interactions, countdown, form, CRO widgets + CONFIG block
-└── og-image.png  # Social share image (regenerate after major hero changes)
+├── index.html       # All 24 content sections, SEO meta, JSON-LD event schema
+├── styles.css       # Design system (burgundy/wine/plum + royal gold palette)
+├── script.js        # Interactions, motion system, form, CRO widgets + CONFIG block
+├── og-image.png     # Social share image (regenerate after major hero changes)
+├── netlify.toml     # Publish config + security/cache headers
+└── site-bundle.html # Single-file build (styles + script inlined) used for the
+                     # current Netlify deploy; regenerate after edits (see below)
 ```
+
+## Updating the live Netlify site
+
+The current deploy was imported from `site-bundle.html` (a self-contained
+single file). After editing `index.html` / `styles.css` / `script.js`,
+regenerate the bundle and redeploy:
+
+```bash
+python3 - << 'EOF'
+html = open("index.html").read()
+html = html.replace('<link rel="stylesheet" href="styles.css" />', "<style>\n" + open("styles.css").read() + "\n</style>")
+html = html.replace('<script src="script.js" defer></script>', "<script>\n" + open("script.js").read() + "\n</script>")
+open("site-bundle.html", "w").write(html)
+EOF
+```
+
+Then redeploy via the Netlify dashboard (drag-and-drop the folder onto the
+project's Deploys page) or `netlify deploy --prod` with the Netlify CLI.
+Deploying the full folder (instead of the single bundle) is preferred once
+you have CLI/dashboard access — it serves `index.html` + assets with the
+`netlify.toml` headers and a working relative `og-image.png`.
 
 ## Before going live — fill in the CONFIG block
 
