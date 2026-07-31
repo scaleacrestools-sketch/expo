@@ -9,7 +9,7 @@
   <meta name="description" content="Join Smart Vision Nari Udyam Summit & Expo, India’s premium platform for women entrepreneurs, founders, MSMEs and women-led brands. Showcase your business, access markets, finance guidance, mentors, networking, awards and growth opportunities in Delhi on 19–20 September 2026." />
   <meta name="keywords" content="Women entrepreneur summit India, women business expo Delhi, women entrepreneurs event, MSME women entrepreneur event, business expo for women, women-led brands exhibition, Nari Udyam Summit, Smart Vision Expo, women empowerment business event, women startup summit Delhi" />
   <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#260a16" />
+  <meta name="theme-color" content="#250915" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -22,12 +22,12 @@
   <meta name="twitter:description" content="Empowering Women Entrepreneurs with Markets, Money & Mentors. Delhi | 19–20 September 2026 | 5-Star Hotel." />
   <meta name="twitter:image" content="og-image.png" />
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='31' fill='%23381022'/%3E%3Ccircle cx='32' cy='32' r='28.5' fill='none' stroke='%23d3a84f' stroke-width='1.6'/%3E%3Ctext x='32' y='40.5' font-family='Georgia,serif' font-size='22' fill='%23e2bd6d' text-anchor='middle' font-style='italic'%3ESV%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='31' fill='%23370f21'/%3E%3Ccircle cx='32' cy='32' r='28.5' fill='none' stroke='%23d3a84f' stroke-width='1.6'/%3E%3Ctext x='32' y='40.5' font-family='Georgia,serif' font-size='22' fill='%23e2bd6d' text-anchor='middle' font-style='italic'%3ESV%3C/text%3E%3C/svg%3E" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
 
@@ -61,13 +61,23 @@
 
 <a class="skip-link" href="#main">Skip to main content</a>
 
+<!-- ======================= PRELOADER ======================= -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader-inner">
+    <div class="preloader-mark">SV</div>
+    <div class="preloader-name">Smart Vision</div>
+    <div class="preloader-sub">Nari Udyam Summit &amp; Expo</div>
+    <div class="preloader-line"><i></i></div>
+  </div>
+</div>
+
+<!-- Scroll progress + custom cursor -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
 <!-- ======================= SVG SPRITE ======================= -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-  <defs>
-    <linearGradient id="grad-gold-svg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#f4e3ae"/><stop offset="0.5" stop-color="#d3a84f"/><stop offset="1" stop-color="#9c7226"/>
-    </linearGradient>
-  </defs>
   <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
@@ -119,8 +129,6 @@
     <circle fill="currentColor" cx="50" cy="41" r="15.8"/>
     <path fill="currentColor" d="M50 63c20.6 0 35.4 12.6 38.3 32 .5 3.4-1.2 6-4.6 6H16.3c-3.4 0-5.1-2.6-4.6-6C14.6 75.6 29.4 63 50 63z"/>
   </symbol>
-  <!-- Small flourish -->
-  <symbol id="i-flourish" viewBox="0 0 240 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M8 12h84M148 12h84"/><path d="M96 12c4-6 10-6 12 0 2-6 8-6 12 0-4 6-10 6-12 0-2 6-8 6-12 0z"/><circle cx="120" cy="12" r="2.6" fill="currentColor" stroke="none"/><circle cx="8" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="232" cy="12" r="1.6" fill="currentColor" stroke="none"/></symbol>
 </svg>
 
 <!-- ======================= HEADER ======================= -->
@@ -149,7 +157,7 @@
     </nav>
 
     <div class="header-actions">
-      <a class="btn btn--gold btn--sm" href="#packages">Book a Stall <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--gold btn--sm js-mag" href="#packages">Book a Stall <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
         <svg aria-hidden="true"><use href="#i-menu"/></svg>
       </button>
@@ -187,28 +195,56 @@
 
 <!-- ======================= 1. HERO ======================= -->
 <section class="hero" id="home">
-  <svg class="hero-ornament hero-ornament--mandala" viewBox="0 0 600 600" fill="none" stroke="currentColor" aria-hidden="true">
-    <circle cx="300" cy="300" r="120" stroke-width="0.8" stroke-dasharray="2 7"/>
-    <circle cx="300" cy="300" r="165" stroke-width="0.6"/>
-    <circle cx="300" cy="300" r="210" stroke-width="0.8" stroke-dasharray="1 10"/>
-    <circle cx="300" cy="300" r="262" stroke-width="0.5"/>
-    <circle cx="300" cy="300" r="298" stroke-width="0.9" stroke-dasharray="3 14"/>
-    <g stroke-width="0.7">
-      <path d="M300 155c14 22 14 44 0 66-14-22-14-44 0-66z"/><path d="M300 445c14-22 14-44 0-66-14 22-14 44 0 66z"/>
-      <path d="M155 300c22-14 44-14 66 0-22 14-44 14-66 0z"/><path d="M445 300c-22-14-44-14-66 0 22 14 44 14 66 0z"/>
-      <path d="M197 197c25-5 41 2 47 26-25 5-41-2-47-26z"/><path d="M403 403c-25 5-41-2-47-26 25-5 41 2 47 26z"/>
-      <path d="M403 197c5 25-2 41-26 47-5-25 2-41 26-47z"/><path d="M197 403c-5-25 2-41 26-47 5 25-2 41-26 47z"/>
+  <svg class="hero-beams" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="hbeam" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#e2bd6d" stop-opacity="0.34"/><stop offset="1" stop-color="#e2bd6d" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polygon points="480,-40 610,-40 900,900 260,900" fill="url(#hbeam)"/>
+    <polygon points="880,-60 990,-60 1330,900 700,900" fill="url(#hbeam)" opacity="0.7"/>
+  </svg>
+
+  <svg class="hero-ornament hero-ornament--mandala" viewBox="0 0 600 600" fill="none" stroke="currentColor" aria-hidden="true" data-plx="0.12">
+    <g class="spin">
+      <circle cx="300" cy="300" r="120" stroke-width="0.8" stroke-dasharray="2 7"/>
+      <circle cx="300" cy="300" r="165" stroke-width="0.6"/>
+      <circle cx="300" cy="300" r="210" stroke-width="0.8" stroke-dasharray="1 10"/>
+      <circle cx="300" cy="300" r="262" stroke-width="0.5"/>
+      <circle cx="300" cy="300" r="298" stroke-width="0.9" stroke-dasharray="3 14"/>
+      <g stroke-width="0.7">
+        <path d="M300 155c14 22 14 44 0 66-14-22-14-44 0-66z"/><path d="M300 445c14-22 14-44 0-66-14 22-14 44 0 66z"/>
+        <path d="M155 300c22-14 44-14 66 0-22 14-44 14-66 0z"/><path d="M445 300c-22-14-44-14-66 0 22 14 44 14 66 0z"/>
+        <path d="M197 197c25-5 41 2 47 26-25 5-41-2-47-26z"/><path d="M403 403c-25 5-41-2-47-26 25-5 41 2 47 26z"/>
+        <path d="M403 197c5 25-2 41-26 47-5-25 2-41 26-47z"/><path d="M197 403c-5-25 2-41 26-47 5 25-2 41-26 47z"/>
+      </g>
     </g>
   </svg>
-  <svg class="hero-ornament hero-ornament--mandala-2" viewBox="0 0 600 600" fill="none" stroke="currentColor" aria-hidden="true">
-    <circle cx="300" cy="300" r="140" stroke-width="0.7" stroke-dasharray="2 8"/>
-    <circle cx="300" cy="300" r="200" stroke-width="0.5"/>
-    <circle cx="300" cy="300" r="270" stroke-width="0.8" stroke-dasharray="1 12"/>
-    <g stroke-width="0.7">
-      <path d="M300 145c16 25 16 50 0 75-16-25-16-50 0-75z"/><path d="M300 455c16-25 16-50 0-75-16 25-16 50 0 75z"/>
-      <path d="M145 300c25-16 50-16 75 0-25 16-50 16-75 0z"/><path d="M455 300c-25-16-50-16-75 0 25 16 50 16 75 0z"/>
+  <svg class="hero-ornament hero-ornament--mandala-2" viewBox="0 0 600 600" fill="none" stroke="currentColor" aria-hidden="true" data-plx="-0.08">
+    <g class="spin">
+      <circle cx="300" cy="300" r="140" stroke-width="0.7" stroke-dasharray="2 8"/>
+      <circle cx="300" cy="300" r="200" stroke-width="0.5"/>
+      <circle cx="300" cy="300" r="270" stroke-width="0.8" stroke-dasharray="1 12"/>
+      <g stroke-width="0.7">
+        <path d="M300 145c16 25 16 50 0 75-16-25-16-50 0-75z"/><path d="M300 455c16-25 16-50 0-75-16 25-16 50 0 75z"/>
+        <path d="M145 300c25-16 50-16 75 0-25 16-50 16-75 0z"/><path d="M455 300c-25-16-50-16-75 0 25 16 50 16 75 0z"/>
+      </g>
     </g>
   </svg>
+
+  <div class="hero-particles" aria-hidden="true">
+    <i style="top:18%;left:12%;width:5px;height:5px;--dur:9s"></i>
+    <i style="top:32%;left:6%;width:3px;height:3px;--dur:12s;--del:1.4s"></i>
+    <i style="top:14%;left:82%;width:4px;height:4px;--dur:10s;--del:0.8s"></i>
+    <i style="top:44%;left:90%;width:6px;height:6px;--dur:13s;--del:2s"></i>
+    <i style="top:64%;left:8%;width:4px;height:4px;--dur:11s;--del:0.4s"></i>
+    <i style="top:70%;left:86%;width:3px;height:3px;--dur:9.5s;--del:1.8s"></i>
+    <i style="top:26%;left:28%;width:3px;height:3px;--dur:12.5s;--del:2.6s"></i>
+    <i style="top:58%;left:74%;width:5px;height:5px;--dur:10.5s;--del:1.1s"></i>
+    <i style="top:80%;left:30%;width:4px;height:4px;--dur:12s;--del:0.6s"></i>
+    <i style="top:38%;left:68%;width:3px;height:3px;--dur:9s;--del:2.2s"></i>
+  </div>
+
   <div class="hero-grain" aria-hidden="true"></div>
 
   <div class="hero-inner container--wide">
@@ -223,34 +259,36 @@
       </svg>
     </div>
 
-    <h1 class="hero-title" data-reveal style="--d:.08s">
-      Smart Vision
-      <span class="line-2 text-gold">Nari Udyam Summit &amp; Expo</span>
+    <p class="hero-topline" data-reveal style="--d:.05s">Delhi · 19–20 September 2026</p>
+
+    <h1 class="hero-title" data-reveal style="--d:.1s">
+      <span class="line-1" data-split>Smart Vision</span>
+      <span class="line-2 text-gold" data-split>Nari Udyam Summit &amp; Expo</span>
     </h1>
 
-    <p class="hero-tagline" data-reveal style="--d:.16s">Empowering Women Entrepreneurs with Markets, Money &amp; Mentors</p>
+    <p class="hero-tagline" data-reveal style="--d:.18s" data-split>Empowering Women Entrepreneurs with Markets, Money &amp; Mentors</p>
 
-    <div class="hero-copy" data-reveal style="--d:.24s">
+    <div class="hero-copy" data-reveal style="--d:.26s">
       <p>India’s premium business summit and expo dedicated to women entrepreneurs, founders, creators, homepreneurs, MSMEs, startups and women-led brands.</p>
-      <p style="margin-top:14px">A powerful 2-day platform where women-led businesses come together to showcase their products, build networks, access business guidance, meet mentors, connect with financial institutions and create real growth opportunities.</p>
+      <p style="margin-top:13px">A powerful 2-day platform where women-led businesses come together to showcase their products, build networks, access business guidance, meet mentors, connect with financial institutions and create real growth opportunities.</p>
       <p class="hero-statement">This is not just an exhibition.<br/>This is a premium movement for women who are building businesses, creating impact and shaping the future of entrepreneurship in India.</p>
     </div>
 
-    <div class="hero-meta" data-reveal style="--d:.3s">
+    <div class="hero-meta" data-reveal style="--d:.32s">
       <span><svg aria-hidden="true"><use href="#i-pin"/></svg> Delhi</span>
       <span><svg aria-hidden="true"><use href="#i-cal"/></svg> 19–20 September 2026</span>
       <span><svg aria-hidden="true"><use href="#i-crown"/></svg> 5-Star Hotel</span>
     </div>
 
-    <div class="hero-ctas" data-reveal style="--d:.36s">
-      <a class="btn btn--gold" href="#packages">Book Your Stall <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      <a class="btn btn--outline-gold" href="#partners">Become a Sponsor</a>
-      <a class="btn btn--ghost-light" href="#contact">Register Interest</a>
+    <div class="hero-ctas" data-reveal style="--d:.38s">
+      <a class="btn btn--gold btn--lg js-mag" href="#packages">Book Your Stall <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--outline-gold js-mag" href="#partners">Become a Sponsor</a>
+      <a class="btn btn--ghost-light js-mag" href="#contact">Register Interest</a>
     </div>
 
-    <p class="hero-micro" data-reveal style="--d:.42s">Limited curated stall opportunities available for women-led businesses. Early confirmations receive priority visibility.</p>
+    <p class="hero-micro" data-reveal style="--d:.44s">Limited curated stall opportunities available for women-led businesses. Early confirmations receive priority visibility.</p>
 
-    <div class="hero-countdown" data-reveal style="--d:.48s" id="countdown" role="timer" aria-label="Countdown to the summit">
+    <div class="hero-countdown" data-reveal style="--d:.5s" id="countdown" role="timer" aria-label="Countdown to the summit">
       <div class="cd-cell"><b id="cdDays">—</b><small>Days</small></div>
       <span class="cd-sep">·</span>
       <div class="cd-cell"><b id="cdHours">—</b><small>Hours</small></div>
@@ -260,6 +298,7 @@
     <p class="hero-countdown-label">Until the summit opens · 19 September 2026</p>
   </div>
 
+  <div class="hero-scroll" aria-hidden="true"><span>Scroll</span><i></i></div>
   <div class="hero-glow" aria-hidden="true"></div>
 
   <!-- Trust strip -->
@@ -285,12 +324,40 @@
   </div>
 </section>
 
+<!-- ======================= STATS BAND ======================= -->
+<section class="stats-band grain" aria-label="The summit at a glance">
+  <div class="container">
+    <div class="stats-grid" data-reveal-group>
+      <div class="stat-cell">
+        <div class="stat-num"><span data-count="2">2</span></div>
+        <div class="stat-label">Power-Packed Days</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num"><span data-count="50">50</span></div>
+        <div class="stat-label">Curated Stalls</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num"><span data-count="10">10</span></div>
+        <div class="stat-label">Award Categories</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num"><span data-count="18">18</span></div>
+        <div class="stat-label">Exhibitor Categories</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num"><span data-count="3">3</span></div>
+        <div class="stat-label">Growth Pillars</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ======================= 2. PREMIUM MOVEMENT ======================= -->
 <section class="section movement" id="about">
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">The Movement</p>
-      <h2 class="sec-title">India’s Premium Platform for <em class="text-gold">Women Entrepreneurs</em></h2>
+    <div class="sec-head" data-ghost="Movement" data-reveal>
+      <p class="eyebrow"><span class="ey-num">01</span> The Movement</p>
+      <h2 class="sec-title" data-split>India’s Premium Platform for <em class="text-gold">Women Entrepreneurs</em></h2>
       <p class="sec-sub">A summit built for women who are ready to be seen, supported and celebrated.</p>
     </div>
 
@@ -315,7 +382,7 @@
     </div>
 
     <div class="journey" data-reveal>
-      <p class="journey-label">The Journey</p>
+      <p class="mini-label mini-label--center">The Journey</p>
       <div class="journey-track">
         <div class="journey-step"><span class="journey-node"><svg aria-hidden="true"><use href="#i-spark"/></svg></span><b>Dream</b></div>
         <span class="journey-link" aria-hidden="true"></span>
@@ -334,19 +401,39 @@
     </div>
 
     <div class="sec-cta" data-reveal>
-      <a class="btn btn--wine" href="#contact">Be Part of the Movement <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--wine js-mag" href="#contact">Be Part of the Movement <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
 
-<div class="sec-divider" aria-hidden="true"><span><i class="dv-line"></i><i class="dv-gem"></i><i class="dv-line"></i></span></div>
+<!-- ======================= GRAND MARQUEE ======================= -->
+<div class="grand-marquee" aria-hidden="true">
+  <div class="gm-track">
+    <ul>
+      <li>Markets <span class="gm-gem"></span></li>
+      <li class="gm-solid">Money <span class="gm-gem"></span></li>
+      <li>Mentors <span class="gm-gem"></span></li>
+      <li class="gm-solid">Markets <span class="gm-gem"></span></li>
+      <li>Money <span class="gm-gem"></span></li>
+      <li class="gm-solid">Mentors <span class="gm-gem"></span></li>
+    </ul>
+    <ul aria-hidden="true">
+      <li>Markets <span class="gm-gem"></span></li>
+      <li class="gm-solid">Money <span class="gm-gem"></span></li>
+      <li>Mentors <span class="gm-gem"></span></li>
+      <li class="gm-solid">Markets <span class="gm-gem"></span></li>
+      <li>Money <span class="gm-gem"></span></li>
+      <li class="gm-solid">Mentors <span class="gm-gem"></span></li>
+    </ul>
+  </div>
+</div>
 
 <!-- ======================= 3. WHY DIFFERENT ======================= -->
-<section class="section different surface-dark" id="different">
+<section class="section different surface-dark grain" id="different">
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">Why This Event Is Different</p>
-      <h2 class="sec-title">More Than a Stall. More Than an Expo.<br/><em class="text-gold">A Complete Business Growth Platform.</em></h2>
+    <div class="sec-head" data-ghost="Platform" data-reveal>
+      <p class="eyebrow"><span class="ey-num">02</span> Why This Event Is Different</p>
+      <h2 class="sec-title" data-split>More Than a Stall. More Than an Expo.<br/><em class="text-gold">A Complete Business Growth Platform.</em></h2>
     </div>
 
     <div class="pull-compare" data-reveal>
@@ -362,26 +449,31 @@
 
     <div class="feature-grid" data-reveal-group>
       <article class="feature-card">
+        <span class="feature-num" aria-hidden="true">01</span>
         <span class="feature-icon"><svg aria-hidden="true"><use href="#i-store"/></svg></span>
         <h3>Showcase with Confidence</h3>
         <p>Present your products or services in a premium 5-star business environment designed to build trust and visibility.</p>
       </article>
       <article class="feature-card">
+        <span class="feature-num" aria-hidden="true">02</span>
         <span class="feature-icon"><svg aria-hidden="true"><use href="#i-connect"/></svg></span>
         <h3>Meet the Right People</h3>
         <p>Connect with potential buyers, entrepreneurs, mentors, consultants, business leaders, banks, communities and collaborators.</p>
       </article>
       <article class="feature-card">
+        <span class="feature-num" aria-hidden="true">03</span>
         <span class="feature-icon"><svg aria-hidden="true"><use href="#i-grad"/></svg></span>
         <h3>Learn from Experts</h3>
         <p>Attend practical sessions on branding, digital growth, finance, MSME support, sales, pricing, retail expansion and business scaling.</p>
       </article>
       <article class="feature-card">
+        <span class="feature-num" aria-hidden="true">04</span>
         <span class="feature-icon"><svg aria-hidden="true"><use href="#i-award"/></svg></span>
         <h3>Get Recognized</h3>
         <p>Participating exhibitors will be honored during the event through appreciation certificates and recognition moments.</p>
       </article>
       <article class="feature-card">
+        <span class="feature-num" aria-hidden="true">05</span>
         <span class="feature-icon"><svg aria-hidden="true"><use href="#i-chart"/></svg></span>
         <h3>Build Meaningful Opportunities</h3>
         <p>Create conversations that can lead to new customers, partnerships, retail collaborations, funding discussions and long-term business growth.</p>
@@ -389,7 +481,7 @@
     </div>
 
     <div class="sec-cta" data-reveal>
-      <a class="btn btn--gold" href="#exhibit">Explore Exhibitor Opportunities <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--gold js-mag" href="#exhibit">Explore Exhibitor Opportunities <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -419,14 +511,14 @@
           <path d="M120 276c40 12 80 12 120 0" opacity="0.85"/>
           <circle cx="180" cy="276" r="3" fill="currentColor" stroke="none"/>
         </svg>
-        <span class="stall-big-number" aria-hidden="true">50</span>
+        <span class="stall-big-number" data-count="50" aria-hidden="true">50</span>
         <p class="stall-number-caption">Curated Stall Opportunities</p>
       </div>
 
       <div>
-        <div class="sec-head sec-head--left" data-reveal style="margin-bottom:26px">
-          <p class="eyebrow">Limited Availability</p>
-          <h2 class="sec-title">Limited Curated Stalls for Serious <em class="text-gold">Women-led Brands</em></h2>
+        <div class="sec-head sec-head--left" data-ghost="Curated" data-reveal style="margin-bottom:28px">
+          <p class="eyebrow"><span class="ey-num">03</span> Limited Availability</p>
+          <h2 class="sec-title" data-split>Limited Curated Stalls for Serious <em class="text-gold">Women-led Brands</em></h2>
           <p class="sec-sub">Premium visibility. Category-wise curation. High-value networking.</p>
         </div>
         <div class="copy-block" data-reveal>
@@ -441,8 +533,8 @@
           <span class="badge-scarcity">Premium placement on first-confirmation basis</span>
           <span class="badge-scarcity">Category-wise exhibitor curation</span>
         </div>
-        <div class="btn-row" style="margin-top:34px" data-reveal>
-          <a class="btn btn--wine" href="#packages">Reserve Your Stall Before Slots Close <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <div class="btn-row" style="margin-top:36px" data-reveal>
+          <a class="btn btn--wine js-mag" href="#packages">Reserve Your Stall Before Slots Close <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
     </div>
@@ -452,9 +544,9 @@
 <!-- ======================= 5. WHO SHOULD EXHIBIT ======================= -->
 <section class="section exhibit" id="exhibit">
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">Who Should Exhibit?</p>
-      <h2 class="sec-title">Built for Women-led Businesses <em class="text-gold">Ready to Grow</em></h2>
+    <div class="sec-head" data-ghost="Exhibit" data-reveal>
+      <p class="eyebrow"><span class="ey-num">04</span> Who Should Exhibit?</p>
+      <h2 class="sec-title" data-split>Built for Women-led Businesses <em class="text-gold">Ready to Grow</em></h2>
       <p class="sec-sub">If you are a woman entrepreneur, founder, creator, MSME owner, homepreneur or brand owner looking for visibility, customers, connections and growth guidance, this platform is built for you.</p>
     </div>
 
@@ -480,24 +572,25 @@
     </div>
 
     <div class="sec-cta" data-reveal>
-      <a class="btn btn--wine" href="#contact">Apply for Stall Booking <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--wine js-mag" href="#contact">Apply for Stall Booking <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <span class="cta-note">Category-wise exhibitor curation</span>
     </div>
   </div>
 </section>
 
 <!-- ======================= 6. EXHIBITOR VALUE ======================= -->
-<section class="section value surface-dark" id="value">
+<section class="section value surface-dark grain" id="value">
   <div class="container">
     <div class="value-grid">
       <div class="value-sticky">
-        <div class="sec-head sec-head--left" data-reveal style="margin-bottom:24px">
-          <p class="eyebrow">What Exhibitors Gain</p>
-          <h2 class="sec-title">Your Stall Becomes Your <em class="text-gold">Stage</em></h2>
+        <div class="sec-head sec-head--left" data-ghost="Value" data-reveal style="margin-bottom:26px">
+          <p class="eyebrow"><span class="ey-num">05</span> What Exhibitors Gain</p>
+          <h2 class="sec-title" data-split>Your Stall Becomes Your <em class="text-gold">Stage</em></h2>
           <p class="sec-sub">Your stall becomes your stage, your network and your growth opportunity.</p>
         </div>
         <p class="copy-muted" data-reveal>A stall at Smart Vision Nari Udyam Summit &amp; Expo is not just a physical counter. It is a premium business presence designed to help women-led brands build trust, visibility and stronger connections.</p>
         <p class="value-close" data-reveal>Your business deserves more than display. It deserves attention, recognition and opportunity.</p>
-        <div class="btn-row" style="margin-top:30px" data-reveal>
+        <div class="btn-row" style="margin-top:32px" data-reveal>
           <a class="btn btn--wa js-wa" href="#contact">Get Stall Details on WhatsApp <svg aria-hidden="true"><use href="#i-wa"/></svg></a>
         </div>
       </div>
@@ -523,18 +616,18 @@
 <!-- ======================= 7. MARKETS, MONEY & MENTORS ======================= -->
 <section class="section pillars" id="pillars">
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">The Growth Formula</p>
-      <h2 class="sec-title">Markets. Money. Mentors.<br/><em class="text-gold">The Growth Formula for Women Entrepreneurs.</em></h2>
+    <div class="sec-head" data-ghost="Growth" data-reveal>
+      <p class="eyebrow"><span class="ey-num">06</span> The Growth Formula</p>
+      <h2 class="sec-title" data-split>Markets. Money. Mentors.<br/><em class="text-gold">The Growth Formula for Women Entrepreneurs.</em></h2>
     </div>
 
-    <div class="different-intro copy-block" style="color:var(--ink-soft); margin-bottom: clamp(44px,6vw,64px)" data-reveal>
+    <div class="different-intro copy-block" style="color:var(--ink-soft); margin-bottom: clamp(48px,6vw,68px)" data-reveal>
       <p>Every growing business needs three things: the right market, the right financial direction and the right guidance.</p>
       <p>Smart Vision Nari Udyam Summit &amp; Expo is built around these three growth pillars to help women entrepreneurs take more confident steps toward expansion.</p>
     </div>
 
     <div class="pillar-grid" data-reveal-group>
-      <article class="pillar-card">
+      <article class="pillar-card" data-tilt>
         <header class="pillar-head">
           <span class="pillar-numeral">PILLAR I</span>
           <span class="pillar-icon"><svg aria-hidden="true"><use href="#i-store"/></svg></span>
@@ -544,7 +637,7 @@
           <p>Get your brand in front of potential customers, retailers, buyers, communities, business owners and premium visitors. Use the expo as a platform to increase visibility, generate enquiries and create business conversations.</p>
         </div>
       </article>
-      <article class="pillar-card">
+      <article class="pillar-card" data-tilt>
         <header class="pillar-head">
           <span class="pillar-numeral">PILLAR II</span>
           <span class="pillar-icon"><svg aria-hidden="true"><use href="#i-bank"/></svg></span>
@@ -554,7 +647,7 @@
           <p>Connect with banks, financial institutions and finance experts who can guide eligible entrepreneurs on business loans, expansion funding, MSME support, documentation readiness and financial planning.</p>
         </div>
       </article>
-      <article class="pillar-card">
+      <article class="pillar-card" data-tilt>
         <header class="pillar-head">
           <span class="pillar-numeral">PILLAR III</span>
           <span class="pillar-icon"><svg aria-hidden="true"><use href="#i-grad"/></svg></span>
@@ -569,22 +662,22 @@
     <p class="pillars-emotion" data-reveal>When women entrepreneurs get access to markets, money and mentors, they do not just grow businesses — <strong>they build independence, confidence and lasting impact.</strong></p>
 
     <div class="sec-cta" data-reveal>
-      <a class="btn btn--wine" href="#contact">Join the Growth Platform <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--wine js-mag" href="#contact">Join the Growth Platform <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
 
 <!-- ======================= 8. BUSINESS WITH PURPOSE ======================= -->
-<section class="section purpose surface-dark" id="purpose">
+<section class="section purpose surface-dark grain" id="purpose">
   <span class="purpose-bokeh" style="width:130px;height:130px;top:12%;left:6%" aria-hidden="true"></span>
   <span class="purpose-bokeh" style="width:70px;height:70px;top:64%;left:14%;animation-delay:1.6s" aria-hidden="true"></span>
   <span class="purpose-bokeh" style="width:100px;height:100px;top:20%;right:8%;animation-delay:0.9s" aria-hidden="true"></span>
   <span class="purpose-bokeh" style="width:56px;height:56px;bottom:12%;right:16%;animation-delay:2.4s" aria-hidden="true"></span>
 
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">Business With Purpose</p>
-      <h2 class="sec-title">When Your Business Grows, <em class="text-gold">Another Woman’s Future Grows Too.</em></h2>
+    <div class="sec-head" data-ghost="Purpose" data-reveal>
+      <p class="eyebrow"><span class="ey-num">07</span> Business With Purpose</p>
+      <h2 class="sec-title" data-split>When Your Business Grows, <em class="text-gold">Another Woman’s Future Grows Too.</em></h2>
       <p class="sec-sub">A purpose-led event where business growth contributes to women empowerment.</p>
     </div>
 
@@ -597,8 +690,8 @@
         </div>
         <p class="purpose-highlight">Your success can become someone else’s beginning.</p>
         <p class="purpose-note"><svg aria-hidden="true"><use href="#i-shield"/></svg> NGO partners, contribution details and supported initiatives will be officially announced before the event.</p>
-        <div class="btn-row" style="margin-top:30px" data-reveal>
-          <a class="btn btn--gold" href="#packages">Book a Purpose-led Stall <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <div class="btn-row" style="margin-top:32px" data-reveal>
+          <a class="btn btn--gold js-mag" href="#packages">Book a Purpose-led Stall <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -619,7 +712,7 @@
 </section>
 
 <!-- ======================= 9. AWARDS ======================= -->
-<section class="section awards surface-darkest" id="awards">
+<section class="section awards surface-darkest grain" id="awards">
   <svg class="award-beams" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
     <defs>
       <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
@@ -632,9 +725,9 @@
   </svg>
 
   <div class="container--wide">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">Awards &amp; Recognition</p>
-      <h2 class="sec-title">A Premium Stage to <em class="text-gold">Recognize Women Entrepreneurs</em></h2>
+    <div class="sec-head" data-ghost="Honour" data-reveal>
+      <p class="eyebrow"><span class="ey-num">08</span> Awards &amp; Recognition</p>
+      <h2 class="sec-title" data-split>A Premium Stage to <em class="text-gold">Recognize Women Entrepreneurs</em></h2>
       <p class="sec-sub">Because every woman building a business deserves to be seen, appreciated and celebrated.</p>
     </div>
 
@@ -651,7 +744,7 @@
           <rect x="72" y="100" width="16" height="26" rx="4" fill="url(#tg)"/>
           <path d="M56 132h48l6 22H50l6-22z" fill="url(#tg)"/>
           <rect x="42" y="158" width="76" height="14" rx="4" fill="url(#tg)"/>
-          <path d="M80 38l6 12 13 1.8-9.5 9 2.3 13L80 67.5 68.2 73.8l2.3-13-9.5-9L74 50l6-12z" fill="#381022" opacity="0.85"/>
+          <path d="M80 38l6 12 13 1.8-9.5 9 2.3 13L80 67.5 68.2 73.8l2.3-13-9.5-9L74 50l6-12z" fill="#370f21" opacity="0.85"/>
           <circle cx="80" cy="56" r="34" stroke="#f8ecd0" stroke-width="0.8" stroke-dasharray="1.5 6" opacity="0.8"/>
         </svg>
         <div class="chief-guest-tag">
@@ -682,8 +775,8 @@
 
         <p class="awards-emotion" data-reveal>This recognition is not only about winning. It is about honoring the courage to begin, the strength to continue and the ambition to grow.</p>
 
-        <div class="btn-row" style="margin-top:34px" data-reveal>
-          <a class="btn btn--gold" href="#packages">Showcase Your Business on a Premium Stage <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <div class="btn-row" style="margin-top:36px" data-reveal>
+          <a class="btn btn--gold js-mag" href="#packages">Showcase Your Business on a Premium Stage <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
     </div>
@@ -693,9 +786,9 @@
 <!-- ======================= 10. NARI SHAKTI ======================= -->
 <section class="section shakti" id="narishakti">
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">Nari Shakti Showcase</p>
-      <h2 class="sec-title">Nari Shakti: Women Who Build Businesses <em class="text-gold">Build the Nation</em></h2>
+    <div class="sec-head" data-ghost="Shakti" data-reveal>
+      <p class="eyebrow"><span class="ey-num">09</span> Nari Shakti Showcase</p>
+      <h2 class="sec-title" data-split>Nari Shakti: Women Who Build Businesses <em class="text-gold">Build the Nation</em></h2>
       <p class="sec-sub">Women entrepreneurs are creating products, jobs, ideas, communities and economic value across India.</p>
     </div>
 
@@ -709,63 +802,103 @@
     <div class="different-intro copy-block" style="color:var(--ink-soft)" data-reveal>
       <p>Women are proving that entrepreneurship is not only about income. It is about independence, identity, leadership and impact.</p>
       <p>Nari Shakti Showcase celebrates women who are turning passion into enterprise, challenges into opportunities and ideas into income.</p>
-      <p style="font-family:var(--font-display); font-style:italic; font-size:1.15em; color:var(--burgundy-900)">This is a stage where women inspire other women to start, grow and lead.</p>
+      <p style="font-family:var(--font-display); font-style:italic; font-size:1.18em; color:var(--burgundy-900)">This is a stage where women inspire other women to start, grow and lead.</p>
     </div>
 
     <div class="shakti-gallery" data-reveal-group>
       <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#86234e,#381022)" aria-hidden="true"></span>
+        <span class="p-bg" style="background:linear-gradient(170deg,#86234e,#370f21)" aria-hidden="true"></span>
+        <span class="p-spot" aria-hidden="true"></span>
+        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
         <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
+        <span class="p-grain" aria-hidden="true"></span>
         <span class="p-veil" aria-hidden="true"></span>
+        <span class="p-ring" aria-hidden="true"></span>
+        <span class="p-index" aria-hidden="true">No. 01</span>
         <figcaption><b>The Corporate CEO</b><span>Leadership</span></figcaption>
       </figure>
       <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#b87a4b,#43132a)" aria-hidden="true"></span>
+        <span class="p-bg" style="background:linear-gradient(170deg,#b87a4b,#421229)" aria-hidden="true"></span>
+        <span class="p-spot" aria-hidden="true"></span>
+        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
         <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
+        <span class="p-grain" aria-hidden="true"></span>
         <span class="p-veil" aria-hidden="true"></span>
+        <span class="p-ring" aria-hidden="true"></span>
+        <span class="p-index" aria-hidden="true">No. 02</span>
         <figcaption><b>The Startup Founder</b><span>Innovation</span></figcaption>
       </figure>
       <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#9d2f5f,#260a16)" aria-hidden="true"></span>
+        <span class="p-bg" style="background:linear-gradient(170deg,#9d2f5f,#250915)" aria-hidden="true"></span>
+        <span class="p-spot" aria-hidden="true"></span>
+        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
         <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
+        <span class="p-grain" aria-hidden="true"></span>
         <span class="p-veil" aria-hidden="true"></span>
+        <span class="p-ring" aria-hidden="true"></span>
+        <span class="p-index" aria-hidden="true">No. 03</span>
         <figcaption><b>The Boutique Owner</b><span>Craft &amp; Style</span></figcaption>
       </figure>
       <figure class="portrait-card">
         <span class="p-bg" style="background:linear-gradient(170deg,#d9a68e,#6b1c3f)" aria-hidden="true"></span>
+        <span class="p-spot" aria-hidden="true"></span>
+        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
         <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
+        <span class="p-grain" aria-hidden="true"></span>
         <span class="p-veil" aria-hidden="true"></span>
+        <span class="p-ring" aria-hidden="true"></span>
+        <span class="p-index" aria-hidden="true">No. 04</span>
         <figcaption><b>The Home Baker</b><span>Homepreneur</span></figcaption>
       </figure>
       <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#6b1c3f,#1c060f)" aria-hidden="true"></span>
+        <span class="p-bg" style="background:linear-gradient(170deg,#6b1c3f,#1a0510)" aria-hidden="true"></span>
+        <span class="p-spot" aria-hidden="true"></span>
+        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
         <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
+        <span class="p-grain" aria-hidden="true"></span>
         <span class="p-veil" aria-hidden="true"></span>
+        <span class="p-ring" aria-hidden="true"></span>
+        <span class="p-index" aria-hidden="true">No. 05</span>
         <figcaption><b>The Jewellery Business Owner</b><span>Heritage</span></figcaption>
       </figure>
       <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#e59a5f,#521631)" aria-hidden="true"></span>
+        <span class="p-bg" style="background:linear-gradient(170deg,#e59a5f,#511530)" aria-hidden="true"></span>
+        <span class="p-spot" aria-hidden="true"></span>
+        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
         <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
+        <span class="p-grain" aria-hidden="true"></span>
         <span class="p-veil" aria-hidden="true"></span>
+        <span class="p-ring" aria-hidden="true"></span>
+        <span class="p-index" aria-hidden="true">No. 06</span>
         <figcaption><b>The Artisan &amp; Potter</b><span>Handmade</span></figcaption>
       </figure>
       <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#86234e,#260a16)" aria-hidden="true"></span>
+        <span class="p-bg" style="background:linear-gradient(170deg,#86234e,#250915)" aria-hidden="true"></span>
+        <span class="p-spot" aria-hidden="true"></span>
+        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
         <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
+        <span class="p-grain" aria-hidden="true"></span>
         <span class="p-veil" aria-hidden="true"></span>
+        <span class="p-ring" aria-hidden="true"></span>
+        <span class="p-index" aria-hidden="true">No. 07</span>
         <figcaption><b>The D2C Brand Owner</b><span>Digital Growth</span></figcaption>
       </figure>
       <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#d3a84f,#521631)" aria-hidden="true"></span>
+        <span class="p-bg" style="background:linear-gradient(170deg,#d3a84f,#511530)" aria-hidden="true"></span>
+        <span class="p-spot" aria-hidden="true"></span>
+        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
         <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
+        <span class="p-grain" aria-hidden="true"></span>
         <span class="p-veil" aria-hidden="true"></span>
+        <span class="p-ring" aria-hidden="true"></span>
+        <span class="p-index" aria-hidden="true">No. 08</span>
         <figcaption><b>The MSME Businesswoman</b><span>Enterprise</span></figcaption>
       </figure>
     </div>
     <p class="shakti-note">Editorial portraits of participating entrepreneurs will be featured here</p>
 
     <div class="sec-cta" data-reveal>
-      <a class="btn btn--wine" href="#contact">Be Featured as a Women-led Brand <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--wine js-mag" href="#contact">Be Featured as a Women-led Brand <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -774,21 +907,27 @@
 
 <!-- ======================= 11. ECOSYSTEM ======================= -->
 <section class="section ecosystem" id="ecosystem">
+  <svg class="eco-rings" viewBox="0 0 400 400" fill="none" stroke="currentColor" aria-hidden="true">
+    <circle cx="200" cy="200" r="70" stroke-width="0.8"/>
+    <circle cx="200" cy="200" r="120" stroke-width="0.6" stroke-dasharray="2 8"/>
+    <circle cx="200" cy="200" r="170" stroke-width="0.5"/>
+    <circle cx="200" cy="200" r="196" stroke-width="0.7" stroke-dasharray="1 10"/>
+  </svg>
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">Business Growth Ecosystem</p>
-      <h2 class="sec-title">Access an Entire <em class="text-gold">Business Growth Ecosystem</em></h2>
+    <div class="sec-head" data-ghost="Ecosystem" data-reveal>
+      <p class="eyebrow"><span class="ey-num">10</span> Business Growth Ecosystem</p>
+      <h2 class="sec-title" data-split>Access an Entire <em class="text-gold">Business Growth Ecosystem</em></h2>
       <p class="sec-sub">The right people, institutions and conversations can change the future of a business.</p>
     </div>
 
-    <div class="different-intro copy-block" style="color:var(--ink-soft); margin-bottom: clamp(40px,5vw,56px)" data-reveal>
+    <div class="different-intro copy-block" style="color:var(--ink-soft); margin-bottom: clamp(44px,5.5vw,60px)" data-reveal>
       <p>Smart Vision Nari Udyam Summit &amp; Expo is designed to connect women entrepreneurs with the larger business ecosystem they need to grow.</p>
       <p>This platform brings together experts, institutions and decision-makers who can support entrepreneurs with guidance, visibility, finance awareness, strategy and expansion opportunities.</p>
     </div>
 
     <div class="eco-grid">
       <div>
-        <h3 style="font-family:var(--font-body); font-size:0.8rem; font-weight:700; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold-700); margin-bottom:22px" data-reveal>Ecosystem Includes</h3>
+        <h3 class="mini-label" data-reveal>Ecosystem Includes</h3>
         <div class="eco-chips" data-reveal-group>
           <span class="eco-chip"><svg aria-hidden="true"><use href="#i-briefcase"/></svg> MSME Experts</span>
           <span class="eco-chip"><svg aria-hidden="true"><use href="#i-bank"/></svg> Banks &amp; Financial Institutions</span>
@@ -831,32 +970,32 @@
     <p class="eco-close" data-reveal>The goal is simple: help women entrepreneurs move from small visibility to <strong class="text-gold">serious business growth.</strong></p>
 
     <div class="sec-cta" data-reveal>
-      <a class="btn btn--wine" href="#contact">Connect With the Ecosystem <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--wine js-mag" href="#contact">Connect With the Ecosystem <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
 
 <!-- ======================= 12. FINANCE ======================= -->
-<section class="section finance surface-dark" id="finance">
+<section class="section finance surface-dark grain" id="finance">
   <div class="container">
     <div class="finance-grid">
       <div>
-        <div class="sec-head sec-head--left" data-reveal style="margin-bottom:24px">
-          <p class="eyebrow">Finance, Banking &amp; MSME Support</p>
-          <h2 class="sec-title">Finance Guidance for <em class="text-gold">Women-led Growth</em></h2>
+        <div class="sec-head sec-head--left" data-ghost="Finance" data-reveal style="margin-bottom:26px">
+          <p class="eyebrow"><span class="ey-num">11</span> Finance, Banking &amp; MSME Support</p>
+          <h2 class="sec-title" data-split>Finance Guidance for <em class="text-gold">Women-led Growth</em></h2>
           <p class="sec-sub">Helping entrepreneurs understand funding, documentation and growth readiness.</p>
         </div>
         <div class="copy-block copy-muted" data-reveal>
           <p>Many women entrepreneurs have strong products, strong ideas and strong commitment — but they often need guidance on how to become financially ready for business growth.</p>
           <p>At the summit, banks, financial institutions and MSME experts will be invited to guide eligible entrepreneurs on business finance, documentation, loan readiness, MSME benefits and expansion opportunities.</p>
         </div>
-        <div class="btn-row" style="margin-top:30px" data-reveal>
-          <a class="btn btn--gold" href="#contact">Register for Finance Guidance <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <div class="btn-row" style="margin-top:32px" data-reveal>
+          <a class="btn btn--gold js-mag" href="#contact">Register for Finance Guidance <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
       <div>
-        <h3 style="font-family:var(--font-body); font-size:0.78rem; font-weight:700; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-300); margin-bottom:20px" data-reveal>Topics May Include</h3>
+        <h3 class="mini-label" data-reveal>Topics May Include</h3>
         <div class="topic-grid" data-reveal-group>
           <div class="topic-tile"><svg aria-hidden="true"><use href="#i-bank"/></svg> Business loan readiness</div>
           <div class="topic-tile"><svg aria-hidden="true"><use href="#i-doc"/></svg> MSME registration awareness</div>
@@ -883,18 +1022,18 @@
 <!-- ======================= 13. NETWORKING ======================= -->
 <section class="section network" id="networking">
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">Networking</p>
-      <h2 class="sec-title">Networking That Can Create <em class="text-gold">Real Business Opportunities</em></h2>
+    <div class="sec-head" data-ghost="Connect" data-reveal>
+      <p class="eyebrow"><span class="ey-num">12</span> Networking</p>
+      <h2 class="sec-title" data-split>Networking That Can Create <em class="text-gold">Real Business Opportunities</em></h2>
       <p class="sec-sub">One meaningful conversation can open a new market, partnership or growth path.</p>
     </div>
 
-    <div class="different-intro copy-block" style="color:var(--ink-soft); margin-bottom: clamp(40px,5vw,56px)" data-reveal>
+    <div class="different-intro copy-block" style="color:var(--ink-soft); margin-bottom: clamp(44px,5.5vw,60px)" data-reveal>
       <p>The biggest value of this summit is not only who visits your stall. It is who you meet, what conversations you create and what opportunities follow after the event.</p>
       <p>Networking at Smart Vision Nari Udyam Summit &amp; Expo is designed to help women entrepreneurs connect with people who can support their business journey.</p>
     </div>
 
-    <h3 style="text-align:center; font-family:var(--font-body); font-size:0.8rem; font-weight:700; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold-700); margin-bottom:24px" data-reveal>Networking Can Lead To</h3>
+    <h3 class="mini-label mini-label--center" data-reveal>Networking Can Lead To</h3>
     <div class="outcome-cloud" data-reveal-group>
       <span class="outcome-tag"><svg aria-hidden="true"><use href="#i-users"/></svg> New customers</span>
       <span class="outcome-tag"><svg aria-hidden="true"><use href="#i-connect"/></svg> Business partnerships</span>
@@ -913,49 +1052,53 @@
     <p class="network-strong" data-reveal>Your next customer, partner, mentor or growth opportunity could begin with <strong>one conversation.</strong></p>
 
     <div class="sec-cta" data-reveal>
-      <a class="btn btn--wine" href="#contact">Register for Networking Access <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--wine js-mag" href="#contact">Register for Networking Access <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
 
 <!-- ======================= 14. SPEAKERS ======================= -->
-<section class="section speakers surface-dark" id="speakers">
+<section class="section speakers surface-dark grain" id="speakers">
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">Speakers &amp; Mentors</p>
-      <h2 class="sec-title">Learn From Leaders, Experts &amp; <em class="text-gold">Growth Mentors</em></h2>
+    <div class="sec-head" data-ghost="Mentors" data-reveal>
+      <p class="eyebrow"><span class="ey-num">13</span> Speakers &amp; Mentors</p>
+      <h2 class="sec-title" data-split>Learn From Leaders, Experts &amp; <em class="text-gold">Growth Mentors</em></h2>
       <p class="sec-sub">Practical business knowledge from people who understand growth.</p>
     </div>
 
-    <div class="different-intro copy-block" data-reveal style="margin-bottom: clamp(40px,5vw,56px)">
+    <div class="different-intro copy-block" data-reveal style="margin-bottom: clamp(44px,5.5vw,60px)">
       <p>The summit will feature expert-led sessions, panel discussions and business conversations designed to help women entrepreneurs build stronger, more confident and more scalable businesses.</p>
       <p>Speakers and mentors will share insights on business growth, finance, MSME support, branding, digital marketing, leadership, retail, funding readiness and market expansion.</p>
     </div>
 
     <div class="speaker-placeholder-row" data-reveal-group>
       <div class="speaker-card">
-        <span class="speaker-silhouette"><svg viewBox="0 0 100 120" fill="currentColor" aria-hidden="true"><use href="#i-fig1"/></svg></span>
+        <span class="speaker-seal"><svg viewBox="0 0 100 120" fill="currentColor" aria-hidden="true"><use href="#i-fig1"/></svg></span>
         <b>Announcing Soon</b>
-        <span>Keynote Speaker</span>
+        <span class="sp-role">Keynote Speaker</span>
+        <span class="sp-tag">To Be Announced</span>
       </div>
       <div class="speaker-card">
-        <span class="speaker-silhouette"><svg viewBox="0 0 100 120" fill="currentColor" aria-hidden="true"><use href="#i-fig2"/></svg></span>
+        <span class="speaker-seal"><svg viewBox="0 0 100 120" fill="currentColor" aria-hidden="true"><use href="#i-fig2"/></svg></span>
         <b>Announcing Soon</b>
-        <span>Growth Mentor</span>
+        <span class="sp-role">Growth Mentor</span>
+        <span class="sp-tag">To Be Announced</span>
       </div>
       <div class="speaker-card">
-        <span class="speaker-silhouette"><svg viewBox="0 0 100 120" fill="currentColor" aria-hidden="true"><use href="#i-fig1"/></svg></span>
+        <span class="speaker-seal"><svg viewBox="0 0 100 120" fill="currentColor" aria-hidden="true"><use href="#i-fig1"/></svg></span>
         <b>Announcing Soon</b>
-        <span>Panel Speaker</span>
+        <span class="sp-role">Panel Speaker</span>
+        <span class="sp-tag">To Be Announced</span>
       </div>
       <div class="speaker-card">
-        <span class="speaker-silhouette"><svg viewBox="0 0 100 120" fill="currentColor" aria-hidden="true"><use href="#i-fig2"/></svg></span>
+        <span class="speaker-seal"><svg viewBox="0 0 100 120" fill="currentColor" aria-hidden="true"><use href="#i-fig2"/></svg></span>
         <b>Announcing Soon</b>
-        <span>Industry Expert</span>
+        <span class="sp-role">Industry Expert</span>
+        <span class="sp-tag">To Be Announced</span>
       </div>
     </div>
 
-    <h3 style="text-align:center; font-family:var(--font-body); font-size:0.8rem; font-weight:700; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold-300); margin-bottom:20px" data-reveal>Session Themes</h3>
+    <h3 class="mini-label mini-label--center" data-reveal>Session Themes</h3>
     <div class="theme-list" data-reveal>
       <div class="theme-item"><span class="t-num">01</span><p>How women entrepreneurs can scale their business</p></div>
       <div class="theme-item"><span class="t-num">02</span><p>MSME benefits every entrepreneur should know</p></div>
@@ -972,7 +1115,7 @@
     <p class="speakers-placeholder-line" data-reveal>Speaker and mentor announcements coming soon.</p>
 
     <div class="sec-cta" data-reveal>
-      <a class="btn btn--gold" href="#contact">Join as Speaker / Mentor <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--gold js-mag" href="#contact">Join as Speaker / Mentor <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -980,18 +1123,18 @@
 <!-- ======================= 15. PARTNERS ======================= -->
 <section class="section partners" id="partners">
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">Sponsors &amp; Partners</p>
-      <h2 class="sec-title">Partner With India’s Premium <em class="text-gold">Women Entrepreneurship Platform</em></h2>
+    <div class="sec-head" data-ghost="Partner" data-reveal>
+      <p class="eyebrow"><span class="ey-num">14</span> Sponsors &amp; Partners</p>
+      <h2 class="sec-title" data-split>Partner With India’s Premium <em class="text-gold">Women Entrepreneurship Platform</em></h2>
       <p class="sec-sub">Connect your brand with women entrepreneurs, founders, MSMEs, buyers, communities and business decision-makers.</p>
     </div>
 
-    <div class="different-intro copy-block" style="color:var(--ink-soft); margin-bottom: clamp(44px,6vw,64px)" data-reveal>
+    <div class="different-intro copy-block" style="color:var(--ink-soft); margin-bottom: clamp(48px,6vw,68px)" data-reveal>
       <p>Smart Vision invites banks, NBFCs, brands, business platforms, CSR partners, media houses, women entrepreneur communities, MSME networks and growth-focused organizations to associate with Smart Vision Nari Udyam Summit &amp; Expo.</p>
       <p>This event offers partners a premium opportunity to build visibility, goodwill, engagement and meaningful connections within India’s growing women-led business ecosystem.</p>
     </div>
 
-    <h3 style="text-align:center; font-family:var(--font-body); font-size:0.8rem; font-weight:700; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold-700); margin-bottom:24px" data-reveal>Partnership Categories</h3>
+    <h3 class="mini-label mini-label--center" data-reveal>Partnership Categories</h3>
     <div class="partner-cat-grid" data-reveal-group>
       <div class="partner-tile"><svg aria-hidden="true"><use href="#i-crown"/></svg> Title Sponsor</div>
       <div class="partner-tile"><svg aria-hidden="true"><use href="#i-bank"/></svg> Banking Partner</div>
@@ -1023,32 +1166,32 @@
     </div>
 
     <div class="sec-cta" data-reveal>
-      <a class="btn btn--wine" href="#contact">Request Partnership Deck <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--wine js-mag" href="#contact">Request Partnership Deck <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
 
 <!-- ======================= 16. COMMUNITY ======================= -->
-<section class="section community surface-royal" id="community">
+<section class="section community surface-royal grain" id="community">
   <div class="container">
     <div class="community-grid">
       <div>
-        <div class="sec-head sec-head--left" data-reveal style="margin-bottom:22px">
-          <p class="eyebrow">Community Partnership</p>
-          <h2 class="sec-title">Calling Women Entrepreneur Communities, Business Networks &amp; <em class="text-gold">Associations</em></h2>
+        <div class="sec-head sec-head--left" data-ghost="Together" data-reveal style="margin-bottom:24px">
+          <p class="eyebrow"><span class="ey-num">15</span> Community Partnership</p>
+          <h2 class="sec-title" data-split>Calling Women Entrepreneur Communities, Business Networks &amp; <em class="text-gold">Associations</em></h2>
         </div>
         <p class="community-lede" data-reveal>Strong communities create stronger entrepreneurs.</p>
         <div class="copy-block copy-muted" data-reveal>
           <p>Smart Vision Nari Udyam Summit &amp; Expo invites women entrepreneur groups, business networks, startup communities, MSME associations, creator communities, professional networks and social impact organizations to collaborate as community partners.</p>
           <p>Together, we can create a platform where women entrepreneurs get access to visibility, learning, recognition, networks and real business opportunities.</p>
         </div>
-        <div class="btn-row" style="margin-top:30px" data-reveal>
-          <a class="btn btn--gold" href="#contact">Associate as Community Partner <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <div class="btn-row" style="margin-top:32px" data-reveal>
+          <a class="btn btn--gold js-mag" href="#contact">Associate as Community Partner <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
       <div>
-        <h3 style="font-family:var(--font-body); font-size:0.78rem; font-weight:700; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-300); margin-bottom:18px" data-reveal>Community Partner Value</h3>
+        <h3 class="mini-label" data-reveal>Community Partner Value</h3>
         <ul class="community-value-list" data-reveal-group>
           <li><svg aria-hidden="true"><use href="#i-award"/></svg> Recognition as official community partner</li>
           <li><svg aria-hidden="true"><use href="#i-spark"/></svg> Logo visibility on selected event assets</li>
@@ -1067,9 +1210,9 @@
 <!-- ======================= 17. EVENT EXPERIENCE / SCHEDULE ======================= -->
 <section class="section schedule" id="schedule">
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">Event Experience</p>
-      <h2 class="sec-title">A Premium 2-Day Experience Designed for <em class="text-gold">Growth, Recognition &amp; Opportunity</em></h2>
+    <div class="sec-head" data-ghost="Experience" data-reveal>
+      <p class="eyebrow"><span class="ey-num">16</span> Event Experience</p>
+      <h2 class="sec-title" data-split>A Premium 2-Day Experience Designed for <em class="text-gold">Growth, Recognition &amp; Opportunity</em></h2>
       <p class="sec-sub">Every part of the event is designed to create a meaningful business experience for exhibitors, speakers, visitors, partners and communities.</p>
     </div>
 
@@ -1110,22 +1253,22 @@
     </div>
 
     <div class="sec-cta" data-reveal>
-      <a class="btn btn--wine" href="#contact">Register Your Interest <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--wine js-mag" href="#contact">Register Your Interest <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
 
 <!-- ======================= 18. STALL PACKAGES ======================= -->
-<section class="section packages surface-darkest" id="packages">
+<section class="section packages surface-darkest grain" id="packages">
   <div class="container--wide">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">Stall Packages</p>
-      <h2 class="sec-title">Choose Your <em class="text-gold">Exhibitor Opportunity</em></h2>
+    <div class="sec-head" data-ghost="Reserve" data-reveal>
+      <p class="eyebrow"><span class="ey-num">17</span> Stall Packages</p>
+      <h2 class="sec-title" data-split>Choose Your <em class="text-gold">Exhibitor Opportunity</em></h2>
       <p class="sec-sub">Premium stall options designed for visibility, positioning and business growth.</p>
     </div>
 
     <div class="package-grid" data-reveal-group>
-      <article class="package-card">
+      <article class="package-card" data-tilt>
         <span class="package-ribbon">Limited Slots</span>
         <h3 class="package-name">Early Bird Stall</h3>
         <p class="package-price">₹30,000</p>
@@ -1134,7 +1277,7 @@
         <a class="btn btn--outline-gold btn--sm" href="#contact">Reserve Early Bird Stall</a>
       </article>
 
-      <article class="package-card">
+      <article class="package-card" data-tilt>
         <h3 class="package-name">Standard Stall</h3>
         <p class="package-price">₹40,000</p>
         <div class="package-rule" aria-hidden="true"></div>
@@ -1142,7 +1285,7 @@
         <a class="btn btn--outline-gold btn--sm" href="#contact">Book Your Stall</a>
       </article>
 
-      <article class="package-card">
+      <article class="package-card" data-tilt>
         <h3 class="package-name">Premium Stall</h3>
         <p class="package-price">₹60,000</p>
         <div class="package-rule" aria-hidden="true"></div>
@@ -1150,7 +1293,7 @@
         <a class="btn btn--outline-gold btn--sm" href="#contact">Apply for Stall Booking</a>
       </article>
 
-      <article class="package-card package-card--featured">
+      <article class="package-card package-card--featured" data-tilt>
         <span class="package-ribbon">Maximum Visibility</span>
         <h3 class="package-name">Spotlight Stall</h3>
         <p class="package-price">₹90,000</p>
@@ -1168,7 +1311,8 @@
     </ul>
 
     <div class="sec-cta" data-reveal>
-      <a class="btn btn--gold" href="#contact">Request Stall Brochure <svg aria-hidden="true"><use href="#i-doc"/></svg></a>
+      <a class="btn btn--gold btn--lg js-mag" href="#contact">Request Stall Brochure <svg aria-hidden="true"><use href="#i-doc"/></svg></a>
+      <span class="cta-note">Only 50 curated stalls · Premium placement on first-confirmation basis</span>
     </div>
   </div>
 </section>
@@ -1176,47 +1320,60 @@
 <!-- ======================= 19. TRUST & PROFESSIONAL PLANNING ======================= -->
 <section class="section trust" id="trust">
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">Trust &amp; Professional Planning</p>
-      <h2 class="sec-title">Built With Professional Planning, Premium Experience &amp; <em class="text-gold">Business Purpose</em></h2>
+    <div class="sec-head" data-ghost="Trust" data-reveal>
+      <p class="eyebrow"><span class="ey-num">18</span> Trust &amp; Professional Planning</p>
+      <h2 class="sec-title" data-split>Built With Professional Planning, Premium Experience &amp; <em class="text-gold">Business Purpose</em></h2>
     </div>
 
-    <div class="different-intro copy-block" style="color:var(--ink-soft); margin-bottom: clamp(44px,6vw,64px)" data-reveal>
+    <div class="different-intro copy-block" style="color:var(--ink-soft); margin-bottom: clamp(48px,6vw,68px)" data-reveal>
       <p>A premium event experience is built through clarity, structure and professional execution.</p>
       <p>Smart Vision Nari Udyam Summit &amp; Expo is being planned with a strong focus on exhibitor experience, visitor quality, partner visibility, stage programming, brand presentation and smooth event operations.</p>
     </div>
 
     <div class="trust-grid" data-reveal-group>
-      <article class="trust-card">
+      <article class="trust-card" data-tilt>
         <span class="t-icon"><svg aria-hidden="true"><use href="#i-target"/></svg></span>
         <h3>Curated Exhibitor Mix</h3>
         <p>The event is designed to maintain a balanced category mix and premium presentation.</p>
       </article>
-      <article class="trust-card">
+      <article class="trust-card" data-tilt>
         <span class="t-icon"><svg aria-hidden="true"><use href="#i-crown"/></svg></span>
         <h3>Premium Venue Environment</h3>
         <p>Planned at a 5-star hotel in Delhi to create a high-trust, business-focused atmosphere.</p>
       </article>
-      <article class="trust-card">
+      <article class="trust-card" data-tilt>
         <span class="t-icon"><svg aria-hidden="true"><use href="#i-cal"/></svg></span>
         <h3>Structured Summit Flow</h3>
         <p>A clear 2-day format combining expo, knowledge sessions, networking, recognition and business interactions.</p>
       </article>
-      <article class="trust-card">
+      <article class="trust-card" data-tilt>
         <span class="t-icon"><svg aria-hidden="true"><use href="#i-spark"/></svg></span>
         <h3>Professional Branding</h3>
         <p>Premium visual identity, event collaterals, digital communication and partner visibility across platforms.</p>
       </article>
-      <article class="trust-card">
+      <article class="trust-card" data-tilt>
         <span class="t-icon"><svg aria-hidden="true"><use href="#i-heart"/></svg></span>
         <h3>Purpose-led Impact</h3>
         <p>A percentage of stall bookings will support women empowerment initiatives through NGO partnerships.</p>
       </article>
-      <article class="trust-card">
+      <article class="trust-card" data-tilt>
         <span class="t-icon"><svg aria-hidden="true"><use href="#i-chart"/></svg></span>
         <h3>Conversion-focused Visitor Experience</h3>
         <p>The event is designed to help visitors, exhibitors, sponsors and partners understand their value and take meaningful action.</p>
       </article>
+    </div>
+
+    <div class="partner-wall" data-reveal>
+      <h3 class="mini-label mini-label--center">Partners &amp; Sponsors</h3>
+      <div class="partner-wall-grid">
+        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-crown"/></svg><span>Title Sponsor</span></div>
+        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-bank"/></svg><span>Banking Partner</span></div>
+        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-book"/></svg><span>Knowledge Partner</span></div>
+        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-heart"/></svg><span>CSR Partner</span></div>
+        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-camera"/></svg><span>Media Partner</span></div>
+        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-globe"/></svg><span>Technology Partner</span></div>
+      </div>
+      <p class="partner-wall-note">Speaker and partner announcements coming soon.</p>
     </div>
 
     <div class="sec-cta" data-reveal>
@@ -1233,7 +1390,7 @@
         <svg viewBox="0 0 300 370" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <defs>
             <linearGradient id="vbg" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#1c060f"/><stop offset="0.55" stop-color="#43132a"/><stop offset="1" stop-color="#521631"/>
+              <stop offset="0" stop-color="#1a0510"/><stop offset="0.55" stop-color="#421229"/><stop offset="1" stop-color="#511530"/>
             </linearGradient>
             <linearGradient id="vbeam" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#e2bd6d" stop-opacity="0.65"/><stop offset="1" stop-color="#e2bd6d" stop-opacity="0"/>
@@ -1243,15 +1400,22 @@
             </linearGradient>
           </defs>
           <rect width="300" height="370" fill="url(#vbg)"/>
+          <path d="M60 26c0 14 12 22 30 22s30-8 30-22M180 26c0 14 12 22 30 22s30-8 30-22" stroke="#d3a84f" stroke-width="0.8" fill="none" opacity="0.6"/>
+          <g fill="#f2dfae">
+            <circle cx="90" cy="52" r="2.4" opacity="0.9"/><circle cx="210" cy="52" r="2.4" opacity="0.9"/>
+            <circle cx="74" cy="46" r="1.4" opacity="0.7"/><circle cx="106" cy="46" r="1.4" opacity="0.7"/>
+            <circle cx="194" cy="46" r="1.4" opacity="0.7"/><circle cx="226" cy="46" r="1.4" opacity="0.7"/>
+          </g>
           <polygon points="70,0 110,0 170,240 30,240" fill="url(#vbeam)" opacity="0.5"/>
           <polygon points="190,0 230,0 280,240 130,240" fill="url(#vbeam)" opacity="0.4"/>
           <circle cx="150" cy="60" r="40" fill="#e2bd6d" opacity="0.1"/>
-          <rect x="55" y="118" width="190" height="86" rx="6" fill="#260a16" stroke="#d3a84f" stroke-width="1" opacity="0.95"/>
+          <rect x="55" y="118" width="190" height="86" rx="6" fill="#250915" stroke="#d3a84f" stroke-width="1" opacity="0.95"/>
           <rect x="66" y="129" width="168" height="64" rx="3" fill="url(#vstage)" opacity="0.35"/>
           <path d="M84 165c14-14 26-20 40-18M216 165c-14-14-26-20-40-18" stroke="#e2bd6d" stroke-width="1.1" fill="none" opacity="0.8"/>
           <circle cx="150" cy="152" r="12" fill="none" stroke="#e2bd6d" stroke-width="1.1" opacity="0.9"/>
           <path d="M150 141c4.5 5 6.8 9.4 6.8 13.2a6.8 6.8 0 0 1-13.6 0c0-3.8 2.3-8.2 6.8-13.2z" fill="#e2bd6d" opacity="0.85"/>
           <rect x="30" y="204" width="240" height="10" rx="2" fill="#d3a84f" opacity="0.55"/>
+          <rect x="40" y="214" width="220" height="3" rx="1.5" fill="#f2dfae" opacity="0.3"/>
           <g fill="#f9efe0">
             <circle cx="58" cy="258" r="7" opacity="0.75"/><circle cx="92" cy="252" r="7" opacity="0.6"/><circle cx="126" cy="260" r="7" opacity="0.8"/><circle cx="160" cy="251" r="7" opacity="0.6"/><circle cx="194" cy="259" r="7" opacity="0.75"/><circle cx="228" cy="253" r="7" opacity="0.6"/><circle cx="255" cy="261" r="7" opacity="0.7"/>
             <circle cx="44" cy="298" r="8" opacity="0.5"/><circle cx="84" cy="292" r="8" opacity="0.65"/><circle cx="124" cy="300" r="8" opacity="0.5"/><circle cx="164" cy="291" r="8" opacity="0.65"/><circle cx="204" cy="299" r="8" opacity="0.5"/><circle cx="244" cy="293" r="8" opacity="0.6"/>
@@ -1265,13 +1429,13 @@
       </figure>
 
       <div>
-        <div class="sec-head sec-head--left" data-reveal style="margin-bottom:22px">
-          <p class="eyebrow">Visitor Registration</p>
-          <h2 class="sec-title">Attend a Premium Summit Celebrating <em class="text-gold">Women-led Business Growth</em></h2>
+        <div class="sec-head sec-head--left" data-ghost="Attend" data-reveal style="margin-bottom:24px">
+          <p class="eyebrow"><span class="ey-num">19</span> Visitor Registration</p>
+          <h2 class="sec-title" data-split>Attend a Premium Summit Celebrating <em class="text-gold">Women-led Business Growth</em></h2>
         </div>
         <p class="copy-muted" data-reveal>Whether you are a business owner, aspiring entrepreneur, buyer, student, investor, mentor, community leader or supporter of women-led growth, this event gives you access to inspiring stories, powerful conversations and meaningful business opportunities.</p>
 
-        <h3 style="font-family:var(--font-body); font-size:0.78rem; font-weight:700; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-700); margin:28px 0 0" data-reveal>Why Attend?</h3>
+        <h3 class="mini-label" style="margin-top:30px" data-reveal>Why Attend?</h3>
         <ul class="why-attend" data-reveal-group>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg> Discover women-led brands</li>
           <li><svg aria-hidden="true"><use href="#i-check"/></svg> Meet entrepreneurs and founders</li>
@@ -1283,8 +1447,8 @@
           <li><svg aria-hidden="true"><use href="#i-check"/></svg> Be part of a premium entrepreneurship movement</li>
         </ul>
 
-        <div class="btn-row" style="margin-top:32px" data-reveal>
-          <a class="btn btn--wine" href="#contact">Register as Visitor <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <div class="btn-row" style="margin-top:34px" data-reveal>
+          <a class="btn btn--wine js-mag" href="#contact">Register as Visitor <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
     </div>
@@ -1292,15 +1456,21 @@
 </section>
 
 <!-- ======================= 21. LEAD CAPTURE FORM ======================= -->
-<section class="section enquiry surface-dark" id="contact">
+<section class="section enquiry surface-dark grain" id="contact">
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">Submit Enquiry</p>
-      <h2 class="sec-title">Be Part of Smart Vision <em class="text-gold">Nari Udyam Summit &amp; Expo</em></h2>
+    <div class="sec-head" data-ghost="Enquire" data-reveal>
+      <p class="eyebrow"><span class="ey-num">20</span> Submit Enquiry</p>
+      <h2 class="sec-title" data-split>Be Part of Smart Vision <em class="text-gold">Nari Udyam Summit &amp; Expo</em></h2>
       <p class="sec-sub">Submit your interest and our team will connect with you for stall bookings, sponsorships, partnerships, speaking opportunities or visitor registration.</p>
     </div>
 
     <div class="enquiry-shell" data-reveal>
+      <div class="enquiry-trust" aria-hidden="true">
+        <span class="badge-scarcity"><span class="pulse-dot"></span> Only 50 curated stalls</span>
+        <span class="badge-scarcity">Early bird slots available for selected confirmations</span>
+        <span class="badge-scarcity">Category-wise exhibitor curation</span>
+      </div>
+
       <form class="form-grid" id="enquiryForm" novalidate>
         <div class="form-field">
           <label for="fName">Full Name <span class="req" aria-hidden="true">*</span></label>
@@ -1359,7 +1529,9 @@
           <label>Leave this field empty<input type="text" name="company_website" tabindex="-1" autocomplete="off" /></label>
         </div>
         <div class="form-submit-row">
-          <button class="btn btn--gold" type="submit" id="submitBtn">Submit Enquiry <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <button class="btn btn--gold btn--lg js-mag" type="submit" id="submitBtn">Submit Enquiry <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <span class="form-alt">or</span>
+          <a class="btn btn--wa js-wa" href="#contact">Get Stall Details on WhatsApp <svg aria-hidden="true"><use href="#i-wa"/></svg></a>
           <p class="form-privacy">Limited curated stalls · Early confirmations receive priority visibility</p>
         </div>
       </form>
@@ -1375,7 +1547,7 @@
 </section>
 
 <!-- ======================= 22. FINAL CTA ======================= -->
-<section class="section finale" id="finale">
+<section class="section finale grain" id="finale">
   <svg class="finale-rays" viewBox="0 0 900 500" fill="none" stroke="currentColor" aria-hidden="true">
     <g stroke-width="1">
       <path d="M450 250 L60 40"/><path d="M450 250 L180 0"/><path d="M450 250 L320 -20"/><path d="M450 250 L450 -40"/><path d="M450 250 L580 -20"/><path d="M450 250 L720 0"/><path d="M450 250 L840 40"/>
@@ -1385,9 +1557,9 @@
   </svg>
 
   <div class="container--narrow">
-    <div class="sec-head" style="margin-bottom:0" data-reveal>
+    <div class="sec-head" style="margin-bottom:0" data-ghost="Stage" data-reveal>
       <p class="eyebrow">Smart Vision Nari Udyam Summit &amp; Expo</p>
-      <h2 class="sec-title">This Is More Than a Stall.<br/><em class="text-gold">This Is Your Stage.</em></h2>
+      <h2 class="sec-title" data-split>This Is More Than a Stall.<br/><em class="text-gold">This Is Your Stage.</em></h2>
     </div>
 
     <div class="finale-lines" data-reveal>
@@ -1399,9 +1571,9 @@
     <p class="finale-copy" data-reveal>Join a premium platform created for women entrepreneurs who are ready to be seen, heard, supported and celebrated.</p>
 
     <div class="btn-row" data-reveal>
-      <a class="btn btn--gold" href="#packages">Book Your Stall <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      <a class="btn btn--outline-gold" href="#partners">Become a Sponsor</a>
-      <a class="btn btn--ghost-light" href="#contact">Register Interest</a>
+      <a class="btn btn--gold btn--lg js-mag" href="#packages">Book Your Stall <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--outline-gold js-mag" href="#partners">Become a Sponsor</a>
+      <a class="btn btn--ghost-light js-mag" href="#contact">Register Interest</a>
     </div>
 
     <p class="finale-emotion" data-reveal>Be part of a movement where women build businesses, create impact and inspire the next generation.</p>
@@ -1411,9 +1583,9 @@
 <!-- ======================= 23. FAQ ======================= -->
 <section class="section faq" id="faq">
   <div class="container">
-    <div class="sec-head" data-reveal>
-      <p class="eyebrow">FAQ</p>
-      <h2 class="sec-title">Frequently Asked <em class="text-gold">Questions</em></h2>
+    <div class="sec-head" data-ghost="Answers" data-reveal>
+      <p class="eyebrow"><span class="ey-num">21</span> FAQ</p>
+      <h2 class="sec-title" data-split>Frequently Asked <em class="text-gold">Questions</em></h2>
     </div>
 
     <div class="faq-list" data-reveal>
@@ -1466,6 +1638,17 @@
         <p class="faq-answer">You can fill out the enquiry form on the website or connect with the Smart Vision team through WhatsApp.</p>
       </details>
     </div>
+
+    <div class="faq-endcap" data-reveal>
+      <div>
+        <h3>Still have a question?</h3>
+        <p>Connect with the Smart Vision team through WhatsApp or submit the enquiry form.</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn--wa js-wa" href="#contact">Talk to the Event Team <svg aria-hidden="true"><use href="#i-wa"/></svg></a>
+        <a class="btn btn--gold" href="#contact">Submit Enquiry</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1508,7 +1691,7 @@
           <li><svg aria-hidden="true"><use href="#i-mail"/></svg> Email: <span class="js-email">[Email ID]</span></li>
           <li><svg aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp: <span class="js-wa-number">[WhatsApp Number]</span></li>
         </ul>
-        <div class="btn-row" style="margin-top:18px">
+        <div class="btn-row" style="margin-top:20px">
           <a class="btn btn--gold btn--sm" href="#packages">Book a Stall</a>
         </div>
       </div>
@@ -1525,7 +1708,7 @@
 
 <!-- Sticky desktop CTA -->
 <div class="sticky-desktop" id="stickyDesktop" role="complementary" aria-label="Quick actions">
-  <span class="sd-label">Nari Udyam Summit 2026</span>
+  <span class="sd-label"><b>Nari Udyam Summit 2026</b><small>Delhi · 19–20 September · 5-Star Hotel</small></span>
   <a class="btn btn--gold btn--sm" href="#packages">Book Stall</a>
   <a class="btn btn--outline-gold btn--sm" href="#partners">Sponsor Enquiry</a>
   <a class="btn btn--ghost-light btn--sm" href="#contact">Register Interest</a>
@@ -1541,6 +1724,9 @@
 <a class="float-wa js-wa" href="#contact" id="floatWa" aria-label="Talk to Event Team on WhatsApp">
   <svg aria-hidden="true"><use href="#i-wa"/></svg><span class="wa-label">Talk to Event Team</span>
 </a>
+
+<!-- Back to top -->
+<button class="back-top" id="backTop" aria-label="Back to top"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
 
 <!-- Exit intent popup -->
 <div class="exit-modal" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitTitle" aria-hidden="true">
