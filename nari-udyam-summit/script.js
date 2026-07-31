@@ -21,8 +21,45 @@
     eventDate: "2026-09-19T09:00:00+05:30"
   };
 
+  /* ------------------------------------------------------------
+     IMAGES — official campaign photography manifest.
+     Drop a URL (or relative path like "assets/host.jpg") against any
+     slot and the matching frame instantly switches from its
+     art-directed state to the photograph, with the brand colour
+     grade applied automatically. A failed load silently reverts to
+     the art-directed frame, so a broken URL can never break the page.
+  ------------------------------------------------------------ */
+  var IMAGES = {
+    "hero-host": "",          // the recurring female event host — hero invitation panel
+    "shakti-ceo": "",
+    "shakti-founder": "",
+    "shakti-boutique": "",
+    "shakti-baker": "",
+    "shakti-jewellery": "",
+    "shakti-artisan": "",
+    "shakti-d2c": "",
+    "shakti-msme": "",
+    "speaker-1": "",
+    "speaker-2": "",
+    "speaker-3": "",
+    "speaker-4": "",
+    "venue-atmosphere": ""    // stage / venue editorial photograph
+  };
+
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  /* ---------- Photo-slot hydration ---------- */
+  document.querySelectorAll("[data-photo-frame]").forEach(function (frame) {
+    var src = IMAGES[frame.getAttribute("data-photo-frame")];
+    if (!src) return;
+    var img = frame.querySelector(".ph-img");
+    if (!img) return;
+    img.addEventListener("load", function () { frame.classList.add("has-photo"); });
+    img.addEventListener("error", function () { frame.classList.remove("has-photo"); });
+    img.loading = "lazy";
+    img.src = src;
+  });
 
   /* ---------- WhatsApp / contact wiring ---------- */
   var waLinks = document.querySelectorAll(".js-wa");

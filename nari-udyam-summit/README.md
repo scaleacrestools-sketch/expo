@@ -69,14 +69,33 @@ handler in `script.js` (search for `NOTE: connect this handler`) to your
 backend, CRM, Google Sheet (Apps Script) or a service such as Formspree —
 a single `fetch()` call is enough.
 
-## Replacing placeholder visuals with photography
+## Dropping in real campaign photography (IMAGES manifest)
 
-The design intentionally ships with elegant art-directed placeholders
-(cameo portraits in "Nari Shakti", speaker cards, the atmosphere frame in the
-visitor section, the Chief Guest medallion). When official editorial
-photography and confirmed names are available, swap the SVG blocks for
-`<img>` tags (use WebP/AVIF, add `width`/`height` and `loading="lazy"`) —
-the frames, captions and layouts already accommodate them.
+Every photo position on the page is a pre-wired frame with the brand's
+colour grade, veil and captions already applied. To activate one, open
+`script.js` and fill the matching entry in the `IMAGES` manifest at the top:
+
+```js
+var IMAGES = {
+  "hero-host": "assets/host-portrait.jpg",   // the recurring female event host
+  "shakti-ceo": "assets/ceo.jpg",            // Nari Shakti roll-call portraits …
+  ...
+  "venue-atmosphere": "assets/stage.jpg"     // visitor-section venue photograph
+};
+```
+
+Use relative paths (put files in an `assets/` folder next to `index.html`)
+or absolute URLs. The frame switches from its art-directed state to the
+photograph automatically; a URL that fails to load silently reverts to the
+art-directed state, so a broken image can never break the page. Recommended:
+portrait crops around 900×1200, WebP/JPEG quality ~75.
+
+Photography brief (per the approved creative direction): realistic,
+confident Indian women entrepreneurs — corporate CEO, startup founder,
+boutique owner, home baker, jewellery business owner, artisan/potter, D2C
+brand owner, MSME businesswoman — plus one recurring event-host portrait
+and a 5-star stage/venue atmosphere shot. Avoid AI-looking faces and
+posed stock compositions.
 
 ## SEO
 

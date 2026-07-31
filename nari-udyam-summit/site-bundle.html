@@ -107,8 +107,8 @@ a { color: inherit; text-decoration: none; }
   /* Type */
   --font-display: "Playfair Display", "Georgia", serif;
   --font-body: "Montserrat", "Segoe UI", system-ui, sans-serif;
-  --fs-hero: clamp(2.4rem, 5.7vw, 4.35rem);
-  --fs-h2: clamp(2rem, 4.4vw, 3.4rem);
+  --fs-hero: clamp(2.7rem, 6vw, 5.4rem);
+  --fs-h2: clamp(2.1rem, 4.6vw, 3.7rem);
   --fs-h3: clamp(1.28rem, 2.2vw, 1.62rem);
   --fs-lead: clamp(1.04rem, 1.45vw, 1.2rem);
   --fs-body: clamp(0.98rem, 1.15vw, 1.06rem);
@@ -154,7 +154,7 @@ h1, h2 { text-wrap: balance; }
 .container--wide { width: min(1340px, 93vw); margin-inline: auto; }
 .container--narrow { width: min(880px, 91vw); margin-inline: auto; }
 
-.section { position: relative; padding-block: clamp(92px, 12vw, 168px); scroll-margin-top: calc(var(--header-h) + 4px); overflow-x: clip; }
+.section { position: relative; padding-block: clamp(96px, 13vw, 184px); scroll-margin-top: calc(var(--header-h) + 4px); overflow-x: clip; }
 
 /* Theme surfaces */
 .surface-dark { background: var(--burgundy-900); color: var(--on-dark); }
@@ -210,8 +210,9 @@ h1, h2 { text-wrap: balance; }
   font-size: 0.9rem; letter-spacing: 0.1em; color: var(--gold-500);
 }
 
-.sec-title { font-size: var(--fs-h2); letter-spacing: -0.015em; line-height: 1.12; }
+.sec-title { font-size: var(--fs-h2); letter-spacing: -0.015em; line-height: 1.1; font-weight: 500; }
 .sec-title em { font-style: italic; font-weight: 500; }
+.sec-title strong { font-weight: 700; }
 .sec-sub {
   margin-top: 20px; font-size: var(--fs-lead); line-height: 1.72;
   color: var(--ink-soft); font-weight: 400;
@@ -405,7 +406,7 @@ h1, h2 { text-wrap: balance; }
 /* ============================================================
    SPLIT-TEXT REVEAL (Awwwards-style line masks)
    ============================================================ */
-.sl { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+.sl { display: inline-block; overflow: hidden; vertical-align: bottom; padding: 0 0.09em 0.14em; margin: 0 -0.09em -0.14em; }
 .sl-i { display: inline-block; transform: translateY(118%) rotate(2.2deg); transform-origin: left top; }
 .split-ready .sl-i { transition: transform 0.9s var(--ease-luxe); transition-delay: calc(var(--sw, 0) * 0.045s); }
 .split-in .sl-i { transform: none; }
@@ -547,79 +548,116 @@ h1, h2 { text-wrap: balance; }
 .hero-glow { position: absolute; inset: auto 0 0; height: 32vh; background: linear-gradient(180deg, transparent, rgba(26, 5, 16, 0.7)); pointer-events: none; }
 
 .hero-inner {
-  position: relative; z-index: 2;
-  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center;
-  padding-top: calc(var(--header-h) + clamp(16px, 3vh, 40px));
+  position: relative; z-index: 2; flex: 1;
+  width: min(1340px, 93vw); margin-inline: auto;
+  display: grid; grid-template-columns: 1.12fr 0.88fr;
+  gap: clamp(44px, 5.5vw, 96px);
+  align-items: center;
+  padding-top: calc(var(--header-h) + clamp(28px, 4.5vh, 60px));
   padding-bottom: clamp(88px, 11vh, 118px);
 }
-
-.hero-crest { margin-bottom: 14px; color: var(--gold-400); }
-.hero-crest svg { width: clamp(100px, 12vw, 130px); height: auto; margin-inline: auto; }
+.hero-left { text-align: left; max-width: 700px; }
 
 .hero-topline {
-  display: inline-flex; align-items: center; gap: 12px;
+  display: inline-flex; align-items: center; flex-wrap: wrap; gap: 10px 14px;
   font-size: clamp(0.6rem, 0.9vw, 0.72rem); font-weight: 600;
-  letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold-300);
-  margin-bottom: 18px;
+  letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold-300);
+  margin-bottom: 26px;
 }
-.hero-topline::before, .hero-topline::after { content: ""; width: 44px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-500)); }
-.hero-topline::after { background: linear-gradient(90deg, var(--gold-500), transparent); }
+.hero-topline::before { content: ""; width: 52px; height: 1px; background: linear-gradient(90deg, var(--gold-500), transparent); flex: none; }
 
-.hero-title {
-  font-size: var(--fs-hero); font-weight: 700; letter-spacing: -0.014em; line-height: 1.1;
-  max-width: 1040px; margin-inline: auto;
+.hero-title { font-size: var(--fs-hero); letter-spacing: -0.014em; line-height: 1.04; }
+.hero-title .line-1 {
+  display: block; font-family: var(--font-body); font-size: 0.28em; font-weight: 600;
+  letter-spacing: 0.52em; text-transform: uppercase; color: var(--on-dark-muted);
+  margin-bottom: 0.55em;
 }
-.hero-title .line-1 { display: block; font-size: 0.52em; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 0.12em; }
-.hero-title .line-2 { display: block; font-style: italic; font-weight: 700; }
+.hero-title .line-2 { display: block; font-style: italic; font-weight: 600; font-size: 1.04em; }
+.hero-title .line-3 { display: block; font-weight: 500; font-size: 0.62em; letter-spacing: 0.02em; color: var(--on-dark); margin-top: 0.14em; }
+
 .hero-tagline {
-  margin-top: 18px;
+  margin-top: 26px;
   font-family: var(--font-display); font-style: italic; font-weight: 500;
-  font-size: clamp(1.12rem, 2.1vw, 1.55rem);
+  font-size: clamp(1.12rem, 1.9vw, 1.5rem);
   color: var(--gold-200); letter-spacing: 0.015em;
 }
 .hero-copy {
-  max-width: 720px; margin: 20px auto 0;
-  color: var(--on-dark-muted); font-size: clamp(0.94rem, 1.12vw, 1.02rem); line-height: 1.7;
+  margin: 22px 0 0;
+  color: var(--on-dark-muted); font-size: clamp(0.94rem, 1.1vw, 1.02rem); line-height: 1.78;
+  max-width: 620px;
 }
 .hero-copy .hero-statement {
-  margin-top: 13px; font-family: var(--font-display); font-size: clamp(1.02rem, 1.5vw, 1.2rem);
-  font-style: italic; color: var(--on-dark); line-height: 1.55;
+  margin-top: 14px; font-family: var(--font-display); font-size: clamp(1.02rem, 1.5vw, 1.22rem);
+  font-style: italic; color: var(--on-dark); line-height: 1.6;
 }
 
-.hero-meta {
-  margin-top: 22px;
-  display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center;
-  border: 1px solid var(--line-gold);
-  border-radius: 999px;
-  background: rgba(26, 5, 16, 0.42);
-  backdrop-filter: blur(10px);
-  padding: 6px;
+.hero-ctas { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 15px; }
+.hero-micro { margin-top: 20px; max-width: 560px; font-size: var(--fs-small); color: var(--gold-200); font-style: italic; }
+
+/* Invitation panel — the cinematic right side of the hero */
+.invite-card {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 1px solid var(--line-gold-strong);
+  border-radius: 999px 999px var(--r-lg) var(--r-lg);
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(211, 168, 79, 0.16), transparent 58%),
+    linear-gradient(178deg, rgba(253, 248, 239, 0.07), rgba(253, 248, 239, 0.02));
+  backdrop-filter: blur(12px);
+  box-shadow: 0 50px 120px -48px rgba(0, 0, 0, 0.75);
+  padding: clamp(48px, 4.6vw, 66px) clamp(28px, 3vw, 46px) clamp(30px, 3vw, 44px);
+  text-align: center;
+  overflow: hidden;
 }
-.hero-meta span {
-  display: inline-flex; align-items: center; gap: 9px;
-  padding: 9px 20px;
-  font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+.invite-card::before {
+  content: ""; position: absolute; inset: 11px; pointer-events: none; z-index: 3;
+  border: 1px solid rgba(211, 168, 79, 0.3);
+  border-radius: 999px 999px calc(var(--r-lg) - 8px) calc(var(--r-lg) - 8px);
 }
-.hero-meta span + span { border-left: 1px solid var(--line-gold); }
-.hero-meta svg { width: 16px; height: 16px; color: var(--gold-400); }
+.invite-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 3;
+  background: linear-gradient(115deg, transparent 42%, rgba(242, 223, 174, 0.09) 50%, transparent 58%);
+  transform: translateX(-130%);
+  animation: frame-sheen 6.5s var(--ease-luxe) infinite;
+}
+.invite-card > * { position: relative; z-index: 2; }
+.invite-crest { color: var(--gold-400); margin-bottom: 10px; }
+.invite-crest svg { width: clamp(96px, 9vw, 120px); height: auto; margin-inline: auto; }
+.invite-kicker { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold-300); }
+.invite-title { margin-top: 12px; font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: clamp(1.55rem, 2.3vw, 2.1rem); line-height: 1.2; color: var(--on-dark); }
+.invite-rule { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 20px auto; }
+.invite-rule i { width: 52px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-500)); }
+.invite-rule i:last-child { background: linear-gradient(90deg, var(--gold-500), transparent); }
+.invite-rule b { width: 8px; height: 8px; transform: rotate(45deg); background: var(--grad-gold); }
+.invite-date { font-family: var(--font-display); font-size: clamp(1.35rem, 2vw, 1.7rem); font-weight: 600; color: var(--gold-200); }
+.invite-venue { margin-top: 8px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.34em; text-transform: uppercase; color: var(--on-dark-muted); }
 
-.hero-ctas { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
-
-.hero-micro { margin-top: 18px; max-width: 580px; font-size: var(--fs-small); color: var(--gold-200); font-style: italic; }
-
-.hero-countdown { margin-top: 26px; display: flex; align-items: center; gap: clamp(10px, 2vw, 20px); }
-.hero-countdown .cd-cell {
-  min-width: clamp(64px, 8vw, 84px);
-  padding: 12px 10px 10px;
-  border: 1px solid var(--line-gold); border-radius: var(--r-md);
-  background: rgba(253, 248, 239, 0.05); backdrop-filter: blur(8px);
+.invite-countdown { margin-top: 24px; display: flex; justify-content: center; align-items: center; gap: 12px; }
+.invite-countdown .cd-cell {
+  min-width: 74px; padding: 12px 8px 10px;
+  border: 1px solid var(--line-gold); border-radius: var(--r-sm);
+  background: rgba(26, 5, 16, 0.35);
   text-align: center;
 }
-.cd-cell b { display: block; font-family: var(--font-display); font-size: clamp(1.45rem, 2.8vw, 2rem); font-weight: 700; color: var(--gold-200); font-variant-numeric: tabular-nums; line-height: 1; }
-.cd-cell small { display: block; margin-top: 6px; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--on-dark-faint); }
-.cd-sep { font-family: var(--font-display); font-size: 1.4rem; color: var(--gold-600); padding-bottom: 14px; }
-.hero-countdown-label { margin-top: 10px; font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--on-dark-faint); }
+.cd-cell b { display: block; font-family: var(--font-display); font-size: clamp(1.45rem, 2vw, 1.8rem); font-weight: 700; color: var(--gold-200); font-variant-numeric: tabular-nums; line-height: 1; }
+.cd-cell small { display: block; margin-top: 6px; font-size: 0.56rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--on-dark-faint); }
+.cd-sep { font-family: var(--font-display); font-size: 1.3rem; color: var(--gold-600); }
+.invite-countdown-label { margin-top: 12px; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--on-dark-faint); }
+
+/* wax-seal style scarcity stamp — sits on the envelope edge */
+.hero-invite { position: relative; }
+.invite-seal {
+  position: absolute; top: -16px; right: -12px; z-index: 5;
+  width: clamp(84px, 7.6vw, 104px); aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  background: radial-gradient(circle at 34% 28%, #f4e3ae, #d3a84f 62%, #9c7226);
+  color: #33200a; transform: rotate(10deg);
+  box-shadow: 0 16px 36px -12px rgba(211, 168, 79, 0.65);
+}
+.invite-seal::before { content: ""; position: absolute; inset: 5px; border-radius: 50%; border: 1px dashed rgba(55, 15, 33, 0.55); }
+.invite-seal b { font-family: var(--font-display); font-size: 1.65em; line-height: 1; font-weight: 700; }
+.invite-seal span { font-size: 0.5em; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; text-align: center; line-height: 1.35; max-width: 84%; }
 
 .hero-scroll {
   position: absolute; left: 50%; bottom: 82px; transform: translateX(-50%);
@@ -851,16 +889,15 @@ h1, h2 { text-wrap: balance; }
 .exhibit { background:
   radial-gradient(65rem 34rem at 50% -10%, rgba(211, 168, 79, 0.14), transparent 60%),
   linear-gradient(180deg, var(--cream-soft), var(--beige)); }
-.category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(244px, 1fr)); gap: 14px; max-width: 1100px; margin-inline: auto; }
+.category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 clamp(28px, 4vw, 56px); max-width: 1060px; margin-inline: auto; }
 .category-chip {
-  display: flex; align-items: center; gap: 13px;
-  padding: 17px 21px; min-height: 60px;
-  border: 1px solid rgba(156, 114, 38, 0.3); border-radius: 15px;
-  background: rgba(255, 253, 247, 0.88);
-  font-weight: 500; font-size: 0.93rem; color: var(--burgundy-900);
-  transition: transform 0.28s var(--ease-out), box-shadow 0.28s ease, border-color 0.28s ease;
+  display: flex; align-items: center; gap: 14px;
+  padding: 17px 4px;
+  border-bottom: 1px solid rgba(156, 114, 38, 0.22);
+  font-weight: 500; font-size: 0.95rem; color: var(--burgundy-900);
+  transition: padding-left 0.28s var(--ease-out), background-color 0.28s ease;
 }
-.category-chip:hover { transform: translateY(-4px); box-shadow: 0 16px 34px -14px rgba(107, 28, 63, 0.35); border-color: var(--gold-500); }
+.category-chip:hover { padding-left: 14px; background: rgba(211, 168, 79, 0.07); }
 .category-chip svg { width: 20px; height: 20px; color: var(--gold-600); flex: none; }
 
 /* ============================================================
@@ -876,17 +913,16 @@ h1, h2 { text-wrap: balance; }
   font-family: var(--font-display); font-style: italic; font-size: clamp(1.18rem, 1.9vw, 1.5rem);
   line-height: 1.55; color: var(--gold-200);
 }
-.benefit-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; counter-reset: benefit; }
+.benefit-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(26px, 3vw, 44px); }
 .benefit-item {
-  display: flex; gap: 14px; align-items: flex-start;
-  padding: 19px 21px;
-  border: 1px solid rgba(211, 168, 79, 0.2); border-radius: var(--r-md);
-  background: rgba(253, 248, 239, 0.045);
-  color: var(--on-dark); font-size: 0.93rem; line-height: 1.6;
-  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s var(--ease-out);
+  display: flex; gap: 15px; align-items: flex-start;
+  padding: 18px 4px;
+  border-bottom: 1px solid rgba(211, 168, 79, 0.2);
+  color: var(--on-dark); font-size: 0.95rem; line-height: 1.65;
+  transition: padding-left 0.3s var(--ease-out), background-color 0.3s ease;
 }
-.benefit-item:hover { border-color: var(--gold-500); background: rgba(253, 248, 239, 0.085); transform: translateX(5px); }
-.benefit-item svg { width: 19px; height: 19px; color: var(--gold-400); flex: none; margin-top: 4px; }
+.benefit-item:hover { padding-left: 14px; background: rgba(253, 248, 239, 0.05); }
+.benefit-item svg { width: 18px; height: 18px; color: var(--gold-400); flex: none; margin-top: 5px; }
 
 /* ============================================================
    SECTION 7 — MARKETS, MONEY & MENTORS
@@ -939,16 +975,12 @@ h1, h2 { text-wrap: balance; }
 @keyframes floaty { 50% { transform: translateY(-24px); } }
 .purpose-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(44px, 6vw, 92px); align-items: center; position: relative; z-index: 2; }
 .purpose-copy .copy-block { color: var(--on-dark-muted); }
-.cause-panel {
-  border-radius: var(--r-xl); padding: clamp(30px, 3.8vw, 48px);
-  border: 1px solid rgba(211, 168, 79, 0.32);
-  background: linear-gradient(160deg, rgba(253, 248, 239, 0.07), rgba(253, 248, 239, 0.02));
-  backdrop-filter: blur(12px);
-}
-.cause-panel h3 { font-family: var(--font-body); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-300); margin-bottom: 22px; }
-.cause-panel li { display: flex; align-items: flex-start; gap: 15px; padding: 13px 0; font-size: 0.98rem; color: var(--on-dark); }
-.cause-panel li + li { border-top: 1px solid rgba(211, 168, 79, 0.15); }
-.cause-panel li svg { width: 20px; height: 20px; color: var(--gold-400); flex: none; margin-top: 3px; }
+.cause-panel { padding-left: clamp(0px, 2vw, 24px); }
+.cause-panel h3 { font-family: var(--font-body); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-300); margin-bottom: 20px; display: flex; align-items: center; gap: 14px; }
+.cause-panel h3::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(226,189,109,0.35), transparent); }
+.cause-panel li { display: flex; align-items: flex-start; gap: 16px; padding: 15px 4px; font-size: clamp(1rem, 1.2vw, 1.1rem); color: var(--on-dark); font-family: var(--font-display); border-bottom: 1px solid rgba(211, 168, 79, 0.18); transition: padding-left 0.3s var(--ease-out); }
+.cause-panel li:hover { padding-left: 14px; }
+.cause-panel li svg { width: 20px; height: 20px; color: var(--gold-400); flex: none; margin-top: 5px; }
 .purpose-highlight {
   margin-top: 36px;
   font-family: var(--font-display); font-style: italic; font-weight: 500;
@@ -994,16 +1026,16 @@ h1, h2 { text-wrap: balance; }
 .chief-guest-tag b { display: block; font-family: var(--font-display); font-size: 1.2rem; color: var(--gold-200); }
 .chief-guest-tag span { display: block; margin-top: 6px; font-size: var(--fs-micro); letter-spacing: 0.3em; text-transform: uppercase; color: var(--on-dark-faint); }
 
-.award-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
+.award-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(26px, 3vw, 44px); margin-top: 32px; }
 .award-item {
-  display: flex; align-items: center; gap: 14px;
-  padding: 16px 19px; border-radius: var(--r-md);
-  border: 1px solid rgba(211, 168, 79, 0.22);
-  background: rgba(253, 248, 239, 0.045);
-  font-family: var(--font-display); font-size: 1.04rem; color: var(--on-dark);
-  transition: border-color 0.3s ease, transform 0.3s var(--ease-out), background-color 0.3s ease;
+  display: flex; align-items: center; gap: 16px;
+  padding: 17px 4px;
+  border-bottom: 1px solid rgba(211, 168, 79, 0.22);
+  font-family: var(--font-display); font-size: clamp(1.04rem, 1.3vw, 1.16rem); color: var(--on-dark);
+  transition: padding-left 0.3s var(--ease-out), background-color 0.3s ease;
 }
-.award-item:hover { border-color: var(--gold-500); transform: translateX(5px); background: rgba(253, 248, 239, 0.085); }
+.award-item:nth-child(1), .award-item:nth-child(2) { border-top: 1px solid rgba(211, 168, 79, 0.22); }
+.award-item:hover { padding-left: 14px; background: rgba(253, 248, 239, 0.05); }
 .award-item svg { width: 20px; height: 20px; color: var(--gold-400); flex: none; }
 .awards-emotion { margin-top: 32px; font-family: var(--font-display); font-style: italic; font-size: clamp(1.12rem, 1.8vw, 1.45rem); line-height: 1.58; color: var(--gold-200); }
 
@@ -1024,43 +1056,54 @@ h1, h2 { text-wrap: balance; }
 .transform-row .to { text-align: left; color: var(--burgundy-900); font-weight: 600; }
 .transform-row svg { width: 26px; height: 26px; color: var(--gold-600); }
 
+/* Heritage emblem cards — luxury etched-medallion roll call */
 .shakti-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: clamp(44px, 5.5vw, 64px); }
-.portrait-card {
+.emblem-card {
   position: relative; overflow: hidden;
   border-radius: 999px 999px var(--r-md) var(--r-md);
-  border: 1px solid rgba(156, 114, 38, 0.34);
+  border: 1px solid rgba(156, 114, 38, 0.36);
   aspect-ratio: 3 / 3.9;
-  display: flex; align-items: flex-end; justify-content: center;
-  padding: 22px 14px 18px;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  padding: clamp(24px, 2.4vw, 34px) 16px clamp(20px, 2vw, 26px);
   color: var(--on-dark);
+  background: var(--e-bg, var(--grad-royal));
   transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease;
   box-shadow: 0 16px 44px -26px rgba(37, 9, 21, 0.55);
 }
-.portrait-card:hover { transform: translateY(-9px); box-shadow: var(--shadow-card); }
-.portrait-card .p-bg { position: absolute; inset: 0; }
-.portrait-card .p-spot {
-  position: absolute; inset: 0;
-  background: radial-gradient(52% 34% at 50% 26%, rgba(242, 223, 174, 0.4), transparent 70%);
+.emblem-card:hover { transform: translateY(-9px); box-shadow: var(--shadow-card); }
+.emblem-card .e-ring {
+  position: absolute; inset: 9px; pointer-events: none; z-index: 1;
+  border: 1px solid rgba(242, 223, 174, 0.32);
+  border-radius: 999px 999px calc(var(--r-md) - 6px) calc(var(--r-md) - 6px);
+}
+.emblem-card .e-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(70% 44% at 50% 22%, rgba(242, 223, 174, 0.22), transparent 64%);
   mix-blend-mode: soft-light;
 }
-.portrait-card .p-ring { position: absolute; inset: 9px; border: 1px solid rgba(242, 223, 174, 0.35); border-radius: 999px 999px calc(var(--r-md) - 6px) calc(var(--r-md) - 6px); pointer-events: none; }
-.portrait-card .p-figure { position: absolute; inset: auto 0 26%; margin-inline: auto; width: 52%; color: rgba(249, 239, 224, 0.92); filter: drop-shadow(0 10px 22px rgba(26, 5, 16, 0.5)); transition: transform 0.45s var(--ease-out); }
-.portrait-card .p-figure-glow { position: absolute; inset: auto 0 25%; margin-inline: auto; width: 56%; color: rgba(226, 189, 109, 0.5); filter: blur(10px); transition: transform 0.45s var(--ease-out); }
-.portrait-card:hover .p-figure, .portrait-card:hover .p-figure-glow { transform: translateY(-5px) scale(1.03); }
-.portrait-card .p-grain {
-  position: absolute; inset: 0; opacity: 0.14; mix-blend-mode: overlay;
+.emblem-card .e-grain {
+  position: absolute; inset: 0; opacity: 0.13; mix-blend-mode: overlay; pointer-events: none;
   background-image: radial-gradient(rgba(255, 236, 200, 0.5) 1px, transparent 1.3px);
   background-size: 14px 14px;
 }
-.portrait-card .p-veil { position: absolute; inset: 0; background: linear-gradient(185deg, transparent 44%, rgba(26, 5, 16, 0.82)); }
-.portrait-card figcaption { position: relative; z-index: 2; text-align: center; }
-.portrait-card figcaption b { display: block; font-family: var(--font-display); font-size: 1.06rem; font-weight: 600; }
-.portrait-card figcaption span { display: block; margin-top: 5px; font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-300); }
-.portrait-card .p-index {
-  position: absolute; top: 16px; left: 50%; transform: translateX(-50%); z-index: 2;
-  font-family: var(--font-display); font-style: italic; font-size: 0.82rem; color: rgba(242, 223, 174, 0.75);
-  letter-spacing: 0.14em;
+.emblem-card > * { position: relative; z-index: 2; }
+.e-index { font-family: var(--font-display); font-style: italic; font-size: 0.8rem; letter-spacing: 0.14em; color: rgba(242, 223, 174, 0.8); }
+.e-medallion {
+  width: clamp(84px, 7.6vw, 104px); aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid rgba(242, 223, 174, 0.55);
+  color: var(--gold-200); position: relative;
+  background: radial-gradient(circle at 36% 30%, rgba(242, 223, 174, 0.16), rgba(242, 223, 174, 0.03));
+  transition: transform 0.45s var(--ease-out), box-shadow 0.45s ease;
 }
+.e-medallion::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; border: 1px dashed rgba(242, 223, 174, 0.42); }
+.e-medallion svg { width: 42%; height: 42%; }
+.emblem-card:hover .e-medallion { transform: translateY(-4px) scale(1.05); box-shadow: 0 18px 40px -16px rgba(211, 168, 79, 0.5); }
+.emblem-card figcaption { text-align: center; }
+.emblem-card figcaption b { display: block; font-family: var(--font-display); font-size: clamp(1.02rem, 1.3vw, 1.18rem); font-weight: 600; line-height: 1.3; }
+.emblem-card figcaption span { display: block; margin-top: 6px; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-300); }
+.e-flourish { color: rgba(242, 223, 174, 0.6); }
+.e-flourish svg { width: 74px; height: auto; }
 .shakti-note { text-align: center; margin-top: 22px; font-size: var(--fs-micro); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
 
 /* ============================================================
@@ -1103,17 +1146,17 @@ h1, h2 { text-wrap: balance; }
   radial-gradient(64rem 36rem at 100% 0%, rgba(184, 122, 75, 0.2), transparent 55%),
   linear-gradient(172deg, var(--burgundy-900), var(--burgundy-850) 60%, var(--plum-950)); }
 .finance-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(40px, 5vw, 80px); align-items: start; }
-.topic-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 13px; }
+.topic-grid { display: grid; grid-template-columns: 1fr; }
 .topic-tile {
-  padding: 21px 19px; min-height: 112px;
-  border-radius: var(--r-md); border: 1px solid rgba(211, 168, 79, 0.22);
-  background: rgba(253, 248, 239, 0.045);
-  display: flex; flex-direction: column; gap: 13px; justify-content: flex-start;
-  font-size: 0.88rem; line-height: 1.5; color: var(--on-dark);
-  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s var(--ease-out);
+  padding: 15px 4px;
+  border-bottom: 1px solid rgba(211, 168, 79, 0.2);
+  display: flex; align-items: center; gap: 15px;
+  font-size: 0.95rem; line-height: 1.55; color: var(--on-dark);
+  transition: padding-left 0.3s var(--ease-out), background-color 0.3s ease;
 }
-.topic-tile:hover { border-color: var(--gold-500); background: rgba(253, 248, 239, 0.085); transform: translateY(-5px); }
-.topic-tile svg { width: 21px; height: 21px; color: var(--gold-400); }
+.topic-tile:first-child { border-top: 1px solid rgba(211, 168, 79, 0.2); }
+.topic-tile:hover { padding-left: 14px; background: rgba(253, 248, 239, 0.05); }
+.topic-tile svg { width: 20px; height: 20px; color: var(--gold-400); flex: none; }
 .note-box {
   margin-top: 26px; padding: 24px 28px;
   border: 1px solid var(--line-gold-strong); border-radius: var(--r-md);
@@ -1133,13 +1176,12 @@ h1, h2 { text-wrap: balance; }
 .outcome-cloud { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; max-width: 1000px; margin-inline: auto; }
 .outcome-tag {
   display: inline-flex; align-items: center; gap: 11px;
-  padding: 15px 26px; border-radius: 999px;
+  padding: 14px 26px; border-radius: 999px;
   font-family: var(--font-display); font-size: clamp(1rem, 1.4vw, 1.16rem);
-  border: 1px solid rgba(107, 28, 63, 0.32); color: var(--burgundy-900); background: #fffdf8;
-  box-shadow: 0 8px 24px -14px rgba(55, 15, 33, 0.4);
+  border: 1px solid rgba(156, 114, 38, 0.4); color: var(--burgundy-900); background: transparent;
   transition: transform 0.25s var(--ease-out), background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
-.outcome-tag:hover { transform: translateY(-4px) rotate(-0.5deg); background: var(--grad-wine); color: var(--gold-200); border-color: transparent; }
+.outcome-tag:hover { transform: translateY(-4px); background: var(--grad-wine); color: var(--gold-200); border-color: transparent; }
 .outcome-tag svg { width: 17px; height: 17px; color: var(--gold-600); flex: none; }
 .outcome-tag:hover svg { color: var(--gold-300); }
 .network-strong {
@@ -1155,42 +1197,36 @@ h1, h2 { text-wrap: balance; }
 .speakers { background:
   radial-gradient(60rem 34rem at 0% 100%, rgba(157, 47, 95, 0.3), transparent 55%),
   linear-gradient(180deg, var(--burgundy-900) 0%, var(--plum-950) 100%); }
+/* Magazine-grid speaker lockups */
 .speaker-placeholder-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: clamp(48px, 5.5vw, 72px); }
-.speaker-card {
+.speaker-mag {
   position: relative; overflow: hidden;
-  border-radius: var(--r-lg); border: 1px solid rgba(211, 168, 79, 0.28);
-  background:
-    radial-gradient(90% 70% at 50% 0%, rgba(211, 168, 79, 0.1), transparent 60%),
-    rgba(253, 248, 239, 0.035);
-  aspect-ratio: 3 / 3.6;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 17px;
-  padding: 26px; text-align: center;
-  transition: transform 0.35s var(--ease-out), border-color 0.35s ease;
+  border-radius: var(--r-md); border: 1px solid rgba(211, 168, 79, 0.3);
+  background: var(--s-bg, linear-gradient(168deg, #511530, #250915));
+  aspect-ratio: 3 / 3.8;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: clamp(22px, 2.2vw, 30px);
+  transition: transform 0.4s var(--ease-out), border-color 0.4s ease, box-shadow 0.4s ease;
 }
-.speaker-card:hover { transform: translateY(-6px); border-color: var(--gold-500); }
-.speaker-card::after {
+.speaker-mag:hover { transform: translateY(-8px); border-color: var(--gold-500); box-shadow: var(--shadow-card); }
+.speaker-mag .sm-rings {
+  position: absolute; top: -54px; right: -54px; width: 200px; height: 200px; pointer-events: none;
+  border-radius: 50%; border: 1px solid rgba(242, 223, 174, 0.25);
+}
+.speaker-mag .sm-rings::before { content: ""; position: absolute; inset: 22px; border-radius: 50%; border: 1px dashed rgba(242, 223, 174, 0.22); }
+.speaker-mag .sm-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(80% 55% at 50% 0%, rgba(211, 168, 79, 0.16), transparent 60%); }
+.speaker-mag::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(115deg, transparent 42%, rgba(242, 223, 174, 0.09) 50%, transparent 58%);
   transform: translateX(-130%);
   transition: transform 0.9s var(--ease-luxe);
 }
-.speaker-card:hover::after { transform: translateX(130%); }
-.speaker-seal {
-  position: relative;
-  width: 96px; height: 96px; border-radius: 50%;
-  border: 1px solid var(--line-gold-strong);
-  background: radial-gradient(circle at 35% 28%, rgba(211,168,79,0.32), rgba(211,168,79,0.07));
-  display: grid; place-items: center; color: var(--gold-400);
-}
-.speaker-seal::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; border: 1px dashed rgba(226, 189, 109, 0.5); }
-.speaker-seal svg { width: 44px; height: 44px; }
-.speaker-card b { font-family: var(--font-display); font-size: 1.08rem; color: var(--gold-200); font-weight: 600; }
-.speaker-card .sp-role { font-size: 0.64rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--on-dark-faint); }
-.speaker-card .sp-tag {
-  margin-top: 2px; padding: 6px 14px; border-radius: 999px;
-  border: 1px solid rgba(211, 168, 79, 0.3); font-size: 0.6rem; letter-spacing: 0.24em;
-  text-transform: uppercase; color: var(--gold-300);
-}
+.speaker-mag:hover::after { transform: translateX(130%); }
+.speaker-mag > * { position: relative; z-index: 2; }
+.sm-kicker { position: absolute; top: 22px; left: clamp(22px, 2.2vw, 30px); right: 20px; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-300); }
+.sm-name { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: clamp(1.5rem, 2vw, 1.9rem); line-height: 1.14; color: var(--on-dark); }
+.sm-rule { width: 44px; height: 1px; background: var(--grad-gold); margin: 14px 0; }
+.sm-note { font-size: 0.62rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--on-dark-faint); }
 
 .theme-list { columns: 2; column-gap: 30px; max-width: 1040px; margin-inline: auto; }
 .theme-item {
@@ -1241,17 +1277,17 @@ h1, h2 { text-wrap: balance; }
   background: radial-gradient(46rem 26rem at 85% 100%, rgba(211, 168, 79, 0.25), transparent 60%);
 }
 .community-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(40px, 5vw, 80px); align-items: center; position: relative; z-index: 2; }
-.community-value-list { display: grid; gap: 12px; }
+.community-value-list { display: grid; }
 .community-value-list li {
-  display: flex; align-items: flex-start; gap: 14px;
-  padding: 16px 21px; border-radius: var(--r-md);
-  border: 1px solid rgba(211, 168, 79, 0.24);
-  background: rgba(253, 248, 239, 0.05);
-  font-size: 0.94rem; color: var(--on-dark);
-  transition: border-color 0.3s ease, transform 0.3s var(--ease-out);
+  display: flex; align-items: flex-start; gap: 15px;
+  padding: 16px 4px;
+  border-bottom: 1px solid rgba(211, 168, 79, 0.22);
+  font-size: 0.96rem; color: var(--on-dark);
+  transition: padding-left 0.3s var(--ease-out), background-color 0.3s ease;
 }
-.community-value-list li:hover { border-color: var(--gold-500); transform: translateX(5px); }
-.community-value-list li svg { width: 18px; height: 18px; color: var(--gold-400); flex: none; margin-top: 4px; }
+.community-value-list li:first-child { border-top: 1px solid rgba(211, 168, 79, 0.22); }
+.community-value-list li:hover { padding-left: 14px; background: rgba(253, 248, 239, 0.05); }
+.community-value-list li svg { width: 18px; height: 18px; color: var(--gold-400); flex: none; margin-top: 5px; }
 .community-lede { font-family: var(--font-display); font-size: clamp(1.35rem, 2.5vw, 1.9rem); font-style: italic; color: var(--gold-200); margin-bottom: 24px; line-height: 1.42; }
 
 /* ============================================================
@@ -1349,20 +1385,23 @@ h1, h2 { text-wrap: balance; }
 .trust-card h3 { font-size: 1.2rem; margin-bottom: 11px; color: var(--burgundy-900); }
 .trust-card p { font-size: 0.93rem; color: var(--ink-soft); }
 
+/* Engraved-plaque partner wall */
 .partner-wall { margin-top: clamp(56px, 7vw, 88px); }
 .partner-wall-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; }
 .partner-slot {
   aspect-ratio: 2.1 / 1;
-  border-radius: var(--r-md);
-  border: 1px dashed rgba(156, 114, 38, 0.42);
-  background: linear-gradient(165deg, #fffdf8, var(--cream-soft));
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px;
+  border-radius: 6px;
+  border: 1px solid rgba(156, 114, 38, 0.38);
+  background: linear-gradient(160deg, #fffdf8, #f4e8d2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 0 0 5px rgba(255, 253, 248, 0.6), inset 0 0 0 6px rgba(156, 114, 38, 0.22), 0 12px 28px -20px rgba(55, 15, 33, 0.45);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px;
   color: var(--gold-700);
-  transition: border-color 0.3s ease, transform 0.3s var(--ease-out);
+  transition: border-color 0.3s ease, transform 0.3s var(--ease-out), box-shadow 0.3s ease;
 }
-.partner-slot:hover { border-color: var(--gold-500); transform: translateY(-4px); }
-.partner-slot svg { width: 22px; height: 22px; opacity: 0.85; }
-.partner-slot span { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); text-align: center; padding-inline: 8px; }
+.partner-slot:hover { border-color: var(--gold-500); transform: translateY(-4px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 0 0 5px rgba(255, 253, 248, 0.6), inset 0 0 0 6px rgba(156, 114, 38, 0.35), 0 20px 40px -22px rgba(55, 15, 33, 0.5); }
+.partner-slot svg { width: 21px; height: 21px; opacity: 0.9; }
+.partner-slot span { font-family: var(--font-display); font-style: italic; font-size: 0.92rem; color: var(--burgundy-900); text-align: center; padding-inline: 8px; }
+.partner-slot small { font-size: 0.5rem; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-700); }
 .partner-wall-note { text-align: center; margin-top: 20px; font-size: var(--fs-small); font-style: italic; color: var(--ink-soft); }
 
 /* ============================================================
@@ -1370,20 +1409,33 @@ h1, h2 { text-wrap: balance; }
    ============================================================ */
 .visit { background: linear-gradient(180deg, var(--cream-soft), var(--beige)); overflow: hidden; }
 .visit-grid { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: clamp(44px, 6vw, 92px); align-items: center; }
-.visit-art {
-  position: relative;
+.venue-card {
+  position: relative; overflow: hidden;
   border-radius: 999px 999px var(--r-lg) var(--r-lg);
-  overflow: hidden;
   aspect-ratio: 3 / 3.7;
-  border: 1px solid rgba(156, 114, 38, 0.4);
+  border: 1px solid rgba(156, 114, 38, 0.45);
   box-shadow: var(--shadow-card);
+  background:
+    radial-gradient(90% 60% at 50% 0%, rgba(211, 168, 79, 0.28), transparent 58%),
+    radial-gradient(70% 45% at 50% 105%, rgba(157, 47, 95, 0.5), transparent 60%),
+    linear-gradient(178deg, #250915, #421229 55%, #511530);
+  color: var(--on-dark);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: clamp(34px, 4vw, 52px) 26px;
 }
-.visit-art svg { width: 100%; height: 100%; }
-.visit-art figcaption {
-  position: absolute; inset: auto 0 0; padding: 18px 24px 22px;
-  background: linear-gradient(180deg, transparent, rgba(26, 5, 16, 0.82));
-  color: var(--gold-200); font-size: 0.7rem; letter-spacing: 0.26em; text-transform: uppercase; text-align: center;
+.venue-card::before {
+  content: ""; position: absolute; inset: 11px; pointer-events: none; z-index: 2;
+  border: 1px solid rgba(211, 168, 79, 0.32);
+  border-radius: 999px 999px calc(var(--r-lg) - 8px) calc(var(--r-lg) - 8px);
 }
+.venue-card > * { position: relative; z-index: 2; }
+.venue-card .vc-crest { color: var(--gold-400); margin-bottom: 16px; }
+.venue-card .vc-crest svg { width: clamp(86px, 8vw, 108px); height: auto; margin-inline: auto; }
+.venue-card .vc-kicker { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.44em; text-transform: uppercase; color: var(--gold-300); }
+.venue-card .vc-city { margin-top: 12px; font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: clamp(2.6rem, 4.6vw, 3.8rem); line-height: 1; background: var(--grad-gold); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.venue-card .vc-venue { margin-top: 14px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.34em; text-transform: uppercase; color: var(--on-dark-muted); }
+.venue-card .vc-date { margin-top: 18px; font-family: var(--font-display); font-size: clamp(1.1rem, 1.6vw, 1.35rem); font-style: italic; color: var(--gold-200); }
+.venue-card .vc-caption { position: absolute; inset: auto 0 0; padding: 16px 24px 20px; font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-300); background: linear-gradient(180deg, transparent, rgba(26, 5, 16, 0.75)); }
 .why-attend { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
 .why-attend li {
   display: flex; align-items: flex-start; gap: 12px;
@@ -1643,6 +1695,27 @@ h1, h2 { text-wrap: balance; }
 .exit-card p { color: var(--on-dark-muted); max-width: 440px; margin: 0 auto 28px; font-size: 0.95rem; }
 
 /* ============================================================
+   Photo-slot system — drop real campaign photography into any
+   frame via the IMAGES manifest in script.js. Frames gracefully
+   keep their art-directed state until a photo is provided.
+   ============================================================ */
+.ph-img {
+  position: absolute; inset: 0; z-index: 1;
+  width: 100%; height: 100%; object-fit: cover; display: none;
+  filter: sepia(0.12) saturate(0.94) contrast(1.04) brightness(0.97);
+}
+.has-photo .ph-img { display: block; }
+.ph-grade { position: absolute; inset: 0; z-index: 1; display: none; pointer-events: none;
+  background:
+    linear-gradient(185deg, rgba(55, 15, 33, 0.08) 30%, rgba(26, 5, 16, 0.66) 88%),
+    radial-gradient(90% 55% at 50% 12%, rgba(242, 223, 174, 0.16), transparent 62%);
+}
+.has-photo .ph-grade { display: block; }
+.has-photo .ph-hide { display: none !important; }
+.invite-card.has-photo { justify-content: flex-end; min-height: 560px; }
+.venue-card.has-photo > .vc-crest, .venue-card.has-photo > .vc-city { display: none; }
+
+/* ============================================================
    Reveal animations
    ============================================================ */
 [data-reveal] { opacity: 0; transform: translateY(30px); transition: opacity 0.85s ease, transform 0.85s var(--ease-out); transition-delay: var(--d, 0s); will-change: opacity, transform; }
@@ -1678,13 +1751,17 @@ h1, h2 { text-wrap: balance; }
   .header-actions .btn { display: none; }
   .movement-grid, .purpose-grid, .value-grid, .finance-grid, .eco-grid,
   .stalls-grid, .award-stage, .community-grid, .visit-grid { grid-template-columns: 1fr; }
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero-left { max-width: 640px; }
+  .invite-card { max-width: 480px; margin-inline: auto; width: 100%; }
   .value-sticky { position: static; }
   .feature-grid { grid-template-columns: 1fr 1fr; }
   .feature-card, .feature-card:nth-child(1), .feature-card:nth-child(2) { grid-column: auto; }
   .trust-grid { grid-template-columns: 1fr 1fr; }
   .pillar-grid { grid-template-columns: 1fr; max-width: 640px; margin-inline: auto; }
   .shakti-gallery { grid-template-columns: repeat(2, 1fr); }
-  .visit-art { max-width: 470px; margin-inline: auto; }
+  .venue-card { max-width: 470px; margin-inline: auto; width: 100%; }
+  .category-grid { grid-template-columns: 1fr 1fr; }
   .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 34px 20px; }
   .stat-cell:nth-child(4)::before, .stat-cell:nth-child(1)::before { display: none; }
 }
@@ -1704,7 +1781,6 @@ h1, h2 { text-wrap: balance; }
   .guidance-panel ul { grid-template-columns: 1fr; }
   .partner-benefit-panel ul { grid-template-columns: 1fr 1fr; }
   .form-grid { grid-template-columns: 1fr; }
-  .topic-grid { grid-template-columns: 1fr 1fr; }
   .pull-compare { grid-template-columns: 1fr; gap: 12px; }
   .pull-compare .versus-gem { margin-inline: auto; }
   .transform-row { grid-template-columns: 1fr; gap: 6px; text-align: center; }
@@ -1713,10 +1789,10 @@ h1, h2 { text-wrap: balance; }
   .footer-main { grid-template-columns: 1fr; gap: 44px; }
   .journey-track { justify-content: flex-start; }
   .journey-link { min-width: 20px; }
-  .hero-meta { border-radius: var(--r-lg); flex-direction: column; align-items: stretch; }
-  .hero-meta span + span { border-left: 0; border-top: 1px solid var(--line-gold); }
-  .hero-meta span { justify-content: center; }
   .hero-scroll { display: none; }
+  .topic-grid { grid-template-columns: 1fr; }
+  .hero-topline { letter-spacing: 0.26em; }
+  .hero-topline::before { width: 26px; }
   .faq-endcap { flex-direction: column; text-align: center; }
   .sec-head[data-ghost]::before { font-size: clamp(3.6rem, 16vw, 6rem); }
 }
@@ -1733,8 +1809,9 @@ h1, h2 { text-wrap: balance; }
   .stat-cell::before { display: none !important; }
   .btn { width: 100%; }
   .btn-row { flex-direction: column; align-items: stretch; }
-  .hero-ctas { flex-direction: column; align-items: stretch; width: 100%; max-width: 400px; margin-inline: auto; }
-  .hero-countdown .cd-cell { min-width: 60px; }
+  .hero-ctas { flex-direction: column; align-items: stretch; width: 100%; max-width: 420px; }
+  .invite-countdown .cd-cell { min-width: 60px; }
+  .category-grid { grid-template-columns: 1fr; }
   .exit-card .btn { width: 100%; }
   .faq-endcap .btn-row { width: 100%; }
 }
@@ -1843,17 +1920,10 @@ h1, h2 { text-wrap: balance; }
   <symbol id="i-connect" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="6" cy="7" r="2.6"/><circle cx="18" cy="7" r="2.6"/><circle cx="12" cy="17.5" r="2.6"/><path d="M8.3 8.4l2.5 6.8M15.7 8.4l-2.5 6.8M8.6 7h6.8"/></symbol>
   <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="8.8"/><path d="M12 11v5.4M12 7.6v.2"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="M12 7.4V12l3.4 2"/></symbol>
-  <!-- Abstract cameo figures (fill-based) -->
-  <symbol id="i-fig1" viewBox="0 0 100 120">
-    <circle fill="currentColor" cx="50" cy="14" r="7"/>
-    <circle fill="currentColor" cx="50" cy="39" r="17.5"/>
-    <path fill="currentColor" d="M50 62c20.6 0 35.4 13 38.3 32.6.5 3.5-1.2 6.1-4.6 6.1H16.3c-3.4 0-5.1-2.6-4.6-6.1C14.6 75 29.4 62 50 62z"/>
-  </symbol>
-  <symbol id="i-fig2" viewBox="0 0 100 120">
-    <path fill="currentColor" d="M50 16c-10.5 0-17.4 6.4-18.4 16-.8 8 .2 16.8-3.6 24.8 3.9 2.4 8.2 3.1 11.9 2.2-2.4-7.4-2.9-15.7-1.8-24.1L50 33l11.9 1.9c1.1 8.4.6 16.7-1.8 24.1 3.7.9 8 .2 11.9-2.2-3.8-8-2.8-16.8-3.6-24.8-1-9.6-7.9-16-18.4-16z" opacity="0.92"/>
-    <circle fill="currentColor" cx="50" cy="41" r="15.8"/>
-    <path fill="currentColor" d="M50 63c20.6 0 35.4 12.6 38.3 32 .5 3.4-1.2 6-4.6 6H16.3c-3.4 0-5.1-2.6-4.6-6C14.6 75.6 29.4 63 50 63z"/>
-  </symbol>
+  <!-- Heritage emblem etchings -->
+  <symbol id="i-ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14.5" r="6.2"/><path d="M9.4 5.6h5.2L16.4 8.3 12 10.6 7.6 8.3l1.8-2.7z"/><path d="M7.6 8.3h8.8"/></symbol>
+  <symbol id="i-pot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3.5h6M10 3.5v2.3c0 .8-.3 1.4-1 2-2 1.6-3.2 3.6-3.2 6 0 4 2.6 6.7 6.2 6.7s6.2-2.7 6.2-6.7c0-2.4-1.2-4.4-3.2-6-.7-.6-1-1.2-1-2V3.5"/><path d="M6.4 13.2h11.2" opacity="0.7"/></symbol>
+  <symbol id="i-flourish-sm" viewBox="0 0 80 14" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M4 7h24M52 7h24"/><path d="M31 7c2-3.4 5.4-3.4 6.6 0 1.2-3.4 4.6-3.4 6.6 0-2 3.4-5.4 3.4-6.6 0-1.2 3.4-4.6 3.4-6.6 0z"/><circle cx="40" cy="7" r="1.4" fill="currentColor" stroke="none"/></symbol>
 </svg>
 
 <!-- ======================= HEADER ======================= -->
@@ -1972,55 +2042,63 @@ h1, h2 { text-wrap: balance; }
 
   <div class="hero-grain" aria-hidden="true"></div>
 
-  <div class="hero-inner container--wide">
-    <div class="hero-crest" data-reveal>
-      <svg viewBox="0 0 168 92" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M84 14c7 8 10.5 15 10.5 21A10.5 10.5 0 0 1 84 45.5 10.5 10.5 0 0 1 73.5 35c0-6 3.5-13 10.5-21z"/>
-        <path d="M84 58c-10-5.6-16-14.8-16-24.6M84 58c10-5.6 16-14.8 16-24.6" opacity="0.55"/>
-        <path d="M58 62h52l-3.6 9.8A12 12 0 0 1 95.2 79H72.8a12 12 0 0 1-11.2-7.2L58 62z"/>
-        <path d="M6 62h40M122 62h40" stroke-width="1"/>
-        <path d="M14 62c8-4 16-4 24 0M130 62c8-4 16-4 24 0" stroke-width="0.8" opacity="0.7"/>
-        <circle cx="84" cy="35" r="31" stroke-width="0.6" stroke-dasharray="1.5 6"/>
-      </svg>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="hero-topline" data-reveal style="--d:.05s">Delhi · 19–20 September 2026 · 5-Star Hotel</p>
+
+      <h1 class="hero-title" data-reveal style="--d:.1s">
+        <span class="line-1">Smart Vision</span>
+        <span class="line-2 text-gold" data-split>Nari Udyam</span>
+        <span class="line-3" data-split>Summit &amp; Expo</span>
+      </h1>
+
+      <p class="hero-tagline" data-reveal style="--d:.18s" data-split>Empowering Women Entrepreneurs with Markets, Money &amp; Mentors</p>
+
+      <div class="hero-copy" data-reveal style="--d:.26s">
+        <p>India’s premium business summit and expo dedicated to women entrepreneurs, founders, creators, homepreneurs, MSMEs, startups and women-led brands.</p>
+        <p style="margin-top:13px">A powerful 2-day platform where women-led businesses come together to showcase their products, build networks, access business guidance, meet mentors, connect with financial institutions and create real growth opportunities.</p>
+        <p class="hero-statement">This is not just an exhibition.<br/>This is a premium movement for women who are building businesses, creating impact and shaping the future of entrepreneurship in India.</p>
+      </div>
+
+      <div class="hero-ctas" data-reveal style="--d:.36s">
+        <a class="btn btn--gold btn--lg js-mag" href="#packages">Book Your Stall <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline-gold js-mag" href="#partners">Become a Sponsor</a>
+        <a class="btn btn--ghost-light js-mag" href="#contact">Register Interest</a>
+      </div>
+
+      <p class="hero-micro" data-reveal style="--d:.44s">Limited curated stall opportunities available for women-led businesses. Early confirmations receive priority visibility.</p>
     </div>
 
-    <p class="hero-topline" data-reveal style="--d:.05s">Delhi · 19–20 September 2026</p>
-
-    <h1 class="hero-title" data-reveal style="--d:.1s">
-      <span class="line-1" data-split>Smart Vision</span>
-      <span class="line-2 text-gold" data-split>Nari Udyam Summit &amp; Expo</span>
-    </h1>
-
-    <p class="hero-tagline" data-reveal style="--d:.18s" data-split>Empowering Women Entrepreneurs with Markets, Money &amp; Mentors</p>
-
-    <div class="hero-copy" data-reveal style="--d:.26s">
-      <p>India’s premium business summit and expo dedicated to women entrepreneurs, founders, creators, homepreneurs, MSMEs, startups and women-led brands.</p>
-      <p style="margin-top:13px">A powerful 2-day platform where women-led businesses come together to showcase their products, build networks, access business guidance, meet mentors, connect with financial institutions and create real growth opportunities.</p>
-      <p class="hero-statement">This is not just an exhibition.<br/>This is a premium movement for women who are building businesses, creating impact and shaping the future of entrepreneurship in India.</p>
-    </div>
-
-    <div class="hero-meta" data-reveal style="--d:.32s">
-      <span><svg aria-hidden="true"><use href="#i-pin"/></svg> Delhi</span>
-      <span><svg aria-hidden="true"><use href="#i-cal"/></svg> 19–20 September 2026</span>
-      <span><svg aria-hidden="true"><use href="#i-crown"/></svg> 5-Star Hotel</span>
-    </div>
-
-    <div class="hero-ctas" data-reveal style="--d:.38s">
-      <a class="btn btn--gold btn--lg js-mag" href="#packages">Book Your Stall <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      <a class="btn btn--outline-gold js-mag" href="#partners">Become a Sponsor</a>
-      <a class="btn btn--ghost-light js-mag" href="#contact">Register Interest</a>
-    </div>
-
-    <p class="hero-micro" data-reveal style="--d:.44s">Limited curated stall opportunities available for women-led businesses. Early confirmations receive priority visibility.</p>
-
-    <div class="hero-countdown" data-reveal style="--d:.5s" id="countdown" role="timer" aria-label="Countdown to the summit">
-      <div class="cd-cell"><b id="cdDays">—</b><small>Days</small></div>
-      <span class="cd-sep">·</span>
-      <div class="cd-cell"><b id="cdHours">—</b><small>Hours</small></div>
-      <span class="cd-sep">·</span>
-      <div class="cd-cell"><b id="cdMins">—</b><small>Minutes</small></div>
-    </div>
-    <p class="hero-countdown-label">Until the summit opens · 19 September 2026</p>
+    <aside class="hero-invite" data-reveal style="--d:.3s">
+      <span class="invite-seal" aria-hidden="true"><b>50</b><span>Curated Stalls</span></span>
+      <div class="invite-card" data-photo-frame="hero-host">
+        <img class="ph-img" alt="Smart Vision Nari Udyam Summit &amp; Expo — official event host" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <div class="invite-crest ph-hide" aria-hidden="true">
+          <svg viewBox="0 0 168 92" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M84 14c7 8 10.5 15 10.5 21A10.5 10.5 0 0 1 84 45.5 10.5 10.5 0 0 1 73.5 35c0-6 3.5-13 10.5-21z"/>
+            <path d="M84 58c-10-5.6-16-14.8-16-24.6M84 58c10-5.6 16-14.8 16-24.6" opacity="0.55"/>
+            <path d="M58 62h52l-3.6 9.8A12 12 0 0 1 95.2 79H72.8a12 12 0 0 1-11.2-7.2L58 62z"/>
+            <path d="M6 62h40M122 62h40" stroke-width="1"/>
+            <path d="M14 62c8-4 16-4 24 0M130 62c8-4 16-4 24 0" stroke-width="0.8" opacity="0.7"/>
+            <circle cx="84" cy="35" r="31" stroke-width="0.6" stroke-dasharray="1.5 6"/>
+          </svg>
+        </div>
+        <p class="invite-kicker ph-hide">India’s Premium Business Summit &amp; Expo</p>
+        <p class="invite-title ph-hide">Nari Udyam<br/>Summit &amp; Expo</p>
+        <div class="invite-rule ph-hide" aria-hidden="true"><i></i><b></b><i></i></div>
+        <p class="invite-date">19–20 September 2026</p>
+        <p class="invite-venue">Delhi · Premium 5-Star Hotel</p>
+        <div class="invite-countdown" id="countdown" role="timer" aria-label="Countdown to the summit">
+          <div class="cd-cell"><b id="cdDays">—</b><small>Days</small></div>
+          <span class="cd-sep">·</span>
+          <div class="cd-cell"><b id="cdHours">—</b><small>Hours</small></div>
+          <span class="cd-sep">·</span>
+          <div class="cd-cell"><b id="cdMins">—</b><small>Minutes</small></div>
+        </div>
+        <p class="invite-countdown-label">Until the summit opens</p>
+      </div>
+    </aside>
   </div>
 
   <div class="hero-scroll" aria-hidden="true"><span>Scroll</span><i></i></div>
@@ -2531,93 +2609,77 @@ h1, h2 { text-wrap: balance; }
     </div>
 
     <div class="shakti-gallery" data-reveal-group>
-      <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#86234e,#370f21)" aria-hidden="true"></span>
-        <span class="p-spot" aria-hidden="true"></span>
-        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
-        <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
-        <span class="p-grain" aria-hidden="true"></span>
-        <span class="p-veil" aria-hidden="true"></span>
-        <span class="p-ring" aria-hidden="true"></span>
-        <span class="p-index" aria-hidden="true">No. 01</span>
+      <figure class="emblem-card" data-photo-frame="shakti-ceo" style="--e-bg:linear-gradient(172deg,#86234e,#370f21)">
+        <img class="ph-img" alt="Corporate CEO — woman entrepreneur portrait" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <span class="e-glow" aria-hidden="true"></span><span class="e-grain" aria-hidden="true"></span><span class="e-ring" aria-hidden="true"></span>
+        <span class="e-index">No. 01</span>
+        <span class="e-medallion ph-hide" aria-hidden="true"><svg><use href="#i-crown"/></svg></span>
         <figcaption><b>The Corporate CEO</b><span>Leadership</span></figcaption>
+        <span class="e-flourish ph-hide" aria-hidden="true"><svg viewBox="0 0 80 14"><use href="#i-flourish-sm"/></svg></span>
       </figure>
-      <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#b87a4b,#421229)" aria-hidden="true"></span>
-        <span class="p-spot" aria-hidden="true"></span>
-        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
-        <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
-        <span class="p-grain" aria-hidden="true"></span>
-        <span class="p-veil" aria-hidden="true"></span>
-        <span class="p-ring" aria-hidden="true"></span>
-        <span class="p-index" aria-hidden="true">No. 02</span>
+      <figure class="emblem-card" data-photo-frame="shakti-founder" style="--e-bg:linear-gradient(172deg,#b87a4b,#421229)">
+        <img class="ph-img" alt="Startup founder — woman entrepreneur portrait" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <span class="e-glow" aria-hidden="true"></span><span class="e-grain" aria-hidden="true"></span><span class="e-ring" aria-hidden="true"></span>
+        <span class="e-index">No. 02</span>
+        <span class="e-medallion ph-hide" aria-hidden="true"><svg><use href="#i-spark"/></svg></span>
         <figcaption><b>The Startup Founder</b><span>Innovation</span></figcaption>
+        <span class="e-flourish ph-hide" aria-hidden="true"><svg viewBox="0 0 80 14"><use href="#i-flourish-sm"/></svg></span>
       </figure>
-      <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#9d2f5f,#250915)" aria-hidden="true"></span>
-        <span class="p-spot" aria-hidden="true"></span>
-        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
-        <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
-        <span class="p-grain" aria-hidden="true"></span>
-        <span class="p-veil" aria-hidden="true"></span>
-        <span class="p-ring" aria-hidden="true"></span>
-        <span class="p-index" aria-hidden="true">No. 03</span>
+      <figure class="emblem-card" data-photo-frame="shakti-boutique" style="--e-bg:linear-gradient(172deg,#9d2f5f,#250915)">
+        <img class="ph-img" alt="Boutique owner — woman entrepreneur portrait" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <span class="e-glow" aria-hidden="true"></span><span class="e-grain" aria-hidden="true"></span><span class="e-ring" aria-hidden="true"></span>
+        <span class="e-index">No. 03</span>
+        <span class="e-medallion ph-hide" aria-hidden="true"><svg><use href="#i-gem"/></svg></span>
         <figcaption><b>The Boutique Owner</b><span>Craft &amp; Style</span></figcaption>
+        <span class="e-flourish ph-hide" aria-hidden="true"><svg viewBox="0 0 80 14"><use href="#i-flourish-sm"/></svg></span>
       </figure>
-      <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#d9a68e,#6b1c3f)" aria-hidden="true"></span>
-        <span class="p-spot" aria-hidden="true"></span>
-        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
-        <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
-        <span class="p-grain" aria-hidden="true"></span>
-        <span class="p-veil" aria-hidden="true"></span>
-        <span class="p-ring" aria-hidden="true"></span>
-        <span class="p-index" aria-hidden="true">No. 04</span>
+      <figure class="emblem-card" data-photo-frame="shakti-baker" style="--e-bg:linear-gradient(172deg,#a34a63,#421229)">
+        <img class="ph-img" alt="Home baker — woman entrepreneur portrait" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <span class="e-glow" aria-hidden="true"></span><span class="e-grain" aria-hidden="true"></span><span class="e-ring" aria-hidden="true"></span>
+        <span class="e-index">No. 04</span>
+        <span class="e-medallion ph-hide" aria-hidden="true"><svg><use href="#i-cake"/></svg></span>
         <figcaption><b>The Home Baker</b><span>Homepreneur</span></figcaption>
+        <span class="e-flourish ph-hide" aria-hidden="true"><svg viewBox="0 0 80 14"><use href="#i-flourish-sm"/></svg></span>
       </figure>
-      <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#6b1c3f,#1a0510)" aria-hidden="true"></span>
-        <span class="p-spot" aria-hidden="true"></span>
-        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
-        <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
-        <span class="p-grain" aria-hidden="true"></span>
-        <span class="p-veil" aria-hidden="true"></span>
-        <span class="p-ring" aria-hidden="true"></span>
-        <span class="p-index" aria-hidden="true">No. 05</span>
+      <figure class="emblem-card" data-photo-frame="shakti-jewellery" style="--e-bg:linear-gradient(172deg,#6b1c3f,#1a0510)">
+        <img class="ph-img" alt="Jewellery business owner — woman entrepreneur portrait" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <span class="e-glow" aria-hidden="true"></span><span class="e-grain" aria-hidden="true"></span><span class="e-ring" aria-hidden="true"></span>
+        <span class="e-index">No. 05</span>
+        <span class="e-medallion ph-hide" aria-hidden="true"><svg><use href="#i-ring"/></svg></span>
         <figcaption><b>The Jewellery Business Owner</b><span>Heritage</span></figcaption>
+        <span class="e-flourish ph-hide" aria-hidden="true"><svg viewBox="0 0 80 14"><use href="#i-flourish-sm"/></svg></span>
       </figure>
-      <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#e59a5f,#511530)" aria-hidden="true"></span>
-        <span class="p-spot" aria-hidden="true"></span>
-        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
-        <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
-        <span class="p-grain" aria-hidden="true"></span>
-        <span class="p-veil" aria-hidden="true"></span>
-        <span class="p-ring" aria-hidden="true"></span>
-        <span class="p-index" aria-hidden="true">No. 06</span>
+      <figure class="emblem-card" data-photo-frame="shakti-artisan" style="--e-bg:linear-gradient(172deg,#b87a4b,#511530)">
+        <img class="ph-img" alt="Artisan and potter — woman entrepreneur portrait" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <span class="e-glow" aria-hidden="true"></span><span class="e-grain" aria-hidden="true"></span><span class="e-ring" aria-hidden="true"></span>
+        <span class="e-index">No. 06</span>
+        <span class="e-medallion ph-hide" aria-hidden="true"><svg><use href="#i-pot"/></svg></span>
         <figcaption><b>The Artisan &amp; Potter</b><span>Handmade</span></figcaption>
+        <span class="e-flourish ph-hide" aria-hidden="true"><svg viewBox="0 0 80 14"><use href="#i-flourish-sm"/></svg></span>
       </figure>
-      <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#86234e,#250915)" aria-hidden="true"></span>
-        <span class="p-spot" aria-hidden="true"></span>
-        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
-        <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig2"/></svg>
-        <span class="p-grain" aria-hidden="true"></span>
-        <span class="p-veil" aria-hidden="true"></span>
-        <span class="p-ring" aria-hidden="true"></span>
-        <span class="p-index" aria-hidden="true">No. 07</span>
+      <figure class="emblem-card" data-photo-frame="shakti-d2c" style="--e-bg:linear-gradient(172deg,#86234e,#250915)">
+        <img class="ph-img" alt="D2C brand owner — woman entrepreneur portrait" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <span class="e-glow" aria-hidden="true"></span><span class="e-grain" aria-hidden="true"></span><span class="e-ring" aria-hidden="true"></span>
+        <span class="e-index">No. 07</span>
+        <span class="e-medallion ph-hide" aria-hidden="true"><svg><use href="#i-ig"/></svg></span>
         <figcaption><b>The D2C Brand Owner</b><span>Digital Growth</span></figcaption>
+        <span class="e-flourish ph-hide" aria-hidden="true"><svg viewBox="0 0 80 14"><use href="#i-flourish-sm"/></svg></span>
       </figure>
-      <figure class="portrait-card">
-        <span class="p-bg" style="background:linear-gradient(170deg,#d3a84f,#511530)" aria-hidden="true"></span>
-        <span class="p-spot" aria-hidden="true"></span>
-        <svg class="p-figure-glow" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
-        <svg class="p-figure" viewBox="0 0 100 120" aria-hidden="true"><use href="#i-fig1"/></svg>
-        <span class="p-grain" aria-hidden="true"></span>
-        <span class="p-veil" aria-hidden="true"></span>
-        <span class="p-ring" aria-hidden="true"></span>
-        <span class="p-index" aria-hidden="true">No. 08</span>
+      <figure class="emblem-card" data-photo-frame="shakti-msme" style="--e-bg:linear-gradient(172deg,#8a5a2b,#511530)">
+        <img class="ph-img" alt="MSME businesswoman — woman entrepreneur portrait" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <span class="e-glow" aria-hidden="true"></span><span class="e-grain" aria-hidden="true"></span><span class="e-ring" aria-hidden="true"></span>
+        <span class="e-index">No. 08</span>
+        <span class="e-medallion ph-hide" aria-hidden="true"><svg><use href="#i-briefcase"/></svg></span>
         <figcaption><b>The MSME Businesswoman</b><span>Enterprise</span></figcaption>
+        <span class="e-flourish ph-hide" aria-hidden="true"><svg viewBox="0 0 80 14"><use href="#i-flourish-sm"/></svg></span>
       </figure>
     </div>
     <p class="shakti-note">Editorial portraits of participating entrepreneurs will be featured here</p>
@@ -2797,30 +2859,46 @@ h1, h2 { text-wrap: balance; }
     </div>
 
     <div class="speaker-placeholder-row" data-reveal-group>
-      <div class="speaker-card">
-        <span class="speaker-seal"><svg viewBox="0 0 100 120" fill="currentColor" aria-hidden="true"><use href="#i-fig1"/></svg></span>
-        <b>Announcing Soon</b>
-        <span class="sp-role">Keynote Speaker</span>
-        <span class="sp-tag">To Be Announced</span>
-      </div>
-      <div class="speaker-card">
-        <span class="speaker-seal"><svg viewBox="0 0 100 120" fill="currentColor" aria-hidden="true"><use href="#i-fig2"/></svg></span>
-        <b>Announcing Soon</b>
-        <span class="sp-role">Growth Mentor</span>
-        <span class="sp-tag">To Be Announced</span>
-      </div>
-      <div class="speaker-card">
-        <span class="speaker-seal"><svg viewBox="0 0 100 120" fill="currentColor" aria-hidden="true"><use href="#i-fig1"/></svg></span>
-        <b>Announcing Soon</b>
-        <span class="sp-role">Panel Speaker</span>
-        <span class="sp-tag">To Be Announced</span>
-      </div>
-      <div class="speaker-card">
-        <span class="speaker-seal"><svg viewBox="0 0 100 120" fill="currentColor" aria-hidden="true"><use href="#i-fig2"/></svg></span>
-        <b>Announcing Soon</b>
-        <span class="sp-role">Industry Expert</span>
-        <span class="sp-tag">To Be Announced</span>
-      </div>
+      <article class="speaker-mag" data-photo-frame="speaker-1" style="--s-bg:linear-gradient(168deg,#511530,#250915)">
+        <img class="ph-img" alt="Keynote speaker — announcement coming soon" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <span class="sm-rings ph-hide" aria-hidden="true"></span>
+        <span class="sm-glow" aria-hidden="true"></span>
+        <span class="sm-kicker">Keynote Speaker</span>
+        <p class="sm-name">Announcing<br/>Soon</p>
+        <span class="sm-rule" aria-hidden="true"></span>
+        <span class="sm-note">To Be Announced</span>
+      </article>
+      <article class="speaker-mag" data-photo-frame="speaker-2" style="--s-bg:linear-gradient(168deg,#6b1c3f,#1a0510)">
+        <img class="ph-img" alt="Growth mentor — announcement coming soon" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <span class="sm-rings ph-hide" aria-hidden="true"></span>
+        <span class="sm-glow" aria-hidden="true"></span>
+        <span class="sm-kicker">Growth Mentor</span>
+        <p class="sm-name">Announcing<br/>Soon</p>
+        <span class="sm-rule" aria-hidden="true"></span>
+        <span class="sm-note">To Be Announced</span>
+      </article>
+      <article class="speaker-mag" data-photo-frame="speaker-3" style="--s-bg:linear-gradient(168deg,#86234e,#370f21)">
+        <img class="ph-img" alt="Panel speaker — announcement coming soon" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <span class="sm-rings ph-hide" aria-hidden="true"></span>
+        <span class="sm-glow" aria-hidden="true"></span>
+        <span class="sm-kicker">Panel Speaker</span>
+        <p class="sm-name">Announcing<br/>Soon</p>
+        <span class="sm-rule" aria-hidden="true"></span>
+        <span class="sm-note">To Be Announced</span>
+      </article>
+      <article class="speaker-mag" data-photo-frame="speaker-4" style="--s-bg:linear-gradient(168deg,#421229,#250915)">
+        <img class="ph-img" alt="Industry expert — announcement coming soon" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <span class="sm-rings ph-hide" aria-hidden="true"></span>
+        <span class="sm-glow" aria-hidden="true"></span>
+        <span class="sm-kicker">Industry Expert</span>
+        <p class="sm-name">Announcing<br/>Soon</p>
+        <span class="sm-rule" aria-hidden="true"></span>
+        <span class="sm-note">To Be Announced</span>
+      </article>
     </div>
 
     <h3 class="mini-label mini-label--center" data-reveal>Session Themes</h3>
@@ -3091,12 +3169,12 @@ h1, h2 { text-wrap: balance; }
     <div class="partner-wall" data-reveal>
       <h3 class="mini-label mini-label--center">Partners &amp; Sponsors</h3>
       <div class="partner-wall-grid">
-        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-crown"/></svg><span>Title Sponsor</span></div>
-        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-bank"/></svg><span>Banking Partner</span></div>
-        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-book"/></svg><span>Knowledge Partner</span></div>
-        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-heart"/></svg><span>CSR Partner</span></div>
-        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-camera"/></svg><span>Media Partner</span></div>
-        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-globe"/></svg><span>Technology Partner</span></div>
+        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-crown"/></svg><span>Title Sponsor</span><small>Announcing Soon</small></div>
+        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-bank"/></svg><span>Banking Partner</span><small>Announcing Soon</small></div>
+        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-book"/></svg><span>Knowledge Partner</span><small>Announcing Soon</small></div>
+        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-heart"/></svg><span>CSR Partner</span><small>Announcing Soon</small></div>
+        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-camera"/></svg><span>Media Partner</span><small>Announcing Soon</small></div>
+        <div class="partner-slot"><svg aria-hidden="true"><use href="#i-globe"/></svg><span>Technology Partner</span><small>Announcing Soon</small></div>
       </div>
       <p class="partner-wall-note">Speaker and partner announcements coming soon.</p>
     </div>
@@ -3111,46 +3189,24 @@ h1, h2 { text-wrap: balance; }
 <section class="section visit" id="visit">
   <div class="container">
     <div class="visit-grid">
-      <figure class="visit-art" data-reveal>
-        <svg viewBox="0 0 300 370" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <defs>
-            <linearGradient id="vbg" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#1a0510"/><stop offset="0.55" stop-color="#421229"/><stop offset="1" stop-color="#511530"/>
-            </linearGradient>
-            <linearGradient id="vbeam" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#e2bd6d" stop-opacity="0.65"/><stop offset="1" stop-color="#e2bd6d" stop-opacity="0"/>
-            </linearGradient>
-            <linearGradient id="vstage" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#d3a84f"/><stop offset="1" stop-color="#6b1c3f"/>
-            </linearGradient>
-          </defs>
-          <rect width="300" height="370" fill="url(#vbg)"/>
-          <path d="M60 26c0 14 12 22 30 22s30-8 30-22M180 26c0 14 12 22 30 22s30-8 30-22" stroke="#d3a84f" stroke-width="0.8" fill="none" opacity="0.6"/>
-          <g fill="#f2dfae">
-            <circle cx="90" cy="52" r="2.4" opacity="0.9"/><circle cx="210" cy="52" r="2.4" opacity="0.9"/>
-            <circle cx="74" cy="46" r="1.4" opacity="0.7"/><circle cx="106" cy="46" r="1.4" opacity="0.7"/>
-            <circle cx="194" cy="46" r="1.4" opacity="0.7"/><circle cx="226" cy="46" r="1.4" opacity="0.7"/>
-          </g>
-          <polygon points="70,0 110,0 170,240 30,240" fill="url(#vbeam)" opacity="0.5"/>
-          <polygon points="190,0 230,0 280,240 130,240" fill="url(#vbeam)" opacity="0.4"/>
-          <circle cx="150" cy="60" r="40" fill="#e2bd6d" opacity="0.1"/>
-          <rect x="55" y="118" width="190" height="86" rx="6" fill="#250915" stroke="#d3a84f" stroke-width="1" opacity="0.95"/>
-          <rect x="66" y="129" width="168" height="64" rx="3" fill="url(#vstage)" opacity="0.35"/>
-          <path d="M84 165c14-14 26-20 40-18M216 165c-14-14-26-20-40-18" stroke="#e2bd6d" stroke-width="1.1" fill="none" opacity="0.8"/>
-          <circle cx="150" cy="152" r="12" fill="none" stroke="#e2bd6d" stroke-width="1.1" opacity="0.9"/>
-          <path d="M150 141c4.5 5 6.8 9.4 6.8 13.2a6.8 6.8 0 0 1-13.6 0c0-3.8 2.3-8.2 6.8-13.2z" fill="#e2bd6d" opacity="0.85"/>
-          <rect x="30" y="204" width="240" height="10" rx="2" fill="#d3a84f" opacity="0.55"/>
-          <rect x="40" y="214" width="220" height="3" rx="1.5" fill="#f2dfae" opacity="0.3"/>
-          <g fill="#f9efe0">
-            <circle cx="58" cy="258" r="7" opacity="0.75"/><circle cx="92" cy="252" r="7" opacity="0.6"/><circle cx="126" cy="260" r="7" opacity="0.8"/><circle cx="160" cy="251" r="7" opacity="0.6"/><circle cx="194" cy="259" r="7" opacity="0.75"/><circle cx="228" cy="253" r="7" opacity="0.6"/><circle cx="255" cy="261" r="7" opacity="0.7"/>
-            <circle cx="44" cy="298" r="8" opacity="0.5"/><circle cx="84" cy="292" r="8" opacity="0.65"/><circle cx="124" cy="300" r="8" opacity="0.5"/><circle cx="164" cy="291" r="8" opacity="0.65"/><circle cx="204" cy="299" r="8" opacity="0.5"/><circle cx="244" cy="293" r="8" opacity="0.6"/>
-            <circle cx="62" cy="340" r="9" opacity="0.4"/><circle cx="110" cy="334" r="9" opacity="0.5"/><circle cx="158" cy="342" r="9" opacity="0.4"/><circle cx="206" cy="335" r="9" opacity="0.5"/><circle cx="250" cy="343" r="9" opacity="0.4"/>
-          </g>
-          <g fill="#e2bd6d">
-            <circle cx="36" cy="30" r="1.6" opacity="0.8"/><circle cx="264" cy="44" r="1.3" opacity="0.7"/><circle cx="244" cy="18" r="1.1" opacity="0.6"/><circle cx="70" cy="70" r="1.2" opacity="0.6"/><circle cx="230" cy="86" r="1.4" opacity="0.7"/><circle cx="24" cy="96" r="1.1" opacity="0.5"/>
-          </g>
-        </svg>
-        <figcaption>The Summit Atmosphere · Premium 5-Star Experience</figcaption>
+      <figure class="venue-card" data-reveal data-photo-frame="venue-atmosphere">
+        <img class="ph-img" alt="The summit atmosphere — premium five-star venue in Delhi" />
+        <span class="ph-grade" aria-hidden="true"></span>
+        <div class="vc-crest ph-hide" aria-hidden="true">
+          <svg viewBox="0 0 168 92" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M84 14c7 8 10.5 15 10.5 21A10.5 10.5 0 0 1 84 45.5 10.5 10.5 0 0 1 73.5 35c0-6 3.5-13 10.5-21z"/>
+            <path d="M84 58c-10-5.6-16-14.8-16-24.6M84 58c10-5.6 16-14.8 16-24.6" opacity="0.55"/>
+            <path d="M58 62h52l-3.6 9.8A12 12 0 0 1 95.2 79H72.8a12 12 0 0 1-11.2-7.2L58 62z"/>
+            <path d="M6 62h40M122 62h40" stroke-width="1"/>
+            <path d="M14 62c8-4 16-4 24 0M130 62c8-4 16-4 24 0" stroke-width="0.8" opacity="0.7"/>
+            <circle cx="84" cy="35" r="31" stroke-width="0.6" stroke-dasharray="1.5 6"/>
+          </svg>
+        </div>
+        <p class="vc-kicker ph-hide">The Summit Venue</p>
+        <p class="vc-city ph-hide">Delhi</p>
+        <p class="vc-venue ph-hide">Premium 5-Star Hotel</p>
+        <p class="vc-date ph-hide">19–20 September 2026</p>
+        <figcaption class="vc-caption">The Summit Atmosphere · Premium 5-Star Experience</figcaption>
       </figure>
 
       <div>
@@ -3488,8 +3544,45 @@ h1, h2 { text-wrap: balance; }
     eventDate: "2026-09-19T09:00:00+05:30"
   };
 
+  /* ------------------------------------------------------------
+     IMAGES — official campaign photography manifest.
+     Drop a URL (or relative path like "assets/host.jpg") against any
+     slot and the matching frame instantly switches from its
+     art-directed state to the photograph, with the brand colour
+     grade applied automatically. A failed load silently reverts to
+     the art-directed frame, so a broken URL can never break the page.
+  ------------------------------------------------------------ */
+  var IMAGES = {
+    "hero-host": "",          // the recurring female event host — hero invitation panel
+    "shakti-ceo": "",
+    "shakti-founder": "",
+    "shakti-boutique": "",
+    "shakti-baker": "",
+    "shakti-jewellery": "",
+    "shakti-artisan": "",
+    "shakti-d2c": "",
+    "shakti-msme": "",
+    "speaker-1": "",
+    "speaker-2": "",
+    "speaker-3": "",
+    "speaker-4": "",
+    "venue-atmosphere": ""    // stage / venue editorial photograph
+  };
+
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  /* ---------- Photo-slot hydration ---------- */
+  document.querySelectorAll("[data-photo-frame]").forEach(function (frame) {
+    var src = IMAGES[frame.getAttribute("data-photo-frame")];
+    if (!src) return;
+    var img = frame.querySelector(".ph-img");
+    if (!img) return;
+    img.addEventListener("load", function () { frame.classList.add("has-photo"); });
+    img.addEventListener("error", function () { frame.classList.remove("has-photo"); });
+    img.loading = "lazy";
+    img.src = src;
+  });
 
   /* ---------- WhatsApp / contact wiring ---------- */
   var waLinks = document.querySelectorAll(".js-wa");
