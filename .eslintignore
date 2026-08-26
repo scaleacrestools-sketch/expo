@@ -13,6 +13,10 @@
 
 /react-native-lab/react-native/**
 
+# Standalone static site — not part of the monorepo's JS toolchain
+
+/scaleacres/**
+
 # Other
 
 **/android/**

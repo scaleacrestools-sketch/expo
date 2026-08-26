@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" fill="none"><rect width="1200" height="900" fill="#F5F4F3"/><rect width="1200" height="900" fill="rgba(1,34,88,0.05)"/>
+   <g stroke="rgba(1,34,88,0.12)" stroke-width="1.5">
+     <path d="M0 90 L1200 90"/><path d="M0 160 L1200 160"/>
+     <path d="M180 160 L180 640"/><path d="M1020 160 L1020 640"/>
+   </g>
+   <rect x="300" y="210" width="600" height="330" rx="0" fill="#012258" stroke="none" stroke-width="1.5"/>
+   
+  <g transform="translate(450 375) scale(1.6)" stroke="#FFFFFF" stroke-width="1.5"
+     stroke-linecap="square" stroke-linejoin="miter" fill="none">
+    <circle cx="0" cy="0" r="46"/>
+    <path d="M-30 22 L0 -24 L30 22"/>
+    <path d="M-30 22 L30 22"/>
+    <path d="M-16 22 L-16 2 M16 22 L16 2"/>
+  </g>
+   <g fill="rgba(255,255,255,0.3)">
+     <rect x="580" y="330" width="240" height="18" rx="2"/><rect x="580" y="362" width="170" height="18" rx="2"/>
+     <rect x="580" y="416" width="120" height="9" rx="2"/>
+   </g>
+   <rect x="0" y="640" width="1200" height="260" fill="rgba(1,34,88,0.09)"/>
+   <path d="M180 700 L1020 700 L1160 880 L40 880 Z" fill="rgba(1,34,88,0.14)"/>
+   <path d="M180 700 L1020 700 L1160 880 L40 880 Z" stroke="rgba(1,34,88,0.24)" stroke-width="2" fill="none"/>
+   <rect x="430" y="736" width="150" height="100" rx="0" fill="#FFFFFF" stroke="rgba(1,34,88,0.16)" stroke-width="1.5"/>
+   <rect x="640" y="736" width="150" height="100" rx="0" fill="#F5F4F3" stroke="rgba(1,34,88,0.16)" stroke-width="1.5"/>
+   
+  <g transform="translate(505 786) scale(0.54)" stroke="#012258" stroke-width="4.074074074074074"
+     stroke-linecap="square" stroke-linejoin="miter" fill="none">
+    <circle cx="0" cy="0" r="46"/>
+    <path d="M-30 22 L0 -24 L30 22"/>
+    <path d="M-30 22 L30 22"/>
+    <path d="M-16 22 L-16 2 M16 22 L16 2"/>
+  </g>
+  <g transform="translate(715 786) scale(0.54)" stroke="#012258" stroke-width="4.074074074074074"
+     stroke-linecap="square" stroke-linejoin="miter" fill="none">
+    <circle cx="0" cy="0" r="46"/>
+    <path d="M-30 22 L0 -24 L30 22"/>
+    <path d="M-30 22 L30 22"/>
+    <path d="M-16 22 L-16 2 M16 22 L16 2"/>
+  </g>
+   <g fill="rgba(1,34,88,0.2)"><rect x="60" y="742" width="110" height="140"/><rect x="1030" y="742" width="110" height="140"/></g></svg>
