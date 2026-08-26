@@ -9,7 +9,18 @@ Static HTML/CSS/JS. No build step, no framework, no runtime dependencies. Open
 ```bash
 # local preview
 python3 -m http.server 8000    # then open http://localhost:8000
+
+# regenerate the vector mockups
+node tools/build-assets.mjs
+
+# bundle everything into one self-contained file (dist/, git-ignored)
+node tools/build-artifact.mjs
 ```
+
+`tools/build-artifact.mjs` inlines the styles, scripts and all 34 referenced
+mockups into a single ~393 KB HTML file — useful for sharing a preview or
+dropping the page somewhere that can only host one file. Google Fonts is the
+only external request it leaves.
 
 ---
 
