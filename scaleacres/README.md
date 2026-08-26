@@ -122,7 +122,9 @@ scaleacres/
 │   ├── js/content.js       testimonial + showcase content (edit this for real data)
 │   ├── js/main.js          animation engine and interactions
 │   └── img/*.svg           35 generated vector mockups
-└── tools/build-assets.mjs  regenerates assets/img
+└── tools/
+    ├── build-assets.mjs    regenerates assets/img
+    └── build-artifact.mjs  bundles everything into dist/ as one file
 ```
 
 Sections, in order: header · hero · client logos · brand philosophy · featured
