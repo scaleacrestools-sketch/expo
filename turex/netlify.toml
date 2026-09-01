@@ -1,0 +1,16 @@
+# Static Next.js export. /img/* and /vid/* are proxied (status 200 =
+# same-origin serve, not a redirect) to the stock-media CDNs.
+
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[[redirects]]
+  from = "/img/*"
+  to = "https://images.unsplash.com/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/vid/*"
+  to = "https://videos.pexels.com/:splat"
+  status = 200
