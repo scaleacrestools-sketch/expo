@@ -9,7 +9,7 @@ export default function Stories() {
         <Reveal className="relative">
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
             <Image
-              src="https://images.unsplash.com/photo-1561361058-c24cecae35ca?w=1200&q=80&auto=format&fit=crop"
+              src="/img/photo-1561361058-c24cecae35ca?w=1200&q=80&auto=format&fit=crop"
               alt="Wooden boats resting on the Ganges at the Varanasi ghats in early light"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"

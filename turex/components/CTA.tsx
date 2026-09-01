@@ -7,7 +7,7 @@ export default function CTA() {
       <Reveal>
         <div className="relative overflow-hidden rounded-[2.5rem] bg-ink">
           <Image
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80&auto=format&fit=crop"
+            src="/img/photo-1506905925346-21bda4d32df4?w=1800&q=80&auto=format&fit=crop"
             alt=""
             aria-hidden="true"
             fill

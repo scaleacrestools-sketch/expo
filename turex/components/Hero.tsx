@@ -19,11 +19,11 @@ export default function Hero() {
         loop
         playsInline
         preload="metadata"
-        poster="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=1920&q=80&auto=format&fit=crop"
+        poster="/img/photo-1564507592333-c60657eea523?w=1920&q=80&auto=format&fit=crop"
         aria-hidden="true"
       >
         <source
-          src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4"
+          src="/vid/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4"
           type="video/mp4"
         />
       </video>
@@ -99,7 +99,7 @@ export default function Hero() {
             <div className="float-soft overflow-hidden rounded-3xl border border-white/15 bg-white/10 shadow-2xl backdrop-blur-md">
               <div className="relative h-40">
                 <Image
-                  src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80&auto=format&fit=crop"
+                  src="/img/photo-1602216056096-3b40cc0c9944?w=600&q=80&auto=format&fit=crop"
                   alt=""
                   fill
                   sizes="256px"
@@ -122,7 +122,7 @@ export default function Hero() {
             >
               <div className="relative h-40">
                 <Image
-                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80&auto=format&fit=crop"
+                  src="/img/photo-1506905925346-21bda4d32df4?w=600&q=80&auto=format&fit=crop"
                   alt=""
                   fill
                   sizes="256px"
