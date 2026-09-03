@@ -38,6 +38,26 @@
   </script>
 </head>
 <body>
+  <div class="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <img class="loader__mark" src="/assets/img/roundel.png" alt="" width="110" height="110">
+      <span class="loader__line"></span>
+      <span class="loader__since">Since 1959</span>
+    </div>
+  </div>
+  <div class="curtain" aria-hidden="true"></div>
+
+  <div class="site-bar" aria-label="Quick navigation">
+    <a class="site-bar__cta" href="/#contact">Reservations</a>
+    <a class="roundel-link" href="/" aria-label="Gulati home" style="grid-column:2"><img class="roundel" src="/assets/img/roundel.png" alt="" width="42" height="42"></a>
+    <button class="menu-btn" type="button" data-nav-open aria-controls="nav" aria-expanded="false" aria-label="Open menu" style="grid-column:3;justify-self:end">
+      <svg viewBox="0 0 62 26" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+        <path d="M8 1H54C56 1 57 2 57 4V8L61 13L57 18V22C57 24 56 25 54 25H8C6 25 5 24 5 22V18L1 13L5 8V4C5 2 6 1 8 1Z"/>
+        <path d="M13 9H49M13 13H49M13 17H49"/>
+      </svg>
+    </button>
+  </div>
+
   <header class="site-header">
     <a class="brand" href="/" aria-label="Gulati — great Indian food, home">
       <img src="/assets/img/logo.png" alt="Gulati — great Indian food" width="246" height="82">
@@ -76,34 +96,34 @@
     <section class="legacy pattern section container" id="legacy">
       <div class="narrow">
         <div class="title title--stack reveal">
-          <h2 class="display display--xl">The Legacy</h2>
-          <span class="orn" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          <h2 class="display display--xl" data-split>The Legacy</h2>
+          <span class="orn orn-reveal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
         </div>
         <p class="lede reveal" data-delay="1">Since 1959, Gulati has been Delhi's most cherished dining address, a place where extraordinary food meets genuine warmth, and where six decades of craft arrive at your table in every single bite. Born on Pandara Road as a humble dhaba, we have grown into a globally recognised institution, counted among the 100 Most Legendary Restaurants in the World. Yet the spirit has never changed. The welcome is still the welcome. This is Gulati: Delhi's own, and the world's favourite.</p>
       </div>
-      <figure class="legacy__figure reveal" data-delay="1">
-        <img src="/assets/img/legacy-skewers.jpg" alt="Smoking tandoori skewers hanging over the grill at Gulati" width="1800" height="2250" loading="lazy">
+      <figure class="legacy__figure img-reveal">
+        <img data-parallax="0.08" src="/assets/img/legacy-skewers.jpg" alt="Smoking tandoori skewers hanging over the grill at Gulati" width="1800" height="2250" loading="lazy">
       </figure>
     </section>
 
     <section class="dishes pattern section container" id="dishes">
       <div class="title reveal">
-        <span class="orn" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <h2 class="display display--xl">Signature Dishes</h2>
-        <span class="orn" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <span class="orn orn-reveal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <h2 class="display display--xl" data-split>Signature Dishes</h2>
+        <span class="orn orn-reveal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
       </div>
 
       <div class="dish-grid dish-grid--2">
         <article class="dish reveal">
           <figure>
-            <div class="dish__media"><img src="/assets/img/dish-butter-chicken.jpg" alt="Butter Chicken served in a brass bowl with tandoori naan" width="768" height="960" loading="lazy"></div>
-            <figcaption><span class="orn" aria-hidden="true"><i></i><i></i><i></i></span><span class="name">Butter Chicken</span></figcaption>
+            <div class="dish__media img-reveal"><img src="/assets/img/dish-butter-chicken.jpg" alt="Butter Chicken served in a brass bowl with tandoori naan" width="768" height="960" loading="lazy"></div>
+            <figcaption><span class="orn orn-reveal" aria-hidden="true"><i></i><i></i><i></i></span><span class="name">Butter Chicken</span></figcaption>
           </figure>
         </article>
         <article class="dish reveal" data-delay="1">
           <figure>
-            <div class="dish__media"><img src="/assets/img/dish-mutton-kastoori.jpg" alt="Mutton Kastoori seekh kebabs on a wooden board" width="1109" height="1664" loading="lazy"></div>
-            <figcaption><span class="orn" aria-hidden="true"><i></i><i></i><i></i></span><span class="name">Mutton Kastoori</span></figcaption>
+            <div class="dish__media img-reveal"><img src="/assets/img/dish-mutton-kastoori.jpg" alt="Mutton Kastoori seekh kebabs on a wooden board" width="1109" height="1664" loading="lazy"></div>
+            <figcaption><span class="orn orn-reveal" aria-hidden="true"><i></i><i></i><i></i></span><span class="name">Mutton Kastoori</span></figcaption>
           </figure>
         </article>
       </div>
@@ -111,33 +131,33 @@
       <div class="dish-grid dish-grid--4">
         <article class="dish reveal">
           <figure>
-            <div class="dish__media"><img src="/assets/img/dish-edamame-galouti.jpg" alt="Edamame Galouti kebabs with a chilled drink" width="1288" height="1610" loading="lazy"></div>
-            <figcaption><span class="orn" aria-hidden="true"><i></i><i></i><i></i></span><span class="name">Edamame Galouti</span></figcaption>
+            <div class="dish__media img-reveal"><img src="/assets/img/dish-edamame-galouti.jpg" alt="Edamame Galouti kebabs with a chilled drink" width="1288" height="1610" loading="lazy"></div>
+            <figcaption><span class="orn orn-reveal" aria-hidden="true"><i></i><i></i><i></i></span><span class="name">Edamame Galouti</span></figcaption>
           </figure>
         </article>
         <article class="dish reveal" data-delay="1">
           <figure>
-            <div class="dish__media"><img src="/assets/img/dish-champaran-meat.jpg" alt="Champaran Meat served with naan" width="896" height="1120" loading="lazy"></div>
-            <figcaption><span class="orn" aria-hidden="true"><i></i><i></i><i></i></span><span class="name">Champaran Meat</span></figcaption>
+            <div class="dish__media img-reveal"><img src="/assets/img/dish-champaran-meat.jpg" alt="Champaran Meat served with naan" width="896" height="1120" loading="lazy"></div>
+            <figcaption><span class="orn orn-reveal" aria-hidden="true"><i></i><i></i><i></i></span><span class="name">Champaran Meat</span></figcaption>
           </figure>
         </article>
         <article class="dish reveal" data-delay="2">
           <figure>
-            <div class="dish__media"><img src="/assets/img/dish-murgh-malai-tikka.jpg" alt="Murgh Malai Tikka skewered in a smoking copper pot" width="966" height="1208" loading="lazy"></div>
-            <figcaption><span class="orn" aria-hidden="true"><i></i><i></i><i></i></span><span class="name">Murgh Malai Tikka</span></figcaption>
+            <div class="dish__media img-reveal"><img src="/assets/img/dish-murgh-malai-tikka.jpg" alt="Murgh Malai Tikka skewered in a smoking copper pot" width="966" height="1208" loading="lazy"></div>
+            <figcaption><span class="orn orn-reveal" aria-hidden="true"><i></i><i></i><i></i></span><span class="name">Murgh Malai Tikka</span></figcaption>
           </figure>
         </article>
         <article class="dish reveal" data-delay="3">
           <figure>
-            <div class="dish__media"><img src="/assets/img/dish-dahi-kebab.jpg" alt="Dahi Kebab being served from a woven basket" width="768" height="960" loading="lazy"></div>
-            <figcaption><span class="orn" aria-hidden="true"><i></i><i></i><i></i></span><span class="name">Dahi Kebab</span></figcaption>
+            <div class="dish__media img-reveal"><img src="/assets/img/dish-dahi-kebab.jpg" alt="Dahi Kebab being served from a woven basket" width="768" height="960" loading="lazy"></div>
+            <figcaption><span class="orn orn-reveal" aria-hidden="true"><i></i><i></i><i></i></span><span class="name">Dahi Kebab</span></figcaption>
           </figure>
         </article>
       </div>
     </section>
 
     <section class="banner" aria-label="Our locations">
-      <img src="/assets/img/interior-locations.jpg" alt="The arched dining hall at Gulati with chandeliers and marble tables" width="1967" height="2459" loading="lazy">
+      <img data-parallax="0.1" src="/assets/img/interior-locations.jpg" alt="The arched dining hall at Gulati with chandeliers and marble tables" width="1967" height="2459" loading="lazy">
       <a class="plaque" href="/locations/"><svg class="l" viewBox="0 0 34 64" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M34 1H18C9 1 5 5 5 14V22H9C7 26 4 29 1 32C4 35 7 38 9 42H5V50C5 59 9 63 18 63H34"/></svg><svg class="r" viewBox="0 0 34 64" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M34 1H18C9 1 5 5 5 14V22H9C7 26 4 29 1 32C4 35 7 38 9 42H5V50C5 59 9 63 18 63H34"/></svg>Our Locations</a>
     </section>
   </main>
@@ -147,7 +167,7 @@
   <footer class="contact pattern container" id="contact">
     <div class="contact__grid">
       <div class="reveal">
-        <h2 class="eyebrow">Contact Us</h2>
+        <h2 class="eyebrow" data-split>Contact Us</h2>
         <p class="contact__copy">We would love to have you at our table. For any questions or enquiries, simply fill out the form below — or to reserve your place, <a href="tel:+911147633344">click here</a>.</p>
 
         <div class="contact__block">
@@ -170,7 +190,7 @@
         </div>
 
         <div class="hours">
-          <h3 class="eyebrow">Hours</h3>
+          <h3 class="eyebrow" data-split>Hours</h3>
           <p>Lunch:<br>Monday - Sunday: 12pm to 4pm</p>
           <p>Dinner:<br>Monday - Sunday: 7pm until late</p>
         </div>

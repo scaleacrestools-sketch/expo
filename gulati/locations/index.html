@@ -38,6 +38,26 @@
   </script>
 </head>
 <body>
+  <div class="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <img class="loader__mark" src="/assets/img/roundel.png" alt="" width="110" height="110">
+      <span class="loader__line"></span>
+      <span class="loader__since">Since 1959</span>
+    </div>
+  </div>
+  <div class="curtain" aria-hidden="true"></div>
+
+  <div class="site-bar" aria-label="Quick navigation">
+    <a class="site-bar__cta" href="/#contact">Reservations</a>
+    <a class="roundel-link" href="/" aria-label="Gulati home" style="grid-column:2"><img class="roundel" src="/assets/img/roundel.png" alt="" width="42" height="42"></a>
+    <button class="menu-btn" type="button" data-nav-open aria-controls="nav" aria-expanded="false" aria-label="Open menu" style="grid-column:3;justify-self:end">
+      <svg viewBox="0 0 62 26" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+        <path d="M8 1H54C56 1 57 2 57 4V8L61 13L57 18V22C57 24 56 25 54 25H8C6 25 5 24 5 22V18L1 13L5 8V4C5 2 6 1 8 1Z"/>
+        <path d="M13 9H49M13 13H49M13 17H49"/>
+      </svg>
+    </button>
+  </div>
+
   <header class="site-header">
     <a class="brand" href="/" aria-label="Gulati — great Indian food, home">
       <img src="/assets/img/logo.png" alt="Gulati — great Indian food" width="246" height="82">
@@ -76,13 +96,13 @@
     <section class="pattern section container" id="locations">
       <div class="locations-grid">
         <article class="location">
-          <figure class="reveal">
-            <img src="/assets/img/location-pandara-road.jpg" alt="The Pandara Road dining room with its wall of framed awards" width="1600" height="999" loading="lazy">
+          <figure class="img-reveal">
+            <img data-parallax="0.06" src="/assets/img/location-pandara-road.jpg" alt="The Pandara Road dining room with its wall of framed awards" width="1600" height="999" loading="lazy">
           </figure>
           <div class="title reveal">
-            <span class="orn" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-            <h2 class="display display--lg">Pandara Road<br>New Delhi</h2>
-            <span class="orn" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <span class="orn orn-reveal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <h2 class="display display--lg" data-split>Pandara Road<br>New Delhi</h2>
+            <span class="orn orn-reveal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
           </div>
           <p class="lede reveal" data-delay="1">The address that started everything, and still serves as the heart of the Gulati story.</p>
           <div class="rule reveal" data-delay="1" role="presentation"></div>
@@ -99,13 +119,13 @@
         </article>
 
         <article class="location">
-          <figure class="reveal" data-delay="1">
-            <img src="/assets/img/location-dlf-gurugram.jpg" alt="The Gurugram dining room with a chandelier and floor-to-ceiling windows" width="1013" height="1266" loading="lazy">
+          <figure class="img-reveal">
+            <img data-parallax="0.06" src="/assets/img/location-dlf-gurugram.jpg" alt="The Gurugram dining room with a chandelier and floor-to-ceiling windows" width="1013" height="1266" loading="lazy">
           </figure>
           <div class="title reveal">
-            <span class="orn" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-            <h2 class="display display--lg">DLF Phase 1<br>Gurugram</h2>
-            <span class="orn" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <span class="orn orn-reveal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+            <h2 class="display display--lg" data-split>DLF Phase 1<br>Gurugram</h2>
+            <span class="orn orn-reveal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
           </div>
           <p class="lede reveal" data-delay="1">Our second address brings Gulati's legacy from New Delhi to Gurugram.</p>
           <div class="rule reveal" data-delay="1" role="presentation"></div>
@@ -129,7 +149,7 @@
   <footer class="contact pattern container" id="contact">
     <div class="contact__grid">
       <div class="reveal">
-        <h2 class="eyebrow">Contact Us</h2>
+        <h2 class="eyebrow" data-split>Contact Us</h2>
         <p class="contact__copy">We would love to have you at our table. For any questions or enquiries, simply fill out the form below — or to reserve your place, <a href="tel:+911147633344">click here</a>.</p>
 
         <div class="contact__block">
@@ -152,7 +172,7 @@
         </div>
 
         <div class="hours">
-          <h3 class="eyebrow">Hours</h3>
+          <h3 class="eyebrow" data-split>Hours</h3>
           <p>Lunch:<br>Monday - Sunday: 12pm to 4pm</p>
           <p>Dinner:<br>Monday - Sunday: 7pm until late</p>
         </div>
