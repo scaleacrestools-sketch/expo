@@ -27,3 +27,17 @@ field. Submissions appear under *Forms* in the Netlify project.
 
 The folder is a plain static site: no build step. Publish directory is the
 folder root (see `netlify.toml`).
+
+Netlify project: **gulati** on team *scaleacres* — https://app.netlify.com/projects/gulati
+(live URL https://gulati.netlify.app once deployed). Forms are enabled on the project.
+
+Either of these publishes the folder:
+
+```shell
+# one-off upload from this folder (needs `netlify login` once)
+npx netlify-cli deploy --dir . --site 014f8bd2-a41b-49d3-bd87-4c4aaf8ca564 --prod
+```
+
+or link the project to this repository for continuous deployment:
+*Project configuration → Build & deploy → Link repository* → `scaleacrestools-sketch/expo`,
+base directory `gulati`, publish directory `gulati`, no build command.
