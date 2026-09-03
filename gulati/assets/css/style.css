@@ -7,7 +7,7 @@
    The artwork sets display headings in "Valky". Valky is a licensed typeface
    and is not bundled here. Drop the licensed webfont files into
    /assets/fonts/ and un-comment the @font-face below; the stack falls back
-   to Marcellus (loaded from Google Fonts) until then.
+   to Marcellus (self-hosted in /assets/fonts/) until then.
 
 @font-face {
   font-family: "Valky";
@@ -53,7 +53,7 @@ body {
   background: var(--red);
   color: var(--cream);
   font-family: var(--font-body);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.375rem);
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
@@ -72,25 +72,14 @@ h1, h2, h3, h4, p { margin: 0; }
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-/* ---- Brand pattern (ogee lattice, drawn once, tiled) ---------------------- */
+/* ---- Brand pattern (ogee lattice tile cut from the artwork; 240 x 651 pt) --- */
 .pattern {
   position: relative;
   background-color: var(--red);
-  isolation: isolate;
-}
-.pattern::before {
-  content: "";
-  position: absolute; inset: 0; z-index: -1;
-  background-image: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='240' height='300' viewBox='0 0 240 300'>\
-<defs><path id='o' d='M0 150 C 60 150 60 60 120 60 C 180 60 180 150 240 150 M0 150 C 60 150 60 240 120 240 C 180 240 180 150 240 150 M120 60 C 120 30 140 10 120 0 M120 240 C 120 270 100 290 120 300 M0 0 C 20 12 40 30 0 60 M240 0 C 220 12 200 30 240 60 M0 300 C 20 288 40 270 0 240 M240 300 C 220 288 200 270 240 240'/></defs>\
-<use href='%23o' fill='none' stroke='%23a32f2e' stroke-width='4.5' stroke-linecap='round' opacity='.85'/>\
-<use href='%23o' fill='none' stroke='%23d08c80' stroke-width='1.6' stroke-linecap='round' stroke-dasharray='0 7' opacity='.55'/>\
-<g fill='%23d08c80' opacity='.6'><circle cx='120' cy='60' r='3'/><circle cx='120' cy='240' r='3'/><circle cx='0' cy='150' r='3'/><circle cx='240' cy='150' r='3'/></g>\
-</svg>");
-  background-size: 240px 300px;
-  opacity: 0.42;
-  pointer-events: none;
+  background-image: url("../img/pattern-ogee-flat.png");
+  background-repeat: repeat;
+  background-position: center top;
+  background-size: clamp(150px, 12.48vw, 240px) auto;
 }
 
 /* ---- Typography ----------------------------------------------------------- */
@@ -108,7 +97,7 @@ h1, h2, h3, h4, p { margin: 0; }
 
 .eyebrow {
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: var(--track-wide);
   text-transform: uppercase;
   font-size: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
@@ -182,7 +171,7 @@ h1, h2, h3, h4, p { margin: 0; }
   padding: 0 2.75rem;
   color: var(--red-ink);
   font-family: var(--font-body);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.98rem;
   letter-spacing: var(--track-wide);
   text-transform: uppercase;
@@ -214,12 +203,10 @@ h1, h2, h3, h4, p { margin: 0; }
 .nav {
   position: fixed; inset: 0; z-index: 100;
   display: grid; place-items: center;
-  background: var(--red);
   opacity: 0; visibility: hidden;
   transition: opacity 0.6s var(--ease), visibility 0s 0.6s;
 }
 .nav.is-open { opacity: 1; visibility: visible; transition-delay: 0s; }
-.nav::before { opacity: 0.45; }
 .nav__close {
   position: absolute; top: clamp(1.3rem, 2.6vw, 2.4rem); right: var(--gutter);
   color: var(--white); font-size: 0.9rem; letter-spacing: var(--track-wide);
@@ -254,7 +241,7 @@ body.nav-open { overflow: hidden; }
 /* ---- Hero ----------------------------------------------------------------- */
 .hero {
   position: relative;
-  height: 100svh; min-height: 560px; max-height: 1080px;
+  height: clamp(540px, 55.6vw, 100svh);
   overflow: hidden;
   background: var(--black);
 }
@@ -316,7 +303,7 @@ body.nav-open { overflow: hidden; }
 }
 .dish figcaption .name {
   font-size: clamp(1.05rem, 0.85rem + 0.9vw, 1.7rem);
-  letter-spacing: 0.05em; text-transform: uppercase; font-weight: 300;
+  letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;
 }
 
 /* Locations banner */
@@ -367,7 +354,12 @@ body.nav-open { overflow: hidden; }
 
 .contact__center { text-align: center; padding-top: clamp(2rem, 5.5vw, 6.5rem); }
 .contact__center .roundel { width: clamp(84px, 7.2vw, 140px); margin: 0 auto; }
-.contact__center .lockup { width: clamp(190px, 18vw, 320px); margin: clamp(1.5rem, 2.5vw, 2.25rem) auto 0; }
+.lockup { margin: clamp(1.5rem, 2.5vw, 2.25rem) auto 0; display: flex; flex-direction: column; align-items: center; }
+.lockup__legacy { font-size: clamp(1.35rem, 1rem + 1vw, 1.9rem); letter-spacing: 0.1em; line-height: 1; }
+.lockup__script { width: clamp(120px, 10.7vw, 205px); margin-top: -0.55em; position: relative; z-index: 1; }
+.lockup__since { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.1rem; }
+.lockup__since .display { font-size: clamp(0.95rem, 0.7rem + 0.6vw, 1.25rem); letter-spacing: 0.1em; }
+.lockup__since img { width: clamp(26px, 2.3vw, 45px); }
 .social { display: flex; justify-content: center; gap: 1.1rem; margin-top: clamp(2.5rem, 5vw, 4.5rem); }
 .social a {
   display: grid; place-items: center; width: 34px; height: 34px;
@@ -414,14 +406,14 @@ body.nav-open { overflow: hidden; }
 .location .lede { align-self: start; }
 .location .address {
   font-size: clamp(1rem, 0.85rem + 0.6vw, 1.3rem); letter-spacing: 0.06em; line-height: 1.55;
-  text-transform: uppercase; font-weight: 400;
+  text-transform: uppercase; font-weight: 700;
 }
 .location .actions { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; margin-top: clamp(2rem, 3.5vw, 3rem); }
 .location .timings { margin-top: clamp(2rem, 3.5vw, 3rem); }
-.location .timings h4 { font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.4rem); margin-bottom: 1.2rem; }
+.location .timings h4 { font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.4rem); margin-bottom: 1.2rem; font-weight: 700; }
 .location .timings p {
   font-size: clamp(1rem, 0.85rem + 0.6vw, 1.3rem); letter-spacing: 0.06em; line-height: 1.6;
-  text-transform: uppercase; font-weight: 400;
+  text-transform: uppercase; font-weight: 700;
 }
 .location .timings p + p { margin-top: 1.2rem; }
 

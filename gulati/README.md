@@ -7,7 +7,7 @@ Home and Locations artboards.
 - `locations/index.html` — All Locations (Pandara Road, New Delhi · DLF Phase 1, Gurugram)
 - `assets/css/style.css` — design tokens, typography, layout
 - `assets/js/main.js` — navigation overlay, reveal-on-scroll, AJAX form submit
-- `assets/img/` — photography and brand marks extracted from the artwork
+- `assets/img/` — photography, brand marks and the two pattern tiles from the artwork
 - `netlify.toml` — publish directory and cache/security headers
 
 ## Typography
