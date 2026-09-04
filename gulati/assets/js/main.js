@@ -38,7 +38,7 @@
         el.appendChild(n);
       }
     });
-    qsa('.wi', el).forEach(function (w, i) { w.style.transitionDelay = (i * 70) + 'ms'; });
+    qsa('.wi', el).forEach(function (w, i) { w.style.transitionDelay = (i * 55) + 'ms'; });
   }
 
   /* --------------------------------------------------------- preloader */
@@ -57,7 +57,7 @@
       if (!hero || hero.complete) return res();
       hero.addEventListener('load', res); hero.addEventListener('error', res);
     });
-    var minimum = new Promise(function (res) { window.setTimeout(res, 1700); });
+    var minimum = new Promise(function (res) { window.setTimeout(res, 1000); });
     Promise.all([ready, minimum, document.fonts ? document.fonts.ready : null]).then(finishLoad);
   } else {
     if (loader) loader.remove();
@@ -67,7 +67,7 @@
   /* ------------------------------------------------------ inertial scroll */
   var scrollTarget = window.scrollY, scrollCurrent = window.scrollY, rafScroll = null, smoothing = false;
   function smoothTick() {
-    scrollCurrent = lerp(scrollCurrent, scrollTarget, 0.11);
+    scrollCurrent = lerp(scrollCurrent, scrollTarget, 0.16);
     if (Math.abs(scrollCurrent - scrollTarget) < 0.5) { scrollCurrent = scrollTarget; smoothing = false; }
     window.scrollTo(0, scrollCurrent);
     if (smoothing) rafScroll = requestAnimationFrame(smoothTick);
