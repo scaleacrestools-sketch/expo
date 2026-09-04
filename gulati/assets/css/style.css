@@ -67,11 +67,11 @@ h1, h2, h3, h4, p { margin: 0; }
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-/* ---- Brand pattern (ogee lattice tile cut from the artwork; 240 x 651 pt) --- */
+/* ---- Brand pattern (Pattern-1 from the brand asset pack, one 240 x 651 px repeat) --- */
 .pattern {
   position: relative;
   background-color: var(--red);
-  background-image: url("../img/pattern-ogee-flat.png");
+  background-image: url("../img/pattern-ogee.png");
   background-repeat: repeat;
   background-position: center top;
   background-size: clamp(150px, 12.48vw, 240px) auto;
@@ -317,7 +317,7 @@ html.reduce .banner__pin { position: relative; height: 100%; }
 /* Damask band */
 .band {
   height: clamp(9rem, 16.6vw, 20rem);
-  background-image: url("../img/band-tile.png");
+  background-image: url("../img/band.png");
   background-repeat: repeat-x;
   background-size: auto 100%;
   background-position: center top;
@@ -480,7 +480,7 @@ html.reduce .banner__pin { position: relative; height: 100%; }
   position: fixed; inset: 0; z-index: 200;
   display: grid; place-items: center;
   background-color: var(--red);
-  background-image: url("../img/pattern-ogee-flat.png");
+  background-image: url("../img/pattern-ogee.png");
   background-size: clamp(150px, 12.48vw, 240px) auto;
   background-position: center top;
   transform: translateY(0);
