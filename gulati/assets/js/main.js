@@ -103,6 +103,7 @@
   var plx = qsa('[data-parallax]').map(function (el) {
     return { el: el, amt: parseFloat(el.dataset.parallax) || 0.12 };
   });
+  var pins = qsa('[data-pin-scroll]').map(function (img) { return { img: img, section: img.closest('.banner') }; });
   var header = qs('.site-bar');
   var heroEl = qs('.hero');
   var ticking = false;
@@ -120,6 +121,14 @@
     if (header && heroEl) {
       header.classList.toggle('is-visible', y > heroEl.offsetHeight - 80);
     }
+    /* pinned scene: image travels while the section is stuck */
+    pins.forEach(function (p) {
+      var r = p.section.getBoundingClientRect();
+      var total = r.height - vh; if (total <= 0) return;
+      var t = clamp(-r.top / total, 0, 1);
+      var travel = p.img.offsetHeight * 0.32;
+      p.img.style.transform = 'translate3d(0,' + ((0.5 - t) * travel).toFixed(1) + 'px,0) scale(1.34)';
+    });
     /* belt-and-braces reveal for anything IntersectionObserver missed */
     for (var i = pending.length - 1; i >= 0; i--) {
       var el = pending[i], rr = el.getBoundingClientRect();
