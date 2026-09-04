@@ -325,6 +325,7 @@ html.reduce .banner__pin { position: relative; height: 100%; }
 
 /* ---- Contact / footer (proportions measured from the artboard) --------- */
 .contact {
+  background: var(--red);
   --fs: clamp(12.5px, 0.8vw, 15px);          /* 14.8 pt on a 1923 pt board */
   --fs-eyebrow: clamp(16px, 1.5vw, 24px);     /* 28.6 pt */
   --fs-tiny: clamp(9px, 0.5vw, 11px);          /* 8.8 pt */
