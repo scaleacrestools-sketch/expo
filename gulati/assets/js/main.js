@@ -205,6 +205,30 @@
   });
   window.addEventListener('pageshow', function (e) { if (e.persisted) html.classList.remove('is-leaving'); });
 
+
+  /* ----------------------------------------------------- custom cursor */
+  if (finePointer && !reduce) {
+    var dot = document.createElement('div'), ring = document.createElement('div');
+    dot.className = 'cursor'; ring.className = 'cursor__ring';
+    document.body.appendChild(dot); document.body.appendChild(ring);
+    html.classList.add('has-cursor', 'cursor-out');
+    var mx = 0, my = 0, rx = 0, ry = 0, cursorRaf = null;
+    function cursorTick() {
+      rx = lerp(rx, mx, 0.18); ry = lerp(ry, my, 0.18);
+      ring.style.transform = 'translate3d(' + rx.toFixed(1) + 'px,' + ry.toFixed(1) + 'px,0)';
+      if (Math.abs(rx - mx) > 0.2 || Math.abs(ry - my) > 0.2) cursorRaf = requestAnimationFrame(cursorTick); else cursorRaf = null;
+    }
+    document.addEventListener('mousemove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0)';
+      html.classList.remove('cursor-out');
+      html.classList.toggle('cursor-link', !!(e.target.closest && e.target.closest('a, button, input, textarea, label')));
+      if (!cursorRaf) cursorRaf = requestAnimationFrame(cursorTick);
+    }, { passive: true });
+    document.addEventListener('mouseleave', function () { html.classList.add('cursor-out'); });
+    document.addEventListener('mouseenter', function () { html.classList.remove('cursor-out'); });
+  }
+
   /* ------------------------------------------------------- contact form */
   var form = qs('form[data-netlify]');
   if (form) {
