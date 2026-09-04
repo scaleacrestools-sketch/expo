@@ -4,20 +4,15 @@
    ========================================================================== */
 
 /* ---- Brand typefaces ------------------------------------------------------
-   The artwork sets display headings in "Valky". Valky is a licensed typeface
-   and is not bundled here. Drop the licensed webfont files into
-   /assets/fonts/ and un-comment the @font-face below; the stack falls back
-   to Marcellus (self-hosted in /assets/fonts/) until then.
-
+   Valky (display) supplied by the studio; Cormorant (body) self-hosted.
+--------------------------------------------------------------------------- */
 @font-face {
   font-family: "Valky";
-  src: url("../fonts/Valky-Regular.woff2") format("woff2"),
-       url("../fonts/Valky-Regular.woff") format("woff");
+  src: url("../fonts/valky-regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
---------------------------------------------------------------------------- */
 
 :root {
   --red: #7c0b16;
