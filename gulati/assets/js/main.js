@@ -136,7 +136,7 @@
     nav.setAttribute('aria-hidden', 'false');
     openBtns.forEach(function (b) { b.setAttribute('aria-expanded', 'true'); });
     document.body.classList.add('nav-open');
-    window.setTimeout(function () { closeBtn.focus(); }, 400);
+    window.setTimeout(function () { closeBtn.focus(); }, 300);
   }
   function closeNav() {
     nav.classList.remove('is-open');
@@ -179,7 +179,7 @@
       e.preventDefault();
       if (nav && nav.classList.contains('is-open')) closeNav();
       html.classList.add('is-leaving');
-      window.setTimeout(function () { location.href = a.href; }, 650);
+      window.setTimeout(function () { location.href = a.href; }, 430);
     });
   });
   window.addEventListener('pageshow', function (e) { if (e.persisted) html.classList.remove('is-leaving'); });
