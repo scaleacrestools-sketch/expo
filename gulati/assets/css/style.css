@@ -317,7 +317,7 @@ html.reduce .banner__pin { position: relative; height: 100%; }
 /* Damask band */
 .band {
   height: clamp(9rem, 16.6vw, 20rem);
-  background-image: url("../img/band.png");
+  background-image: url("../img/band.webp");
   background-repeat: repeat-x;
   background-size: auto 100%;
   background-position: center top;
@@ -433,11 +433,11 @@ html.reduce .banner__pin { position: relative; height: 100%; }
 .location .timings p + p { margin-top: 1.2rem; }
 
 /* ---- Reveal on scroll ----------------------------------------------------- */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.55s var(--ease), transform 0.55s var(--ease); }
 .reveal.in { opacity: 1; transform: none; }
-.reveal[data-delay="1"] { transition-delay: 0.12s; }
-.reveal[data-delay="2"] { transition-delay: 0.24s; }
-.reveal[data-delay="3"] { transition-delay: 0.36s; }
+.reveal[data-delay="1"] { transition-delay: 0.08s; }
+.reveal[data-delay="2"] { transition-delay: 0.16s; }
+.reveal[data-delay="3"] { transition-delay: 0.24s; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
@@ -498,17 +498,18 @@ html.reduce .banner__pin { position: relative; height: 100%; }
 @keyframes loaderLine { to { width: clamp(80px, 9vw, 140px); } }
 @keyframes loaderText { to { opacity: 1; transform: none; } }
 html.is-loaded .loader { transform: translateY(-101%); }
+html { scroll-behavior: smooth; }
 html.is-loading { overflow: hidden; }
 html.js:not(.reduce):not(.is-loaded) .site-header,
 html.js:not(.reduce):not(.is-loaded) .hero__cta,
 html.js:not(.reduce):not(.is-loaded) .hero__scroll { opacity: 0; }
-.site-header, .hero__cta, .hero__scroll { transition: opacity 0.9s var(--ease) 0.5s, transform 0.9s var(--ease) 0.5s; }
+.site-header, .hero__cta, .hero__scroll { transition: opacity 0.7s var(--ease) 0.15s, transform 0.7s var(--ease) 0.15s; }
 html.js:not(.reduce):not(.is-loaded) .site-header { transform: translateY(-14px); }
 html.js:not(.reduce):not(.is-loaded) .hero__cta { transform: translate(-50%, 16px); }
 html.js:not(.reduce):not(.is-loaded) .hero__media { transform: scale(1.14); }
-.hero__media { animation: none; transition: transform 1.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s; transform: scale(1.06); }
+.hero__media { animation: none; transition: transform 1.3s cubic-bezier(0.22, 1, 0.36, 1); transform: scale(1.06); }
 html.is-loaded .hero__media { transform: scale(1.001); }
-.hero__media, .img-reveal img, .loader, .curtain { will-change: transform; }
+.hero__media, .img-reveal img, .banner__media, .loader, .curtain { will-change: transform; }
 
 /* ---- Page-transition curtain --------------------------------------------- */
 .curtain {
@@ -531,6 +532,7 @@ html.is-leaving main, html.is-leaving footer { transition: opacity 0.5s var(--ea
   transition: transform 0.7s var(--ease);
 }
 .site-bar.is-visible { transform: none; }
+.site-bar { will-change: transform; }
 .site-bar .roundel { grid-column: 2; width: 42px; }
 .site-bar .menu-btn { width: 52px; height: 22px; }
 .site-bar__cta {
@@ -544,13 +546,13 @@ html.is-leaving main, html.is-leaving footer { transition: opacity 0.5s var(--ea
 
 /* ---- Masked word reveal ---------------------------------------------------- */
 [data-split] .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.08em; margin-bottom: -0.08em; }
-[data-split] .wi { display: inline-block; transform: translateY(112%); transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1); }
+[data-split] .wi { display: inline-block; transform: translateY(112%); transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1); }
 [data-split].in .wi { transform: none; }
 html.reduce [data-split] .wi { transform: none; transition: none; }
 
 /* ---- Clip image reveal ----------------------------------------------------- */
-.img-reveal { clip-path: inset(0 0 100% 0); transition: clip-path 1.05s cubic-bezier(0.77, 0, 0.18, 1); }
-.img-reveal img { transform: scale(1.14); transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1); }
+.img-reveal { clip-path: inset(0 0 100% 0); transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.18, 1); }
+.img-reveal img { transform: scale(1.1); transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1); }
 .img-reveal.in { clip-path: inset(0 0 0 0); }
 .img-reveal.in img { transform: none; }
 .img-reveal [data-parallax] { will-change: transform; }
@@ -581,7 +583,7 @@ html.reduce .img-reveal img { transform: none; }
 .btn-gold:hover::after { left: 120%; }
 
 /* ---- Navigation curtain ------------------------------------------------------ */
-.nav { transition: opacity 0.7s cubic-bezier(0.77, 0, 0.18, 1), visibility 0s 0.7s, clip-path 0.9s cubic-bezier(0.77, 0, 0.18, 1); clip-path: circle(0% at 100% 0%); opacity: 1; }
+.nav { transition: opacity 0.7s cubic-bezier(0.77, 0, 0.18, 1), visibility 0s 0.7s, clip-path 0.7s cubic-bezier(0.77, 0, 0.18, 1); clip-path: circle(0% at 100% 0%); opacity: 1; }
 .nav.is-open { clip-path: circle(150% at 100% 0%); transition-delay: 0s; }
 .nav::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0)); pointer-events: none; }
 .nav__list, .nav__close, .nav__foot { position: relative; z-index: 1; }
@@ -607,13 +609,13 @@ html.has-cursor, html.has-cursor a, html.has-cursor button { cursor: none; }
 .cursor {
   position: fixed; top: 0; left: 0; z-index: 1000; pointer-events: none;
   width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%;
-  background: var(--gold); mix-blend-mode: difference;
+  background: var(--gold); will-change: transform;
   transition: transform 0.35s var(--ease), opacity 0.3s var(--ease);
 }
 .cursor__ring {
   position: fixed; top: 0; left: 0; z-index: 1000; pointer-events: none;
   width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%;
-  border: 1px solid var(--gold); opacity: 0.7;
+  border: 1px solid var(--gold); opacity: 0.7; will-change: transform;
   transition: width 0.4s var(--ease), height 0.4s var(--ease), margin 0.4s var(--ease), opacity 0.3s var(--ease), background-color 0.4s var(--ease);
 }
 html.cursor-link .cursor { transform: scale(0); }

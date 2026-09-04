@@ -38,7 +38,7 @@
         el.appendChild(n);
       }
     });
-    qsa('.wi', el).forEach(function (w, i) { w.style.transitionDelay = (i * 55) + 'ms'; });
+    qsa('.wi', el).forEach(function (w, i) { w.style.transitionDelay = (Math.min(i, 24) * 32) + 'ms'; });
   }
 
   /* --------------------------------------------------------- preloader */
@@ -48,7 +48,7 @@
     html.classList.remove('is-loading');
     html.classList.add('is-loaded');
     try { sessionStorage.setItem('gulati-seen', '1'); } catch (e) {}
-    if (loader) window.setTimeout(function () { loader.remove(); }, 1600);
+    if (loader) window.setTimeout(function () { loader.remove(); }, 1100);
   }
   if (showLoader) {
     html.classList.add('is-loading');
@@ -57,31 +57,12 @@
       if (!hero || hero.complete) return res();
       hero.addEventListener('load', res); hero.addEventListener('error', res);
     });
-    var minimum = new Promise(function (res) { window.setTimeout(res, 1000); });
-    Promise.all([ready, minimum, document.fonts ? document.fonts.ready : null]).then(finishLoad);
+    var minimum = new Promise(function (res) { window.setTimeout(res, 450); });
+    var fontsReady = document.fonts ? Promise.race([document.fonts.ready, new Promise(function (res) { window.setTimeout(res, 900); })]) : null;
+    Promise.all([ready, minimum, fontsReady]).then(finishLoad);
   } else {
     if (loader) loader.remove();
     window.setTimeout(function () { html.classList.add('is-loaded'); }, 60);
-  }
-
-  /* ------------------------------------------------------ inertial scroll */
-  var scrollTarget = window.scrollY, scrollCurrent = window.scrollY, rafScroll = null, smoothing = false;
-  function smoothTick() {
-    scrollCurrent = lerp(scrollCurrent, scrollTarget, 0.16);
-    if (Math.abs(scrollCurrent - scrollTarget) < 0.5) { scrollCurrent = scrollTarget; smoothing = false; }
-    window.scrollTo(0, scrollCurrent);
-    if (smoothing) rafScroll = requestAnimationFrame(smoothTick);
-  }
-  if (!reduce && finePointer) {
-    window.addEventListener('wheel', function (e) {
-      if (e.ctrlKey || document.body.classList.contains('nav-open')) return;
-      e.preventDefault();
-      var max = html.scrollHeight - window.innerHeight;
-      if (!smoothing) { scrollCurrent = window.scrollY; scrollTarget = window.scrollY; }
-      scrollTarget = clamp(scrollTarget + e.deltaY * (e.deltaMode === 1 ? 24 : 1), 0, max);
-      if (!smoothing) { smoothing = true; rafScroll = requestAnimationFrame(smoothTick); }
-    }, { passive: false });
-    window.addEventListener('scroll', function () { if (!smoothing) { scrollTarget = scrollCurrent = window.scrollY; } });
   }
 
   /* -------------------------------------------- reveals (IntersectionObserver) */
@@ -93,7 +74,7 @@
       entries.forEach(function (en) {
         if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); var k = pending.indexOf(en.target); if (k > -1) pending.splice(k, 1); }
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+    }, { rootMargin: '0px 0px -4% 0px', threshold: 0.05 });
     revealables.forEach(function (el) { io.observe(el); });
   } else {
     revealables.forEach(function (el) { el.classList.add('in'); });
@@ -132,7 +113,7 @@
     /* belt-and-braces reveal for anything IntersectionObserver missed */
     for (var i = pending.length - 1; i >= 0; i--) {
       var el = pending[i], rr = el.getBoundingClientRect();
-      if (rr.top < vh * 0.92 && rr.bottom > 0) { el.classList.add('in'); pending.splice(i, 1); }
+      if (rr.top < vh * 0.96 && rr.bottom > 0) { el.classList.add('in'); pending.splice(i, 1); }
     }
   }
   function requestFrame() { if (!ticking) { ticking = true; requestAnimationFrame(onFrame); } }
@@ -191,9 +172,7 @@
         e.preventDefault();
         if (nav && nav.classList.contains('is-open')) closeNav();
         var top = t.getBoundingClientRect().top + window.scrollY;
-        if (reduce) { window.scrollTo(0, top); return; }
-        scrollTarget = clamp(top, 0, html.scrollHeight - window.innerHeight);
-        if (!smoothing) { scrollCurrent = window.scrollY; smoothing = true; rafScroll = requestAnimationFrame(smoothTick); }
+        window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
         return;
       }
       if (reduce || !curtain) return;
@@ -212,7 +191,7 @@
     dot.className = 'cursor'; ring.className = 'cursor__ring';
     document.body.appendChild(dot); document.body.appendChild(ring);
     html.classList.add('has-cursor', 'cursor-out');
-    var mx = 0, my = 0, rx = 0, ry = 0, cursorRaf = null;
+    var mx = 0, my = 0, rx = 0, ry = 0, cursorRaf = null, cursorLink = false;
     function cursorTick() {
       rx = lerp(rx, mx, 0.18); ry = lerp(ry, my, 0.18);
       ring.style.transform = 'translate3d(' + rx.toFixed(1) + 'px,' + ry.toFixed(1) + 'px,0)';
@@ -221,8 +200,9 @@
     document.addEventListener('mousemove', function (e) {
       mx = e.clientX; my = e.clientY;
       dot.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0)';
-      html.classList.remove('cursor-out');
-      html.classList.toggle('cursor-link', !!(e.target.closest && e.target.closest('a, button, input, textarea, label')));
+      if (html.classList.contains('cursor-out')) html.classList.remove('cursor-out');
+      var overLink = !!(e.target.closest && e.target.closest('a, button, input, textarea, label'));
+      if (overLink !== cursorLink) { cursorLink = overLink; html.classList.toggle('cursor-link', overLink); }
       if (!cursorRaf) cursorRaf = requestAnimationFrame(cursorTick);
     }, { passive: true });
     document.addEventListener('mouseleave', function () { html.classList.add('cursor-out'); });
