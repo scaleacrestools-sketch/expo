@@ -4,7 +4,9 @@ Static site for Gulati (great Indian food, since 1959), built from the studio's
 Home and Locations artboards.
 
 - `index.html` — Home (hero, The Legacy, Signature Dishes, Our Locations banner, contact/footer)
-- `locations/index.html` — All Locations (Pandara Road, New Delhi · DLF Phase 1, Gurugram)
+- `story/index.html` — Our Story (from the Our Story artboard)
+- `experience/`, `menu/`, `gallery/`, `accolades/` — interim pages built from approved copy and photography, to be replaced by their artboards
+- `contact/index.html` — Contact (formerly Locations; `/locations/` redirects here)
 - `assets/css/style.css` — design tokens, typography, layout
 - `assets/js/main.js` — navigation overlay, reveal-on-scroll, AJAX form submit
 - `assets/img/` — photography, brand marks and the two pattern tiles from the artwork
