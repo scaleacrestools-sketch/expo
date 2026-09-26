@@ -1,0 +1,7 @@
+# Static Next.js export. The build first materializes the media assets
+# listed in media-sources.json into public/ (skipping any that are already
+# committed), so the deployed site serves them as local same-origin files.
+
+[build]
+  command = "node scripts/fetch-media.mjs && npm run build"
+  publish = "out"
