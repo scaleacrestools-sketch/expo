@@ -1,21 +1,27 @@
+import { existsSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import mediaSources from './media-sources.json';
 
+const root = dirname(fileURLToPath(import.meta.url));
+
 /**
- * In production (Netlify) the /media/* paths are proxied to the source CDNs
- * via netlify.toml redirects so all media is served same-origin. This plugin
- * gives `vite dev` the same paths by 302-redirecting to the source URLs.
+ * The /media/* files live in public/ — run `node scripts/fetch-media.mjs`
+ * once to materialize them from the pinned source URLs. Until then, this
+ * plugin keeps `vite dev` working by 302-redirecting any /media path that
+ * is not yet on disk to its source URL.
  */
-function mediaRedirect(): Plugin {
+function mediaFallback(): Plugin {
   return {
-    name: 'media-redirect',
+    name: 'media-fallback',
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const path = (req.url ?? '').split('?')[0];
         const target = (mediaSources as Record<string, string>)[path];
-        if (target) {
+        if (target && !existsSync(join(root, 'public', path))) {
           res.writeHead(302, { Location: target });
           res.end();
           return;
@@ -27,5 +33,5 @@ function mediaRedirect(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), mediaRedirect()],
+  plugins: [react(), tailwindcss(), mediaFallback()],
 });
