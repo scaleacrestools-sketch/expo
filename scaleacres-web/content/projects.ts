@@ -1,4 +1,4 @@
-export type ProjectLayout = "full" | "half" | "tall" | "wide";
+export type ProjectLayout = "feature" | "tall" | "short" | "wide";
 
 export const workFilters = [
   "Website Development",
@@ -15,73 +15,74 @@ export type Project = {
   slug: string;
   client: string;
   title: string;
+  /** Short display location, only when published. */
+  location?: string;
   category: string;
+  /** Only what scaleacres.com has published about the project. */
   summary: string;
-  /** Visual under /public. Placeholders are generated SVGs flagged `placeholder: true`. */
-  image: string;
-  placeholder: boolean;
+  /** Approved project visual under /public. While absent, an art-directed typographic cover is shown and labelled. */
+  image?: string;
+  tone: "ink" | "blue" | "white";
   layout: ProjectLayout;
   services: string[];
-  /** Portfolio filter tags. Only tag what the project actually included. */
   filters: WorkFilter[];
+  source: string;
 };
 
 /**
- * Only projects publicly referenced on scaleacres.com are listed. Descriptions describe
- * documented scope; no performance figures or technologies are claimed.
+ * Projects publicly referenced on scaleacres.com. Copy is limited to what the live site states;
+ * full descriptions, screenshots and scope come from the approved case studies (see docs/launch-readiness.md).
  */
 export const projects: Project[] = [
   {
     slug: "yugen-goa",
     client: "Yugen Infra",
-    title: "Yugen, North Goa",
-    category: "Performance Marketing · Branding",
-    summary:
-      "A remote residential project in North Goa taken to a nationwide audience through a digital-first launch: campaign creatives, paid media and a lead journey built for out-of-state buyers.",
-    image: "/images/projects/yugen-goa.svg",
-    placeholder: true,
-    layout: "full",
+    title: "Yugen",
+    location: "North Goa",
+    category: "Real Estate Campaigns",
+    summary: "A remote project in North Goa, scaled through digital-first strategies to reach buyers nationwide.",
+    tone: "blue",
+    layout: "feature",
     services: ["performance-marketing", "branding-creative-design"],
-    filters: ["Performance Marketing", "Branding & Identity", "Real Estate Campaigns"],
+    filters: ["Real Estate Campaigns", "Performance Marketing"],
+    source: "scaleacres.com/case-studies/",
   },
   {
     slug: "one-goa",
     client: "One Goa",
     title: "One Goa",
-    category: "Digital Campaigns",
-    summary:
-      "Campaign communication and digital outreach for a Goa real estate brand, designed to build brand presence beyond the local market.",
-    image: "/images/projects/one-goa.svg",
-    placeholder: true,
-    layout: "half",
-    services: ["performance-marketing", "social-media-marketing"],
-    filters: ["Performance Marketing", "Real Estate Campaigns"],
+    location: "Goa",
+    category: "Real Estate Campaigns",
+    summary: "Lead volume, nationwide reach and improved brand presence for a Goa real estate brand.",
+    tone: "ink",
+    layout: "tall",
+    services: ["performance-marketing"],
+    filters: ["Real Estate Campaigns", "Performance Marketing"],
+    source: "scaleacres.com/case-studies/",
   },
   {
     slug: "prominent-realty",
     client: "Prominent Realty",
     title: "Prominent Realty",
-    category: "Lead Generation · Web",
-    summary:
-      "Project landing experiences and campaign infrastructure supporting ongoing residential plot launches in the Delhi NCR region.",
-    image: "/images/projects/prominent-realty.svg",
-    placeholder: true,
-    layout: "half",
-    services: ["website-design-development", "performance-marketing"],
-    filters: ["Website Development", "Performance Marketing", "Real Estate Campaigns"],
+    category: "Real Estate Marketing",
+    summary: "Real estate marketing partner to Prominent Realty. Project scope and visuals follow from the approved case study.",
+    tone: "white",
+    layout: "short",
+    services: ["performance-marketing"],
+    filters: ["Real Estate Campaigns"],
+    source: "Client testimonial, scaleacres.com",
   },
   {
     slug: "hometrust-realty",
     client: "Hometrust Realty",
     title: "Hometrust Realty",
-    category: "Branding · Performance",
-    summary:
-      "Brand communication and performance campaigns for a channel-partner business, with creatives tailored to each project it represents.",
-    image: "/images/projects/hometrust-realty.svg",
-    placeholder: true,
+    category: "Real Estate Marketing",
+    summary: "Real estate marketing partner to Hometrust Realty. Project scope and visuals follow from the approved case study.",
+    tone: "ink",
     layout: "wide",
-    services: ["branding-creative-design", "performance-marketing"],
-    filters: ["Branding & Identity", "Performance Marketing", "Real Estate Campaigns"],
+    services: ["performance-marketing"],
+    filters: ["Real Estate Campaigns"],
+    source: "Client testimonial, scaleacres.com",
   },
 ];
 

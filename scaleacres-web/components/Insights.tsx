@@ -1,39 +1,48 @@
 import { articles, blogIndexHref } from "@/content/insights";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Arrow } from "@/components/ui/Arrow";
-import { DevBadge } from "@/components/ui/DevBadge";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
+/** Editorial article index: real posts from scaleacres.com/blog/, typography-led (no stock images). */
 export function Insights() {
   return (
-    <Reveal as="section" id="insights" className="section-y bg-offwhite text-ink">
+    <Reveal as="section" id="insights" className="section-y bg-white text-ink">
       <div className="container-x mx-auto max-w-[110rem]">
         <div className="grid gap-8 md:grid-cols-12 md:items-end">
-          <SectionHeading className="md:col-span-8" tone="light" eyebrow="Thinking out loud" title={<>Ideas worth<br />exploring.</>} />
+          <div className="md:col-span-8">
+            <p className="eyebrow text-blue-deep" data-reveal>Thinking out loud</p>
+            <h2 className="h2 mt-6" data-split-reveal>
+              Ideas worth
+              <br />
+              <span className="outline-text">exploring.</span>
+            </h2>
+          </div>
           <div className="md:col-span-4 md:justify-self-end" data-reveal>
             <ArrowLink href={blogIndexHref} variant="offwhite">Explore All Insights</ArrowLink>
           </div>
         </div>
 
-        <ul className="mt-16 grid gap-10 md:grid-cols-3 md:gap-8" role="list">
-          {articles.map((a) => (
-            <li key={a.href} data-reveal>
-              <a href={a.href} target="_blank" rel="noopener noreferrer" className="group block focus-visible:outline-blue">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-grey-soft">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={a.image} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out-expo group-hover:scale-[1.04]" />
-                  {a.placeholder ? <DevBadge label="Dev placeholder — use article featured image" /> : null}
-                </div>
-                <div className="mt-5 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-ink/55">
-                  <span className="text-blue-deep">{a.category}</span>
-                  <span aria-hidden="true">·</span>
+        <ul className="mt-16 border-t border-ink/15" role="list">
+          {articles.map((a, i) => (
+            <li key={a.href} className="border-b border-ink/15" data-reveal>
+              <a href={a.href} className="group relative grid gap-4 py-8 md:grid-cols-12 md:items-center md:gap-8 md:py-10">
+                <span aria-hidden="true" className="absolute inset-0 origin-left scale-x-0 bg-offwhite transition-transform duration-700 ease-out-expo group-hover:scale-x-100" />
+                <span className="relative flex items-center gap-4 text-sm font-semibold uppercase tracking-[0.14em] text-grey md:col-span-3">
+                  <span className="tabular-nums text-blue-deep">0{i + 1}</span>
                   <time dateTime={a.publishedOn}>{a.displayDate}</time>
-                </div>
-                <h3 className="mt-3 text-[clamp(1.25rem,1rem+0.8vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.01em] transition-colors group-hover:text-blue-deep">{a.title}</h3>
-                <p className="mt-3 text-[0.975rem] leading-[1.7] text-ink/70">{a.excerpt}</p>
-                <span className="mt-5 inline-flex items-center gap-2 text-[0.75rem] font-semibold uppercase tracking-[0.16em]">
-                  Read article <Arrow className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
+                <span className="relative md:col-span-7">
+                  <span className="label text-blue-deep">{a.category}</span>
+                  <h3 className="mt-2 text-[clamp(1.5rem,1rem+1.6vw,2.75rem)] font-bold leading-[1.08] tracking-[-0.02em] transition-transform duration-500 ease-out-expo group-hover:translate-x-2">{a.title}</h3>
+                  <p className="mt-3 max-w-[60ch] text-[0.975rem] leading-[1.6] text-grey-dark">{a.excerpt}</p>
+                </span>
+                <span className="relative md:col-span-2 md:justify-self-end">
+                  <span className="inline-flex items-center gap-3 text-[0.8125rem] font-semibold uppercase tracking-[0.14em]">
+                    Read article
+                    <span className="grid h-12 w-12 place-items-center rounded-full border border-ink/20 transition-colors group-hover:border-blue group-hover:bg-blue">
+                      <Arrow className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
+                  </span>
                 </span>
               </a>
             </li>

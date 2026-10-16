@@ -73,5 +73,5 @@ export const homepageSeo = {
 export const homepageCreative = {
   positioningLine: ["Real Estate Marketing", "Creative", "Digital", "Technology"],
   statement: ["We build brands.", "We drive growth."],
-  lead: "Branding, websites, performance marketing and creative production for real estate developers and ambitious brands that want to grow.",
+  lead: "From real estate marketing and lead generation to branding, websites, creative production and performance campaigns.",
 } as const;

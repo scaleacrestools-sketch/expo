@@ -3,6 +3,9 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function ClientLogoShowcase() {
+  // Only approved logo files are shown. Until they exist the section is omitted (see docs/launch-readiness.md).
+  const withLogos = clients.filter((c) => c.logo);
+  if (withLogos.length < 3) return null;
   // Repeat the set so the marquee track is long enough to loop seamlessly.
   const loop = [...clients, ...clients, ...clients];
   return (

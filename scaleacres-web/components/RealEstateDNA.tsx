@@ -1,68 +1,81 @@
 import Link from "next/link";
 import { homepageSeo } from "@/content/seo/homepage";
+import { clip } from "@/content/media";
 import { Arrow } from "@/components/ui/Arrow";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Reveal } from "@/components/ui/Reveal";
+import { LazyVideo } from "@/components/media/LazyVideo";
 
-/**
- * Real estate expertise. Carries the protected homepage SEO copy (intro, boilerplate,
- * legacy service headings and their internal links) as readable, server-rendered HTML.
- */
 const capabilities = [
   "Real Estate Lead Generation",
   "Residential Project Marketing",
   "Commercial Project Marketing",
-  "Real Estate Website Development",
-  "Real Estate Branding",
-  "Real Estate Advertising Campaigns",
-  "Property Video Marketing",
+  "Property Branding",
+  "Real Estate Websites",
+  "Performance Advertising",
+  "Video Marketing",
 ];
 
+/**
+ * Immersive real estate showcase. Carries the protected homepage SEO copy (positioning,
+ * intro, boilerplate, legacy service headings + internal links) as visible server HTML.
+ */
 export function RealEstateDNA() {
+  const tower = clip("architecture");
   return (
-    <Reveal as="section" id="real-estate" className="section-y relative overflow-hidden bg-ink text-white">
-      {/* Architectural blue light sweep (decorative) */}
-      <div aria-hidden="true" className="pointer-events-none absolute -right-1/4 top-0 h-full w-3/4 bg-[radial-gradient(closest-side,rgba(28,166,220,0.22),transparent)]" />
-      <div className="container-x relative mx-auto max-w-[110rem]">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-7">
-            <p className="eyebrow text-blue" data-reveal>{homepageSeo.positioning.value}</p>
-            <h2 className="h2 mt-6" data-split-reveal>
-              Real estate is<br />in our DNA.
-            </h2>
-          </div>
-          <div className="space-y-5 self-end text-[1.0625rem] leading-[1.7] text-grey-soft lg:col-span-5" data-reveal>
+    <section id="real-estate" className="relative isolate overflow-hidden bg-ink text-white">
+      {/* Full-bleed footage */}
+      <div className="absolute inset-0 -z-10">
+        <LazyVideo src={tower.landscape} label={tower.description} className="h-full w-full" />
+        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,13,13,0.92)_0%,rgba(11,13,13,0.7)_45%,rgba(11,13,13,0.35)_100%)]" />
+        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(0deg,#0b0d0d,transparent)]" />
+      </div>
+
+      <Reveal className="container-x section-y relative mx-auto max-w-[110rem]">
+        <p className="eyebrow text-blue" data-reveal>{homepageSeo.positioning.value}</p>
+        <h2 className="display mt-6 max-w-[12ch]" data-split-reveal>
+          Real estate is
+          <br />
+          in our <span className="text-blue">DNA.</span>
+        </h2>
+
+        <div className="mt-14 grid gap-12 lg:grid-cols-12">
+          <div className="space-y-5 text-[length:var(--fs-body)] leading-[1.7] text-white/80 lg:col-span-5" data-reveal>
             <p>{homepageSeo.intro.value}</p>
             <p>{homepageSeo.boilerplate.value}</p>
+            <div className="pt-4">
+              <ArrowLink href="/our-services/" variant="blue" size="lg">Real Estate Services</ArrowLink>
+            </div>
           </div>
+
+          <ol className="lg:col-span-6 lg:col-start-7" role="list" aria-label="Real estate marketing capabilities">
+            {capabilities.map((c, i) => (
+              <li key={c} className="group border-t border-white/20 last:border-b" data-reveal>
+                <div className="flex items-baseline gap-5 py-4 transition-transform duration-500 ease-out-expo group-hover:translate-x-3 md:py-5">
+                  <span className="w-8 text-sm font-semibold tabular-nums text-blue">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="text-[clamp(1.25rem,1rem+1.1vw,2.25rem)] font-bold uppercase leading-tight tracking-[-0.015em]">{c}</span>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
 
-        <ul className="mt-16 flex flex-wrap gap-3" role="list" aria-label="Real estate marketing capabilities" data-reveal>
-          {capabilities.map((c) => (
-            <li key={c} className="rounded-full border border-white/20 px-5 py-2.5 text-sm font-medium text-white/90 transition-colors hover:border-blue hover:text-blue">
-              {c}
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-20 border-t border-white/15 pt-10">
-          <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-grey" data-reveal>{homepageSeo.servicesHeading.value}</p>
-          <ul className="mt-6 grid gap-px overflow-hidden rounded-sm bg-white/10 sm:grid-cols-2 lg:grid-cols-5" role="list">
+        {/* Legacy service headings and internal links from the live homepage (protected). */}
+        <div className="mt-24">
+          <p className="label text-grey" data-reveal>{homepageSeo.servicesHeading.value}</p>
+          <ul className="mt-6 grid gap-px overflow-hidden rounded-sm bg-white/15 sm:grid-cols-2 lg:grid-cols-5" role="list">
             {homepageSeo.legacyServices.value.map((s, i) => (
-              <li key={s.heading} className="bg-ink" data-reveal>
-                <Link href={s.href} className="group flex h-full flex-col justify-between gap-10 p-6 transition-colors hover:bg-ink-soft md:p-8">
-                  <span className="text-xs font-semibold text-grey">0{i + 1}</span>
-                  <h3 className="text-[1.25rem] font-bold leading-tight tracking-[-0.01em] group-hover:text-blue">{s.heading}</h3>
-                  <Arrow className="text-blue transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <li key={s.heading} className="bg-ink/80 backdrop-blur-sm" data-reveal>
+                <Link href={s.href} className="group flex h-full min-h-[12rem] flex-col justify-between gap-8 p-6 transition-colors hover:bg-blue hover:text-ink md:p-8">
+                  <span className="text-xs font-semibold text-white/50 group-hover:text-ink/70">0{i + 1}</span>
+                  <h3 className="text-[1.375rem] font-bold leading-tight tracking-[-0.01em]">{s.heading}</h3>
+                  <Arrow className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </Link>
               </li>
             ))}
           </ul>
-          <div className="mt-10" data-reveal>
-            <ArrowLink href="/our-services/" variant="solid">All Real Estate Services</ArrowLink>
-          </div>
         </div>
-      </div>
-    </Reveal>
+      </Reveal>
+    </section>
   );
 }

@@ -6,7 +6,7 @@ import { caseStudies } from "@/content/caseStudies";
 import { services, serviceHref } from "@/content/services";
 import { PageHero } from "@/components/PageHero";
 import { ContactCTA } from "@/components/ContactCTA";
-import { DevBadge } from "@/components/ui/DevBadge";
+import { ProjectCover } from "@/components/ProjectCover";
 import { Reveal } from "@/components/ui/Reveal";
 import { Arrow } from "@/components/ui/Arrow";
 
@@ -36,10 +36,13 @@ export default async function ProjectPage({ params }: Params) {
       <PageHero eyebrow={p.category} title={p.title} description={p.summary} />
       <section className="bg-ink">
         <div className="container-x mx-auto max-w-[110rem]">
-          <div className="relative aspect-[16/9] overflow-hidden rounded-sm bg-ink-soft">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={p.image} alt={`${p.title} featured visual`} className="h-full w-full object-cover" />
-            {p.placeholder ? <DevBadge label="Dev placeholder — add approved project visual" /> : null}
+          <div className="relative aspect-[4/5] overflow-hidden rounded-sm sm:aspect-[16/9]">
+            {p.image ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={p.image} alt={`${p.title} featured visual`} className="h-full w-full object-cover" />
+            ) : (
+              <ProjectCover project={p} size="lg" />
+            )}
           </div>
         </div>
       </section>
@@ -56,10 +59,9 @@ export default async function ProjectPage({ params }: Params) {
           <div className="space-y-10 lg:col-span-8">
             {cs ? (
               <>
-                <Block title="Challenge">{cs.challenge}</Block>
-                <Block title="Solution">{cs.solution}</Block>
-                <Block title="Creative highlights"><ul className="space-y-2" role="list">{cs.highlights.map((h) => (<li key={h} className="flex gap-3"><span aria-hidden="true" className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-blue" />{h}</li>))}</ul></Block>
-                {cs.outcomes.length ? <Block title="Outcomes">{cs.outcomes.join(" · ")}</Block> : <p className="text-sm text-ink/50">Performance figures are published only when supporting campaign reports are attached to this project.</p>}
+                <Block title="Overview">{cs.overview} {cs.approach}</Block>
+                <Block title="Outcomes, as published">{cs.outcomes.join(" · ")}</Block>
+                <p className="text-sm text-ink/50">Source: {cs.source}.{cs.pendingFullCopy ? " The full case study (challenge, scope, creative and visuals) will be migrated from the live page." : ""}</p>
               </>
             ) : (
               <Block title="About the project">{p.summary}</Block>
@@ -70,7 +72,7 @@ export default async function ProjectPage({ params }: Params) {
       <section className="border-t border-offwhite/10 bg-ink text-offwhite">
         <div className="container-x mx-auto flex max-w-[110rem] flex-col gap-4 py-10 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-grey">Next project</p>
-          <Link href={`/case-studies/${next.slug}`} className="group inline-flex items-center gap-4 text-[clamp(1.25rem,1rem+1.2vw,2rem)] font-bold uppercase tracking-[-0.01em] hover:text-blue">
+          <Link href={`/case-studies/${next.slug}/`} className="group inline-flex items-center gap-4 text-[clamp(1.25rem,1rem+1.2vw,2rem)] font-bold uppercase tracking-[-0.01em] hover:text-blue">
             {next.title} <Arrow className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
         </div>

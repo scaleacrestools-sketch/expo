@@ -1,13 +1,10 @@
 "use client";
 
-import { useId, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { studioTabs, type StudioTab, type StudioVideo } from "@/content/studio";
 import { ArrowLink } from "@/components/ui/ArrowLink";
-import { DevBadge } from "@/components/ui/DevBadge";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { VideoModal } from "@/components/VideoModal";
-import { prefersReducedMotion } from "@/lib/motion";
 
 export function CreativeStudio({ showCta = true }: { showCta?: boolean }) {
   const [active, setActive] = useState<StudioTab["id"]>(studioTabs[0].id);
@@ -30,12 +27,24 @@ export function CreativeStudio({ showCta = true }: { showCta?: boolean }) {
   };
 
   return (
-    <Reveal as="section" id="creative-studio" className="section-y bg-ink text-offwhite">
+    <Reveal as="section" id="creative-studio" className="section-y relative overflow-hidden bg-ink text-white">
       <div className="container-x mx-auto max-w-[110rem]">
-        <SectionHeading eyebrow="The creative lab" title="Made to be seen." description="Ideas don't have to stay on paper. We turn concepts into compelling visual stories through creative production, AI-powered content and videos that get noticed." />
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <p className="eyebrow text-blue" data-reveal>The creative lab</p>
+            <h2 className="h2 mt-6" data-split-reveal>
+              Made to
+              <br />
+              be <span className="text-blue">seen.</span>
+            </h2>
+          </div>
+          <p className="lead text-grey-soft lg:col-span-5" data-reveal>
+            Ideas don&apos;t have to stay on paper. We turn concepts into compelling visual stories through creative production, AI-powered content and videos that get noticed.
+          </p>
+        </div>
 
-        <div className="mt-14 border-b border-offwhite/15" data-reveal>
-          <div role="tablist" aria-label="Creative Studio categories" className="scrollbar-none -mb-px flex gap-2 overflow-x-auto [mask-image:linear-gradient(90deg,#000_80%,transparent)] md:[mask-image:none]" onKeyDown={onKeyDown}>
+        <div className="mt-14 border-b border-white/15" data-reveal>
+          <div role="tablist" aria-label="Creative Studio categories" className="scrollbar-none -mb-px flex gap-8 overflow-x-auto [mask-image:linear-gradient(90deg,#000_80%,transparent)] md:gap-12 md:[mask-image:none]" onKeyDown={onKeyDown}>
             {studioTabs.map((t) => {
               const selected = t.id === active;
               return (
@@ -48,10 +57,11 @@ export function CreativeStudio({ showCta = true }: { showCta?: boolean }) {
                   aria-controls={`${tabsId}-panel-${t.id}`}
                   tabIndex={selected ? 0 : -1}
                   onClick={() => setActive(t.id)}
-                  className={`relative shrink-0 whitespace-nowrap px-1 pb-5 pt-2 text-[clamp(0.875rem,0.8rem+0.5vw,1.125rem)] font-semibold uppercase tracking-[0.12em] transition-colors sm:px-4 ${selected ? "text-offwhite" : "text-grey hover:text-offwhite"}`}
+                  className={`relative shrink-0 whitespace-nowrap pb-5 pt-2 text-[clamp(1rem,0.8rem+0.9vw,1.75rem)] font-bold uppercase tracking-[0.04em] transition-colors ${selected ? "text-white" : "text-white/40 hover:text-white"}`}
                 >
                   {t.label}
-                  <span aria-hidden="true" className={`absolute inset-x-0 bottom-0 h-[2px] bg-blue transition-transform duration-500 ease-out-expo ${selected ? "scale-x-100" : "scale-x-0"}`} />
+                  <span className="ml-2 align-top text-xs font-semibold text-blue">{String(t.videos.length).padStart(2, "0")}</span>
+                  <span aria-hidden="true" className={`absolute inset-x-0 bottom-0 h-[3px] origin-left bg-blue transition-transform duration-500 ease-out-expo ${selected ? "scale-x-100" : "scale-x-0"}`} />
                 </button>
               );
             })}
@@ -65,84 +75,111 @@ export function CreativeStudio({ showCta = true }: { showCta?: boolean }) {
             id={`${tabsId}-panel-${t.id}`}
             aria-labelledby={`${tabsId}-tab-${t.id}`}
             hidden={t.id !== active}
-            className="pt-10 motion-safe:animate-[fade-up_0.6s_var(--ease-out-expo)_both]"
+            className="pt-10 motion-safe:animate-[studio-in_0.7s_cubic-bezier(0.16,1,0.3,1)_both]"
           >
-            <p className="lead max-w-[56ch] text-grey-soft">{t.description}</p>
-            <ul className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-6 md:gap-6" role="list">
-              {t.videos.map((v, i) => (
-                <li key={v.id} className={gridClass(v.aspect, i)}>
-                  <VideoTile video={v} onOpen={() => setModal(v)} />
-                </li>
-              ))}
-            </ul>
+            <p className="max-w-[60ch] text-[length:var(--fs-body)] leading-[1.7] text-grey-soft">{t.description}</p>
+            {t.videos.length ? <Showcase videos={t.videos} onOpen={setModal} active={t.id === active} /> : <Pending note={t.pendingNote} label={t.label} />}
           </div>
         ))}
 
         {showCta ? (
-          <div className="mt-14" data-reveal>
-            <ArrowLink href="/creative-studio/" variant="solid">Explore Creative Studio</ArrowLink>
+          <div className="mt-16" data-reveal>
+            <ArrowLink href="/creative-studio/" variant="solid" size="lg">Explore Creative Studio</ArrowLink>
           </div>
         ) : null}
       </div>
       <VideoModal video={modal} onClose={() => setModal(null)} />
-      <style>{`@keyframes fade-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}`}</style>
+      <style>{`@keyframes studio-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}`}</style>
     </Reveal>
   );
 }
 
-const HOVER_MQ = "(hover: hover) and (pointer: fine)";
-function subscribeHover(cb: () => void) {
-  const mq = window.matchMedia(HOVER_MQ);
-  mq.addEventListener("change", cb);
-  return () => mq.removeEventListener("change", cb);
-}
-function getCanHover() {
-  return window.matchMedia(HOVER_MQ).matches && !prefersReducedMotion();
-}
+/** Large stage that plays the selected clip; the list beside it previews on hover/focus. */
+function Showcase({ videos, onOpen, active }: { videos: StudioVideo[]; onOpen: (v: StudioVideo) => void; active: boolean }) {
+  const [current, setCurrent] = useState(0);
+  const [inView, setInView] = useState(false);
+  const stage = useRef<HTMLDivElement>(null);
+  const vid = useRef<HTMLVideoElement>(null);
+  const v = videos[current];
 
-function gridClass(aspect: StudioVideo["aspect"], i: number) {
-  if (aspect === "16/9") return `col-span-2 md:col-span-4 ${i === 0 ? "" : ""}`;
-  if (aspect === "9/16") return "col-span-1 md:col-span-2 md:row-span-2";
-  return "col-span-1 md:col-span-2";
-}
+  useEffect(() => {
+    const el = stage.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { rootMargin: "200px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
-function VideoTile({ video: v, onOpen }: { video: StudioVideo; onOpen: () => void }) {
-  const ref = useRef<HTMLVideoElement>(null);
-  const canHover = useSyncExternalStore(subscribeHover, getCanHover, () => false);
-  const preview = (on: boolean) => {
-    const el = ref.current;
-    if (!el || !canHover) return;
-    if (on) el.play().catch(() => undefined);
-    else { el.pause(); el.currentTime = 0; }
-  };
-  const aspectCls = v.aspect === "16/9" ? "aspect-video" : v.aspect === "9/16" ? "aspect-[9/16]" : v.aspect === "4/5" ? "aspect-[4/5]" : "aspect-square";
+  useEffect(() => {
+    const el = vid.current;
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (inView && active && !reduce) el.play().catch(() => undefined);
+    else el.pause();
+  }, [inView, active, current]);
+
   return (
-    <button
-      type="button"
-      onClick={onOpen}
-      onMouseEnter={() => preview(true)}
-      onMouseLeave={() => preview(false)}
-      onFocus={() => preview(true)}
-      onBlur={() => preview(false)}
-      aria-label={`Play ${v.title}`}
-      className={`group relative block h-full w-full overflow-hidden rounded-sm bg-ink-soft text-left focus-visible:outline-blue ${aspectCls}`}
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={v.poster} alt="" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out-expo group-hover:scale-[1.04]" loading="lazy" />
-      {canHover ? (
-        <video ref={ref} muted loop playsInline preload="none" aria-hidden="true" tabIndex={-1} className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100">
-          {v.sources.map((s) => (<source key={s.src} src={s.src} type={s.type} />))}
-        </video>
-      ) : null}
-      {v.placeholder ? <DevBadge label="Dev placeholder video" /> : null}
-      <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,13,13,0)_50%,rgba(11,13,13,0.8)_100%)]" />
-      <span aria-hidden="true" className="absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-offwhite/50 bg-ink/40 text-offwhite backdrop-blur transition-all duration-500 ease-out-expo group-hover:scale-110 group-hover:border-blue group-hover:bg-blue group-hover:text-ink">
-        <svg viewBox="0 0 12 12" className="ml-0.5 h-3.5 w-3.5 fill-current"><path d="M2 1.5l9 4.5-9 4.5z" /></svg>
-      </span>
-      <span className="absolute inset-x-0 bottom-0 p-4 md:p-5">
-        <span className="block text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-blue">{v.category}</span>
-        <span className="mt-1 block text-sm font-semibold leading-snug text-offwhite md:text-base">{v.title}</span>
-      </span>
-    </button>
+    <div className="mt-10 grid gap-8 lg:grid-cols-12 lg:gap-10">
+      <div ref={stage} className="lg:col-span-8">
+        <button
+          type="button"
+          onClick={() => onOpen(v)}
+          aria-label={`Play ${v.title} full screen`}
+          className="group relative block aspect-video w-full overflow-hidden rounded-sm bg-ink-soft text-left focus-visible:outline-blue"
+        >
+          <video
+            key={v.id}
+            ref={vid}
+            src={inView ? v.src : undefined}
+            muted
+            loop
+            playsInline
+            preload="none"
+            aria-label={v.description}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out-expo group-hover:scale-[1.03]"
+          />
+          <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(11,13,13,0.85))]" />
+          <span className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-6 p-6 md:p-8">
+            <span>
+              <span className="label block text-blue">{v.category} · {String(current + 1).padStart(2, "0")}</span>
+              <span className="mt-2 block text-[clamp(1.5rem,1rem+1.6vw,2.75rem)] font-extrabold uppercase leading-none tracking-[-0.02em]">{v.title}</span>
+            </span>
+            <span aria-hidden="true" className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-blue text-ink transition-transform duration-500 ease-out-expo group-hover:scale-110 md:h-20 md:w-20">
+              <svg viewBox="0 0 12 12" className="ml-1 h-5 w-5 fill-current"><path d="M2 1.5l9 4.5-9 4.5z" /></svg>
+            </span>
+          </span>
+        </button>
+      </div>
+      <ol className="lg:col-span-4" role="list" aria-label="Videos">
+        {videos.map((item, i) => (
+          <li key={item.id} className="border-t border-white/15 last:border-b">
+            <button
+              type="button"
+              onMouseEnter={() => setCurrent(i)}
+              onFocus={() => setCurrent(i)}
+              onClick={() => { setCurrent(i); onOpen(item); }}
+              aria-current={i === current}
+              className={`group flex w-full items-center gap-5 py-5 text-left transition-colors ${i === current ? "text-white" : "text-white/45 hover:text-white"}`}
+            >
+              <span className={`text-sm font-semibold tabular-nums ${i === current ? "text-blue" : ""}`}>{String(i + 1).padStart(2, "0")}</span>
+              <span className="flex-1 text-[clamp(1.125rem,1rem+0.5vw,1.5rem)] font-bold uppercase tracking-[-0.01em]">{item.title}</span>
+              <span aria-hidden="true" className={`h-2.5 w-2.5 rounded-full transition-all ${i === current ? "bg-blue" : "bg-transparent"}`} />
+            </button>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+function Pending({ note, label }: { note?: string; label: string }) {
+  return (
+    <div className="mt-10 grid min-h-[22rem] place-items-center rounded-sm border border-dashed border-white/20 p-10 text-center">
+      <div className="max-w-[46ch]">
+        <p className="label text-blue">{label} · awaiting approved files</p>
+        <p className="mt-4 text-[clamp(1.5rem,1rem+1.2vw,2.25rem)] font-bold uppercase leading-tight tracking-[-0.02em]">Real client work only.</p>
+        {note ? <p className="mt-4 text-[0.975rem] leading-[1.6] text-grey-soft">{note}</p> : null}
+      </div>
+    </div>
   );
 }
