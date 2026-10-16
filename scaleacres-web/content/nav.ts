@@ -8,7 +8,11 @@ export const primaryNav: NavItem[] = [
   { label: "Our Work", href: "/case-studies/" },
   { label: "Creative Studio", href: "/creative-studio/" },
   { label: "Insights", href: "/insights/" },
+  { label: "Contact", href: "/contact-us/" },
 ];
+
+/** Positioning descriptor shown top-right in the header. */
+export const headerDescriptor = ["A Real Estate Marketing", "& Creative Growth Agency"] as const;
 
 export const ctaNav: NavItem = { label: "Let's Talk", href: "/contact-us/" };
 export const routes = {

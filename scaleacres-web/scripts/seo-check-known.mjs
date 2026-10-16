@@ -7,6 +7,22 @@
  *   node scripts/seo-check-known.mjs http://localhost:3000
  */
 import { readFile } from "node:fs/promises";
+import http from "node:http";
+
+/** GET with an explicit Host header (fetch() ignores custom Host headers). */
+function get(url, host) {
+  return new Promise((resolve) => {
+    const u = new URL(url);
+    const req = http.request({ hostname: u.hostname, port: u.port, path: u.pathname + u.search, method: "GET", headers: { host } }, (res) => {
+      let body = "";
+      res.setEncoding("utf8");
+      res.on("data", (c) => (body += c));
+      res.on("end", () => resolve({ status: res.statusCode, headers: { get: (k) => res.headers[k.toLowerCase()] ?? null }, text: async () => body }));
+    });
+    req.on("error", () => resolve(null));
+    req.end();
+  });
+}
 
 const base = (process.argv[2] ?? "http://localhost:3000").replace(/\/$/, "");
 const PROD = "https://scaleacres.com";
@@ -36,7 +52,7 @@ const add = (scope, check, status, detail = "") => {
 };
 
 for (const p of registry.filter((r) => r.nextRoute)) {
-  const res = await fetch(base + p.nextRoute, { redirect: "manual", headers: { host: "scaleacres.com" } }).catch(() => null);
+  const res = await get(base + p.nextRoute, "scaleacres.com");
   if (!res) { add(p.path, "reachable", "FAIL", "request failed"); continue; }
   add(p.path, "HTTP 200 at same path", res.status === 200 ? "PASS" : "FAIL", String(res.status));
   if (res.status !== 200) continue;
@@ -68,7 +84,7 @@ for (const p of registry.filter((r) => r.nextRoute)) {
 }
 
 // Staging protection: a non-production host must be noindex.
-const stg = await fetch(base + "/", { headers: { host: "preview.example.netlify.app" } }).catch(() => null);
+const stg = await get(base + "/", "preview.example.netlify.app");
 if (stg) add("staging host", "X-Robots-Tag noindex", /noindex/.test(stg.headers.get("x-robots-tag") ?? "") ? "PASS" : "FAIL");
 
 const count = (s) => rows.filter((r) => r.status === s).length;

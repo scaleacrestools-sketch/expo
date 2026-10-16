@@ -1,16 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { ArrowLink } from "@/components/ui/ArrowLink";
 import { homepageSeo, homepageCreative } from "@/content/seo/homepage";
 import { showreel } from "@/content/media";
-import { splitWords, useGsap } from "@/lib/motion";
+import { Arrow } from "@/components/ui/Arrow";
 
-/**
- * Cinematic hero: plays the six commissioned showreel clips back to back with crossfades
- * (two stacked <video> layers), landscape on desktop and portrait on phones.
- * Sources attach only after the page has loaded so the headline is always the LCP.
- */
 const MOBILE_MQ = "(max-width: 767px)";
 const REDUCE_MQ = "(prefers-reduced-motion: reduce)";
 const subscribeMq = (q: string) => (cb: () => void) => {
@@ -24,24 +19,30 @@ const getMobile = () => window.matchMedia(MOBILE_MQ).matches;
 const getReduce = () => window.matchMedia(REDUCE_MQ).matches;
 const getFalse = () => false;
 
+const STATEMENT_MS = 4600;
+
+/**
+ * Cinematic hero. Full-viewport showreel (the six commissioned clips, crossfading; portrait
+ * cuts on phones) with timed creative statements. The protected SEO H1 stays visible and
+ * crawlable in the lower-left; the statements are supplementary display text.
+ */
 export function HeroVideo() {
-  const root = useRef<HTMLElement>(null);
   const layerA = useRef<HTMLVideoElement>(null);
   const layerB = useRef<HTMLVideoElement>(null);
   const isMobile = useSyncExternalStore(subscribeMobile, getMobile, getFalse);
   const reduceMotion = useSyncExternalStore(subscribeReduce, getReduce, getFalse);
   const [started, setStarted] = useState(false);
   const [front, setFront] = useState(0);
-  const [index, setIndex] = useState(0);
+  const [clipIndex, setClipIndex] = useState(0);
   const [userPaused, setUserPaused] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [statement, setStatement] = useState(0);
   const playing = !userPaused && !reduceMotion;
-
   const layer = (i: number) => (i === 0 ? layerA : layerB).current;
 
-  // Attach sources only after the load event so the headline stays the LCP.
+  // Video sources attach after the load event so text, fonts and CSS win the LCP race.
   useEffect(() => {
-    const start = () => window.setTimeout(() => setStarted(true), 150);
+    const start = () => window.setTimeout(() => setStarted(true), 120);
     if (document.readyState === "complete") {
       const t = start();
       return () => window.clearTimeout(t);
@@ -55,43 +56,39 @@ export function HeroVideo() {
     return isMobile ? c.portrait : c.landscape;
   };
 
-  // Current clip on the front layer, next clip pre-loading on the back layer.
   useEffect(() => {
     if (!started) return;
     const cur = layer(front);
     const next = layer(1 - front);
     if (!cur || !next) return;
-    if (cur.getAttribute("src") !== srcFor(index)) cur.setAttribute("src", srcFor(index));
-    next.setAttribute("src", srcFor(index + 1));
+    if (cur.getAttribute("src") !== srcFor(clipIndex)) cur.setAttribute("src", srcFor(clipIndex));
+    next.setAttribute("src", srcFor(clipIndex + 1));
     next.load();
     if (playing) cur.play().catch(() => undefined);
     else cur.pause();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [started, index, front, isMobile, playing]);
+  }, [started, clipIndex, front, isMobile, playing]);
+
+  // Statement timeline (paused together with the showreel).
+  useEffect(() => {
+    if (!playing) return;
+    const t = window.setInterval(() => setStatement((s) => (s + 1) % homepageCreative.statements.length), STATEMENT_MS);
+    return () => window.clearInterval(t);
+  }, [playing]);
 
   const advance = () => {
     const next = layer(1 - front);
     if (playing) next?.play().catch(() => undefined);
     setFront(1 - front);
-    setIndex((i) => (i + 1) % showreel.length);
+    setClipIndex((i) => (i + 1) % showreel.length);
   };
 
-  useGsap(root, ({ gsap, el }) => {
-    const words = splitWords(el.querySelector<HTMLElement>("[data-hero-statement]")!);
-    gsap
-      .timeline({ defaults: { ease: "expo.out" } })
-      .fromTo(el.querySelector("[data-hero-stage]"), { scale: 1.08, opacity: 0 }, { scale: 1, opacity: 1, duration: 2.4, ease: "power2.out" }, 0)
-      .fromTo(el.querySelectorAll("[data-hero-line]"), { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.1 }, 0.4)
-      .to(words, { y: 0, duration: 1.3, stagger: 0.08 }, 0.6)
-      .fromTo(el.querySelectorAll("[data-hero-fade]"), { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.12 }, 1.3);
-    gsap.to(el.querySelector("[data-hero-stage]"), { yPercent: 12, ease: "none", scrollTrigger: { trigger: el, start: "top top", end: "bottom top", scrub: true } });
-  });
-
-  const clipNow = showreel[index];
+  const lines = homepageCreative.statements[statement];
 
   return (
-    <section ref={root} className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-ink text-white" aria-labelledby="hero-title">
-      <div data-hero-stage className="absolute inset-0 -z-10 will-change-transform">
+    <section className="relative isolate h-[100svh] min-h-[38rem] overflow-hidden bg-ink text-white" aria-labelledby="hero-title">
+      {/* Showreel */}
+      <div className="absolute inset-0 -z-10">
         {[0, 1].map((i) => (
           <video
             key={i}
@@ -103,79 +100,87 @@ export function HeroVideo() {
             tabIndex={-1}
             onEnded={i === front ? advance : undefined}
             onError={() => setFailed(true)}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-in-out ${i === front ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-[1400ms] ease-in-out ${i === front ? "opacity-100" : "opacity-0"}`}
           />
         ))}
-        {/* Readability: soft vignette, heavier at the bottom where the copy sits. */}
-        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,13,13,0.55)_0%,rgba(11,13,13,0.08)_35%,rgba(11,13,13,0.25)_60%,rgba(11,13,13,0.9)_100%)]" />
-        <div aria-hidden="true" className="absolute inset-y-0 left-0 w-2/3 bg-[linear-gradient(90deg,rgba(11,13,13,0.55),transparent)]" />
-        {failed ? (
-          <span className="absolute right-4 top-[calc(var(--header-h)+1rem)] rounded-sm bg-ink/70 px-3 py-2 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white/70">
-            Showreel could not load
-          </span>
-        ) : null}
+        {/* Light vignette only: the footage is the star */}
+        <div aria-hidden="true" className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(180deg,rgba(11,13,13,0.7),transparent)]" />
+        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[55%] bg-[linear-gradient(0deg,rgba(11,13,13,0.85),rgba(11,13,13,0.35)_55%,transparent)]" />
+        <div aria-hidden="true" className="absolute inset-0 bg-ink/10" />
       </div>
 
-      <div className="container-x mx-auto w-full max-w-[110rem] pb-[clamp(2.5rem,7vh,5rem)] pt-[calc(var(--header-h)+4rem)]">
-        <p data-hero-line className="label flex flex-wrap items-center gap-x-3 gap-y-1 text-white">
-          {homepageCreative.positioningLine.map((item, i) => (
-            <span key={item} className="inline-flex items-center gap-3">
-              {i > 0 ? <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-blue" /> : null}
-              {item}
+      {/* Vertical descriptor */}
+      <p aria-hidden="true" className="absolute left-[clamp(0.75rem,1.6vw,1.75rem)] top-1/2 hidden -translate-y-1/2 rotate-180 whitespace-nowrap text-[0.625rem] font-semibold uppercase tracking-[0.32em] text-white/55 [writing-mode:vertical-rl] md:block">
+        {homepageCreative.verticalDescriptor.join(" — ")}
+      </p>
+
+      {/* Timed creative statements */}
+      <div className="absolute inset-x-0 bottom-[clamp(17rem,38vh,21rem)] px-5 text-center md:bottom-[clamp(9rem,22vh,14rem)]">
+        <p key={statement} className="mx-auto max-w-[18ch] text-[clamp(2.125rem,1rem+4.4vw,5.5rem)] font-semibold leading-[1.02] tracking-[-0.03em]" aria-live="off">
+          {lines.map((line, li) => (
+            <span key={li} className={`block ${li === 1 ? "text-blue" : ""}`}>
+              {line.split(" ").map((w, wi) => (
+                <span
+                  key={wi}
+                  className="hero-word inline-block"
+                  style={{ animationDelay: `${(li * 3 + wi) * 90}ms`, animationDuration: `${STATEMENT_MS}ms`, animationPlayState: playing ? "running" : "paused" }}
+                >
+                  {w}&nbsp;
+                </span>
+              ))}
             </span>
           ))}
         </p>
+      </div>
 
-        <p data-hero-statement className="display mt-6 max-w-[11ch] text-white">
-          {homepageCreative.statement[0]}
-          <br />
-          <span className="text-blue">{homepageCreative.statement[1]}</span>
-        </p>
-
-        <div className="mt-10 grid gap-8 border-t border-white/20 pt-8 lg:grid-cols-12 lg:items-end">
-          {/* Protected SEO H1 from the live homepage, kept as the page's semantic heading. */}
-          <div className="lg:col-span-7">
-            <h1 id="hero-title" data-hero-fade className="max-w-[26ch] text-[clamp(1.25rem,1rem+1vw,2rem)] font-semibold leading-[1.15] tracking-[-0.01em] text-white">
+      {/* Bottom bar: protected H1 + controls (left), primary CTA (right) */}
+      <div className="absolute inset-x-0 bottom-0">
+        <div className="container-x mx-auto flex max-w-[120rem] flex-col gap-6 pb-[clamp(1.5rem,4vh,2.75rem)] md:flex-row md:items-end md:justify-between">
+          <div className="max-w-[34rem]">
+            <h1 id="hero-title" className="text-[clamp(1rem,0.9rem+0.45vw,1.3rem)] font-semibold leading-snug tracking-[-0.005em] text-white">
               {homepageSeo.h1.value}
             </h1>
-            <p data-hero-fade className="mt-3 max-w-[52ch] text-[length:var(--fs-body)] leading-[1.6] text-white/75">
-              {homepageCreative.lead}
-            </p>
+            <div className="mt-4 flex items-center gap-4 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-white/65">
+              <button
+                type="button"
+                onClick={() => setUserPaused((p) => !p)}
+                aria-pressed={!playing}
+                aria-label={playing ? "Pause showreel" : "Play showreel"}
+                className="grid h-9 w-9 place-items-center rounded-full border border-white/35 text-white transition-colors hover:border-blue hover:text-blue"
+              >
+                {playing ? (
+                  <svg aria-hidden="true" viewBox="0 0 8 8" className="h-2.5 w-2.5 fill-current"><rect width="3" height="8" /><rect x="5" width="3" height="8" /></svg>
+                ) : (
+                  <svg aria-hidden="true" viewBox="0 0 8 8" className="ml-0.5 h-2.5 w-2.5 fill-current"><path d="M0 0l8 4-8 4z" /></svg>
+                )}
+              </button>
+              <span className="tabular-nums">{String(clipIndex + 1).padStart(2, "0")} / {String(showreel.length).padStart(2, "0")}</span>
+              <span className="hidden sm:inline">{showreel[clipIndex].title}</span>
+              {failed ? <span className="text-white/45">· showreel unavailable</span> : null}
+              <a href="#about" className="ml-2 hidden items-center gap-2 hover:text-white lg:inline-flex">Scroll <span aria-hidden="true">↓</span></a>
+            </div>
           </div>
-          <div data-hero-fade className="flex flex-wrap gap-3 lg:col-span-5 lg:justify-end">
-            <ArrowLink href="/case-studies/" variant="blue" size="lg">Explore Our Work</ArrowLink>
-            <ArrowLink href="/contact-us/" variant="outline" size="lg" className="text-white">Let&apos;s Talk</ArrowLink>
-          </div>
-        </div>
 
-        <div data-hero-fade className="mt-10 flex items-center justify-between gap-6 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-white/70">
-          <a href="#about" className="inline-flex items-center gap-3 hover:text-white">
-            <span aria-hidden="true" className="relative block h-9 w-[1.375rem] rounded-full border border-white/40">
-              <span className="absolute left-1/2 top-1.5 h-2 w-[2px] -translate-x-1/2 rounded bg-white motion-safe:animate-[scroll-dot_1.8s_ease-in-out_infinite]" />
-            </span>
-            Scroll to explore
-          </a>
-          <div className="flex items-center gap-4">
-            <span className="hidden sm:inline" aria-live="polite">
-              {String(index + 1).padStart(2, "0")} / {String(showreel.length).padStart(2, "0")} — {clipNow.title}
-            </span>
-            <button
-              type="button"
-              onClick={() => setUserPaused((p) => !p)}
-              aria-pressed={!playing}
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-2.5 hover:border-blue hover:text-white"
-            >
-              {playing ? (
-                <svg aria-hidden="true" viewBox="0 0 8 8" className="h-2 w-2 fill-current"><rect width="3" height="8" /><rect x="5" width="3" height="8" /></svg>
-              ) : (
-                <svg aria-hidden="true" viewBox="0 0 8 8" className="h-2 w-2 fill-current"><path d="M0 0l8 4-8 4z" /></svg>
-              )}
-              {playing ? "Pause" : "Play"} showreel
-            </button>
-          </div>
+          <Link
+            href="/contact-us/"
+            className="group inline-flex w-full items-center justify-between gap-6 rounded-[4px] bg-blue px-8 py-5 text-[0.875rem] font-bold uppercase tracking-[0.16em] text-ink shadow-[0_0_0_rgba(28,166,220,0)] transition-[transform,box-shadow,background-color] duration-500 ease-out-expo hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_18px_50px_-12px_rgba(28,166,220,0.55)] md:w-auto md:px-10 md:py-6"
+          >
+            Let&apos;s Talk
+            <Arrow className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
         </div>
       </div>
-      <style>{`@keyframes scroll-dot{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,12px)}}`}</style>
+
+      <style>{`
+        .js .hero-word { opacity: 0; transform: translateY(0.45em); filter: blur(8px); animation-name: hero-word; animation-timing-function: cubic-bezier(0.16,1,0.3,1); animation-fill-mode: both; }
+        @keyframes hero-word {
+          0% { opacity: 0; transform: translateY(0.45em); filter: blur(8px); }
+          14% { opacity: 1; transform: none; filter: blur(0); }
+          84% { opacity: 1; transform: none; filter: blur(0); }
+          100% { opacity: 0; transform: translateY(-0.25em); filter: blur(6px); }
+        }
+        @media (prefers-reduced-motion: reduce) { .js .hero-word { animation: none !important; opacity: 1; transform: none; filter: none; } }
+      `}</style>
     </section>
   );
 }

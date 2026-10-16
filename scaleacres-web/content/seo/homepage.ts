@@ -74,4 +74,13 @@ export const homepageCreative = {
   positioningLine: ["Real Estate Marketing", "Creative", "Digital", "Technology"],
   statement: ["We build brands.", "We drive growth."],
   lead: "From real estate marketing and lead generation to branding, websites, creative production and performance campaigns.",
+  /** Cinematic hero statements (original ScaleAcres lines). Each entry is one or two lines. */
+  statements: [
+    ["Some brands get noticed."],
+    ["We make them matter."],
+    ["Creative thinking.", "Measurable growth."],
+    ["Built to stand out.", "Designed to scale."],
+  ],
+  /** Vertical descriptor on the hero's left edge. */
+  verticalDescriptor: ["Real Estate Marketing", "Branding", "Digital", "Creative", "Technology"],
 } as const;

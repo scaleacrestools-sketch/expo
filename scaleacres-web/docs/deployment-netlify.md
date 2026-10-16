@@ -2,6 +2,18 @@
 
 > The live WordPress site stays in production until SEO sign-off. Nothing in this guide touches scaleacres.com DNS, hosting or WordPress.
 
+
+## 0. Recommended: connect the GitHub branch once (auto-updating staging)
+
+This builds the **full** site, including the contact form API and host-based noindex, and rebuilds on every push to the branch.
+
+1. Netlify → **Add new project → Import an existing project → GitHub**, then pick `scaleacrestools-sketch/expo`.
+2. **Branch to deploy:** `claude/funny-pascal-2vnisf`. **Base directory:** `scaleacres-web`. Leave the build command (`npm run build`) and publish directory (`.next`) as read from `netlify.toml`.
+3. Do **not** add a custom domain. The `*.netlify.app` address is automatically noindex, because only scaleacres.com is listed in `PRODUCTION_HOSTS`.
+4. Click **Deploy**. Every later push to the branch updates the same staging URL.
+
+Quick alternative: drag the unzipped `scaleacres-static-preview` folder onto https://app.netlify.com/drop. That is a visual review only, and the contact form shows a "preview build" message.
+
 ## 1. Local preview
 
 ```bash

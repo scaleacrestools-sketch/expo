@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { Analytics } from "@/components/Analytics";
 import { organizationJsonLd } from "@/lib/seo";
 import { site } from "@/content/site";
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <BackToTop />
+        <ScrollProgress />
         <Analytics />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }} />
       </body>
