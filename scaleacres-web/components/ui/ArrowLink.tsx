@@ -14,9 +14,9 @@ const base =
   "group/btn relative inline-flex items-center gap-3 rounded-full font-semibold uppercase tracking-[0.14em] transition-[background-color,color,border-color,transform] duration-300 ease-out-expo focus-visible:outline-blue motion-safe:active:scale-[0.98] select-none";
 const sizes = { md: "px-6 py-3.5 text-[0.75rem]", lg: "px-8 py-5 text-[0.8125rem]" };
 const variants: Record<Variant, string> = {
-  solid: "bg-offwhite text-ink hover:bg-blue hover:text-ink",
-  blue: "bg-blue text-ink hover:bg-offwhite",
-  offwhite: "bg-ink text-offwhite hover:bg-blue hover:text-ink",
+  solid: "bg-offwhite text-ink hover:bg-blue hover:text-on-accent",
+  blue: "bg-blue text-on-accent hover:bg-offwhite hover:text-ink",
+  offwhite: "bg-ink text-offwhite hover:bg-blue hover:text-on-accent",
   outline: "border border-current text-current hover:bg-current/0 hover:border-blue hover:text-blue",
   ghost: "px-0 py-0 rounded-none text-current hover:text-blue",
 };

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { brand } from "@/content/brand";
+import { proposalLogo } from "@/content/themes";
 
 /**
  * Official ScaleAcres logo at its original proportions (light/reversed version on dark grounds).
@@ -10,15 +11,24 @@ import { brand } from "@/content/brand";
 export function Logo({ tone = "light", className = "", withLink = true, size = "md" }: { tone?: "light" | "dark"; className?: string; withLink?: boolean; size?: "md" | "lg" }) {
   const src = tone === "light" ? brand.logo.reversed : brand.logo.primary;
   const h = size === "lg" ? "h-10 sm:h-12 md:h-[3.25rem]" : "h-9 md:h-11";
+  const ground = tone === "light" ? "dark" : "light";
   const content = brand.logoFilesPresent ? (
-    <Image
-      src={src}
-      alt="ScaleAcres — Scaling with System and Automation"
-      width={brand.logo.width}
-      height={brand.logo.height}
-      priority
-      className={`${h} w-auto ${className}`}
-    />
+    <span className="relative inline-flex items-center gap-2">
+      <Image
+        src={src}
+        alt="ScaleAcres — Scaling with System and Automation"
+        width={brand.logo.width}
+        height={brand.logo.height}
+        priority
+        className={`logo-official ${h} w-auto ${className}`}
+      />
+      {/* Colour-exploration PROPOSALS (not approved). Hidden unless previewing with logo=proposal; lazy + display:none, so never downloaded otherwise. */}
+      {(["reddash", "midnight"] as const).map((t) => (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img key={t} src={proposalLogo(t, ground)} alt="ScaleAcres logo — colour proposal" width={brand.logo.width} height={brand.logo.height} loading="lazy" className={`logo-proposal logo-proposal--${t} ${h} w-auto ${className}`} />
+      ))}
+      <span className="logo-proposal-tag rounded-sm border border-current px-1.5 py-0.5 text-[0.5rem] font-semibold uppercase tracking-[0.14em] opacity-70">Proposal</span>
+    </span>
   ) : (
     <span className={`inline-flex items-start gap-3 ${tone === "light" ? "text-white" : "text-ink"} ${className}`}>
       <span className="inline-flex flex-col leading-none">

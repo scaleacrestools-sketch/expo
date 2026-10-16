@@ -120,7 +120,7 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-wrap items-center gap-5 sm:col-span-2">
-        <button type="submit" disabled={status.state === "submitting"} className="group inline-flex items-center gap-3 rounded-full bg-blue px-8 py-5 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-ink transition-colors hover:bg-offwhite disabled:cursor-wait disabled:opacity-70">
+        <button type="submit" disabled={status.state === "submitting"} className="group inline-flex items-center gap-3 rounded-full bg-blue px-8 py-5 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-on-accent transition-colors hover:bg-offwhite hover:text-ink disabled:cursor-wait disabled:opacity-70">
           {status.state === "submitting" ? "Sending…" : "Send Enquiry"}
           <Arrow className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </button>

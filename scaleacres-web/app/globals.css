@@ -7,6 +7,7 @@
   --color-ink-soft: #15181b;   /* Graphite — raised surfaces on black */
   --color-blue: #1ca6dc;       /* ScaleAcres Brand Blue */
   --color-blue-deep: #1489b8;  /* Blue hover / on light grounds */
+  --color-on-accent: #0b0d0d;  /* Text on accent fills (theme explorations re-map this) */
   --color-white: #ffffff;      /* Pure White */
   --color-offwhite: #f4f5f7;   /* Off-White section ground */
   --color-grey-soft: #c9cdd2;  /* Soft Grey — rules, supporting text on black */
@@ -47,7 +48,7 @@
     line-height: 1.6;
     overflow-x: clip;
   }
-  ::selection { background: var(--color-blue); color: var(--color-ink); }
+  ::selection { background: var(--color-blue); color: var(--color-on-accent); }
   :focus-visible {
     outline: 2px solid var(--color-blue);
     outline-offset: 3px;

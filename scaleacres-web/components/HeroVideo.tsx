@@ -105,8 +105,8 @@ export function HeroVideo() {
           />
         ))}
         {/* Light vignette only: the footage is the star */}
-        <div aria-hidden="true" className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(180deg,rgba(11,13,13,0.7),transparent)]" />
-        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[55%] bg-[linear-gradient(0deg,rgba(11,13,13,0.85),rgba(11,13,13,0.35)_55%,transparent)]" />
+        <div aria-hidden="true" className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(180deg,rgb(var(--ink-rgb)/0.7),transparent)]" />
+        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[55%] bg-[linear-gradient(0deg,rgb(var(--ink-rgb)/0.85),rgb(var(--ink-rgb)/0.35)_55%,transparent)]" />
         <div aria-hidden="true" className="absolute inset-0 bg-ink/10" />
       </div>
 
@@ -168,7 +168,7 @@ export function HeroVideo() {
 
           <Link
             href="/contact-us/"
-            className="group inline-flex w-full items-center justify-between gap-6 rounded-[4px] bg-blue px-8 py-5 text-[0.875rem] font-bold uppercase tracking-[0.16em] text-ink shadow-[0_0_0_rgba(28,166,220,0)] transition-[transform,box-shadow,background-color] duration-500 ease-out-expo hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_18px_50px_-12px_rgba(28,166,220,0.55)] md:w-auto md:px-10 md:py-6"
+            className="group inline-flex w-full items-center justify-between gap-6 rounded-[4px] bg-blue px-8 py-5 text-[0.875rem] font-bold uppercase tracking-[0.16em] text-on-accent shadow-[0_0_0_rgb(var(--accent-rgb)/0)] transition-[transform,box-shadow,background-color] duration-500 ease-out-expo hover:-translate-y-0.5 hover:bg-white hover:text-ink hover:shadow-[0_18px_50px_-12px_rgb(var(--accent-rgb)/0.55)] md:w-auto md:px-10 md:py-6"
           >
             Let&apos;s Talk
             <Arrow className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

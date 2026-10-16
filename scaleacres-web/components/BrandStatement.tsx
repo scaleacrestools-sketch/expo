@@ -17,7 +17,7 @@ export function BrandStatement() {
   });
 
   return (
-    <section ref={ref} className="section-y relative overflow-hidden bg-blue text-ink" aria-labelledby="brand-statement">
+    <section ref={ref} className="section-y relative overflow-hidden bg-blue text-on-accent" aria-labelledby="brand-statement">
       <div className="container-x mx-auto max-w-[110rem]">
         <div data-block className="grid gap-12 lg:grid-cols-12">
           <h2 id="brand-statement" className="lg:col-span-9">

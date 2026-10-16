@@ -26,8 +26,8 @@ export function RealEstateDNA() {
       {/* Full-bleed footage */}
       <div className="absolute inset-0 -z-10">
         <LazyVideo src={tower.landscape} label={tower.description} className="h-full w-full" />
-        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,13,13,0.92)_0%,rgba(11,13,13,0.7)_45%,rgba(11,13,13,0.35)_100%)]" />
-        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(0deg,#0b0d0d,transparent)]" />
+        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgb(var(--ink-rgb)/0.92)_0%,rgb(var(--ink-rgb)/0.7)_45%,rgb(var(--ink-rgb)/0.35)_100%)]" />
+        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(0deg,var(--color-ink),transparent)]" />
       </div>
 
       <Reveal className="container-x section-y relative mx-auto max-w-[110rem]">
@@ -68,7 +68,7 @@ export function RealEstateDNA() {
           <ul className="mt-6 grid gap-px overflow-hidden rounded-sm bg-white/15 sm:grid-cols-2 lg:grid-cols-5" role="list">
             {homepageSeo.legacyServices.value.map((s, i) => (
               <li key={s.heading} className="bg-ink/80 backdrop-blur-sm" data-reveal>
-                <Link href={s.href} className="group flex h-full min-h-[12rem] flex-col justify-between gap-8 p-6 transition-colors hover:bg-blue hover:text-ink md:p-8">
+                <Link href={s.href} className="group flex h-full min-h-[12rem] flex-col justify-between gap-8 p-6 transition-colors hover:bg-blue hover:text-on-accent md:p-8">
                   <span className="text-xs font-semibold text-white/50 group-hover:text-ink/70">0{i + 1}</span>
                   <h3 className="text-[1.375rem] font-bold leading-tight tracking-[-0.01em]">{s.heading}</h3>
                   <Arrow className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />

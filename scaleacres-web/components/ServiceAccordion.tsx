@@ -67,7 +67,7 @@ export function ServiceAccordion({ defaultOpen = services[0].slug }: { defaultOp
                 {activeMedia ? (
                   <LazyVideo key={activeService.slug} src={activeMedia.portrait} label={activeMedia.description} className="h-full w-full animate-[fade-in_700ms_ease-out]" />
                 ) : null}
-                <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgba(11,13,13,0.85),transparent_50%)]" />
+                <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgb(var(--ink-rgb)/0.85),transparent_50%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-8">
                   <p className="text-sm font-bold tabular-nums text-blue">{activeService.number}</p>
                   <p className="mt-2 text-[clamp(1.75rem,1rem+1.6vw,2.75rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.03em]">{activeService.title}</p>
@@ -100,9 +100,9 @@ function ServiceRow({ service: s, open, onToggle, baseId }: { service: Service; 
           aria-expanded={open}
           aria-controls={panelId}
           onClick={onToggle}
-          className="grid w-full grid-cols-[2.5rem_minmax(0,1fr)_2.75rem] items-center gap-3 py-7 text-left transition-colors duration-500 group-hover/row:text-ink sm:grid-cols-[4rem_minmax(0,1fr)_3.5rem] sm:gap-5 md:grid-cols-[7rem_minmax(0,1fr)_4.5rem] md:py-10"
+          className="grid w-full grid-cols-[2.5rem_minmax(0,1fr)_2.75rem] items-center gap-3 py-7 text-left transition-colors duration-500 group-hover/row:text-on-accent sm:grid-cols-[4rem_minmax(0,1fr)_3.5rem] sm:gap-5 md:grid-cols-[7rem_minmax(0,1fr)_4.5rem] md:py-10"
         >
-          <span className={`text-[clamp(1rem,0.8rem+0.8vw,1.75rem)] font-bold tabular-nums transition-colors ${open ? "text-blue" : "text-white/45 group-hover/row:text-ink"}`}>{s.number}</span>
+          <span className={`text-[clamp(1rem,0.8rem+0.8vw,1.75rem)] font-bold tabular-nums transition-colors ${open ? "text-blue" : "text-white/45 group-hover/row:text-on-accent"}`}>{s.number}</span>
           <span
             lang="en"
             className={`min-w-0 break-words text-[length:var(--fs-h3)] font-extrabold uppercase leading-[1] tracking-[-0.025em] transition-transform duration-500 ease-out-expo [hyphens:auto] md:group-hover/row:translate-x-4 ${open ? "text-blue" : ""}`}
@@ -112,7 +112,7 @@ function ServiceRow({ service: s, open, onToggle, baseId }: { service: Service; 
           <span
             aria-hidden="true"
             className={`ml-auto grid h-11 w-11 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color,color] duration-500 ease-out-expo md:h-14 md:w-14 ${
-              open ? "rotate-45 border-blue bg-blue text-ink" : "border-white/30 group-hover/row:border-ink group-hover/row:bg-ink group-hover/row:text-white"
+              open ? "rotate-45 border-blue bg-blue text-on-accent" : "border-white/30 group-hover/row:border-ink group-hover/row:bg-ink group-hover/row:text-white"
             }`}
           >
             <svg viewBox="0 0 12 12" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M1 6h10M6 1v10" /></svg>

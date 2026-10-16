@@ -93,7 +93,7 @@ export function SelectedWork({ items = projects, limit }: { items?: Project[]; l
           <p className="max-w-[46ch] text-[0.975rem] leading-[1.6] text-grey-dark">
             Websites, brand identities, social and ad creatives are being added to the library as each client approves publication.
           </p>
-          <Link href="/case-studies/" className="group inline-flex items-center gap-4 rounded-full bg-ink px-8 py-5 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-blue hover:text-ink">
+          <Link href="/case-studies/" className="group inline-flex items-center gap-4 rounded-full bg-ink px-8 py-5 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-blue hover:text-on-accent">
             View All Our Work
             <Arrow className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
@@ -119,7 +119,7 @@ function WorkCard({ project: p, frame, feature }: { project: Project; frame: str
           )}
         </div>
         {p.video ? (
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgba(11,13,13,0.75),transparent_55%)]" />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgb(var(--ink-rgb)/0.75),transparent_55%)]" />
         ) : null}
         {p.video ? (
           <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 p-6 text-white md:p-10">
@@ -130,7 +130,7 @@ function WorkCard({ project: p, frame, feature }: { project: Project; frame: str
           </div>
         ) : null}
         {/* View project disc */}
-        <span className="absolute right-5 top-5 grid h-16 w-16 scale-75 place-items-center rounded-full bg-blue text-ink opacity-0 transition-all duration-500 ease-out-expo group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100 md:h-20 md:w-20">
+        <span className="absolute right-5 top-5 grid h-16 w-16 scale-75 place-items-center rounded-full bg-blue text-on-accent opacity-0 transition-all duration-500 ease-out-expo group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100 md:h-20 md:w-20">
           <Arrow className="h-5 w-5 md:h-6 md:w-6" />
         </span>
       </div>

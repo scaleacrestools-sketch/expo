@@ -58,9 +58,9 @@ export function VideoModal({ video, onClose }: { video: StudioVideo | null; onCl
               <p className="mt-1 truncate text-lg font-semibold">{video.title}</p>
             </div>
             <div className="flex gap-2">
-              <button type="button" onClick={toggleMute} aria-pressed={!muted} className="rounded-full border border-white/25 px-5 py-2.5 text-[0.75rem] font-semibold uppercase tracking-[0.14em] transition-colors hover:border-blue hover:bg-blue hover:text-ink">{muted ? "Unmute" : "Mute"}</button>
-              <button type="button" onClick={fullscreen} className="rounded-full border border-white/25 px-5 py-2.5 text-[0.75rem] font-semibold uppercase tracking-[0.14em] transition-colors hover:border-blue hover:bg-blue hover:text-ink">Fullscreen</button>
-              <button type="button" onClick={onClose} className="rounded-full border border-white/25 px-5 py-2.5 text-[0.75rem] font-semibold uppercase tracking-[0.14em] transition-colors hover:border-blue hover:bg-blue hover:text-ink">Close</button>
+              <button type="button" onClick={toggleMute} aria-pressed={!muted} className="rounded-full border border-white/25 px-5 py-2.5 text-[0.75rem] font-semibold uppercase tracking-[0.14em] transition-colors hover:border-blue hover:bg-blue hover:text-on-accent">{muted ? "Unmute" : "Mute"}</button>
+              <button type="button" onClick={fullscreen} className="rounded-full border border-white/25 px-5 py-2.5 text-[0.75rem] font-semibold uppercase tracking-[0.14em] transition-colors hover:border-blue hover:bg-blue hover:text-on-accent">Fullscreen</button>
+              <button type="button" onClick={onClose} className="rounded-full border border-white/25 px-5 py-2.5 text-[0.75rem] font-semibold uppercase tracking-[0.14em] transition-colors hover:border-blue hover:bg-blue hover:text-on-accent">Close</button>
             </div>
           </div>
         </div>

@@ -138,13 +138,13 @@ function Showcase({ videos, onOpen, active }: { videos: StudioVideo[]; onOpen: (
             aria-label={v.description}
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out-expo group-hover:scale-[1.03]"
           />
-          <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(11,13,13,0.85))]" />
+          <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgb(var(--ink-rgb)/0.85))]" />
           <span className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-6 p-6 md:p-8">
             <span>
               <span className="label block text-blue">{v.category} · {String(current + 1).padStart(2, "0")}</span>
               <span className="mt-2 block text-[clamp(1.5rem,1rem+1.6vw,2.75rem)] font-extrabold uppercase leading-none tracking-[-0.02em]">{v.title}</span>
             </span>
-            <span aria-hidden="true" className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-blue text-ink transition-transform duration-500 ease-out-expo group-hover:scale-110 md:h-20 md:w-20">
+            <span aria-hidden="true" className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-blue text-on-accent transition-transform duration-500 ease-out-expo group-hover:scale-110 md:h-20 md:w-20">
               <svg viewBox="0 0 12 12" className="ml-1 h-5 w-5 fill-current"><path d="M2 1.5l9 4.5-9 4.5z" /></svg>
             </span>
           </span>

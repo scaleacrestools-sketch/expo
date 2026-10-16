@@ -61,7 +61,7 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
       }`}
     >
       {/* Slow-moving brand glow */}
-      <div aria-hidden="true" className="pointer-events-none absolute -left-1/4 top-1/3 h-[60vmax] w-[60vmax] rounded-full bg-[radial-gradient(closest-side,rgba(28,166,220,0.22),transparent)] motion-safe:animate-[menu-glow_14s_ease-in-out_infinite_alternate]" />
+      <div aria-hidden="true" className="pointer-events-none absolute -left-1/4 top-1/3 h-[60vmax] w-[60vmax] rounded-full bg-[radial-gradient(closest-side,rgb(var(--accent-rgb)/0.22),transparent)] motion-safe:animate-[menu-glow_14s_ease-in-out_infinite_alternate]" />
 
       <div className="container-x relative mx-auto grid min-h-full max-w-[120rem] gap-12 pb-12 pt-[calc(var(--header-h)+5rem)] lg:grid-cols-12">
         <nav aria-label="Primary" className="lg:col-span-7">

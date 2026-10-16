@@ -10,7 +10,7 @@ export function ContactCTA({ withForm = true }: { withForm?: boolean }) {
     <section id="contact" className="relative isolate overflow-hidden bg-ink text-white">
       <div className="absolute inset-0 -z-10">
         <LazyVideo src={finale.landscape} label={finale.description} className="h-full w-full opacity-70" />
-        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,13,13,0.6),rgba(11,13,13,0.85))]" />
+        <div aria-hidden="true" className="contact-overlay absolute inset-0 bg-[linear-gradient(180deg,rgb(var(--ink-rgb)/0.6),rgb(var(--ink-rgb)/0.85))]" />
       </div>
       <Reveal className="container-x section-y relative mx-auto grid max-w-[110rem] gap-16 lg:grid-cols-12">
         <div className="lg:col-span-6">

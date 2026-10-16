@@ -8,7 +8,7 @@ import type { Project } from "@/content/projects";
 export function ProjectCover({ project: p, size = "md" }: { project: Project; size?: "md" | "lg" }) {
   const tone = {
     ink: "bg-ink text-white",
-    blue: "bg-blue text-ink",
+    blue: "bg-blue text-on-accent",
     white: "bg-offwhite text-ink",
   }[p.tone];
   const rule = p.tone === "ink" ? "border-white/15" : "border-ink/15";
