@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Article placeholder">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D9D2C4"/><stop offset="1" stop-color="#11151A"/></linearGradient>
+<pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0v48" fill="none" stroke="#11151A" stroke-opacity="0.07"/></pattern></defs>
+<rect width="1200" height="900" fill="url(#g)"/><rect width="1200" height="900" fill="url(#grid)"/>
+<circle cx="936" cy="270" r="198" fill="#F15A3C" fill-opacity="0.85"/>
+<rect x="96" y="558" width="504" height="54" fill="#11151A" fill-opacity="0.9"/>
+<rect x="96" y="639" width="360" height="36" fill="#11151A" fill-opacity="0.5"/>
+<text x="96" y="126" font-family="Outfit, Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="3" fill="#11151A" fill-opacity="0.85">DEV PLACEHOLDER</text>
+<text x="96" y="189" font-family="Outfit, Arial, sans-serif" font-size="36" fill="#11151A" fill-opacity="0.6">Use article featured image</text>
+</svg>

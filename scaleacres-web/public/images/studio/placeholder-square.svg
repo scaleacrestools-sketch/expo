@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" role="img" aria-label="Video placeholder">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#171C22"/><stop offset="1" stop-color="#11151A"/></linearGradient>
+<pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0v48" fill="none" stroke="#F6F3EA" stroke-opacity="0.07"/></pattern></defs>
+<rect width="1200" height="1200" fill="url(#g)"/><rect width="1200" height="1200" fill="url(#grid)"/>
+<circle cx="936" cy="360" r="264" fill="#F15A3C" fill-opacity="0.85"/>
+<rect x="96" y="744" width="504" height="72" fill="#F6F3EA" fill-opacity="0.9"/>
+<rect x="96" y="852" width="360" height="48" fill="#F6F3EA" fill-opacity="0.5"/>
+<text x="96" y="168" font-family="Outfit, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="3" fill="#F6F3EA" fill-opacity="0.85">DEV PLACEHOLDER</text>
+<text x="96" y="252" font-family="Outfit, Arial, sans-serif" font-size="48" fill="#F6F3EA" fill-opacity="0.6">Add approved video poster (1:1)</text>
+</svg>

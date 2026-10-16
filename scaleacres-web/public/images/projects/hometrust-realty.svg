@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Hometrust Realty placeholder">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#262026"/><stop offset="1" stop-color="#11151A"/></linearGradient>
+<pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0v48" fill="none" stroke="#F6F3EA" stroke-opacity="0.07"/></pattern></defs>
+<rect width="1600" height="1000" fill="url(#g)"/><rect width="1600" height="1000" fill="url(#grid)"/>
+<circle cx="1248" cy="300" r="220" fill="#F15A3C" fill-opacity="0.85"/>
+<rect x="128" y="620" width="672" height="60" fill="#F6F3EA" fill-opacity="0.9"/>
+<rect x="128" y="710" width="480" height="40" fill="#F6F3EA" fill-opacity="0.5"/>
+<text x="128" y="140" font-family="Outfit, Arial, sans-serif" font-size="45" font-weight="700" letter-spacing="3" fill="#F6F3EA" fill-opacity="0.85">DEV PLACEHOLDER</text>
+<text x="128" y="210" font-family="Outfit, Arial, sans-serif" font-size="40" fill="#F6F3EA" fill-opacity="0.6">Add approved brand collateral</text>
+</svg>

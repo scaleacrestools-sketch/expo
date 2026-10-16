@@ -28,3 +28,6 @@
 !packages/@expo/config-plugins/src/ios/**
 !packages/expo-module-scripts/bin/**
 !packages/expo-symbols/src/android/**
+
+# Standalone Next.js site (own lint config)
+/scaleacres-web/**
