@@ -6,7 +6,7 @@ import { ContactCTA } from "@/components/ContactCTA";
 export const metadata: Metadata = {
   title: "Insights",
   description: "Ideas, guides and opinions from the ScaleAcres team on branding, websites, SEO and performance marketing.",
-  alternates: { canonical: "/insights" },
+  alternates: { canonical: "/insights/" },
 };
 
 export default function InsightsPage() {

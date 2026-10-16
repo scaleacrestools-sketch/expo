@@ -5,7 +5,7 @@ type Props = {
   title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
-  tone?: "dark" | "light" | "coral";
+  tone?: "dark" | "light" | "blue";
   className?: string;
   children?: ReactNode;
   as?: "h1" | "h2";
@@ -13,8 +13,8 @@ type Props = {
 
 export function SectionHeading({ eyebrow, title, description, align = "left", tone = "dark", className = "", children, as = "h2" }: Props) {
   const Tag = as;
-  const eyebrowTone = tone === "dark" ? "text-coral" : tone === "coral" ? "text-charcoal/80" : "text-coral-deep";
-  const descTone = tone === "dark" ? "text-stone" : tone === "coral" ? "text-charcoal/80" : "text-charcoal/70";
+  const eyebrowTone = tone === "dark" ? "text-blue" : tone === "blue" ? "text-ink/80" : "text-blue-deep";
+  const descTone = tone === "dark" ? "text-grey-soft" : tone === "blue" ? "text-ink/80" : "text-ink/70";
   return (
     <div className={`${align === "center" ? "mx-auto text-center" : ""} ${className}`}>
       <p className={`eyebrow ${eyebrowTone} ${align === "center" ? "justify-center" : ""}`} data-reveal>

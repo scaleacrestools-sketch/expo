@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ComponentProps } from "react";
 import { Arrow } from "./Arrow";
 
-type Variant = "solid" | "outline" | "ghost" | "coral" | "ivory";
+type Variant = "solid" | "outline" | "ghost" | "blue" | "offwhite";
 type Props = Omit<ComponentProps<typeof Link>, "className"> & {
   variant?: Variant;
   size?: "md" | "lg";
@@ -11,14 +11,14 @@ type Props = Omit<ComponentProps<typeof Link>, "className"> & {
 };
 
 const base =
-  "group/btn relative inline-flex items-center gap-3 rounded-full font-semibold uppercase tracking-[0.14em] transition-[background-color,color,border-color,transform] duration-300 ease-out-expo focus-visible:outline-coral motion-safe:active:scale-[0.98] select-none";
+  "group/btn relative inline-flex items-center gap-3 rounded-full font-semibold uppercase tracking-[0.14em] transition-[background-color,color,border-color,transform] duration-300 ease-out-expo focus-visible:outline-blue motion-safe:active:scale-[0.98] select-none";
 const sizes = { md: "px-6 py-3.5 text-[0.75rem]", lg: "px-8 py-5 text-[0.8125rem]" };
 const variants: Record<Variant, string> = {
-  solid: "bg-ivory text-charcoal hover:bg-coral hover:text-charcoal",
-  coral: "bg-coral text-charcoal hover:bg-ivory",
-  ivory: "bg-charcoal text-ivory hover:bg-coral hover:text-charcoal",
-  outline: "border border-current text-current hover:bg-current/0 hover:border-coral hover:text-coral",
-  ghost: "px-0 py-0 rounded-none text-current hover:text-coral",
+  solid: "bg-offwhite text-ink hover:bg-blue hover:text-ink",
+  blue: "bg-blue text-ink hover:bg-offwhite",
+  offwhite: "bg-ink text-offwhite hover:bg-blue hover:text-ink",
+  outline: "border border-current text-current hover:bg-current/0 hover:border-blue hover:text-blue",
+  ghost: "px-0 py-0 rounded-none text-current hover:text-blue",
 };
 
 export function ArrowLink({ variant = "solid", size = "md", className = "", children, ...rest }: Props) {

@@ -15,7 +15,7 @@ export function BackToTop() {
       type="button"
       aria-label="Back to top"
       onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })}
-      className={`fixed bottom-5 right-5 z-40 grid h-12 w-12 place-items-center rounded-full border border-ivory/20 bg-charcoal/80 text-ivory backdrop-blur transition-all duration-500 ease-out-expo hover:border-coral hover:text-coral ${
+      className={`fixed bottom-5 right-5 z-40 grid h-12 w-12 place-items-center rounded-full border border-offwhite/20 bg-ink/80 text-offwhite backdrop-blur transition-all duration-500 ease-out-expo hover:border-blue hover:text-blue ${
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
       }`}
     >

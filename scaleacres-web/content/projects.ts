@@ -1,5 +1,16 @@
 export type ProjectLayout = "full" | "half" | "tall" | "wide";
 
+export const workFilters = [
+  "Website Development",
+  "Branding & Identity",
+  "Performance Marketing",
+  "Real Estate Campaigns",
+  "AI Videos",
+  "Social Media Videos",
+  "Ad Videos",
+] as const;
+export type WorkFilter = (typeof workFilters)[number];
+
 export type Project = {
   slug: string;
   client: string;
@@ -11,6 +22,8 @@ export type Project = {
   placeholder: boolean;
   layout: ProjectLayout;
   services: string[];
+  /** Portfolio filter tags. Only tag what the project actually included. */
+  filters: WorkFilter[];
 };
 
 /**
@@ -29,6 +42,7 @@ export const projects: Project[] = [
     placeholder: true,
     layout: "full",
     services: ["performance-marketing", "branding-creative-design"],
+    filters: ["Performance Marketing", "Branding & Identity", "Real Estate Campaigns"],
   },
   {
     slug: "one-goa",
@@ -41,6 +55,7 @@ export const projects: Project[] = [
     placeholder: true,
     layout: "half",
     services: ["performance-marketing", "social-media-marketing"],
+    filters: ["Performance Marketing", "Real Estate Campaigns"],
   },
   {
     slug: "prominent-realty",
@@ -53,6 +68,7 @@ export const projects: Project[] = [
     placeholder: true,
     layout: "half",
     services: ["website-design-development", "performance-marketing"],
+    filters: ["Website Development", "Performance Marketing", "Real Estate Campaigns"],
   },
   {
     slug: "hometrust-realty",
@@ -65,6 +81,7 @@ export const projects: Project[] = [
     placeholder: true,
     layout: "wide",
     services: ["branding-creative-design", "performance-marketing"],
+    filters: ["Branding & Identity", "Performance Marketing", "Real Estate Campaigns"],
   },
 ];
 

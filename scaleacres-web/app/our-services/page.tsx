@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { protectedTitle } from "@/content/seo/pages";
 import { PageHero } from "@/components/PageHero";
 import { ServiceAccordion } from "@/components/ServiceAccordion";
 import { ContactCTA } from "@/components/ContactCTA";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: { absolute: protectedTitle("/our-services/")! },
   description: "Website design & development, SEO, performance marketing, branding, social media, video production, ecommerce and custom software — eight ways ScaleAcres helps brands stand out and scale.",
-  alternates: { canonical: "/services" },
+  alternates: { canonical: "/our-services/" },
 };
 
 export default function ServicesPage() {

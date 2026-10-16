@@ -7,8 +7,16 @@ export type Service = {
   description: string;
   included: readonly [string, string, string, string];
   ctaLabel: string;
-  /** Existing WordPress URL this service page replaces (for 301 mapping). */
-  legacyPaths: string[];
+  /** Optional emphasis line shown in the expanded panel. */
+  focus?: string;
+  /**
+   * Production path. Existing indexed service pages keep their exact WordPress URL
+   * (protected); new services live under /services/<slug>/ and are flagged as NEW URLs
+   * in docs/seo-parity-report.md.
+   */
+  path: string;
+  /** True when the URL already exists and ranks on scaleacres.com. */
+  legacy: boolean;
 };
 
 /**
@@ -26,7 +34,8 @@ export const services: Service[] = [
       "We create modern, responsive websites that combine compelling design, intuitive user experiences and performance-focused development to help brands make a stronger digital impression.",
     included: ["Corporate Websites", "Landing Pages", "UI/UX Design", "Ecommerce Development"],
     ctaLabel: "Explore Web Solutions",
-    legacyPaths: ["/real-estate-web-development/"],
+    path: "/real-estate-web-development/",
+    legacy: true,
   },
   {
     number: "02",
@@ -38,7 +47,8 @@ export const services: Service[] = [
       "We develop search strategies that help businesses increase online visibility, attract relevant organic traffic and establish a stronger presence across search platforms.",
     included: ["Technical SEO", "On-Page SEO", "Local SEO", "Content Optimization"],
     ctaLabel: "Explore SEO Services",
-    legacyPaths: [],
+    path: "/services/search-engine-optimization/",
+    legacy: false,
   },
   {
     number: "03",
@@ -50,7 +60,9 @@ export const services: Service[] = [
       "We create and optimize paid advertising campaigns using audience insights, creative thinking and performance data to support qualified lead generation and measurable business goals.",
     included: ["Google Ads", "Meta Ads", "Lead Generation", "Retargeting"],
     ctaLabel: "Explore Performance Marketing",
-    legacyPaths: ["/real-estate-ppc-service/"],
+    focus: "Targeted Lead Generation · Real Estate Marketing",
+    path: "/real-estate-ppc-service/",
+    legacy: true,
   },
   {
     number: "04",
@@ -62,7 +74,8 @@ export const services: Service[] = [
       "We develop distinctive brand identities and creative communication systems that reflect your personality, strengthen recognition and create memorable audience experiences.",
     included: ["Logo & Brand Identity", "Brand Guidelines", "Graphic Design", "Marketing Collaterals"],
     ctaLabel: "Explore Creative Services",
-    legacyPaths: ["/real-estate-branding-agency/"],
+    path: "/real-estate-branding-agency/",
+    legacy: true,
   },
   {
     number: "05",
@@ -74,7 +87,8 @@ export const services: Service[] = [
       "We help brands build meaningful digital connections through thoughtful content strategies, engaging creatives and consistent communication across social media platforms.",
     included: ["Content Strategy", "Social Media Creatives", "Account Management", "Campaign Content"],
     ctaLabel: "Explore Social Media",
-    legacyPaths: [],
+    path: "/services/social-media-marketing/",
+    legacy: false,
   },
   {
     number: "06",
@@ -86,7 +100,8 @@ export const services: Service[] = [
       "We bring brand ideas to life through compelling videos, creative storytelling and impactful digital content designed for today's fast-moving platforms.",
     included: ["AI Videos", "Social Media Videos", "Ad Videos", "Video Editing"],
     ctaLabel: "Explore Our Studio",
-    legacyPaths: [],
+    path: "/services/video-creative-production/",
+    legacy: false,
   },
   {
     number: "07",
@@ -98,7 +113,8 @@ export const services: Service[] = [
       "We build digital storefronts that combine attractive design, user-friendly shopping experiences and dependable ecommerce technology.",
     included: ["Shopify Development", "Product Page Design", "Checkout Experience", "Mobile Commerce"],
     ctaLabel: "Explore Ecommerce",
-    legacyPaths: [],
+    path: "/services/ecommerce-solutions/",
+    legacy: false,
   },
   {
     number: "08",
@@ -110,9 +126,10 @@ export const services: Service[] = [
       "We develop tailored digital solutions that simplify workflows, improve user experiences and help businesses operate more efficiently.",
     included: ["Web Applications", "Dashboards", "Business Automation", "Custom Integrations"],
     ctaLabel: "Explore Technology",
-    legacyPaths: [],
+    path: "/services/custom-applications-software/",
+    legacy: false,
   },
 ];
 
-export const serviceHref = (s: Service) => `/services/${s.slug}`;
+export const serviceHref = (s: Service) => s.path;
 export const getService = (slug: string) => services.find((s) => s.slug === slug);

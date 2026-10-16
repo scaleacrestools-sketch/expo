@@ -19,22 +19,22 @@ export function ProcessTimeline() {
   });
 
   return (
-    <Reveal as="section" id="approach" className="section-y bg-ivory text-charcoal">
+    <Reveal as="section" id="approach" className="section-y bg-offwhite text-ink">
       <div className="container-x mx-auto max-w-[110rem]">
         <SectionHeading tone="light" eyebrow="How we make it happen" title={<>Think. Create.<br />Build. Scale.</>} description="Great work comes from combining clear thinking with smart execution. Our approach brings the right ideas, people and technology together." />
 
         <ol ref={ref} className="relative mt-20 grid gap-12 md:grid-cols-4 md:gap-8" role="list">
           {/* Progress line: horizontal on desktop, vertical on mobile */}
-          <span aria-hidden="true" className="absolute left-[0.6875rem] top-0 h-full w-px bg-charcoal/10 md:left-0 md:top-[0.6875rem] md:h-px md:w-full" />
-          <span data-line aria-hidden="true" className="absolute left-[0.6875rem] top-0 h-full w-px origin-top bg-coral md:left-0 md:top-[0.6875rem] md:h-px md:w-full md:origin-left" />
+          <span aria-hidden="true" className="absolute left-[0.6875rem] top-0 h-full w-px bg-ink/10 md:left-0 md:top-[0.6875rem] md:h-px md:w-full" />
+          <span data-line aria-hidden="true" className="absolute left-[0.6875rem] top-0 h-full w-px origin-top bg-blue md:left-0 md:top-[0.6875rem] md:h-px md:w-full md:origin-left" />
           {processSteps.map((s) => (
             <li key={s.number} data-step className="relative pl-10 md:pl-0 md:pt-10">
-              <span aria-hidden="true" className="absolute left-0 top-0 grid h-[1.4375rem] w-[1.4375rem] place-items-center rounded-full border border-coral bg-ivory md:left-0 md:top-0">
-                <span className="h-2 w-2 rounded-full bg-coral" />
+              <span aria-hidden="true" className="absolute left-0 top-0 grid h-[1.4375rem] w-[1.4375rem] place-items-center rounded-full border border-blue bg-offwhite md:left-0 md:top-0">
+                <span className="h-2 w-2 rounded-full bg-blue" />
               </span>
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-charcoal/50">{s.number} /</p>
+              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-ink/50">{s.number} /</p>
               <h3 className="mt-2 text-[clamp(1.75rem,1rem+2vw,3rem)] font-extrabold uppercase leading-none tracking-[-0.02em]">{s.title}</h3>
-              <p className="mt-4 max-w-[30ch] leading-[1.7] text-charcoal/70">{s.description}</p>
+              <p className="mt-4 max-w-[30ch] leading-[1.7] text-ink/70">{s.description}</p>
             </li>
           ))}
         </ol>

@@ -17,7 +17,7 @@ export function BrandStatement() {
   });
 
   return (
-    <section ref={ref} className="section-y relative overflow-hidden bg-coral text-charcoal" aria-labelledby="brand-statement">
+    <section ref={ref} className="section-y relative overflow-hidden bg-blue text-ink" aria-labelledby="brand-statement">
       <div className="container-x mx-auto max-w-[110rem]">
         <div data-block className="grid gap-12 lg:grid-cols-12">
           <h2 id="brand-statement" className="lg:col-span-9">
@@ -27,7 +27,7 @@ export function BrandStatement() {
               </span>
             ))}
           </h2>
-          <p data-sub className="lead self-end border-l-2 border-charcoal/40 pl-6 text-charcoal/85 lg:col-span-3 lg:max-w-[22ch]">
+          <p data-sub className="lead self-end border-l-2 border-ink/40 pl-6 text-ink/85 lg:col-span-3 lg:max-w-[22ch]">
             Good ideas create attention. Great execution turns that attention into momentum.
           </p>
         </div>

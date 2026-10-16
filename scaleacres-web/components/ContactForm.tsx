@@ -40,17 +40,17 @@ export function ContactForm() {
 
   const errors = status.state === "error" ? status.fields ?? {} : {};
   const inputCls =
-    "peer w-full rounded-none border-0 border-b border-ivory/25 bg-transparent px-0 pb-3 pt-6 text-base text-ivory placeholder-transparent outline-none transition-colors focus:border-coral aria-[invalid=true]:border-coral";
+    "peer w-full rounded-none border-0 border-b border-offwhite/25 bg-transparent px-0 pb-3 pt-6 text-base text-offwhite placeholder-transparent outline-none transition-colors focus:border-blue aria-[invalid=true]:border-blue";
   const labelCls =
-    "pointer-events-none absolute left-0 top-6 text-base text-grey transition-all duration-300 peer-focus:top-0 peer-focus:text-[0.6875rem] peer-focus:uppercase peer-focus:tracking-[0.16em] peer-focus:text-coral peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-[0.6875rem] peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.16em]";
+    "pointer-events-none absolute left-0 top-6 text-base text-grey transition-all duration-300 peer-focus:top-0 peer-focus:text-[0.6875rem] peer-focus:uppercase peer-focus:tracking-[0.16em] peer-focus:text-blue peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-[0.6875rem] peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.16em]";
 
   if (status.state === "success") {
     return (
-      <div role="status" className="rounded-sm border border-coral/40 bg-charcoal-soft p-8">
-        <p className="eyebrow text-coral">Message received</p>
+      <div role="status" className="rounded-sm border border-blue/40 bg-ink-soft p-8">
+        <p className="eyebrow text-blue">Message received</p>
         <p className="h3 mt-4">Thanks — we&apos;ve got your enquiry.</p>
-        <p className="mt-4 text-stone">Your reference is <span className="font-semibold text-ivory">{status.reference}</span>. A member of the ScaleAcres team will get back to you within one business day.</p>
-        <button type="button" onClick={() => { setStatus({ state: "idle" }); setStartedAt(Date.now()); }} className="mt-6 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-ivory hover:text-coral">
+        <p className="mt-4 text-grey-soft">Your reference is <span className="font-semibold text-offwhite">{status.reference}</span>. A member of the ScaleAcres team will get back to you within one business day.</p>
+        <button type="button" onClick={() => { setStatus({ state: "idle" }); setStartedAt(Date.now()); }} className="mt-6 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-offwhite hover:text-blue">
           Send another message
         </button>
       </div>
@@ -65,19 +65,19 @@ export function ContactForm() {
       <Field id={`${id}-company`} name="company" label="Company Name" autoComplete="organization" error={errors.company} inputCls={inputCls} labelCls={labelCls} required />
 
       <div className="relative sm:col-span-2">
-        <label htmlFor={`${id}-service`} className="block text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-grey">Service Interested In <span aria-hidden="true" className="text-coral">*</span></label>
-        <select id={`${id}-service`} name="service" required defaultValue="" aria-invalid={!!errors.service} aria-describedby={errors.service ? `${id}-service-err` : undefined} className="mt-2 w-full appearance-none border-0 border-b border-ivory/25 bg-transparent pb-3 pt-2 text-base text-ivory outline-none focus:border-coral aria-[invalid=true]:border-coral [&>option]:bg-charcoal">
+        <label htmlFor={`${id}-service`} className="block text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-grey">Service Interested In <span aria-hidden="true" className="text-blue">*</span></label>
+        <select id={`${id}-service`} name="service" required defaultValue="" aria-invalid={!!errors.service} aria-describedby={errors.service ? `${id}-service-err` : undefined} className="mt-2 w-full appearance-none border-0 border-b border-offwhite/25 bg-transparent pb-3 pt-2 text-base text-offwhite outline-none focus:border-blue aria-[invalid=true]:border-blue [&>option]:bg-ink">
           <option value="" disabled>Choose a service</option>
           {serviceOptions.map((o) => (<option key={o.value} value={o.value}>{o.label}</option>))}
         </select>
         <span aria-hidden="true" className="pointer-events-none absolute bottom-4 right-0 text-grey">▾</span>
-        {errors.service ? <p id={`${id}-service-err`} role="alert" className="mt-2 text-sm text-coral">{errors.service}</p> : null}
+        {errors.service ? <p id={`${id}-service-err`} role="alert" className="mt-2 text-sm text-blue">{errors.service}</p> : null}
       </div>
 
       <div className="relative sm:col-span-2">
         <textarea id={`${id}-message`} name="message" rows={4} required placeholder="Project Description" aria-invalid={!!errors.message} aria-describedby={errors.message ? `${id}-message-err` : undefined} className={`${inputCls} resize-y`} />
-        <label htmlFor={`${id}-message`} className={labelCls}>Project Description <span aria-hidden="true" className="text-coral">*</span></label>
-        {errors.message ? <p id={`${id}-message-err`} role="alert" className="mt-2 text-sm text-coral">{errors.message}</p> : null}
+        <label htmlFor={`${id}-message`} className={labelCls}>Project Description <span aria-hidden="true" className="text-blue">*</span></label>
+        {errors.message ? <p id={`${id}-message-err`} role="alert" className="mt-2 text-sm text-blue">{errors.message}</p> : null}
       </div>
 
       {/* Honeypot — hidden from humans, tempting for bots. */}
@@ -87,21 +87,21 @@ export function ContactForm() {
       </div>
 
       <div className="sm:col-span-2">
-        <label className="flex items-start gap-3 text-sm text-stone">
-          <input type="checkbox" name="consent" required aria-invalid={!!errors.consent} className="mt-1 h-4 w-4 shrink-0 accent-coral" />
+        <label className="flex items-start gap-3 text-sm text-grey-soft">
+          <input type="checkbox" name="consent" required aria-invalid={!!errors.consent} className="mt-1 h-4 w-4 shrink-0 accent-blue" />
           <span id={`${id}-privacy`}>
-            I agree to ScaleAcres storing my details to respond to this enquiry. We never sell your data. See our <a href="/privacy-policy" className="underline underline-offset-2 hover:text-ivory">Privacy Policy</a>.
+            I agree to ScaleAcres storing my details to respond to this enquiry. We never sell your data. See our <a href="/privacy-policy/" className="underline underline-offset-2 hover:text-offwhite">Privacy Policy</a>.
           </span>
         </label>
-        {errors.consent ? <p role="alert" className="mt-2 text-sm text-coral">{errors.consent}</p> : null}
+        {errors.consent ? <p role="alert" className="mt-2 text-sm text-blue">{errors.consent}</p> : null}
       </div>
 
       <div className="flex flex-wrap items-center gap-5 sm:col-span-2">
-        <button type="submit" disabled={status.state === "submitting"} className="group inline-flex items-center gap-3 rounded-full bg-coral px-8 py-5 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-charcoal transition-colors hover:bg-ivory disabled:cursor-wait disabled:opacity-70">
+        <button type="submit" disabled={status.state === "submitting"} className="group inline-flex items-center gap-3 rounded-full bg-blue px-8 py-5 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-ink transition-colors hover:bg-offwhite disabled:cursor-wait disabled:opacity-70">
           {status.state === "submitting" ? "Sending…" : "Send Enquiry"}
           <Arrow className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </button>
-        <p ref={liveRef} tabIndex={-1} role="alert" aria-live="assertive" className={`text-sm ${status.state === "error" ? "text-coral" : "text-grey"}`}>
+        <p ref={liveRef} tabIndex={-1} role="alert" aria-live="assertive" className={`text-sm ${status.state === "error" ? "text-blue" : "text-grey"}`}>
           {status.state === "error" ? status.message : "We reply within one business day."}
         </p>
       </div>
@@ -113,8 +113,8 @@ function Field({ id, name, label, type = "text", autoComplete, error, inputCls, 
   return (
     <div className="relative">
       <input id={id} name={name} type={type} autoComplete={autoComplete} required={required} placeholder={label} aria-invalid={!!error} aria-describedby={error ? `${id}-err` : undefined} className={inputCls} />
-      <label htmlFor={id} className={labelCls}>{label} {required ? <span aria-hidden="true" className="text-coral">*</span> : null}</label>
-      {error ? <p id={`${id}-err`} role="alert" className="mt-2 text-sm text-coral">{error}</p> : null}
+      <label htmlFor={id} className={labelCls}>{label} {required ? <span aria-hidden="true" className="text-blue">*</span> : null}</label>
+      {error ? <p id={`${id}-err`} role="alert" className="mt-2 text-sm text-blue">{error}</p> : null}
     </div>
   );
 }

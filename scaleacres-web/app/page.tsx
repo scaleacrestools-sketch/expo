@@ -10,11 +10,15 @@ import { CaseStudies } from "@/components/CaseStudies";
 import { BrandStatement } from "@/components/BrandStatement";
 import { Insights } from "@/components/Insights";
 import { ContactCTA } from "@/components/ContactCTA";
-import { site } from "@/content/site";
+import { RealEstateDNA } from "@/components/RealEstateDNA";
+import { homepageSeo } from "@/content/seo/homepage";
 
 export const metadata: Metadata = {
-  title: `${site.name}® — ${site.tagline}`,
-  description: "We build unforgettable brands, bold digital experiences and campaigns designed to make an impact. Branding, web, SEO, performance marketing, social, video and technology from Delhi, Agra and Bangalore.",
+  // PROTECTED: identical to the live homepage title. Do not change without SEO approval.
+  title: { absolute: homepageSeo.title.value },
+  // LAUNCH BLOCKER: replace with the exact live meta description from the crawl export.
+  // Until then this uses existing homepage body copy, never new marketing copy.
+  description: homepageSeo.metaDescription.value || homepageSeo.intro.value,
   alternates: { canonical: "/" },
 };
 
@@ -24,15 +28,15 @@ export const metadata: Metadata = {
  */
 const heroMedia = {
   sources: [
-    { src: "/videos/showreel-placeholder.webm", type: "video/webm" },
-    { src: "/videos/showreel-placeholder.mp4", type: "video/mp4" },
+    { src: "/videos/showreel.webm", type: "video/webm" },
+    { src: "/videos/showreel.mp4", type: "video/mp4" },
   ],
   mobileSources: [
-    { src: "/videos/placeholder-portrait.webm", type: "video/webm" },
-    { src: "/videos/placeholder-portrait.mp4", type: "video/mp4" },
+    { src: "/videos/showreel-portrait.webm", type: "video/webm" },
+    { src: "/videos/showreel-portrait.mp4", type: "video/mp4" },
   ],
-  poster: "/images/hero-poster.svg",
-  mobilePoster: "/images/hero-poster-mobile.svg",
+  poster: "/images/hero-poster.jpg",
+  mobilePoster: "/images/hero-poster-mobile.jpg",
   placeholder: true,
 };
 
@@ -45,6 +49,7 @@ export default function HomePage() {
       <ServiceAccordion />
       <SelectedWork />
       <CreativeStudio />
+      <RealEstateDNA />
       <ProcessTimeline />
       <CaseStudies />
       <BrandStatement />

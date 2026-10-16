@@ -5,13 +5,13 @@ import { ContactForm } from "@/components/ContactForm";
 
 export function ContactCTA({ withForm = true }: { withForm?: boolean }) {
   return (
-    <Reveal as="section" id="contact" className="section-y bg-charcoal text-ivory">
+    <Reveal as="section" id="contact" className="section-y bg-ink text-offwhite">
       <div className="container-x mx-auto grid max-w-[110rem] gap-16 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <SectionHeading eyebrow="Let's make something great" title={<>Got a big idea?<br />Let&apos;s make it happen.</>} description="A new brand, a better digital experience, or your next big campaign—whatever you're building, we'd love to hear about it." />
           <div className="mt-10 flex flex-wrap gap-3" data-reveal>
-            <ArrowLink href={withForm ? "#enquiry" : "/contact"} variant="coral" size="lg">Let&apos;s Talk</ArrowLink>
-            <ArrowLink href="/work" variant="outline" size="lg" className="text-ivory">View Our Work</ArrowLink>
+            <ArrowLink href={withForm ? "#enquiry" : "/contact-us/"} variant="blue" size="lg">Let&apos;s Talk</ArrowLink>
+            <ArrowLink href="/case-studies/" variant="outline" size="lg" className="text-offwhite">View Our Work</ArrowLink>
           </div>
         </div>
         {withForm ? (

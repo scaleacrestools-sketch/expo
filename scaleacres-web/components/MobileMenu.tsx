@@ -47,7 +47,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
       aria-modal="true"
       aria-label="Site menu"
       aria-hidden={!open}
-      className={`fixed inset-0 z-40 flex flex-col bg-charcoal text-ivory transition-[clip-path,opacity] duration-700 ease-in-out-quart lg:hidden ${
+      className={`fixed inset-0 z-40 flex flex-col bg-ink text-offwhite transition-[clip-path,opacity] duration-700 ease-in-out-quart lg:hidden ${
         open ? "opacity-100 [clip-path:inset(0_0_0_0)]" : "pointer-events-none opacity-0 [clip-path:inset(0_0_100%_0)]"
       }`}
       style={{ paddingTop: "var(--header-h)" }}
@@ -60,7 +60,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
             if (item.label === "Services") {
               return (
                 <li key={item.href} className={anim} style={{ transitionDelay: delay }}>
-                  <div className="flex items-center justify-between border-b border-ivory/10">
+                  <div className="flex items-center justify-between border-b border-offwhite/10">
                     <Link href={item.href} onClick={onClose} className="py-4 text-[clamp(2rem,9vw,3.25rem)] font-extrabold uppercase leading-none tracking-[-0.02em]">
                       {item.label}
                     </Link>
@@ -70,7 +70,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                       aria-controls="mobile-services"
                       aria-label={servicesOpen ? "Collapse services" : "Expand services"}
                       onClick={() => setServicesOpen((v) => !v)}
-                      className="grid h-12 w-12 place-items-center rounded-full border border-ivory/20"
+                      className="grid h-12 w-12 place-items-center rounded-full border border-offwhite/20"
                     >
                       <svg aria-hidden="true" viewBox="0 0 12 12" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
                         <path d="M1 6h10" />
@@ -87,7 +87,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                       <ul className="space-y-0 py-2" role="list">
                         {services.map((s) => (
                           <li key={s.slug}>
-                            <Link href={serviceHref(s)} onClick={onClose} className="flex items-center gap-4 py-3 text-base font-medium text-stone hover:text-coral" tabIndex={servicesOpen && open ? 0 : -1}>
+                            <Link href={serviceHref(s)} onClick={onClose} className="flex items-center gap-4 py-3 text-base font-medium text-grey-soft hover:text-blue" tabIndex={servicesOpen && open ? 0 : -1}>
                               <span className="text-xs text-grey">{s.number}</span>
                               {s.title}
                             </Link>
@@ -100,8 +100,8 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
               );
             }
             return (
-              <li key={item.href} className={`border-b border-ivory/10 ${anim}`} style={{ transitionDelay: delay }}>
-                <Link href={item.href} onClick={onClose} className="block py-4 text-[clamp(2rem,9vw,3.25rem)] font-extrabold uppercase leading-none tracking-[-0.02em] hover:text-coral">
+              <li key={item.href} className={`border-b border-offwhite/10 ${anim}`} style={{ transitionDelay: delay }}>
+                <Link href={item.href} onClick={onClose} className="block py-4 text-[clamp(2rem,9vw,3.25rem)] font-extrabold uppercase leading-none tracking-[-0.02em] hover:text-blue">
                   {item.label}
                 </Link>
               </li>
@@ -110,16 +110,16 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
         </ul>
 
         <div className={`mt-8 transition-[transform,opacity] duration-600 ease-out-expo ${open ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ transitionDelay: "420ms" }}>
-          <Link href={ctaNav.href} onClick={onClose} className="inline-flex w-full items-center justify-between rounded-full bg-coral px-6 py-5 text-sm font-semibold uppercase tracking-[0.14em] text-charcoal">
+          <Link href={ctaNav.href} onClick={onClose} className="inline-flex w-full items-center justify-between rounded-full bg-blue px-6 py-5 text-sm font-semibold uppercase tracking-[0.14em] text-ink">
             {ctaNav.label} <Arrow />
           </Link>
           <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-grey">
-            <a href={`mailto:${site.email}`} className="hover:text-ivory">{site.email}</a>
-            <a href={site.phones[0].href} className="hover:text-ivory">{site.phones[0].number}</a>
+            <a href={`mailto:${site.email}`} className="hover:text-offwhite">{site.email}</a>
+            <a href={site.phones[0].href} className="hover:text-offwhite">{site.phones[0].number}</a>
           </div>
-          <ul className="mt-4 flex gap-5 text-xs font-semibold uppercase tracking-[0.14em] text-stone" role="list">
+          <ul className="mt-4 flex gap-5 text-xs font-semibold uppercase tracking-[0.14em] text-grey-soft" role="list">
             {site.social.map((s) => (
-              <li key={s.label}><a href={s.href} target="_blank" rel="noopener noreferrer" className="hover:text-coral">{s.label}</a></li>
+              <li key={s.label}><a href={s.href} target="_blank" rel="noopener noreferrer" className="hover:text-blue">{s.label}</a></li>
             ))}
           </ul>
         </div>

@@ -41,7 +41,7 @@ export function VideoModal({ video, onClose }: { video: StudioVideo | null; onCl
       ref={dialog}
       aria-label={video ? video.title : "Video player"}
       onClick={(e) => { if (e.target === dialog.current) onClose(); }}
-      className="m-auto w-[min(96vw,1100px)] max-w-none rounded-sm border border-ivory/15 bg-charcoal p-0 text-ivory shadow-none backdrop:bg-charcoal/85 backdrop:backdrop-blur-sm"
+      className="m-auto w-[min(96vw,1100px)] max-w-none rounded-sm border border-offwhite/15 bg-ink p-0 text-offwhite shadow-none backdrop:bg-ink/85 backdrop:backdrop-blur-sm"
     >
       {video ? (
         <div className="relative">
@@ -59,14 +59,14 @@ export function VideoModal({ video, onClose }: { video: StudioVideo | null; onCl
           </video>
           <div className="flex items-center justify-between gap-4 p-4">
             <div className="min-w-0">
-              <p className="text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-coral">{video.category}</p>
+              <p className="text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-blue">{video.category}</p>
               <p className="truncate text-sm font-semibold">{video.title}</p>
             </div>
             <div className="flex gap-2">
-              <button type="button" onClick={toggleMute} aria-pressed={!muted} className="rounded-full border border-ivory/25 px-4 py-2 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] hover:border-coral hover:text-coral">
+              <button type="button" onClick={toggleMute} aria-pressed={!muted} className="rounded-full border border-offwhite/25 px-4 py-2 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] hover:border-blue hover:text-blue">
                 {muted ? "Unmute" : "Mute"}
               </button>
-              <button type="button" onClick={onClose} className="rounded-full border border-ivory/25 px-4 py-2 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] hover:border-coral hover:text-coral">
+              <button type="button" onClick={onClose} className="rounded-full border border-offwhite/25 px-4 py-2 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] hover:border-blue hover:text-blue">
                 Close
               </button>
             </div>

@@ -2,13 +2,17 @@
   "name": "scaleacres-web",
   "version": "0.1.0",
   "private": true,
-  "description": "ScaleAcres® — Independent Creative, Digital & Growth Agency. Next.js App Router website.",
+  "description": "ScaleAcres\u00ae \u2014 Independent Creative, Digital & Growth Agency. Next.js App Router website.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "seo:baseline": "node scripts/seo-audit.mjs crawl --base https://scaleacres.com --out seo/baseline.json",
+    "seo:candidate": "node scripts/seo-audit.mjs crawl --base ${CANDIDATE_URL:-http://localhost:3000} --urls-from seo/baseline.json --out seo/candidate.json",
+    "seo:compare": "node scripts/seo-audit.mjs compare seo/baseline.json seo/candidate.json --out seo/parity-report.md --csv seo/parity-report.csv",
+    "showreel": "bash scripts/build-showreel.sh"
   },
   "dependencies": {
     "gsap": "^3.15.0",
@@ -26,5 +30,8 @@
     "eslint-config-next": "^16.4.2",
     "tailwindcss": "^4.3.3",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.9"
   }
 }

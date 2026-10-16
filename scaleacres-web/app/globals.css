@@ -2,15 +2,16 @@
 
 /* ---------- Design tokens ---------- */
 @theme {
-  --color-charcoal: #11151a;
-  --color-charcoal-soft: #171c22;
-  --color-ivory: #f6f3ea;
-  --color-ivory-deep: #ede8da;
-  --color-coral: #f15a3c;
-  --color-coral-deep: #d94a2e;
-  --color-stone: #cac3b6;
-  --color-grey: #9da2a6;
-  --color-white: #ffffff;
+  /* Official ScaleAcres brand colours (sampled from the logo artwork, see docs/brand-tokens.md) */
+  --color-ink: #0b0d0d;        /* ScaleAcres Brand Black */
+  --color-ink-soft: #15181b;   /* Graphite — raised surfaces on black */
+  --color-blue: #1ca6dc;       /* ScaleAcres Brand Blue */
+  --color-blue-deep: #1489b8;  /* Blue hover / on light grounds */
+  --color-white: #ffffff;      /* Pure White */
+  --color-offwhite: #f4f5f7;   /* Off-White section ground */
+  --color-grey-soft: #c9cdd2;  /* Soft Grey — rules, supporting text on black */
+  --color-grey: #9da2a6;       /* Soft Grey (text) */
+  --color-grey-dark: #3a3f45;  /* Dark Grey — body text on light */
 
   --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 
@@ -41,14 +42,14 @@
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
-    @apply bg-charcoal text-ivory font-sans antialiased;
+    @apply bg-ink text-offwhite font-sans antialiased;
     font-size: var(--fs-body);
     line-height: 1.6;
     overflow-x: clip;
   }
-  ::selection { background: var(--color-coral); color: var(--color-charcoal); }
+  ::selection { background: var(--color-blue); color: var(--color-ink); }
   :focus-visible {
-    outline: 2px solid var(--color-coral);
+    outline: 2px solid var(--color-blue);
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -91,8 +92,9 @@
   .reveal-words.is-static .word > span { transform: none; }
 
   /* Generic reveal */
-  [data-reveal] { opacity: 0; transform: translateY(28px); will-change: transform, opacity; }
-  .no-js [data-reveal], .reduced-motion [data-reveal] { opacity: 1; transform: none; }
+  /* Content is fully visible without JavaScript; only hidden once JS has booted. */
+  .js [data-reveal] { opacity: 0; transform: translateY(28px); will-change: transform, opacity; }
+  .js .reduced-motion [data-reveal] { opacity: 1; transform: none; }
 
   /* Marquee */
   .marquee { display: flex; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
@@ -105,8 +107,8 @@
     position: absolute; top: 0.75rem; left: 0.75rem; z-index: 2;
     font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600;
     padding: 0.3rem 0.5rem; border-radius: 2px;
-    background: rgba(17, 21, 26, 0.72); color: var(--color-ivory);
-    border: 1px solid rgba(246, 243, 234, 0.25);
+    background: rgba(11, 13, 13, 0.72); color: var(--color-offwhite);
+    border: 1px solid rgba(244, 245, 247, 0.25);
     backdrop-filter: blur(4px);
   }
 

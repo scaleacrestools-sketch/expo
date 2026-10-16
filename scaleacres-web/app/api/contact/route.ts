@@ -45,9 +45,9 @@ export async function POST(req: Request) {
   const text = [
     `Reference: ${reference}`, `Name: ${data.fullName}`, `Email: ${data.email}`, `Phone: ${data.phone}`, `Company: ${data.company}`, `Service: ${serviceTitle}`, "", data.message, "", `Received: ${new Date().toISOString()} · IP: ${ip}`,
   ].join("\n");
-  const html = `<div style="font-family:Outfit,Segoe UI,Arial,sans-serif;max-width:640px"><h2 style="margin:0 0 16px">New website enquiry <span style="color:#F15A3C">${reference}</span></h2><table cellpadding="6" style="border-collapse:collapse">${[
+  const html = `<div style="font-family:Outfit,Segoe UI,Arial,sans-serif;max-width:640px"><h2 style="margin:0 0 16px">New website enquiry <span style="color:#1CA6DC">${reference}</span></h2><table cellpadding="6" style="border-collapse:collapse">${[
     ["Name", data.fullName], ["Email", data.email], ["Phone", data.phone], ["Company", data.company], ["Service", serviceTitle],
-  ].map(([k, v]) => `<tr><td style="color:#9DA2A6">${k}</td><td><strong>${escapeHtml(v)}</strong></td></tr>`).join("")}</table><p style="white-space:pre-wrap;border-left:3px solid #F15A3C;padding-left:12px">${escapeHtml(data.message)}</p><p style="color:#9DA2A6;font-size:12px">Received ${new Date().toISOString()} · IP ${escapeHtml(ip)}</p></div>`;
+  ].map(([k, v]) => `<tr><td style="color:#9DA2A6">${k}</td><td><strong>${escapeHtml(v)}</strong></td></tr>`).join("")}</table><p style="white-space:pre-wrap;border-left:3px solid #1CA6DC;padding-left:12px">${escapeHtml(data.message)}</p><p style="color:#9DA2A6;font-size:12px">Received ${new Date().toISOString()} · IP ${escapeHtml(ip)}</p></div>`;
 
   const deliveries: Promise<boolean>[] = [];
   const resendKey = process.env.RESEND_API_KEY;

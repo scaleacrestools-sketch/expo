@@ -23,7 +23,7 @@ export function ServiceAccordion({ defaultOpen = services[0].slug }: { defaultOp
   });
 
   return (
-    <Reveal as="section" id="services" className="section-y bg-charcoal text-ivory">
+    <Reveal as="section" id="services" className="section-y bg-ink text-offwhite">
       <div className="container-x mx-auto max-w-[110rem]">
         <div className="grid gap-10 lg:grid-cols-12">
           <SectionHeading
@@ -34,7 +34,7 @@ export function ServiceAccordion({ defaultOpen = services[0].slug }: { defaultOp
           />
         </div>
 
-        <ul ref={listRef} className="mt-16 border-t border-ivory/15" role="list">
+        <ul ref={listRef} className="mt-16 border-t border-offwhite/15" role="list">
           {services.map((s) => (
             <ServiceRow key={s.slug} service={s} open={open === s.slug} baseId={baseId} onToggle={() => setOpen(open === s.slug ? null : s.slug)} />
           ))}
@@ -48,7 +48,7 @@ function ServiceRow({ service: s, open, onToggle, baseId }: { service: Service; 
   const panelId = `${baseId}-${s.slug}-panel`;
   const buttonId = `${baseId}-${s.slug}-button`;
   return (
-    <li data-row className="border-b border-ivory/15">
+    <li data-row className="border-b border-offwhite/15">
       <h3 className="m-0">
         <button
           id={buttonId}
@@ -56,13 +56,13 @@ function ServiceRow({ service: s, open, onToggle, baseId }: { service: Service; 
           aria-expanded={open}
           aria-controls={panelId}
           onClick={onToggle}
-          className="group grid w-full grid-cols-[3rem_1fr_3rem] items-center gap-4 py-6 text-left transition-colors duration-300 hover:text-coral md:grid-cols-[5rem_1fr_4rem] md:py-8"
+          className="group grid w-full grid-cols-[3rem_1fr_3rem] items-center gap-4 py-6 text-left transition-colors duration-300 hover:text-blue md:grid-cols-[5rem_1fr_4rem] md:py-8"
         >
-          <span className={`text-sm font-semibold transition-colors ${open ? "text-coral" : "text-grey"}`}>{s.number}</span>
+          <span className={`text-sm font-semibold transition-colors ${open ? "text-blue" : "text-grey"}`}>{s.number}</span>
           <span className="text-[clamp(1.375rem,1rem+2.4vw,3.25rem)] font-bold uppercase leading-[1.02] tracking-[-0.02em]">{s.title}</span>
           <span
             aria-hidden="true"
-            className={`relative ml-auto grid h-11 w-11 place-items-center rounded-full border transition-[border-color,background-color,transform] duration-500 ease-out-expo ${open ? "rotate-45 border-coral bg-coral text-charcoal" : "border-ivory/25 group-hover:border-coral"}`}
+            className={`relative ml-auto grid h-11 w-11 place-items-center rounded-full border transition-[border-color,background-color,transform] duration-500 ease-out-expo ${open ? "rotate-45 border-blue bg-blue text-ink" : "border-offwhite/25 group-hover:border-blue"}`}
           >
             <svg viewBox="0 0 12 12" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M1 6h10M6 1v10" /></svg>
           </span>
@@ -80,12 +80,13 @@ function ServiceRow({ service: s, open, onToggle, baseId }: { service: Service; 
         <div className="min-h-0 overflow-hidden">
           <div className="grid gap-8 pb-10 pl-0 md:grid-cols-12 md:pl-[5rem] lg:gap-12">
             <div className="md:col-span-6">
-              <p className="text-[clamp(1.125rem,1rem+0.8vw,1.75rem)] font-bold uppercase leading-[1.1] tracking-[-0.015em] text-ivory">{s.headline}</p>
-              <p className="mt-4 max-w-[48ch] leading-[1.7] text-stone">{s.description}</p>
+              <p className="text-[clamp(1.125rem,1rem+0.8vw,1.75rem)] font-bold uppercase leading-[1.1] tracking-[-0.015em] text-offwhite">{s.headline}</p>
+              {s.focus ? <p className="mt-4 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-blue">{s.focus}</p> : null}
+              <p className="mt-4 max-w-[48ch] leading-[1.7] text-grey-soft">{s.description}</p>
               <Link
                 href={serviceHref(s)}
                 tabIndex={open ? 0 : -1}
-                className="group/l mt-7 inline-flex items-center gap-3 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-ivory hover:text-coral"
+                className="group/l mt-7 inline-flex items-center gap-3 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-offwhite hover:text-blue"
               >
                 {s.ctaLabel}
                 <Arrow className="transition-transform duration-300 group-hover/l:translate-x-0.5 group-hover/l:-translate-y-0.5" />
@@ -93,8 +94,8 @@ function ServiceRow({ service: s, open, onToggle, baseId }: { service: Service; 
             </div>
             <ul className="grid grid-cols-2 gap-x-6 gap-y-3 self-start md:col-span-6 md:grid-cols-2" role="list" aria-label={`Included in ${s.title}`}>
               {s.included.map((item) => (
-                <li key={item} className="flex items-start gap-3 border-t border-ivory/15 pt-3 text-sm text-ivory/85">
-                  <span aria-hidden="true" className="mt-[0.45em] h-1.5 w-1.5 shrink-0 rounded-full bg-coral" />
+                <li key={item} className="flex items-start gap-3 border-t border-offwhite/15 pt-3 text-sm text-offwhite/85">
+                  <span aria-hidden="true" className="mt-[0.45em] h-1.5 w-1.5 shrink-0 rounded-full bg-blue" />
                   {item}
                 </li>
               ))}

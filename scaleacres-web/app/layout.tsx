@@ -17,7 +17,8 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: `${site.name}® — ${site.category}`, template: `%s — ${site.name}®` },
+  // Pages that exist on the live site set `title: { absolute }` with their protected title.
+  title: { default: site.name, template: `%s | ${site.name}` },
   description: site.description,
   applicationName: site.name,
   keywords: ["creative agency", "digital agency", "growth agency", "branding", "web design", "performance marketing", "SEO", "video production", "Delhi", "India"],
@@ -31,7 +32,6 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image", title: `${site.name}® — ${site.tagline}`, description: site.description },
   robots: { index: true, follow: true },
-  alternates: { canonical: "/" },
 };
 
 export const viewport: Viewport = {
@@ -42,11 +42,15 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={outfit.variable}>
+    <html lang="en" className={outfit.variable} suppressHydrationWarning>
+      <head>
+        {/* Marks JS as available so reveal animations may hide content until animated. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-coral focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-charcoal"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-blue focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-ink"
         >
           Skip to content
         </a>
