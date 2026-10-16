@@ -17,7 +17,7 @@ Quick alternative: drag the unzipped `scaleacres-static-preview` folder onto htt
 ## 1. Local preview
 
 ```bash
-unzip scaleacres-web.zip && cd scaleacres-web
+unzip scaleacres-final-source.zip -d scaleacres-web && cd scaleacres-web
 npm install                 # Node 20.9+ (22 recommended)
 cp .env.example .env.local  # optional: contact delivery, GA4
 npm run dev                 # http://localhost:3000 (hot reload)

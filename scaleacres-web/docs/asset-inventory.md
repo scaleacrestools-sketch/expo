@@ -12,7 +12,9 @@ Audit date: 16 Oct 2026. Every file in the project and every media reference was
 | Showreel clip 04 "Performance in motion" | AI video | Hero, Services 03, Studio | Streams from CDN |
 | Showreel clip 05 "Studio production" | AI video | Hero, About (landscape), Services 06, Studio | Streams from CDN |
 | Showreel clip 06 "Light sweep" | AI video | Hero, Contact background, Studio | Streams from CDN |
-| `public/brand/scaleacres-mark.svg` | Simplified mark | Structured-data logo URL only (not shown on the page) | Replace with the real logo |
+| `public/brand/scaleacres-logo.png` / `.webp` | **Official logo** (supplied file, trimmed only, 884 × 277) | Light grounds, Organization schema logo | In use |
+| `public/brand/scaleacres-logo-white.png` / `.webp` | Official logo, black artwork recoloured white (blue symbol and shapes untouched) | Header, menu, footer | In use |
+| `app/icon.png`, `app/apple-icon.png` | Symbol from the official logo on white | Favicon, home-screen icon | In use |
 
 The CDN addresses and Higgsfield job IDs are in `content/media.ts`. All of these are concept films commissioned by ScaleAcres. None of them is presented as client work.
 
@@ -20,13 +22,8 @@ The CDN addresses and Higgsfield job IDs are in `content/media.ts`. All of these
 
 Upload them on GitHub into the listed path on branch `claude/funny-pascal-2vnisf` (**Add file → Upload files**), or attach them in the chat. Keep exactly these filenames, and the code picks them up after a one-line switch.
 
-### Brand (blocking)
-| Filename | Size / format | Section |
-|---|---|---|
-| `public/brand/scaleacres-logo-white.png` | Original artwork, transparent PNG, ≥ 1024 px wide (or SVG). Light/blue version for dark backgrounds | Header (all pages), menu, footer |
-| `public/brand/scaleacres-logo.png` | Full-colour original for white backgrounds | Light sections, documents |
-
-After upload, set `logoFilesPresent: true` in `content/brand.ts`. The width/height values there must match the file's real pixel size (currently 1024 × 333, per the brand kit).
+### Brand (recommended)
+The supplied logo is 884 px wide, which is sharp at header size on retina screens. An **SVG** or ≥ 2000 px PNG of the same artwork (plus an official reversed version, if one exists) would make the footer and social-share uses razor-sharp. Same filenames, then update `width`/`height` in `content/brand.ts`.
 
 ### Hero video (recommended before launch)
 The clips play today from Higgsfield's CDN. For production, download the 12 clips from Higgsfield, rename them as listed in `docs/higgsfield-showreel-brief.md`, and either run `npm run showreel -- ./clips` or upload:
@@ -36,8 +33,11 @@ The clips play today from Higgsfield's CDN. For production, download the 12 clip
 | `public/videos/showreel-portrait.mp4` + `.webm` | 1080 × 1920, ≤ 4 MB | Hero (mobile) |
 | `public/images/hero-poster.jpg` | 1920 × 1080, first frame | Hero poster / reduced motion |
 | `public/images/hero-poster-mobile.jpg` | 1080 × 1920 | Hero poster on phones |
+| `public/images/posters/<clip>-landscape.webp` / `-portrait.webp` | First frame of each clip, written by the same script | Poster on every video; set `postersReady = true` in `content/media.ts` |
 
-### Client logos (section hidden until at least 3 exist)
+The CDN cannot be reached from the build sandbox, so the posters and self-hosted files could not be produced here. Until then videos sit on the brand black while the first frame loads (no broken boxes).
+
+### Client logos (section 03 shows a labelled "Logo pending" tile with the expected filename until each file exists; set `logoReady: true` in `content/clients.ts`)
 | Filename | Spec |
 |---|---|
 | `public/brand/clients/yugen-infra.svg` | SVG preferred, or PNG ≥ 400 px wide, transparent |
@@ -76,6 +76,5 @@ The insights section is currently typography-only, so missing images do not leav
 
 ## 3. Placeholder patterns removed
 Orange circles, grey bars, fake thumbnails, fake video cards, the gradient "showreel", the geometric About image and text-only client names are all gone. The only remaining stand-ins are clearly labelled:
-- the header's text logo ("Logo file pending");
 - project covers ("Project visuals pending");
 - the Social and Ad tabs ("awaiting approved files").

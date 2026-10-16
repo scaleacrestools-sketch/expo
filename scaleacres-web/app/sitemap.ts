@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
 import { services } from "@/content/services";
-import { projects } from "@/content/projects";
+import { caseStudyProjects } from "@/content/projects";
 import { routes } from "@/content/nav";
 
 /**
@@ -17,6 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...statics.map((p) => ({ url: `${site.url}${p}`, lastModified: now, changeFrequency: "monthly" as const, priority: p === "/" ? 1 : 0.7 })),
     ...services.map((s) => ({ url: `${site.url}${s.path}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 })),
-    ...projects.map((p) => ({ url: `${site.url}${routes.work}${p.slug}/`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.6 })),
+    ...caseStudyProjects.map((p) => ({ url: `${site.url}${routes.work}${p.slug}/`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.6 })),
   ];
 }

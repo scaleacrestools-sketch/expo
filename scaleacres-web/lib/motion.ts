@@ -40,13 +40,22 @@ export function useGsap<T extends HTMLElement>(
       el.classList.add("reduced-motion");
       return;
     }
-    const g = ensureGsap();
-    const ctx = g.context(() => {
-      cleanupRef.current = setup({ gsap: g, ScrollTrigger, el });
-    }, el);
+    // Set-up runs in idle time (bounded by a short timeout) so scroll animations never
+    // lengthen the hydration task; everything they touch is below the fold or still hidden.
+    let ctx: gsap.Context | undefined;
+    const run = () => {
+      const g = ensureGsap();
+      ctx = g.context(() => {
+        cleanupRef.current = setup({ gsap: g, ScrollTrigger, el });
+      }, el);
+    };
+    const idle = typeof window.requestIdleCallback === "function";
+    const handle = idle ? window.requestIdleCallback(run, { timeout: 400 }) : window.setTimeout(run, 1);
     return () => {
+      if (idle) window.cancelIdleCallback(handle);
+      else window.clearTimeout(handle);
       cleanupRef.current?.();
-      ctx.revert();
+      ctx?.revert();
     };
   }, deps);
 }

@@ -47,6 +47,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* Marks JS as available so reveal animations may hide content until animated. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        {/* Warm the connection to the showreel CDN so the first hero clip starts sooner (remove once clips are self-hosted). */}
+        <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" />
       </head>
       <body>
         <a

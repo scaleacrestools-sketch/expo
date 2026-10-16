@@ -9,7 +9,7 @@ import { brand } from "@/content/brand";
  */
 export function Logo({ tone = "light", className = "", withLink = true, size = "md" }: { tone?: "light" | "dark"; className?: string; withLink?: boolean; size?: "md" | "lg" }) {
   const src = tone === "light" ? brand.logo.reversed : brand.logo.primary;
-  const h = size === "lg" ? "h-11 md:h-14" : "h-9 md:h-11";
+  const h = size === "lg" ? "h-10 sm:h-12 md:h-[3.25rem]" : "h-9 md:h-11";
   const content = brand.logoFilesPresent ? (
     <Image
       src={src}

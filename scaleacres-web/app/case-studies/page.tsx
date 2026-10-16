@@ -15,7 +15,7 @@ export default function WorkPage() {
   return (
     <>
       <PageHero eyebrow="The work speaks" title={<>Proof is in<br />the work.</>} description="Every brand has a different story. Here's a look at the experiences, identities and campaigns we've helped bring to life." />
-      <SelectedWork filterable />
+      <SelectedWork />
       <CaseStudies />
       <ContactCTA withForm={false} />
     </>

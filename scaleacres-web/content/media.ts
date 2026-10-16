@@ -71,14 +71,26 @@ export const showreel: Clip[] = [
 
 export const clip = (id: string) => showreel.find((c) => c.id === id)!;
 
-/** Which clip illustrates each service row (only where a genuinely related clip exists). */
+/**
+ * Poster frames (WebP, first frame of each clip) written by `npm run showreel -- ./clips`
+ * to /public/images/posters/<id>-<landscape|portrait>.webp. Flip to true once they exist;
+ * until then videos sit on the brand black while the first frame loads.
+ */
+export const postersReady = false;
+export const posterForSrc = (src: string): string | undefined => {
+  if (!postersReady) return undefined;
+  const c = showreel.find((x) => x.landscape === src || x.portrait === src);
+  return c ? `/images/posters/${c.id}-${c.landscape === src ? "landscape" : "portrait"}.webp` : undefined;
+};
+
+/** Concept clip shown beside each service. Replace with real ScaleAcres project footage per service when available. */
 export const serviceClip: Record<string, string | undefined> = {
   "website-design-development": "web",
   "performance-marketing": "performance",
   "branding-creative-design": "brand",
   "video-creative-production": "production",
-  "social-media-marketing": undefined,
-  "search-engine-optimization": undefined,
-  "ecommerce-solutions": undefined,
-  "custom-applications-software": undefined,
+  "social-media-marketing": "brand",
+  "search-engine-optimization": "performance",
+  "ecommerce-solutions": "web",
+  "custom-applications-software": "performance",
 };

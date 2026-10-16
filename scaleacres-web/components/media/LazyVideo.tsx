@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { posterForSrc } from "@/content/media";
 
 /**
  * Muted, looping background video that only downloads when it approaches the viewport,
@@ -49,6 +50,7 @@ export function LazyVideo({
       <video
         ref={ref}
         src={active ? src : undefined}
+        poster={posterForSrc(src)}
         muted
         loop={loop}
         playsInline

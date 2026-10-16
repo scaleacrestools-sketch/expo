@@ -11,6 +11,10 @@ import { useGsap } from "@/lib/motion";
 
 export function ServiceAccordion({ defaultOpen = services[0].slug }: { defaultOpen?: string | null }) {
   const [open, setOpen] = useState<string | null>(defaultOpen);
+  // Last opened service keeps the desktop media panel populated when every row is closed.
+  const [active, setActive] = useState<string>(defaultOpen ?? services[0].slug);
+  const activeService = services.find((s) => s.slug === active) ?? services[0];
+  const activeMedia = serviceClip[activeService.slug] ? clip(serviceClip[activeService.slug]!) : undefined;
   const listRef = useRef<HTMLUListElement>(null);
   const baseId = useId();
 
@@ -24,7 +28,7 @@ export function ServiceAccordion({ defaultOpen = services[0].slug }: { defaultOp
 
   return (
     <Reveal as="section" id="services" className="section-y bg-ink text-white">
-      <div className="container-x mx-auto max-w-[110rem]">
+      <div className="container-x mx-auto max-w-[120rem]">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
             <p className="eyebrow text-blue" data-reveal>Our expertise / What we do</p>
@@ -39,11 +43,40 @@ export function ServiceAccordion({ defaultOpen = services[0].slug }: { defaultOp
           </p>
         </div>
 
-        <ul ref={listRef} className="mt-20 border-t border-white/15" role="list">
-          {services.map((s) => (
-            <ServiceRow key={s.slug} service={s} open={open === s.slug} baseId={baseId} onToggle={() => setOpen(open === s.slug ? null : s.slug)} />
-          ))}
-        </ul>
+        <div className="mt-20 grid gap-12 lg:grid-cols-12 lg:gap-14">
+          <ul ref={listRef} className="border-t border-white/15 lg:col-span-7" role="list">
+            {services.map((s) => (
+              <ServiceRow
+                key={s.slug}
+                service={s}
+                open={open === s.slug}
+                baseId={baseId}
+                onToggle={() => {
+                  const next = open === s.slug ? null : s.slug;
+                  setOpen(next);
+                  if (next) setActive(next);
+                }}
+              />
+            ))}
+          </ul>
+
+          {/* Desktop: sticky preview of the active service. Mobile shows media inside each panel instead. */}
+          <aside className="hidden lg:col-span-5 lg:block" aria-label={`${activeService.title} preview`}>
+            <div className="sticky top-28">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[6px] bg-white/5">
+                {activeMedia ? (
+                  <LazyVideo key={activeService.slug} src={activeMedia.portrait} label={activeMedia.description} className="h-full w-full animate-[fade-in_700ms_ease-out]" />
+                ) : null}
+                <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgba(11,13,13,0.85),transparent_50%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-8">
+                  <p className="text-sm font-bold tabular-nums text-blue">{activeService.number}</p>
+                  <p className="mt-2 text-[clamp(1.75rem,1rem+1.6vw,2.75rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.03em]">{activeService.title}</p>
+                </div>
+              </div>
+              {activeMedia ? <p className="mt-3 text-xs uppercase tracking-[0.14em] text-grey">ScaleAcres studio — {activeMedia.title}</p> : null}
+            </div>
+          </aside>
+        </div>
       </div>
     </Reveal>
   );
@@ -95,8 +128,8 @@ function ServiceRow({ service: s, open, onToggle, baseId }: { service: Service; 
         className={`relative grid transition-[grid-template-rows,opacity] duration-700 ease-in-out-quart ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
       >
         <div className="min-h-0 overflow-hidden">
-          <div className="grid gap-10 pb-14 md:grid-cols-12 md:pl-[7rem] lg:gap-14">
-            <div className={media ? "md:col-span-6" : "md:col-span-7"}>
+          <div className="grid gap-10 pb-14 md:grid-cols-12 md:pl-[7rem] lg:block">
+            <div className={media ? "md:col-span-6 lg:col-span-12" : "md:col-span-7"}>
               <p className="text-[clamp(1.375rem,1rem+1.2vw,2.25rem)] font-bold uppercase leading-[1.05] tracking-[-0.02em] text-white">{s.headline}</p>
               {s.focus ? <p className="label mt-5 text-blue">{s.focus}</p> : null}
               <p className="mt-5 max-w-[50ch] text-[length:var(--fs-body)] leading-[1.7] text-grey-soft">{s.description}</p>
@@ -118,7 +151,7 @@ function ServiceRow({ service: s, open, onToggle, baseId }: { service: Service; 
               </Link>
             </div>
             {media ? (
-              <div className="md:col-span-6">
+              <div className="md:col-span-6 lg:hidden">
                 {open ? <LazyVideo src={media.landscape} label={media.description} className="aspect-[16/10] rounded-sm" /> : <div className="aspect-[16/10]" />}
                 <p className="mt-3 text-xs uppercase tracking-[0.14em] text-grey">ScaleAcres studio — {media.title}</p>
               </div>

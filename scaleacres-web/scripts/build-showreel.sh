@@ -61,5 +61,12 @@ web "$ROOT/showreel-master-9x16.mp4" showreel-portrait 1080 1920
 
 ffmpeg -y -loglevel error -ss 0.2 -i "$ROOT/showreel-master-16x9.mp4" -frames:v 1 -q:v 3 "$OUT_I/hero-poster.jpg"
 ffmpeg -y -loglevel error -ss 0.2 -i "$ROOT/showreel-master-9x16.mp4" -frames:v 1 -q:v 3 "$OUT_I/hero-poster-mobile.jpg"
-ls -lh "$OUT_V"/showreel* "$OUT_I"/hero-poster*
-echo "Done. Set heroMedia.placeholder = false in app/page.tsx."
+# Per-clip poster frames (WebP, high quality) used by the hero and every lazy video.
+mkdir -p "$OUT_I/posters"
+IDS=(architecture brand web performance production finale)
+for i in "${!NAMES[@]}"; do
+  ffmpeg -y -loglevel error -ss 0.1 -i "$CLIPS/${NAMES[$i]}-16x9.mp4" -frames:v 1 -vf "scale=1920:-2" -c:v libwebp -quality 88 "$OUT_I/posters/${IDS[$i]}-landscape.webp"
+  ffmpeg -y -loglevel error -ss 0.1 -i "$CLIPS/${NAMES[$i]}-9x16.mp4" -frames:v 1 -vf "scale=1080:-2" -c:v libwebp -quality 88 "$OUT_I/posters/${IDS[$i]}-portrait.webp"
+done
+ls -lh "$OUT_V"/showreel* "$OUT_I"/hero-poster* "$OUT_I"/posters/*
+echo "Done. Set postersReady = true in content/media.ts."

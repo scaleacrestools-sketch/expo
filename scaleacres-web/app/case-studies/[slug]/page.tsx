@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects, getProject } from "@/content/projects";
+import { projects, caseStudyProjects, getProject } from "@/content/projects";
 import { caseStudies } from "@/content/caseStudies";
 import { services, serviceHref } from "@/content/services";
 import { PageHero } from "@/components/PageHero";
@@ -13,7 +13,7 @@ import { Arrow } from "@/components/ui/Arrow";
 type Params = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  return caseStudyProjects.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {

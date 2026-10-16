@@ -7,7 +7,6 @@ import { SelectedWork } from "@/components/SelectedWork";
 import { CreativeStudio } from "@/components/CreativeStudio";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { CaseStudies } from "@/components/CaseStudies";
-import { BrandStatement } from "@/components/BrandStatement";
 import { Insights } from "@/components/Insights";
 import { ContactCTA } from "@/components/ContactCTA";
 import { RealEstateDNA } from "@/components/RealEstateDNA";
@@ -25,16 +24,16 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      {/* Strict section order — 01 Hero … 11 Contact CTA; 12 Footer is in the layout. */}
       <HeroVideo />
-      <ClientLogoShowcase />
       <AboutIntro />
+      <ClientLogoShowcase />
+      <SelectedWork limit={9} />
       <ServiceAccordion />
-      <SelectedWork />
-      <CreativeStudio />
       <RealEstateDNA />
+      <CreativeStudio />
       <ProcessTimeline />
       <CaseStudies />
-      <BrandStatement />
       <Insights />
       <ContactCTA />
     </>

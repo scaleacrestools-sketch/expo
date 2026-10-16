@@ -18,18 +18,19 @@ const explore = [
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-ink text-white">
-      {/* Oversized closing link */}
-      <Link href="/contact-us/" className="group block border-b border-white/10">
-        <div className="container-x mx-auto flex max-w-[120rem] items-center justify-between gap-8 py-[clamp(3rem,8vw,7rem)]">
-          <span className="text-[clamp(3rem,1rem+9vw,10rem)] font-black uppercase leading-[0.85] tracking-[-0.045em]">
-            Let&apos;s <span className="outline-text transition-colors duration-500 group-hover:text-blue group-hover:[-webkit-text-stroke:0]">talk.</span>
-          </span>
-          <span className="grid h-[clamp(4rem,8vw,8rem)] w-[clamp(4rem,8vw,8rem)] shrink-0 place-items-center rounded-full bg-blue text-ink transition-transform duration-700 ease-out-expo group-hover:rotate-45">
-            <Arrow className="h-1/3 w-1/3" />
-          </span>
+    <footer className="relative overflow-hidden border-t border-white/10 bg-[#080A0C] text-white">
+      {/* Closing CTA */}
+      <div className="border-b border-white/10">
+        <div className="container-x mx-auto flex max-w-[120rem] flex-col items-start justify-between gap-10 py-[clamp(4rem,9vw,8rem)] lg:flex-row lg:items-end">
+          <p className="max-w-[16ch] text-[clamp(2.75rem,1rem+6vw,8rem)] font-black uppercase leading-[0.88] tracking-[-0.045em]">
+            Let&apos;s build something that <span className="text-blue">matters.</span>
+          </p>
+          <Link href="/contact-us/" className="group inline-flex shrink-0 items-center gap-4 rounded-full bg-blue px-9 py-6 text-[0.875rem] font-bold uppercase tracking-[0.16em] text-ink transition-colors duration-500 hover:bg-white">
+            Let&apos;s Talk
+            <Arrow className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </Link>
         </div>
-      </Link>
+      </div>
 
       <div className="container-x mx-auto max-w-[120rem]">
         <div className="grid gap-14 py-16 lg:grid-cols-12">
@@ -79,7 +80,7 @@ export function Footer() {
         </div>
       </div>
 
-      <p aria-hidden="true" className="container-x mx-auto max-w-[120rem] select-none overflow-hidden whitespace-nowrap pb-1 text-[clamp(4rem,17.5vw,21rem)] font-black uppercase leading-[0.78] tracking-[-0.05em] text-white/[0.05]">
+      <p aria-hidden="true" className="container-x mx-auto max-w-[120rem] select-none overflow-hidden whitespace-nowrap pb-1 text-[clamp(3.5rem,15.4vw,18.5rem)] font-black uppercase leading-[0.78] tracking-[-0.05em] text-white/[0.05]">
         ScaleAcres
       </p>
     </footer>

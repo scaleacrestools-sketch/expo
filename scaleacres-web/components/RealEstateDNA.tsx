@@ -7,13 +7,12 @@ import { Reveal } from "@/components/ui/Reveal";
 import { LazyVideo } from "@/components/media/LazyVideo";
 
 const capabilities = [
-  "Real Estate Lead Generation",
-  "Residential Project Marketing",
-  "Commercial Project Marketing",
-  "Property Branding",
-  "Real Estate Websites",
-  "Performance Advertising",
-  "Video Marketing",
+  { title: "Property Marketing", text: "Launch and sustain residential and commercial projects across every channel buyers use." },
+  { title: "Lead Generation", text: "Qualified enquiries from people actively looking, routed straight to your sales team." },
+  { title: "Developer Branding", text: "Identities that make a developer, and each project, recognisable and trusted." },
+  { title: "Website Development", text: "Project and developer websites built to present inventory and convert visits into site visits." },
+  { title: "Performance Advertising", text: "Meta and Google campaigns managed against cost per lead and lead quality." },
+  { title: "Creative Production", text: "Walkthroughs, launch films, reels and campaign creative produced in-house." },
 ];
 
 /**
@@ -33,10 +32,10 @@ export function RealEstateDNA() {
 
       <Reveal className="container-x section-y relative mx-auto max-w-[110rem]">
         <p className="eyebrow text-blue" data-reveal>{homepageSeo.positioning.value}</p>
-        <h2 className="display mt-6 max-w-[12ch]" data-split-reveal>
-          Real estate is
+        <h2 className="display mt-6 max-w-[14ch]" data-split-reveal>
+          Real estate marketing.
           <br />
-          in our <span className="text-blue">DNA.</span>
+          <span className="text-blue">Reimagined.</span>
         </h2>
 
         <div className="mt-14 grid gap-12 lg:grid-cols-12">
@@ -50,10 +49,13 @@ export function RealEstateDNA() {
 
           <ol className="lg:col-span-6 lg:col-start-7" role="list" aria-label="Real estate marketing capabilities">
             {capabilities.map((c, i) => (
-              <li key={c} className="group border-t border-white/20 last:border-b" data-reveal>
-                <div className="flex items-baseline gap-5 py-4 transition-transform duration-500 ease-out-expo group-hover:translate-x-3 md:py-5">
-                  <span className="w-8 text-sm font-semibold tabular-nums text-blue">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="text-[clamp(1.25rem,1rem+1.1vw,2.25rem)] font-bold uppercase leading-tight tracking-[-0.015em]">{c}</span>
+              <li key={c.title} className="group border-t border-white/20 last:border-b" data-reveal>
+                <div className="flex items-baseline gap-5 py-5 transition-transform duration-500 ease-out-expo group-hover:translate-x-3 md:py-6">
+                  <span className="w-8 shrink-0 text-sm font-semibold tabular-nums text-blue">{String(i + 1).padStart(2, "0")}</span>
+                  <div>
+                    <h3 className="text-[clamp(1.25rem,1rem+1.1vw,2.25rem)] font-bold uppercase leading-tight tracking-[-0.015em]">{c.title}</h3>
+                    <p className="mt-2 max-w-[48ch] text-[0.975rem] leading-[1.6] text-white/60">{c.text}</p>
+                  </div>
                 </div>
               </li>
             ))}

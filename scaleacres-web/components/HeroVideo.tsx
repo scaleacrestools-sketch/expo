@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { homepageSeo, homepageCreative } from "@/content/seo/homepage";
-import { showreel } from "@/content/media";
+import { showreel, posterForSrc } from "@/content/media";
 import { Arrow } from "@/components/ui/Arrow";
 
 const MOBILE_MQ = "(max-width: 767px)";
@@ -98,6 +98,7 @@ export function HeroVideo() {
             preload="none"
             aria-hidden="true"
             tabIndex={-1}
+            poster={i === 0 ? posterForSrc(isMobile ? showreel[0].portrait : showreel[0].landscape) : undefined}
             onEnded={i === front ? advance : undefined}
             onError={() => setFailed(true)}
             className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-[1400ms] ease-in-out ${i === front ? "opacity-100" : "opacity-0"}`}
@@ -109,10 +110,14 @@ export function HeroVideo() {
         <div aria-hidden="true" className="absolute inset-0 bg-ink/10" />
       </div>
 
-      {/* Vertical descriptor */}
-      <p aria-hidden="true" className="absolute left-[clamp(0.75rem,1.6vw,1.75rem)] top-1/2 hidden -translate-y-1/2 rotate-180 whitespace-nowrap text-[0.625rem] font-semibold uppercase tracking-[0.32em] text-white/55 [writing-mode:vertical-rl] md:block">
-        {homepageCreative.verticalDescriptor.join(" — ")}
-      </p>
+      {/* Vertical descriptor: seamless linear loop (four identical copies, track moves one copy per cycle). */}
+      <div aria-hidden="true" className="vmarquee absolute left-[clamp(0.75rem,1.6vw,1.75rem)] top-1/2 hidden h-[62vh] -translate-y-1/2 md:block">
+        <div className="vmarquee__track text-[0.625rem] font-semibold uppercase tracking-[0.32em] text-white/55">
+          {[0, 1, 2, 3].map((k) => (
+            <span key={k}>{homepageCreative.verticalDescriptor.join(" — ")} —</span>
+          ))}
+        </div>
+      </div>
 
       {/* Timed creative statements */}
       <div className="absolute inset-x-0 bottom-[clamp(17rem,38vh,21rem)] px-5 text-center md:bottom-[clamp(9rem,22vh,14rem)]">

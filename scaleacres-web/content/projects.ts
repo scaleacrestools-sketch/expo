@@ -1,14 +1,8 @@
-export type ProjectLayout = "feature" | "tall" | "short" | "wide";
+import { showreel } from "@/content/media";
 
-export const workFilters = [
-  "Website Development",
-  "Branding & Identity",
-  "Performance Marketing",
-  "Real Estate Campaigns",
-  "AI Videos",
-  "Social Media Videos",
-  "Ad Videos",
-] as const;
+export type ProjectLayout = "feature" | "tall" | "short" | "half" | "wide";
+
+export const workFilters = ["Websites", "Branding", "Social Media", "Ad Campaigns", "Videos", "Real Estate"] as const;
 export type WorkFilter = (typeof workFilters)[number];
 
 export type Project = {
@@ -22,6 +16,10 @@ export type Project = {
   summary: string;
   /** Approved project visual under /public. While absent, an art-directed typographic cover is shown and labelled. */
   image?: string;
+  /** Looping video used as the card visual (ScaleAcres-owned footage only). */
+  video?: string;
+  /** Overrides the default /case-studies/<slug>/ link. */
+  href?: string;
   tone: "ink" | "blue" | "white";
   layout: ProjectLayout;
   services: string[];
@@ -35,6 +33,20 @@ export type Project = {
  */
 export const projects: Project[] = [
   {
+    slug: "scaleacres-brand-film",
+    client: "ScaleAcres",
+    title: "ScaleAcres Brand Film",
+    category: "Videos · Creative Production",
+    summary: "Our own concept showreel: architecture, identity, digital, performance and production in six cinematic shots.",
+    video: showreel[0].landscape,
+    href: "/creative-studio/",
+    tone: "ink",
+    layout: "feature",
+    services: ["video-creative-production"],
+    filters: ["Videos"],
+    source: "ScaleAcres concept film (Higgsfield, Oct 2026)",
+  },
+  {
     slug: "yugen-goa",
     client: "Yugen Infra",
     title: "Yugen",
@@ -42,9 +54,9 @@ export const projects: Project[] = [
     category: "Real Estate Campaigns",
     summary: "A remote project in North Goa, scaled through digital-first strategies to reach buyers nationwide.",
     tone: "blue",
-    layout: "feature",
+    layout: "tall",
     services: ["performance-marketing", "branding-creative-design"],
-    filters: ["Real Estate Campaigns", "Performance Marketing"],
+    filters: ["Real Estate"],
     source: "scaleacres.com/case-studies/",
   },
   {
@@ -55,9 +67,9 @@ export const projects: Project[] = [
     category: "Real Estate Campaigns",
     summary: "Lead volume, nationwide reach and improved brand presence for a Goa real estate brand.",
     tone: "ink",
-    layout: "tall",
+    layout: "short",
     services: ["performance-marketing"],
-    filters: ["Real Estate Campaigns", "Performance Marketing"],
+    filters: ["Real Estate"],
     source: "scaleacres.com/case-studies/",
   },
   {
@@ -67,9 +79,9 @@ export const projects: Project[] = [
     category: "Real Estate Marketing",
     summary: "Real estate marketing partner to Prominent Realty. Project scope and visuals follow from the approved case study.",
     tone: "white",
-    layout: "short",
+    layout: "half",
     services: ["performance-marketing"],
-    filters: ["Real Estate Campaigns"],
+    filters: ["Real Estate"],
     source: "Client testimonial, scaleacres.com",
   },
   {
@@ -79,11 +91,13 @@ export const projects: Project[] = [
     category: "Real Estate Marketing",
     summary: "Real estate marketing partner to Hometrust Realty. Project scope and visuals follow from the approved case study.",
     tone: "ink",
-    layout: "wide",
+    layout: "half",
     services: ["performance-marketing"],
-    filters: ["Real Estate Campaigns"],
+    filters: ["Real Estate"],
     source: "Client testimonial, scaleacres.com",
   },
 ];
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
+/** Projects that have their own detail page under /case-studies/<slug>/. */
+export const caseStudyProjects = projects.filter((p) => !p.href);
