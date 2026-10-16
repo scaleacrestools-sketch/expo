@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { themeOptions, proposalLogo, contrast, verdict, type ThemeOption } from "@/content/themes";
+import { themeOptions, proposalLogo, contrast, verdict, type ThemeOption, type ProposalTheme } from "@/content/themes";
 import { brand } from "@/content/brand";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 
@@ -13,8 +13,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const [baseline, red, midnight] = themeOptions;
-const options = [red, midnight];
+const [baseline, ...options] = themeOptions;
 
 export default function ThemeLabPage() {
   if (process.env.THEME_LAB === "off") notFound();
@@ -24,12 +23,12 @@ export default function ThemeLabPage() {
       <section className="bg-[#141414] text-white">
         <div className="container-x mx-auto max-w-[110rem] pb-16 pt-[calc(var(--header-h)+4rem)] md:pb-20">
           <p className="text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-white/55">ScaleAcres · Colour exploration · Not approved</p>
-          <h1 className="mt-6 max-w-[18ch] text-[clamp(2.5rem,1rem+5vw,5.5rem)] font-black uppercase leading-[0.92] tracking-[-0.04em]">Two colour directions, one real website.</h1>
+          <h1 className="mt-6 max-w-[18ch] text-[clamp(2.5rem,1rem+5vw,5.5rem)] font-black uppercase leading-[0.92] tracking-[-0.04em]">Three colour directions, one real website.</h1>
           <p className="mt-8 max-w-[62ch] text-[1.0625rem] leading-[1.7] text-white/75">
-            Both options re-map the same design tokens across the live layout: every section, hover, divider, menu and CTA. Content, section order, video,
+            All three options re-map the same design tokens across the live layout: every section, hover, divider, menu and CTA. Content, section order, video,
             SEO and links are untouched. The approved black-and-blue baseline stays the default and is the only version that can appear on scaleacres.com.
           </p>
-          <div className="mt-10 grid gap-3 sm:grid-cols-3">
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             {themeOptions.map((t) => (
               <a key={t.id} href={`/?theme=${t.id}`} className="group flex items-center justify-between gap-4 rounded-md border border-white/15 p-5 transition-colors hover:border-white/60">
                 <span>
@@ -65,7 +64,7 @@ export default function ThemeLabPage() {
 
 function OptionSection({ option: o, index }: { option: ThemeOption; index: number }) {
   const g = o.ground;
-  const theme = o.id as "reddash" | "midnight";
+  const theme = o.id as ProposalTheme;
   return (
     <section className="border-b border-black/10 py-20 md:py-28 print:break-before-page" aria-labelledby={`opt-${o.id}`}>
       <div className="container-x mx-auto max-w-[110rem]">
@@ -169,8 +168,8 @@ function OptionSection({ option: o, index }: { option: ThemeOption; index: numbe
         <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           <LogoTile src={brand.logo.reversed} bg={g.dark} label="Official logo on dark" note="Approved artwork — default in this option" />
           <LogoTile src={brand.logo.primary} bg={g.light} label="Official logo on light" note="Approved artwork" border />
-          <LogoTile src={proposalLogo(theme, "dark")} bg={g.dark} label="Proposal on dark" note={theme === "reddash" ? "Symbol + strapline in Creative Red" : "Symbol + strapline in Electric Cyan"} proposal />
-          <LogoTile src={proposalLogo(theme, "light")} bg={g.light} label="Proposal on light" note={theme === "reddash" ? "Black wordmark, red symbol" : "Navy wordmark, official blue symbol (cyan is too light on white)"} proposal border />
+          <LogoTile src={proposalLogo(theme, "dark")} bg={g.dark} label="Proposal on dark" note={o.logoNotes?.dark ?? ""} proposal />
+          <LogoTile src={proposalLogo(theme, "light")} bg={g.light} label="Proposal on light" note={o.logoNotes?.light ?? ""} proposal border />
         </div>
 
         {/* Contrast */}
@@ -237,26 +236,27 @@ function ContrastTable({ option: o }: { option: ThemeOption }) {
 }
 
 function Comparison() {
-  const rows: [string, string, string][] = [
-    ["Personality", "Loud, confident, creative-agency attitude", "Calm authority: premium, international, technical"],
-    ["Fit with the official logo", "Clashes with the blue symbol unless the logo is recoloured (a brand change)", "Same blue family; the official logo works unchanged"],
-    ["Real estate audience", "Red reads as urgency/offer in property advertising", "Navy and cyan read as trust, architecture and technology"],
-    ["Distinctiveness", "Close to the reference agency's identity; risk of looking derivative", "Original to ScaleAcres; uncommon among Indian agencies"],
-    ["Accessibility", "Red needs a deeper shade for text on white (#C8191C) and a brighter one for text on black (#F2383B)", "Cyan is excellent on navy (9.5:1); deep cyan used on light grounds"],
-    ["Photography and video", "Strong with high-contrast black footage; competes with warm interiors", "Complements blue-hour architecture and the Higgsfield showreel grade"],
+  const rows: [string, string, string, string][] = [
+    ["Personality", "Loud, confident, creative-agency attitude", "Calm authority: premium, international, technical", "Quiet luxury: refined, warm, exclusive"],
+    ["Fit with the official logo", "Clashes with the blue symbol unless the logo is recoloured (a brand change)", "Same blue family; the official logo works unchanged", "Warm gold sits apart from the blue symbol; best with the champagne logo proposal (a brand change)"],
+    ["Real estate audience", "Red reads as urgency/offer in property advertising", "Navy and cyan read as trust, architecture and technology", "Speaks directly to luxury developers and high-value buyers"],
+    ["Digital / growth positioning", "Strong creative energy", "Strongest: reads as technology and performance", "Weaker: reads as boutique hospitality rather than digital growth"],
+    ["Distinctiveness", "Close to the reference agency's identity; risk of looking derivative", "Original to ScaleAcres; uncommon among Indian agencies", "Original; olive and gold are common in luxury real estate itself, less so among agencies"],
+    ["Accessibility", "Red needs a deeper shade for text on white (#C8191C) and a brighter one for text on black (#F2383B)", "Cyan is excellent on navy (9.5:1); deep cyan used on light grounds", "Champagne is strong on olive (7.8:1); Antique Gold #7A6230 needed for text on ivory"],
+    ["Photography and video", "Strong with high-contrast black footage; competes with warm interiors", "Complements blue-hour architecture and the Higgsfield showreel grade", "Flatters warm interiors and golden-hour exteriors; cooler blue-hour footage feels slightly off-tone"],
   ];
   return (
     <section className="py-20 md:py-28 print:break-before-page" aria-labelledby="compare">
       <div className="container-x mx-auto max-w-[110rem]">
         <h2 id="compare" className="text-[clamp(2rem,1rem+3vw,4rem)] font-black uppercase leading-[0.95] tracking-[-0.035em]">Side by side</h2>
         <div className="mt-10 overflow-x-auto rounded-md border border-black/10 bg-white">
-          <table className="w-full min-w-[40rem] text-left text-[0.9375rem]">
+          <table className="w-full min-w-[52rem] text-left text-[0.9375rem]">
             <thead className="text-[0.6875rem] uppercase tracking-[0.14em] text-black/55">
-              <tr className="bg-black/[0.04]"><th className="w-1/5 p-4" /><th className="p-4">Option 1 · Red Dash Inspired</th><th className="p-4">Option 2 · Midnight Electric</th></tr>
+              <tr className="bg-black/[0.04]"><th className="w-1/5 p-4" /><th className="p-4">Option 1 · Red Dash Inspired</th><th className="p-4">Option 2 · Midnight Electric</th><th className="p-4">Option 3 · Luxury Olive</th></tr>
             </thead>
             <tbody>
-              {rows.map(([k, a, b]) => (
-                <tr key={k} className="border-t border-black/5 align-top"><th className="p-4 font-semibold">{k}</th><td className="p-4 text-black/75">{a}</td><td className="p-4 text-black/75">{b}</td></tr>
+              {rows.map(([k, a, b, c]) => (
+                <tr key={k} className="border-t border-black/5 align-top"><th className="p-4 font-semibold">{k}</th><td className="p-4 text-black/75">{a}</td><td className="p-4 text-black/75">{b}</td><td className="p-4 text-black/75">{c}</td></tr>
               ))}
             </tbody>
           </table>
@@ -279,10 +279,11 @@ function Recommendation() {
           <li><b className="text-white">It keeps the logo you already own.</b> Electric Cyan sits beside the official blue symbol, so no logo change is needed. Option 1 only looks resolved with a recoloured logo, which is a brand change, not a website change.</li>
           <li><b className="text-white">It is unmistakably ScaleAcres.</b> Option 1 is deliberately close to the Red Dash reference; for an agency whose product is originality, that resemblance is a reputational risk.</li>
           <li><b className="text-white">It suits the buyers you market to.</b> Navy and cyan signal trust, architecture and technology. Red is the colour of offers and urgency in property advertising.</li>
-          <li><b className="text-white">It is the more accessible system.</b> Accent on dark scores 9.5:1. Red needs three shades to stay compliant across grounds.</li>
+          <li><b className="text-white">It matches what ScaleAcres sells.</b> Option 3 is beautiful for luxury property, but it reads as a boutique real estate brand rather than a creative, digital and growth agency. Midnight carries both stories.</li>
+          <li><b className="text-white">It is the most accessible system.</b> Accent on dark scores 9.5:1. Red needs three shades to stay compliant; champagne needs a separate antique gold on light grounds.</li>
         </ol>
         <p className="mt-10 max-w-[70ch] text-[0.9375rem] leading-[1.7] text-[#aab8c4]">
-          Keep Option 1&apos;s best idea: the bold, full-bleed closing band. It can be carried into Midnight Electric in cyan if you want more energy. Nothing is applied until
+          Worth borrowing: Option 1&apos;s bold full-bleed closing band, and Option 3&apos;s champagne hairlines for luxury-developer campaign pages. Nothing is applied until
           you choose; the approved baseline remains live.
         </p>
       </div>

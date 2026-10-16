@@ -3,13 +3,18 @@
  * Hex values mirror app/themes.css (the CSS is what the site uses; this file feeds the
  * comparison page and the switcher).
  */
-export type ThemeId = "baseline" | "reddash" | "midnight";
+export type ThemeId = "baseline" | "reddash" | "midnight" | "olive";
+export type ProposalTheme = Exclude<ThemeId, "baseline">;
 
 export type Swatch = { name: string; hex: string; role: string };
 export type ThemeOption = {
   id: ThemeId;
   label: string;
   short: string;
+  /** Label in the preview switcher. */
+  switchLabel: string;
+  /** What the proposal logo changes, on dark / light grounds. */
+  logoNotes?: { dark: string; light: string };
   concept: string;
   swatches: Swatch[];
   /** Supporting tokens derived for accessibility (not in the brief's palette). */
@@ -22,6 +27,7 @@ export const themeOptions: ThemeOption[] = [
     id: "baseline",
     label: "Approved baseline",
     short: "Baseline",
+    switchLabel: "Approved baseline",
     concept: "The current approved site: official black and blue sampled from the logo.",
     swatches: [
       { name: "Brand Black", hex: "#0B0D0D", role: "Dark sections, type on light" },
@@ -36,6 +42,8 @@ export const themeOptions: ThemeOption[] = [
     id: "reddash",
     label: "Option 1 — Red Dash Inspired",
     short: "Option 1 · Red",
+    switchLabel: "Red Dash Inspired",
+    logoNotes: { dark: "White wordmark; symbol and strapline in Creative Red", light: "Black wordmark, red symbol" },
     concept:
       "High-voltage creative-agency energy. Stark black and white rhythm, Creative Red used as decisive punctuation (rules, numerals, hover sweeps) and one full-red closing band. Poster-like square CTAs.",
     swatches: [
@@ -54,6 +62,8 @@ export const themeOptions: ThemeOption[] = [
     id: "midnight",
     label: "Option 2 — ScaleAcres Midnight Electric",
     short: "Option 2 · Midnight",
+    switchLabel: "Midnight Electric",
+    logoNotes: { dark: "Ice-white wordmark; symbol and strapline in Electric Cyan", light: "Navy wordmark, official blue symbol (cyan is too light on white)" },
     concept:
       "International premium: deep navy depth with a cool light source, ice-white daylight sections, Electric Cyan as light rather than paint. Sits in the same blue family as the official logo, so the real logo works unchanged.",
     swatches: [
@@ -69,9 +79,30 @@ export const themeOptions: ThemeOption[] = [
     ],
     ground: { dark: "#0A1421", light: "#FFFFFF", alt: "#F7F9FA", accent: "#36C8F5", accentDeep: "#0B6E92", onAccent: "#0A1421", text: "#F7F9FA", muted: "#AAB8C4", mutedLight: "#34495E", accentSmallDark: "#36C8F5" },
   },
+  {
+    id: "olive",
+    label: "Option 3 — Luxury Olive & Champagne",
+    short: "Option 3 · Olive",
+    switchLabel: "Luxury Olive",
+    logoNotes: { dark: "Ivory wordmark; symbol and strapline in Champagne Gold", light: "Olive wordmark, deeper gold symbol (champagne is too light on ivory)" },
+    concept:
+      "Quiet luxury for premium real estate: deep olive grounds, warm ivory daylight sections, and Champagne Gold used like fine metal detailing — hairlines, numerals, square-cornered CTAs — rather than loud colour.",
+    swatches: [
+      { name: "Dark Olive", hex: "#171C17", role: "Dark sections, header, menu" },
+      { name: "Champagne Gold", hex: "#C7AB75", role: "CTAs, highlights, hairlines on dark" },
+      { name: "Warm Ivory", hex: "#F5F1E7", role: "Light sections, type on olive" },
+      { name: "Soft Sage", hex: "#879181", role: "Supporting text on olive, dividers" },
+    ],
+    support: [
+      { name: "Antique Gold", hex: "#7A6230", role: "Gold text on ivory (AA)" },
+      { name: "Warm White", hex: "#FBF9F4", role: "Alternate light sections" },
+      { name: "Olive Abyss", hex: "#11150F", role: "Footer ground" },
+    ],
+    ground: { dark: "#171C17", light: "#FBF9F4", alt: "#F5F1E7", accent: "#C7AB75", accentDeep: "#7A6230", onAccent: "#171C17", text: "#F5F1E7", muted: "#879181", mutedLight: "#3D4339", accentSmallDark: "#C7AB75" },
+  },
 ];
 
-export const proposalLogo = (theme: "reddash" | "midnight", ground: "dark" | "light") =>
+export const proposalLogo = (theme: ProposalTheme, ground: "dark" | "light") =>
   `/brand/proposals/scaleacres-logo-${theme}-on-${ground}-PROPOSAL.webp`;
 
 /** WCAG 2.x relative luminance / contrast ratio. */

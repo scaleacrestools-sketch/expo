@@ -7,7 +7,7 @@
  * adds a few art-directed section treatments. Nothing is duplicated and switching the
  * attribute never re-renders React (video and animations keep running).
  *
- * Applied via <html data-theme="reddash|midnight"> (full page) or on any element
+ * Applied via <html data-theme="reddash|midnight|olive"> (full page) or on any element
  * (scoped previews on /theme-lab/). Keep hex values in sync with content/themes.ts.
  */
 
@@ -123,15 +123,62 @@
 [data-theme="midnight"] #clients li > a:hover { box-shadow: inset 0 -3px 0 #36c8f5; }
 
 /* ------------------------------------------------------------------ */
+/* OPTION 3 — LUXURY OLIVE & CHAMPAGNE                                 */
+/* Quiet luxury: deep olive, warm ivory daylight, champagne as fine    */
+/* metal detailing rather than loud colour.                            */
+/* ------------------------------------------------------------------ */
+[data-theme="olive"] {
+  --color-ink: #171c17;          /* Dark Olive */
+  --color-ink-soft: #20271f;
+  --color-blue: #c7ab75;         /* Champagne Gold — on dark (7.8:1) */
+  --color-blue-deep: #7a6230;    /* Antique Gold for text on ivory (5.2:1) */
+  --color-on-accent: #171c17;    /* olive on champagne fills (7.8:1) */
+  --color-white: #fbf9f4;        /* warm white: light sections and type on olive */
+  --color-offwhite: #f5f1e7;     /* Warm Ivory */
+  --color-grey-soft: #b9c0b3;
+  --color-grey: #879181;         /* Soft Sage — supporting text on olive (5.3:1) */
+  --color-grey-dark: #3d4339;
+  --ink-rgb: 23 28 23;
+  --accent-rgb: 199 171 117;
+  --footer-bg: #11150f;
+}
+/* Warm, low light on dark sections */
+[data-theme="olive"] #services,
+[data-theme="olive"] #impact,
+[data-theme="olive"] #creative-studio {
+  background:
+    radial-gradient(50% 40% at 90% 0%, rgb(199 171 117 / 0.09), transparent 70%),
+    linear-gradient(180deg, #171c17, #1a201a);
+}
+/* Fine-metal CTAs: champagne fill, hairline inset, square-cornered */
+[data-theme="olive"] a.bg-blue,
+[data-theme="olive"] button.bg-blue { border-radius: 2px; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.25); letter-spacing: 0.2em; }
+[data-theme="olive"] .contact-overlay {
+  background:
+    radial-gradient(60% 50% at 15% 100%, rgb(199 171 117 / 0.16), transparent 70%),
+    linear-gradient(180deg, rgb(23 28 23 / 0.6), rgb(23 28 23 / 0.9));
+}
+[data-theme="olive"] .footer-cta {
+  background-image: linear-gradient(90deg, transparent, rgb(199 171 117 / 0.6), transparent);
+  background-size: 100% 1px; background-repeat: no-repeat; background-position: top;
+}
+[data-theme="olive"] #clients ul { border-color: #e2dccd; background-color: #e2dccd; }
+[data-theme="olive"] #clients li { background-color: #fbf9f4; }
+[data-theme="olive"] #clients li > a:hover { box-shadow: inset 0 -2px 0 #c7ab75; }
+
+/* ------------------------------------------------------------------ */
 /* Proposal logo (opt-in via data-logo="proposal"; official is default) */
 /* ------------------------------------------------------------------ */
 .logo-proposal, .logo-proposal-tag { display: none; }
 [data-logo="proposal"][data-theme="reddash"] .logo-proposal--reddash,
-[data-logo="proposal"][data-theme="midnight"] .logo-proposal--midnight { display: block; }
+[data-logo="proposal"][data-theme="midnight"] .logo-proposal--midnight,
+[data-logo="proposal"][data-theme="olive"] .logo-proposal--olive { display: block; }
 [data-logo="proposal"][data-theme="reddash"] .logo-official,
-[data-logo="proposal"][data-theme="midnight"] .logo-official { display: none; }
+[data-logo="proposal"][data-theme="midnight"] .logo-official,
+[data-logo="proposal"][data-theme="olive"] .logo-official { display: none; }
 [data-logo="proposal"][data-theme="reddash"] .logo-proposal-tag,
-[data-logo="proposal"][data-theme="midnight"] .logo-proposal-tag { display: inline-block; }
+[data-logo="proposal"][data-theme="midnight"] .logo-proposal-tag,
+[data-logo="proposal"][data-theme="olive"] .logo-proposal-tag { display: inline-block; }
 
 /* Crossfade when switching themes (View Transitions; instant where unsupported) */
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 450ms; }

@@ -23,7 +23,7 @@ export function Logo({ tone = "light", className = "", withLink = true, size = "
         className={`logo-official ${h} w-auto ${className}`}
       />
       {/* Colour-exploration PROPOSALS (not approved). Hidden unless previewing with logo=proposal; lazy + display:none, so never downloaded otherwise. */}
-      {(["reddash", "midnight"] as const).map((t) => (
+      {(["reddash", "midnight", "olive"] as const).map((t) => (
         // eslint-disable-next-line @next/next/no-img-element
         <img key={t} src={proposalLogo(t, ground)} alt="ScaleAcres logo — colour proposal" width={brand.logo.width} height={brand.logo.height} loading="lazy" className={`logo-proposal logo-proposal--${t} ${h} w-auto ${className}`} />
       ))}

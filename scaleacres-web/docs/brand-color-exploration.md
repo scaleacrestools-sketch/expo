@@ -5,7 +5,7 @@
 ## How to preview
 
 ### Netlify drag-and-drop (no setup)
-1. Unzip `scaleacres-theme-preview.zip`.
+1. Unzip `scaleacres-3-themes-static-preview.zip`.
 2. Drag the unzipped folder onto <https://app.netlify.com/drop>.
 3. Open the URL Netlify gives you. A **Preview** bar sits at the bottom of every page:
    - **Baseline**, **Option 1 · Red** and **Option 2 · Midnight** switch the whole site instantly. The hero video keeps playing and nothing reloads.

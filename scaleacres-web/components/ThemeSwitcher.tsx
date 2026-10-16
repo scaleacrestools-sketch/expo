@@ -50,22 +50,31 @@ export function ThemeSwitcher() {
       {open ? (
         <div role="group" aria-label="Colour exploration preview" className="flex max-w-[calc(100vw-2rem)] flex-wrap items-center justify-center gap-1.5 rounded-2xl border border-white/15 bg-[#111]/90 p-1.5 shadow-2xl backdrop-blur-md sm:flex-nowrap sm:rounded-full">
           <span className="hidden px-3 text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-white/50 lg:inline">Preview</span>
-          {themeOptions.map((t) => (
+          {themeOptions.filter((t) => t.id !== "baseline").map((t) => (
             <button
               key={t.id}
               type="button"
               aria-pressed={theme === t.id}
               onClick={() => choose(t.id)}
-              className={`inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] transition-colors ${theme === t.id ? "bg-white text-[#111]" : "text-white/75 hover:text-white"}`}
+              className={`inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-[0.6875rem] font-bold uppercase tracking-[0.12em] transition-colors ${theme === t.id ? "bg-white text-[#111]" : "text-white/80 hover:text-white"}`}
             >
               <span aria-hidden="true" className="flex">
                 {t.swatches.slice(0, 2).map((s) => (
                   <span key={s.hex} className="-ml-1 h-3 w-3 rounded-full ring-1 ring-white/40 first:ml-0" style={{ background: s.hex }} />
                 ))}
               </span>
-              {t.short}
+              {t.switchLabel}
             </button>
           ))}
+          <button
+            type="button"
+            aria-pressed={theme === "baseline"}
+            onClick={() => choose("baseline")}
+            title="The currently approved black and blue version"
+            className={`rounded-full px-3 py-2 text-[0.625rem] font-semibold uppercase tracking-[0.12em] transition-colors ${theme === "baseline" ? "bg-white/90 text-[#111]" : "text-white/55 hover:text-white"}`}
+          >
+            Baseline
+          </button>
           <button
             type="button"
             aria-pressed={logo === "proposal"}

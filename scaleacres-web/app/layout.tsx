@@ -47,9 +47,9 @@ export const viewport: Viewport = {
 /**
  * Colour-exploration boot (runs before paint, so no flash). Never active on production hosts:
  * there the approved baseline always renders and the switcher stays hidden.
- * Preview with ?theme=reddash | midnight | baseline and optional &logo=proposal.
+ * Preview with ?theme=reddash | midnight | olive | baseline and optional &logo=proposal.
  */
-const THEME_BOOT = `(function(){try{var d=document.documentElement;if(${JSON.stringify(PRODUCTION_HOSTS)}.indexOf(location.hostname)>-1)return;d.dataset.themeLab="on";var q=new URLSearchParams(location.search),s=localStorage,t=q.get("theme"),l=q.get("logo");if(t)s.setItem("sa-theme",t);else t=s.getItem("sa-theme");if(l)s.setItem("sa-logo",l);else l=s.getItem("sa-logo");if(t==="reddash"||t==="midnight")d.dataset.theme=t;if(l==="proposal")d.dataset.logo="proposal"}catch(e){}})()`;
+const THEME_BOOT = `(function(){try{var d=document.documentElement;if(${JSON.stringify(PRODUCTION_HOSTS)}.indexOf(location.hostname)>-1)return;d.dataset.themeLab="on";var q=new URLSearchParams(location.search),s=localStorage,t=q.get("theme"),l=q.get("logo");if(t)s.setItem("sa-theme",t);else t=s.getItem("sa-theme");if(l)s.setItem("sa-logo",l);else l=s.getItem("sa-logo");if(t==="reddash"||t==="midnight"||t==="olive")d.dataset.theme=t;if(l==="proposal")d.dataset.logo="proposal"}catch(e){}})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
