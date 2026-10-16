@@ -9,6 +9,8 @@ import { routes } from "@/content/nav";
  * sitemaps for the blog and location pages until those are migrated; both are
  * referenced from robots.txt during the transition (see docs/seo-migration.md).
  */
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const statics = [routes.home, routes.about, routes.team, routes.services, routes.work, routes.studio, routes.insights, routes.contact, routes.privacy];

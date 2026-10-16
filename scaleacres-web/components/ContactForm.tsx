@@ -1,7 +1,10 @@
 "use client";
 
 import { useId, useRef, useState } from "react";
-import { serviceOptions, type ContactFieldErrors } from "@/lib/contactSchema";
+import { contactSchema, serviceOptions, type ContactFieldErrors } from "@/lib/contactSchema";
+
+// Same rules as the server, minus the anti-spam fields the server checks on its own.
+const clientSchema = contactSchema.omit({ startedAt: true, website: true });
 import { Arrow } from "@/components/ui/Arrow";
 
 type Status = { state: "idle" } | { state: "submitting" } | { state: "success"; reference: string } | { state: "error"; message: string; fields?: ContactFieldErrors };
@@ -19,6 +22,26 @@ export function ContactForm() {
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
     const payload = { ...data, consent: data.consent === "on", startedAt };
+
+    // Validate in the browser first (the server validates again).
+    const checked = clientSchema.safeParse(payload);
+    if (!checked.success) {
+      const fields: ContactFieldErrors = {};
+      for (const issue of checked.error.issues) {
+        const key = issue.path[0] as keyof ContactFieldErrors | undefined;
+        if (key && !fields[key]) fields[key] = issue.message;
+      }
+      setStatus({ state: "error", message: "Please check the highlighted fields.", fields });
+      const first = Object.keys(fields)[0];
+      if (first) form.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
+      return;
+    }
+
+    // Static review builds have no server: say so plainly instead of pretending to send.
+    if (process.env.NEXT_PUBLIC_STATIC_PREVIEW === "1") {
+      setStatus({ state: "error", message: "Preview build: form submission is disabled here. It works on the full Netlify deployment once delivery is configured." });
+      return;
+    }
     setStatus({ state: "submitting" });
     try {
       const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });

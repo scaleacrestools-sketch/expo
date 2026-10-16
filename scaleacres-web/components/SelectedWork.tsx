@@ -43,7 +43,7 @@ export function SelectedWork({ items = projects, limit, filterable = false }: { 
         </div>
 
         {filterable ? (
-          <div className="scrollbar-none -mx-[var(--gutter)] mt-12 overflow-x-auto px-[var(--gutter)]" data-reveal>
+          <div className="scrollbar-none -mx-[var(--gutter)] mt-12 overflow-x-auto px-[var(--gutter)] [mask-image:linear-gradient(90deg,#000_85%,transparent)] lg:[mask-image:none]" data-reveal>
             <ul className="flex gap-2" role="list" aria-label="Filter projects by category">
               {(["All", ...workFilters] as const).map((f) => {
                 const disabled = f !== "All" && !available.includes(f);

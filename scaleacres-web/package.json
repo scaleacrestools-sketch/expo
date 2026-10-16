@@ -12,7 +12,8 @@
     "seo:baseline": "node scripts/seo-audit.mjs crawl --base https://scaleacres.com --out seo/baseline.json",
     "seo:candidate": "node scripts/seo-audit.mjs crawl --base ${CANDIDATE_URL:-http://localhost:3000} --urls-from seo/baseline.json --out seo/candidate.json",
     "seo:compare": "node scripts/seo-audit.mjs compare seo/baseline.json seo/candidate.json --out seo/parity-report.md --csv seo/parity-report.csv",
-    "showreel": "bash scripts/build-showreel.sh"
+    "showreel": "bash scripts/build-showreel.sh",
+    "build:static-preview": "node scripts/build-static-preview.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",

@@ -8,3 +8,6 @@ next-env.d.ts
 showreel-master-*.mp4
 seo/baseline.json
 seo/candidate.json
+dist/
+out/
+.preview-build/

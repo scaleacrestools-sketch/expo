@@ -56,13 +56,13 @@ function ServiceRow({ service: s, open, onToggle, baseId }: { service: Service; 
           aria-expanded={open}
           aria-controls={panelId}
           onClick={onToggle}
-          className="group grid w-full grid-cols-[3rem_1fr_3rem] items-center gap-4 py-6 text-left transition-colors duration-300 hover:text-blue md:grid-cols-[5rem_1fr_4rem] md:py-8"
+          className="group grid w-full grid-cols-[2rem_minmax(0,1fr)_2.75rem] items-center gap-3 sm:grid-cols-[3rem_minmax(0,1fr)_3rem] sm:gap-4 py-6 text-left transition-colors duration-300 hover:text-blue md:grid-cols-[5rem_minmax(0,1fr)_4rem] md:py-8"
         >
           <span className={`text-sm font-semibold transition-colors ${open ? "text-blue" : "text-grey"}`}>{s.number}</span>
-          <span className="text-[clamp(1.375rem,1rem+2.4vw,3.25rem)] font-bold uppercase leading-[1.02] tracking-[-0.02em]">{s.title}</span>
+          <span className="min-w-0 break-words text-[clamp(1.25rem,0.9rem+2.4vw,3.25rem)] font-bold uppercase leading-[1.02] tracking-[-0.02em] [hyphens:auto]" lang="en">{s.title}</span>
           <span
             aria-hidden="true"
-            className={`relative ml-auto grid h-11 w-11 place-items-center rounded-full border transition-[border-color,background-color,transform] duration-500 ease-out-expo ${open ? "rotate-45 border-blue bg-blue text-ink" : "border-offwhite/25 group-hover:border-blue"}`}
+            className={`relative ml-auto grid h-10 w-10 shrink-0 place-items-center sm:h-11 sm:w-11 rounded-full border transition-[border-color,background-color,transform] duration-500 ease-out-expo ${open ? "rotate-45 border-blue bg-blue text-ink" : "border-offwhite/25 group-hover:border-blue"}`}
           >
             <svg viewBox="0 0 12 12" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M1 6h10M6 1v10" /></svg>
           </span>

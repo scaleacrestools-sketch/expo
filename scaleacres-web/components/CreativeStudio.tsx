@@ -35,7 +35,7 @@ export function CreativeStudio({ showCta = true }: { showCta?: boolean }) {
         <SectionHeading eyebrow="The creative lab" title="Made to be seen." description="Ideas don't have to stay on paper. We turn concepts into compelling visual stories through creative production, AI-powered content and videos that get noticed." />
 
         <div className="mt-14 border-b border-offwhite/15" data-reveal>
-          <div role="tablist" aria-label="Creative Studio categories" className="scrollbar-none -mb-px flex gap-2 overflow-x-auto" onKeyDown={onKeyDown}>
+          <div role="tablist" aria-label="Creative Studio categories" className="scrollbar-none -mb-px flex gap-2 overflow-x-auto [mask-image:linear-gradient(90deg,#000_80%,transparent)] md:[mask-image:none]" onKeyDown={onKeyDown}>
             {studioTabs.map((t) => {
               const selected = t.id === active;
               return (

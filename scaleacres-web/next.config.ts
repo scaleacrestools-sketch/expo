@@ -12,7 +12,15 @@ import { protectedPages } from "./content/seo/pages";
  */
 const wpOrigin = process.env.WORDPRESS_ORIGIN?.replace(/\/$/, "");
 
-const nextConfig: NextConfig = {
+/**
+ * STATIC_PREVIEW=1 produces a plain-HTML export in ./out for Netlify drag-and-drop review.
+ * It is never used for production: no contact API, no WordPress proxy, no host check
+ * (indexing is blocked by out/_headers + a disallow-all robots.txt instead).
+ * Build it with `npm run build:static-preview`.
+ */
+const staticPreview = process.env.STATIC_PREVIEW === "1";
+
+const serverConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   trailingSlash: true,
@@ -48,4 +56,13 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const staticPreviewConfig: NextConfig = {
+  reactStrictMode: true,
+  trailingSlash: true,
+  output: "export",
+  images: { unoptimized: true },
+  // The preview is built from ./.preview-build inside the project; packages live one level up.
+  ...(process.env.TURBOPACK_ROOT ? { turbopack: { root: process.env.TURBOPACK_ROOT } } : {}),
+};
+
+export default staticPreview ? staticPreviewConfig : serverConfig;
