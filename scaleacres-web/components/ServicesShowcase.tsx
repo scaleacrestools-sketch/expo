@@ -36,34 +36,34 @@ export function ServicesShowcase() {
           </p>
         </div>
 
-        <ul className="mt-16 grid grid-cols-1 border-t border-ink/15 sm:grid-cols-2 lg:grid-cols-4" role="list">
+        <ul className="mt-[clamp(3rem,5vw,4.5rem)] grid grid-cols-1 border-t border-ink/12 sm:grid-cols-2 lg:grid-cols-4" role="list">
           {services.map((s) => {
             const on = s.slug === active;
             return (
-              <li key={s.slug} className="group/svc relative border-b border-ink/15 sm:[&:nth-child(odd)]:border-r lg:border-r lg:[&:nth-child(4n)]:border-r-0">
+              <li key={s.slug} className={`group/svc relative border-b border-ink/12 transition-colors duration-500 sm:[&:nth-child(odd)]:border-r lg:border-r lg:[&:nth-child(4n)]:border-r-0 ${on ? "bg-[#f6f8fd]" : ""}`}>
                 <h3 className="m-0">
                   <button
                     type="button"
                     aria-expanded={on}
                     aria-controls={`${id}-panel`}
                     onClick={() => setActive(s.slug)}
-                    className="relative flex h-full w-full flex-col gap-5 px-1 py-8 text-left sm:px-6 md:py-10 lg:min-h-[17rem] lg:px-8"
+                    className="relative flex h-full w-full flex-col gap-6 px-1 py-7 text-left sm:px-6 sm:py-9 lg:min-h-[17.5rem] lg:px-8 lg:py-10"
                   >
                     {/* top rule grows on hover / stays for the selected service */}
                     <span aria-hidden="true" className={`absolute left-0 top-[-1px] h-[2px] origin-left transition-transform duration-700 ease-out-expo ${on ? "w-full scale-x-100" : "w-full scale-x-0 group-hover/svc:scale-x-100"}`} style={{ background: "var(--grad)" }} />
                     <span className="flex items-center justify-between gap-4">
-                      <span className={`text-[0.8125rem] font-semibold tabular-nums tracking-[0.16em] ${on ? "text-blue" : "text-steel"}`}>{s.number}</span>
-                      <span aria-hidden="true" className={`grid h-9 w-9 place-items-center rounded-full border transition-all duration-500 ease-out-expo ${on ? "rotate-45 border-blue bg-blue text-white" : "border-ink/20 text-ink group-hover/svc:border-ink"}`}>
+                      <span className={`text-[0.75rem] font-semibold tabular-nums tracking-[0.2em] transition-colors duration-500 ${on ? "text-blue" : "text-steel"}`}>{s.number}<span className="text-ink/25"> / 08</span></span>
+                      <span aria-hidden="true" className={`grid h-9 w-9 place-items-center rounded-full border transition-all duration-500 ease-out-expo ${on ? "rotate-45 border-blue bg-blue text-white" : "border-ink/15 text-ink group-hover/svc:border-blue group-hover/svc:text-blue"}`}>
                         <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M1 6h10M6 1v10" /></svg>
                       </span>
                     </span>
-                    <span className={`block text-[clamp(1.5rem,1rem+1.15vw,2.125rem)] font-extrabold uppercase leading-[1] tracking-[-0.025em] transition-colors duration-500 ${on ? "text-blue" : "text-ink group-hover/svc:text-blue-deep"}`}>{s.title}</span>
-                    <span className="mt-auto block max-w-[30ch] text-[0.975rem] leading-[1.55] text-steel">{s.headline}</span>
+                    <span className={`block text-[clamp(1.5rem,1rem+1.1vw,2.125rem)] font-extrabold uppercase leading-[1.02] tracking-[-0.025em] transition-[color,transform] duration-500 ease-out-expo [text-wrap:balance] ${on ? "text-blue" : "text-ink group-hover/svc:translate-x-1 group-hover/svc:text-blue-deep"}`}>{s.title}</span>
+                    <span className="mt-auto block max-w-[30ch] text-[0.975rem] leading-[1.55] text-graphite/80">{s.headline}</span>
                   </button>
                 </h3>
                 {/* Mobile / tablet: details open in place */}
                 {on ? (
-                  <div className="pb-10 lg:hidden" role="region" aria-label={`${s.title} details`}>
+                  <div className="px-1 pb-10 sm:px-6 lg:hidden" role="region" aria-label={`${s.title} details`}>
                     <ServiceDetail service={s} compact />
                   </div>
                 ) : null}
@@ -73,7 +73,7 @@ export function ServicesShowcase() {
         </ul>
 
         {/* Desktop: one detail panel below the grid */}
-        <div id={`${id}-panel`} role="region" aria-live="polite" aria-label={`${current.title} details`} className="mt-12 hidden lg:block">
+        <div id={`${id}-panel`} role="region" aria-live="polite" aria-label={`${current.title} details`} className="hidden border-b border-ink/12 py-14 lg:block">
           <ServiceDetail key={current.slug} service={current} />
         </div>
       </div>
@@ -88,7 +88,7 @@ function ServiceDetail({ service: s, compact = false }: { service: Service; comp
       <div className={`flex flex-col ${compact ? "" : "col-span-5 py-2"}`}>
         {!compact ? (
           <>
-            <p className="label text-blue">{s.number} · Service</p>
+            <p className="label text-blue">{s.number} / 08 · Service</p>
             <p className="mt-4 text-[clamp(2rem,1rem+2vw,3.25rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.03em]">{s.title}</p>
           </>
         ) : null}
@@ -108,7 +108,7 @@ function ServiceDetail({ service: s, compact = false }: { service: Service; comp
       </div>
       {media ? (
         <figure className={`m-0 ${compact ? "" : "col-span-7"}`}>
-          <LazyVideo src={media.landscape} label={media.description} className="aspect-[16/10] rounded-[6px]" />
+          <div className="relative overflow-hidden rounded-[14px] ring-1 ring-inset ring-black/5"><LazyVideo src={media.landscape} label={media.description} className="aspect-[16/10]" /></div>
           <figcaption className="mt-3 text-xs uppercase tracking-[0.14em] text-steel">ScaleAcres studio film — {media.title}</figcaption>
         </figure>
       ) : null}

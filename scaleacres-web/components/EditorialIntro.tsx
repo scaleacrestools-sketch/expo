@@ -42,15 +42,22 @@ export function EditorialIntro() {
       raf = 0;
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight;
-      // Reveal starts when the text top reaches 85% of the viewport and completes
-      // when its bottom passes 45% — fast enough to finish while it is still in view.
-      const start = vh * 0.85;
-      const end = vh * 0.45;
-      const p = Math.min(1, Math.max(0, (start - r.top) / (start - end + r.height)));
-      const n = Math.round(p * words.length);
-      if (n === last) return;
-      words.forEach((w, i) => w.toggleAttribute("data-on", i < n));
-      last = n;
+      // Starts as the text enters the lower part of the viewport and finishes while it is
+      // still comfortably in view, so readers never wait for the last words.
+      const start = vh * 0.9;
+      const end = vh * 0.38;
+      const p = Math.min(1, Math.max(0, (start - r.top) / (start - end + r.height * 0.85)));
+      const x = p * words.length;
+      const n = Math.floor(x);
+      if (n !== last) {
+        words.forEach((w, i) => {
+          w.toggleAttribute("data-on", i < n);
+          if (i !== n) w.style.removeProperty("--r");
+        });
+        last = n;
+      }
+      // The word at the reveal front blends continuously with scroll position.
+      words[n]?.style.setProperty("--r", (x - n).toFixed(3));
     };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
     update();
@@ -65,34 +72,46 @@ export function EditorialIntro() {
 
   return (
     <section id="about" aria-labelledby="intro-label" className="bg-offwhite text-ink">
-      <div className="container-x mx-auto max-w-[120rem] py-[clamp(5.5rem,12vw,11rem)]">
-        <div className="mb-[clamp(2.5rem,5vw,4.5rem)] flex flex-wrap items-center justify-between gap-6">
-          <p id="intro-label" className="eyebrow text-blue">Who we are</p>
-          <p className="label text-steel">A real estate marketing &amp; creative growth agency</p>
-        </div>
-        <div ref={ref} className="editorial-intro grid max-w-[68rem] gap-[0.6em] text-[clamp(1.5rem,0.95rem+2.05vw,3.25rem)] font-normal leading-[1.28] tracking-[-0.015em]">
-          {PARAGRAPHS.map((runs, pi) => (
-            <p key={pi}>
-              {runs.map((run, ri) => (
-                <Fragment key={ri}>
-                  {run.t.split(" ").map((w, wi) => (
-                    <Fragment key={wi}>
-                      <span data-w className={run.em ? "em" : undefined}>{w}</span>{" "}
-                    </Fragment>
-                  ))}
-                </Fragment>
-              ))}
+      <div className="container-x py-[clamp(6rem,12vw,11rem)]">
+        <div className="mx-auto w-full max-w-[78rem]">
+          <div className="mb-[clamp(2.75rem,5vw,4.5rem)] flex flex-wrap items-center justify-between gap-x-8 gap-y-3">
+            <p id="intro-label" className="eyebrow text-blue">Who we are</p>
+            <p className="label text-steel">A real estate marketing &amp; creative growth agency</p>
+          </div>
+          <div
+            ref={ref}
+            className="editorial-intro grid gap-[0.62em] text-[clamp(1.625rem,0.9rem+2.45vw,3.25rem)] font-normal leading-[1.24] tracking-[-0.018em] [text-wrap:pretty]"
+          >
+            {PARAGRAPHS.map((runs, pi) => {
+              const words = runs.flatMap((run) => run.t.split(" ").map((w) => ({ w, em: !!run.em })));
+              const tail = words.length - 2; // keep the last two words together: no single-word last line
+              return (
+                <p key={pi}>
+                  {words.map(({ w, em }, wi) =>
+                    wi === tail ? (
+                      <span key={wi} className="whitespace-nowrap">
+                        <span data-w className={em ? "em" : undefined}>{w}</span>{" "}
+                        <span data-w className={words[wi + 1].em ? "em" : undefined}>{words[wi + 1].w}</span>
+                      </span>
+                    ) : wi > tail ? null : (
+                      <Fragment key={wi}>
+                        <span data-w className={em ? "em" : undefined}>{w}</span>{" "}
+                      </Fragment>
+                    ),
+                  )}
+                </p>
+              );
+            })}
+          </div>
+          <div className="mt-[clamp(3.5rem,6vw,5.5rem)] flex flex-wrap items-end justify-between gap-8 border-t border-line pt-8">
+            <p className="max-w-[46ch] text-[length:var(--fs-body)] leading-[1.7] text-steel">
+              ScaleAcres is an independent creative, digital and growth agency, with real estate marketing at its core. Built to stand out. Designed to scale.
             </p>
-          ))}
-        </div>
-        <div className="mt-[clamp(3rem,6vw,5rem)] flex flex-wrap items-end justify-between gap-8 border-t border-line pt-8">
-          <p className="max-w-[46ch] text-[length:var(--fs-body)] leading-[1.7] text-steel">
-            ScaleAcres is an independent creative, digital and growth agency, with real estate marketing at its core. Built to stand out. Designed to scale.
-          </p>
-          <div className="flex items-end gap-2" aria-hidden="true">
-            {[22, 40, 58, 78, 100].map((h) => (
-              <span key={h} className="block w-3 rounded-t-[2px] md:w-4" style={{ height: `${h * 0.56}px`, background: "var(--grad-rise)" }} />
-            ))}
+            <div className="flex items-end gap-2" aria-hidden="true">
+              {[22, 40, 58, 78, 100].map((h) => (
+                <span key={h} className="block w-3 rounded-t-[2px] md:w-4" style={{ height: `${h * 0.56}px`, background: "var(--grad-rise)" }} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

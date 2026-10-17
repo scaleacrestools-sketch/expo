@@ -147,10 +147,14 @@
 :where(.bg-ink, .bg-navy, .bg-\[var\(--footer-bg\)\], #site-menu, .on-dark) .hover\:text-blue:hover,
 :where(.bg-ink, .bg-navy, .bg-\[var\(--footer-bg\)\], #site-menu, .on-dark) .group:hover .group-hover\:text-blue { color: var(--color-sky); }
 
-/* Editorial intro: words resolve from light grey to black (Royal for emphasis) on scroll */
+/* Editorial intro: words resolve from grey to Brand Black (Royal for key phrases) in step with
+   scroll. Settled words use data-on; the word at the reveal front blends via --r (0–1). */
 .editorial-intro [data-w] { color: var(--color-ink); }
 .editorial-intro .em { color: var(--color-blue); }
-.editorial-intro[data-ready] [data-w] { color: #c3c9d6; transition: color 0.45s var(--ease-out-expo); }
-.editorial-intro[data-ready] .em { color: #b9c9f3; }
+.editorial-intro[data-ready] [data-w] {
+  color: color-mix(in srgb, var(--color-ink) calc(var(--r, 0) * 100%), #c2c8d4);
+  transition: color 0.22s linear;
+}
+.editorial-intro[data-ready] .em { color: color-mix(in srgb, var(--color-blue) calc(var(--r, 0) * 100%), #b8c6ee); }
 .editorial-intro[data-ready] [data-w][data-on] { color: var(--color-ink); }
 .editorial-intro[data-ready] .em[data-on] { color: var(--color-blue); }

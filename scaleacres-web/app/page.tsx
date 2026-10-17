@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { HeroVideo } from "@/components/HeroVideo";
 import { EditorialIntro } from "@/components/EditorialIntro";
 import { ServicesShowcase } from "@/components/ServicesShowcase";
-import { SelectedWork } from "@/components/SelectedWork";
+import { WorkShowcase } from "@/components/WorkShowcase";
 import { HowWeWork } from "@/components/HowWeWork";
 import { ClientLogoShowcase } from "@/components/ClientLogoShowcase";
 import { AdvantageBento } from "@/components/AdvantageBento";
@@ -27,7 +27,7 @@ export default function HomePage() {
       <HeroVideo />
       <EditorialIntro />
       <ServicesShowcase />
-      <SelectedWork limit={6} />
+      <WorkShowcase />
       <HowWeWork />
       <ClientLogoShowcase />
       <AdvantageBento />
