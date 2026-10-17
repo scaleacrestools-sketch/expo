@@ -1,27 +1,33 @@
 /**
- * Official brand assets.
- *
- * The logo artwork is the source of truth. Drop the original files into /public/brand/
- * with these exact names, then set `logoFilesPresent: true`. Until then the header shows
- * a clearly flagged text fallback, never a recreated symbol.
- *
- * Colours sampled from the supplied logo file (16 Oct 2026): brand black #0B0D0D, brand blue #1CA6DC.
- * The white variant only recolours the black artwork to white; shapes, proportions and blue are untouched.
+ * Official ScaleAcres brand assets — Royal Gradient identity.
+ * Source of truth: ScaleAcres Brand Guidelines v1.0 (October 2026), chapters 02–07.
+ * Files come from the ScaleAcres Logo Kit; never redraw, recolour or rearrange them.
  */
 export const brand = {
-  logoFilesPresent: true,
   logo: {
-    /** Full-colour lockup for white / off-white grounds. */
-    primary: "/brand/scaleacres-logo.webp",
-    /** Reversed lockup (white wordmark, blue symbol) for black grounds. */
-    reversed: "/brand/scaleacres-logo-white.webp",
-    /** Intrinsic size of the supplied files, used to keep proportions exact. */
-    width: 884,
-    height: 277,
+    /** Primary: black wordmark + royal gradient symbol and strapline. Light grounds. */
+    primary: "/brand/scaleacres-logo-primary.svg",
+    primaryNoStrapline: "/brand/scaleacres-logo-primary-no-strapline.svg",
+    /** Reversed: white wordmark, royal → sky symbol, sky strapline. Black and navy grounds. */
+    reversed: "/brand/scaleacres-logo-reversed.svg",
+    reversedNoStrapline: "/brand/scaleacres-logo-reversed-no-strapline.svg",
+    /** White: on royal, the gradient, photography and video. */
+    white: "/brand/scaleacres-logo-white.svg",
+    /** Raster primary for structured data and social cards. */
+    primaryPng: "/brand/scaleacres-logo-primary.png",
+    /** Intrinsic proportions of the full lockup (viewBox 1444 × 450). */
+    width: 1444,
+    height: 450,
+    noStraplineWidth: 1428,
   },
-  descriptor: "Scaling with System and Automation",
+  strapline: "Scaling with System and Automation",
   colors: {
+    royal: "#1D4ED8",
+    royalDeep: "#142E8C",
+    sky: "#38BDF8",
     black: "#0B0D0D",
-    blue: "#1CA6DC",
+    navy: "#0B1640",
+    white: "#FFFFFF",
   },
+  gradient: "linear-gradient(60deg, #142E8C 0%, #1D4ED8 50%, #38BDF8 100%)",
 } as const;

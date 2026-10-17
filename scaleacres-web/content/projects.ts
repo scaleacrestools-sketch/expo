@@ -1,8 +1,8 @@
-import { showreel } from "@/content/media";
+import { showreel, clip } from "@/content/media";
 
 export type ProjectLayout = "feature" | "tall" | "short" | "half" | "wide";
 
-export const workFilters = ["Websites", "Branding", "Social Media", "Ad Campaigns", "Videos", "Real Estate"] as const;
+export const workFilters = ["Websites", "Branding", "Social Media", "Campaigns", "Videos", "Real Estate"] as const;
 export type WorkFilter = (typeof workFilters)[number];
 
 export type Project = {
@@ -71,6 +71,20 @@ export const projects: Project[] = [
     services: ["performance-marketing"],
     filters: ["Real Estate"],
     source: "scaleacres.com/case-studies/",
+  },
+  {
+    slug: "architecture-in-motion",
+    client: "ScaleAcres",
+    title: "Architecture in Motion",
+    category: "AI Video · Real Estate",
+    summary: "An AI-produced aerial film of a residential tower at blue hour, made by ScaleAcres to show how cinematic property content can be created for launches.",
+    video: clip("architecture").landscape,
+    href: "/creative-studio/",
+    tone: "ink",
+    layout: "wide",
+    services: ["video-creative-production"],
+    filters: ["Videos", "Real Estate"],
+    source: "ScaleAcres AI film (Higgsfield, Oct 2026)",
   },
   {
     slug: "prominent-realty",

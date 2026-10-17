@@ -22,9 +22,14 @@ export function Footer() {
       {/* Closing CTA */}
       <div className="footer-cta border-b border-white/10">
         <div className="container-x mx-auto flex max-w-[120rem] flex-col items-start justify-between gap-10 py-[clamp(4rem,9vw,8rem)] lg:flex-row lg:items-end">
-          <p className="max-w-[16ch] text-[clamp(2.75rem,1rem+6vw,8rem)] font-black uppercase leading-[0.88] tracking-[-0.045em]">
-            Let&apos;s build something that <span className="text-blue">matters.</span>
-          </p>
+          <div>
+            <p className="max-w-[16ch] text-[clamp(2.75rem,1rem+6vw,8rem)] font-black uppercase leading-[0.88] tracking-[-0.045em]">
+              Let&apos;s build something that <span className="text-blue">matters.</span>
+            </p>
+            <p className="mt-8 max-w-[46ch] text-[length:var(--fs-lead)] leading-[1.5] text-grey-soft">
+              Have a project in mind? Let&apos;s bring strategy, creativity and technology together.
+            </p>
+          </div>
           <Link href="/contact-us/" className="footer-cta__btn group inline-flex shrink-0 items-center gap-4 rounded-full bg-blue px-9 py-6 text-[0.875rem] font-bold uppercase tracking-[0.16em] text-on-accent transition-colors duration-500 hover:bg-white hover:text-ink">
             Let&apos;s Talk
             <Arrow className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -36,7 +41,7 @@ export function Footer() {
         <div className="grid gap-14 py-16 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <Logo size="lg" />
-            <p className="mt-6 max-w-[34ch] text-[0.975rem] leading-[1.7] text-white/60">{site.description}</p>
+            <p className="mt-6 max-w-[34ch] text-[0.975rem] leading-[1.7] text-grey-soft"><span className="font-semibold text-white">A real estate marketing &amp; creative growth agency.</span> {site.description}</p>
             <ul role="list" className="mt-8 flex flex-wrap gap-3">
               {site.social.map((s) => (
                 <li key={s.label}>
@@ -80,9 +85,6 @@ export function Footer() {
         </div>
       </div>
 
-      <p aria-hidden="true" className="container-x mx-auto max-w-[120rem] select-none overflow-hidden whitespace-nowrap pb-1 text-[clamp(3.5rem,15.4vw,18.5rem)] font-black uppercase leading-[0.78] tracking-[-0.05em] text-white/[0.05]">
-        ScaleAcres
-      </p>
     </footer>
   );
 }

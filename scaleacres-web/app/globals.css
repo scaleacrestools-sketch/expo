@@ -2,19 +2,25 @@
 
 /* ---------- Design tokens ---------- */
 @theme {
-  /* Official ScaleAcres brand colours (sampled from the logo artwork, see docs/brand-tokens.md) */
-  --color-ink: #0b0d0d;        /* ScaleAcres Brand Black */
-  --color-ink-soft: #15181b;   /* Graphite — raised surfaces on black */
-  --color-blue: #1ca6dc;       /* ScaleAcres Brand Blue */
-  --color-blue-deep: #1489b8;  /* Blue hover / on light grounds */
-  --color-on-accent: #0b0d0d;  /* Text on accent fills (theme explorations re-map this) */
-  --color-white: #ffffff;      /* Pure White */
-  --color-offwhite: #f4f5f7;   /* Off-White section ground */
-  --color-grey-soft: #c9cdd2;  /* Soft Grey — rules, supporting text on black */
-  --color-grey: #9da2a6;       /* Soft Grey (text) */
-  --color-grey-dark: #3a3f45;  /* Dark Grey — body text on light */
+  /* Official ScaleAcres palette — Brand Guidelines v1.0, chapter 07 */
+  --color-ink: #0b0d0d;        /* Brand Black */
+  --color-ink-soft: #15181b;   /* raised surfaces on black */
+  --color-navy: #0b1640;       /* Royal Navy — alternate dark ground */
+  --color-blue: #1d4ed8;       /* ScaleAcres Royal — primary accent */
+  --color-blue-deep: #142e8c;  /* Royal Deep — gradient base, hover */
+  --color-sky: #38bdf8;        /* Sky — gradient top; accents on dark only */
+  --color-on-accent: #ffffff;  /* text on Royal fills (6.7:1) */
+  --color-white: #ffffff;
+  --color-offwhite: #eef2fb;   /* Mist — tinted sections */
+  --color-mist: #eef2fb;
+  --color-line: #dde3ef;       /* dividers, borders */
+  --color-graphite: #2b3140;   /* body text on light */
+  --color-steel: #5f6878;      /* secondary text on light (5.6:1) */
+  --color-grey-soft: #c9cfdb;  /* supporting text on black */
+  --color-grey: #aeb6c6;       /* Silver — captions on black (9.6:1) */
+  --color-grey-dark: #2b3140;  /* = Graphite (legacy name) */
 
-  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-outfit), Arial, ui-sans-serif, system-ui, sans-serif;
 
   --breakpoint-xs: 23.75rem; /* 380px */
   --breakpoint-3xl: 100rem;  /* 1600px */
@@ -24,6 +30,11 @@
 }
 
 :root {
+  --grad: linear-gradient(60deg, #142e8c 0%, #1d4ed8 50%, #38bdf8 100%);   /* signature gradient */
+  --grad-rise: linear-gradient(0deg, #142e8c 0%, #1d4ed8 50%, #38bdf8 100%); /* rising bars */
+  --ink-rgb: 11 13 13;
+  --accent-rgb: 29 78 216;
+  --footer-bg: #0b0d0d;
   --header-h: 5.25rem;
   --gutter: clamp(1rem, 4vw, 4rem);
   --section-y: clamp(5rem, 11vw, 10rem);
@@ -74,9 +85,8 @@
   .eyebrow::before {
     content: "";
     width: 1.75rem;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.7;
+    height: 2px;
+    background: var(--grad);   /* short gradient rule (guidelines ch. 09) */
   }
 
   .display { font-size: var(--fs-display); font-weight: 900; line-height: 0.9; letter-spacing: -0.04em; text-transform: uppercase; }
@@ -130,3 +140,17 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
 }
+
+/* Royal (#1D4ED8) is 3:1 on Brand Black — fine for large display type, too low for small text.
+   On dark grounds, accent text switches to Sky (9.1:1), as the guidelines specify. */
+:where(.bg-ink, .bg-navy, .bg-\[var\(--footer-bg\)\], #site-menu, .on-dark) .text-blue,
+:where(.bg-ink, .bg-navy, .bg-\[var\(--footer-bg\)\], #site-menu, .on-dark) .hover\:text-blue:hover,
+:where(.bg-ink, .bg-navy, .bg-\[var\(--footer-bg\)\], #site-menu, .on-dark) .group:hover .group-hover\:text-blue { color: var(--color-sky); }
+
+/* Editorial intro: words resolve from light grey to black (Royal for emphasis) on scroll */
+.editorial-intro [data-w] { color: var(--color-ink); }
+.editorial-intro .em { color: var(--color-blue); }
+.editorial-intro[data-ready] [data-w] { color: #c3c9d6; transition: color 0.45s var(--ease-out-expo); }
+.editorial-intro[data-ready] .em { color: #b9c9f3; }
+.editorial-intro[data-ready] [data-w][data-on] { color: var(--color-ink); }
+.editorial-intro[data-ready] .em[data-on] { color: var(--color-blue); }

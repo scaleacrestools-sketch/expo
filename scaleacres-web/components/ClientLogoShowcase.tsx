@@ -11,25 +11,25 @@ import { Arrow } from "@/components/ui/Arrow";
  */
 export function ClientLogoShowcase() {
   return (
-    <Reveal as="section" id="clients" className="section-y bg-offwhite text-ink">
+    <Reveal as="section" id="clients" className="section-y bg-white text-ink">
       <div className="container-x mx-auto max-w-[120rem]">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
-            <p className="eyebrow text-blue-deep" data-reveal>Clients</p>
+            <p className="eyebrow text-blue" data-reveal>Our clients</p>
             <h2 className="h2 mt-6" data-split-reveal>
-              Trusted by brands
+              Brands we&apos;ve
               <br />
-              <span className="text-blue-deep">that think big.</span>
+              <span className="text-blue">built with.</span>
             </h2>
           </div>
           <p className="text-[length:var(--fs-body)] leading-[1.7] text-grey-dark lg:col-span-4" data-reveal>
-            We&apos;ve had the opportunity to collaborate with ambitious brands and businesses to bring meaningful digital experiences and creative ideas to life.
+            Real partnerships. Real projects. Work built around ambitious business goals.
           </p>
         </div>
 
         <ul className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-[6px] border border-ink/10 bg-ink/10 lg:grid-cols-4" role="list" aria-label="Clients" data-reveal>
           {clients.map((c) => (
-            <li key={c.name} className="bg-offwhite">
+            <li key={c.name} className="bg-white">
               <ClientTile client={c} />
             </li>
           ))}

@@ -36,12 +36,12 @@ export function Header() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 text-white transition-[background-color,backdrop-filter,padding] duration-500 ease-out-expo ${
-          solid ? "bg-ink/85 py-0 backdrop-blur-md" : "bg-transparent py-2 md:py-4"
+          solid ? "bg-ink/95 py-0 backdrop-blur-md" : "bg-transparent py-2 md:py-4"
         }`}
       >
         <div className="container-x mx-auto grid max-w-[120rem] grid-cols-[1fr_auto] items-center gap-6 md:grid-cols-[1fr_auto_1fr]" style={{ minHeight: "var(--header-h)" }}>
           <div className="justify-self-start">
-            <Logo size="lg" />
+            <Logo size="lg" strapline={false} />
           </div>
 
           <button

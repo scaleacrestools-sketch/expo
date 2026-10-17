@@ -7,7 +7,7 @@ export function organizationJsonLd() {
     name: site.name,
     legalName: site.legalName,
     url: site.url,
-    logo: `${site.url}/brand/scaleacres-logo.png`,
+    logo: `${site.url}/brand/scaleacres-logo-primary.png`,
     email: site.email,
     telephone: site.phones[0].number.replace(/\s/g, ""),
     address: {

@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import { HeroVideo } from "@/components/HeroVideo";
-import { ClientLogoShowcase } from "@/components/ClientLogoShowcase";
-import { AboutIntro } from "@/components/AboutIntro";
-import { ServiceAccordion } from "@/components/ServiceAccordion";
+import { EditorialIntro } from "@/components/EditorialIntro";
+import { ServicesShowcase } from "@/components/ServicesShowcase";
 import { SelectedWork } from "@/components/SelectedWork";
-import { CreativeStudio } from "@/components/CreativeStudio";
-import { ProcessTimeline } from "@/components/ProcessTimeline";
-import { CaseStudies } from "@/components/CaseStudies";
-import { Insights } from "@/components/Insights";
-import { ContactCTA } from "@/components/ContactCTA";
+import { HowWeWork } from "@/components/HowWeWork";
+import { ClientLogoShowcase } from "@/components/ClientLogoShowcase";
+import { AdvantageBento } from "@/components/AdvantageBento";
 import { RealEstateDNA } from "@/components/RealEstateDNA";
+import { FAQ } from "@/components/FAQ";
 import { homepageSeo } from "@/content/seo/homepage";
 
 export const metadata: Metadata = {
@@ -24,18 +22,17 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* Strict section order — 01 Hero … 11 Contact CTA; 12 Footer is in the layout. */}
+      {/* Section order (brief): 01 Hero · 02 Intro · 03 Services · 04 Work · 05 How we work ·
+          06 Clients · 07 Advantage · 08 Real estate · 09 FAQs · 10 Contact CTA + footer (layout) */}
       <HeroVideo />
-      <AboutIntro />
+      <EditorialIntro />
+      <ServicesShowcase />
+      <SelectedWork limit={6} />
+      <HowWeWork />
       <ClientLogoShowcase />
-      <SelectedWork limit={9} />
-      <ServiceAccordion />
+      <AdvantageBento />
       <RealEstateDNA />
-      <CreativeStudio />
-      <ProcessTimeline />
-      <CaseStudies />
-      <Insights />
-      <ContactCTA />
+      <FAQ />
     </>
   );
 }

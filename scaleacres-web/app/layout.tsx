@@ -1,15 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import "./themes.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Analytics } from "@/components/Analytics";
 import { organizationJsonLd } from "@/lib/seo";
-import { ThemeSwitcher } from "@/components/ThemeSwitcher";
-import { PRODUCTION_HOSTS } from "@/lib/env";
 import { site } from "@/content/site";
 
 const outfit = Outfit({
@@ -39,17 +36,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#11151A",
+  themeColor: "#0B0D0D",
   width: "device-width",
   initialScale: 1,
 };
 
-/**
- * Colour-exploration boot (runs before paint, so no flash). Never active on production hosts:
- * there the approved baseline always renders and the switcher stays hidden.
- * Preview with ?theme=reddash | midnight | olive | baseline and optional &logo=proposal.
- */
-const THEME_BOOT = `(function(){try{var d=document.documentElement;if(${JSON.stringify(PRODUCTION_HOSTS)}.indexOf(location.hostname)>-1)return;d.dataset.themeLab="on";var q=new URLSearchParams(location.search),s=localStorage,t=q.get("theme"),l=q.get("logo");if(t)s.setItem("sa-theme",t);else t=s.getItem("sa-theme");if(l)s.setItem("sa-logo",l);else l=s.getItem("sa-logo");if(t==="reddash"||t==="midnight"||t==="olive")d.dataset.theme=t;if(l==="proposal")d.dataset.logo="proposal"}catch(e){}})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -57,7 +48,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* Marks JS as available so reveal animations may hide content until animated. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT }} />
         {/* Warm the connection to the showreel CDN so the first hero clip starts sooner (remove once clips are self-hosted). */}
         <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" />
       </head>
@@ -74,7 +64,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <BackToTop />
         <ScrollProgress />
         <Analytics />
-        <ThemeSwitcher />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }} />
       </body>
     </html>
