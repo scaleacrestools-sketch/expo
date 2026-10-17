@@ -158,3 +158,24 @@
 .editorial-intro[data-ready] .em { color: color-mix(in srgb, var(--color-blue) calc(var(--r, 0) * 100%), #b8c6ee); }
 .editorial-intro[data-ready] [data-w][data-on] { color: var(--color-ink); }
 .editorial-intro[data-ready] .em[data-on] { color: var(--color-blue); }
+
+/* How we work: stage images drift a few percent against the scroll (scroll-driven, no JS). */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hww-drift { animation: hww-drift linear both; animation-timeline: view(); animation-range: cover; }
+    @keyframes hww-drift { from { translate: 0 -4%; } to { translate: 0 4%; } }
+  }
+}
+.hww-drift { scale: 1.1; }
+.group:hover .hww-drift { scale: 1.14; }
+
+/* Client logo wall: one sprite, drawn as a mask so every mark takes the same ink tone. */
+.client-logo {
+  display: block; width: 100%; height: 100%;
+  background-color: var(--color-steel);
+  -webkit-mask: var(--sprite) no-repeat; mask: var(--sprite) no-repeat;
+  -webkit-mask-size: var(--mask-size); mask-size: var(--mask-size);
+  -webkit-mask-position: var(--mask-pos); mask-position: var(--mask-pos);
+  transition: background-color 0.4s ease;
+}
+.group:hover .client-logo, .group:focus-visible .client-logo { background-color: var(--color-ink); }

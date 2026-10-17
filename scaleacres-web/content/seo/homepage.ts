@@ -8,8 +8,8 @@
  *  - title: search-index snapshot of https://scaleacres.com/ (Oct 2026)  → verified
  *  - h1, positioning, intro, boilerplate, service headings: ScaleAcres Brand Kit v1.0,
  *    which was compiled from scaleacres.com in Sep 2026 → must be re-confirmed by crawl
- *  - metaDescription: NOT CAPTURED. scaleacres.com is unreachable from the build
- *    environment. Run `npm run seo:audit` against production and paste the value here.
+ *  - metaDescription, title: captured from the live https://scaleacres.com/ HTML on
+ *    17 Oct 2026 (read-only fetch) → verified
  *
  * Any field with `verified: false` is a launch blocker until checked against the crawl.
  */
@@ -19,22 +19,25 @@ export const homepageSeo = {
   title: {
     value: "Best Real Estate Digital Marketing Agency in India",
     verified: true,
-    source: "Search index title for https://scaleacres.com/ (Oct 2026)",
+    source: "Live https://scaleacres.com/ <title>, captured 17 Oct 2026",
   },
   metaDescription: {
-    value: "",
-    verified: false,
-    source: "Not captured — production crawl required",
+    value:
+      "Scale your real estate business with Scale Acres – A leading real estate digital marketing agency offering expert lead generation & branding solutions.",
+    verified: true,
+    source: "Live https://scaleacres.com/ <meta name=description>, captured 17 Oct 2026",
   },
   h1: {
     value: "We Don't Create Brands. We Create Market Leaders.",
     verified: false,
-    source: "Brand Kit v1.0 — primary tagline, hero H1 on scaleacres.com",
+    // Live check 17 Oct 2026: this line is an H2 on scaleacres.com; the live H1 is the
+    // positioning line below. Decide which one the new hero should carry before launch.
+    source: "Brand Kit v1.0 tagline; live page uses it as an H2 (live H1 = positioning)",
   },
   positioning: {
-    value: "India's Real Estate Marketing Specialist",
-    verified: false,
-    source: "Brand Kit v1.0 — eyebrow / positioning line",
+    value: "India’s Real Estate Marketing Specialist",
+    verified: true,
+    source: "Live https://scaleacres.com/ H1, captured 17 Oct 2026",
   },
   intro: {
     value:

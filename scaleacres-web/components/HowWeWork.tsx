@@ -1,20 +1,25 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { clip } from "@/content/media";
-import { LazyVideo } from "@/components/media/LazyVideo";
+import { processImages } from "@/content/assets";
+import { homepageSeo } from "@/content/seo/homepage";
+import { Arrow } from "@/components/ui/Arrow";
+import { Reveal } from "@/components/ui/Reveal";
 
-const STEPS = [
-  { n: "01", title: "Discover", text: "Understand the business, audience, market and opportunities.", media: "performance" },
-  { n: "02", title: "Strategize", text: "Define the roadmap, channels, messaging and measurable objectives.", media: "brand" },
-  { n: "03", title: "Create", text: "Build the branding, digital experiences, visuals and campaign assets.", media: "production" },
-  { n: "04", title: "Launch", text: "Execute campaigns, deploy digital experiences and bring creative work to market.", media: "web" },
-  { n: "05", title: "Optimize & Scale", text: "Measure performance, refine the strategy and strengthen business outcomes.", media: "finale" },
+const STAGES = [
+  { n: "01", title: "Discover", text: "Understand the client's market, audience, requirements and objectives.", image: processImages.discover },
+  { n: "02", title: "Strategize", text: "Develop the strategy, creative direction, marketing plan and execution roadmap.", image: processImages.strategize },
+  { n: "03", title: "Create", text: "Produce branding, websites, campaigns, visuals and video assets.", image: processImages.create },
+  { n: "04", title: "Launch", text: "Bring the digital experience, campaigns and approved creatives to market.", image: processImages.launch },
+  { n: "05", title: "Optimize & Scale", text: "Review outcomes, improve performance and refine execution.", image: processImages.optimize },
 ] as const;
 
 /**
- * Section 05 — How we work. Sticky headline, progress rule and a media frame that follows
- * the active step (one video at a time); steps scroll past on the right. Mobile: stacked timeline.
+ * Section 05 — How we work. Brand Black, alternating media/text stages with thin blue rules.
+ * A sticky indicator tracks the stage in view; images drift slightly with scroll (CSS
+ * scroll-driven, static under reduced motion). Stage imagery is labelled concept art.
+ * Also carries the protected homepage intro and the legacy service headings + links.
  */
 export function HowWeWork() {
   const [active, setActive] = useState(0);
@@ -31,71 +36,103 @@ export function HowWeWork() {
     return () => io.disconnect();
   }, []);
 
-  const m = clip(STEPS[active].media);
-  const progress = ((active + 1) / STEPS.length) * 100;
-
   return (
-    <section id="approach" aria-labelledby="hww-title" className="bg-ink text-white">
-      <div className="container-x mx-auto grid max-w-[120rem] gap-14 py-[clamp(5.5rem,11vw,10rem)] lg:grid-cols-12 lg:gap-16">
-        {/* Sticky narrative */}
-        <div className="lg:col-span-5">
-          <div className="lg:sticky lg:top-28">
-            <p className="eyebrow text-blue">How we work</p>
-            <h2 id="hww-title" className="h2 mt-6">
-              From the first idea
-              <br />
-              <span className="text-blue">to measurable growth.</span>
-            </h2>
-            <p className="mt-7 max-w-[46ch] text-[length:var(--fs-body)] leading-[1.7] text-grey-soft">
-              Every project starts with understanding the business. We combine clear strategy, thoughtful creativity, dependable technology and performance-focused execution.
-            </p>
-            {/* progress */}
-            <div className="mt-10 hidden items-center gap-5 lg:flex" aria-hidden="true">
-              <span className="text-sm font-semibold tabular-nums text-sky">{STEPS[active].n}</span>
-              <span className="relative h-[2px] flex-1 bg-white/15">
-                <span className="absolute inset-y-0 left-0 transition-[width] duration-700 ease-out-expo" style={{ width: `${progress}%`, background: "var(--grad)" }} />
-              </span>
-              <span className="text-sm font-semibold tabular-nums text-grey">05</span>
-            </div>
-            <figure className="relative mt-8 hidden overflow-hidden rounded-[10px] lg:block">
-              <LazyVideo key={m.id} src={m.landscape} label={m.description} className="aspect-[16/10] animate-[fade-in_700ms_ease-out]" />
-              <figcaption className="absolute bottom-3 left-4 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-white/80">
-                {STEPS[active].title} · ScaleAcres studio
-              </figcaption>
-            </figure>
+    <section id="approach" aria-labelledby="hww-title" className="relative isolate overflow-hidden bg-ink text-white">
+      <div className="container-x mx-auto max-w-[120rem] py-[clamp(5.5rem,11vw,10rem)]">
+        {/* Header with the oversized outline word behind it */}
+        <Reveal className="relative">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-[0.12em] right-0 -z-10 select-none text-[clamp(3rem,15.5vw,15.5rem)] font-black uppercase leading-none tracking-[-0.04em] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.14)]"
+          >
+            Strategy
+          </span>
+          <p className="eyebrow text-blue" data-reveal>How we work</p>
+          <h2 id="hww-title" className="h2 mt-6" data-split-reveal>
+            From a plan.
+            <br />
+            <span className="text-blue">To a brand journey.</span>
+          </h2>
+          <p className="mt-8 max-w-[52ch] text-[length:var(--fs-body)] leading-[1.7] text-grey-soft" data-reveal>
+            {homepageSeo.intro.value}
+          </p>
+        </Reveal>
+
+        {/* Active-stage indicator (desktop) */}
+        <div className="pointer-events-none sticky top-24 z-10 mt-14 hidden h-0 justify-end lg:flex" aria-hidden="true">
+          <div className="flex items-center gap-4 rounded-full border border-white/12 bg-ink/80 px-5 py-2.5 backdrop-blur-sm">
+            <span className="text-[0.75rem] font-semibold tabular-nums text-sky">{STAGES[active].n}</span>
+            <span className="relative h-px w-28 bg-white/15">
+              <span className="absolute inset-y-0 left-0 bg-sky transition-[width] duration-700 ease-out-expo" style={{ width: `${((active + 1) / STAGES.length) * 100}%` }} />
+            </span>
+            <span className="text-[0.75rem] font-semibold tabular-nums text-grey">05</span>
+            <span className="min-w-[9.5rem] text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-white/80">{STAGES[active].title}</span>
           </div>
         </div>
 
-        {/* Steps */}
-        <ol className="relative lg:col-span-6 lg:col-start-7" role="list">
-          <span aria-hidden="true" className="absolute bottom-6 left-[0.6rem] top-6 w-px bg-white/15 lg:hidden" />
-          {STEPS.map((s, i) => {
+        <ol className="mt-14 lg:mt-24" role="list">
+          {STAGES.map((s, i) => {
             const on = i === active;
+            const flip = i % 2 === 1;
             return (
-              <li
-                key={s.n}
-                ref={(el) => { refs.current[i] = el; }}
-                data-i={i}
-                className="relative grid grid-cols-[1.25rem_minmax(0,1fr)] gap-6 py-8 lg:block lg:min-h-[58vh] lg:border-t lg:border-white/12 lg:py-12"
-              >
-                <span aria-hidden="true" className={`relative z-[1] mt-3 h-[0.75rem] w-[0.75rem] rounded-full border-2 lg:hidden ${on ? "border-sky bg-sky" : "border-white/40 bg-ink"}`} />
-                <div>
-                  <p
-                    aria-hidden="true"
-                    className={`font-black leading-[0.8] tracking-[-0.05em] transition-colors duration-700 text-[clamp(4.5rem,2rem+8vw,10rem)] ${on ? "text-sky" : "text-white/10 lg:text-transparent lg:[-webkit-text-stroke:1.5px_rgba(255,255,255,0.25)]"}`}
-                  >
-                    {s.n}
-                  </p>
-                  <h3 className={`mt-6 text-[clamp(1.75rem,1rem+1.8vw,3rem)] font-extrabold uppercase leading-none tracking-[-0.03em] transition-colors duration-700 ${on ? "text-white" : "text-white/55"}`}>
-                    <span className="sr-only">{s.n} — </span>
-                    {s.title}
-                  </h3>
-                  <p className={`mt-5 max-w-[44ch] text-[length:var(--fs-body)] leading-[1.7] transition-colors duration-700 ${on ? "text-grey-soft" : "text-white/45"}`}>{s.text}</p>
-                </div>
+              <li key={s.n} ref={(el) => { refs.current[i] = el; }} data-i={i} data-stage={s.title} className="relative py-10 md:py-14 lg:py-16">
+                {/* Thin blue rule; fills to Sky on the active stage */}
+                <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-blue/35" />
+                <span aria-hidden="true" className={`absolute left-0 top-0 h-px bg-sky transition-[width] duration-1000 ease-out-expo ${on ? "w-full" : "w-0"}`} />
+                <Reveal className="grid items-center gap-8 md:gap-10 lg:grid-cols-12 lg:gap-16">
+                  <figure className={`group relative m-0 overflow-hidden rounded-[14px] lg:col-span-6 ${flip ? "lg:order-2 lg:col-start-7" : ""}`} data-reveal>
+                    <div className="aspect-[4/3] overflow-hidden md:aspect-[16/11] lg:aspect-square">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={s.image.src}
+                        width={s.image.width}
+                        height={s.image.height}
+                        alt={s.image.alt}
+                        loading="lazy"
+                        decoding="async"
+                        className="hww-drift h-full w-full object-cover transition-[scale] duration-[1200ms] ease-out-expo"
+                      />
+                    </div>
+                    <figcaption className="dev-badge">Concept visual</figcaption>
+                  </figure>
+                  <div className={`lg:col-span-5 ${flip ? "lg:order-1 lg:col-start-1" : "lg:col-start-8"}`} data-reveal>
+                    <p
+                      aria-hidden="true"
+                      className={`text-[clamp(4rem,2rem+6vw,8.5rem)] font-black leading-[0.8] tracking-[-0.05em] transition-colors duration-700 ${on ? "text-sky" : "text-transparent [-webkit-text-stroke:1.5px_rgba(255,255,255,0.3)]"}`}
+                    >
+                      {s.n}
+                    </p>
+                    <h3 className={`mt-6 text-[clamp(1.875rem,1rem+2vw,3.25rem)] font-extrabold uppercase leading-none tracking-[-0.03em] transition-colors duration-700 ${on ? "text-white" : "text-white/70"}`}>
+                      <span className="sr-only">Stage {s.n}: </span>
+                      {s.title}
+                    </h3>
+                    <p className="mt-5 max-w-[40ch] text-[length:var(--fs-body)] leading-[1.7] text-grey-soft">{s.text}</p>
+                  </div>
+                </Reveal>
               </li>
             );
           })}
         </ol>
+
+        <p className="mt-6 border-t border-blue/35 pt-6 text-[0.8125rem] text-white/55">
+          Stage imagery is AI-generated concept art for illustration. It is not client work.
+        </p>
+
+        {/* Legacy service headings and internal links from the live homepage (protected). */}
+        <div className="mt-20 lg:mt-28">
+          <h2 className="label text-grey">{homepageSeo.servicesHeading.value}</h2>
+          <ul className="mt-6 grid border-t border-white/15 sm:grid-cols-2 lg:grid-cols-5" role="list">
+            {homepageSeo.legacyServices.value.map((s, i) => (
+              <li key={s.heading} className="border-b border-white/15 lg:border-r lg:last:border-r-0">
+                <Link href={s.href} className="group flex h-full min-h-[8.5rem] flex-col justify-between gap-5 py-6 sm:px-5 lg:px-6">
+                  <span className="text-xs font-semibold tabular-nums text-white/50">0{i + 1}</span>
+                  <h3 className="text-[1.1875rem] font-bold leading-tight tracking-[-0.01em] transition-colors group-hover:text-sky">{s.heading}</h3>
+                  <Arrow className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
