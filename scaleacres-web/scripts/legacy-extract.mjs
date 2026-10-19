@@ -193,7 +193,7 @@ const EXTRACT = () => {
   function walk(el, blocks, forceVisible = false, skip = null) {
     for (const c of el.children) {
       if (c === skip || c.matches(EXCLUDE)) continue;
-      if (!forceVisible && !inCollapsible(c) && isHidden(c)) continue;
+      // Hidden (responsive) elements are kept; exact duplicates are removed after the walk.
       const t = c.tagName;
       // Widgets with special handling
       if (c.matches(".elementor-widget-accordion, .elementor-widget-toggle, .elementor-widget-n-accordion, .elementor-widget-elementskit-accordion, .elementor-widget-elementskit-faq")) {
@@ -277,7 +277,7 @@ const EXTRACT = () => {
   if (!sectionEls.length) sectionEls = [root];
   const sections = [];
   for (const s of sectionEls) {
-    if (s.matches(EXCLUDE) || isHidden(s)) continue;
+    if (s.matches(EXCLUDE)) continue;
     const blocks = [];
     walk(s, blocks);
     if (!blocks.length) continue;
@@ -291,7 +291,7 @@ const EXTRACT = () => {
   for (const s of sections) {
     s.blocks = s.blocks.filter((b) => {
       const k = b.type + ":" + (b.html ?? b.text ?? b.src ?? b.embed ?? JSON.stringify(b.items ?? b.rows ?? ""));
-      if ((b.type === "paragraph" || b.type === "heading" || b.type === "image") && seen.has(k)) return false;
+      if (["paragraph", "heading", "image", "list", "faq", "stat", "button", "video"].includes(b.type) && seen.has(k)) return false;
       seen.add(k);
       return true;
     });
