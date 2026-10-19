@@ -121,7 +121,7 @@ function Img({ img, className = "", sizes }: { img: Extract<Block, { type: "imag
 
 /** Logos and small marks → greyscale wall; photos and screenshots → rounded gallery. */
 export function Gallery({ images, tone, feature = false }: { images: Extract<Block, { type: "image" }>[]; tone: Tone; feature?: boolean }) {
-  const small = images.filter((i) => (i.width ?? 0) > 0 && (i.width ?? 0) < 420).length;
+  const small = images.filter((i) => (i.width ?? 0) > 0 && (i.width ?? 0) <= 520).length;
   const logoWall = images.length >= 5 && small / images.length > 0.6;
   if (logoWall) {
     return (
@@ -305,20 +305,40 @@ function ItemEl({ it, tone, form, headingRole }: { it: Item; tone: Tone; form?: 
 
 /* ------------------------------------------------------------------ sections */
 
-type Group = { heading?: Extract<Block, { type: "heading" }>; items: Item[]; blocks: Block[] };
+type Group = { heading?: Extract<Block, { type: "heading" }>; extraHeadings?: Extract<Block, { type: "heading" }>[]; items: Item[]; blocks: Block[]; lead?: Extract<Block, { type: "image" }> };
 
 function groupBlocks(blocks: Block[]): Group[] {
   const groups: Group[] = [];
   let cur: Group = { items: [], blocks: [] };
   for (const b of blocks) {
     if (b.type === "heading" && !isStatHeading(b)) {
+      // Card pattern (photo, name, logo, photo, name, logo…): an image right before a heading
+      // belongs to the next card when the current one already has its own image.
+      let carry: Extract<Block, { type: "image" }> | undefined;
+      const last = cur.blocks[cur.blocks.length - 1];
+      if (last?.type === "image" && b.level >= 4 && (cur.blocks.filter((x) => x.type === "image").length > 1 || (!cur.heading && cur.blocks.every((x) => x.type === "image")))) {
+        carry = cur.blocks.pop() as Extract<Block, { type: "image" }>;
+      }
       if (cur.heading || cur.blocks.length) groups.push(cur);
-      cur = { heading: b, items: [], blocks: [] };
+      cur = { heading: b, items: [], blocks: [], lead: carry };
     } else cur.blocks.push(b);
   }
   if (cur.heading || cur.blocks.length) groups.push(cur);
   for (const g of groups) g.items = toItems(g.blocks);
   return groups;
+}
+
+/** Runs of heading-only groups that repeat a pattern ("Step 1", title, text, "Step 2"…) become one card per step. */
+function chunkSteps(groups: Group[]): Group[] {
+  if (groups.length < 4 || !groups.every((g) => g.heading && !g.blocks.length && !g.lead && g.heading.level >= 4)) return groups;
+  const sig = (g: Group) => g.heading!.text.replace(/\d+/g, "#").trim();
+  const first = sig(groups[0]);
+  if (!/#/.test(first)) return groups;
+  const period = groups.findIndex((g, i) => i > 0 && sig(g) === first);
+  if (period < 2 || groups.length % period !== 0) return groups;
+  const out: Group[] = [];
+  for (let i = 0; i < groups.length; i += period) out.push({ heading: groups[i].heading, extraHeadings: groups.slice(i + 1, i + period).map((g) => g.heading!), items: [], blocks: [] });
+  return out;
 }
 
 /**
@@ -336,9 +356,9 @@ export function SectionBand({ blocks, tone, index, form, hero = false }: { block
   const titleIdx = groups.findIndex((g) => g.heading && g.heading.level === top && g.heading.level <= 3);
   const leadGroups = titleIdx > 0 ? groups.slice(0, titleIdx) : [];
   const title = titleIdx >= 0 ? groups[titleIdx] : null;
-  const rest = titleIdx >= 0 ? groups.slice(titleIdx + 1) : groups;
+  const rest = chunkSteps(titleIdx >= 0 ? groups.slice(titleIdx + 1) : groups);
 
-  const textual = (g: Group) => g.items.every((it) => it.kind !== "block" || ["paragraph", "list", "heading"].includes(it.block.type));
+  const textual = (g: Group) => g.items.every((it) => (it.kind === "gallery" ? it.images.length <= 2 : it.kind !== "block" || ["paragraph", "list", "heading"].includes(it.block.type)));
   const compact = rest.length >= 3 && rest.every((g) => g.heading && textual(g) && textLen(g.blocks) < 650) && new Set(rest.map((g) => g.heading!.level)).size === 1;
   const cols = rest.length % 4 === 0 && rest.length >= 4 ? "lg:grid-cols-4" : rest.length === 4 || rest.length === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3";
 
@@ -378,9 +398,10 @@ export function SectionBand({ blocks, tone, index, form, hero = false }: { block
           <ul role="list" className={`grid gap-px overflow-hidden rounded-[14px] sm:grid-cols-2 ${cols} ${onDark(tone) ? "bg-white/12" : "bg-line"}`}>
             {rest.map((g, i) => (
               <li key={i} className={`space-y-4 p-7 md:p-9 ${onDark(tone) ? "bg-ink" : tone === "mist" ? "bg-offwhite" : "bg-white"}`}>
-                <span className={`block text-xs font-semibold tabular-nums ${onDark(tone) ? "text-sky" : "text-blue"}`}>{String(i + 1).padStart(2, "0")}</span>
-                <HeadingEl b={g.heading!} role={g.heading!.level >= 5 ? "minor" : "group"} tone={tone} />
-                {g.items.map((it, j) => (<ItemEl key={j} it={it} tone={tone} form={form} headingRole="group" />))}
+                {g.lead ? <Img img={g.lead} className="mb-2 aspect-[4/3] h-auto w-full rounded-[10px] object-cover" /> : <span className={`block text-xs font-semibold tabular-nums ${onDark(tone) ? "text-sky" : "text-blue"}`}>{String(i + 1).padStart(2, "0")}</span>}
+                <HeadingEl b={g.heading!} role={g.heading!.level >= 5 && !g.lead && !g.extraHeadings ? "minor" : "group"} tone={tone} />
+                {g.extraHeadings?.map((h, j) => (<HeadingEl key={`x${j}`} b={h} role={j === 0 ? "group" : "minor"} tone={tone} />))}
+                {g.items.map((it, j) => (it.kind === "gallery" && g.lead ? <Gallery key={j} images={it.images} tone={tone} /> : <ItemEl key={j} it={it} tone={tone} form={form} headingRole="group" />))}
               </li>
             ))}
           </ul>
@@ -388,10 +409,11 @@ export function SectionBand({ blocks, tone, index, form, hero = false }: { block
           rest.map((g, i) => {
             const media = g.items.filter((it) => it.kind === "gallery");
             const body = g.items.filter((it) => it.kind !== "gallery");
-            const wide = body.some((it) => it.kind === "block" && ["faq", "table", "video", "form"].includes(it.block.type)) || !g.heading;
+            const wide = body.some((it) => it.kind === "block" && ["faq", "table", "video", "form"].includes(it.block.type)) || !g.heading || media.some((it) => it.kind === "gallery" && it.images.length >= 6);
             if (wide) {
               return (
                 <div key={i} className="space-y-6">
+                  {g.lead ? <Gallery images={[g.lead]} tone={tone} /> : null}
                   {g.heading ? <HeadingEl b={g.heading} role={g.heading.level <= 2 ? "title" : g.heading.level >= 5 ? "minor" : "group"} tone={tone} /> : null}
                   {g.items.map((it, j) => (<ItemEl key={j} it={it} tone={tone} form={form} headingRole="group" />))}
                 </div>
@@ -399,7 +421,8 @@ export function SectionBand({ blocks, tone, index, form, hero = false }: { block
             }
             return (
               <div key={i} className={`grid gap-6 border-t pt-8 lg:grid-cols-12 lg:gap-12 ${onDark(tone) ? "border-white/12" : "border-line"}`}>
-                <div className="lg:col-span-5">
+                <div className="space-y-5 lg:col-span-5">
+                  {g.lead ? <Gallery images={[g.lead]} tone={tone} /> : null}
                   <HeadingEl b={g.heading!} role={g.heading!.level <= 2 ? "title" : g.heading!.level >= 5 ? "minor" : "group"} tone={tone} />
                 </div>
                 <div className="space-y-5 lg:col-span-7">

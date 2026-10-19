@@ -50,10 +50,34 @@ export type LegacyPage = {
 export type PageKind =
   | "post" | "archive" | "location" | "service" | "services" | "company" | "case" | "work" | "contact" | "legal" | "fragment";
 
-let cache: { capturedAt: string; source: string; pages: LegacyPage[] } | null = null;
-function load() {
-  if (!cache) cache = JSON.parse(gunzipSync(readFileSync(join(process.cwd(), "content/legacy/content.json.gz"))).toString("utf8"));
-  return cache!;
+type Store = { capturedAt: string; source: string; pages: LegacyPage[] };
+let cache: Store | null = null;
+function load(): Store {
+  if (!cache) {
+    const data = JSON.parse(gunzipSync(readFileSync(join(process.cwd(), "content/legacy/content.json.gz"))).toString("utf8")) as Store;
+    for (const p of data.pages) retargetPopups(p);
+    cache = data;
+  }
+  return cache;
+}
+
+/**
+ * Elementor popup triggers (href "…#elementor-action…") only work inside WordPress. They open an
+ * enquiry form, so they now point to the page's own enquiry form (or the contact page).
+ */
+function retargetPopups(p: LegacyPage) {
+  const hasForm = p.sections.some((s) => s.blocks.some((b) => b.type === "form"));
+  const target = hasForm ? `${p.path}#enquiry` : "/contact-us/";
+  const fix = (h: string) => h.replace(/href="[^"]*#elementor-action[^"]*"/g, `href="${target}"`);
+  const walk = (bs: Block[]) => {
+    for (const b of bs) {
+      if ("html" in b && typeof b.html === "string") (b as { html: string }).html = fix(b.html);
+      if (b.type === "list") b.items = b.items.map(fix);
+      if (b.type === "button" && b.href.includes("#elementor-action")) b.href = target;
+      if (b.type === "faq") b.items.forEach((it) => walk(it.answer));
+    }
+  };
+  p.sections.forEach((s) => walk(s.blocks));
 }
 
 export const legacyCapturedAt = () => load().capturedAt;
