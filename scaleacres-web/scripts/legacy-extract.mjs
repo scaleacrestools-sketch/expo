@@ -100,11 +100,16 @@ const EXTRACT = () => {
     ".ekit-template-content-footer", "#wpadminbar", ".site-header", ".site-footer", "script", "style", "noscript", "template", "link",
     ".swiper-slide-duplicate", ".slick-cloned", "#cookie-notice", ".cky-consent-container", ".ast-mobile-popup-drawer",
   ].join(",");
+  // The page's own Elementor document carries its post id (body class page-id-N / postid-N).
+  const pid = document.body.className.match(/(?:page-id|postid)-(\d+)/)?.[1];
+  const notChrome = (el) => !el.closest("header, footer, [data-elementor-type='header'], [data-elementor-type='footer'], [data-elementor-type='popup'], .elementskit-megamenu-panel, nav");
+  const docs = [...document.querySelectorAll("[data-elementor-type]")].filter((d) => notChrome(d) && !["header", "footer", "popup"].includes(d.getAttribute("data-elementor-type")));
+  const largest = docs.sort((a, b) => (b.innerText?.length ?? 0) - (a.innerText?.length ?? 0))[0];
   const root =
-    document.querySelector("[data-elementor-type='wp-page'], [data-elementor-type='wp-post'], [data-elementor-type='single-post'], [data-elementor-type='single-page'], [data-elementor-type='archive'], [data-elementor-type='single']") ||
-    document.querySelector("main, #main, #content, .site-main, article") ||
+    (pid && document.querySelector(`[data-elementor-id="${pid}"]`)) ||
+    (largest && (largest.innerText?.length ?? 0) > 200 ? largest : null) ||
+    document.querySelector("main, #main, #primary, #content, .site-main, article") ||
     document.body;
-
   const isHidden = (el) => {
     const cs = getComputedStyle(el);
     if (cs.display === "none" || cs.visibility === "hidden") return true;
