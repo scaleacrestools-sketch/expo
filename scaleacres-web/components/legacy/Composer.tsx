@@ -91,6 +91,18 @@ function Frame({ img, ratio = "aspect-[16/10]", caption = false, className = "",
   );
 }
 
+/** Showcase tile: 16:10 crop, hover zoom, project label (the original alt text) over a soft gradient. */
+function Tile({ img }: { img: I }) {
+  return (
+    <figure className="group relative m-0 aspect-[16/10] overflow-hidden rounded-[14px] bg-white/5">
+      <Img img={img} className="h-full w-full object-cover transition-[scale] duration-[1400ms] ease-out-expo group-hover:scale-[1.05]" />
+      {img.alt ? (
+        <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent px-5 pb-4 pt-12 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-white/90">{img.alt}</figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
 /* ------------------------------------------------------------------ section recognisers */
 
 type Kind =
@@ -106,9 +118,10 @@ function kindOf(s: LegacySection, i: number): Kind {
   if (b.some((x) => x.type === "faq")) return "faq";
   if (hs.filter((h) => /founder|director|ceo|owner/i.test(h.text)).length >= 3) return "testimonials";
   if (hs.filter((h) => /^category\s*:/i.test(h.text)).length >= 3) return "portfolio";
-  const title = hs.map((h) => h.text).join(" ");
+  // Keyword cues read only the section's main headings (H1–H3), never card labels.
+  const title = hs.filter((h) => h.level <= 3).map((h) => h.text).join(" ");
   if (/result|proof|performance/i.test(title) && imgs.length >= 2 && hs.length <= 2) return "results";
-  if (/culture|team|life at/i.test(title) && imgs.length >= 3) return "culture";
+  if (/culture|team|life at/i.test(title) && imgs.filter(big).length >= 3) return "culture";
   if (imgs.length >= 3 && imgs.filter(portrait).length >= 3 && hs.length <= 2 && words(b) < 120) return "creatives";
   if (imgs.length >= 6 && imgs.filter(big).length >= 6 && hs.length <= 2) return "showcase";
   if (imgs.length >= 8 && hs.length <= 2) return "logos";
@@ -203,8 +216,8 @@ function Logos({ blocks, tone }: { blocks: Block[]; tone: Tone }) {
       </div>
       <ul role="list" className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-[16px] border border-line bg-line sm:grid-cols-3 lg:grid-cols-6" data-reveal>
         {imgs.map((im, i) => (
-          <li key={i} className="group grid aspect-[2/1] place-items-center bg-white p-5">
-            <Img img={im} className="max-h-[72%] w-auto max-w-[82%] object-contain opacity-75 grayscale transition duration-500 group-hover:opacity-100 group-hover:grayscale-0" />
+          <li key={i} className="group relative aspect-[2/1] bg-white">
+            <Img img={im} className="absolute inset-0 m-auto h-auto max-h-[62%] w-auto max-w-[74%] object-contain opacity-80 grayscale transition duration-500 group-hover:opacity-100 group-hover:grayscale-0" />
           </li>
         ))}
       </ul>
@@ -297,12 +310,14 @@ function Showcase({ s, tone }: { s: LegacySection; tone: Tone }) {
         <div className="lg:col-span-7" data-reveal>{hs.map((h, i) => <T key={i} b={h} />)}</div>
         <div className="lg:col-span-5"><Text blocks={b} tone={tone} lead /></div>
       </div>
-      <ul role="list" className="mt-14 grid gap-4 md:grid-cols-6 md:gap-5">
-        {imgs.map((im, i) => (
-          <li key={i} className={i === 0 ? "md:col-span-4 md:row-span-2" : i < 3 ? "md:col-span-2" : i % 5 === 3 ? "md:col-span-3" : i % 5 === 4 ? "md:col-span-3" : "md:col-span-2"} data-reveal>
-            <Frame img={im} ratio={i === 0 ? "aspect-[16/10] md:aspect-auto md:h-full" : "aspect-[16/10]"} caption className="h-full [&>div]:h-full" />
-          </li>
-        ))}
+      <div className="mt-14 grid gap-4 md:gap-5 lg:grid-cols-12">
+        {imgs[0] ? <div className="lg:col-span-8" data-reveal><Tile img={imgs[0]} /></div> : null}
+        <div className="grid gap-4 md:grid-cols-2 md:gap-5 lg:col-span-4 lg:grid-cols-1">
+          {imgs.slice(1, 3).map((im, i) => <div key={i} data-reveal><Tile img={im} /></div>)}
+        </div>
+      </div>
+      <ul role="list" className="mt-4 grid gap-4 sm:grid-cols-2 md:mt-5 md:gap-5 lg:grid-cols-3">
+        {imgs.slice(3).map((im, i) => <li key={i} data-reveal><Tile img={im} /></li>)}
       </ul>
       {btns(b).length ? <div className="mt-12"><Buttons buttons={btns(b)} tone={tone} /></div> : null}
       <Extras blocks={s.blocks} tone={tone} />
