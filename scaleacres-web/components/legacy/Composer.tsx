@@ -415,21 +415,25 @@ function Portfolio({ s, tone }: { s: LegacySection; tone: Tone }) {
         <div className="lg:col-span-7" data-reveal>{head.filter(isH).map((h, i) => <T key={i} b={h} />)}</div>
         <div className="lg:col-span-5"><Text blocks={head} tone={tone} lead /></div>
       </div>
-      <ul role="list" className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p, i) => (
-          <li key={i} className="group" data-reveal>
-            {p.shot ? (
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[16px] bg-white">
-                <Img img={p.shot} className="absolute inset-0 h-full w-full object-cover object-top transition-[object-position] duration-[4500ms] ease-in-out group-hover:object-bottom" />
-                <span aria-hidden="true" className="absolute bottom-4 right-4 grid h-11 w-11 place-items-center rounded-full bg-blue text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"><Arrow className="h-4 w-4" /></span>
+      {/* Hierarchy: the first two projects lead large, the rest follow in a tighter grid. Every project stays in the HTML. */}
+      <ul role="list" className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-6">
+        {projects.map((p, i) => {
+          const lead = i < 2 && !!p.shot;
+          return (
+            <li key={i} className={`group ${lead ? "lg:col-span-3" : "lg:col-span-2"}`} data-reveal>
+              {p.shot ? (
+                <div className={`relative overflow-hidden rounded-[16px] bg-white ${lead ? "aspect-[4/5] lg:aspect-[16/13]" : "aspect-[4/5]"}`}>
+                  <Img img={p.shot} className="absolute inset-0 h-full w-full object-cover object-top transition-[object-position] duration-[4500ms] ease-in-out group-hover:object-bottom" />
+                  <span aria-hidden="true" className="absolute bottom-4 right-4 grid h-11 w-11 place-items-center rounded-full bg-blue text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"><Arrow className="h-4 w-4" /></span>
+                </div>
+              ) : null}
+              <div className="mt-5 flex items-start justify-between gap-4">
+                <div className="space-y-1">{p.meta.map((m, j) => <T key={j} b={m} size="meta" />)}</div>
+                {p.logo ? <span className="grid h-12 min-w-12 place-items-center rounded-[10px] bg-white px-2"><Img img={p.logo} className="max-h-8 w-auto max-w-[6rem] object-contain" /></span> : null}
               </div>
-            ) : null}
-            <div className="mt-5 flex items-start justify-between gap-4">
-              <div className="space-y-1">{p.meta.map((m, j) => <T key={j} b={m} size="meta" />)}</div>
-              {p.logo ? <span className="grid h-12 min-w-12 place-items-center rounded-[10px] bg-white px-2"><Img img={p.logo} className="max-h-8 w-auto max-w-[6rem] object-contain" /></span> : null}
-            </div>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ul>
       {tail.length ? <div className="mt-12 space-y-6"><Text blocks={tail} tone={tone} /><Buttons buttons={btns([...head, ...tail])} tone={tone} /><Extras blocks={[...head, ...tail]} tone={tone} /></div> : null}
     </Shell>
@@ -552,7 +556,7 @@ function Reasons({ s, tone }: { s: LegacySection; tone: Tone }) {
         <div className="lg:col-span-5"><div className="lg:sticky lg:top-28" data-reveal><Label tone={tone}>Why ScaleAcres</Label><div className="mt-6"><T b={title} /></div></div></div>
         <ol className="lg:col-span-7">
           {rows.map((r, i) => (
-            <li key={i} className={`group grid grid-cols-[auto_1fr] gap-6 border-t py-9 md:gap-10 ${dark(tone) ? "border-white/12" : "border-line"}`} data-reveal>
+            <li key={i} className={`group grid grid-cols-[3.5rem_1fr] gap-6 border-t py-9 md:grid-cols-[5.5rem_1fr] md:gap-8 ${dark(tone) ? "border-white/12" : "border-line"}`} data-reveal>
               <span aria-hidden="true" className="text-[clamp(2.5rem,1.5rem+2.5vw,4.5rem)] font-black leading-none tracking-[-0.05em] text-transparent transition-colors duration-500 [-webkit-text-stroke:1.5px_rgba(56,189,248,0.6)] group-hover:text-sky">{String(i + 1).padStart(2, "0")}</span>
               <div className="space-y-4">
                 <T b={r.h} size="card" className="!text-[clamp(1.375rem,1rem+1vw,2rem)] !font-extrabold" />
