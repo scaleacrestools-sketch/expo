@@ -108,7 +108,9 @@ export function Buttons({ buttons, tone }: { buttons: { href: string; text: stri
 
 /** Images that are links on the live site (the extractor records image sources, not their wrapping link). */
 const IMAGE_LINKS: Record<string, string> = {
-  "/wp-content/uploads/2025/04/Scale-Acres-Case-Study-Cards-02.webp": "/casestudy/our-case-one-goa/",
+  // Live link is /casestudy/our-case-one-goa/, which returns 404 on scaleacres.com; the case
+  // study itself lives at /blog/casestudy/our-case-one-goa/ (broken link fixed, see SEO report).
+  "/wp-content/uploads/2025/04/Scale-Acres-Case-Study-Cards-02.webp": "/blog/casestudy/our-case-one-goa/",
   "/wp-content/uploads/2025/04/Scale-Acres-Case-Study-Cards-03.webp": "/yugen-case-study/",
 };
 

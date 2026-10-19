@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects, caseStudyProjects, getProject } from "@/content/projects";
+import { caseStudyProjects, getProject } from "@/content/projects";
 import { caseStudies } from "@/content/caseStudies";
 import { services, serviceHref } from "@/content/services";
 import { PageHero } from "@/components/PageHero";
@@ -28,8 +28,9 @@ export default async function ProjectPage({ params }: Params) {
   if (!p) notFound();
   const cs = caseStudies.find((c) => c.slug === p.slug);
   const used = services.filter((s) => p.services.includes(s.slug));
-  const idx = projects.indexOf(p);
-  const next = projects[(idx + 1) % projects.length];
+  // "Next" only cycles through projects that have their own case-study page.
+  const idx = caseStudyProjects.indexOf(p);
+  const next = caseStudyProjects[(idx + 1) % caseStudyProjects.length];
 
   return (
     <>

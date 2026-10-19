@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useId, useRef, useState } from "react";
 import { contactSchema, serviceOptions, type ContactFieldErrors } from "@/lib/contactSchema";
 
@@ -113,7 +114,7 @@ export function ContactForm() {
         <label className="flex items-start gap-3 text-sm text-grey-soft">
           <input type="checkbox" name="consent" required aria-invalid={!!errors.consent} className="mt-1 h-4 w-4 shrink-0 accent-blue" />
           <span id={`${id}-privacy`}>
-            I agree to ScaleAcres storing my details to respond to this enquiry. We never sell your data. See our <a href="/privacy-policy/" className="underline underline-offset-2 hover:text-offwhite">Privacy Policy</a>.
+            I agree to ScaleAcres storing my details to respond to this enquiry. We never sell your data. See our <Link href="/privacy-policy/" className="underline underline-offset-2 hover:text-offwhite">Privacy Policy</Link>.
           </span>
         </label>
         {errors.consent ? <p role="alert" className="mt-2 text-sm text-blue">{errors.consent}</p> : null}

@@ -109,7 +109,11 @@ for p in data["pages"]:
     def lk(h): return (h or "").split("#")[0].rstrip("/") or "/"
     live_links = {lk(l["href"]) for l in a.get("links", []) if l["href"].startswith("/") and not l["href"].startswith("/wp-")}
     our_links = {lk(x.get("href")) for x in soup.find_all("a") if (x.get("href") or "").startswith("/")}
-    miss_links = live_links - our_links
+    # Links that are broken (404) on the live site and now point to the working page.
+    FIXED = {"/casestudy/our-case-one-goa": "/blog/casestudy/our-case-one-goa"}
+    fixed = {l for l in live_links if l in FIXED and FIXED[l] in our_links}
+    if fixed: notes.append(f"broken live link fixed: {sorted(fixed)} → {[FIXED[x] for x in sorted(fixed)]}")
+    miss_links = live_links - our_links - fixed
     link = PASS if not miss_links else REVIEW if len(miss_links) <= 2 else FAIL
     if miss_links: notes.append(f"internal links missing: {sorted(miss_links)[:4]}")
 
