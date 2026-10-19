@@ -91,14 +91,11 @@ function Frame({ img, ratio = "aspect-[16/10]", caption = false, className = "",
   );
 }
 
-/** Showcase tile: 16:10 crop, hover zoom, project label (the original alt text) over a soft gradient. */
+/** Showcase tile: 16:10 crop with hover zoom. The live alt text stays on the image only (it does not always describe the artwork). */
 function Tile({ img }: { img: I }) {
   return (
     <figure className="group relative m-0 aspect-[16/10] overflow-hidden rounded-[14px] bg-white/5">
       <Img img={img} className="h-full w-full object-cover transition-[scale] duration-[1400ms] ease-out-expo group-hover:scale-[1.05]" />
-      {img.alt ? (
-        <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent px-5 pb-4 pt-12 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-white/90">{img.alt}</figcaption>
-      ) : null}
     </figure>
   );
 }
@@ -316,7 +313,8 @@ function Showcase({ s, tone }: { s: LegacySection; tone: Tone }) {
           {imgs.slice(1, 3).map((im, i) => <div key={i} data-reveal><Tile img={im} /></div>)}
         </div>
       </div>
-      <ul role="list" className="mt-4 grid gap-4 sm:grid-cols-2 md:mt-5 md:gap-5 lg:grid-cols-3">
+      {/* Four across when that fills every row, otherwise three. */}
+      <ul role="list" className={`mt-4 grid gap-4 sm:grid-cols-2 md:mt-5 md:gap-5 ${imgs.length > 3 && (imgs.length - 3) % 4 === 0 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
         {imgs.slice(3).map((im, i) => <li key={i} data-reveal><Tile img={im} /></li>)}
       </ul>
       {btns(b).length ? <div className="mt-12"><Buttons buttons={btns(b)} tone={tone} /></div> : null}
