@@ -1,19 +1,31 @@
 import Link from "next/link";
 import { media, pageKind, plain, type Block, type LegacyPage as Page, type PageKind } from "@/lib/legacy";
 import { Arrow } from "@/components/ui/Arrow";
+import { ComposedPage } from "@/components/legacy/Composer";
 import { Flow, HeadingEl, SectionBand, Gallery, Html, Buttons, asButton, type FormCounter, type Tone } from "@/components/legacy/LegacyBlocks";
 
 /**
  * Redesigned template for every migrated page. Content comes verbatim from the live capture;
  * the template only decides presentation per page type.
  */
+/** Stage A: the premium composed system is live on these pages only, pending approval. */
+const COMPOSED = new Set(["/real-estate-marketing-delhi/"]);
+
 export function LegacyPageView({ page }: { page: Page }) {
   const kind = pageKind(page);
   const form: FormCounter = { first: page.sections.flatMap((s) => s.blocks).find((b) => b.type === "form") ?? null };
   return (
     <article data-legacy-path={page.path} data-kind={kind}>
       {page.canonical ? <link rel="canonical" href={page.canonical} /> : null}
-      {kind === "post" ? <PostTemplate page={page} form={form} /> : kind === "archive" ? <ArchiveTemplate page={page} /> : <BandTemplate page={page} kind={kind} form={form} />}
+      {kind === "post" ? (
+        <PostTemplate page={page} form={form} />
+      ) : kind === "archive" ? (
+        <ArchiveTemplate page={page} />
+      ) : COMPOSED.has(page.path) ? (
+        <ComposedPage page={page} form={form} />
+      ) : (
+        <BandTemplate page={page} kind={kind} form={form} />
+      )}
       {kind !== "legal" && kind !== "fragment" ? <ClosingCta /> : null}
       {page.jsonld.map((raw, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: raw.replace(/<\/script/gi, "<\\/script") }} />

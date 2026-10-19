@@ -24,7 +24,7 @@ export const asButton = (b: Block): { href: string; text: string } | null => {
   return null;
 };
 const STAT_RE = /^[\s₹$€£]*[\d][\d.,]*\s*(cr|crore|lacs?|lakhs?|k|m|mn|bn|x|%)?\s*\+?\s*$/i;
-const isStatHeading = (b: Block) => b.type === "heading" && b.text.length <= 14 && STAT_RE.test(b.text);
+export const isStatHeading = (b: Block) => b.type === "heading" && b.text.length <= 14 && STAT_RE.test(b.text);
 const textLen = (bs: Block[]) => bs.reduce((n, b) => n + ("html" in b ? plain(b.html).length : "items" in b && b.type === "list" ? b.items.join(" ").length : 0), 0);
 const isShare = (b: Block) => b.type === "paragraph" && /facebook\.com\/sharer|twitter\.com\/intent|linkedin\.com\/share|wa\.me\/\?|api\.whatsapp/.test(b.html);
 
@@ -87,7 +87,7 @@ export function HeadingEl({ b, role, tone }: { b: Extract<Block, { type: "headin
   return <Html as={`h${b.level}`} html={b.html} className={`legacy-h text-balance ${cls}`} />;
 }
 
-function Para({ html, tone, lead = false }: { html: string; tone: Tone; lead?: boolean }) {
+export function Para({ html, tone, lead = false }: { html: string; tone: Tone; lead?: boolean }) {
   return <Html as="p" html={html} className={`legacy-rich ${lead ? "text-[length:var(--fs-lead)] leading-[1.55]" : "text-[length:var(--fs-body)] leading-[1.7]"} ${onDark(tone) ? "text-grey-soft" : "text-graphite"}`} />;
 }
 
@@ -114,7 +114,7 @@ const IMAGE_LINKS: Record<string, string> = {
   "/wp-content/uploads/2025/04/Scale-Acres-Case-Study-Cards-03.webp": "/yugen-case-study/",
 };
 
-function Img({ img, className = "", sizes }: { img: Extract<Block, { type: "image" }>; className?: string; sizes?: string }) {
+export function Img({ img, className = "", sizes }: { img: Extract<Block, { type: "image" }>; className?: string; sizes?: string }) {
   // eslint-disable-next-line @next/next/no-img-element
   const el = <img src={media(img.src)} alt={img.alt ?? ""} width={img.width ?? undefined} height={img.height ?? undefined} loading="lazy" decoding="async" sizes={sizes} className={className} />;
   const href = IMAGE_LINKS[img.src];
@@ -177,7 +177,7 @@ function Stats({ stats, tone }: { stats: Extract<Item, { kind: "stats" }>["stats
   );
 }
 
-function ListEl({ b, tone }: { b: Extract<Block, { type: "list" }>; tone: Tone }) {
+export function ListEl({ b, tone }: { b: Extract<Block, { type: "list" }>; tone: Tone }) {
   const Tag = b.ordered ? "ol" : "ul";
   return (
     <Tag className={`legacy-list legacy-rich grid gap-x-10 ${b.items.length > 6 && b.items.every((x) => plain(x).length < 70) ? "sm:grid-cols-2" : ""} ${onDark(tone) ? "text-grey-soft" : "text-graphite"}`}>
@@ -249,10 +249,11 @@ function Video({ b }: { b: Extract<Block, { type: "video" }> }) {
 }
 
 /** One page-wide contact form; any further form blocks become a link to it. */
-export function FormSlot({ first, tone }: { first: boolean; tone: Tone }) {
+export function FormSlot({ first, tone, bare = false }: { first: boolean; tone: Tone; bare?: boolean }) {
   if (!first) return <Buttons buttons={[{ href: "#enquiry", text: "Enquire now" }]} tone={tone} />;
+  if (bare) return <ContactForm />;
   return (
-    <div id="enquiry" className="scroll-mt-28 rounded-[18px] bg-white p-6 text-ink shadow-[0_30px_80px_-40px_rgba(11,13,13,0.45)] md:p-8">
+    <div id="enquiry" className="on-dark scroll-mt-28 rounded-[20px] bg-ink p-6 text-white shadow-[0_30px_80px_-40px_rgba(11,13,13,0.45)] md:p-8">
       <ContactForm />
     </div>
   );
