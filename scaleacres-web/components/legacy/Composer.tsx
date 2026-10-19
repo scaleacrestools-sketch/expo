@@ -214,9 +214,9 @@ function Logos({ blocks, tone }: { blocks: Block[]; tone: Tone }) {
         <div className="lg:col-span-6" data-reveal>{hs.map((h, i) => <T key={i} b={h} size="h3" />)}</div>
         <div className="lg:col-span-6"><Text blocks={blocks} tone={tone} /></div>
       </div>
-      <ul role="list" className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-[16px] border border-line bg-line sm:grid-cols-3 lg:grid-cols-6" data-reveal>
+      <ul role="list" className="mt-12 grid grid-cols-2 overflow-hidden rounded-[16px] border-l border-t border-line bg-white sm:grid-cols-3 lg:grid-cols-6" data-reveal>
         {imgs.map((im, i) => (
-          <li key={i} className="group relative aspect-[2/1] bg-white">
+          <li key={i} className="group relative aspect-[2/1] border-b border-r border-line bg-white">
             <Img img={im} className="absolute inset-0 m-auto h-auto max-h-[62%] w-auto max-w-[74%] object-contain opacity-80 grayscale transition duration-500 group-hover:opacity-100 group-hover:grayscale-0" />
           </li>
         ))}
