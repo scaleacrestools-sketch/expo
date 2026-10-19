@@ -418,20 +418,20 @@ function Portfolio({ s, tone }: { s: LegacySection; tone: Tone }) {
         <div className="lg:col-span-5"><Text blocks={head} tone={tone} lead /></div>
       </div>
       {/* Hierarchy: the first two projects lead large, the rest follow in a tighter grid. Every project stays in the HTML. */}
-      <ul role="list" className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-6">
+      <ul role="list" className="mt-14 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-6">
         {shots.map((p, i) => {
           const lead = i < 2;
           return (
-            <li key={i} className={`group ${lead ? "lg:col-span-3" : "lg:col-span-2"}`} data-reveal>
+            <li key={i} className={`group ${lead ? "col-span-2 lg:col-span-3" : "lg:col-span-2"}`} data-reveal>
               {p.shot ? (
                 <div className={`relative overflow-hidden rounded-[16px] bg-white ${lead ? "aspect-[4/5] lg:aspect-[16/13]" : "aspect-[4/5]"}`}>
                   <Img img={p.shot} className="absolute inset-0 h-full w-full object-cover object-top transition-[object-position] duration-[4500ms] ease-in-out group-hover:object-bottom" />
                   <span aria-hidden="true" className="absolute bottom-4 right-4 grid h-11 w-11 place-items-center rounded-full bg-blue text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"><Arrow className="h-4 w-4" /></span>
                 </div>
               ) : null}
-              <div className="mt-5 flex items-start justify-between gap-4">
+              <div className="mt-4 flex flex-col-reverse gap-3 sm:mt-5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                 <div className="space-y-1">{p.meta.map((m, j) => <T key={j} b={m} size="meta" />)}</div>
-                {p.logo ? <span className="grid h-12 min-w-12 place-items-center rounded-[10px] bg-white px-2"><Img img={p.logo} className="max-h-8 w-auto max-w-[6rem] object-contain" /></span> : null}
+                {p.logo ? <span className="grid h-10 w-fit min-w-10 place-items-center rounded-[10px] bg-white px-2 sm:h-12 sm:min-w-12"><Img img={p.logo} className="max-h-7 w-auto max-w-[5.5rem] object-contain sm:max-h-8 sm:max-w-[6rem]" /></span> : null}
               </div>
             </li>
           );
