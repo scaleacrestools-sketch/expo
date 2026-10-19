@@ -408,6 +408,8 @@ function Portfolio({ s, tone }: { s: LegacySection; tone: Tone }) {
     } else if (isH(x) && cur) cur.meta.push(x);
     else tail.push(x);
   }
+  const shots = projects.filter((p) => p.shot);
+  const marks = projects.filter((p) => !p.shot);
   return (
     <Shell tone={tone}>
       <Label tone={tone}>Website portfolio</Label>
@@ -417,8 +419,8 @@ function Portfolio({ s, tone }: { s: LegacySection; tone: Tone }) {
       </div>
       {/* Hierarchy: the first two projects lead large, the rest follow in a tighter grid. Every project stays in the HTML. */}
       <ul role="list" className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-6">
-        {projects.map((p, i) => {
-          const lead = i < 2 && !!p.shot;
+        {shots.map((p, i) => {
+          const lead = i < 2;
           return (
             <li key={i} className={`group ${lead ? "lg:col-span-3" : "lg:col-span-2"}`} data-reveal>
               {p.shot ? (
@@ -435,6 +437,16 @@ function Portfolio({ s, tone }: { s: LegacySection; tone: Tone }) {
           );
         })}
       </ul>
+      {marks.length ? (
+        <ul role="list" className="mt-12 flex flex-wrap items-center gap-3">
+          {marks.map((p, i) => (
+            <li key={i} className="flex items-center gap-4 rounded-[12px] border border-white/10 px-4 py-3">
+              {p.logo ? <span className="grid h-10 place-items-center rounded-[8px] bg-white px-2"><Img img={p.logo} className="max-h-7 w-auto max-w-[6rem] object-contain" /></span> : null}
+              {p.meta.map((m, j) => <T key={j} b={m} size="meta" />)}
+            </li>
+          ))}
+        </ul>
+      ) : null}
       {tail.length ? <div className="mt-12 space-y-6"><Text blocks={tail} tone={tone} /><Buttons buttons={btns([...head, ...tail])} tone={tone} /><Extras blocks={[...head, ...tail]} tone={tone} /></div> : null}
     </Shell>
   );
@@ -584,7 +596,10 @@ function Creatives({ s, tone }: { s: LegacySection; tone: Tone }) {
       </div>
       <ul role="list" className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
         {imgs.map((im, i) => (
-          <li key={i} className={i % 2 ? "lg:translate-y-10" : ""} data-reveal><Frame img={im} ratio="aspect-[4/5]" /></li>
+          <li key={i} className={i % 2 ? "lg:translate-y-10" : ""} data-reveal>
+            {/* Landscape artwork is shown whole rather than cropped into the portrait frame. */}
+            <Frame img={im} ratio="aspect-[4/5]" position={(im.width ?? 0) > (im.height ?? 0) * 1.2 ? "!object-contain bg-ink" : "object-center"} />
+          </li>
         ))}
       </ul>
       {btns(b).length ? <div className="mt-20"><Buttons buttons={btns(b)} tone={tone} /></div> : null}
