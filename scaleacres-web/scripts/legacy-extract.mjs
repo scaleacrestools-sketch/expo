@@ -290,7 +290,7 @@ const EXTRACT = () => {
   const seen = new Set();
   for (const s of sections) {
     s.blocks = s.blocks.filter((b) => {
-      const k = b.type + ":" + (b.html ?? b.text ?? b.src ?? b.embed ?? JSON.stringify(b.items ?? b.rows ?? ""));
+      const k = b.type + (b.level ?? "") + ":" + (b.html ?? b.text ?? b.src ?? b.embed ?? JSON.stringify(b.items ?? b.rows ?? ""));
       if (["paragraph", "heading", "image", "list", "faq", "stat", "button", "video"].includes(b.type) && seen.has(k)) return false;
       seen.add(k);
       return true;
