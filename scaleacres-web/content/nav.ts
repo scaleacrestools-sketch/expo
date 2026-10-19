@@ -5,9 +5,9 @@ export const primaryNav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about-us/" },
   { label: "Services", href: "/our-services/" },
-  { label: "Our Work", href: "/case-studies/" },
+  { label: "Our Work", href: "/our-work/" },
   { label: "Creative Studio", href: "/creative-studio/" },
-  { label: "Insights", href: "/insights/" },
+  { label: "Blog", href: "/blog/" },
   { label: "Contact", href: "/contact-us/" },
 ];
 
@@ -20,7 +20,8 @@ export const routes = {
   about: "/about-us/",
   team: "/our-team/",
   services: "/our-services/",
-  work: "/case-studies/",
+  work: "/our-work/",
+  caseStudies: "/case-studies/",
   studio: "/creative-studio/",
   insights: "/insights/",
   contact: "/contact-us/",

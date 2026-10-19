@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { primaryNav } from "@/content/nav";
-import { services, serviceHref } from "@/content/services";
+import { liveServiceLinks, liveIndiaCities, liveCountries } from "@/content/legacy-nav";
 import { site } from "@/content/site";
 import { Arrow } from "@/components/ui/Arrow";
 
@@ -97,9 +97,9 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
                   <ul id="menu-services" role="list" className={`grid overflow-hidden pl-[3.25rem] transition-[grid-template-rows] duration-500 lg:hidden ${servicesOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
                     <li className="min-h-0">
                       <ul role="list" className="py-2">
-                        {services.map((s) => (
-                          <li key={s.slug}>
-                            <Link href={serviceHref(s)} onClick={onClose} tabIndex={servicesOpen ? 0 : -1} className="block py-2 text-base text-white/75 hover:text-blue">{s.title}</Link>
+                        {liveServiceLinks.map((s) => (
+                          <li key={s.href}>
+                            <Link href={s.href} onClick={onClose} tabIndex={servicesOpen ? 0 : -1} className="block py-2 text-base text-white/75 hover:text-blue">{s.label}</Link>
                           </li>
                         ))}
                       </ul>
@@ -115,10 +115,10 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
           <div {...reveal(3)} className={`hidden lg:block ${reveal(3).className}`}>
             <p className="label text-blue">Services</p>
             <ul role="list" className="mt-6">
-              {services.map((s) => (
-                <li key={s.slug} className="border-t border-white/10 last:border-b">
-                  <Link href={serviceHref(s)} onClick={onClose} className="group flex items-center justify-between gap-4 py-3.5 text-[1.0625rem] font-medium text-white/80 transition-colors hover:text-white">
-                    <span className="flex items-baseline gap-4"><span className="text-xs text-white/40">{s.number}</span>{s.title}</span>
+              {liveServiceLinks.map((s, i) => (
+                <li key={s.href} className="border-t border-white/10 last:border-b">
+                  <Link href={s.href} onClick={onClose} className="group flex items-center justify-between gap-4 py-3.5 text-[1.0625rem] font-medium text-white/80 transition-colors hover:text-white">
+                    <span className="flex items-baseline gap-4"><span className="text-xs text-white/40">0{i + 1}</span>{s.label}</span>
                     <Arrow className="text-blue opacity-0 transition-opacity group-hover:opacity-100" />
                   </Link>
                 </li>
@@ -137,6 +137,34 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
             <p className="mt-6 text-xs uppercase tracking-[0.2em] text-white/40">{site.offices.join(" · ")}</p>
           </div>
         </aside>
+      </div>
+
+      {/* Locations: every city and country page linked from the live mega-menu */}
+      <div className="container-x relative mx-auto max-w-[120rem] border-t border-white/12 pb-16 pt-10">
+        <p className="label text-blue">Locations</p>
+        <div className="mt-6 grid gap-10 lg:grid-cols-12">
+          <ul role="list" aria-label="India" className="columns-1 gap-8 sm:columns-2 lg:col-span-5">
+            {liveIndiaCities.map((c) => (
+              <li key={c.href} className="break-inside-avoid">
+                <Link href={c.href} onClick={onClose} className="block py-1 text-[0.875rem] text-white/65 hover:text-blue">{c.label}</Link>
+              </li>
+            ))}
+          </ul>
+          <ul role="list" aria-label="International" className="grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:col-span-7 lg:grid-cols-3">
+            {liveCountries.map((c) => (
+              <li key={c.href}>
+                <Link href={c.href} onClick={onClose} className="text-[0.875rem] font-semibold text-white/85 hover:text-blue">{c.label}</Link>
+                {c.cities.length ? (
+                  <ul role="list" className="mt-1">
+                    {c.cities.map((x) => (
+                      <li key={x.href}><Link href={x.href} onClick={onClose} className="block py-0.5 text-[0.8125rem] text-white/55 hover:text-blue">{x.label}</Link></li>
+                    ))}
+                  </ul>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <style>{`@keyframes menu-glow{from{transform:translate(0,0) scale(1)}to{transform:translate(40vw,-20vh) scale(1.2)}}`}</style>
     </div>

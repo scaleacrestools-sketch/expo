@@ -2,22 +2,14 @@ import Link from "next/link";
 import { site } from "@/content/site";
 import { Arrow } from "@/components/ui/Arrow";
 import { Logo } from "@/components/ui/Logo";
+import { liveFooter, liveFooterFacts, liveLegalLinks, liveServiceLinks, liveCountries } from "@/content/legacy-nav";
 
+// Live footer "Quick Links" + "Our Solutions", plus the new Creative Studio page.
 const explore = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about-us/" },
-  { label: "Services", href: "/our-services/" },
-  { label: "Our Work", href: "/case-studies/" },
+  ...liveFooter.quickLinks,
+  ...liveFooter.solutions,
   { label: "Creative Studio", href: "/creative-studio/" },
-  { label: "Insights", href: "/insights/" },
-];
-
-const expertise = [
-  { label: "Real Estate Marketing", href: "/our-services/" },
-  { label: "Web Development", href: "/real-estate-web-development/" },
-  { label: "Performance Marketing", href: "/real-estate-ppc-service/" },
-  { label: "Branding", href: "/real-estate-branding-agency/" },
-  { label: "Privacy Policy", href: "/privacy-policy/" },
 ];
 
 /** Section 10 — Brand Black footer: four columns, a composed SCALEACRES word, copyright strip. */
@@ -30,7 +22,7 @@ export function Footer() {
           <div className="sm:col-span-2 lg:col-span-4">
             <Logo size="lg" />
             <p className="mt-7 max-w-[36ch] text-[0.975rem] leading-[1.7] text-grey-soft">
-              <span className="font-semibold text-white">A real estate marketing &amp; creative growth agency.</span> {site.tagline}
+              <span className="font-semibold text-white">A real estate marketing &amp; creative growth agency.</span> {liveFooterFacts.intro}
             </p>
             <ul role="list" className="mt-8 flex gap-3" aria-label="ScaleAcres on social media">
               {site.social.map((s) => (
@@ -50,25 +42,47 @@ export function Footer() {
           </FooterCol>
 
           <FooterCol title="Expertise" className="lg:col-span-2">
-            {expertise.map((l) => (
+            {liveServiceLinks.map((l) => (
               <li key={l.label}><FooterLink href={l.href}>{l.label}</FooterLink></li>
             ))}
           </FooterCol>
 
           <FooterCol title="Contact" className="sm:col-span-2 lg:col-span-3">
             <li><FooterLink href={`mailto:${site.email}`}>{site.email}</FooterLink></li>
+            <li className="pt-1 text-[0.75rem] uppercase tracking-[0.14em] text-white/45">For Sales / Client Enquiries</li>
             {site.phones.slice(0, 2).map((p) => (
               <li key={p.href}><FooterLink href={p.href}>{p.number}</FooterLink></li>
             ))}
-            <li className="pt-2 text-[0.9375rem] leading-relaxed text-white/55">
-              {site.address.lines.map((l) => (<span key={l} className="block">{l}</span>))}
-            </li>
+            <li className="pt-1 text-[0.75rem] uppercase tracking-[0.14em] text-white/45">For HR / Job Opportunities</li>
+            <li><FooterLink href={site.phones[2].href}>{site.phones[2].number}</FooterLink></li>
+            <li className="pt-2 text-[0.9375rem] leading-relaxed text-white/55">{liveFooterFacts.address}</li>
+            <li className="text-[0.8125rem] text-white/45">{liveFooterFacts.gst}</li>
             <li className="pt-5">
               <Link href="/contact-us/" className="group inline-flex items-center gap-3 rounded-full bg-blue px-6 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.16em] text-on-accent transition-colors hover:bg-white hover:text-ink">
                 Start a project <Arrow className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </li>
           </FooterCol>
+        </div>
+
+        {/* Live footer location links (internal linking preserved) */}
+        <div className="grid gap-10 border-t border-white/10 py-12 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <p className="label text-white/55">Top Cities we serve</p>
+            <ul role="list" className="mt-5 columns-1 gap-8 sm:columns-2">
+              {liveFooter.topCities.map((l) => (
+                <li key={l.href} className="break-inside-avoid py-1"><FooterLink href={l.href} small>{l.label}</FooterLink></li>
+              ))}
+            </ul>
+          </div>
+          <div className="lg:col-span-5">
+            <p className="label text-white/55">Country we serve</p>
+            <ul role="list" className="mt-5 columns-1 gap-8 sm:columns-2">
+              {[...liveFooter.countries, ...liveCountries.map((c) => ({ label: c.label, href: c.href }))].map((l) => (
+                <li key={l.href} className="break-inside-avoid py-1"><FooterLink href={l.href} small>{l.label}</FooterLink></li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Decorative wordmark: SVG text stretched to the container width, so it is never clipped. */}
@@ -87,8 +101,8 @@ export function Footer() {
 
         <div className="mt-6 flex flex-col gap-4 border-t border-white/10 py-7 text-xs text-white/60 md:flex-row md:items-center md:justify-between">
           <span>© {year} {site.legalName}. All rights reserved.</span>
-          <div className="flex gap-6">
-            <span>{site.offices.join(" · ")}</span>
+          <div className="flex flex-wrap gap-6">
+            {liveLegalLinks.map((l) => (<Link key={l.href} href={l.href} className="hover:text-white">{l.label}</Link>))}
             <a href="#main" className="hover:text-white">Back to top ↑</a>
           </div>
         </div>
@@ -106,9 +120,9 @@ function FooterCol({ title, className = "", children }: { title: string; classNa
   );
 }
 
-function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+function FooterLink({ href, children, small = false }: { href: string; children: React.ReactNode; small?: boolean }) {
   const external = /^(https?:|mailto:|tel:)/.test(href);
-  const cls = "text-[0.975rem] text-white/80 transition-colors hover:text-sky";
+  const cls = `${small ? "text-[0.875rem] text-white/65" : "text-[0.975rem] text-white/80"} transition-colors hover:text-sky`;
   return external ? <a href={href} className={cls}>{children}</a> : <Link href={href} className={cls}>{children}</Link>;
 }
 

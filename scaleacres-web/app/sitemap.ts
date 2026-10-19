@@ -1,22 +1,26 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
+import { legacyPages } from "@/lib/legacy";
 import { services } from "@/content/services";
 import { caseStudyProjects } from "@/content/projects";
 import { routes } from "@/content/nav";
 
 /**
- * Sitemap for routes implemented in this app. WordPress keeps publishing its own
- * sitemaps for the blog and location pages until those are migrated; both are
- * referenced from robots.txt during the transition (see docs/seo-migration.md).
+ * Every live URL that is indexable on scaleacres.com today (robots index + self-canonical),
+ * at its exact path, plus the homepage and the new pages added by the redesign.
+ * /sitemap_index.xml (the Yoast URL submitted to Search Console) points here.
  */
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const statics = [routes.home, routes.about, routes.team, routes.services, routes.work, routes.studio, routes.insights, routes.contact, routes.privacy];
+  const abs = (p: string) => `${site.url}${p}`;
+  const legacy = legacyPages().filter((p) => !/noindex/i.test(p.robots ?? "") && (!p.canonical || p.canonical === abs(p.path)));
+  const added = [routes.studio, ...services.filter((s) => !s.legacy).map((s) => s.path), ...caseStudyProjects.map((p) => `${routes.caseStudies}${p.slug}/`)];
+  const seen = new Set<string>();
   return [
-    ...statics.map((p) => ({ url: `${site.url}${p}`, lastModified: now, changeFrequency: "monthly" as const, priority: p === "/" ? 1 : 0.7 })),
-    ...services.map((s) => ({ url: `${site.url}${s.path}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 })),
-    ...caseStudyProjects.map((p) => ({ url: `${site.url}${routes.work}${p.slug}/`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.6 })),
-  ];
+    { url: abs("/"), lastModified: now, changeFrequency: "weekly" as const, priority: 1 },
+    ...legacy.map((p) => ({ url: abs(p.path), lastModified: p.article?.dateModified ? new Date(p.article.dateModified) : now })),
+    ...added.map((p) => ({ url: abs(p), lastModified: now })),
+  ].filter((e) => (seen.has(e.url) ? false : (seen.add(e.url), true)));
 }
