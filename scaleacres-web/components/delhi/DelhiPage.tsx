@@ -165,7 +165,7 @@ export function DelhiPage({ page, form }: { page: LegacyPage; form: FormCounter 
 
       {/* 03 · WHAT WE DELIVER — capability index */}
       <Section className="bg-white py-[clamp(6rem,11vw,10rem)] text-ink">
-        <TrackingTitle className="text-[clamp(3.5rem,1rem+10vw,12rem)] text-ink/[0.07]">What we deliver</TrackingTitle>
+        <TrackingTitle className="text-[min(9.2vw,10rem)] text-ink/[0.07]">What we deliver</TrackingTitle>
         <div className="mt-[-0.4em] grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32">
@@ -200,7 +200,7 @@ export function DelhiPage({ page, form }: { page: LegacyPage; form: FormCounter 
       <section id="delhi-work" className="on-dark relative isolate overflow-hidden bg-ink py-[clamp(6rem,11vw,10rem)] text-white">
         <div className="container-x mx-auto max-w-[120rem]">
           <Reveal>
-            <TrackingTitle className="text-[clamp(3.5rem,1rem+10vw,12rem)] text-white/[0.08]">Our work</TrackingTitle>
+            <TrackingTitle className="text-[min(9.2vw,10rem)] text-white/[0.08]">Our work</TrackingTitle>
             <div className="mt-[-0.3em] grid gap-10 lg:grid-cols-12 lg:items-end">
               <div className="lg:col-span-7">
                 <Label dark>Branding &amp; campaigns</Label>
@@ -396,7 +396,7 @@ export function DelhiPage({ page, form }: { page: LegacyPage; form: FormCounter 
       <section className="on-dark relative isolate overflow-hidden bg-ink py-[clamp(6rem,11vw,10rem)] text-white">
         <div className="container-x mx-auto max-w-[120rem]">
           <Reveal>
-            <TrackingTitle className="text-[clamp(3.5rem,1rem+10vw,12rem)] text-white/[0.08]">Our approach</TrackingTitle>
+            <TrackingTitle className="text-[min(9.2vw,10rem)] text-white/[0.08]">Our approach</TrackingTitle>
           </Reveal>
           <div className="mt-[-0.2em] grid gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-5">
