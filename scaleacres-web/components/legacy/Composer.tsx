@@ -449,12 +449,32 @@ function Results({ s, tone }: { s: LegacySection; tone: Tone }) {
   );
 }
 
+type Project = { logo?: I; shot?: I; meta: H[] };
+
+/** A full-length website capture in a fixed frame; hovering scrolls it from top to bottom. */
+function ProjectShot({ p, ratio }: { p: Project; ratio: string }) {
+  if (!p.shot) return null;
+  return (
+    <div className={`relative overflow-hidden rounded-[16px] bg-white ${ratio}`}>
+      <Img img={p.shot} className="absolute inset-0 h-full w-full object-cover object-top transition-[object-position] duration-[4500ms] ease-in-out group-hover:object-bottom" />
+    </div>
+  );
+}
+
+function ProjectMeta({ p }: { p: Project }) {
+  return (
+    <div className="mt-4 flex flex-col-reverse gap-3 sm:mt-5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+      <div className="space-y-1">{p.meta.map((m, j) => <T key={j} b={m} size="meta" />)}</div>
+      {p.logo ? <span className="grid h-10 w-fit min-w-10 place-items-center rounded-[10px] bg-white px-2 sm:h-12 sm:min-w-12"><Img img={p.logo} className="max-h-7 w-auto max-w-[5.5rem] object-contain sm:max-h-8 sm:max-w-[6rem]" /></span> : null}
+    </div>
+  );
+}
+
 function Portfolio({ s, tone }: { s: LegacySection; tone: Tone }) {
   const b = s.blocks;
   const firstImg = b.findIndex(isImg);
   const head = b.slice(0, firstImg);
-  type P = { logo?: I; shot?: I; meta: H[] };
-  const projects: P[] = [];
+  const projects: Project[] = [];
   const tail: Block[] = [];
   for (const x of b.slice(firstImg)) {
     const cur = projects[projects.length - 1];
@@ -468,6 +488,8 @@ function Portfolio({ s, tone }: { s: LegacySection; tone: Tone }) {
   }
   const shots = projects.filter((p) => p.shot);
   const marks = projects.filter((p) => !p.shot);
+  const featured = shots.slice(0, 6);
+  const more = shots.slice(6);
   return (
     <Shell tone={tone}>
       <Label tone={tone}>Website portfolio</Label>
@@ -475,26 +497,35 @@ function Portfolio({ s, tone }: { s: LegacySection; tone: Tone }) {
         <div className="lg:col-span-7" data-reveal>{head.filter(isH).map((h, i) => <T key={i} b={h} />)}</div>
         <div className="lg:col-span-5"><Text blocks={head} tone={tone} lead /></div>
       </div>
-      {/* Hierarchy: the first two projects lead large, the rest follow in a tighter grid. Every project stays in the HTML. */}
-      <ul role="list" className="mt-14 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-6">
-        {shots.map((p, i) => {
+      {/* Curated: two lead projects large, four more beneath; the rest follow in a gallery rail. Every project stays in the HTML. */}
+      <ul role="list" className="mt-14 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-12">
+        {featured.map((p, i) => {
           const lead = i < 2;
           return (
-            <li key={i} className={`group ${lead ? "col-span-2 lg:col-span-3" : "lg:col-span-2"}`} data-reveal>
-              {p.shot ? (
-                <div className={`relative overflow-hidden rounded-[16px] bg-white ${lead ? "aspect-[4/5] lg:aspect-[16/13]" : "aspect-[4/5]"}`}>
-                  <Img img={p.shot} className="absolute inset-0 h-full w-full object-cover object-top transition-[object-position] duration-[4500ms] ease-in-out group-hover:object-bottom" />
-                  <span aria-hidden="true" className="absolute bottom-4 right-4 grid h-11 w-11 place-items-center rounded-full bg-blue text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"><Arrow className="h-4 w-4" /></span>
-                </div>
-              ) : null}
-              <div className="mt-4 flex flex-col-reverse gap-3 sm:mt-5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-                <div className="space-y-1">{p.meta.map((m, j) => <T key={j} b={m} size="meta" />)}</div>
-                {p.logo ? <span className="grid h-10 w-fit min-w-10 place-items-center rounded-[10px] bg-white px-2 sm:h-12 sm:min-w-12"><Img img={p.logo} className="max-h-7 w-auto max-w-[5.5rem] object-contain sm:max-h-8 sm:max-w-[6rem]" /></span> : null}
-              </div>
+            <li key={i} className={`group ${lead ? "col-span-2 lg:col-span-6" : "lg:col-span-3"}`} data-reveal>
+              <ProjectShot p={p} ratio={lead ? "aspect-[4/5] lg:aspect-[16/13]" : "aspect-[4/5]"} />
+              <ProjectMeta p={p} />
             </li>
           );
         })}
       </ul>
+      {more.length ? (
+        <div className="mt-20">
+          <div className="flex items-end justify-between gap-6">
+            <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.2em] text-white/60" data-reveal>More websites · {more.length}</p>
+          </div>
+          <div className="mt-2">
+            <Rail label="more websites" tone="dark">
+              {more.map((p, i) => (
+                <li key={i} className="group w-[62vw] max-w-[17rem] shrink-0 snap-start">
+                  <ProjectShot p={p} ratio="aspect-[4/5]" />
+                  <ProjectMeta p={p} />
+                </li>
+              ))}
+            </Rail>
+          </div>
+        </div>
+      ) : null}
       {marks.length ? (
         <ul role="list" className="mt-12 flex flex-wrap items-center gap-3">
           {marks.map((p, i) => (

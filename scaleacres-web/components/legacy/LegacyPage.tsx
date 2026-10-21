@@ -2,12 +2,15 @@ import Link from "next/link";
 import { media, pageKind, plain, type Block, type LegacyPage as Page, type PageKind } from "@/lib/legacy";
 import { Arrow } from "@/components/ui/Arrow";
 import { ComposedPage } from "@/components/legacy/Composer";
-import { Flow, HeadingEl, Gallery, Html, Buttons, asButton, type FormCounter } from "@/components/legacy/LegacyBlocks";
+import { Flow, HeadingEl, SectionBand, Gallery, Html, Buttons, asButton, type FormCounter, type Tone } from "@/components/legacy/LegacyBlocks";
 
 /**
  * Redesigned template for every migrated page. Content comes verbatim from the live capture;
  * the template only decides presentation per page type.
  */
+/** Master template under review: the premium composed system is live on this page only, pending approval. */
+const COMPOSED = new Set(["/real-estate-marketing-delhi/"]);
+
 export function LegacyPageView({ page }: { page: Page }) {
   const kind = pageKind(page);
   const form: FormCounter = { first: page.sections.flatMap((s) => s.blocks).find((b) => b.type === "form") ?? null };
@@ -18,10 +21,10 @@ export function LegacyPageView({ page }: { page: Page }) {
         <PostTemplate page={page} form={form} />
       ) : kind === "archive" ? (
         <ArchiveTemplate page={page} />
-      ) : kind === "legal" ? (
-        <LegalTemplate page={page} form={form} />
-      ) : (
+      ) : COMPOSED.has(page.path) ? (
         <ComposedPage page={page} form={form} label={KIND_LABEL[kind]} />
+      ) : (
+        <BandTemplate page={page} kind={kind} form={form} />
       )}
       {kind !== "legal" && kind !== "fragment" ? <ClosingCta /> : null}
       {page.jsonld.map((raw, i) => (
@@ -71,30 +74,47 @@ function ClosingCta() {
   );
 }
 
-/* ------------------------------------------------------------------ legal pages */
+/* ------------------------------------------------------------------ band template (pages, services, locations…) */
 
-function LegalTemplate({ page, form }: { page: Page; form: FormCounter }) {
-  const all = page.sections.flatMap((s) => s.blocks);
-  const h1i = all.findIndex((b) => b.type === "heading" && b.level === 1);
-  const h1 = h1i >= 0 ? (all[h1i] as Extract<Block, { type: "heading" }>) : null;
-  const body = all.filter((_, i) => i !== h1i);
+function toneFor(blocks: Block[], i: number): Tone {
+  const stats = blocks.filter((b) => b.type === "stat" || (b.type === "heading" && /^[\s₹$]*\d[\d.,]*\s*(cr|lacs?|k|x|%)?\s*\+?$/i.test(b.text))).length;
+  if (stats >= 3 && stats * 2 >= blocks.filter((b) => b.type === "heading" || b.type === "stat").length) return "dark";
+  return i % 2 === 1 ? "light" : "mist";
+}
+
+function BandTemplate({ page, kind, form }: { page: Page; kind: PageKind; form: FormCounter }) {
+  const sections = page.sections.filter((s) => s.blocks.length);
+  const first = sections[0];
+  const firstHasHeading = first?.blocks.some((b) => b.type === "heading");
+  const bannerOnly = first && !firstHasHeading && first.blocks.every((b) => b.type === "image" || asButton(b));
+  const rest = bannerOnly || !firstHasHeading ? sections.slice(1) : sections.slice(1);
+
   return (
     <>
-      <header className="on-dark relative isolate overflow-hidden bg-ink pb-[clamp(3rem,6vw,5rem)] pt-[calc(var(--header-h)+clamp(2.5rem,5vw,4.5rem))] text-white">
-        <div aria-hidden="true" className="absolute -right-40 -top-40 -z-10 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(closest-side,rgba(29,78,216,0.4),transparent)]" />
-        <div className="container-x mx-auto max-w-[76rem] space-y-8">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <p className="eyebrow text-sky">{KIND_LABEL.legal}</p>
-            <Crumbs page={page} />
+      {/* Hero */}
+      {bannerOnly || !firstHasHeading ? (
+        <section className="on-dark relative isolate overflow-hidden bg-ink pb-[clamp(2.5rem,5vw,4rem)] pt-[calc(var(--header-h)+clamp(2.5rem,5vw,4rem))] text-white">
+          <div className="container-x mx-auto max-w-[120rem] space-y-8">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <p className="eyebrow text-blue">{KIND_LABEL[kind]}</p>
+              <Crumbs page={page} />
+            </div>
+            {first ? <Flow blocks={first.blocks} tone="hero" form={form} /> : null}
           </div>
-          {h1 ? <HeadingEl b={h1} role="display" tone="hero" /> : null}
+        </section>
+      ) : (
+        <div className="relative">
+          <div className="container-x pointer-events-none absolute inset-x-0 top-[calc(var(--header-h)+1rem)] z-10 mx-auto flex max-w-[120rem] flex-wrap items-center justify-between gap-4">
+            <p className="eyebrow text-blue">{KIND_LABEL[kind]}</p>
+            <div className="pointer-events-auto"><Crumbs page={page} /></div>
+          </div>
+          <SectionBand blocks={first.blocks} tone="hero" index={0} form={form} hero />
         </div>
-      </header>
-      <div className="bg-white pb-[clamp(4rem,8vw,7rem)] pt-[clamp(3rem,6vw,5rem)] text-ink">
-        <div className="container-x mx-auto max-w-[46rem] legacy-article space-y-6">
-          <Flow blocks={body} tone="light" form={form} />
-        </div>
-      </div>
+      )}
+
+      {rest.map((s, i) => (
+        <SectionBand key={i} blocks={s.blocks} tone={toneFor(s.blocks, i)} index={i + 1} form={form} />
+      ))}
     </>
   );
 }
