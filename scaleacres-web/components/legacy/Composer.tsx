@@ -313,9 +313,13 @@ function Showcase({ s, tone }: { s: LegacySection; tone: Tone }) {
           {imgs.slice(1, 3).map((im, i) => <div key={i} data-reveal><Tile img={im} /></div>)}
         </div>
       </div>
-      {/* Four across when that fills every row, otherwise three. */}
-      <ul role="list" className={`mt-4 grid gap-4 sm:grid-cols-2 md:mt-5 md:gap-5 ${imgs.length > 3 && (imgs.length - 3) % 4 === 0 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
-        {imgs.slice(3).map((im, i) => <li key={i} data-reveal><Tile img={im} /></li>)}
+      {/* Three across; a short final row widens so every row is filled edge to edge. */}
+      <ul role="list" className="mt-4 grid gap-4 sm:grid-cols-2 md:mt-5 md:gap-5 lg:grid-cols-6">
+        {imgs.slice(3).map((im, i, all) => {
+          const left = all.length % 3;
+          const span = left && i >= all.length - left ? (left === 2 ? "lg:col-span-3" : "lg:col-span-6") : "lg:col-span-2";
+          return <li key={i} className={span} data-reveal><Tile img={im} /></li>;
+        })}
       </ul>
       {btns(b).length ? <div className="mt-12"><Buttons buttons={btns(b)} tone={tone} /></div> : null}
       <Extras blocks={s.blocks} tone={tone} />
