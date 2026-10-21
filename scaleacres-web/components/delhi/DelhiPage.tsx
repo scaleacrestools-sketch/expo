@@ -7,7 +7,7 @@ import { Rail } from "@/components/legacy/Rail";
 import { Testimonials } from "@/components/Testimonials";
 import { Buttons, Faq, FormSlot, Html, Img, ListEl, Para, asButton, type FormCounter } from "@/components/legacy/LegacyBlocks";
 import { parseProjects, ProjectMeta, type Project } from "@/components/legacy/Composer";
-import { DelhiHero } from "@/components/delhi/DelhiHero";
+import { DelhiHero, POSTER } from "@/components/delhi/DelhiHero";
 import { CapabilityPanels, CountUp, FilmMoment, FunnelProgress, ImageReveal, ScrollWords, ServiceMarquee, TrackingTitle, type Capability } from "@/components/delhi/motion";
 import { showreel, posterForSrc } from "@/content/media";
 
@@ -166,7 +166,7 @@ export function DelhiPage({ page, form }: { page: LegacyPage; form: FormCounter 
       </Section>
 
       {/* 02b · FILM MOMENT — the homepage showreel opens to full bleed through the city line */}
-      <FilmMoment src={showreel[0].landscape} poster={posterForSrc(showreel[0].landscape)} line="Delhi NCR" caption={`ScaleAcres showreel · ${showreel[0].title}`} />
+      <FilmMoment src={showreel[0].landscape} poster={posterForSrc(showreel[0].landscape) ?? POSTER.landscape} line="Delhi NCR" caption={`ScaleAcres showreel · ${showreel[0].title}`} />
 
       {/* 03 · WHAT WE DELIVER — expanding capability panels */}
       <Section className="bg-white py-[clamp(6rem,11vw,10rem)] text-ink">
@@ -215,14 +215,16 @@ export function DelhiPage({ page, form }: { page: LegacyPage; form: FormCounter 
 
           {/* Featured campaign, then an alternating two-column editorial gallery */}
           {branding[0] ? <Shot img={branding[0]} className="mt-14 aspect-[16/9]" parallax={6} /> : null}
-          <ul role="list" className="mt-5 grid gap-5 md:grid-cols-12">
+          {/* Desktop: alternating 7/5 rows. Phones: two-up with every third image full width. */}
+          <ul role="list" className="mt-3 grid grid-cols-2 gap-3 md:mt-5 md:grid-cols-12 md:gap-5">
             {branding.slice(1).map((im, i) => {
               const row = Math.floor(i / 2);
               const wideFirst = row % 2 === 0;
               const wide = (i % 2 === 0) === wideFirst;
+              const last = i === branding.length - 2 && i % 2 === 0;
               return (
-                <li key={i} className={`${wide ? "md:col-span-7" : "md:col-span-5"} ${i === branding.length - 2 && i % 2 === 0 ? "md:col-span-12" : ""}`}>
-                  <Shot img={im} className="h-[clamp(14rem,32vw,30rem)]" />
+                <li key={i} className={`${i % 3 === 0 ? "col-span-2" : ""} ${last ? "md:col-span-12" : wide ? "md:col-span-7" : "md:col-span-5"}`}>
+                  <Shot img={im} className={`${i % 3 === 0 ? "h-[52vw]" : "h-[40vw]"} md:h-[clamp(14rem,32vw,30rem)]`} />
                 </li>
               );
             })}
@@ -481,7 +483,7 @@ export function DelhiPage({ page, form }: { page: LegacyPage; form: FormCounter 
               <div data-reveal><Buttons buttons={btns(s13)} tone="light" /></div>
             </div>
           </div>
-          <ul role="list" className="gap-4 space-y-4 sm:columns-2 lg:col-span-8">
+          <ul role="list" className="columns-2 gap-3 space-y-3 md:gap-4 md:space-y-4 lg:col-span-8">
             {s13.filter(isImg).map((im, i) => (
               <li key={i} className="break-inside-avoid"><Shot img={im} /></li>
             ))}

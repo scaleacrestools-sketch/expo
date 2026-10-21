@@ -17,6 +17,9 @@ const getMobile = () => window.matchMedia(MOBILE_MQ).matches;
 const getReduce = () => window.matchMedia(REDUCE_MQ).matches;
 const getFalse = () => false;
 
+/** Poster frames taken from the first showreel clip (ffmpeg, frame at 0.5 s), so the hero is never blank while the film loads. */
+export const POSTER = { landscape: "/images/delhi/showreel-0-landscape.jpg", portrait: "/images/delhi/showreel-0-portrait.jpg" };
+
 export type DelhiHeroProps = {
   h1: string;
   sub: { level: number; text: string };
@@ -95,7 +98,7 @@ export function DelhiHero({ h1, sub, cta, trust, crumbs, ticker }: DelhiHeroProp
             preload="none"
             aria-hidden="true"
             tabIndex={-1}
-            poster={i === 0 ? posterForSrc(isMobile ? showreel[0].portrait : showreel[0].landscape) : undefined}
+            poster={i === 0 ? posterForSrc(isMobile ? showreel[0].portrait : showreel[0].landscape) ?? (isMobile ? POSTER.portrait : POSTER.landscape) : undefined}
             onEnded={i === front ? advance : undefined}
             onError={() => setFailed(true)}
             className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-[1400ms] ease-in-out ${i === front ? "opacity-100" : "opacity-0"}`}

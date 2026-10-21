@@ -189,7 +189,7 @@ export function FilmMoment({ src, poster, line, caption }: { src: string; poster
     if (text) tl.fromTo(text, { letterSpacing: "-0.04em", opacity: 1 }, { letterSpacing: "0.3em", opacity: 0, ease: "none" }, 0);
   });
   return (
-    <div ref={ref} className="relative h-[220vh] bg-ink md:h-[260vh]">
+    <div ref={ref} className="film-moment relative h-[220vh] bg-ink md:h-[260vh]">
       <div className="sticky top-0 flex h-[100svh] items-center justify-center overflow-hidden">
         <p data-line aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-1/2 z-0 -translate-y-1/2 select-none whitespace-nowrap text-center text-[min(15vw,15rem)] font-black uppercase leading-none tracking-[-0.04em] text-white">
           {line}

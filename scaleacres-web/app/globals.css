@@ -128,7 +128,7 @@
   .marquee-row { animation: marquee-row 38s linear infinite; }
   .marquee-row--rev { animation-direction: reverse; }
   @keyframes marquee-row { to { transform: translate3d(-100%, 0, 0); } }
-  @media (prefers-reduced-motion: reduce) { .marquee-row { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .marquee-row { animation: none; } .film-moment { height: 100svh; } }
   @media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } }
 
   .dev-badge {
