@@ -104,7 +104,7 @@ function Tile({ img }: { img: I }) {
 
 export type Kind =
   | "hero" | "logos" | "testimonials" | "statement" | "showcase" | "funnel" | "results" | "portfolio" | "collage"
-  | "awards" | "culture" | "split" | "reasons" | "rows" | "stats" | "banner" | "videos" | "creatives" | "faq" | "cta" | "generic";
+  | "awards" | "culture" | "split" | "reasons" | "rows" | "stats" | "banner" | "videos" | "callout" | "creatives" | "faq" | "cta" | "generic";
 
 export function kindOf(s: LegacySection, i: number): Kind {
   const b = s.blocks;
@@ -113,7 +113,9 @@ export function kindOf(s: LegacySection, i: number): Kind {
   if (i === 0 && hs.some((h) => h.level === 1)) return "hero";
   if (b.length && b.every((x) => asButton(x))) return "cta";
   // A wide banner image (often with its title set in the artwork) on its own.
-  if (b.length <= 2 && imgs.length === b.length && imgs.every((x) => (x.width ?? 0) >= (x.height ?? 1) * 3)) return "banner";
+  if (b.length <= 2 && imgs.length === b.length && imgs.every((x) => !x.width || !x.height || x.width >= x.height * 3)) return "banner";
+  // A short call to action: small headings (often the same line twice, one per breakpoint) and a button.
+  if (imgs.length === 0 && hs.length >= 1 && hs.length <= 3 && hs.every((h) => h.level >= 5) && btns(b).length >= 1 && words(b) === 0) return "callout";
   // Key figures written as short numeric headings ("15cr+", "33+", "2.5Lacs+").
   if (hs.filter(isStatHeading).length >= 3 && imgs.length === 0) return "stats";
   if (b.some((x) => x.type === "faq")) return "faq";
@@ -127,6 +129,8 @@ export function kindOf(s: LegacySection, i: number): Kind {
   if (/result|proof|performance/i.test(title) && imgs.length >= 2 && hs.length <= 2) return "results";
   if (/culture|team|life at/i.test(title) && imgs.filter(big).length >= 3) return "culture";
   if (imgs.length >= 3 && imgs.filter(portrait).length >= 3 && hs.length <= 2 && words(b) < 120) return "creatives";
+  // Client logos: many images, no copy, at most a title (checked before the image showcase).
+  if (imgs.length >= 8 && hs.length <= 2 && words(b) === 0 && !b.some((x) => x.type === "video")) return "logos";
   if (imgs.length >= 6 && imgs.filter(big).length >= 6 && hs.length <= 2) return "showcase";
   if (imgs.length >= 8 && hs.length <= 2) return "logos";
   if (imgs.length >= 3 && hs.length <= 2 && words(b) < 160) return "culture";
@@ -175,6 +179,8 @@ function splitHero(s: LegacySection) {
   const pre = b.slice(0, h1i);
   const heroBlocks = [...b.slice(h1i, end)];
   const preImgs = pre.filter(isImg);
+  // With no working form in this section, a large photo right after the copy becomes the hero visual.
+  if (!b.some((x) => x.type === "form" && x.primary) && b[end] && isImg(b[end]) && big(b[end] as I) && !preImgs.some(big)) preImgs.push(b[end++] as I);
   const rest = [...pre.filter((x) => !isImg(x)), ...b.slice(end)];
   const formIdx = rest.findIndex((x) => x.type === "form" && x.primary);
   const formHeadIdx = formIdx > 0 && isH(rest[formIdx - 1]) ? formIdx - 1 : formIdx;
@@ -680,11 +686,16 @@ function Rows({ s, tone }: { s: LegacySection; tone: Tone }) {
   const b = s.blocks;
   const hs = b.filter(isH);
   const title = hs[0];
-  const rows: { h: H; body: Block[] }[] = [];
+  const rows: { h: H; body: Block[]; step?: H }[] = [];
   const intro: Block[] = [];
+  const stepped = hs.filter((h) => /^step\s*\d+/i.test(h.text)).length >= 2;
   for (const x of b.slice(b.indexOf(title) + 1)) {
-    if (isH(x)) rows.push({ h: x, body: [] });
-    else if (rows.length) rows[rows.length - 1].body.push(x);
+    const last = rows[rows.length - 1];
+    if (stepped && isH(x) && /^step\s*\d+/i.test(x.text)) rows.push({ h: x, body: [], step: x });
+    else if (stepped && isH(x) && last?.step && last.h === last.step) last.h = x;
+    else if (stepped && isH(x) && last) last.body.push(x);
+    else if (isH(x)) rows.push({ h: x, body: [] });
+    else if (last) last.body.push(x);
     else intro.push(x);
   }
   // A closing paragraph after the last offering reads as the section's summary.
@@ -703,9 +714,14 @@ function Rows({ s, tone }: { s: LegacySection; tone: Tone }) {
         <ol className="lg:col-span-7">
           {rows.map((r, i) => (
             <li key={i} className={`group grid grid-cols-[3rem_1fr_auto] items-start gap-5 border-t py-7 transition-colors duration-500 md:grid-cols-[4rem_1fr_auto] ${dark(tone) ? "border-white/12 hover:border-sky" : "border-line hover:border-blue"}`} data-reveal>
-              <span aria-hidden="true" className={`pt-1 text-[0.875rem] font-bold tabular-nums tracking-[0.12em] ${dark(tone) ? "text-sky" : "text-blue"}`}>{String(i + 1).padStart(2, "0")}</span>
+              {r.step ? (
+                <Html as={`h${r.step.level}`} html={r.step.html} className={`legacy-h pt-1 text-[0.75rem] font-bold uppercase tracking-[0.14em] ${dark(tone) ? "text-sky" : "text-blue"}`} />
+              ) : (
+                <span aria-hidden="true" className={`pt-1 text-[0.875rem] font-bold tabular-nums tracking-[0.12em] ${dark(tone) ? "text-sky" : "text-blue"}`}>{String(i + 1).padStart(2, "0")}</span>
+              )}
               <div className="space-y-3">
-                <T b={r.h} size="card" className="!text-[clamp(1.25rem,1rem+0.9vw,1.875rem)] !font-extrabold transition-transform duration-500 group-hover:translate-x-1" />
+                {r.h !== r.step ? <T b={r.h} size="card" className="!text-[clamp(1.25rem,1rem+0.9vw,1.875rem)] !font-extrabold transition-transform duration-500 group-hover:translate-x-1" /> : null}
+                {r.body.filter(isH).map((h, j) => <Html key={j} as={`h${h.level}`} html={h.html} className={`legacy-h max-w-[60ch] text-[1rem] font-normal leading-relaxed ${dark(tone) ? "text-white/70" : "text-graphite"}`} />)}
                 <Text blocks={r.body} tone={tone} />
                 {btns(r.body).length ? <Buttons buttons={btns(r.body)} tone={tone} /> : null}
                 <Extras blocks={r.body} tone={tone} />
@@ -749,6 +765,28 @@ function Videos({ s, tone }: { s: LegacySection; tone: Tone }) {
         ))}
       </ul>
     </Shell>
+  );
+}
+
+/** Short call to action on Royal Navy. A line repeated for another breakpoint is shown once (both stay in the HTML). */
+function Callout({ s }: { s: LegacySection }) {
+  const hs = s.blocks.filter(isH);
+  const seen = new Set<string>();
+  return (
+    <section className={`relative isolate overflow-hidden ${navyBg}`}>
+      <div aria-hidden="true" className="absolute -right-32 -top-40 -z-10 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(closest-side,rgba(29,78,216,0.5),transparent)]" />
+      <div className="container-x mx-auto flex max-w-[120rem] flex-col items-start justify-between gap-8 py-[clamp(3rem,6vw,5rem)] lg:flex-row lg:items-center" data-reveal>
+        <div>
+          {hs.map((h, i) => {
+            const key = plain(h.html).toLowerCase();
+            const dup = seen.has(key);
+            seen.add(key);
+            return <Html key={i} as={`h${h.level}`} html={h.html} className={`legacy-h max-w-[30ch] text-[clamp(1.5rem,1rem+1.6vw,2.75rem)] font-extrabold uppercase leading-[1] tracking-[-0.03em] ${dup ? "hidden" : ""}`} />;
+          })}
+        </div>
+        <Buttons buttons={btns(s.blocks)} tone="dark" />
+      </div>
+    </section>
   );
 }
 
@@ -872,6 +910,7 @@ export function ComposedPage({ page, form, label }: { page: LegacyPage; form: Fo
       case "rows": out.push(<Rows key={i} s={s} tone={nextLight()} />); break;
       case "banner": out.push(<Banner key={i} s={s} />); break;
       case "videos": out.push(<Videos key={i} s={s} tone="dark" />); break;
+      case "callout": out.push(<Callout key={i} s={s} />); break;
       case "logos": out.push(<Logos key={i} blocks={s.blocks} tone={nextLight()} />); break;
       case "testimonials": out.push(<Testimonials key={i} s={s} tone="mist" />); light = 0; break;
       case "statement": out.push(<Statement key={i} s={s} tone={nextLight()} />); break;
