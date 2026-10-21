@@ -20,7 +20,7 @@ export function Exclusivity({ image }: { image: ResolvedAsset }) {
         <Reveal className="reveal max-w-2xl">
           <p className="eyebrow !text-gold">10 — Project exclusivity</p>
           <h2 className="display mt-5 text-[clamp(2.4rem,6vw,5.2rem)]">Reserved for<br /><em className="text-gold-soft">a Select Few.</em></h2>
-          <p className="lede mt-6 !text-ivory/75">Sora is a collection of {project.headline.totalResidences.value} residences in total, not a city within a city. With just two homes per core and no overlooking towers, privacy is built into the plan rather than added later.</p>
+          <p className="lede mt-6 !text-ivory/75">A meticulously designed, singularly exquisite, world-class landmark for just {project.headline.totalResidences.value} residences: the very definition of Limited Edition. With just two units per core per tower and no overlooking towers, privacy is built into the plan. Are you among the chosen few who will call it home?</p>
         </Reveal>
         <dl className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
           {facts.map((f, i) => (

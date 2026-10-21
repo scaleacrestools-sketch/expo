@@ -20,6 +20,7 @@
   --color-sage-deep: #5f7264;
 
   --font-sans: 'Manrope Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'Jost Variable', 'Futura', 'Manrope Variable', sans-serif;
   --font-serif: 'Instrument Serif', 'Times New Roman', serif;
 
   --tracking-luxe: 0.28em;
@@ -53,17 +54,18 @@ body {
 @layer components {
 /* ---------- Typography utilities ---------- */
 .eyebrow {
-  font-size: 0.68rem;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
   letter-spacing: var(--tracking-luxe);
   text-transform: uppercase;
   font-weight: 600;
   color: var(--color-sora-red);
 }
 .display {
-  font-family: var(--font-sans);
+  font-family: var(--font-display);
   font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1.02;
+  letter-spacing: -0.005em;
+  line-height: 1.04;
 }
 .display em, .serif-accent {
   font-family: var(--font-serif);

@@ -34,9 +34,9 @@ test('gallery lightbox supports keyboard navigation', async ({ page }) => {
   await page.locator('#gallery button[aria-label^="Open"]').first().click();
   const lb = page.getByRole('dialog');
   await expect(lb).toBeVisible();
-  await expect(lb).toContainText('01 / 16');
+  await expect(lb).toContainText(/01 \/ \d+/);
   await page.keyboard.press('ArrowRight');
-  await expect(lb).toContainText('02 / 16');
+  await expect(lb).toContainText(/02 \/ \d+/);
   await page.keyboard.press('Escape');
   await expect(lb).toBeHidden();
 });

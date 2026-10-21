@@ -44,7 +44,7 @@ export function Hero({ image }: { image: ResolvedAsset }) {
             <span className="block overflow-hidden"><em data-hero-line className="block text-gold-soft">Your Place in the Sun.</em></span>
           </h1>
           <p data-hero-line className="max-w-md text-sm leading-relaxed tracking-[0.06em] text-ivory/80 md:text-base">
-            {project.address}<span className="mx-3 text-gold">·</span>{project.locality}
+            At the intersection of Japan* and Gurugram is your place in the sun. {project.address}<span className="mx-3 text-gold">·</span>{project.locality}
           </p>
           <div className="flex flex-wrap gap-3 pt-2">
             <span data-hero-cta><CtaButton magnet="floorPlans" source="hero" variant="gold">Explore the Residences</CtaButton></span>

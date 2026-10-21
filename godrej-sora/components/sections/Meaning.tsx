@@ -11,8 +11,8 @@ export function Meaning({ artwork, blossom }: { artwork: ResolvedAsset; blossom:
       <div className="container-sora relative z-10 grid gap-16 md:grid-cols-2 md:items-center">
         <div>
           <SectionHeading index="02" eyebrow="The meaning of Sora" title={<>The Sky Is Not a Limit.<br /><em>It&rsquo;s a Way of Living.</em></>}>
-            In Japanese, <span className="serif-accent text-ink">sora</span> is the sky: the open, the unbounded, the source of light. Godrej Sora takes its name seriously.
-            Each residence is oriented toward sunlight and air, each balcony stretched to meet the horizon, each shared space composed for stillness.
+            <span className="serif-accent text-ink">Sora</span> is Japanese for sky. And just like the sky, which brings us the light from the sun, Godrej Sora reflects the radiance emanating from the Land of the Rising Sun:
+            a culture of mindfulness, balance, awareness and wellness, at the heart of Gurugram on Golf Course Road.
           </SectionHeading>
           <Reveal className="reveal mt-10 grid max-w-xl gap-6 border-l border-sand-deep pl-6" delay={240}>
             <p className="lede !text-base">Here, luxury is not an accumulation of things. It is the discipline to leave room: for light, for quiet, for the people you love.</p>

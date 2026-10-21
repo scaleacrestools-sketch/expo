@@ -7,7 +7,7 @@
 | Source | Status | Notes |
 |---|---|---|
 | Official project page `godrejproperties.com/gurugram/residential/godrej-sora` | **Blocked** by the session's outbound network policy (HTTP 403 from the egress proxy on `www.godrejproperties.com`) | Facts below were taken from the page's indexed snippets via web search, not from a direct read. Re-run the audit from an unrestricted machine before go-live. |
-| 64-page Godrej Sora brochure (PDF) | **Not supplied** — not in the repository, not in the connected Google Drive (only Godrej MSR City "Barca" brochures were found) | All brochure-page references in this project come from the brief's page table. Verify each against the real PDF. |
+| 64-page Godrej Sora brochure (PDF) | **Supplied by the client on 21 Oct 2026 (phase 3)** — see `docs/07-phase3-brochure-integration.md` | All brochure-sourced facts and imagery now reference the actual pages. |
 | Google Drive image `2 godrej sora 1080x1080.jpg` | Found, inspected, **rejected** | A pre-launch channel-partner creative with baked-in text, an outdated "Starting @ ₹11.4 Cr / EOI ₹21 Lakh" claim and a generic tower render. Not used. |
 | Haryana RERA portal | Blocked by network policy | RERA number taken from the brief; it matches the number cited consistently by third-party listings. |
 

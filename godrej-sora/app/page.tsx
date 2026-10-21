@@ -44,6 +44,8 @@ export default function Page() {
     { asset: a('architecture/triple-height-lobby'), category: 'Architecture', span: 'wide' },
     { asset: a('gallery/lifestyle-01'), category: 'Lifestyle' },
     { asset: a('gallery/lifestyle-02'), category: 'Lifestyle' },
+    { asset: a('residences/dual-views'), category: 'Lifestyle', span: 'wide' },
+    { asset: a('landscape/cherry-blossom-court'), category: 'Landscape' },
   ];
   const amenityImages = Object.fromEntries(project.amenities.map((x) => [x.image, a(x.image)]));
   const plans = Object.fromEntries(project.configurations.map((c) => [c.floorPlan, a(c.floorPlan)]));
@@ -65,12 +67,12 @@ export default function Page() {
       <Nav logoSrc={logo.src} />
       <main id="main">
         <Hero image={a('hero/tower-elevation')} />
-        <Meaning artwork={a('brand/red-sun-blossom')} blossom={a('landscape/cherry-blossom-court')} />
+        <Meaning artwork={a('brand/red-sun-blossom')} blossom={a('brand/cover-sun-koi')} />
         <EightRays emblem={a('brand/eight-rays-sun')} />
         <Architecture images={[a('architecture/torii-facade'), a('architecture/facade-closeup'), a('architecture/exterior-elevation-2')]} />
-        <Residences images={[a('residences/living-dining'), a('residences/interior-natural-light'), a('residences/bedroom')]} />
+        <Residences images={[a('residences/living-dining'), a('residences/interior-natural-light'), a('residences/lift-lobby')]} />
         <Balcony image={a('balconies/fifty-foot-balcony')} />
-        <Shibui images={[a('landscape/shibui-01'), a('landscape/shibui-02')]} />
+        <Shibui images={[a('landscape/shibui-01'), a('landscape/shibui-02'), a('brand/shibui-brush')]} />
         <Landscape images={[a('landscape/japanese-garden'), a('landscape/cherry-blossom-court'), a('landscape/sunken-seating')]} />
         <ShikiClub hero={a('clubhouse/shiki-elevation')} amenityImages={amenityImages} />
         <Exclusivity image={a('hero/aerial-render')} />
@@ -82,7 +84,7 @@ export default function Page() {
         <Partners />
         <Legacy logo={a('brand/godrej-properties-logo')} />
         <SiteVisit />
-        <Final image={a('hero/aerial-render')} />
+        <Final image={a('architecture/exterior-elevation-3')} />
       </main>
       <Footer logoSrc={logo.src} />
       <MobileBar />

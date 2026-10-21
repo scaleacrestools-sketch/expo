@@ -14,6 +14,10 @@ export function Legacy({ logo }: { logo: ResolvedAsset }) {
         </div>
         <Reveal className="reveal grid gap-5 border-l border-sand-deep pl-8" delay={120}>
           {project.legacy.paragraphs.map((p) => <p key={p} className="lede">{p}</p>)}
+          <ul className="mt-4 grid gap-2 text-[0.78rem] leading-relaxed text-ink-soft sm:grid-cols-2">
+            {project.legacy.credentials.map((c) => <li key={c} className="flex gap-3"><span className="mt-2 h-px w-4 shrink-0 bg-gold" />{c}</li>)}
+          </ul>
+          <p className="fine">Source: Godrej Sora brochure, p.2 and p.4 (godrejproperties.com).</p>
         </Reveal>
       </div>
     </section>

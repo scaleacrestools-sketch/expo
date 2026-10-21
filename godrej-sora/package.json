@@ -14,9 +14,11 @@
     "test:e2e": "playwright test",
     "screenshots": "node tests/screenshots.mjs",
     "assets:extract": "node scripts/extract-brochure.mjs",
-    "assets:fetch": "node scripts/fetch-official-images.mjs"
+    "assets:fetch": "node scripts/fetch-official-images.mjs",
+    "assets:report": "node scripts/image-report.mjs"
   },
   "dependencies": {
+    "@fontsource-variable/jost": "^5.3.0",
     "@fontsource-variable/manrope": "^5.2.0",
     "@fontsource/instrument-serif": "^5.2.0",
     "gsap": "^3.13.0",

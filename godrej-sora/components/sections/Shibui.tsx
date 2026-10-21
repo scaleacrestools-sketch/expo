@@ -17,10 +17,10 @@ export function Shibui({ images }: { images: ResolvedAsset[] }) {
     <section id="shibui" className="washi grain relative py-[var(--section-y)]">
       <div className="container-sora">
         <SectionHeading index="07" eyebrow="Shibui philosophy" align="center" title={<>The Beauty of Less.<br /><em>The Luxury of More.</em></>}>
-          <span className="serif-accent text-ink">Shibui</span> is the Japanese word for a beauty that reveals itself slowly: subtle, unforced, enduring. It is the quiet discipline behind every decision at Sora.
+          At the core of Godrej Sora lies <span className="serif-accent text-ink">Shibui</span>: a Japanese wellness and aesthetic principle that values subtle, unobtrusive beauty above ostentatiousness and pomp. Guided by subtlety, restraint, naturalness, balance and understated elegance, it elicits a sense of peace, calm and contemplation.
         </SectionHeading>
         <div className="mt-20 grid gap-8 md:grid-cols-12">
-          <Reveal className="img-reveal md:col-span-5 aspect-[3/4]"><SoraImage asset={images[0]} className="h-full w-full" sizes="(min-width:768px) 40vw, 100vw" caption /></Reveal>
+          <Reveal className="img-reveal md:col-span-5 aspect-[3/4]"><SoraImage asset={images[2] ?? images[0]} className="h-full w-full" sizes="(min-width:768px) 40vw, 100vw" caption /></Reveal>
           <ul className="md:col-span-7 grid content-center gap-x-12 gap-y-8 sm:grid-cols-2 md:pl-10">
             {principles.map((p, i) => (
               <Reveal as="li" key={p.en} className="reveal" delay={i * 70}>
@@ -30,7 +30,9 @@ export function Shibui({ images }: { images: ResolvedAsset[] }) {
               </Reveal>
             ))}
           </ul>
-          <Reveal className="img-scale md:col-span-12 mt-8 aspect-[21/9] overflow-hidden"><SoraImage asset={images[1]} className="h-full w-full" sizes="100vw" caption /></Reveal>
+          <Reveal className="img-reveal md:col-span-6 mt-8 aspect-[4/5]"><SoraImage asset={images[0]} className="h-full w-full" sizes="(min-width:768px) 50vw, 100vw" caption /></Reveal>
+          <Reveal className="img-reveal md:col-span-6 mt-8 aspect-[4/5]" delay={120}><SoraImage asset={images[1]} className="h-full w-full" sizes="(min-width:768px) 50vw, 100vw" caption /></Reveal>
+          <Reveal className="reveal md:col-span-12 mt-6 max-w-3xl" delay={200}><p className="lede !text-base">Shibui in practice: thoughtful integration of natural light and mindfully interconnected spaces that guide movement and airflow; architecture designed to complement and blend with the nature that surrounds it, creating an atmosphere of calm that encourages slowing down to observe and appreciate details.</p></Reveal>
         </div>
       </div>
     </section>

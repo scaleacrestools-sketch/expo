@@ -19,6 +19,8 @@ No navy, no glossy gradients, no neon. Dark sections use ink, never pure black.
 
 ## Typography
 
+Brochure fonts (from `pdffonts`): **TheFuture** Extralight/Regular/Bold (geometric sans, commercial), Helvetica Light, Raleway, Myriad Pro, Gill Sans and M PLUS 1p (Japanese). Licensed matches used here: **Jost Variable** (OFL, Futura-class geometric) for display headings and eyebrows, **Manrope Variable** (OFL) for body and UI, **Instrument Serif** italic for accents. None of the commercial brochure fonts are redistributed.
+
 - **Manrope Variable** (self-hosted via Fontsource) for everything: display at weight 300 with −0.02em tracking, UI labels at 600 with 0.14–0.34em tracking, body at 400.
 - **Instrument Serif Italic** only for the second line of section headings and single-word emphasis (`<em>` inside `.display`, or `.serif-accent`). Never for body copy.
 - Type scale is fluid: display `clamp(2.1rem, 5vw, 4.4rem)`, hero `clamp(2.6rem, 7vw, 6.6rem)`, lede `clamp(1.05rem, 1.3vw, 1.25rem)`.

@@ -27,7 +27,7 @@ export function EightRays({ emblem }: { emblem: ResolvedAsset }) {
     <section id="philosophy" className="relative bg-ink py-[var(--section-y)] text-ivory">
       <div className="container-sora">
         <SectionHeading index="03" eyebrow="The Eight Rays of Sora" light title={<>Eight Rays.<br /><em className="text-gold-soft">One Way of Living.</em></>}>
-          The Sora sun carries eight rays, and each one names a promise the project is built upon.
+          {project.eightRaysIntro}
         </SectionHeading>
         <div className="mt-16 grid gap-16 lg:grid-cols-[1fr_1fr]">
           <div className="lg:sticky lg:top-28 lg:self-start">
@@ -67,7 +67,8 @@ export function EightRays({ emblem }: { emblem: ResolvedAsset }) {
                 <Reveal className="reveal grid grid-cols-[3rem_1fr] gap-4 border-t border-ivory/15 pt-6">
                   <span className="text-[0.7rem] tracking-[0.3em] text-gold">{String(i + 1).padStart(2, '0')}</span>
                   <div>
-                    <h3 className="display text-2xl text-ivory md:text-3xl">{r.name}</h3>
+                    <h3 className="display text-2xl text-ivory md:text-3xl">The Ray of {r.name}.</h3>
+                    <p className="mt-1 text-[0.62rem] tracking-[0.28em] uppercase text-gold">{r.sub}</p>
                     <p className="mt-3 max-w-md text-sm leading-relaxed text-ivory/70 md:text-base">{r.copy}</p>
                   </div>
                 </Reveal>

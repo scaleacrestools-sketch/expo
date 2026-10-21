@@ -14,7 +14,7 @@ export function ShikiClub({ hero, amenityImages }: { hero: ResolvedAsset; amenit
     <section id="shiki-club" className="relative bg-ivory py-[var(--section-y)]">
       <div className="container-sora">
         <SectionHeading index="09" eyebrow="Shiki Clubhouse" title={<>Where Wellness<br /><em>Becomes a Ritual.</em></>}>
-          <span className="serif-accent text-ink">Shiki</span> means the four seasons. Beneath its Japanese tiered roof, the clubhouse gathers an indoor onsen-inspired pool, a rooftop pool, spa and courts into a single place for the body to slow down.
+          Wellness of the body, clubbed with wellness of the mind. An expansive space filled with amenities curated to rejuvenate your body and revive your mind in a Japanese-wellness-themed clubhouse inspired by Japanese tiered roofs. Beyond the state-of-the-art gym and activity zones, make the Onsen Pool a regular part of your regimen and feel the stresses of city life disappear.
         </SectionHeading>
         <TieredRoof className="mt-10 h-auto w-56 text-sand-deep md:w-80" />
       </div>

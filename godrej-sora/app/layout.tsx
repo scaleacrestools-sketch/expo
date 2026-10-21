@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import '@fontsource-variable/manrope';
+import '@fontsource-variable/jost';
 import '@fontsource/instrument-serif';
 import '@fontsource/instrument-serif/400-italic.css';
 import './globals.css';

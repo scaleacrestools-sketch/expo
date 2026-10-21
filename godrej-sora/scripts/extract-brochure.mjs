@@ -19,16 +19,18 @@ const pagesDir = path.resolve('assets-source/_pages');
 const rasterDir = path.resolve('assets-source/_embedded');
 fs.mkdirSync(pagesDir, { recursive: true }); fs.mkdirSync(rasterDir, { recursive: true });
 
-// 1) every embedded raster at native resolution (for picking the best original of each render)
-try { execFileSync('pdfimages', ['-png', '-p', pdf, path.join(rasterDir, 'img')], { stdio: 'inherit' }); } catch (e) { console.warn('pdfimages failed', e.message); }
+// 1) every embedded raster at native resolution (JPEGs copied out losslessly) — skipped when already present
+if (!fs.readdirSync(rasterDir).length) {
+  try { execFileSync('pdfimages', ['-j', '-p', pdf, path.join(rasterDir, 'img')], { stdio: 'inherit' }); } catch (e) { console.warn('pdfimages failed', e.message); }
+}
 
 // 2) mapped pages rendered at 250 dpi, cropped if a crop is set
 for (const e of entries) {
-  const out = path.join(pagesDir, `p${String(e.page).padStart(2, '0')}`);
-  if (!fs.existsSync(`${out}.png`)) execFileSync('pdftoppm', ['-r', '250', '-f', String(e.page), '-l', String(e.page), '-png', '-singlefile', pdf, out]);
+  const out = path.join(pagesDir, `p-${String(e.page).padStart(2, '0')}`);
+  if (!fs.existsSync(`${out}.jpg`)) execFileSync('pdftoppm', ['-r', '220', '-f', String(e.page), '-l', String(e.page), '-jpeg', '-jpegopt', 'quality=95', '-singlefile', pdf, out]);
   const target = path.join(masters, `${e.id}.jpg`);
   fs.mkdirSync(path.dirname(target), { recursive: true });
-  let img = sharp(`${out}.png`);
+  let img = sharp(`${out}.jpg`);
   if (e.crop) {
     const { width, height } = await img.metadata();
     const [x, y, w, h] = e.crop.map((v) => v / 100);

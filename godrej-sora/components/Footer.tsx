@@ -25,6 +25,7 @@ export function Footer({ logoSrc }: { logoSrc: string | null }) {
           <p className="eyebrow mb-3 !text-gold">RERA</p>
           <p>Project registration: <span className="text-ivory">{project.rera.number}</span></p>
           <p>Dated {project.rera.date}</p>
+          <p className="mt-2 text-ivory/60">{project.legal.plot}.</p>
           <p className="text-ivory/60">{project.rera.authority} — <a className="underline" href={project.rera.portal} target="_blank" rel="noopener">haryanarera.gov.in</a></p>
           {!adv.isDeveloper && (
             <p className="mt-4 text-ivory/60">
@@ -36,6 +37,7 @@ export function Footer({ logoSrc }: { logoSrc: string | null }) {
       <div className="border-t border-ivory/10">
         <div className="container-sora grid gap-3 py-8 text-[0.7rem] leading-relaxed text-ivory/45">
           <p>{project.disclaimers.imagery}</p>
+          <p>*{project.legal.japanNote} {project.legal.landTitle}.</p>
           <p>{project.disclaimers.pricing}</p>
           <p>{project.disclaimers.general}</p>
           <p>© {new Date().getFullYear()} {adv.isDeveloper ? project.developer : adv.name || 'Advertiser'}. All rights reserved.</p>

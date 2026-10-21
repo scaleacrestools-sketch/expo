@@ -12,7 +12,7 @@ export function Location({ map }: { map: ResolvedAsset }) {
       <div className="container-sora grid gap-16 lg:grid-cols-[1fr_1.1fr]">
         <div>
           <SectionHeading index="11" eyebrow="Location advantage" title={<>An Extraordinary<br /><em>Address.</em></>}>
-            Sector 53, Gurugram. {loc.anchor.split('—')[1]?.trim()}. The city&rsquo;s most established luxury corridor, with the Rapid Metro, DLF Cyber City and the airport a short drive away.
+            Sector 53, Gurugram: a prime residential and commercial hub with abundant green zones, steps from Golf Course Road, where prosperity touches the sky. Near everything you need under the sky.
           </SectionHeading>
           <div className="mt-12 grid gap-8 sm:grid-cols-2">
             {loc.groups.map((g, gi) => (
@@ -22,7 +22,7 @@ export function Location({ map }: { map: ResolvedAsset }) {
                   {g.items.map((it) => (
                     <li key={it.name} className="flex items-baseline justify-between gap-4 py-2.5 text-sm">
                       <span className="text-ink">{it.name}</span>
-                      <span className="shrink-0 text-ink-mute">{it.value}</span>
+                      <span className="shrink-0 tabular-nums text-ink-mute">{it.km != null ? `${it.km} km · ${it.min} min` : ('note' in it ? 'On map' : '')}</span>
                     </li>
                   ))}
                 </ul>
