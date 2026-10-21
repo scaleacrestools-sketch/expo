@@ -634,7 +634,13 @@ const LIGHT_ORDER: Tone[] = ["light", "mist"];
 export function ComposedPage({ page, form }: { page: LegacyPage; form: FormCounter }) {
   const secs = page.sections.filter((s) => s.blocks.length);
   const kinds = secs.map(kindOf);
-  const backdrop = secs.flatMap((s) => s.blocks).filter(isImg).find((x) => (x.width ?? 0) >= 900 && (x.width ?? 0) > (x.height ?? 0) * 1.4);
+  // Hero backdrop: the page's own editorial photography (split sections first, then awards/culture),
+  // never a client logo, a card thumbnail, a screenshot or an animated GIF; a descriptive alt marks a real photograph.
+  const backdrop = (["split", "awards", "culture"] as Kind[])
+    .flatMap((kind) => secs.filter((s, i) => kinds[i] === kind && !s.blocks.some((x) => isH(x) && x.level >= 5)))
+    .flatMap((s) => s.blocks)
+    .filter(isImg)
+    .find((x) => (x.width ?? 0) >= 700 && (x.width ?? 0) >= (x.height ?? 0) * 1.2 && !/\.(svg|gif)$/i.test(x.src) && (x.alt ?? "").trim().split(/\s+/).length >= 3);
   const out: ReactNode[] = [];
   let light = 0;
   const nextLight = () => LIGHT_ORDER[light++ % 2];
