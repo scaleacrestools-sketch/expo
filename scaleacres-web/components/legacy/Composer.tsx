@@ -164,7 +164,7 @@ function PageHead({ page, label }: { page: LegacyPage; label: string }) {
 }
 
 /** Splits the H1 section into the hero itself and the blocks that follow it (composed as their own section). */
-function splitHero(s: LegacySection, form: FormCounter) {
+function splitHero(s: LegacySection) {
   const b = s.blocks;
   const h1i = b.findIndex((x) => isH(x) && x.level === 1);
   // Hero group: H1, the heading right after it (sub-title), buttons, intro copy, small trust images.
@@ -176,14 +176,14 @@ function splitHero(s: LegacySection, form: FormCounter) {
   const heroBlocks = [...b.slice(h1i, end)];
   const preImgs = pre.filter(isImg);
   const rest = [...pre.filter((x) => !isImg(x)), ...b.slice(end)];
-  const formIdx = rest.findIndex((x) => x.type === "form" && x === form.first);
+  const formIdx = rest.findIndex((x) => x.type === "form" && x.primary);
   const formHeadIdx = formIdx > 0 && isH(rest[formIdx - 1]) ? formIdx - 1 : formIdx;
   const formBlocks = formIdx >= 0 ? rest.slice(formHeadIdx, formIdx + 1) : [];
   const after = formIdx >= 0 ? [...rest.slice(0, formHeadIdx), ...rest.slice(formIdx + 1)] : rest;
   return { heroBlocks, preImgs, formBlocks, after };
 }
 
-function Hero({ page, form, backdrop, label, parts }: { page: LegacyPage; form: FormCounter; backdrop?: I; label: string; parts: ReturnType<typeof splitHero> }) {
+function Hero({ page, backdrop, label, parts }: { page: LegacyPage; backdrop?: I; label: string; parts: ReturnType<typeof splitHero> }) {
   const { heroBlocks, preImgs, formBlocks } = parts;
   const h1 = heroBlocks[0] as H;
   const sub = heroBlocks[1] && isH(heroBlocks[1]) ? (heroBlocks[1] as H) : null;
@@ -232,7 +232,7 @@ function Hero({ page, form, backdrop, label, parts }: { page: LegacyPage; form: 
             <div className="lg:col-span-5">
               <div id="enquiry" className="scroll-mt-28 rounded-[22px] border border-white/15 bg-white/[0.06] p-6 shadow-[0_40px_120px_-40px_rgba(29,78,216,0.6)] backdrop-blur-md md:p-8">
                 {formBlocks.filter(isH).map((h, i) => <T key={i} b={h} size="h3" className="mb-6 !text-[clamp(1.5rem,1rem+1.2vw,2.25rem)]" />)}
-                <FormSlot first={form.first === formBlocks.find((x) => x.type === "form")} tone="light" bare />
+                <FormSlot first tone="light" bare />
               </div>
             </div>
           ) : null}
@@ -812,8 +812,11 @@ function FaqSection({ s, tone }: { s: LegacySection; tone: Tone }) {
 const LIGHT_ORDER: Tone[] = ["light", "mist"];
 
 /** Heading-only fragments join the section after them; the H1 section leads. */
-function prepare(page: LegacyPage): LegacySection[] {
-  const raw = page.sections.filter((s) => s.blocks.length);
+function prepare(page: LegacyPage, form: FormCounter): LegacySection[] {
+  // Only the page's first form becomes the working form; any later one links to it, wherever it is rendered.
+  const raw = page.sections
+    .filter((s) => s.blocks.length)
+    .map((s) => ({ ...s, blocks: s.blocks.map((b) => (b.type === "form" ? { ...b, primary: b === form.first } : b)) }));
   const merged: LegacySection[] = [];
   let carry: Block[] = [];
   for (const s of raw) {
@@ -828,9 +831,9 @@ function prepare(page: LegacyPage): LegacySection[] {
 }
 
 export function ComposedPage({ page, form, label }: { page: LegacyPage; form: FormCounter; label: string }) {
-  const prepared = prepare(page);
+  const prepared = prepare(page, form);
   const hasHero = prepared[0]?.blocks.some((x) => isH(x) && x.level === 1);
-  const heroParts = hasHero ? splitHero(prepared[0], form) : null;
+  const heroParts = hasHero ? splitHero(prepared[0]) : null;
   // The blocks after the hero group (a logo wall, an intro…) are composed as a section of their own.
   const secs = heroParts ? [prepared[0], ...(heroParts.after.length ? [{ ...prepared[0], blocks: heroParts.after }] : []), ...prepared.slice(1)] : prepared;
   const kinds = secs.map((s, i) => (i === 0 && heroParts ? "hero" : kindOf(s, Math.max(i, 1))));
@@ -864,7 +867,7 @@ export function ComposedPage({ page, form, label }: { page: LegacyPage; form: Fo
       }
     }
     switch (k) {
-      case "hero": out.push(<Hero key={i} page={page} form={form} backdrop={backdrop} label={label} parts={heroParts!} />); break;
+      case "hero": out.push(<Hero key={i} page={page} backdrop={backdrop} label={label} parts={heroParts!} />); break;
       case "stats": out.push(<Stats key={i} s={s} />); break;
       case "rows": out.push(<Rows key={i} s={s} tone={nextLight()} />); break;
       case "banner": out.push(<Banner key={i} s={s} />); break;

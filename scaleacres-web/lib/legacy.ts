@@ -21,7 +21,7 @@ export type Block =
   | { type: "video"; embed?: string; src?: string; poster?: string | null; title?: string }
   | { type: "quote"; html: string }
   | { type: "stat"; value: string; label: string }
-  | { type: "form"; fields: string[] }
+  | { type: "form"; fields: string[]; /** Set by the page composer: the page's working form (true) or a link to it (false). */ primary?: boolean }
   | { type: "rule" };
 
 export type LegacySection = { bgImage: string | null; blocks: Block[] };

@@ -297,7 +297,7 @@ function ItemEl({ it, tone, form, headingRole }: { it: Item; tone: Tone; form?: 
     case "quote":
       return <Html as="blockquote" html={b.html} className="border-l-2 border-blue pl-6 text-[length:var(--fs-lead)] italic leading-[1.5]" />;
     case "form": {
-      return <FormSlot first={!form || form.first === b} tone={tone} />;
+      return <FormSlot first={b.primary ?? (!form || form.first === b)} tone={tone} />;
     }
     case "rule":
       return <hr className={onDark(tone) ? "border-white/15" : "border-line"} />;
