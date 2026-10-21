@@ -104,7 +104,7 @@ function Tile({ img }: { img: I }) {
 
 export type Kind =
   | "hero" | "logos" | "testimonials" | "statement" | "showcase" | "funnel" | "results" | "portfolio" | "collage"
-  | "awards" | "culture" | "split" | "reasons" | "rows" | "stats" | "banner" | "videos" | "callout" | "creatives" | "faq" | "cta" | "generic";
+  | "awards" | "culture" | "split" | "reasons" | "rows" | "stats" | "banner" | "videos" | "callout" | "cards" | "badges" | "creatives" | "faq" | "cta" | "generic";
 
 export function kindOf(s: LegacySection, i: number): Kind {
   const b = s.blocks;
@@ -115,7 +115,7 @@ export function kindOf(s: LegacySection, i: number): Kind {
   // A wide banner image (often with its title set in the artwork) on its own.
   if (b.length <= 2 && imgs.length === b.length && imgs.every((x) => !x.width || !x.height || x.width >= x.height * 3)) return "banner";
   // A short call to action: small headings (often the same line twice, one per breakpoint) and a button.
-  if (imgs.length === 0 && hs.length >= 1 && hs.length <= 3 && hs.every((h) => h.level >= 5) && btns(b).length >= 1 && words(b) === 0) return "callout";
+  if (imgs.length === 0 && hs.length >= 1 && hs.length <= 3 && (hs.every((h) => h.level >= 5) || b.length <= 3) && btns(b).length >= 1 && b.every((x) => isH(x) || asButton(x))) return "callout";
   // Key figures written as short numeric headings ("15cr+", "33+", "2.5Lacs+").
   if (hs.filter(isStatHeading).length >= 3 && imgs.length === 0) return "stats";
   if (b.some((x) => x.type === "faq")) return "faq";
@@ -124,6 +124,11 @@ export function kindOf(s: LegacySection, i: number): Kind {
   if (hs.filter((h) => /^category\s*:/i.test(h.text)).length >= 3) return "portfolio";
   // Long mixed sections (a whole case study in one block run) read best as heading-grouped editorial rows.
   if (b.length > 24 && hs.length >= 5 && imgs.length < 12) return "generic";
+  // Cards: three or more images that each introduce a heading (team members, culture highlights).
+  const pairs = b.filter((x, j) => isImg(x) && b[j + 1] && isH(b[j + 1])).length;
+  if (pairs >= 3 && words(b) < 45 * pairs) return "cards";
+  // Trust badges and certificates: a few modest images under a small heading.
+  if (imgs.length >= 3 && imgs.length <= 8 && imgs.every((x) => (x.width ?? 0) <= 800) && hs.every((h) => h.level >= 4)) return "badges";
   // Keyword cues read only the section's main headings (H1–H3), never card labels.
   const title = hs.filter((h) => h.level <= 3).map((h) => h.text).join(" ");
   if (/result|proof|performance/i.test(title) && imgs.length >= 2 && hs.length <= 2) return "results";
@@ -137,6 +142,8 @@ export function kindOf(s: LegacySection, i: number): Kind {
   if (hs.length <= 3 && imgs.length >= 1 && imgs.length <= 2 && imgs.every((x) => (x.width ?? 0) >= 1200) && words(b) === 0) return "collage";
   if (hs.length <= 2 && imgs.filter(big).length >= 2 && imgs.length <= 5) return "results";
   const small = hs.filter((h) => h.level >= 4);
+  // A process written as "Step 1 / title / detail" headings.
+  if (hs.filter((h) => /^step\s*\d+/i.test(h.text)).length >= 2 && imgs.length === 0) return "rows";
   if (small.length >= 3 && small.length === hs.length - 1 && imgs.length === 0) return "reasons";
   // A title followed by a list of offerings written as headings with little or no copy between them.
   if (hs.length >= 5 && imgs.length === 0 && words(b) < 25 * hs.length && !b.some((x) => x.type === "faq")) return "rows";
@@ -177,20 +184,22 @@ function splitHero(s: LegacySection) {
   while (end < b.length && (asButton(b[end]) || isPara(b[end]) || (isImg(b[end]) && ((b[end] as I).width ?? 0) < 400))) end++;
   // Images before the H1 (a client logo, a project visual) stay in the hero; anything else before it follows.
   const pre = b.slice(0, h1i);
+  // Short headings set just before the H1 ("DRIVING REAL RESULTS") read as its kicker.
+  const kickers = pre.filter((x) => isH(x) && x.text.length <= 40) as H[];
   const heroBlocks = [...b.slice(h1i, end)];
   const preImgs = pre.filter(isImg);
   // With no working form in this section, a large photo right after the copy becomes the hero visual.
   if (!b.some((x) => x.type === "form" && x.primary) && b[end] && isImg(b[end]) && big(b[end] as I) && !preImgs.some(big)) preImgs.push(b[end++] as I);
-  const rest = [...pre.filter((x) => !isImg(x)), ...b.slice(end)];
+  const rest = [...pre.filter((x) => !isImg(x) && !kickers.includes(x as H)), ...b.slice(end)];
   const formIdx = rest.findIndex((x) => x.type === "form" && x.primary);
   const formHeadIdx = formIdx > 0 && isH(rest[formIdx - 1]) ? formIdx - 1 : formIdx;
   const formBlocks = formIdx >= 0 ? rest.slice(formHeadIdx, formIdx + 1) : [];
   const after = formIdx >= 0 ? [...rest.slice(0, formHeadIdx), ...rest.slice(formIdx + 1)] : rest;
-  return { heroBlocks, preImgs, formBlocks, after };
+  return { heroBlocks, preImgs, formBlocks, after, kickers };
 }
 
 function Hero({ page, backdrop, label, parts }: { page: LegacyPage; backdrop?: I; label: string; parts: ReturnType<typeof splitHero> }) {
-  const { heroBlocks, preImgs, formBlocks } = parts;
+  const { heroBlocks, preImgs, formBlocks, kickers } = parts;
   const h1 = heroBlocks[0] as H;
   const sub = heroBlocks[1] && isH(heroBlocks[1]) ? (heroBlocks[1] as H) : null;
   const others = heroBlocks.slice(sub ? 2 : 1);
@@ -221,7 +230,8 @@ function Hero({ page, backdrop, label, parts }: { page: LegacyPage; backdrop?: I
               ) : null}
             </div>
             {marks.length ? <div className="mt-8 flex flex-wrap items-center gap-4">{marks.map((im, i) => <Img key={i} img={im} className="h-12 w-auto max-w-[12rem] object-contain" />)}</div> : null}
-            <T b={h1} size="display" className="mt-8 max-w-[14ch]" />
+            {kickers.map((k, i) => <T key={i} b={k} size="kicker" className="mt-8 !text-sky" />)}
+            <T b={h1} size="display" className={`mt-8 ${h1.text.length > 60 ? "max-w-[22ch] !text-[clamp(2.25rem,1rem+3.6vw,5rem)]" : "max-w-[14ch]"}`} />
             {sub ? <Html as={`h${sub.level}`} html={sub.html} className="legacy-h mt-8 max-w-[30ch] text-[clamp(1.25rem,1rem+1.1vw,2rem)] font-medium leading-[1.25] tracking-[-0.01em] text-white/85" /> : null}
             <div className="mt-10 flex flex-wrap items-center gap-6">
               <Buttons buttons={btns(others)} tone="hero" />
@@ -554,9 +564,12 @@ function Culture({ s, tone }: { s: LegacySection; tone: Tone }) {
             {btns(b).length ? <div data-reveal><Buttons buttons={btns(b)} tone={tone} /></div> : null}
           </div>
         </div>
-        <ul role="list" className="grid gap-4 sm:grid-cols-2 lg:col-span-8">
+        {/* Natural proportions in two columns: photos and artwork (often with text in it) are never cropped. */}
+        <ul role="list" className="gap-4 space-y-4 sm:columns-2 lg:col-span-8">
           {imgs.map((im, i) => (
-            <li key={i} className={i === 0 ? "sm:col-span-2" : ""} data-reveal><Frame img={im} ratio={i === 0 ? "aspect-[16/8]" : "aspect-[3/2]"} /></li>
+            <li key={i} className="break-inside-avoid" data-reveal>
+              <figure className="group m-0 overflow-hidden rounded-[14px] bg-ink/5"><Img img={im} className="h-auto w-full transition-[scale] duration-[1400ms] ease-out-expo group-hover:scale-[1.03]" /></figure>
+            </li>
           ))}
         </ul>
       </div>
@@ -607,6 +620,8 @@ function Split({ s, tone, flip }: { s: LegacySection; tone: Tone; flip: boolean 
 function Reasons({ s, tone }: { s: LegacySection; tone: Tone }) {
   const b = s.blocks;
   const title = b.find(isH)!;
+  // Contact details and similar label/value lists read as a list, not a ranking.
+  const numbered = !/contact|info|address/i.test(title.text);
   const rows: { h: H; body: Block[] }[] = [];
   const intro: Block[] = [];
   for (const x of b.slice(b.indexOf(title) + 1)) {
@@ -627,8 +642,8 @@ function Reasons({ s, tone }: { s: LegacySection; tone: Tone }) {
         </div>
         <ol className="lg:col-span-7">
           {rows.map((r, i) => (
-            <li key={i} className={`group grid grid-cols-[3.5rem_1fr] gap-6 border-t py-9 md:grid-cols-[5.5rem_1fr] md:gap-8 ${dark(tone) ? "border-white/12" : "border-line"}`} data-reveal>
-              <span aria-hidden="true" className="text-[clamp(2.5rem,1.5rem+2.5vw,4.5rem)] font-black leading-none tracking-[-0.05em] text-transparent transition-colors duration-500 [-webkit-text-stroke:1.5px_rgba(56,189,248,0.6)] group-hover:text-sky">{String(i + 1).padStart(2, "0")}</span>
+            <li key={i} className={`group grid gap-6 border-t py-9 md:gap-8 ${numbered ? "grid-cols-[3.5rem_1fr] md:grid-cols-[5.5rem_1fr]" : ""} ${dark(tone) ? "border-white/12" : "border-line"}`} data-reveal>
+              {numbered ? <span aria-hidden="true" className="text-[clamp(2.5rem,1.5rem+2.5vw,4.5rem)] font-black leading-none tracking-[-0.05em] text-transparent transition-colors duration-500 [-webkit-text-stroke:1.5px_rgba(56,189,248,0.6)] group-hover:text-sky">{String(i + 1).padStart(2, "0")}</span> : null}
               <div className="space-y-4">
                 <T b={r.h} size="card" className="!text-[clamp(1.375rem,1rem+1vw,2rem)] !font-extrabold" />
                 <Text blocks={r.body} tone={tone} />
@@ -790,6 +805,75 @@ function Callout({ s }: { s: LegacySection }) {
   );
 }
 
+/** Image-led cards: each image with the headings and copy that follow it (team members, culture highlights). */
+function Cards({ s, tone }: { s: LegacySection; tone: Tone }) {
+  const b = s.blocks;
+  const first = b.findIndex((x, j) => isImg(x) && b[j + 1] && isH(b[j + 1]));
+  const head = b.slice(0, first);
+  const cards: { img: I; body: Block[] }[] = [];
+  const loose: I[] = [];
+  for (let j = first; j < b.length; j++) {
+    const x = b[j];
+    if (isImg(x) && (isH(b[j + 1] ?? x) || !cards.length)) cards.push({ img: x, body: [] });
+    else if (isImg(x)) loose.push(x);
+    else cards[cards.length - 1].body.push(x);
+  }
+  const people = cards.filter((c) => portrait(c.img) || Math.abs((c.img.width ?? 1) - (c.img.height ?? 1)) < 40).length > cards.length / 2;
+  const cols = cards.length >= 8 ? "sm:grid-cols-2 lg:grid-cols-4" : cards.length === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-2 lg:grid-cols-3";
+  return (
+    <Shell tone={tone}>
+      {head.length ? (
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7" data-reveal>{head.filter(isH).map((h, i) => <T key={i} b={h} size={i === 0 && head.filter(isH).length > 1 ? "kicker" : "h2"} />)}</div>
+          <div className="space-y-6 lg:col-span-5"><Text blocks={head} tone={tone} lead />{btns(head).length ? <Buttons buttons={btns(head)} tone={tone} /> : null}</div>
+        </div>
+      ) : null}
+      {head.some(isImg) ? <div className="mt-10 grid gap-4 sm:grid-cols-2">{head.filter(isImg).map((im, i) => <Frame key={i} img={im} />)}</div> : null}
+      <ul role="list" className={`grid gap-x-6 gap-y-10 ${cols} ${head.length ? "mt-14" : ""}`}>
+        {cards.map((c, i) => (
+          <li key={i} className="group" data-reveal>
+            <div className={`overflow-hidden rounded-[16px] ${dark(tone) ? "bg-white/5" : "bg-ink/5"} ${people ? "aspect-[4/5]" : "aspect-[4/3]"}`}>
+              <Img img={c.img} className={`h-full w-full object-cover ${people ? "object-top" : ""} transition-[scale] duration-[1400ms] ease-out-expo group-hover:scale-[1.04]`} />
+            </div>
+            <div className="mt-5 space-y-2">
+              {c.body.filter(isH).map((h, j) => <T key={j} b={h} size={j === 0 ? "card" : "meta"} />)}
+              <Text blocks={c.body} tone={tone} />
+              {btns(c.body).length ? <Buttons buttons={btns(c.body)} tone={tone} /> : null}
+              <Extras blocks={c.body} tone={tone} />
+            </div>
+          </li>
+        ))}
+      </ul>
+      {loose.length ? <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{loose.map((im, i) => <Frame key={i} img={im} />)}</div> : null}
+    </Shell>
+  );
+}
+
+/** Trust badges and certificates: small images shown whole on white tiles beside the copy. */
+function Badges({ s, tone }: { s: LegacySection; tone: Tone }) {
+  const b = s.blocks;
+  const imgs = b.filter(isImg);
+  return (
+    <Shell tone={tone}>
+      <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="space-y-6 lg:col-span-5">
+          <div className="space-y-4" data-reveal>{b.filter(isH).map((h, i) => <T key={i} b={h} size="h3" />)}</div>
+          <Text blocks={b} tone={tone} lead />
+          {btns(b).length ? <div data-reveal><Buttons buttons={btns(b)} tone={tone} /></div> : null}
+          <Extras blocks={b} tone={tone} />
+        </div>
+        <ul role="list" className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:col-span-7">
+          {imgs.map((im, i) => (
+            <li key={i} className="grid aspect-[4/3] place-items-center rounded-[16px] border border-line bg-white p-6" data-reveal>
+              <Img img={im} className="max-h-full w-auto max-w-full object-contain" />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Shell>
+  );
+}
+
 /** A wide banner image shown full-bleed on black. */
 function Banner({ s }: { s: LegacySection }) {
   return (
@@ -911,6 +995,8 @@ export function ComposedPage({ page, form, label }: { page: LegacyPage; form: Fo
       case "banner": out.push(<Banner key={i} s={s} />); break;
       case "videos": out.push(<Videos key={i} s={s} tone="dark" />); break;
       case "callout": out.push(<Callout key={i} s={s} />); break;
+      case "cards": out.push(<Cards key={i} s={s} tone={nextLight()} />); break;
+      case "badges": out.push(<Badges key={i} s={s} tone={nextLight()} />); break;
       case "logos": out.push(<Logos key={i} blocks={s.blocks} tone={nextLight()} />); break;
       case "testimonials": out.push(<Testimonials key={i} s={s} tone="mist" />); light = 0; break;
       case "statement": out.push(<Statement key={i} s={s} tone={nextLight()} />); break;
