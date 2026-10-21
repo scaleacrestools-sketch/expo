@@ -84,7 +84,7 @@ export default function Page() {
         <Partners />
         <Legacy logo={a('brand/godrej-properties-logo')} />
         <SiteVisit />
-        <Final image={a('architecture/exterior-elevation-3')} />
+        <Final image={a('architecture/exterior-elevation-3')} logo={logo} />
       </main>
       <Footer logoSrc={logo.src} />
       <MobileBar />

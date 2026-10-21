@@ -30,8 +30,8 @@ export function Hero({ image }: { image: ResolvedAsset }) {
         <SoraImage asset={image} className="h-full w-full" priority sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/25 to-ink/30" />
       </div>
-      {/* rising sun + horizon: scroll-driven */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-[38%] z-[1] hidden h-40 overflow-hidden md:block" aria-hidden="true">
+      {/* rising sun + horizon: scroll-driven, shown only while the official render is pending */}
+      <div className={`pointer-events-none absolute inset-x-0 bottom-[38%] z-[1] h-40 overflow-hidden ${image.src ? 'hidden' : 'hidden md:block'}`} aria-hidden="true">
         <div data-hero-sun className="absolute left-[62%] bottom-10 h-24 w-24 rounded-full bg-gold/80 blur-[1px] shadow-[0_0_80px_30px_rgba(213,163,60,0.25)] will-change-transform" />
         <Horizon className="absolute inset-x-0 bottom-0 h-full w-full text-ivory" />
       </div>

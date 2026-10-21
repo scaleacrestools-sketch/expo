@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { SunRays } from './ui/motifs';
 
-/** Uses the official logo file when supplied (brand/godrej-sora-logo.*); otherwise a typeset wordmark with the sun motif. */
+/** Uses the official logo when supplied as a vector (brand/godrej-sora-logo.svg); raster brochure crops are artwork, not a logo, so the typeset wordmark is used otherwise. */
 export function Wordmark({ logoSrc, light = false, size = 'sm' }: { logoSrc: string | null; light?: boolean; size?: 'sm' | 'lg' }) {
-  if (logoSrc) {
+  if (logoSrc && logoSrc.endsWith('.svg')) {
     return <Image src={logoSrc} alt="Godrej Sora" width={size === 'lg' ? 220 : 140} height={size === 'lg' ? 64 : 40} className={`h-auto ${size === 'lg' ? 'w-56' : 'w-32 md:w-36'} ${light ? 'brightness-0 invert' : ''}`} priority />;
   }
   return (

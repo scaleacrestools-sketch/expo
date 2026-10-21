@@ -1,6 +1,6 @@
 # Deliverable 7 & 8 — QA report and deployment
 
-## QA performed (21 Oct 2026, production build)
+## QA performed (21 Oct 2026, production build) — superseded by `08-final-test-results.md` for the final package
 
 | Check | Result |
 |---|---|
