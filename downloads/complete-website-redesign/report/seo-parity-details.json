@@ -1,0 +1,9270 @@
+[
+ {
+  "path": "/about-us/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    3,
+    3
+   ],
+   "3": [
+    7,
+    7
+   ]
+  },
+  "images": [
+   6,
+   6
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/au/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/",
+  "coverage": 1.0,
+  "liveCapture": 0.922,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    0,
+    0
+   ],
+   "3": [
+    6,
+    6
+   ]
+  },
+  "images": [
+   6,
+   6
+  ],
+  "links": [
+   6,
+   6
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/4-ps-of-marketing-in-real-estate/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    7,
+    7
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/5-common-mistakes-real-estate-businesses-make-in-brand-marketing/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   7,
+   7
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/a-detailed-guide-to-real-estate-website-development/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   13,
+   13
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/a-developer-spent-crores-on-ads-and-zero-on-branding-guess-what-happened/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/ai-real-estate-lead-generation/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    6,
+    6
+   ],
+   "3": [
+    8,
+    8
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/author/prem/",
+  "coverage": 1.0,
+  "liveCapture": 0.998,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   10,
+   10
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/author/raghav/",
+  "coverage": 1.0,
+  "liveCapture": 0.999,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   10,
+   10
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/beginners-guide-to-facebook-ads-for-real-estate-agents/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/benefits-of-running-youtube-ads-for-real-estate-businesses/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    6,
+    6
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/best-real-estate-lead-generation-platforms/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    6,
+    6
+   ],
+   "3": [
+    8,
+    8
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/best-whatsapp-marketing-strategies-for-real-estate-agents-in-india/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    12,
+    12
+   ],
+   "3": [
+    13,
+    13
+   ]
+  },
+  "images": [
+   3,
+   3
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/biggest-real-estate-marketing-mistakes-and-how-to-avoid-them/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    9,
+    9
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/casestudy/our-case-one-goa/",
+  "coverage": 1.0,
+  "liveCapture": 0.928,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    17,
+    17
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   12,
+   12
+  ],
+  "links": [
+   3,
+   3
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/category/branding/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/category/digital-marketing/",
+  "coverage": 1.0,
+  "liveCapture": 0.999,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   10,
+   10
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/category/facebook-ads/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/category/lead-generation/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   7,
+   7
+  ],
+  "links": [
+   7,
+   7
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/category/ppc/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    4,
+    4
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/category/seo/",
+  "coverage": 1.0,
+  "liveCapture": 0.999,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   10,
+   10
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/category/social-media/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/category/uncategorized/",
+  "coverage": 1.0,
+  "liveCapture": 0.999,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   10,
+   10
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/category/website-development/",
+  "coverage": 1.0,
+  "liveCapture": 0.999,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   10,
+   10
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/common-challenges-in-real-estate-digital-marketing/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    5,
+    5
+   ],
+   "3": [
+    9,
+    9
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/common-challenges-in-real-estate-lead-generation-and-how-to-overcome-them/",
+  "coverage": 1.0,
+  "liveCapture": 0.976,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    5,
+    5
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/common-google-ads-challenges-for-realtors/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    5,
+    5
+   ],
+   "3": [
+    9,
+    9
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/common-mistakes-to-avoid-in-local-seo-for-real-estate-business/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    5,
+    5
+   ],
+   "3": [
+    8,
+    8
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/common-seo-myths-every-realtor-should-stop-believing/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    9,
+    9
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/custom-vs-template-real-estate-websites/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    6,
+    6
+   ],
+   "3": [
+    7,
+    7
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/digital-marketing-for-real-estate/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/elementskit-content/dynamic-content-megamenu-menuitem13/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    0,
+    0
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   0,
+   0
+  ],
+  "links": [
+   0,
+   0
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/elementskit-content/dynamic-content-megamenu-menuitem330/",
+  "coverage": 1.0,
+  "liveCapture": 0.863,
+  "h": {
+   "1": [
+    0,
+    0
+   ],
+   "2": [
+    4,
+    4
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/elementskit-content/dynamic-content-megamenu-menuitem3744/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    0,
+    0
+   ],
+   "2": [
+    0,
+    0
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   0,
+   0
+  ],
+  "links": [
+   68,
+   68
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/elementskit-content/dynamic-content-megamenu-menuitem6614/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    0,
+    0
+   ],
+   "2": [
+    5,
+    5
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   0,
+   0
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/elementskit-content/dynamic-content-megamenu-menuitem6702/",
+  "coverage": 1.0,
+  "liveCapture": 0.863,
+  "h": {
+   "1": [
+    0,
+    0
+   ],
+   "2": [
+    4,
+    4
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/elementskit-content/dynamic-content-widget-5be6639-6f0f7aa/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    0,
+    0
+   ],
+   "2": [
+    0,
+    0
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   0,
+   0
+  ],
+  "links": [
+   0,
+   0
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/google-ads-demand-gen-review-delays/",
+  "coverage": 1.0,
+  "liveCapture": 0.998,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   6,
+   6
+  ],
+  "links": [
+   7,
+   7
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/google-ads-vs-meta-ads-for-real-estate-which-delivers-better-site-visits-in-2026/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-ai-chatbots-can-qualify-leads-on-your-real-estate-website/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-ai-powered-digital-marketing-is-transforming-real-estate-brands/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    2,
+    2
+   ],
+   "3": [
+    10,
+    10
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-customer-reviews-impact-local-seo-rankings-in-real-estate/",
+  "coverage": 1.0,
+  "liveCapture": 0.998,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    11,
+    11
+   ],
+   "3": [
+    4,
+    4
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   7,
+   7
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-developers-can-advertise-new-projects-without-violating-rera-rules/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    8,
+    8
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-do-images-and-videos-impact-real-estate-website-speed/",
+  "coverage": 1.0,
+  "liveCapture": 0.993,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-google-maps-seo-can-increase-property-leads-for-realtors/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    12,
+    12
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-real-estate-blogs-can-generate-organic-leads/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    4,
+    4
+   ],
+   "3": [
+    13,
+    13
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   7,
+   7
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-real-estate-developers-can-use-website-analytics-for-better-sales-decisions/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    6,
+    6
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-rera-regulations-impact-real-estate-advertising-in-2026/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    9,
+    9
+   ],
+   "3": [
+    8,
+    8
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-seo-helps-build-your-real-estate-brand-authority-online/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    5,
+    5
+   ],
+   "3": [
+    8,
+    8
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-choose-a-real-estate-marketing-agency-in-india-a-cmos-evaluation-framework/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    14,
+    14
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-choose-the-right-cms-for-your-real-estate-website/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    8,
+    8
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-create-and-optimize-google-my-business-profile-for-real-estate/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    6,
+    6
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-create-high-converting-real-estate-landing-pages/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-do-whatsapp-marketing-for-real-estate-businesses/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    6,
+    6
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-find-trending-real-estate-blog-topics/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    4,
+    4
+   ],
+   "3": [
+    8,
+    8
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-fix-duplicate-content-issues-on-a-real-estate-website/",
+  "coverage": 1.0,
+  "liveCapture": 0.999,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-generate-real-estate-leads-through-digital-marketing/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    5,
+    5
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-get-a-featured-snippet-in-google/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    11,
+    11
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   3,
+   3
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-increase-visitor-retention-rate-on-real-estate-websites/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-optimize-property-listings-for-voice-search/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-optimize-real-estate-websites-for-google-search-in-2025/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    5,
+    5
+   ],
+   "3": [
+    10,
+    10
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   7,
+   7
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-rank-in-ai-search-the-complete-ai-search-optimization-guide-for-real-estate-businesses-2026/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    11,
+    11
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   12,
+   12
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-run-google-ads-for-real-estate-to-get-quality-leads/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-secure-a-real-estate-website-from-spam-and-fake-leads/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    5,
+    5
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-use-ai-tools-for-real-estate-marketing/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    5,
+    5
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/how-to-use-chatgpt-to-create-seo-optimized-real-estate-blogs/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    6,
+    6
+   ],
+   "3": [
+    9,
+    9
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/instagram-vs-facebook-vs-linkedin-where-should-your-real-estate-brand-actually-be/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/is-seo-important-for-real-estate-agents-in-2026/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   12,
+   12
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/key-features-to-include-in-a-real-estate-website-for-maximum-lead-conversion/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    15,
+    15
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   7,
+   7
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/landing-page-tips-for-real-estate-lead-generation/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    6,
+    6
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/linkedin-for-real-estate-developers-reach-nri-buyers-investors/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    13,
+    13
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   3,
+   3
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/practical-guide-to-email-marketing-for-real-estate-agents/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/proven-marketing-ideas-for-realtors-to-consider-in-2026/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/real-estate-lead-generation-funnel/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    13,
+    13
+   ]
+  },
+  "images": [
+   6,
+   6
+  ],
+  "links": [
+   13,
+   13
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/real-estate-lead-generation-mistakes/",
+  "coverage": 1.0,
+  "liveCapture": 0.989,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    4,
+    4
+   ],
+   "3": [
+    10,
+    10
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/real-estate-marketing-for-nri/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    7,
+    7
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/real-estate-seo-mistakes-that-are-killing-your-traffic/",
+  "coverage": 1.0,
+  "liveCapture": 0.993,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    13,
+    13
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   7,
+   7
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/real-estate-website-vs-property-portals/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    6,
+    6
+   ],
+   "3": [
+    7,
+    7
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/retargeting-ads-for-real-estate/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/schema-markup-for-real-estate-websites-the-structured-data-that-actually-moves-rankings/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/seo-and-rera-compliance-how-developers-can-rank-without-making-false-claims/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    9,
+    9
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/seo-roi-in-real-estate-marketing/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    8,
+    8
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/seo-strategy-for-property-developers/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    11,
+    11
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/social-media-trends-in-real-estate-marketing/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/step-by-step-guide-to-building-a-real-estate-website/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    13,
+    13
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/strategies-to-improve-ranking-for-real-estate-industry-in-2026/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    6,
+    6
+   ],
+   "3": [
+    7,
+    7
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/digital-marketing/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/digital-marketing-for-real-estate/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/digital-marketing-in-real-estate/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/digital-vs-traditional-marketing-in-real-estate/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/high-converting-landing-pages/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/online-real-estate-lead-generation/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/real-estate-advertising/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/real-estate-digital-marketing/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    3,
+    3
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   3,
+   3
+  ],
+  "links": [
+   3,
+   3
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/real-estate-digital-marketing-agency/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/real-estate-landing-pages/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/real-estate-lead-generation/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/real-estate-lead-generation-mistakes/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/real-estate-marketing-strategy/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    2,
+    2
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   2,
+   2
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/real-estate-seo/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    2,
+    2
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   2,
+   2
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/realtor-marketing-tips/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/scaleacres/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    2,
+    2
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   2,
+   2
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tag/traditional-marketing-in-real-estate/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/the-complete-real-estate-marketing-checklist-for-2026/",
+  "coverage": 1.0,
+  "liveCapture": 0.998,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    18,
+    18
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   14,
+   14
+  ],
+  "links": [
+   14,
+   14
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/the-digital-trust-formula-every-real-estate-developer-needs-in-2026/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    8,
+    8
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/the-ultimate-guide-to-digital-marketing-for-real-estate-in-2025/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    4,
+    4
+   ],
+   "3": [
+    6,
+    6
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   7,
+   7
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/the-ultimate-guide-to-internal-linking-for-real-estate-seo/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/the-ultimate-youtube-seo-guide-for-real-estate-agents/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    12,
+    12
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/top-10-proven-lead-magnet-ideas-for-real-estate-agents/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    5,
+    5
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/top-digital-marketing-strategy-for-the-real-estate-business-in-2026/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    13,
+    13
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   7,
+   7
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/top-seo-tools-realtors-should-use-how-to-use-them/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    10,
+    10
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/tracking-roi-in-real-estate-digital-marketing-campaigns/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    11,
+    11
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/traditional-vs-digital-marketing-in-real-estate/",
+  "coverage": 1.0,
+  "liveCapture": 0.988,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    6,
+    6
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/website-builder-for-real-estate-agents/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    8,
+    8
+   ]
+  },
+  "images": [
+   9,
+   9
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/what-are-common-challenges-in-facebook-ads-for-realtors-and-how-to-solve-them/",
+  "coverage": 1.0,
+  "liveCapture": 0.991,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    9,
+    9
+   ],
+   "3": [
+    4,
+    4
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   12,
+   12
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/what-are-the-signs-that-your-real-estate-website-needs-a-redesign/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    5,
+    5
+   ],
+   "3": [
+    11,
+    11
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/what-is-nap-consistency-and-why-does-it-matter-for-real-estate-seo/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    6,
+    6
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/what-is-remarketing-for-real-estate-and-how-to-set-it-up/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/what-is-the-role-of-keyword-research-in-real-estate-seo-success/",
+  "coverage": 1.0,
+  "liveCapture": 0.992,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    8,
+    8
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/what-realtors-need-to-know-before-investing-in-seo/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    9,
+    9
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/whatsapp-marketing-for-real-estate-how-developers-are-using-it-to-qualify-and-convert-leads/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    9,
+    9
+   ],
+   "3": [
+    9,
+    9
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/why-backlinks-matter-for-real-estate-websites-and-how-to-build-them/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/why-buyers-cant-find-your-project-on-google-and-how-to-fix-it/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    12,
+    12
+   ],
+   "3": [
+    10,
+    10
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/why-buyers-ignore-your-real-estate-ads-even-with-a-big-marketing-budget/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    9,
+    9
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/why-do-real-estate-businesses-must-focus-on-mobile-first-marketing/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    9,
+    9
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/why-do-real-estate-businesses-need-digital-marketing-in-2026/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    9,
+    9
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/why-real-estate-businesses-need-a-professional-website/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    9,
+    9
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/why-real-estate-websites-should-include-testimonials-reviews-and-rera-information/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    9,
+    9
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/why-regular-maintenance-is-important-for-real-estate-websites/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    9,
+    9
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   12,
+   12
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/why-ui-ux-matters-in-real-estate-website-development/",
+  "coverage": 1.0,
+  "liveCapture": 0.992,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    5,
+    5
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   9,
+   9
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/why-website-speed-and-security-matter-for-real-estate-professionals/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    9,
+    9
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   10,
+   10
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/why-your-ad-budget-is-wasted-if-your-website-loads-slow/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    8,
+    8
+   ],
+   "3": [
+    3,
+    3
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   11,
+   11
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/ca/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/careers/",
+  "coverage": 1.0,
+  "liveCapture": 0.826,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    3,
+    3
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   2,
+   2
+  ],
+  "links": [
+   0,
+   0
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/case-studies/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    2,
+    2
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   3,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/contact-us/",
+  "coverage": 1.0,
+  "liveCapture": 0.836,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   7,
+   7
+  ],
+  "links": [
+   0,
+   0
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-agency-for-real-estate-in-dehradun/",
+  "coverage": 1.0,
+  "liveCapture": 0.965,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-abu-dhabi/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-auckland/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-bangkok/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-doha/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-jeddah/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-johor/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-kuala-lumpur-kl/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-london/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-manchester/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-melbourne/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-neom/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-penang/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-phuket/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-riyadh/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-sydney/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-toronto/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-vancouver/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-company-for-real-estate-in-wellington/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/digital-marketing-services-for-real-estate-in-mohali/",
+  "coverage": 1.0,
+  "liveCapture": 0.967,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/facebook-ads-agency/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    23,
+    23
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   46,
+   46
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/id/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/my/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/nz/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/our-services/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    9,
+    9
+   ],
+   "3": [
+    4,
+    4
+   ]
+  },
+  "images": [
+   8,
+   8
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/our-team/",
+  "coverage": 1.0,
+  "liveCapture": 0.9,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    2,
+    2
+   ],
+   "3": [
+    2,
+    2
+   ]
+  },
+  "images": [
+   72,
+   72
+  ],
+  "links": [
+   0,
+   0
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/our-work/",
+  "coverage": 1.0,
+  "liveCapture": 0.852,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    5,
+    5
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   62,
+   62
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/privacy-policy/",
+  "coverage": 1.0,
+  "liveCapture": 0.96,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   0,
+   0
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/qa/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-branding-agency/",
+  "coverage": 1.0,
+  "liveCapture": 0.993,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    24,
+    24
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   91,
+   91
+  ],
+  "links": [
+   6,
+   6
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-ahmedabad/",
+  "coverage": 1.0,
+  "liveCapture": 0.964,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-amritsar/",
+  "coverage": 1.0,
+  "liveCapture": 0.966,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-ayodhya/",
+  "coverage": 1.0,
+  "liveCapture": 0.965,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-chandigarh/",
+  "coverage": 1.0,
+  "liveCapture": 0.965,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-dholera/",
+  "coverage": 1.0,
+  "liveCapture": 0.969,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    23,
+    23
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-dubai/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-faridabad/",
+  "coverage": 1.0,
+  "liveCapture": 0.967,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    23,
+    23
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-ghaziabad/",
+  "coverage": 1.0,
+  "liveCapture": 0.97,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-goa/",
+  "coverage": 1.0,
+  "liveCapture": 0.964,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    23,
+    23
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-haridwar/",
+  "coverage": 1.0,
+  "liveCapture": 0.964,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    23,
+    23
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-hyderabad/",
+  "coverage": 1.0,
+  "liveCapture": 0.966,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-jaipur/",
+  "coverage": 1.0,
+  "liveCapture": 0.966,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    23,
+    23
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-kochi/",
+  "coverage": 1.0,
+  "liveCapture": 0.965,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-lucknow/",
+  "coverage": 1.0,
+  "liveCapture": 0.963,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    23,
+    23
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-manali/",
+  "coverage": 1.0,
+  "liveCapture": 0.966,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-nainital/",
+  "coverage": 1.0,
+  "liveCapture": 0.965,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    22,
+    22
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-agency-in-rishikesh/",
+  "coverage": 1.0,
+  "liveCapture": 0.963,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    23,
+    23
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-company-in-indore/",
+  "coverage": 1.0,
+  "liveCapture": 0.964,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-company-in-kolkata/",
+  "coverage": 1.0,
+  "liveCapture": 0.964,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    23,
+    23
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-digital-marketing-company-in-zirakpur/",
+  "coverage": 1.0,
+  "liveCapture": 0.97,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    23,
+    23
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-lead-generation-agency/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    23,
+    23
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   80,
+   80
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-marketing-agency-in-nagpur/",
+  "coverage": 1.0,
+  "liveCapture": 0.965,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   3,
+   3
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-marketing-bangalore/",
+  "coverage": 1.0,
+  "liveCapture": 0.962,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    25,
+    25
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   125,
+   125
+  ],
+  "links": [
+   3,
+   3
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-marketing-company-in-coimbatore/",
+  "coverage": 1.0,
+  "liveCapture": 0.966,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-marketing-delhi/",
+  "coverage": 1.0,
+  "liveCapture": 0.966,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    23,
+    23
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-marketing-gurgaon/",
+  "coverage": 1.0,
+  "liveCapture": 0.967,
+  "h": {
+   "1": [
+    2,
+    2
+   ],
+   "2": [
+    23,
+    23
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-marketing-mumbai/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   77,
+   77
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-marketing-noida/",
+  "coverage": 1.0,
+  "liveCapture": 0.964,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    22,
+    22
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-marketing-pune/",
+  "coverage": 1.0,
+  "liveCapture": 0.964,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    24,
+    24
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   138,
+   138
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-ppc-service/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    24,
+    24
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   77,
+   77
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-seo-service/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    26,
+    26
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   79,
+   79
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-web-development/",
+  "coverage": 1.0,
+  "liveCapture": 0.93,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    25,
+    25
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   121,
+   121
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/sa/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/sg/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/social-media-marketing-agency/",
+  "coverage": 1.0,
+  "liveCapture": 0.994,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    24,
+    24
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   85,
+   85
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/terms-conditions/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   0,
+   0
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/th/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/uae/",
+  "coverage": 1.0,
+  "liveCapture": 0.966,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   135,
+   135
+  ],
+  "links": [
+   2,
+   2
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/uk/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/us/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/yugen-case-study/",
+  "coverage": 1.0,
+  "liveCapture": 0.925,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    7,
+    7
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   13,
+   13
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/au/digital-marketing-company-for-real-estate-in-melbourne/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/au/digital-marketing-company-for-real-estate-in-sydney/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/10/08/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/10/09/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/10/10/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/10/11/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/10/14/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/10/16/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/10/18/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/10/21/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/10/23/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/10/24/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/10/25/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/10/27/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/10/28/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/01/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    3,
+    3
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   3,
+   3
+  ],
+  "links": [
+   3,
+   3
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/04/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/07/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/08/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/10/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/11/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/12/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/13/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/14/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/17/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/18/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/19/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/20/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/21/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/22/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/24/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/25/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/26/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/27/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/28/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/11/29/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/12/01/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/12/03/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/12/08/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/12/09/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/12/20/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/12/22/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/12/23/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/12/24/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2025/12/26/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/01/03/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/01/05/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/01/06/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/01/08/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/01/09/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/01/12/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/01/15/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/01/16/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/01/17/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/01/21/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/01/24/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/01/29/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/02/03/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/02/05/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/02/07/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/02/16/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/02/18/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/02/20/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/02/23/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/03/03/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/03/12/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/03/16/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/03/18/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/03/20/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/03/26/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/03/29/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/03/31/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/04/01/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/04/03/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/04/28/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/06/30/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/07/02/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/07/04/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/07/06/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/07/10/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/07/11/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/07/14/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/07/16/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/07/18/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/07/21/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/07/23/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/07/25/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/07/28/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/07/29/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/08/01/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/08/04/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/08/07/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/08/11/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/09/03/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/2026/10/07/",
+  "coverage": 1.0,
+  "liveCapture": 1,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    1,
+    1
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   1,
+   1
+  ],
+  "links": [
+   1,
+   1
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/blog/guide-to-real-estate-seo-for-property-developers/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    10,
+    10
+   ],
+   "3": [
+    11,
+    11
+   ]
+  },
+  "images": [
+   4,
+   4
+  ],
+  "links": [
+   8,
+   8
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/ca/digital-marketing-company-for-real-estate-in-toronto/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/ca/digital-marketing-company-for-real-estate-in-vancouver/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/id/digital-marketing-company-for-real-estate-in-bali/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/id/digital-marketing-company-for-real-estate-in-jakarta/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/my/digital-marketing-company-for-real-estate-in-johor/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/my/digital-marketing-company-for-real-estate-in-kuala-lumpur-kl/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/my/digital-marketing-company-for-real-estate-in-penang/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/nz/digital-marketing-company-for-real-estate-in-auckland/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/nz/digital-marketing-company-for-real-estate-in-wellington/",
+  "coverage": 1.0,
+  "liveCapture": 0.997,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/ph/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/qa/digital-marketing-company-for-real-estate-in-doha/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/real-estate-marketing-Bangalore/",
+  "coverage": 1.0,
+  "liveCapture": 0.962,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    25,
+    25
+   ],
+   "3": [
+    0,
+    0
+   ]
+  },
+  "images": [
+   125,
+   125
+  ],
+  "links": [
+   3,
+   3
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/sa/digital-marketing-company-for-real-estate-in-jeddah/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/sa/digital-marketing-company-for-real-estate-in-neom/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/sa/digital-marketing-company-for-real-estate-in-riyadh/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/th/digital-marketing-company-for-real-estate-in-bangkok/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/th/digital-marketing-company-for-real-estate-in-phuket/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/uae/digital-marketing-company-for-real-estate-in-abu-dhabi/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/uae/real-estate-digital-marketing-agency-in-dubai/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/uk/digital-marketing-company-for-real-estate-in-london/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/uk/digital-marketing-company-for-real-estate-in-manchester/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/us/digital-marketing-company-for-real-estate-in-miami/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/us/digital-marketing-company-for-real-estate-in-new-york/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/us/digital-marketing-company-for-real-estate-in-texas/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/vn/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/vn/digital-marketing-company-for-real-estate-in-hanoi/",
+  "coverage": 1.0,
+  "liveCapture": 0.995,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ },
+ {
+  "path": "/vn/digital-marketing-company-for-real-estate-in-ho-chi-minh-city/",
+  "coverage": 1.0,
+  "liveCapture": 0.996,
+  "h": {
+   "1": [
+    1,
+    1
+   ],
+   "2": [
+    21,
+    21
+   ],
+   "3": [
+    1,
+    1
+   ]
+  },
+  "images": [
+   78,
+   78
+  ],
+  "links": [
+   4,
+   4
+  ],
+  "jsonld": true
+ }
+]
