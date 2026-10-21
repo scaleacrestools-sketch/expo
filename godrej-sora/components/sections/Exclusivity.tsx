@@ -3,12 +3,13 @@ import type { ResolvedAsset } from '@/lib/assets.server';
 import { SoraImage } from '@/components/ui/SoraImage';
 import { Reveal } from '@/components/ui/Reveal';
 import { SunRays } from '@/components/ui/motifs';
+import { CountUp } from '@/components/ui/CountUp';
 
 const facts = [
-  { v: '244', l: 'residences in the complete collection' },
-  { v: '2', l: 'homes per core, per tower' },
-  { v: '0', l: 'overlooking towers' },
-  { v: '1', l: 'private lift lobby for every home' },
+  { v: 244, l: 'residences in the complete collection' },
+  { v: 2, l: 'homes per core, per tower' },
+  { v: 0, l: 'overlooking towers' },
+  { v: 1, l: 'private lift lobby for every home' },
 ];
 
 export function Exclusivity({ image }: { image: ResolvedAsset }) {
@@ -24,7 +25,7 @@ export function Exclusivity({ image }: { image: ResolvedAsset }) {
         <dl className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
           {facts.map((f, i) => (
             <Reveal key={f.l} className="reveal border-t border-ivory/20 pt-6" delay={i * 90}>
-              <dt className="display text-5xl md:text-6xl text-gold-soft">{f.v}</dt>
+              <dt className="display text-5xl md:text-6xl text-gold-soft"><CountUp value={f.v} /></dt>
               <dd className="mt-3 text-sm leading-relaxed text-ivory/70">{f.l}</dd>
             </Reveal>
           ))}

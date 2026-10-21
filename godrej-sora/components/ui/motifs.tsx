@@ -1,4 +1,4 @@
-/** Original SVG motifs in the Sora design language (sun rays, blossom, torii lines).
+/** Original SVG motifs in the Sora design language (sun rays, blossom, torii lines, tiered roof).
  *  These are not reproductions of the official logo; the official artwork slots in via the asset manifest. */
 
 export function SunRays({ className = '', rays = 8, color = 'currentColor', title }: { className?: string; rays?: number; color?: string; title?: string }) {
@@ -39,6 +39,29 @@ export function ToriiLines({ className = '' }: { className?: string }) {
       <path d="M50 58 H350" />
       <path d="M95 58 V135 M305 58 V135" />
       <path d="M90 30 V58 M310 30 V58" />
+    </svg>
+  );
+}
+
+/** Japanese tiered-roof silhouette, used in the Shiki Clubhouse section. */
+export function TieredRoof({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 400 120" className={className} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1">
+      <path d="M40 110 Q200 70 360 110" />
+      <path d="M70 80 Q200 42 330 80" />
+      <path d="M105 52 Q200 18 295 52" />
+      <path d="M150 28 Q200 4 250 28" />
+      <path d="M200 4 V110" strokeOpacity="0.35" />
+    </svg>
+  );
+}
+
+/** Horizon line with a rising sun — scroll-driven in the hero. */
+export function Horizon({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className={className} aria-hidden="true" fill="none">
+      <line x1="0" y1="100" x2="1200" y2="100" stroke="currentColor" strokeOpacity="0.35" />
+      <line x1="0" y1="108" x2="1200" y2="108" stroke="currentColor" strokeOpacity="0.12" />
     </svg>
   );
 }

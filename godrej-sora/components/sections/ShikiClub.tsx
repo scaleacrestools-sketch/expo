@@ -4,6 +4,8 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { SoraImage } from '@/components/ui/SoraImage';
 import { Reveal } from '@/components/ui/Reveal';
 import { CtaButton } from '@/components/ui/CtaButton';
+import { TieredRoof } from '@/components/ui/motifs';
+import { Parallax } from '@/components/ui/Parallax';
 
 export function ShikiClub({ hero, amenityImages }: { hero: ResolvedAsset; amenityImages: Record<string, ResolvedAsset> }) {
   const a = project.amenities;
@@ -14,8 +16,9 @@ export function ShikiClub({ hero, amenityImages }: { hero: ResolvedAsset; amenit
         <SectionHeading index="09" eyebrow="Shiki Clubhouse" title={<>Where Wellness<br /><em>Becomes a Ritual.</em></>}>
           <span className="serif-accent text-ink">Shiki</span> means the four seasons. Beneath its Japanese tiered roof, the clubhouse gathers an indoor onsen-inspired pool, a rooftop pool, spa and courts into a single place for the body to slow down.
         </SectionHeading>
+        <TieredRoof className="mt-10 h-auto w-56 text-sand-deep md:w-80" />
       </div>
-      <Reveal className="img-scale container-sora mt-16 aspect-[16/8] overflow-hidden"><SoraImage asset={hero} className="h-full w-full" sizes="100vw" caption /></Reveal>
+      <Reveal className="img-scale container-sora mt-10 aspect-[16/8] overflow-hidden"><Parallax className="h-full w-full" speed={0.12}><SoraImage asset={hero} className="h-full w-full" sizes="100vw" caption /></Parallax></Reveal>
       <div className="container-sora mt-10 grid gap-10 md:grid-cols-2">
         {big.map((x, i) => (
           <Reveal key={x.name} className="img-reveal" delay={i * 120}>
@@ -25,9 +28,9 @@ export function ShikiClub({ hero, amenityImages }: { hero: ResolvedAsset; amenit
           </Reveal>
         ))}
       </div>
-      <div className="container-sora mt-16 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="container-sora mt-16 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [scrollbar-width:none] sm:grid sm:gap-x-8 sm:gap-y-10 sm:overflow-visible sm:pb-0 sm:grid-cols-2 lg:grid-cols-3">
         {rest.map((x, i) => (
-          <Reveal key={x.name} className="reveal group" delay={i * 60}>
+          <Reveal key={x.name} className="reveal group w-[78vw] shrink-0 snap-start sm:w-auto sm:shrink" delay={i * 60}>
             <div className={`overflow-hidden ${i % 3 === 1 ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}><SoraImage asset={amenityImages[x.image]} className="h-full w-full transition-transform duration-[1.6s] ease-[var(--ease-sora)] group-hover:scale-[1.03]" sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" caption /></div>
             <h3 className="mt-4 text-lg font-medium">{x.name}</h3>
             <p className="mt-1 text-sm leading-relaxed text-ink-soft">{x.copy}</p>

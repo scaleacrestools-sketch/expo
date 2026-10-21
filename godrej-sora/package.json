@@ -2,7 +2,7 @@
   "name": "godrej-sora-landing",
   "version": "1.0.0",
   "private": true,
-  "description": "Godrej Sora, Sector 53 Gurugram — ultra-luxury marketing landing page",
+  "description": "Godrej Sora, Sector 53 Gurugram \u2014 ultra-luxury marketing landing page",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,7 +12,9 @@
     "assets:check": "node scripts/check-assets.mjs",
     "assets:optimize": "node scripts/optimize-images.mjs",
     "test:e2e": "playwright test",
-    "screenshots": "node tests/screenshots.mjs"
+    "screenshots": "node tests/screenshots.mjs",
+    "assets:extract": "node scripts/extract-brochure.mjs",
+    "assets:fetch": "node scripts/fetch-official-images.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.2.0",
@@ -36,5 +38,7 @@
     "tailwindcss": "^4.1.0",
     "typescript": "^5.9.0"
   },
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20"
+  }
 }

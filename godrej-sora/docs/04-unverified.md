@@ -15,3 +15,5 @@ Items marked `verified: false` in `content/project.ts`, plus environment items.
 11. **Walkthrough video** — no official URL verified; section stays in pending mode.
 12. **Image republication permission** — none on file; all assets `not-supplied`.
 13. **Advertiser identity, agent RERA, phone, WhatsApp, email, analytics IDs** — all empty by design; set in `.env.local`.
+14. **Tower and floor count** — four towers per listings, G+30 vs G+31; not displayed.
+15. **Brochure typography** — could not be inspected; run `pdffonts assets-source/godrej-sora-brochure.pdf` once supplied and confirm Manrope is the closest licensed match.

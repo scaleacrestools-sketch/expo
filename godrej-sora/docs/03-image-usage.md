@@ -1,8 +1,8 @@
 # Deliverable 2 & 8 — Image library and section-by-section image usage
 
-**Status: 0 of 38 manifest assets are present.** The brochure and the official site were not reachable from this environment (see `01-source-audit.md`), so no project image has been extracted. Every image slot currently renders a branded placeholder that names the asset and its source page. No substitute imagery of other projects was used.
+**Status (phase 2, 21 Oct 2026): 0 of 38 manifest assets are present; approval status of every id is `not-supplied`.** The brochure and the official site were not reachable from this environment (see `01-source-audit.md`), so no project image has been extracted. Every image slot currently renders a branded placeholder that names the asset and its source page. No substitute imagery of other projects was used.
 
-How to load assets: place masters at `public/images/godrej-sora/_masters/<id>.jpg|png`, run `npm run assets:optimize` (writes AVIF/WebP/JPG + dimension sidecar), then `npm run assets:check`. Update `approval` in `content/assets.ts` to `approved` once permission is on file.
+Intake: put the brochure at `assets-source/godrej-sora-brochure.pdf` and run `npm run assets:extract` (page map in `content/brochure-map.ts`), or `npm run assets:fetch` on an unrestricted machine for website renders. Then: place masters at `public/images/godrej-sora/_masters/<id>.jpg|png`, run `npm run assets:optimize` (writes AVIF/WebP/JPG + dimension sidecar), then `npm run assets:check`. Update `approval` in `content/assets.ts` to `approved` once permission is on file.
 
 | Section | Asset id | Expected source | Kind |
 |---|---|---|---|

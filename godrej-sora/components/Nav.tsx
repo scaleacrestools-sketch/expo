@@ -7,8 +7,9 @@ import { Wordmark } from './Wordmark';
 export function Nav({ logoSrc }: { logoSrc: string | null }) {
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
   useEffect(() => {
-    const on = () => setSolid(window.scrollY > 40);
+    const on = () => { setSolid(window.scrollY > 40); const h = document.documentElement; setProgress(h.scrollHeight > h.clientHeight ? h.scrollTop / (h.scrollHeight - h.clientHeight) : 0); };
     on(); window.addEventListener('scroll', on, { passive: true });
     return () => window.removeEventListener('scroll', on);
   }, []);
@@ -16,6 +17,7 @@ export function Nav({ logoSrc }: { logoSrc: string | null }) {
 
   return (
     <header className={`fixed inset-x-0 top-0 z-[80] transition-[background-color,box-shadow,color] duration-700 ${solid || open ? 'bg-ivory/90 text-ink shadow-[0_1px_0_rgba(36,33,31,0.08)] backdrop-blur-md' : 'text-ivory'}`}>
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px origin-left bg-gold" style={{ transform: `scaleX(${progress})`, opacity: solid ? 1 : 0, transition: 'opacity .5s' }} />
       <div className="container-sora flex h-[4.5rem] items-center justify-between md:h-20">
         <a href="#top" aria-label="Godrej Sora — home" className="flex items-center"><Wordmark logoSrc={logoSrc} light={!(solid || open)} /></a>
         <nav aria-label="Primary" className="hidden lg:block">

@@ -3,6 +3,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { SoraImage } from '@/components/ui/SoraImage';
 import { Reveal } from '@/components/ui/Reveal';
 import { Blossom } from '@/components/ui/motifs';
+import { Parallax } from '@/components/ui/Parallax';
 
 export function Landscape({ images }: { images: ResolvedAsset[] }) {
   const [garden, blossom, sunken] = images;
@@ -15,7 +16,7 @@ export function Landscape({ images }: { images: ResolvedAsset[] }) {
           Oracles has composed the grounds as a sequence of Japanese-inspired gardens: cherry-blossom-inspired native planting, water that barely moves, and sunken seating for conversation or none at all.
         </SectionHeading>
         <div className="mt-16 grid gap-6 md:grid-cols-3 md:gap-8">
-          <Reveal className="img-reveal md:col-span-2 aspect-[16/10]"><SoraImage asset={garden} className="h-full w-full" sizes="(min-width:768px) 66vw, 100vw" caption /></Reveal>
+          <Reveal className="img-reveal md:col-span-2 aspect-[16/10]"><Parallax className="h-full w-full"><SoraImage asset={garden} className="h-full w-full" sizes="(min-width:768px) 66vw, 100vw" caption /></Parallax></Reveal>
           <Reveal className="img-reveal aspect-[16/10] md:aspect-auto" delay={150}><SoraImage asset={blossom} className="h-full w-full" sizes="(min-width:768px) 33vw, 100vw" caption /></Reveal>
           <Reveal className="img-reveal aspect-[16/10] md:aspect-auto" delay={100}><SoraImage asset={sunken} className="h-full w-full" sizes="(min-width:768px) 33vw, 100vw" caption /></Reveal>
           <Reveal className="reveal md:col-span-2 flex flex-col justify-center border-l border-ivory/20 pl-8" delay={200}>

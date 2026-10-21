@@ -41,7 +41,7 @@ function Placeholder({ asset }: { asset: ResolvedAsset }) {
     <div className="absolute inset-0 washi grain @container" role="img" aria-label={`${asset.title} (official artwork pending approval)`}>
       <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'linear-gradient(var(--color-ink) 1px, transparent 1px), linear-gradient(90deg, var(--color-ink) 1px, transparent 1px)', backgroundSize: '72px 72px' }} />
       <SunRays className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 text-gold @[24rem]:h-20 @[24rem]:w-20" />
-      <div className="absolute right-3 top-3 z-10 max-w-[70%] text-right">
+      <div className="absolute bottom-3 right-3 z-10 max-w-[60%] text-right">
         <p className="text-[0.56rem] tracking-[0.22em] uppercase text-ink-mute">{asset.title}</p>
         <p className="mt-1 hidden text-[0.62rem] leading-snug text-ink-mute/80 @[18rem]:block">Official artwork pending approval — {asset.source}</p>
       </div>

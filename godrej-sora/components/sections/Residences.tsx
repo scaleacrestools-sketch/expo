@@ -4,6 +4,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { SoraImage } from '@/components/ui/SoraImage';
 import { Reveal } from '@/components/ui/Reveal';
 import { CtaButton } from '@/components/ui/CtaButton';
+import { Parallax } from '@/components/ui/Parallax';
 
 export function Residences({ images }: { images: ResolvedAsset[] }) {
   const f = project.residenceFeatures;
@@ -17,7 +18,7 @@ export function Residences({ images }: { images: ResolvedAsset[] }) {
 
         {/* Editorial sequence 1 */}
         <div className="mt-20 grid gap-10 md:grid-cols-12 md:items-end">
-          <Reveal className="img-reveal md:col-span-7 aspect-[16/11]"><SoraImage asset={a} className="h-full w-full" sizes="(min-width:768px) 60vw, 100vw" caption /></Reveal>
+          <Reveal className="img-reveal md:col-span-7 aspect-[16/11]"><Parallax className="h-full w-full"><SoraImage asset={a} className="h-full w-full" sizes="(min-width:768px) 60vw, 100vw" caption /></Parallax></Reveal>
           <div className="md:col-span-5 md:pb-6">
             <Feature n="01" title={f[0].title} detail={f[0].detail} />
             <Feature n="02" title={f[1].title} detail={f[1].detail} />

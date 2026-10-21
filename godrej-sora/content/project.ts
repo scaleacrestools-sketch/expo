@@ -59,16 +59,33 @@ export const project = {
       value: 'September 2032',
       source: 'official-site',
       verified: false,
-      note: 'As stated on official page at audit time. Subject to RERA-registered timelines.',
+      note: 'As stated on official page at audit time. Listings also cite Sept 2031–Aug 2032 and, as an outlier, 2029–30. Subject to RERA-registered timelines.',
+    } as Fact,
+    towers: {
+      value: '4 towers',
+      source: 'third-party',
+      verified: false,
+      note: 'Listings agree on four towers but give G+30 or G+31 floors. Not displayed until confirmed from the brochure master plan.',
     } as Fact,
   },
+
+  /** Verification log — conflicts found between sources, kept here so the sales team can resolve them. */
+  conflicts: [
+    'Configurations: official page says "3 & 4 BHK"; a Godrej landing page has said "3.5 & 4.5 BHK"; aggregators add "4 BHK L / XL / Grande".',
+    'Starting price: official page ₹8.31 Cr at audit time; aggregators range ₹7.99–11.40 Cr; some quote ₹10.55 Cr (4 BHK L) and ₹11.51 Cr (4 BHK XL).',
+    'Areas: 1,552–2,483 sq ft vs 2,771–3,971 sq ft vs 3,050–4,270 sq ft across listings (carpet vs built-up vs super). Not displayed.',
+    'Possession: September 2032 (most common) vs Sept 2031–Aug 2032 vs 2029–30.',
+    'Floors: G+30 vs G+31. Land: 3.6 vs 3.7 acres. Not displayed.',
+    'Eight Rays of Sora: the eight names come from the brief (brochure p.11). No public source repeats them; verify wording and order against the brochure.',
+    'Floor-to-floor: 3.4 m (brief + one listing) vs "11.5 ft floor-to-ceiling" (another listing). 3.4 m shown as brochure-sourced.',
+  ],
 
   /** Section 05 — residence features (brochure p.44–49, per brief). */
   residenceFeatures: [
     { title: '244 limited-edition residences', detail: 'The complete Sora collection, across the project.', source: 'official-site', verified: true },
     { title: 'Only 2 residences per core, per tower', detail: 'Each floor core serves just two homes, so your lobby is nearly your own.', source: 'brochure', ref: 'p.44–49', verified: false },
     { title: 'Approximately 50-ft balconies', detail: 'A continuous outdoor room, long enough to hold a dining table, a garden and a quiet corner.', source: 'official-site', verified: true },
-    { title: 'Private lift lobbies', detail: 'Arrive directly into your own threshold.', source: 'brochure', ref: 'p.44–49', verified: false },
+    { title: 'Private lift lobbies', detail: 'Genkan-inspired: arrive directly into your own threshold.', source: 'brochure', ref: 'p.44–49', verified: false },
     { title: '3.4 m floor-to-floor height', detail: 'Ceilings that let light travel further into every room.', source: 'brochure', ref: 'p.44–49', verified: false },
     { title: '380–600 sq. ft. living and dining', detail: 'Generous central spaces, sized for both solitude and gatherings.', source: 'brochure', ref: 'p.44–49', verified: false },
     { title: 'Premium floor finishes', detail: 'Natural materials selected for quiet, enduring beauty.', source: 'brochure', ref: 'p.44–49', verified: false },
@@ -77,7 +94,9 @@ export const project = {
     { title: 'Five high-speed lifts per tower', detail: 'Unhurried arrivals, every time.', source: 'brochure', ref: 'p.44–49', verified: false },
   ] as Array<{ title: string; detail: string; source: Source; ref?: string; verified: boolean }>,
 
-  /** Section 03 — the Eight Rays of Sora (brochure p.11). */
+  /** Section 03 — the Eight Rays of Sora. Names per brochure p.11 (as supplied in the brief; verify order/wording against the PDF).
+   *  The `copy` lines are marketing copy composed from verified facts, not brochure text. */
+  eightRaysSource: { source: 'brochure' as Source, ref: 'p.11', verified: false },
   eightRays: [
     { name: 'Accessibility', copy: 'Moments from Golf Course Road and the Rapid Metro, Sora keeps the city within reach while keeping it at a respectful distance.' },
     { name: 'Inspiration', copy: 'A Torii-inspired façade, Zen gardens and still water: an architecture written to inspire the everyday.' },

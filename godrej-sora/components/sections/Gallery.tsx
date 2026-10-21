@@ -28,7 +28,7 @@ export function Gallery({ items }: { items: GalleryItem[] }) {
             <Reveal as="li" key={it.asset.id} className={`reveal ${it.span === 'wide' ? 'col-span-2' : ''} ${it.span === 'tall' ? 'row-span-2' : ''}`} delay={(i % 4) * 60}>
               <button type="button" onClick={() => { setOpen(i); track('gallery_open', { image: it.asset.id }); }} className="group relative block h-full w-full overflow-hidden focus-visible:outline-2 focus-visible:outline-gold" aria-label={`Open ${it.asset.title}`}>
                 <SoraImage asset={it.asset} className="h-full w-full transition-transform duration-[1.6s] ease-[var(--ease-sora)] group-hover:scale-[1.04]" sizes="(min-width:768px) 25vw, 50vw" caption />
-                <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-ink/70 to-transparent px-4 pb-3 pt-10 text-left text-[0.7rem] tracking-[0.12em] text-ivory opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">{it.asset.title}</span>
+                <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-ink/70 to-transparent px-4 pb-3 pt-10 text-left text-[0.7rem] tracking-[0.12em] text-ivory opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"><span className="mb-1 block text-[0.56rem] tracking-[0.3em] uppercase text-gold">{it.category}</span>{it.asset.title}</span>
               </button>
             </Reveal>
           ))}

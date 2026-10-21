@@ -8,6 +8,7 @@ import { site } from '@/content/site';
 import { Analytics } from '@/components/Analytics';
 import { LeadDrawerProvider } from '@/components/forms/LeadDrawerContext';
 import { LeadDrawer } from '@/components/forms/LeadDrawer';
+import { Intro } from '@/components/Intro';
 
 const title = `${project.name} — ${project.tagline} | ${project.descriptor}, ${project.address}`;
 const description = `Godrej Sora, Sector 53 Gurugram: ${project.headline.totalResidences.value} Japanese-inspired ultra-luxury ${project.headline.configurations.value} residences steps from Golf Course Road. Approx. 50-ft balconies, private lift lobbies, Shiki Clubhouse. RERA ${project.rera.number}.`;
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en-IN">
       <body>
         <a href="#main" className="skip">Skip to content</a>
+        <Intro />
         <LeadDrawerProvider>
           {children}
           <LeadDrawer />

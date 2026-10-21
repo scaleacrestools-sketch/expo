@@ -5,6 +5,7 @@ import type { ResolvedAsset } from '@/lib/assets.server';
 import { SoraImage } from '@/components/ui/SoraImage';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { useGsap } from '@/lib/useGsap';
+import { Horizon } from '@/components/ui/motifs';
 
 export function Hero({ image }: { image: ResolvedAsset }) {
   const root = useRef<HTMLDivElement>(null);
@@ -16,6 +17,8 @@ export function Hero({ image }: { image: ResolvedAsset }) {
       .fromTo(q('[data-hero-line]'), { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: 0.12 }, '-=1.6')
       .fromTo(q('[data-hero-cta]'), { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, stagger: 0.1 }, '-=0.6');
     gsap.to(q('[data-hero-img]'), { yPercent: 14, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.fromTo(q('[data-hero-sun]'), { yPercent: 120, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 2.6, ease: 'power2.out', delay: 0.3 });
+    gsap.to(q('[data-hero-sun]'), { yPercent: -160, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: true } });
     gsap.to(q('[data-hero-copy]'), { yPercent: -10, opacity: 0.2, ease: 'none', scrollTrigger: { trigger: root.current, start: '30% top', end: 'bottom top', scrub: true } });
   });
 
@@ -27,11 +30,18 @@ export function Hero({ image }: { image: ResolvedAsset }) {
         <SoraImage asset={image} className="h-full w-full" priority sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/25 to-ink/30" />
       </div>
+      {/* rising sun + horizon: scroll-driven */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-[38%] z-[1] hidden h-40 overflow-hidden md:block" aria-hidden="true">
+        <div data-hero-sun className="absolute left-[62%] bottom-10 h-24 w-24 rounded-full bg-gold/80 blur-[1px] shadow-[0_0_80px_30px_rgba(213,163,60,0.25)] will-change-transform" />
+        <Horizon className="absolute inset-x-0 bottom-0 h-full w-full text-ivory" />
+      </div>
+      <span aria-hidden="true" className="serif-accent pointer-events-none absolute right-[var(--gutter)] top-28 z-[1] hidden select-none text-[9rem] leading-none text-ivory/[0.06] md:block [writing-mode:vertical-rl]">空 · そら</span>
       <div data-hero-copy className="container-sora relative z-10 grid w-full gap-10 pb-20 pt-40 md:grid-cols-[1.4fr_1fr] md:items-end md:pb-24">
         <div className="flex flex-col gap-6">
           <p data-hero-line className="text-[0.66rem] tracking-[0.34em] uppercase text-gold">{project.descriptor}</p>
-          <h1 data-hero-line className="display text-[clamp(2.6rem,7vw,6.6rem)] text-ivory">
-            Godrej Sora<br /><em className="text-gold-soft">Your Place in the Sun.</em>
+          <h1 className="display text-[clamp(2.6rem,7vw,6.6rem)] text-ivory">
+            <span className="block overflow-hidden"><span data-hero-line className="block">Godrej Sora</span></span>
+            <span className="block overflow-hidden"><em data-hero-line className="block text-gold-soft">Your Place in the Sun.</em></span>
           </h1>
           <p data-hero-line className="max-w-md text-sm leading-relaxed tracking-[0.06em] text-ivory/80 md:text-base">
             {project.address}<span className="mx-3 text-gold">·</span>{project.locality}
