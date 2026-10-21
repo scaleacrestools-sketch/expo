@@ -1,0 +1,168 @@
+@import 'tailwindcss';
+
+/* ---------- Godrej Sora design tokens ----------
+   Working values from the brief, to be refined by sampling the official brochure artwork.
+   Change here only; components reference tokens, never hex values. */
+@theme {
+  --color-sora-red: #bd1e2d;
+  --color-sora-red-deep: #8f1522;
+  --color-ivory: #f5efe5;
+  --color-ivory-soft: #faf6ef;
+  --color-washi: #efe7d8;
+  --color-sand: #e3d7c3;
+  --color-sand-deep: #c9b89c;
+  --color-gold: #d5a33c;
+  --color-gold-soft: #e7c77c;
+  --color-ink: #24211f;
+  --color-ink-soft: #4b4541;
+  --color-ink-mute: #8a817a;
+  --color-sage: #87988b;
+  --color-sage-deep: #5f7264;
+
+  --font-sans: 'Manrope Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-serif: 'Instrument Serif', 'Times New Roman', serif;
+
+  --tracking-luxe: 0.28em;
+  --tracking-wide2: 0.14em;
+
+  --ease-sora: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --gutter: 1rem;
+  --section-y: clamp(5rem, 12vw, 10rem);
+  color-scheme: light;
+}
+@media (min-width: 768px) { :root { --gutter: 2.5rem; } }
+@media (min-width: 1280px) { :root { --gutter: 4.5rem; } }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection { background: color-mix(in srgb, var(--color-sora-red) 18%, transparent); }
+
+@layer components {
+/* ---------- Typography utilities ---------- */
+.eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: var(--tracking-luxe);
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-sora-red);
+}
+.display {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+.display em, .serif-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.lede { font-size: clamp(1.05rem, 1.3vw, 1.25rem); line-height: 1.7; color: var(--color-ink-soft); font-weight: 400; }
+.fine { font-size: 0.72rem; line-height: 1.6; color: var(--color-ink-mute); }
+
+.container-sora { width: 100%; padding-inline: var(--gutter); margin-inline: auto; max-width: 1440px; }
+
+/* ---------- Textures (washi + grain) ---------- */
+.washi {
+  background-color: var(--color-ivory);
+  background-image:
+    radial-gradient(1200px 600px at 10% -10%, rgba(255,255,255,0.7), transparent 60%),
+    radial-gradient(900px 500px at 90% 110%, rgba(227,215,195,0.45), transparent 60%);
+}
+.grain { position: relative; isolation: isolate; }
+.grain::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  opacity: 0.045; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* thin architectural rule */
+.rule { height: 1px; background: linear-gradient(90deg, transparent, var(--color-sand-deep), transparent); }
+.rule-red { height: 1px; width: 3rem; background: var(--color-sora-red); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem;
+  min-height: 3.25rem; padding: 0 1.75rem;
+  font-size: 0.74rem; letter-spacing: var(--tracking-wide2); text-transform: uppercase; font-weight: 600;
+  border: 1px solid currentColor; border-radius: 999px;
+  transition: background-color .5s var(--ease-sora), color .5s var(--ease-sora), border-color .5s var(--ease-sora), transform .5s var(--ease-sora);
+  cursor: pointer; white-space: nowrap;
+}
+.btn:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
+.btn-primary { background: var(--color-sora-red); color: var(--color-ivory); border-color: var(--color-sora-red); }
+.btn-primary:hover { background: var(--color-sora-red-deep); border-color: var(--color-sora-red-deep); transform: translateY(-1px); }
+.btn-ghost { color: var(--color-ink); border-color: color-mix(in srgb, var(--color-ink) 35%, transparent); }
+.btn-ghost:hover { border-color: var(--color-ink); background: color-mix(in srgb, var(--color-ink) 5%, transparent); }
+.btn-ghost-light { color: var(--color-ivory); border-color: color-mix(in srgb, var(--color-ivory) 45%, transparent); }
+.btn-ghost-light:hover { border-color: var(--color-ivory); background: color-mix(in srgb, var(--color-ivory) 10%, transparent); }
+.btn-gold { color: var(--color-ink); background: var(--color-gold); border-color: var(--color-gold); }
+.btn-gold:hover { background: var(--color-gold-soft); border-color: var(--color-gold-soft); }
+
+/* ---------- Form controls ---------- */
+.field { display: grid; gap: 0.4rem; }
+.field label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-ink-soft); font-weight: 600; }
+.field input, .field select, .field textarea {
+  width: 100%; background: transparent; border: 0; border-bottom: 1px solid var(--color-sand-deep);
+  padding: 0.8rem 0; font-size: 1rem; color: var(--color-ink); border-radius: 0;
+  transition: border-color .3s;
+}
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-bottom-color: var(--color-sora-red); }
+.field input[aria-invalid='true'], .field select[aria-invalid='true'] { border-bottom-color: var(--color-sora-red); }
+.field .error { font-size: 0.74rem; color: var(--color-sora-red); }
+.field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2324211F' stroke-width='1.2'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0 center; padding-right: 1.5rem; }
+
+/* ---------- Motion primitives (JS adds .is-in) ---------- */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease-sora), transform 1.1s var(--ease-sora); }
+.reveal.is-in { opacity: 1; transform: none; }
+.reveal-mask { overflow: hidden; }
+.reveal-mask > * { display: block; transform: translateY(110%); transition: transform 1.2s var(--ease-sora); }
+.reveal-mask.is-in > * { transform: none; }
+.img-reveal { clip-path: inset(0 0 100% 0); transition: clip-path 1.4s var(--ease-sora); }
+.img-reveal.is-in { clip-path: inset(0 0 0 0); }
+.img-scale img, .img-scale > div { transform: scale(1.08); transition: transform 1.8s var(--ease-sora); }
+.img-scale.is-in img, .img-scale.is-in > div { transform: scale(1); }
+.ink-reveal { position: relative; }
+.ink-reveal::after { content: ''; position: absolute; inset: 0; background: var(--color-ivory); transform-origin: right; transition: transform 1.2s var(--ease-sora); }
+.ink-reveal.is-in::after { transform: scaleX(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-mask > *, .img-reveal, .img-scale img, .img-scale > div { opacity: 1 !important; transform: none !important; clip-path: none !important; transition: none !important; }
+  .ink-reveal::after { display: none; }
+}
+
+}
+/* skip link */
+.skip { position: absolute; left: -999px; top: 0; z-index: 100; background: var(--color-ink); color: var(--color-ivory); padding: .75rem 1rem; }
+.skip:focus { left: 1rem; top: 1rem; }
+
+/* no-scroll when overlay open */
+body.overlay-open { overflow: hidden; }
+
+/* lightbox / drawer */
+.backdrop { background: color-mix(in srgb, var(--color-ink) 72%, transparent); backdrop-filter: blur(6px); }
+
+/* horizontal pan for balcony */
+@keyframes pan { from { transform: translateX(0) scale(1.1);} to { transform: translateX(-6%) scale(1.1);} }
+.pan-slow { animation: pan 24s linear infinite alternate; }
+@media (prefers-reduced-motion: reduce) { .pan-slow { animation: none; } }
+
+/* ray rotation */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 120s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .spin-slow { animation: none; } }
