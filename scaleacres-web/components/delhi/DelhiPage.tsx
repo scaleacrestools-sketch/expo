@@ -8,7 +8,8 @@ import { Testimonials } from "@/components/Testimonials";
 import { Buttons, Faq, FormSlot, Html, Img, ListEl, Para, asButton, type FormCounter } from "@/components/legacy/LegacyBlocks";
 import { parseProjects, ProjectMeta, type Project } from "@/components/legacy/Composer";
 import { DelhiHero } from "@/components/delhi/DelhiHero";
-import { CapabilityIndex, CountUp, FunnelProgress, ImageReveal, ScrollWords, TrackingTitle, type Capability } from "@/components/delhi/motion";
+import { CapabilityPanels, CountUp, FilmMoment, FunnelProgress, ImageReveal, ScrollWords, ServiceMarquee, TrackingTitle, type Capability } from "@/components/delhi/motion";
+import { showreel, posterForSrc } from "@/content/media";
 
 /**
  * REAL ESTATE MARKETING DELHI — proposed master city page (awaiting approval).
@@ -113,16 +114,17 @@ export function DelhiPage({ page, form }: { page: LegacyPage; form: FormCounter 
 
   // Capability index: the eight capabilities the page's own content covers, each pointing to where it is shown.
   const imgBy = (re: RegExp, from: Block[]) => (from.find((b) => isImg(b) && re.test(b.src)) as I | undefined) ?? (from.find(isImg) as I);
-  const cap = (title: string, href: string, img: I): Capability => ({ title, href, img: { src: media(img.src), alt: "" } });
+  const cap = (title: string, href: string, img: I, note: string): Capability => ({ title, href, note, img: { src: media(img.src), alt: "" } });
+  // Each note quotes this page's own copy for that capability.
   const capabilities: Capability[] = [
-    cap("Real Estate Lead Generation", "#delhi-funnel", imgBy(/meta-ads/i, results)),
-    cap("Performance Marketing", "#delhi-results", imgBy(/2026\/06\/Google/i, results)),
-    cap("Google & Meta Ads", "#delhi-results", imgBy(/2026\/08\/Google/i, results)),
-    cap("SEO & Organic Visibility", "#delhi-seo", imgBy(/seo-result/i, results)),
-    cap("Developer Branding", "#delhi-work", branding[1] ?? branding[0]),
-    cap("Property Launch Campaigns", "#delhi-work", branding[0]),
-    cap("Website & Landing Page Development", "#delhi-websites", (shots[0]?.shot ?? branding[2]) as I),
-    cap("Video & Social Media Creative", "#delhi-creative", creatives[0] ?? branding[3]),
+    cap("Real Estate Lead Generation", "#delhi-funnel", imgBy(/meta-ads/i, results), "Verified, high-intent leads using Google Ads, Facebook campaigns, WhatsApp automation, and CRM-integrated workflows."),
+    cap("Performance Marketing", "#delhi-results", imgBy(/2026\/06\/Google/i, results), "Strategies that turn clicks into site visits, boost ROI, and convert interest into confirmed bookings."),
+    cap("Google & Meta Ads", "#delhi-results", imgBy(/2026\/08\/Google/i, results), "High-Intent Meta & Google Campaigns."),
+    cap("SEO & Organic Visibility", "#delhi-seo", imgBy(/seo-result/i, results), "Hyperlocal SEO for Market Domination."),
+    cap("Developer Branding", "#delhi-work", branding[1] ?? branding[0], "Strategic branding, premium design, and compelling storytelling."),
+    cap("Property Launch Campaigns", "#delhi-work", branding[0], "Creative Ads That Drive Closures."),
+    cap("Website & Landing Page Development", "#delhi-websites", (shots[0]?.shot ?? branding[2]) as I, "High-Converting Landing Pages & Microsites."),
+    cap("Video & Social Media Creative", "#delhi-creative", creatives[0] ?? branding[3], "Engaging visuals and campaigns that inspire, influence, and drive results across digital platforms."),
   ];
 
   const ticker = (s6.find((b) => b.type === "list") as Extract<Block, { type: "list" }> | undefined)?.items.map(plain) ?? [];
@@ -163,20 +165,21 @@ export function DelhiPage({ page, form }: { page: LegacyPage; form: FormCounter 
         </div>
       </Section>
 
-      {/* 03 · WHAT WE DELIVER — capability index */}
+      {/* 02b · FILM MOMENT — the homepage showreel opens to full bleed through the city line */}
+      <FilmMoment src={showreel[0].landscape} poster={posterForSrc(showreel[0].landscape)} line="Delhi NCR" caption={`ScaleAcres showreel · ${showreel[0].title}`} />
+
+      {/* 03 · WHAT WE DELIVER — expanding capability panels */}
       <Section className="bg-white py-[clamp(6rem,11vw,10rem)] text-ink">
-        <TrackingTitle className="text-[min(9.2vw,10rem)] text-ink/[0.07]">What we deliver</TrackingTitle>
-        <div className="mt-[-0.4em] grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <div className="lg:sticky lg:top-32">
-              <Label>Capabilities in Delhi NCR</Label>
-              <p className="mt-6 max-w-[34ch] text-[length:var(--fs-body)] leading-[1.7] text-steel" data-reveal>
-                Eight disciplines under one roof. Hover a capability to preview the work, or select it to jump to it on this page.
-              </p>
-            </div>
+        <TrackingTitle className="text-[min(9.2vw,10rem)] text-ink/[0.08]">What we deliver</TrackingTitle>
+        <div className="mt-6 grid gap-8 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-6">
+            <Label>Capabilities in Delhi NCR</Label>
           </div>
-          <div className="lg:col-span-8"><CapabilityIndex items={capabilities} /></div>
+          <p className="max-w-[44ch] text-[length:var(--fs-body)] leading-[1.7] text-steel lg:col-span-6 lg:justify-self-end" data-reveal>
+            Eight disciplines under one roof. Open a capability to see real work, then jump straight to it on this page.
+          </p>
         </div>
+        <div className="mt-12" data-reveal><CapabilityPanels items={capabilities} /></div>
       </Section>
 
       {/* 04 · CLIENT BRANDS (logo wall from live section 0) */}
@@ -517,6 +520,12 @@ export function DelhiPage({ page, form }: { page: LegacyPage; form: FormCounter 
           );
         })}
       </Section>
+
+      {/* Section transition: the page's own service lines as an alternating marquee */}
+      <ServiceMarquee
+        rows={[s6, s7].map((sec) => ((sec.find((b) => b.type === "list") as Extract<Block, { type: "list" }> | undefined)?.items ?? []).map(plain))}
+        image={(() => { const im = s14.find(isImg); return im ? media(im.src) : undefined; })()}
+      />
 
       {/* 12 · ENQUIRY — the live form, moved out of the hero */}
       <section id="enquiry-section" className="on-dark relative isolate overflow-hidden bg-ink text-white">

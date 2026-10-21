@@ -125,6 +125,10 @@
   .scroll-words[data-ready] .sw { color: rgb(var(--ink-rgb) / 0.16); transition: color 0.35s ease; }
   .scroll-words[data-ready] .sw[data-on] { color: rgb(var(--ink-rgb)); }
   .scroll-words[data-ready] strong .sw[data-on] { color: rgb(var(--accent-rgb)); }
+  .marquee-row { animation: marquee-row 38s linear infinite; }
+  .marquee-row--rev { animation-direction: reverse; }
+  @keyframes marquee-row { to { transform: translate3d(-100%, 0, 0); } }
+  @media (prefers-reduced-motion: reduce) { .marquee-row { animation: none; } }
   @media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } }
 
   .dev-badge {

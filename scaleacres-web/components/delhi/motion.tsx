@@ -17,7 +17,7 @@ export function ImageReveal({ children, className = "", parallax = 0 }: { childr
     gsap.fromTo(el, { clipPath: "inset(18% 0% 0% 0% round 18px)" }, { clipPath: "inset(0% 0% 0% 0% round 18px)", duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 88%", once: true } });
     if (media) gsap.fromTo(media, { scale: 1.14 }, { scale: 1, duration: 1.8, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 88%", once: true } });
     if (media && parallax) {
-      gsap.fromTo(media, { yPercent: -parallax }, { yPercent: parallax, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
+      gsap.fromTo(media, { yPercent: -parallax }, { yPercent: parallax, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: 2.5 } });
     }
   });
   return (
@@ -28,16 +28,20 @@ export function ImageReveal({ children, className = "", parallax = 0 }: { childr
 }
 
 /**
- * Oversized display line whose letter-spacing tightens and opacity rises as it scrolls into view.
- * Purely decorative chapter title (the section's real heading follows it).
+ * Oversized chapter line: starts wide-tracked and offset, then drifts left and tightens as the
+ * section scrolls through (smoothed scrub). Decorative; the section's real heading follows it.
  */
 export function TrackingTitle({ children, className = "" }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLParagraphElement>(null);
   useGsap(ref, ({ gsap, el }) => {
-    gsap.fromTo(el, { letterSpacing: "0.32em", opacity: 0.15 }, { letterSpacing: "-0.04em", opacity: 1, ease: "none", scrollTrigger: { trigger: el, start: "top 95%", end: "top 45%", scrub: 0.6 } });
+    gsap.fromTo(
+      el,
+      { letterSpacing: "0.22em", xPercent: 8, opacity: 0.35 },
+      { letterSpacing: "-0.04em", xPercent: -4, opacity: 1, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "top 25%", scrub: 2.5 } },
+    );
   });
   return (
-    <p ref={ref} aria-hidden="true" className={`select-none whitespace-nowrap font-black uppercase leading-[0.85] tracking-[-0.04em] ${className}`}>
+    <p ref={ref} aria-hidden="true" className={`select-none whitespace-nowrap font-black uppercase leading-[0.85] tracking-[-0.04em] will-change-transform ${className}`}>
       {children}
     </p>
   );
@@ -95,75 +99,130 @@ export function ScrollWords({ html, className = "" }: { html: string; className?
   return <p ref={ref} className={`scroll-words legacy-rich ${className}`} dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
-export type Capability = { title: string; href: string; img: { src: string; alt: string } };
+export type Capability = { title: string; href: string; note: string; img: { src: string; alt: string } };
 
 /**
- * "What we deliver" index: large numbered rows; on pointer devices the matching project image
- * follows the cursor, on touch the image sits inline in each row. Rows are in-page links.
+ * "What we deliver": eight expanding panels. The active panel opens to show its real project
+ * image; the others collapse to vertical titles. Hover, focus or tap opens a panel; each panel
+ * links to where that work sits on this page. Phones get a swipeable rail of full cards.
  */
-export function CapabilityIndex({ items }: { items: Capability[] }) {
-  const [active, setActive] = useState<number | null>(null);
-  const box = useRef<HTMLDivElement>(null);
-  const pos = useRef({ x: 0, y: 0, tx: 0, ty: 0, raf: 0 });
-
-  useEffect(() => {
-    const p = pos.current;
-    return () => cancelAnimationFrame(p.raf);
-  }, []);
-
-  const onMove = (e: React.PointerEvent) => {
-    const p = pos.current;
-    const host = e.currentTarget.getBoundingClientRect();
-    p.tx = e.clientX - host.left;
-    p.ty = e.clientY - host.top;
-    if (!p.raf) {
-      const tick = () => {
-        p.x += (p.tx - p.x) * 0.16;
-        p.y += (p.ty - p.y) * 0.16;
-        if (box.current) box.current.style.transform = `translate3d(${p.x}px, ${p.y}px, 0) translate(-50%, -50%)`;
-        p.raf = Math.abs(p.tx - p.x) + Math.abs(p.ty - p.y) > 0.5 ? requestAnimationFrame(tick) : 0;
-      };
-      p.raf = requestAnimationFrame(tick);
-    }
-  };
-
+export function CapabilityPanels({ items }: { items: Capability[] }) {
+  const [active, setActive] = useState(0);
   return (
-    <div className="relative" onPointerMove={onMove} onPointerLeave={() => setActive(null)}>
-      <ol className="border-t border-line">
-        {items.map((c, i) => (
-          <li key={c.title} className="border-b border-line">
-            <a
-              href={c.href}
-              onPointerEnter={() => setActive(i)}
-              onFocus={() => setActive(i)}
-              onBlur={() => setActive(null)}
-              className="group grid grid-cols-[2.5rem_1fr_auto] items-center gap-4 py-6 transition-colors duration-500 hover:text-blue focus-visible:text-blue md:grid-cols-[4.5rem_1fr_auto] md:py-8"
-            >
-              <span className="text-[0.8125rem] font-bold tabular-nums tracking-[0.14em] text-blue">{String(i + 1).padStart(2, "0")}</span>
-              <span className="text-[clamp(1.5rem,0.9rem+2.6vw,3.75rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.035em] transition-transform duration-500 ease-out-expo group-hover:translate-x-3">
-                {c.title}
-              </span>
-              {/* Touch: thumbnail inline; pointer: arrow */}
-              <span className="block h-14 w-20 overflow-hidden rounded-[8px] md:hidden">
+    <>
+      <ul role="list" className="hidden h-[clamp(28rem,40vw,38rem)] gap-2 md:flex">
+        {items.map((c, i) => {
+          const on = i === active;
+          return (
+            <li key={c.title} className={`relative min-w-0 overflow-hidden rounded-[18px] bg-ink transition-[flex-grow] duration-700 ease-out-expo ${on ? "grow-[7]" : "grow"}`} style={{ flexBasis: 0 }} onPointerEnter={() => setActive(i)}>
+              <a href={c.href} onFocus={() => setActive(i)} className="group absolute inset-0 block text-white outline-none focus-visible:ring-2 focus-visible:ring-sky focus-visible:ring-offset-2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={c.img.src} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
-              </span>
-              <span aria-hidden="true" className="hidden h-12 w-12 place-items-center rounded-full border border-ink/15 transition-all duration-500 group-hover:border-blue group-hover:bg-blue group-hover:text-white md:grid">
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M7 17L17 7M9 7h8v8" /></svg>
+                <img src={c.img.src} alt="" loading="lazy" decoding="async" className={`absolute inset-0 h-full w-full object-cover transition-[filter,scale,opacity] duration-[1200ms] ease-out-expo ${on ? "scale-100 opacity-100 grayscale-0" : "scale-110 opacity-45 grayscale"}`} />
+                <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(0deg,rgb(var(--ink-rgb)/0.92),rgb(var(--ink-rgb)/0.15)_60%,transparent)]" />
+                <span className={`absolute left-5 top-5 text-[0.75rem] font-bold tabular-nums tracking-[0.14em] ${on ? "text-sky" : "text-white/70"}`}>{String(i + 1).padStart(2, "0")}</span>
+                {/* Collapsed: vertical title */}
+                <span aria-hidden={on} className={`absolute bottom-6 left-1/2 origin-center -translate-x-1/2 whitespace-nowrap text-[0.9375rem] font-bold uppercase tracking-[0.14em] transition-opacity duration-500 [writing-mode:vertical-rl] rotate-180 ${on ? "opacity-0" : "opacity-100"}`}>
+                  {c.title}
+                </span>
+                {/* Open: title, note, action */}
+                <span className={`absolute inset-x-0 bottom-0 p-7 transition-[opacity,transform] duration-700 ease-out-expo ${on ? "translate-y-0 opacity-100 delay-200" : "pointer-events-none translate-y-4 opacity-0"}`}>
+                  <span className="block max-w-[16ch] text-[clamp(1.75rem,1rem+1.8vw,3rem)] font-black uppercase leading-[0.92] tracking-[-0.035em]">{c.title}</span>
+                  <span className="mt-4 block max-w-[46ch] text-[0.9375rem] leading-[1.6] text-white/75">{c.note}</span>
+                  <span className="mt-6 inline-flex items-center gap-3 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-sky">
+                    See the work
+                    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                  </span>
+                </span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+      {/* Phones: swipeable full cards */}
+      <ul role="list" className="scrollbar-none -mx-[var(--gutter)] flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--gutter)] scroll-px-[var(--gutter)] md:hidden">
+        {items.map((c, i) => (
+          <li key={c.title} className="w-[78vw] shrink-0 snap-start">
+            <a href={c.href} className="relative block aspect-[4/5] overflow-hidden rounded-[18px] bg-ink text-white">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={c.img.src} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+              <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(0deg,rgb(var(--ink-rgb)/0.92),transparent_65%)]" />
+              <span className="absolute left-5 top-5 text-[0.75rem] font-bold tracking-[0.14em] text-sky">{String(i + 1).padStart(2, "0")}</span>
+              <span className="absolute inset-x-0 bottom-0 p-6">
+                <span className="block text-[1.75rem] font-black uppercase leading-[0.92] tracking-[-0.03em]">{c.title}</span>
+                <span className="mt-3 block text-[0.875rem] leading-[1.55] text-white/75">{c.note}</span>
               </span>
             </a>
           </li>
         ))}
-      </ol>
-      {/* Cursor-following preview (pointer devices only, decorative) */}
-      <div
-        ref={box}
-        aria-hidden="true"
-        className={`pointer-events-none absolute left-0 top-0 z-10 hidden h-[15rem] w-[22rem] overflow-hidden rounded-[14px] shadow-[0_40px_90px_-30px_rgba(11,13,13,0.55)] transition-[opacity,scale] duration-500 ease-out-expo md:block ${active === null ? "scale-90 opacity-0" : "scale-100 opacity-100"}`}
-      >
-        {items.map((c, i) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img key={c.title} src={c.img.src} alt="" loading="lazy" decoding="async" className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${active === i ? "opacity-100" : "opacity-0"}`} />
+      </ul>
+    </>
+  );
+}
+
+/**
+ * Cinematic film moment: a framed clip opens to full bleed as the visitor scrolls (sticky stage,
+ * smoothed scrub), while an oversized line widens and fades behind it. The clip loads only near
+ * the viewport and never plays for reduced motion.
+ */
+export function FilmMoment({ src, poster, line, caption }: { src: string; poster?: string; line: string; caption: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const video = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    const v = video.current;
+    if (!el || !v) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        if (!v.getAttribute("src")) v.setAttribute("src", src);
+        if (!reduce) v.play().catch(() => undefined);
+      } else v.pause();
+    }, { rootMargin: "200px 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [src]);
+  useGsap(ref, ({ gsap, el }) => {
+    const frame = el.querySelector<HTMLElement>("[data-frame]");
+    const text = el.querySelector<HTMLElement>("[data-line]");
+    const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: "top top", end: "bottom bottom", scrub: 2.8 } });
+    if (frame) tl.fromTo(frame, { clipPath: "inset(24% 30% 24% 30% round 24px)" }, { clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "none" }, 0);
+    if (text) tl.fromTo(text, { letterSpacing: "-0.04em", opacity: 1 }, { letterSpacing: "0.3em", opacity: 0, ease: "none" }, 0);
+  });
+  return (
+    <div ref={ref} className="relative h-[220vh] bg-ink md:h-[260vh]">
+      <div className="sticky top-0 flex h-[100svh] items-center justify-center overflow-hidden">
+        <p data-line aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-1/2 z-0 -translate-y-1/2 select-none whitespace-nowrap text-center text-[min(15vw,15rem)] font-black uppercase leading-none tracking-[-0.04em] text-white">
+          {line}
+        </p>
+        <div data-frame className="absolute inset-0 z-[1] [clip-path:inset(0%_0%_0%_0%)]">
+          <video ref={video} muted loop playsInline preload="none" poster={poster} aria-hidden="true" tabIndex={-1} className="h-full w-full object-cover" />
+          <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(0deg,rgb(var(--ink-rgb)/0.6),transparent_45%)]" />
+          <p className="absolute bottom-6 left-[var(--gutter)] text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-white/70">{caption}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Services marquee: rows of the page's own service lines, alternating direction, over a dimmed image. */
+export function ServiceMarquee({ rows, image }: { rows: string[][]; image?: string }) {
+  return (
+    <div aria-hidden="true" className="relative isolate overflow-hidden bg-ink py-[clamp(3rem,6vw,5rem)]">
+      {image ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={image} alt="" loading="lazy" decoding="async" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30" />
+      ) : null}
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(var(--ink-rgb)),transparent_25%,transparent_75%,rgb(var(--ink-rgb)))]" />
+      <div className="space-y-3">
+        {rows.map((r, i) => (
+          <div key={i} className="flex overflow-hidden whitespace-nowrap">
+            <div className={`marquee-row flex shrink-0 gap-10 pr-10 text-[clamp(1.5rem,0.9rem+2.4vw,3.5rem)] font-extrabold uppercase leading-none tracking-[-0.02em] ${i % 2 ? "marquee-row--rev text-sky" : "text-white"}`}>
+              {[...r, ...r].map((t, j) => <span key={j} className="flex items-center gap-10">{t}<span className="text-blue">✦</span></span>)}
+            </div>
+            <div className={`marquee-row flex shrink-0 gap-10 pr-10 text-[clamp(1.5rem,0.9rem+2.4vw,3.5rem)] font-extrabold uppercase leading-none tracking-[-0.02em] ${i % 2 ? "marquee-row--rev text-sky" : "text-white"}`}>
+              {[...r, ...r].map((t, j) => <span key={j} className="flex items-center gap-10">{t}<span className="text-blue">✦</span></span>)}
+            </div>
+          </div>
         ))}
       </div>
     </div>
