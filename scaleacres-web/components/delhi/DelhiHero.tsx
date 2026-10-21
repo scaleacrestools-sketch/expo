@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { showreel, posterForSrc } from "@/content/media";
 import { Arrow } from "@/components/ui/Arrow";
+import { POSTER } from "@/components/delhi/media";
 
 const MOBILE_MQ = "(max-width: 767px)";
 const REDUCE_MQ = "(prefers-reduced-motion: reduce)";
@@ -16,9 +17,6 @@ const subscribeReduce = subscribeMq(REDUCE_MQ);
 const getMobile = () => window.matchMedia(MOBILE_MQ).matches;
 const getReduce = () => window.matchMedia(REDUCE_MQ).matches;
 const getFalse = () => false;
-
-/** Poster frames taken from the first showreel clip (ffmpeg, frame at 0.5 s), so the hero is never blank while the film loads. */
-export const POSTER = { landscape: "/images/delhi/showreel-0-landscape.jpg", portrait: "/images/delhi/showreel-0-portrait.jpg" };
 
 export type DelhiHeroProps = {
   h1: string;

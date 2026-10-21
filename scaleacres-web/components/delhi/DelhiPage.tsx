@@ -7,7 +7,8 @@ import { Rail } from "@/components/legacy/Rail";
 import { Testimonials } from "@/components/Testimonials";
 import { Buttons, Faq, FormSlot, Html, Img, ListEl, Para, asButton, type FormCounter } from "@/components/legacy/LegacyBlocks";
 import { parseProjects, ProjectMeta, type Project } from "@/components/legacy/Composer";
-import { DelhiHero, POSTER } from "@/components/delhi/DelhiHero";
+import { DelhiHero } from "@/components/delhi/DelhiHero";
+import { POSTER } from "@/components/delhi/media";
 import { CapabilityPanels, CountUp, FilmMoment, FunnelProgress, ImageReveal, ScrollWords, ServiceMarquee, TrackingTitle, type Capability } from "@/components/delhi/motion";
 import { showreel, posterForSrc } from "@/content/media";
 
