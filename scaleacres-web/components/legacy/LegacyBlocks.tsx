@@ -19,7 +19,7 @@ export const asButton = (b: Block): { href: string; text: string } | null => {
   if (b.type === "button") return { href: b.href, text: b.text };
   if (b.type === "paragraph") {
     const m = b.html.match(BUTTON_RE);
-    if (m) return { href: m[1], text: m[2].trim() };
+    if (m) return { href: m[1], text: plain(m[2]) };
   }
   return null;
 };
@@ -232,7 +232,7 @@ export function Faq({ b, tone }: { b: Extract<Block, { type: "faq" }>; tone: Ton
   );
 }
 
-function Video({ b }: { b: Extract<Block, { type: "video" }> }) {
+export function Video({ b }: { b: Extract<Block, { type: "video" }> }) {
   if (b.embed) {
     let src = b.embed;
     const yt = src.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/);

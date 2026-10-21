@@ -147,5 +147,13 @@ export function legacyMetadata(p: LegacyPage): Metadata {
   };
 }
 
-const strip = (h: string) => h.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/\s+/g, " ").trim();
+const ENTITIES: Record<string, string> = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
+const strip = (h: string) =>
+  h
+    .replace(/<[^>]+>/g, "")
+    .replace(/&(#x[\da-f]+|#\d+|[a-z]+);/gi, (m, e: string) =>
+      e[0] === "#" ? String.fromCodePoint(e[1].toLowerCase() === "x" ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10)) : (ENTITIES[e.toLowerCase()] ?? m),
+    )
+    .replace(/\s+/g, " ")
+    .trim();
 export const plain = strip;

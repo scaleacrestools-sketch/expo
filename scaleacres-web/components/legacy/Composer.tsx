@@ -3,7 +3,7 @@ import { media, plain, type Block, type LegacyPage, type LegacySection } from "@
 import { Arrow } from "@/components/ui/Arrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { Rail } from "@/components/legacy/Rail";
-import { Buttons, Faq, Flow, FormSlot, Html, Img, ListEl, Para, SectionBand, asButton, type FormCounter, type Tone } from "@/components/legacy/LegacyBlocks";
+import { Buttons, Faq, Flow, FormSlot, Html, Img, ListEl, Para, SectionBand, asButton, isStatHeading, Video, type FormCounter, type Tone } from "@/components/legacy/LegacyBlocks";
 
 /**
  * PAGE COMPOSER (premium internal-page system)
@@ -102,19 +102,26 @@ function Tile({ img }: { img: I }) {
 
 /* ------------------------------------------------------------------ section recognisers */
 
-type Kind =
+export type Kind =
   | "hero" | "logos" | "testimonials" | "statement" | "showcase" | "funnel" | "results" | "portfolio" | "collage"
-  | "awards" | "culture" | "split" | "reasons" | "creatives" | "faq" | "cta" | "generic";
+  | "awards" | "culture" | "split" | "reasons" | "rows" | "stats" | "banner" | "videos" | "creatives" | "faq" | "cta" | "generic";
 
-function kindOf(s: LegacySection, i: number): Kind {
+export function kindOf(s: LegacySection, i: number): Kind {
   const b = s.blocks;
   const imgs = b.filter(isImg);
   const hs = b.filter(isH);
   if (i === 0 && hs.some((h) => h.level === 1)) return "hero";
   if (b.length && b.every((x) => asButton(x))) return "cta";
+  // A wide banner image (often with its title set in the artwork) on its own.
+  if (b.length <= 2 && imgs.length === b.length && imgs.every((x) => (x.width ?? 0) >= (x.height ?? 1) * 3)) return "banner";
+  // Key figures written as short numeric headings ("15cr+", "33+", "2.5Lacs+").
+  if (hs.filter(isStatHeading).length >= 3 && imgs.length === 0) return "stats";
   if (b.some((x) => x.type === "faq")) return "faq";
+  if (b.filter((x) => x.type === "video").length >= 2 && imgs.length === 0) return "videos";
   if (hs.filter((h) => /founder|director|ceo|owner/i.test(h.text)).length >= 3) return "testimonials";
   if (hs.filter((h) => /^category\s*:/i.test(h.text)).length >= 3) return "portfolio";
+  // Long mixed sections (a whole case study in one block run) read best as heading-grouped editorial rows.
+  if (b.length > 24 && hs.length >= 5 && imgs.length < 12) return "generic";
   // Keyword cues read only the section's main headings (H1–H3), never card labels.
   const title = hs.filter((h) => h.level <= 3).map((h) => h.text).join(" ");
   if (/result|proof|performance/i.test(title) && imgs.length >= 2 && hs.length <= 2) return "results";
@@ -127,6 +134,8 @@ function kindOf(s: LegacySection, i: number): Kind {
   if (hs.length <= 2 && imgs.filter(big).length >= 2 && imgs.length <= 5) return "results";
   const small = hs.filter((h) => h.level >= 4);
   if (small.length >= 3 && small.length === hs.length - 1 && imgs.length === 0) return "reasons";
+  // A title followed by a list of offerings written as headings with little or no copy between them.
+  if (hs.length >= 5 && imgs.length === 0 && words(b) < 25 * hs.length && !b.some((x) => x.type === "faq")) return "rows";
   if (hs.length === 2 && hs[0].text.length < 30 && imgs.length === 1 && b.filter(isPara).length >= 1) return "awards";
   if (b.some((x) => x.type === "stat") && imgs.length === 0) return "statement";
   if (imgs.length >= 1 && hs.length >= 1) return "split";
@@ -136,23 +145,51 @@ function kindOf(s: LegacySection, i: number): Kind {
 
 /* ------------------------------------------------------------------ components */
 
-function Hero({ s, page, form, backdrop }: { s: LegacySection; page: LegacyPage; form: FormCounter; backdrop?: I }) {
+function PageHead({ page, label }: { page: LegacyPage; label: string }) {
+  const crumbs = page.breadcrumbs;
+  return (
+    <section className="on-dark bg-ink pb-[clamp(2.5rem,5vw,4rem)] pt-[calc(var(--header-h)+clamp(2.5rem,5vw,4rem))] text-white">
+      <div className="container-x mx-auto flex max-w-[120rem] flex-wrap items-center gap-x-4 gap-y-2">
+        <p className="eyebrow text-sky">{label}</p>
+        {crumbs && crumbs.length > 1 ? (
+          <nav aria-label="Breadcrumb" className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-white/50">
+            {crumbs.map((c, i) => (
+              <span key={i}>{i > 0 ? " / " : ""}{c.url && i < crumbs.length - 1 ? <a href={c.url} className="hover:text-sky">{plain(c.name)}</a> : <span className="text-white/80">{plain(c.name)}</span>}</span>
+            ))}
+          </nav>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
+/** Splits the H1 section into the hero itself and the blocks that follow it (composed as their own section). */
+function splitHero(s: LegacySection, form: FormCounter) {
   const b = s.blocks;
   const h1i = b.findIndex((x) => isH(x) && x.level === 1);
-  // Hero group: H1, the heading right after it (sub-title), buttons, small trust image.
+  // Hero group: H1, the heading right after it (sub-title), buttons, intro copy, small trust images.
   let end = h1i + 1;
-  if (b[end] && isH(b[end])) end++;
-  while (end < b.length && (asButton(b[end]) || isPara(b[end]) || (isImg(b[end]) && !big(b[end] as I)))) end++;
-  const heroBlocks = b.slice(h1i, end);
-  const rest = b.slice(end);
-  const formIdx = rest.findIndex((x) => x.type === "form");
-  // The form and its heading go into the hero card; logos and their heading become the logo wall.
+  if (b[end] && isH(b[end]) && (b[end] as H).level > 1) end++;
+  while (end < b.length && (asButton(b[end]) || isPara(b[end]) || (isImg(b[end]) && ((b[end] as I).width ?? 0) < 400))) end++;
+  // Images before the H1 (a client logo, a project visual) stay in the hero; anything else before it follows.
+  const pre = b.slice(0, h1i);
+  const heroBlocks = [...b.slice(h1i, end)];
+  const preImgs = pre.filter(isImg);
+  const rest = [...pre.filter((x) => !isImg(x)), ...b.slice(end)];
+  const formIdx = rest.findIndex((x) => x.type === "form" && x === form.first);
   const formHeadIdx = formIdx > 0 && isH(rest[formIdx - 1]) ? formIdx - 1 : formIdx;
   const formBlocks = formIdx >= 0 ? rest.slice(formHeadIdx, formIdx + 1) : [];
-  const logoBlocks = formIdx >= 0 ? [...rest.slice(0, formHeadIdx), ...rest.slice(formIdx + 1)] : rest;
+  const after = formIdx >= 0 ? [...rest.slice(0, formHeadIdx), ...rest.slice(formIdx + 1)] : rest;
+  return { heroBlocks, preImgs, formBlocks, after };
+}
+
+function Hero({ page, form, backdrop, label, parts }: { page: LegacyPage; form: FormCounter; backdrop?: I; label: string; parts: ReturnType<typeof splitHero> }) {
+  const { heroBlocks, preImgs, formBlocks } = parts;
   const h1 = heroBlocks[0] as H;
   const sub = heroBlocks[1] && isH(heroBlocks[1]) ? (heroBlocks[1] as H) : null;
   const others = heroBlocks.slice(sub ? 2 : 1);
+  const visual = !formBlocks.length ? preImgs.find(big) : undefined;
+  const marks = preImgs.filter((x) => x !== visual);
   const crumbs = page.breadcrumbs;
 
   return (
@@ -168,15 +205,16 @@ function Hero({ s, page, form, backdrop }: { s: LegacySection; page: LegacyPage;
         <div className="container-x mx-auto grid max-w-[120rem] gap-12 pb-[clamp(4rem,8vw,7rem)] pt-[calc(var(--header-h)+clamp(3rem,7vw,6rem))] lg:grid-cols-12 lg:items-end lg:gap-16">
           <div className="lg:col-span-7">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <p className="eyebrow text-sky">Real estate marketing</p>
+              <p className="eyebrow text-sky">{label}</p>
               {crumbs && crumbs.length > 1 ? (
                 <nav aria-label="Breadcrumb" className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-white/50">
                   {crumbs.map((c, i) => (
-                    <span key={i}>{i > 0 ? " / " : ""}{c.url && i < crumbs.length - 1 ? <a href={c.url} className="hover:text-sky">{c.name}</a> : <span className="text-white/80">{c.name}</span>}</span>
+                    <span key={i}>{i > 0 ? " / " : ""}{c.url && i < crumbs.length - 1 ? <a href={c.url} className="hover:text-sky">{plain(c.name)}</a> : <span className="text-white/80">{plain(c.name)}</span>}</span>
                   ))}
                 </nav>
               ) : null}
             </div>
+            {marks.length ? <div className="mt-8 flex flex-wrap items-center gap-4">{marks.map((im, i) => <Img key={i} img={im} className="h-12 w-auto max-w-[12rem] object-contain" />)}</div> : null}
             <T b={h1} size="display" className="mt-8 max-w-[14ch]" />
             {sub ? <Html as={`h${sub.level}`} html={sub.html} className="legacy-h mt-8 max-w-[30ch] text-[clamp(1.25rem,1rem+1.1vw,2rem)] font-medium leading-[1.25] tracking-[-0.01em] text-white/85" /> : null}
             <div className="mt-10 flex flex-wrap items-center gap-6">
@@ -187,6 +225,9 @@ function Hero({ s, page, form, backdrop }: { s: LegacySection; page: LegacyPage;
             </div>
             {others.filter(isPara).length ? <div className="mt-8"><Text blocks={others} tone="hero" lead /></div> : null}
           </div>
+          {visual ? (
+            <div className="lg:col-span-5" data-reveal><Frame img={visual} ratio="aspect-[4/5]" /></div>
+          ) : null}
           {formBlocks.length ? (
             <div className="lg:col-span-5">
               <div id="enquiry" className="scroll-mt-28 rounded-[22px] border border-white/15 bg-white/[0.06] p-6 shadow-[0_40px_120px_-40px_rgba(29,78,216,0.6)] backdrop-blur-md md:p-8">
@@ -197,7 +238,6 @@ function Hero({ s, page, form, backdrop }: { s: LegacySection; page: LegacyPage;
           ) : null}
         </div>
       </section>
-      {logoBlocks.length ? <Logos blocks={logoBlocks} tone="light" /> : null}
     </>
   );
 }
@@ -465,6 +505,8 @@ function Collage({ s, tone }: { s: LegacySection; tone: Tone }) {
       <div className="max-w-[60rem] space-y-5" data-reveal>
         {hs.map((h, i) => <T key={i} b={h} size={i === 0 && hs.length > 1 ? "kicker" : "h2"} />)}
       </div>
+      {b.some(isPara) ? <div className="mt-6"><Text blocks={b} tone={tone} lead /></div> : null}
+      {btns(b).length ? <div className="mt-8" data-reveal><Buttons buttons={btns(b)} tone={tone} /></div> : null}
       <div className="mt-12" data-reveal>
         {wide ? <div className={tall ? "hidden md:block" : ""}><Img img={wide} className="h-auto w-full rounded-[18px]" /></div> : null}
         {tall ? <div className={wide ? "md:hidden" : ""}><Img img={tall} className="h-auto w-full rounded-[18px]" /></div> : null}
@@ -560,14 +602,23 @@ function Reasons({ s, tone }: { s: LegacySection; tone: Tone }) {
   const b = s.blocks;
   const title = b.find(isH)!;
   const rows: { h: H; body: Block[] }[] = [];
+  const intro: Block[] = [];
   for (const x of b.slice(b.indexOf(title) + 1)) {
     if (isH(x)) rows.push({ h: x, body: [] });
-    else rows[rows.length - 1]?.body.push(x);
+    else if (rows.length) rows[rows.length - 1].body.push(x);
+    else intro.push(x);
   }
   return (
     <Shell tone={tone}>
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5"><div className="lg:sticky lg:top-28" data-reveal><Label tone={tone}>Why ScaleAcres</Label><div className="mt-6"><T b={title} /></div></div></div>
+        <div className="lg:col-span-5">
+          <div className="space-y-6 lg:sticky lg:top-28">
+            <div data-reveal>{/why/i.test(title.text) ? <Label tone={tone}>Why ScaleAcres</Label> : null}<div className={/why/i.test(title.text) ? "mt-6" : ""}><T b={title} /></div></div>
+            <Text blocks={intro} tone={tone} />
+            {btns(intro).length ? <div data-reveal><Buttons buttons={btns(intro)} tone={tone} /></div> : null}
+            <Extras blocks={intro} tone={tone} />
+          </div>
+        </div>
         <ol className="lg:col-span-7">
           {rows.map((r, i) => (
             <li key={i} className={`group grid grid-cols-[3.5rem_1fr] gap-6 border-t py-9 md:grid-cols-[5.5rem_1fr] md:gap-8 ${dark(tone) ? "border-white/12" : "border-line"}`} data-reveal>
@@ -584,6 +635,131 @@ function Reasons({ s, tone }: { s: LegacySection; tone: Tone }) {
         </ol>
       </div>
     </Shell>
+  );
+}
+
+/** Key figures: each numeric heading with the copy that follows it as its label. */
+function Stats({ s }: { s: LegacySection }) {
+  const b = s.blocks;
+  const first = b.findIndex(isStatHeading);
+  const head = b.slice(0, first);
+  const items: { n: H; body: Block[] }[] = [];
+  const tail: Block[] = [];
+  for (const x of b.slice(first)) {
+    if (isStatHeading(x)) items.push({ n: x as H, body: [] });
+    else if (isH(x) || asButton(x)) tail.push(x);
+    else items[items.length - 1].body.push(x);
+  }
+  return (
+    <Reveal as="section" className={`relative isolate overflow-hidden ${navyBg} py-[clamp(5rem,10vw,8rem)]`}>
+      <div aria-hidden="true" className="absolute -right-40 -top-40 -z-10 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(closest-side,rgba(29,78,216,0.45),transparent)]" />
+      <div className="container-x mx-auto max-w-[120rem]">
+        {head.length ? (
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7" data-reveal>{head.filter(isH).map((h, i) => <T key={i} b={h} />)}</div>
+            <div className="lg:col-span-5"><Text blocks={head} tone="dark" lead /></div>
+          </div>
+        ) : null}
+        <ul role="list" className={`grid gap-px overflow-hidden rounded-[20px] bg-white/10 sm:grid-cols-2 ${items.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} ${head.length ? "mt-14" : ""}`}>
+          {items.map((it, i) => (
+            <li key={i} className="bg-navy p-8 md:p-10" data-reveal>
+              <Html as={`h${it.n.level}`} html={it.n.html} className="legacy-h text-[clamp(3rem,1.8rem+3.4vw,5.5rem)] font-black leading-none tracking-[-0.05em] text-sky" />
+              <div className="mt-5 text-white/75"><Text blocks={it.body} tone="dark" /></div>
+              <Extras blocks={it.body} tone="dark" />
+            </li>
+          ))}
+        </ul>
+        {tail.length ? <div className="mt-10 space-y-6"><Flow blocks={tail.filter(isH)} tone="dark" />{btns(tail).length ? <Buttons buttons={btns(tail)} tone="dark" /> : null}</div> : null}
+      </div>
+    </Reveal>
+  );
+}
+
+/** Offerings written as a run of headings: an interactive, numbered list with a sticky title. */
+function Rows({ s, tone }: { s: LegacySection; tone: Tone }) {
+  const b = s.blocks;
+  const hs = b.filter(isH);
+  const title = hs[0];
+  const rows: { h: H; body: Block[] }[] = [];
+  const intro: Block[] = [];
+  for (const x of b.slice(b.indexOf(title) + 1)) {
+    if (isH(x)) rows.push({ h: x, body: [] });
+    else if (rows.length) rows[rows.length - 1].body.push(x);
+    else intro.push(x);
+  }
+  // A closing paragraph after the last offering reads as the section's summary.
+  const last = rows[rows.length - 1];
+  const outro = last && last.body.length && last.body.every((x) => isPara(x) || asButton(x)) && rows.slice(0, -1).every((r) => !r.body.length) ? last.body.splice(0) : [];
+  return (
+    <Shell tone={tone}>
+      <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-5">
+          <div className="space-y-6 lg:sticky lg:top-28">
+            <div data-reveal><T b={title} /></div>
+            <Text blocks={[...intro, ...outro]} tone={tone} />
+            {btns([...intro, ...outro]).length ? <div data-reveal><Buttons buttons={btns([...intro, ...outro])} tone={tone} /></div> : null}
+          </div>
+        </div>
+        <ol className="lg:col-span-7">
+          {rows.map((r, i) => (
+            <li key={i} className={`group grid grid-cols-[3rem_1fr_auto] items-start gap-5 border-t py-7 transition-colors duration-500 md:grid-cols-[4rem_1fr_auto] ${dark(tone) ? "border-white/12 hover:border-sky" : "border-line hover:border-blue"}`} data-reveal>
+              <span aria-hidden="true" className={`pt-1 text-[0.875rem] font-bold tabular-nums tracking-[0.12em] ${dark(tone) ? "text-sky" : "text-blue"}`}>{String(i + 1).padStart(2, "0")}</span>
+              <div className="space-y-3">
+                <T b={r.h} size="card" className="!text-[clamp(1.25rem,1rem+0.9vw,1.875rem)] !font-extrabold transition-transform duration-500 group-hover:translate-x-1" />
+                <Text blocks={r.body} tone={tone} />
+                {btns(r.body).length ? <Buttons buttons={btns(r.body)} tone={tone} /> : null}
+                <Extras blocks={r.body} tone={tone} />
+              </div>
+              <Arrow className={`mt-2 h-4 w-4 opacity-30 transition-all duration-500 group-hover:opacity-100 ${dark(tone) ? "group-hover:text-sky" : "group-hover:text-blue"}`} />
+            </li>
+          ))}
+        </ol>
+      </div>
+    </Shell>
+  );
+}
+
+/** Film reel: each video with the title that follows it. */
+function Videos({ s, tone }: { s: LegacySection; tone: Tone }) {
+  const b = s.blocks;
+  const first = b.findIndex((x) => x.type === "video");
+  const head = b.slice(0, first);
+  const items: { v: Extract<Block, { type: "video" }>; meta: Block[] }[] = [];
+  for (const x of b.slice(first)) {
+    if (x.type === "video") items.push({ v: x, meta: [] });
+    else items[items.length - 1].meta.push(x);
+  }
+  return (
+    <Shell tone={tone}>
+      <Label tone={tone}>Films</Label>
+      <div className="mt-6 grid gap-10 lg:grid-cols-12 lg:items-end">
+        <div className="lg:col-span-7" data-reveal>{head.filter(isH).map((h, i) => <T key={i} b={h} />)}</div>
+        <div className="space-y-6 lg:col-span-5"><Text blocks={head} tone={tone} lead />{btns(head).length ? <Buttons buttons={btns(head)} tone={tone} /> : null}</div>
+      </div>
+      <ul role="list" className="mt-14 grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+        {items.map((it, i) => (
+          <li key={i} data-reveal>
+            <Video b={it.v} />
+            <div className="mt-4 space-y-2">
+              {it.meta.filter(isH).map((h, j) => <T key={j} b={h} size="card" />)}
+              <Text blocks={it.meta} tone={tone} />
+              {btns(it.meta).length ? <Buttons buttons={btns(it.meta)} tone={tone} /> : null}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </Shell>
+  );
+}
+
+/** A wide banner image shown full-bleed on black. */
+function Banner({ s }: { s: LegacySection }) {
+  return (
+    <section className="on-dark bg-ink pb-[clamp(2.5rem,5vw,4rem)]">
+      <div className="container-x mx-auto max-w-[120rem] space-y-4">
+        {s.blocks.filter(isImg).map((im, i) => <Img key={i} img={im} className="h-auto w-full rounded-[18px]" />)}
+      </div>
+    </section>
   );
 }
 
@@ -635,9 +811,29 @@ function FaqSection({ s, tone }: { s: LegacySection; tone: Tone }) {
 
 const LIGHT_ORDER: Tone[] = ["light", "mist"];
 
-export function ComposedPage({ page, form }: { page: LegacyPage; form: FormCounter }) {
-  const secs = page.sections.filter((s) => s.blocks.length);
-  const kinds = secs.map(kindOf);
+/** Heading-only fragments join the section after them; the H1 section leads. */
+function prepare(page: LegacyPage): LegacySection[] {
+  const raw = page.sections.filter((s) => s.blocks.length);
+  const merged: LegacySection[] = [];
+  let carry: Block[] = [];
+  for (const s of raw) {
+    const headingOnly = s.blocks.length <= 3 && s.blocks.every(isH) && !s.blocks.some((x) => isH(x) && x.level === 1);
+    if (headingOnly) { carry.push(...s.blocks); continue; }
+    merged.push(carry.length ? { ...s, blocks: [...carry, ...s.blocks] } : s);
+    carry = [];
+  }
+  if (carry.length) merged.push({ ...raw[raw.length - 1], blocks: carry });
+  const h1 = merged.findIndex((s) => s.blocks.some((x) => isH(x) && x.level === 1));
+  return h1 > 0 ? [merged[h1], ...merged.slice(0, h1), ...merged.slice(h1 + 1)] : merged;
+}
+
+export function ComposedPage({ page, form, label }: { page: LegacyPage; form: FormCounter; label: string }) {
+  const prepared = prepare(page);
+  const hasHero = prepared[0]?.blocks.some((x) => isH(x) && x.level === 1);
+  const heroParts = hasHero ? splitHero(prepared[0], form) : null;
+  // The blocks after the hero group (a logo wall, an intro…) are composed as a section of their own.
+  const secs = heroParts ? [prepared[0], ...(heroParts.after.length ? [{ ...prepared[0], blocks: heroParts.after }] : []), ...prepared.slice(1)] : prepared;
+  const kinds = secs.map((s, i) => (i === 0 && heroParts ? "hero" : kindOf(s, Math.max(i, 1))));
   // Hero backdrop: the page's own editorial photography (split sections first, then awards/culture),
   // never a client logo, a card thumbnail, a screenshot or an animated GIF; a descriptive alt marks a real photograph.
   const backdrop = (["split", "awards", "culture"] as Kind[])
@@ -646,6 +842,8 @@ export function ComposedPage({ page, form }: { page: LegacyPage; form: FormCount
     .filter(isImg)
     .find((x) => (x.width ?? 0) >= 700 && (x.width ?? 0) >= (x.height ?? 0) * 1.2 && !/\.(svg|gif)$/i.test(x.src) && (x.alt ?? "").trim().split(/\s+/).length >= 3);
   const out: ReactNode[] = [];
+  // Pages without an H1 still open on the dark band with their label and breadcrumb (no heading is invented).
+  if (!heroParts) out.push(<PageHead key="head" page={page} label={label} />);
   let light = 0;
   const nextLight = () => LIGHT_ORDER[light++ % 2];
   let flip = false;
@@ -666,7 +864,11 @@ export function ComposedPage({ page, form }: { page: LegacyPage; form: FormCount
       }
     }
     switch (k) {
-      case "hero": out.push(<Hero key={i} s={s} page={page} form={form} backdrop={backdrop} />); break;
+      case "hero": out.push(<Hero key={i} page={page} form={form} backdrop={backdrop} label={label} parts={heroParts!} />); break;
+      case "stats": out.push(<Stats key={i} s={s} />); break;
+      case "rows": out.push(<Rows key={i} s={s} tone={nextLight()} />); break;
+      case "banner": out.push(<Banner key={i} s={s} />); break;
+      case "videos": out.push(<Videos key={i} s={s} tone="dark" />); break;
       case "logos": out.push(<Logos key={i} blocks={s.blocks} tone={nextLight()} />); break;
       case "testimonials": out.push(<Testimonials key={i} s={s} tone="mist" />); light = 0; break;
       case "statement": out.push(<Statement key={i} s={s} tone={nextLight()} />); break;
