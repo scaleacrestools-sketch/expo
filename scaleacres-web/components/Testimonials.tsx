@@ -10,7 +10,8 @@ import { Reveal } from "@/components/ui/Reveal";
  * dialog (Escape or Close stops it) and only that one video plays. Names appear only where
  * the client names themselves on screen.
  */
-export function Testimonials() {
+/** `titleAs` lets a page that must keep its live heading outline render the section title as plain text. Default h2. */
+export function Testimonials({ titleAs: TitleTag = "h2" }: { titleAs?: "h2" | "p" } = {}) {
   const [i, setI] = useState(0);
   const [playing, setPlaying] = useState<Testimonial | null>(null);
   const n = testimonials.length;
@@ -23,11 +24,11 @@ export function Testimonials() {
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="eyebrow text-blue" data-reveal>Client stories</p>
-            <h2 className="h2 mt-6" data-split-reveal>
+            <TitleTag className="h2 mt-6" data-split-reveal>
               Trusted by clients.
               <br />
               <span className="text-blue">Backed by real experiences.</span>
-            </h2>
+            </TitleTag>
           </div>
           <Controls i={i} n={n} go={go} />
         </div>

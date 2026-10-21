@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { media, pageKind, plain, type Block, type LegacyPage as Page, type PageKind } from "@/lib/legacy";
 import { Arrow } from "@/components/ui/Arrow";
-import { ComposedPage } from "@/components/legacy/Composer";
+import { DelhiPage } from "@/components/delhi/DelhiPage";
 import { Flow, HeadingEl, SectionBand, Gallery, Html, Buttons, asButton, type FormCounter, type Tone } from "@/components/legacy/LegacyBlocks";
 
 /**
  * Redesigned template for every migrated page. Content comes verbatim from the live capture;
  * the template only decides presentation per page type.
  */
-/** Master template under review: the premium composed system is live on this page only, pending approval. */
-const COMPOSED = new Set(["/real-estate-marketing-delhi/"]);
+/** Proposed master city page, awaiting approval: live on this URL only. */
+const DELHI = "/real-estate-marketing-delhi/";
 
 export function LegacyPageView({ page }: { page: Page }) {
   const kind = pageKind(page);
@@ -21,12 +21,12 @@ export function LegacyPageView({ page }: { page: Page }) {
         <PostTemplate page={page} form={form} />
       ) : kind === "archive" ? (
         <ArchiveTemplate page={page} />
-      ) : COMPOSED.has(page.path) ? (
-        <ComposedPage page={page} form={form} label={KIND_LABEL[kind]} />
+      ) : page.path === DELHI ? (
+        <DelhiPage page={page} form={form} />
       ) : (
         <BandTemplate page={page} kind={kind} form={form} />
       )}
-      {kind !== "legal" && kind !== "fragment" ? <ClosingCta /> : null}
+      {kind !== "legal" && kind !== "fragment" && page.path !== DELHI ? <ClosingCta /> : null}
       {page.jsonld.map((raw, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: raw.replace(/<\/script/gi, "<\\/script") }} />
       ))}

@@ -449,7 +449,7 @@ function Results({ s, tone }: { s: LegacySection; tone: Tone }) {
   );
 }
 
-type Project = { logo?: I; shot?: I; meta: H[] };
+export type Project = { logo?: I; shot?: I; meta: H[] };
 
 /** A full-length website capture in a fixed frame; hovering scrolls it from top to bottom. */
 function ProjectShot({ p, ratio }: { p: Project; ratio: string }) {
@@ -461,7 +461,7 @@ function ProjectShot({ p, ratio }: { p: Project; ratio: string }) {
   );
 }
 
-function ProjectMeta({ p }: { p: Project }) {
+export function ProjectMeta({ p }: { p: Project }) {
   return (
     <div className="mt-4 flex flex-col-reverse gap-3 sm:mt-5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
       <div className="space-y-1">{p.meta.map((m, j) => <T key={j} b={m} size="meta" />)}</div>
@@ -470,8 +470,8 @@ function ProjectMeta({ p }: { p: Project }) {
   );
 }
 
-function Portfolio({ s, tone }: { s: LegacySection; tone: Tone }) {
-  const b = s.blocks;
+/** Groups a website-portfolio section into projects: logo, full-page capture, category/platform lines. */
+export function parseProjects(b: Block[]) {
   const firstImg = b.findIndex(isImg);
   const head = b.slice(0, firstImg);
   const projects: Project[] = [];
@@ -486,6 +486,11 @@ function Portfolio({ s, tone }: { s: LegacySection; tone: Tone }) {
     } else if (isH(x) && cur) cur.meta.push(x);
     else tail.push(x);
   }
+  return { head, projects, tail };
+}
+
+function Portfolio({ s, tone }: { s: LegacySection; tone: Tone }) {
+  const { head, projects, tail } = parseProjects(s.blocks);
   const shots = projects.filter((p) => p.shot);
   const marks = projects.filter((p) => !p.shot);
   const featured = shots.slice(0, 6);

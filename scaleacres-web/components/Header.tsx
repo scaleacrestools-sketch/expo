@@ -29,7 +29,8 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const overHero = pathname === "/" && !scrolled;
+  // Pages that open on a full-screen video hero: the homepage and the Delhi city page (under review).
+  const overHero = (pathname === "/" || pathname.replace(/\/$/, "") === "/real-estate-marketing-delhi") && !scrolled;
   const solid = !overHero && !open;
 
   return (

@@ -121,6 +121,10 @@
   @keyframes vmarquee { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, -25%, 0); } }
   @media (prefers-reduced-motion: reduce) { .vmarquee__track { animation: none; } }
   @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  /* Delhi city page: scroll-linked reading highlight (final state without JS or with reduced motion) */
+  .scroll-words[data-ready] .sw { color: rgb(var(--ink-rgb) / 0.16); transition: color 0.35s ease; }
+  .scroll-words[data-ready] .sw[data-on] { color: rgb(var(--ink-rgb)); }
+  .scroll-words[data-ready] strong .sw[data-on] { color: rgb(var(--accent-rgb)); }
   @media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } }
 
   .dev-badge {
