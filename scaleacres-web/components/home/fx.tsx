@@ -61,7 +61,7 @@ export function MaskLines({
   const ref = useRef<HTMLHeadingElement>(null);
   useGsap(ref, ({ gsap, el }) => {
     const words = el.querySelectorAll<HTMLElement>(".mw > span");
-    gsap.fromTo(words, { yPercent: 112 }, { yPercent: 0, duration: 1.25, ease: "power4.out", stagger, scrollTrigger: { trigger: el, start, once: true } });
+    gsap.fromTo(words, { yPercent: 112, y: 0 }, { yPercent: 0, y: 0, duration: 1.25, ease: "power4.out", stagger, scrollTrigger: { trigger: el, start, once: true } });
   });
   return (
     <Tag ref={ref as never} id={id} className={className}>
