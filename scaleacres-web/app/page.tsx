@@ -6,7 +6,7 @@ import { MarketLeaders } from "@/components/home/MarketLeaders";
 import { WebsiteShowcase } from "@/components/home/WebsiteShowcase";
 import { VideoStudio } from "@/components/home/VideoStudio";
 import { ClientLogoShowcase } from "@/components/ClientLogoShowcase";
-import { HowWeWork2 } from "@/components/home/HowWeWork2";
+import { FeaturedWork } from "@/components/home/FeaturedWork";
 import { Testimonials } from "@/components/Testimonials";
 import { FinalCta } from "@/components/home/FinalCta";
 import { homepageSeo } from "@/content/seo/homepage";
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
  * The previous homepage (HeroVideo, EditorialIntro, ServicesShowcase, WorkShowcase, HowWeWork,
  * FAQ, ContactBanner) is untouched in /components and recoverable from git (commit fb724e0f).
  *
- * 01 Hero · 02 Who we are · 03 Our Services · 04 We Don't Create Brands · 05 Website Design ·
- * 06 Real Estate Videos · 07 Clients · 08 How we work · 09 Client stories · 10 Start a project ·
- * Footer (site-wide)
+ * 01 Hero · 02 Who we are · 03 Our Services · 04 Website Design · 05 Real Estate Videos ·
+ * 06 We Don't Create Brands · 07 Featured Work · 08 Clients · 09 Testimonials · 10 Contact CTA ·
+ * 11 Footer (site-wide)
  */
 export default function HomePage() {
   return (
@@ -34,13 +34,13 @@ export default function HomePage() {
       <HomeHero />
       <Manifesto />
       <ServicesStack />
-      <MarketLeaders />
       <WebsiteShowcase />
       <VideoStudio />
+      <MarketLeaders />
+      <FeaturedWork />
       <div className="hv2">
         <ClientLogoShowcase />
       </div>
-      <HowWeWork2 />
       <div className="hv2">
         <Testimonials />
       </div>

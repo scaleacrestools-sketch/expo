@@ -51,7 +51,7 @@ export function ServicesStack() {
               <MaskLines
                 id="services-title"
                 lines={[["Our"], ["Services"]]}
-                className="text-[clamp(4.25rem,17vw,8rem)] font-semibold leading-[0.84] tracking-[-0.06em] lg:text-[clamp(7rem,13.5vw,15.5rem)]"
+                className=" h-display"
                 lineClassName={["", "lg:pl-[8vw]"]}
               />
               <span aria-hidden="true" className="absolute -right-10 top-2 text-[clamp(1rem,1.6vw,1.75rem)] font-medium text-blue md:-right-16">(08)</span>
@@ -61,7 +61,7 @@ export function ServicesStack() {
             <p className="text-[clamp(1.125rem,1rem+0.5vw,1.5rem)] leading-[1.45] text-graphite">
               Everything your project needs to sell out: strategy, design, technology and performance under one roof.
             </p>
-            <Link href="/our-services/" className="link-u mt-8 inline-flex items-center gap-2 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-ink">
+            <Link href="/our-services/" className="link-u mt-8 inline-flex items-center gap-2 text-[0.9375rem] font-semibold uppercase tracking-[0.16em] text-ink">
               All services <Arrow className="h-3.5 w-3.5" />
             </Link>
           </div>
@@ -80,14 +80,14 @@ export function ServicesStack() {
               <div className="grid h-full lg:grid-cols-12">
                 {/* Copy */}
                 <div className="order-2 flex flex-col p-6 sm:p-8 lg:order-1 lg:col-span-5 lg:p-10 xl:p-12">
-                  <div className="flex items-center justify-between border-b border-white/15 pb-4 text-[0.75rem] font-semibold uppercase tracking-[0.2em]">
+                  <div className="flex items-center justify-between border-b border-white/15 pb-4 text-[0.875rem] font-semibold uppercase tracking-[0.2em]">
                     <span className="tabular-nums text-sky">{s.number} <span className="text-white/40">/ 08</span></span>
                     <span className="text-white/55">{s.shortTitle}</span>
                   </div>
                   <h3 className="mt-7 text-[clamp(2.1rem,1.2rem+3.4vw,4.4rem)] font-semibold leading-[0.95] tracking-[-0.045em]">{s.title}</h3>
                   <p className="mt-4 text-[clamp(1rem,0.9rem+0.35vw,1.2rem)] font-medium text-sky">{s.headline}</p>
-                  <p className="mt-4 max-w-[46ch] text-[0.98rem] leading-[1.65] text-grey-soft">{s.description}</p>
-                  <ul className="mt-6 grid grid-cols-2 text-[0.9rem] text-white/85 lg:mt-auto" role="list">
+                  <p className="mt-4 max-w-[46ch] text-[1.0625rem] leading-[1.65] text-grey-soft">{s.description}</p>
+                  <ul className="mt-6 grid grid-cols-2 text-[1.0625rem] text-white/85 lg:mt-auto" role="list">
                     {s.included.map((x) => (
                       <li key={x} className="flex items-center gap-2 border-t border-white/12 py-2.5 pr-2">
                         <span aria-hidden="true" className="text-blue">+</span>
@@ -97,7 +97,7 @@ export function ServicesStack() {
                   </ul>
                   <div className="mt-7">
                     <Magnetic strength={0.25}>
-                      <Link href={s.path} className="group inline-flex items-center gap-4 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-white">
+                      <Link href={s.path} className="group inline-flex items-center gap-4 text-[0.9375rem] font-semibold uppercase tracking-[0.16em] text-white">
                         <span className="grid h-12 w-12 place-items-center rounded-full border border-white/30 transition-[background-color,border-color,transform] duration-500 ease-out-expo group-hover:rotate-45 group-hover:border-blue group-hover:bg-blue">
                           <Arrow className="h-4 w-4" />
                         </span>
@@ -111,7 +111,7 @@ export function ServicesStack() {
                 <div className="order-1 p-2.5 lg:order-2 lg:col-span-7 lg:h-full lg:p-3">
                   <div data-media className="relative aspect-[4/3] h-full w-full overflow-hidden rounded-[18px] bg-ink-soft sm:aspect-[16/10] lg:aspect-auto">
                     <MediaView m={s.media} />
-                    <p className="absolute bottom-3 left-3 rounded-full bg-ink/70 px-3.5 py-1.5 text-[0.6875rem] font-medium tracking-[0.04em] text-white/85 backdrop-blur-md">{s.media.caption}</p>
+                    <p className="absolute bottom-3 left-3 rounded-full bg-ink/70 px-3.5 py-1.5 text-[0.8125rem] font-medium tracking-[0.04em] text-white/85 backdrop-blur-md">{s.media.caption}</p>
                   </div>
                 </div>
               </div>

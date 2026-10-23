@@ -16,7 +16,7 @@ export function HowWeWork2() {
               <MaskLines
                 id="process-title"
                 lines={[["How", "we"], ["work."]]}
-                className="text-[clamp(4rem,16vw,7.5rem)] font-semibold leading-[0.86] tracking-[-0.06em] lg:text-[clamp(6rem,11vw,12.5rem)]"
+                className=" h-display"
                 lineClassName={["", "lg:pl-[12vw]"]}
               />
               <span aria-hidden="true" className="absolute -right-10 top-2 text-[clamp(1rem,1.6vw,1.75rem)] font-medium text-sky md:-right-16">(04)</span>
@@ -30,7 +30,7 @@ export function HowWeWork2() {
         <ol className="mt-[clamp(3rem,6vw,6rem)] border-b border-white/15" role="list">
           {processSteps.map((s) => (
             <li key={s.number} className="hw-row group relative isolate grid gap-3 overflow-hidden border-t border-white/15 py-8 md:grid-cols-12 md:items-center md:gap-8 md:py-10">
-              <span className="text-[0.875rem] tabular-nums text-sky transition-colors duration-500 group-hover:text-white md:col-span-1">{s.number}</span>
+              <span className="text-[1rem] tabular-nums text-sky transition-colors duration-500 group-hover:text-white md:col-span-1">{s.number}</span>
               <h3 className="text-[clamp(2.5rem,1.4rem+4.6vw,6.25rem)] font-semibold leading-[0.95] tracking-[-0.05em] transition-transform duration-700 ease-out-expo group-hover:translate-x-4 md:col-span-6">
                 {s.title}
               </h3>

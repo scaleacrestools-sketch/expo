@@ -54,7 +54,7 @@ export function MarketLeaders() {
           id="leaders-title"
           lines={[["We", "Don't", "Create", "Brands."], ["We", "Create", "Market", "Leaders."]]}
           accent={["Leaders."]}
-          className="mt-8 text-[clamp(3rem,13vw,6rem)] font-semibold leading-[0.9] tracking-[-0.055em] md:text-[clamp(4rem,8.6vw,12rem)]"
+          className="mt-8 h-display"
           lineClassName={["", "md:pl-[10vw]"]}
           stagger={0.07}
         />
@@ -82,7 +82,7 @@ export function MarketLeaders() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={b.src} alt={`${b.title} — ${b.client}`} width={b.w} height={b.h} loading="lazy" decoding="async" className="absolute inset-y-0 left-[-8%] h-full w-[116%] max-w-none object-cover" />
                 </div>
-                <figcaption className="mt-4 flex items-baseline gap-4 text-[0.875rem]">
+                <figcaption className="mt-4 flex items-baseline gap-4 text-[1rem]">
                   <span className="tabular-nums text-blue">{String(i + 1).padStart(2, "0")}</span>
                   <span className="font-semibold text-white">{b.title}</span>
                   <span className="text-white/50">{b.client}</span>
@@ -92,7 +92,7 @@ export function MarketLeaders() {
           })}
         </div>
 
-        <div className="container-x mx-auto mt-10 hidden w-full max-w-[120rem] items-center gap-6 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-white/55 lg:flex">
+        <div className="container-x mx-auto mt-10 hidden w-full max-w-[120rem] items-center gap-6 text-[0.875rem] font-semibold uppercase tracking-[0.2em] text-white/55 lg:flex">
           <span><span data-count className="tabular-nums text-white">01</span> / {String(brandWork.length).padStart(2, "0")}</span>
           <span className="relative h-px flex-1 bg-white/15">
             <span data-bar className="absolute inset-0 origin-left scale-x-0 bg-blue" />

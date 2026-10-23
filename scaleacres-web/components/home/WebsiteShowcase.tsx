@@ -64,7 +64,7 @@ export function WebsiteShowcase() {
               id="websites-title"
               lines={[["Website"], ["Design."]]}
               accent={["Design."]}
-              className="mt-6 text-[clamp(4rem,16vw,7.5rem)] font-semibold leading-[0.84] tracking-[-0.06em] lg:text-[clamp(6.5rem,12.5vw,14.5rem)]"
+              className="mt-6 h-display"
               lineClassName={["", "lg:pl-[14vw]"]}
             />
           </div>
@@ -87,10 +87,10 @@ export function WebsiteShowcase() {
                     className={`group relative w-full whitespace-nowrap rounded-full border px-5 py-2.5 text-left transition-colors duration-300 lg:whitespace-normal lg:rounded-none lg:border-0 lg:px-0 lg:py-5 ${on ? "border-ink bg-ink text-white lg:bg-transparent lg:text-ink" : "border-ink/15 text-steel hover:text-ink"}`}
                   >
                     <span className="flex items-baseline gap-4">
-                      <span className={`hidden text-[0.8125rem] tabular-nums lg:inline ${on ? "text-blue" : ""}`}>{String(i + 1).padStart(2, "0")}</span>
-                      <span className="text-[0.9375rem] font-semibold transition-transform duration-500 ease-out-expo lg:text-[clamp(1.5rem,1rem+1.1vw,2.25rem)] lg:tracking-[-0.03em] lg:group-hover:translate-x-2">{w.name}</span>
+                      <span className={`hidden text-[0.9375rem] tabular-nums lg:inline ${on ? "text-blue" : ""}`}>{String(i + 1).padStart(2, "0")}</span>
+                      <span className="text-[1.0625rem] font-semibold transition-transform duration-500 ease-out-expo lg:text-[clamp(1.5rem,1rem+1.1vw,2.25rem)] lg:tracking-[-0.03em] lg:group-hover:translate-x-2">{w.name}</span>
                     </span>
-                    <span className={`ml-[2.4rem] mt-1 hidden text-[0.875rem] lg:block ${on ? "text-graphite" : "text-steel/80"}`}>{w.note}</span>
+                    <span className={`ml-[2.4rem] mt-1 hidden text-[1rem] lg:block ${on ? "text-graphite" : "text-steel/80"}`}>{w.note}</span>
                     {/* progress */}
                     <span aria-hidden="true" className="absolute inset-x-0 bottom-0 hidden h-[2px] overflow-hidden lg:block">
                       {on ? <span key={`${active}-${auto}`} className={`block h-full origin-left bg-blue ${auto ? "ws-progress" : ""}`} style={{ animationDuration: `${AUTOPLAY_MS}ms` }} /> : null}
@@ -107,7 +107,7 @@ export function WebsiteShowcase() {
               <div className="overflow-hidden rounded-[18px] bg-white shadow-[0_60px_120px_-50px_rgba(11,22,64,0.55)] ring-1 ring-ink/8">
                 <div className="flex h-10 items-center gap-3 border-b border-line px-4">
                   <span className="flex gap-1.5">{[0, 1, 2].map((d) => <span key={d} className="h-2.5 w-2.5 rounded-full bg-line" />)}</span>
-                  <span className="mx-auto flex h-6 min-w-0 max-w-[60%] flex-1 items-center justify-center truncate rounded-full bg-mist px-4 text-[0.6875rem] font-medium text-steel">{p.name}</span>
+                  <span className="mx-auto flex h-6 min-w-0 max-w-[60%] flex-1 items-center justify-center truncate rounded-full bg-mist px-4 text-[0.8125rem] font-medium text-steel">{p.name}</span>
                   <span className="w-10" />
                 </div>
                 <div className="relative w-full overflow-hidden bg-white" style={{ aspectRatio: "16 / 10" }}>
@@ -139,22 +139,22 @@ export function WebsiteShowcase() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img key={p.name} src={p.screenshot} alt="" loading="lazy" decoding="async" className="ws-mini absolute inset-x-0 top-0 block w-full" style={{ ["--mtravel" as string]: `-${Math.max(0, (1 - 17 / 9 / (p.h / p.w)) * 100).toFixed(1)}%` }} />
                 </div>
-                <p className="px-1 pb-0.5 pt-1.5 text-center text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-steel">Full page</p>
+                <p className="px-1 pb-0.5 pt-1.5 text-center text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-steel">Full page</p>
               </div>
             </div>
 
             <div className="mt-10 flex flex-wrap items-end justify-between gap-6 border-t border-ink/12 pt-6 xl:mr-[22%]">
               <div aria-live="polite">
                 <p className="text-[clamp(1.5rem,1.1rem+1.2vw,2.25rem)] font-semibold tracking-[-0.03em]">{p.name}</p>
-                <p className="mt-1 text-[0.9375rem] text-graphite">{p.note}</p>
+                <p className="mt-1 text-[1.0625rem] text-graphite">{p.note}</p>
               </div>
               <ul className="flex flex-wrap gap-2" role="list">
                 {p.meta.map((m) => (
-                  <li key={m} className="rounded-full border border-ink/15 px-3.5 py-1.5 text-[0.75rem] font-medium text-graphite">{m}</li>
+                  <li key={m} className="rounded-full border border-ink/15 px-3.5 py-1.5 text-[0.875rem] font-medium text-graphite">{m}</li>
                 ))}
               </ul>
             </div>
-            <Link href="/our-work/" className="link-u mt-8 inline-flex items-center gap-2 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-ink">
+            <Link href="/our-work/" className="link-u mt-8 inline-flex items-center gap-2 text-[0.9375rem] font-semibold uppercase tracking-[0.16em] text-ink">
               See more of our work <Arrow className="h-3.5 w-3.5" />
             </Link>
           </div>

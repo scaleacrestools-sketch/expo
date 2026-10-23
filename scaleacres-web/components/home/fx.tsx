@@ -119,8 +119,8 @@ export function InViewVideo({ src, poster, className = "", style, label }: { src
 /** Small "° Label" kicker used across the homepage (Arpeggio-style degree mark in Royal). */
 export function Kicker({ children, tone = "dark", className = "" }: { children: ReactNode; tone?: "dark" | "light"; className?: string }) {
   return (
-    <p className={`flex items-center gap-2 text-[0.75rem] font-semibold uppercase tracking-[0.22em] ${tone === "dark" ? "text-white/70" : "text-steel"} ${className}`}>
-      <span aria-hidden="true" className="relative -top-[0.35em] text-[0.9rem] leading-none text-blue">°</span>
+    <p className={`flex items-center gap-2 text-[0.875rem] font-semibold uppercase tracking-[0.18em] ${tone === "dark" ? "text-white/80" : "text-graphite"} ${className}`}>
+      <span aria-hidden="true" className="relative -top-[0.35em] text-[1.0625rem] leading-none text-blue">°</span>
       {children}
     </p>
   );

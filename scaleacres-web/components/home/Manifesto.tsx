@@ -83,12 +83,12 @@ export function Manifesto() {
           <p className="text-[clamp(1.5rem,1.1rem+1.6vw,2.75rem)] font-medium leading-[1.18] tracking-[-0.02em] text-white">
             {site.description}
           </p>
-          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-4 text-[0.8125rem] font-semibold uppercase tracking-[0.16em]">
+          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-4 text-[0.9375rem] font-semibold uppercase tracking-[0.16em]">
             <Link href="/about-us/" className="link-u inline-flex items-center gap-2 text-white">About ScaleAcres <Arrow className="h-3.5 w-3.5" /></Link>
             <Link href="/our-team/" className="link-u inline-flex items-center gap-2 text-white/70 hover:text-white">Meet the team <Arrow className="h-3.5 w-3.5" /></Link>
           </div>
         </div>
-        <dl className="grid grid-cols-2 gap-6 self-end text-[0.8125rem] lg:col-span-3 lg:grid-cols-1">
+        <dl className="grid grid-cols-2 gap-6 self-end text-[0.9375rem] lg:col-span-3 lg:grid-cols-1">
           <div className="border-t border-white/15 pt-4">
             <dt className="uppercase tracking-[0.18em] text-white/50">Studios</dt>
             <dd className="mt-2 text-lg font-medium text-white">{site.offices.join(" · ")}</dd>
