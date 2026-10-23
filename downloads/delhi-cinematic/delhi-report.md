@@ -126,6 +126,15 @@ The page was inspected in a real browser: it was loaded and recorded across 34 s
 - They use final-state rendering, so every section is drawn complete.
 - A motion recording was reviewed: the hero film plays, the intro text brightens, the film opens through "DELHI NCR", and the panels expand on hover.
 - The "before" image is the originally rejected Delhi design, also captured with real images.
+- Page length, with the same content on both:
+
+| Version | Desktop (1440 px wide) | Mobile (390 px wide) |
+|---|---|---|
+| Before | 63,401 px | 77,159 px |
+| After | 29,876 px | 31,820 px |
+
+  The page is less than half as long. Nothing was removed: the giant stacked logos are gone, and the gallery and screenshots are curated into rails.
+- Files: `delhi-desktop-full-page.jpg` (scaled to 1,080 px wide), `delhi-mobile-full-page.jpg`, `before-after-desktop.jpg` and `before-after-mobile.jpg` (the opening screens side by side). All four are also in `delhi-full-page-screenshots.zip`.
 
 ## Media notes
 
