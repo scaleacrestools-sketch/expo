@@ -28,8 +28,9 @@ export const posters = {
 /* ---------------------------------------------------------------- Hero */
 
 export const hero = {
-  lines: [["Built", "to"], ["Stand", "Out."], ["Designed"], ["to", "Scale."]] as string[][],
-  accentWord: "Scale.",
+  lines: [["Built", "to"], ["Stand", "Out."], ["Designed"], ["to", "Scale"]] as string[][],
+  /** Sky highlight; its full stop is set in Royal Blue right after it. */
+  accentWord: "Scale",
   support: "A real estate marketing and creative growth agency combining strategy, design, technology and performance.",
   /** Clips that play in the hero, in order. */
   reel: ["architecture", "brand", "web", "production", "finale"].map((id) => {

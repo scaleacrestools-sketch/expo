@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { Fragment, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { hero, posters } from "@/content/home";
 import { Arrow } from "@/components/ui/Arrow";
 import { Magnetic } from "@/components/home/fx";
@@ -83,6 +83,8 @@ export function HomeHero() {
     );
   };
 
+  const group = (ws: string[]) => ws.map((t, i) => <Fragment key={t + i}>{word(t)}{i < ws.length - 1 ? " " : null}</Fragment>);
+
   return (
     <section className="relative isolate h-[100svh] min-h-[40rem] overflow-hidden bg-ink text-white" aria-labelledby="home-hero-title">
       {/* Film */}
@@ -133,16 +135,16 @@ export function HomeHero() {
         {/* Headline */}
         <h1 id="home-hero-title" className="mt-auto text-[clamp(3.6rem,15.5vw,7rem)] font-semibold uppercase leading-[0.86] tracking-[-0.055em] md:text-[clamp(4.5rem,9.4vw,13rem)] md:normal-case md:tracking-[-0.06em]">
           <span className="block">
-            <span className="block md:inline">{hero.lines[0].map(word)}</span>
+            <span className="block md:inline">{group(hero.lines[0])}</span>
             <span className="hidden md:inline"> </span>
-            <span className="block md:inline">{hero.lines[1].map(word)}</span>
+            <span className="block md:inline">{group(hero.lines[1])}</span>
           </span>
           <span className="block md:pl-[16vw]">
-            <span className="block md:inline">{hero.lines[2].map(word)}</span>
+            <span className="block md:inline">{group(hero.lines[2])}</span>
             <span className="hidden md:inline"> </span>
             <span className="block md:inline">
-              {hero.lines[3].map(word)}
-              <span aria-hidden="true" className="hh-fade ml-[0.08em] inline-block h-[0.14em] w-[0.14em] translate-y-[-0.08em] rounded-full bg-blue align-baseline" style={{ animationDelay: "1250ms" }} />
+              {group(hero.lines[3])}
+              <span className="hh-fade text-blue" style={{ animationDelay: "1150ms" }}>.</span>
             </span>
           </span>
         </h1>

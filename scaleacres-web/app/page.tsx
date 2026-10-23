@@ -37,9 +37,13 @@ export default function HomePage() {
       <MarketLeaders />
       <WebsiteShowcase />
       <VideoStudio />
-      <ClientLogoShowcase />
+      <div className="hv2">
+        <ClientLogoShowcase />
+      </div>
       <HowWeWork2 />
-      <Testimonials />
+      <div className="hv2">
+        <Testimonials />
+      </div>
       <FinalCta />
     </>
   );

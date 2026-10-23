@@ -219,3 +219,6 @@
 .js .mask-word { transform: translateY(112%); }
 .reduced-motion .mask-word { transform: none !important; }
 @media (prefers-reduced-motion: reduce) { .js .mask-word { transform: none !important; } }
+/* Reused sections on the v2 homepage take its editorial type (scoped; other pages unchanged). */
+.hv2 .h2 { font-size: clamp(3rem, 1rem + 6.4vw, 8.5rem); font-weight: 600; line-height: 0.9; letter-spacing: -0.055em; text-transform: none; }
+.hv2 .eyebrow { letter-spacing: 0.22em; font-size: 0.75rem; }
