@@ -30,7 +30,7 @@ export function MarketLeaders() {
           start: "top top",
           end: () => `+=${distance()}`,
           pin: true,
-          scrub: 1,
+          scrub: 0.4,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             if (bar) bar.style.transform = `scaleX(${self.progress})`;
@@ -39,7 +39,7 @@ export function MarketLeaders() {
         },
       });
       track.querySelectorAll<HTMLElement>("[data-frame]").forEach((f) => {
-        gsap.fromTo(f, { clipPath: "inset(10% 0% 10% 18% round 20px)" }, { clipPath: "inset(0% 0% 0% 0% round 20px)", ease: "none", scrollTrigger: { trigger: f, containerAnimation: tween, start: "left 105%", end: "left 45%", scrub: true } });
+        gsap.fromTo(f, { clipPath: "inset(10% 0% 10% 18% round 20px)" }, { clipPath: "inset(0% 0% 0% 0% round 20px)", ease: "none", scrollTrigger: { trigger: f, containerAnimation: tween, start: "left 105%", end: "left 65%", scrub: 0.3 } });
         const img = f.querySelector("img");
         if (img) gsap.fromTo(img, { xPercent: -5 }, { xPercent: 5, ease: "none", scrollTrigger: { trigger: f, containerAnimation: tween, start: "left right", end: "right left", scrub: true } });
       });
@@ -56,7 +56,7 @@ export function MarketLeaders() {
           accent={["Leaders."]}
           className="mt-8 h-display"
           lineClassName={["", "md:pl-[10vw]"]}
-          stagger={0.07}
+          stagger={0.045}
         />
         <div className="mt-12 grid gap-8 md:mt-16 lg:grid-cols-12">
           <p

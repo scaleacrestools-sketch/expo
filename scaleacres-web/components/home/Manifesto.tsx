@@ -29,18 +29,18 @@ export function Manifesto() {
     const stage = el.querySelector<HTMLElement>("[data-stage]");
     const items = el.querySelectorAll<HTMLElement>("[data-drift]");
     if (!stage) return;
-    const st = { trigger: stage, start: "top top", end: "bottom bottom", scrub: 1.2 };
+    const st = { trigger: stage, start: "top top", end: "bottom bottom", scrub: 0.5 };
     items.forEach((it) => {
       const s = Number(it.dataset.drift);
-      gsap.fromTo(it, { y: "20vh" }, { y: `${-230 * s}vh`, ease: "none", scrollTrigger: st });
+      gsap.fromTo(it, { y: "20vh" }, { y: `${-180 * s}vh`, ease: "none", scrollTrigger: st });
     });
-    gsap.fromTo(el.querySelectorAll("[data-line]"), { yPercent: 110 }, { yPercent: 0, duration: 1.3, stagger: 0.09, ease: "power4.out", scrollTrigger: { trigger: stage, start: "top 70%", once: true } });
+    gsap.fromTo(el.querySelectorAll("[data-line]"), { yPercent: 110 }, { yPercent: 0, duration: 0.8, stagger: 0.06, ease: "power4.out", scrollTrigger: { trigger: stage, start: "top 80%", once: true } });
     gsap.fromTo(el.querySelector("[data-statement]"), { scale: 1.06 }, { scale: 0.94, ease: "none", scrollTrigger: st });
   });
 
   return (
     <section ref={ref} id="manifesto" className="relative bg-ink text-white" aria-labelledby="manifesto-title">
-      <div data-stage className="relative h-[200svh] md:h-[270svh] [.reduced-motion_&]:h-auto">
+      <div data-stage className="relative h-[160svh] md:h-[200svh] [.reduced-motion_&]:h-auto">
         <div className="sticky top-0 flex h-[100svh] items-center justify-center overflow-hidden [.reduced-motion_&]:relative [.reduced-motion_&]:h-auto [.reduced-motion_&]:py-32">
           {/* Drifting layer */}
           <div aria-hidden="true" className="absolute inset-0 [.reduced-motion_&]:hidden">

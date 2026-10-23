@@ -214,13 +214,27 @@
 /* Text link with an underline that draws in from the left on hover. */
 .link-u { position: relative; display: inline-flex; padding-bottom: 0.2em; }
 .link-u::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; transform: scaleX(0.35); transform-origin: left; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.nav-u::after { transform: scaleX(0); }
 .link-u:hover::after, .link-u:focus-visible::after { transform: scaleX(1); }
 /* Masked display words start below their mask until GSAP lifts them; final state without JS / reduced motion. */
 .js .mask-word { transform: translateY(112%); }
 .reduced-motion .mask-word { transform: none !important; }
 @media (prefers-reduced-motion: reduce) { .js .mask-word { transform: none !important; } }
 /* Reused sections on the v2 homepage take its editorial type (scoped; other pages unchanged). */
-.hv2 .h2 { font-size: clamp(3rem, 1rem + 6.4vw, 8.5rem); font-weight: 600; line-height: 0.9; letter-spacing: -0.055em; text-transform: none; }
-.hv2 .eyebrow { letter-spacing: 0.22em; font-size: 0.75rem; }
-/* One display scale for every homepage section title. */
-.h-display { font-size: clamp(3rem, 1rem + 6.4vw, 8.75rem); font-weight: 600; line-height: 0.92; letter-spacing: -0.05em; }
+.hv2 .h2 { font-size: clamp(2.6rem, 0.9rem + 6vw, 8rem); font-weight: 700; line-height: 0.95; letter-spacing: -0.045em; text-transform: none; }
+.hv2 .eyebrow { letter-spacing: 0.2em; font-size: 0.875rem; }
+/* One display scale for every homepage section title: bold, editorial, fluid. */
+.h-display { font-size: clamp(2.6rem, 0.9rem + 6vw, 8rem); font-weight: 700; line-height: 0.95; letter-spacing: -0.045em; text-wrap: balance; }
+
+/* Homepage: neutrals are tints of the brand palette (Royal Navy / Brand Black / Mist), never off-brand greys. */
+.home-v2 {
+  --color-graphite: color-mix(in srgb, #0b1640 86%, #ffffff);
+  --color-steel: color-mix(in srgb, #0b1640 68%, #ffffff);
+  --color-grey: color-mix(in srgb, #ffffff 72%, #0b1640);
+  --color-grey-soft: color-mix(in srgb, #ffffff 82%, #0b1640);
+  --color-line: color-mix(in srgb, #0b1640 12%, #eef2fb);
+  --color-ink-soft: color-mix(in srgb, #0b0d0d 84%, #0b1640);
+}
+/* Homepage minimum text sizes for shared components (logo wall, testimonials). */
+.home-v2 .hv2 [class*="text-[0.6875rem]"], .home-v2 .hv2 [class*="text-[0.75rem]"] { font-size: 0.875rem; }
+.home-v2 .hv2 [class*="text-[0.8125rem]"] { font-size: 0.9375rem; }

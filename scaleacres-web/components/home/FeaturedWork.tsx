@@ -19,9 +19,9 @@ export function FeaturedWork() {
   const ref = useRef<HTMLElement>(null);
   useGsap(ref, ({ gsap, el }) => {
     el.querySelectorAll<HTMLElement>("[data-tile]").forEach((t) => {
-      gsap.fromTo(t, { clipPath: "inset(10% 6% 10% 6% round 24px)" }, { clipPath: "inset(0% 0% 0% 0% round 18px)", ease: "none", scrollTrigger: { trigger: t, start: "top bottom", end: "top 45%", scrub: true } });
+      gsap.fromTo(t, { clipPath: "inset(10% 6% 10% 6% round 24px)" }, { clipPath: "inset(0% 0% 0% 0% round 18px)", ease: "none", scrollTrigger: { trigger: t, start: "top bottom", end: "top 65%", scrub: 0.3 } });
       const img = t.querySelector("img");
-      if (img) gsap.fromTo(img, { scale: 1.18 }, { scale: 1, ease: "none", scrollTrigger: { trigger: t, start: "top bottom", end: "bottom top", scrub: true } });
+      if (img) gsap.fromTo(img, { scale: 1.12 }, { scale: 1, ease: "none", scrollTrigger: { trigger: t, start: "top bottom", end: "top 30%", scrub: 0.3 } });
     });
   });
 
@@ -52,11 +52,11 @@ export function FeaturedWork() {
                 <figure className="group m-0">
                   <div data-tile className={`relative overflow-hidden rounded-[18px] bg-white ${portrait ? "aspect-[4/5]" : "aspect-[16/9]"} lg:h-[min(36rem,62vh)] lg:aspect-auto`}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={w.src} alt={w.alt} width={w.w} height={w.h} loading="lazy" decoding="async" className={`absolute inset-0 h-full w-full transition-[filter] duration-700 ${portrait ? "object-cover object-top" : "object-cover"} group-hover:[filter:brightness(1.04)]`} />
+                    <img src={w.src} alt={w.alt} width={w.w} height={w.h} loading="lazy" decoding="async" className={`absolute inset-0 h-full w-full transition-[filter,transform] duration-500 ease-out-expo ${portrait ? "object-cover object-top" : "object-cover"} group-hover:[filter:brightness(1.05)]`} />
                   </div>
                   <figcaption className="mt-5 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
                     <span>
-                      <span className="block text-[clamp(1.375rem,1.1rem+0.7vw,1.875rem)] font-semibold tracking-[-0.025em] transition-transform duration-500 ease-out-expo group-hover:translate-x-1">{w.client}</span>
+                      <span className="block text-[clamp(1.375rem,1.1rem+0.7vw,1.875rem)] font-semibold tracking-[-0.025em] transition-transform duration-300 ease-out-expo group-hover:translate-x-1">{w.client}</span>
                       <span className="mt-1 block text-[1.0625rem] text-steel">{w.project}</span>
                     </span>
                     <span className="flex flex-wrap gap-2">

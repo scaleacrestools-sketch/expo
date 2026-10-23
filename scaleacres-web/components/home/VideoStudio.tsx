@@ -29,7 +29,7 @@ export function VideoStudio() {
 
   useGsap(ref, ({ gsap, el }) => {
     el.querySelectorAll<HTMLElement>("[data-feature]").forEach((f, i) => {
-      gsap.fromTo(f, { clipPath: "inset(12% 8% 12% 8% round 28px)", y: 60 + i * 40 }, { clipPath: "inset(0% 0% 0% 0% round 22px)", y: 0, ease: "none", scrollTrigger: { trigger: f, start: "top bottom", end: "top 35%", scrub: true } });
+      gsap.fromTo(f, { clipPath: "inset(12% 8% 12% 8% round 28px)", y: 40 + i * 24 }, { clipPath: "inset(0% 0% 0% 0% round 22px)", y: 0, ease: "none", scrollTrigger: { trigger: f, start: "top bottom", end: "top 60%", scrub: 0.3 } });
     });
   });
 
@@ -62,7 +62,7 @@ export function VideoStudio() {
               <button type="button" onClick={() => setShort(f.id)} className="group block w-full text-left" aria-label={`Play ${f.category}`}>
                 <span data-feature className="relative block aspect-[4/5] overflow-hidden rounded-[22px] bg-ink-soft sm:aspect-[9/14]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/images/home/work/yt-${f.id}.jpg`} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-out-expo group-hover:scale-[1.06]" />
+                  <img src={`/images/home/work/yt-${f.id}.jpg`} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.06]" />
                   <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(var(--ink-rgb)/0.35)_0%,transparent_30%,transparent_55%,rgb(var(--ink-rgb)/0.85)_100%)]" />
                   <span className="absolute left-5 top-5 rounded-full bg-ink/70 px-3.5 py-1.5 text-[0.875rem] font-semibold text-white backdrop-blur-md">{f.category}</span>
                   <span aria-hidden="true" className="absolute bottom-5 left-5 grid h-16 w-16 place-items-center rounded-full bg-white text-ink transition-[transform,background-color,color] duration-500 ease-out-expo group-hover:scale-110 group-hover:bg-blue group-hover:text-white">
@@ -118,13 +118,13 @@ function Rail({ tab, onPlay }: { tab: VideoTab; onPlay: (id: string) => void }) 
     <div className="relative mt-10">
       <ul ref={rail} id="video-rail" role="tabpanel" aria-label={tab.label} className="-mx-[var(--gutter)] flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--gutter)] pb-2 [scrollbar-width:none] md:gap-5">
         {tab.shorts.map((s, i) => (
-          <li key={s.id} className="vs-card shrink-0 snap-start" style={{ animationDelay: `${i * 70}ms` }}>
+          <li key={s.id} className="vs-card shrink-0 snap-start" style={{ animationDelay: `${i * 35}ms` }}>
             <button type="button" onClick={() => onPlay(s.id)} className="group relative block w-[64vw] overflow-hidden rounded-[18px] bg-ink-soft text-left sm:w-[15rem] lg:w-[16.5rem]" aria-label={`Play ${tab.label.replace(/s$/, "")} ${i + 1}`}>
               <span className="relative block aspect-[9/16]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={s.poster} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out-expo group-hover:scale-[1.07]" />
+                <img src={s.poster} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.07]" />
                 <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,rgb(var(--ink-rgb)/0.85))] opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
-                <span aria-hidden="true" className="absolute left-4 top-4 rounded-full bg-ink/60 px-2.5 py-1 text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-white/85 backdrop-blur">{String(i + 1).padStart(2, "0")}</span>
+                <span aria-hidden="true" className="absolute left-4 top-4 rounded-full bg-ink/60 px-2.5 py-1 text-[0.8125rem] font-semibold tabular-nums tracking-[0.08em] text-white backdrop-blur">{String(i + 1).padStart(2, "0")}</span>
                 <span aria-hidden="true" className="absolute bottom-4 left-4 grid h-12 w-12 place-items-center rounded-full bg-white/90 text-ink transition-[transform,background-color,color] duration-500 ease-out-expo group-hover:scale-110 group-hover:bg-blue group-hover:text-white">
                   <svg viewBox="0 0 24 24" className="h-5 w-5 translate-x-[1px] fill-current"><path d="M7 4.5v15l13-7.5z" /></svg>
                 </span>
@@ -144,8 +144,8 @@ function Rail({ tab, onPlay }: { tab: VideoTab; onPlay: (id: string) => void }) 
         </div>
       </div>
       <style>{`
-        .js .vs-card { animation: vs-in 0.9s cubic-bezier(0.16,1,0.3,1) both; }
-        @keyframes vs-in { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+        .js .vs-card { animation: vs-in 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+        @keyframes vs-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
         @media (prefers-reduced-motion: reduce) { .js .vs-card { animation: none; } }
       `}</style>
     </div>

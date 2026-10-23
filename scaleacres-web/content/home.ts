@@ -14,11 +14,13 @@ const work = (name: string) => `/images/home/work/${name}.jpg`;
 
 /* ---------------------------------------------------------------- Hero */
 
-const HERO_FILM = {
-  dw: "/videos/hero-film-desktop.webm",
-  dm: "/videos/hero-film-desktop.mp4",
-  mw: "/videos/hero-film-mobile.webm",
-  mm: "/videos/hero-film-mobile.mp4",
+export type HeroScene = {
+  /** Display line that changes with the visual. */
+  line: string;
+  /** Small label naming the work shown (always a real ScaleAcres project). */
+  label: string;
+  kind: "browser" | "card" | "fan" | "stack";
+  items: { src: string; alt: string; w: number; h: number }[];
 };
 
 export const hero = {
@@ -30,24 +32,55 @@ export const hero = {
   tagline: ["The Real Estate", "Growth Agency—"],
   /** Brand word at the foot of the hero. */
   word: "ScaleAcres",
+  /** Atmospheric backdrop: a monochrome frame from the ScaleAcres "Light sweep" concept film (not client work). */
+  image: { landscape: "/images/home/hero-light.jpg", portrait: "/images/home/hero-light-portrait.jpg", w: 1920, h: 1080, pw: 900, ph: 1600 },
   /**
-   * Hero film v2: a 16.3 s loop edited from genuine ScaleAcres work (scaleacres.com) and two
-   * ScaleAcres concept films. WebM (VP9) first, MP4 (H.264) fallback, both bundled locally.
-   * Posters are the opening frame.
+   * Work showcase: genuine ScaleAcres projects that open beside the headline, each paired with
+   * its own display line. Live-site captures were taken from the client websites in Oct 2026.
    */
-  film: {
-    landscape: { webm: HERO_FILM.dw, mp4: HERO_FILM.dm, poster: "/images/home/hero-film-poster.jpg" },
-    portrait: { webm: HERO_FILM.mw, mp4: HERO_FILM.mm, poster: "/images/home/hero-film-poster-portrait.jpg" },
-  },
-  /** Scene chapters, synced to the film (seconds). Concept scenes are labelled as such. */
-  chapters: [
-    { at: 0, label: "Real estate", note: "ScaleAcres concept film" },
-    { at: 2.67, label: "Branding · SID Realtech", note: "Ellington 86 brochure, guideline and hoarding" },
-    { at: 5.33, label: "Website design", note: "SID Realtech, Subata Realty, Imperial Sky Realty" },
-    { at: 8.17, label: "Social media", note: "JBBR Group, SID Realtech, Intech Developers, TRG" },
-    { at: 10.63, label: "Performance marketing", note: "Live Meta, Google and SEO results" },
-    { at: 13.29, label: "Video production", note: "ScaleAcres concept film" },
-  ],
+  scenes: [
+    {
+      line: "Websites that sell.",
+      label: "Website design · SID Realtech",
+      kind: "browser",
+      items: [{ src: "/images/home/hero/sid-site.webp", alt: "SID Realtech website designed and developed by ScaleAcres", w: 1100, h: 688 }],
+    },
+    {
+      line: "Brands people remember.",
+      label: "Brand identity · SID Realtech",
+      kind: "card",
+      items: [{ src: "/images/home/hero/sid-brand.webp", alt: "SID Realtech brand style guideline by ScaleAcres", w: 924, h: 522 }],
+    },
+    {
+      line: "Content that connects.",
+      label: "Social media · JBBR Group, SID Realtech, TRG",
+      kind: "fan",
+      items: [
+        { src: "/images/home/hero/social-jbbr.webp", alt: "JBBR Group social creative", w: 440, h: 550 },
+        { src: "/images/home/hero/social-sid.webp", alt: "SID Realtech Ellington 86 launch creative", w: 440, h: 550 },
+        { src: "/images/home/hero/social-trg.webp", alt: "TRG The Mall campaign creative", w: 440, h: 550 },
+      ],
+    },
+    {
+      line: "Campaigns that perform.",
+      label: "Performance marketing · Meta and Google Ads results",
+      kind: "stack",
+      items: [
+        { src: "/images/home/hero/results-google.webp", alt: "Google Ads results from a ScaleAcres campaign", w: 820, h: 470 },
+        { src: "/images/home/hero/results-meta.webp", alt: "Meta Ads results from ScaleAcres real estate campaigns", w: 900, h: 515 },
+      ],
+    },
+    {
+      line: "Films that move buyers.",
+      label: "Video production · ScaleAcres ad films",
+      kind: "fan",
+      items: [
+        { src: "/images/home/hero/film-1.webp", alt: "ScaleAcres ad film cover", w: 360, h: 640 },
+        { src: "/images/home/hero/film-2.webp", alt: "ScaleAcres ad film cover", w: 360, h: 640 },
+        { src: "/images/home/hero/film-3.webp", alt: "ScaleAcres ad film cover", w: 360, h: 640 },
+      ],
+    },
+  ] satisfies HeroScene[],
 };
 
 /* ---------------------------------------------------------------- Manifesto collage */
@@ -68,42 +101,48 @@ export const collage: CollageItem[] = [
 
 export type ServiceMedia =
   | { kind: "image"; src: string; alt: string; fit?: "cover" | "top"; caption: string }
-  | { kind: "video"; src: string; poster: string; caption: string }
-  | { kind: "posters"; items: { src: string; alt: string }[]; caption: string }
-  | { kind: "screens"; items: { src: string; alt: string }[]; caption: string };
+  /** A live website on desktop and phone (first-screen captures of the real site). */
+  | { kind: "devices"; desktop: string; mobile: string; alt: string; caption: string }
+  /** A campaign results screenshot beside a campaign creative. */
+  | { kind: "pair"; wide: { src: string; alt: string }; tall: { src: string; alt: string }; caption: string }
+  | { kind: "posters"; items: { src: string; alt: string; tag?: string }[]; caption: string };
 
+const live = (name: string) => `/images/home/live/live-${name}.jpg`;
+
+/**
+ * Each service shows its own genuine work. Gaps (no authentic asset yet): CRM / dashboard
+ * screens for Custom Applications, and ad-platform creative previews for Performance.
+ */
 const serviceMedia: Record<string, ServiceMedia> = {
-  "website-design-development": { kind: "image", src: work("slide-8"), alt: "Ellington 86 website designed by ScaleAcres", caption: "Ellington 86 · website for SID Realtech" },
-  "search-engine-optimization": { kind: "image", src: work("result-seo"), alt: "Search results and rankings from ScaleAcres SEO campaigns", caption: "Search rankings from live ScaleAcres campaigns" },
-  "performance-marketing": { kind: "image", src: work("result-meta"), alt: "Meta Ads campaign results from ScaleAcres real estate campaigns", caption: "Meta Ads results · live ScaleAcres campaigns" },
-  "branding-creative-design": { kind: "image", src: work("slide-2"), alt: "SID Realtech brand style guideline", caption: "SID Realtech · brand identity system" },
+  "website-design-development": { kind: "devices", desktop: live("subata"), mobile: live("subata-m"), alt: "Subata Realty website on desktop and mobile, designed and developed by ScaleAcres", caption: "Subata Realty · desktop and mobile website" },
+  "search-engine-optimization": { kind: "image", src: work("result-seo"), alt: "Search rankings and traffic from ScaleAcres SEO campaigns", fit: "top", caption: "Search rankings from live ScaleAcres SEO campaigns" },
+  "performance-marketing": {
+    kind: "pair",
+    wide: { src: work("result-meta"), alt: "Meta Ads results from ScaleAcres real estate campaigns" },
+    tall: { src: work("creative-trg"), alt: "TRG The Mall lead-generation campaign creative" },
+    caption: "Ad creative for TRG · Meta Ads results",
+  },
+  "branding-creative-design": { kind: "image", src: work("slide-2"), alt: "SID Realtech brand style guideline: logo, colours and applications", caption: "SID Realtech · brand identity system" },
   "social-media-marketing": {
     kind: "posters",
-    caption: "Launch creatives · JBBR Group, SID Realtech, TRG",
+    caption: "Social creatives · JBBR Group, SID Realtech, Intech Developers",
     items: [
       { src: work("creative-jbbr"), alt: "JBBR Group social creative" },
-      { src: work("creative-sid"), alt: "SID Realtech Ellington 86 creative" },
-      { src: work("creative-trg"), alt: "TRG The Mall social creative" },
+      { src: work("creative-sid"), alt: "SID Realtech Ellington 86 launch creative" },
+      { src: work("creative-intech"), alt: "Intech Developers social creative" },
     ],
   },
   "video-creative-production": {
     kind: "posters",
-    caption: "Ad films produced by ScaleAcres · published on YouTube",
+    caption: "Ad film · social video · AI video (labelled)",
     items: [
-      { src: work("yt-vODoeG2QEKQ"), alt: "ScaleAcres ad film cover" },
-      { src: work("yt-nRFeRCMZG3E"), alt: "ScaleAcres ad film cover" },
-      { src: work("yt-9GUSJ8zlvRA"), alt: "ScaleAcres ad film cover" },
+      { src: work("yt-vODoeG2QEKQ"), alt: "ScaleAcres real estate ad film", tag: "Ad" },
+      { src: work("yt-MdluDjATzgA"), alt: "ScaleAcres social media video", tag: "Social" },
+      { src: work("yt-FxO_2KVX4zA"), alt: "AI video by ScaleAcres", tag: "AI video" },
     ],
   },
-  "ecommerce-solutions": {
-    kind: "screens",
-    caption: "Jina Cosmetics · MW&B store",
-    items: [
-      { src: work("site-jina"), alt: "Jina Cosmetics ecommerce website" },
-      { src: work("site-mwb"), alt: "MW&B online store" },
-    ],
-  },
-  "custom-applications-software": { kind: "image", src: work("slide-6"), alt: "Finsckool learning platform designed and built by ScaleAcres", caption: "Finsckool · education platform built by ScaleAcres" },
+  "ecommerce-solutions": { kind: "devices", desktop: live("mwb"), mobile: live("mwb-m"), alt: "MW&B online store on desktop and mobile, built by ScaleAcres", caption: "MW&B · ecommerce store, desktop and mobile" },
+  "custom-applications-software": { kind: "devices", desktop: live("finsckool"), mobile: live("finsckool-m"), alt: "Finsckool learning platform on desktop and mobile, built by ScaleAcres", caption: "Finsckool · learning platform built by ScaleAcres" },
 };
 
 export const homeServices: (Service & { media: ServiceMedia })[] = services.map((s) => ({ ...s, media: serviceMedia[s.slug] }));
@@ -143,14 +182,17 @@ export const featuredWork: Featured[] = [
 
 export type WebProject = { name: string; note: string; meta: string[]; screenshot: string; w: number; h: number };
 
-/** Websites published in the "Website Design" section of scaleacres.com. Platforms only where the live site states them. */
+/**
+ * Websites built by ScaleAcres. Previews are first-screen captures of the live client sites
+ * (1440 × 900 viewport, taken Oct 2026). Platforms only where the live site states them.
+ */
 export const webProjects: WebProject[] = [
-  { name: "SID Realtech", note: "Premium residential developer", meta: ["Real estate", "Next.js, Node.js"], screenshot: work("site-sid"), w: 698, h: 2560 },
-  { name: "Subata Realty", note: "Phuket property for Indian and NRI investors", meta: ["Real estate"], screenshot: work("site-subata"), w: 710, h: 2560 },
-  { name: "Imperial Sky Realty", note: "Dubai's premium property market", meta: ["Real estate"], screenshot: work("site-imperial"), w: 621, h: 2560 },
-  { name: "JBBR Group", note: "Luxury real estate group", meta: ["Real estate"], screenshot: work("site-jbbr"), w: 762, h: 2560 },
-  { name: "Research Capital", note: "Real estate investment advisory", meta: ["Real estate"], screenshot: work("site-research"), w: 724, h: 2560 },
-  { name: "Let's Movin", note: "Real estate consultancy", meta: ["Real estate", "WordPress"], screenshot: work("site-letsmovin"), w: 634, h: 2560 },
+  { name: "SID Realtech", note: "Premium residential developer, Faridabad", meta: ["Real estate", "Next.js, Node.js"], screenshot: "/images/home/live/live-sid.jpg", w: 1600, h: 1000 },
+  { name: "Subata Realty", note: "Phuket property for Indian and NRI investors", meta: ["Real estate"], screenshot: "/images/home/live/live-subata.jpg", w: 1600, h: 1000 },
+  { name: "Imperial Sky Realty", note: "Dubai's premium property market", meta: ["Real estate"], screenshot: "/images/home/live/live-imperial.jpg", w: 1600, h: 1000 },
+  { name: "Research Capital", note: "Real estate investment advisory, Gurugram", meta: ["Real estate"], screenshot: "/images/home/live/live-research.jpg", w: 1600, h: 1000 },
+  { name: "Finsckool", note: "Finance education platform", meta: ["Education", "Web platform"], screenshot: "/images/home/live/live-finsckool.jpg", w: 1600, h: 1000 },
+  { name: "Jina Cosmetics", note: "Private-label cosmetics manufacturer", meta: ["Manufacturing"], screenshot: "/images/home/live/live-jina.jpg", w: 1600, h: 1000 },
 ];
 
 /* ---------------------------------------------------------------- Video */
