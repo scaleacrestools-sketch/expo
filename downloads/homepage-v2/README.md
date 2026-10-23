@@ -8,12 +8,18 @@ Only the homepage changed. Other pages, the live WordPress site, hosting and DNS
 |---|---|
 | `scaleacres-homepage-preview-netlify.zip` | Static build. Drag it onto Netlify Drop. It contains the whole site, so menu links work, but only the homepage is new. |
 | `scaleacres-homepage-source.zip` | Next.js source with the new homepage. Run `npm ci && npm run build:static-preview`. |
-| `homepage-desktop-full-page.jpg`, `homepage-mobile-full-page.jpg` | Full-page screenshots taken in a real browser with all media loaded. They show every section in its final state, so the sticky stacks and pinned strip appear laid out flat. |
-| `homepage-motion-frames.jpg` | Frames recorded while scrolling, showing the animations. |
+| `homepage-desktop-full-page.jpg`, `homepage-mobile-full-page.jpg` | Earlier hero; the rest of the page is unchanged. Full-page screenshots taken in a real browser with all media loaded. They show every section in its final state, so the sticky stacks and pinned strip appear laid out flat. |
+| `hero-desktop.jpg`, `hero-mobile.jpg` | The new hero, settled. |
+| `hero-desktop-animation.mp4`, `hero-mobile-animation.mp4` | Screen recordings of the hero's intro, pointer depth and scroll transition. |
+| `hero-vs-arpeggio.jpg` | The hero next to the Arpeggio reference. |
+| `homepage-motion-frames.jpg` | Frames recorded while scrolling, showing the animations (earlier hero). |
 
 ## Sections
 
-1. **Hero:** staircase mask reveal, showreel, masked headline, magnetic CTA, scroll cue. No form.
+1. **Hero (redesigned after Arpeggio):**
+   - **Picture:** a full-bleed black-and-white still from the ScaleAcres "Light sweep" film, with a portrait crop on phones.
+   - **Layout:** the statement "Built to stand out. Designed to scale." at top left, a light display tagline at top right, a crosshair grid, and "ScaleAcres" in Royal Blue spanning the full width along the bottom.
+   - **Motion:** a stepped staircase reveal (columns on desktop, diagonal rows on phones), then the letters rise one by one, with layered depth when the pointer moves. On scroll the picture contracts into a framed card. No form.
 2. **Who we are:** sticky statement with genuine work drifting past.
 3. **Our Services:** eight sticky cards that stack, with media that opens from a clipped frame.
 4. **We Don't Create Brands. We Create Market Leaders.:** masked type, then a pinned horizontal branding strip.
