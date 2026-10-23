@@ -12,7 +12,8 @@
 |---|---|---|---|
 | 01 | Cinematic hero | H1, supporting H2, "Book a Call", team avatars | The homepage showreel: same clips, crossfade, portrait cuts on phones, pause control, video loads after the page. Transparent header and dark cinematic grade. The H1's words rise in line by line, with "Delhi" in Royal Blue. Vertical services ticker, scroll cue. **No form.** |
 | 02 | Editorial introduction | "Get Started Today!", "Converting Curious Visitors…", intro paragraph, 1500+ figure, "Know More →" | Oversized headline with a staggered word reveal. The paragraph brightens word by word as it scrolls. The key figure counts up. |
-| 03 | What we deliver | 8 capabilities, each linked to where this page shows that work | Chapter title whose letter-spacing tightens as it scrolls in. Numbered capability rows; on desktop a project image follows the cursor, on phones a thumbnail sits in each row. |
+| 02b | Film moment | The homepage showreel clip | A framed film opens to full bleed as you scroll (sticky stage, scrub 2.8), while an oversized "DELHI NCR" line widens and fades behind it. One screen tall for reduced motion. Captioned "ScaleAcres showreel", so it is never presented as client work. |
+| 03 | What we deliver | 8 capabilities, each with a note quoted from this page's copy and a link to where the work is shown | Wide-tracked chapter title that drifts and tightens with scroll (scrub 2.5). Expanding panels: the open panel shows a real project image with title and note, the others collapse to vertical titles. Opens on hover, focus or tap. Swipeable cards on phones. |
 | 04 | Client brands | "We have been growing 200+…" and the 25 live logos | Logo wall with optical sizing: each logo is sized by area, keeping its proportions, in greyscale, colour on hover. |
 | 05 | Our work | Branding (14 images), Website Design (19 sites), Creative Magic (5 creatives) | Black section. A featured campaign with a masked reveal and parallax, then an alternating two-column editorial gallery. Six featured websites in browser frames (two large), the other 13 in a "More websites" gallery rail. A staggered creative strip. |
 | 06 | Marketing funnel | Mid Funnel Influence, End-to-End Funnel Strategy, the two stages with their lists and images | Royal Navy section; a progress line fills as the stages scroll past; outline stage numbers. |
@@ -21,6 +22,7 @@
 | 09 | Client experiences | 16 founder cards from the live page, plus the 4 client video testimonials published on scaleacres.com | Founder rail; video carousel that plays only on request. |
 | 10 | Awards, team, trust | Awards & Recognitions, Our Culture of Growth, Our Successful Delhi Projects | Editorial split with image reveals; culture photos in their natural proportions; full-width project collage. |
 | 11 | Delhi NCR content | "Grow Faster… Delhi NCR" (H3) and "Why Digital Marketing… Delhi NCR Works" | Alternating editorial splits; paragraphs kept to a readable width. |
+| 11b | Services marquee | The page's own funnel service lines | Two rows moving in opposite directions over a dimmed Delhi NCR image; stops for reduced motion. Decorative (aria-hidden), because the same lines are in the funnel section. |
 | 12 | Enquiry | "Enquire Now!" and the live form | Split screen: contact details (email, sales numbers, office address) beside the form in a glass panel. All live fields are kept. A message is shown as sent only after the server confirms. |
 | 13 | FAQ | All 6 questions and answers | Accessible accordion (native details/summary); every answer is in the HTML. |
 | 14 | Footer | — | The approved black homepage footer. |
@@ -87,7 +89,46 @@ The full verbatim inventory of the live page is in `delhi-content-inventory.md`.
 | Preview ZIP after extraction | 37/37 |
 | Source ZIP after extraction | Typechecks and builds |
 
-## Not completed
+## Ritz Media World reference: studied, then interpreted
 
-1. **Ritz Media World reference.** I could not open the site at all: this environment blocks it, the fetch tool cannot resolve the domain, and the web archive is unreachable. The motion uses the techniques you listed (staggered word and line reveals, letter-spacing transforms, masked image entrances, subtle parallax, scroll-linked typography, chapter pacing), built in GSAP/ScrollTrigger. It has not been checked against the real Ritz page. Send me a screen recording or allow a browser that can reach it, and I'll match the motion to it.
-2. **Screenshots with real images.** This environment cannot load scaleacres.com images, and Higgsfield is not used at your request. The full-page screenshots and before/after images in this folder are real-browser layout captures in which the image areas are empty. Open the preview ZIP in your browser to see the page with every live image.
+The page was inspected in a real browser: it was loaded and recorded across 34 scroll frames, and its script bundles were analysed.
+
+**What the reference actually does:**
+
+| Technique | Implementation found |
+|---|---|
+| Animation stack | GSAP with ScrollTrigger. No smooth-scroll library and no SplitText. |
+| Headline reveals | Masked word/line spans that slide in (yPercent ±110 → 0); 1–1.35 s; power3/power4 ease-out; 0.06 s stagger; triggered at 78–92 % of the viewport, played once. |
+| Travelling film | A framed film shrinks and flies into an oversized word. Position, size, clip-path inset and corner radius are interpolated on a scrub of 2.8. |
+| "What We Deliver" | A narrow-wide-narrow trio of image cards. |
+| Scroll typography | A wide-spaced giant word that drifts sideways with scroll. |
+| Parallax | Scrub 2.5 smoothing. |
+| Other sections | Pinned horizontal milestone row; awards card carousel; alternating services marquee over a photo; footer wordmark that converges. |
+
+**How the Delhi page uses these ideas.** These are original ScaleAcres sections; none of Ritz's artwork, text or layouts is copied.
+
+| Delhi section | Technique used |
+|---|---|
+| All headlines | Masked word reveals at matching pace |
+| Film moment | Film opening through the oversized city line (scrub 2.8) |
+| What we deliver | Expanding capability panels |
+| Chapter titles | Drifting, tightening display lines (scrub 2.5) |
+| Images | Parallax at scrub 2.5 |
+| Before the enquiry | Alternating services marquee |
+
+**Not used:**
+- Milestones and the awards carousel: the Delhi page has no milestones and one award photo, and inventing achievements is ruled out.
+- The converging footer wordmark: the approved homepage footer stays unchanged.
+
+## Screenshots
+
+- Full-page desktop and mobile screenshots were taken in a real browser with **every live image loaded**.
+- They use final-state rendering, so every section is drawn complete.
+- A motion recording was reviewed: the hero film plays, the intro text brightens, the film opens through "DELHI NCR", and the panels expand on hover.
+- The "before" image is the originally rejected Delhi design, also captured with real images.
+
+## Media notes
+
+- **Hero and film-moment footage:** the homepage's commissioned ScaleAcres showreel. This is conceptual footage, not client work, and it is captioned as the showreel.
+- **Poster frames:** taken from that clip with ffmpeg (frame at 0.5 s); no generation and no credits. They are used on this page only.
+- **Homepage posters:** the homepage's own poster setting was not changed.
