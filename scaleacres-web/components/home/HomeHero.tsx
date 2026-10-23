@@ -1,224 +1,197 @@
 "use client";
 
 import Link from "next/link";
-import { Fragment, useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { hero, posters } from "@/content/home";
+import { useEffect, useRef } from "react";
+import { hero } from "@/content/home";
+import { ensureGsap, prefersReducedMotion, useGsap } from "@/lib/motion";
 import { Arrow } from "@/components/ui/Arrow";
 import { Magnetic } from "@/components/home/fx";
 
-const MOBILE_MQ = "(max-width: 767px)";
-const REDUCE_MQ = "(prefers-reduced-motion: reduce)";
-const sub = (q: string) => (cb: () => void) => {
-  const mq = window.matchMedia(q);
-  mq.addEventListener("change", cb);
-  return () => mq.removeEventListener("change", cb);
-};
-const subMobile = sub(MOBILE_MQ);
-const subReduce = sub(REDUCE_MQ);
-const getMobile = () => window.matchMedia(MOBILE_MQ).matches;
-const getReduce = () => window.matchMedia(REDUCE_MQ).matches;
-const no = () => false;
-
-const STEPS = 8;
+const COLS = 10; // desktop staircase: columns retract upward, left → right
+const ROWS = 14; // phones: rows retract to the right, top → bottom (diagonal steps)
 
 /**
- * Homepage hero. On load a stepped staircase mask lifts off the showreel (columns retract
- * left → right), the film settles from a slight zoom, and the headline words rise out of
- * their masks. The showreel crossfades through ScaleAcres' concept clips; no form here.
+ * Natural width of hero.word in Outfit 700 at 1px with -0.04em tracking (4.687, measured in Chromium).
+ * The giant word is sized in container units so it always spans the full content width.
+ */
+const WORD_EM = 4.7;
+
+/**
+ * Homepage hero, after Arpeggio: one full-bleed art-directed still, an editorial statement
+ * top-left, a light display tagline top-right, crosshair marks, and the brand name set
+ * edge to edge along the foot. A stepped staircase mask reveals it on load; on scroll the
+ * picture contracts into a framed card and the type lifts away, handing over to the next
+ * section. Pointer movement adds a little depth between the layers. No form.
  */
 export function HomeHero() {
-  const a = useRef<HTMLVideoElement>(null);
-  const b = useRef<HTMLVideoElement>(null);
-  const isMobile = useSyncExternalStore(subMobile, getMobile, no);
-  const reduce = useSyncExternalStore(subReduce, getReduce, no);
-  const [started, setStarted] = useState(false);
-  const [front, setFront] = useState(0);
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const playing = !paused && !reduce;
-  const layer = (i: number) => (i === 0 ? a : b).current;
-  const reel = hero.reel;
-  const srcFor = (i: number) => (isMobile ? reel[i % reel.length].portrait : reel[i % reel.length].landscape);
+  const ref = useRef<HTMLElement>(null);
+  const word = Array.from(hero.word);
 
-  // Film sources attach after the load event so the headline wins the LCP race.
+  // Scroll: frame contracts, type lifts away.
+  useGsap(ref, ({ gsap, el }) => {
+    const frame = el.querySelector("[data-frame]");
+    const img = el.querySelector("[data-img]");
+    const copy = el.querySelectorAll("[data-out]");
+    const mm = gsap.matchMedia();
+    const build = (inset: string) => {
+      const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: "top top", end: "bottom bottom", scrub: 0.6 } });
+      tl.fromTo(frame, { clipPath: "inset(0% 0% 0% 0% round 0px)" }, { clipPath: inset, ease: "none", duration: 1 }, 0)
+        .fromTo(img, { scale: 1 }, { scale: 1.16, ease: "none", duration: 1 }, 0)
+        .to(copy, { y: -90, opacity: 0, ease: "power1.in", duration: 0.45, stagger: 0.04 }, 0);
+    };
+    mm.add("(min-width: 768px)", () => build("inset(13% 21% 24% 21% round 28px)"));
+    mm.add("(max-width: 767px)", () => build("inset(9% 7% 30% 7% round 22px)"));
+  });
+
+  // Pointer depth (fine pointers only).
   useEffect(() => {
-    const go = () => window.setTimeout(() => setStarted(true), 150);
-    if (document.readyState === "complete") {
-      const t = go();
-      return () => window.clearTimeout(t);
-    }
-    window.addEventListener("load", go, { once: true });
-    return () => window.removeEventListener("load", go);
+    const el = ref.current;
+    if (!el || prefersReducedMotion() || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const gsap = ensureGsap();
+    const layers = Array.from(el.querySelectorAll<HTMLElement>("[data-depth]")).map((n) => ({
+      d: Number(n.dataset.depth),
+      x: gsap.quickTo(n, "x", { duration: 1.2, ease: "power3.out" }),
+      y: gsap.quickTo(n, "y", { duration: 1.2, ease: "power3.out" }),
+    }));
+    const move = (e: PointerEvent) => {
+      const nx = e.clientX / window.innerWidth - 0.5;
+      const ny = e.clientY / window.innerHeight - 0.5;
+      layers.forEach((l) => { l.x(nx * l.d); l.y(ny * l.d); });
+    };
+    el.addEventListener("pointermove", move);
+    return () => el.removeEventListener("pointermove", move);
   }, []);
 
-  useEffect(() => {
-    if (!started) return;
-    const cur = layer(front);
-    const next = layer(1 - front);
-    if (!cur || !next) return;
-    if (cur.getAttribute("src") !== srcFor(index)) cur.setAttribute("src", srcFor(index));
-    next.setAttribute("src", srcFor(index + 1));
-    next.load();
-    if (playing) cur.play().catch(() => undefined);
-    else cur.pause();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [started, index, front, isMobile, playing]);
-
-  const advance = () => {
-    const next = layer(1 - front);
-    if (playing) next?.play().catch(() => undefined);
-    setFront(1 - front);
-    setIndex((i) => (i + 1) % reel.length);
-  };
-
-  let w = 0;
-  const word = (t: string) => {
-    const delay = 520 + w++ * 70;
-    return (
-      <span key={`${t}-${w}`} className="hh-w inline-block overflow-hidden pb-[0.07em] align-bottom">
-        <span className={`inline-block ${t === hero.accentWord ? "text-sky" : ""}`} style={{ animationDelay: `${delay}ms` }}>
-          {t}
-        </span>
-      </span>
-    );
-  };
-
-  const group = (ws: string[]) => ws.map((t, i) => <Fragment key={t + i}>{word(t)}{i < ws.length - 1 ? " " : null}</Fragment>);
-
   return (
-    <section className="relative isolate h-[100svh] min-h-[40rem] overflow-hidden bg-ink text-white" aria-labelledby="home-hero-title">
-      {/* Film */}
-      <div className="hh-media absolute inset-0 -z-10">
-        {[0, 1].map((i) => (
-          <video
-            key={i}
-            ref={i === 0 ? a : b}
-            muted
-            playsInline
-            preload="none"
-            aria-hidden="true"
-            tabIndex={-1}
-            poster={i === 0 ? (isMobile ? posters.architecturePortrait : posters.architecture) : undefined}
-            onEnded={i === front ? advance : undefined}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1400ms] ease-in-out ${i === front ? "opacity-100" : "opacity-0"}`}
-          />
-        ))}
-        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(var(--ink-rgb)/0.55)_0%,rgb(var(--ink-rgb)/0.05)_32%,rgb(var(--ink-rgb)/0.2)_55%,rgb(var(--ink-rgb)/0.88)_100%)]" />
-        <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_100%,rgb(var(--ink-rgb)/0.55),transparent_60%)]" />
-      </div>
-
-      {/* Crosshair grid marks */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden md:block">
-        {[
-          ["25%", "34%"], ["50%", "34%"], ["75%", "34%"],
-          ["25%", "62%"], ["50%", "62%"], ["75%", "62%"],
-        ].map(([l, t]) => (
-          <span key={l + t} className="hh-fade absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 text-white/45" style={{ left: l, top: t, animationDelay: "1300ms" }}>
-            <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-current" />
-            <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-current" />
-          </span>
-        ))}
-      </div>
-
-      <div className="container-x relative mx-auto flex h-full max-w-[120rem] flex-col pb-[clamp(1.25rem,3.5vh,2.5rem)] pt-[calc(var(--header-h)+clamp(1.75rem,6vh,4.5rem))]">
-        {/* Upper row: positioning + supporting copy */}
-        <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
-          <p className="hh-fade flex items-center gap-2 text-[0.75rem] font-semibold uppercase tracking-[0.22em] text-white/80" style={{ animationDelay: "1100ms" }}>
-            <span aria-hidden="true" className="relative -top-[0.35em] text-[0.9rem] leading-none text-sky">°</span>
-            Real estate marketing · Creative growth
-          </p>
-          <p className="hh-fade max-w-[30ch] text-[clamp(1.0625rem,0.95rem+0.55vw,1.5rem)] font-medium leading-[1.35] text-white/90 md:text-right" style={{ animationDelay: "1250ms" }}>
-            {hero.support}
-          </p>
+    <section ref={ref} className="sh relative bg-ink text-white" aria-labelledby="home-hero-title">
+      <div className="sticky top-0 h-[100svh] min-h-[40rem] overflow-hidden">
+        {/* Picture */}
+        <div data-frame className="absolute inset-0 overflow-hidden will-change-[clip-path]">
+          <div data-depth="-26" className="absolute -inset-6">
+            <div data-img className="sh-img absolute inset-0">
+              <picture>
+                <source media="(max-width: 767px)" srcSet={hero.image.portrait} width={hero.image.pw} height={hero.image.ph} />
+                <img src={hero.image.landscape} alt="" width={hero.image.w} height={hero.image.h} fetchPriority="high" decoding="async" className="h-full w-full object-cover object-center [filter:grayscale(1)_brightness(1.22)_contrast(1.08)]" />
+              </picture>
+            </div>
+          </div>
+          <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(var(--ink-rgb)/0.6)_0%,rgb(var(--ink-rgb)/0.05)_28%,transparent_55%)] max-md:bg-[linear-gradient(180deg,rgb(var(--ink-rgb)/0.55)_0%,rgb(var(--ink-rgb)/0)_25%,rgb(var(--ink-rgb)/0.45)_45%,rgb(var(--ink-rgb)/0.6)_78%,rgb(var(--ink-rgb)/0.25)_100%)]" />
         </div>
 
-        {/* Headline */}
-        <h1 id="home-hero-title" className="mt-auto text-[clamp(3.6rem,15.5vw,7rem)] font-semibold uppercase leading-[0.86] tracking-[-0.055em] md:text-[clamp(4.5rem,9.4vw,13rem)] md:normal-case md:tracking-[-0.06em]">
-          <span className="block">
-            <span className="block md:inline">{group(hero.lines[0])}</span>
-            <span className="hidden md:inline"> </span>
-            <span className="block md:inline">{group(hero.lines[1])}</span>
-          </span>
-          <span className="block md:pl-[16vw]">
-            <span className="block md:inline">{group(hero.lines[2])}</span>
-            <span className="hidden md:inline"> </span>
-            <span className="block md:inline">
-              {group(hero.lines[3])}
-              <span className="hh-fade text-blue" style={{ animationDelay: "1150ms" }}>.</span>
+        {/* Crosshair marks */}
+        <div aria-hidden="true" data-out className="pointer-events-none absolute inset-0">
+          {["3.5%", "34.5%", "65.5%", "96.5%"].flatMap((l) => ["10%", "36.7%", "63.3%", "90%"].map((t) => [l, t])).map(([l, t]) => (
+            <span key={l + t} className="sh-op absolute h-4 w-4 -translate-x-1/2 -translate-y-1/2 text-white/60 max-md:hidden" style={{ left: l, top: t }}>
+              <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-current" />
+              <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-current" />
             </span>
-          </span>
-        </h1>
+          ))}
+          {["5.6%", "50%", "94.4%"].flatMap((l) => ["10.7%", "39%", "67.8%", "96.2%"].map((t) => [l, t])).map(([l, t]) => (
+            <span key={`m${l}${t}`} className="sh-op absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 text-white/50 md:hidden" style={{ left: l, top: t }}>
+              <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-current" />
+              <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-current" />
+            </span>
+          ))}
+        </div>
 
-        {/* Bottom bar */}
-        <div className="hh-fade mt-[clamp(1.5rem,4.5vh,3rem)] grid items-center gap-5 border-t border-white/20 pt-5 md:grid-cols-[1fr_auto_1fr]" style={{ animationDelay: "1400ms" }}>
-          <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
-            <Magnetic>
-              <Link
-                href="/contact-us/"
-                className="group inline-flex items-center gap-4 rounded-full bg-blue py-2 pl-6 pr-2 text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-on-accent transition-colors duration-300 hover:bg-white hover:text-ink"
-              >
-                Start a project
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-white text-ink transition-transform duration-500 ease-out-expo group-hover:rotate-45 group-hover:bg-blue group-hover:text-white">
-                  <Arrow className="h-4 w-4" />
+        {/* Type */}
+        <div className="container-x relative mx-auto flex h-full max-w-[120rem] flex-col pb-[clamp(0.75rem,2.6vh,1.6rem)] pt-[calc(var(--header-h)+clamp(1.25rem,6.5vh,4.5rem))]">
+          <div data-out className="mt-auto grid gap-y-5 md:mt-0 md:grid-cols-12 md:gap-x-8 md:gap-y-0 md:pl-[clamp(0rem,4.2vw,4rem)]">
+            <h1 id="home-hero-title" data-depth="8" className="text-[clamp(1.85rem,7.6vw,2.4rem)] font-medium leading-[1.12] tracking-[-0.04em] md:col-span-7 md:row-start-1 md:text-[clamp(2.25rem,3.2vw,3.75rem)] md:leading-[1.18]">
+              {hero.statement.map((l, i) => (
+                <span key={l} className="block overflow-hidden pb-[0.06em]">
+                  <span className="sh-line block" style={{ animationDelay: `${640 + i * 90}ms` }}>{l}</span>
                 </span>
-              </Link>
-            </Magnetic>
-            <a href="#websites" className="link-u text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-white/85 hover:text-white">
-              View our work
-            </a>
+              ))}
+            </h1>
+
+            <p data-depth="14" aria-hidden="true" className="text-[clamp(2.2rem,10.6vw,3.2rem)] font-light leading-[0.94] tracking-[-0.045em] text-white md:col-span-5 md:col-start-8 md:row-span-2 md:row-start-1 md:mt-[clamp(1.5rem,4vh,3rem)] md:text-right md:text-[clamp(2.5rem,3.7vw,4.4rem)]">
+              {hero.tagline.map((l, i) => (
+                <span key={l} className="block overflow-hidden pb-[0.08em]">
+                  <span className={`sh-line block ${i === 1 ? "pl-[10%] md:pl-0" : ""}`} style={{ animationDelay: `${760 + i * 90}ms` }}>{l}</span>
+                </span>
+              ))}
+            </p>
+
+            <div className="sh-fade flex max-w-[34rem] items-start gap-4 md:col-span-6 md:row-start-2 md:mt-[clamp(1.5rem,5vh,3.25rem)] md:pl-[clamp(0rem,2.8vw,2.5rem)]" style={{ animationDelay: "980ms" }}>
+              <span aria-hidden="true" className="mt-[0.3em] h-5 w-5 shrink-0 rounded-full border-[5px] border-blue md:h-6 md:w-6" />
+              <p className="text-[clamp(1rem,4.2vw,1.125rem)] font-medium leading-[1.35] tracking-[-0.015em] text-white/90 md:text-[clamp(1.125rem,1.5vw,1.5rem)]">{hero.support}</p>
+            </div>
+
+            <div className="sh-fade flex flex-wrap items-center gap-x-6 gap-y-4 md:col-span-6 md:row-start-3 md:mt-[clamp(1.25rem,4vh,2.5rem)] md:pl-[clamp(0rem,2.8vw,2.5rem)]" style={{ animationDelay: "1080ms" }}>
+              <Magnetic>
+                <Link
+                  href="/contact-us/"
+                  className="group inline-flex items-center gap-3 rounded-full bg-white py-1.5 pl-5 pr-1.5 text-[0.875rem] font-semibold tracking-[-0.01em] text-ink transition-colors duration-300 hover:bg-blue hover:text-white"
+                >
+                  Start a project
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-blue text-white transition-[transform,background-color] duration-500 ease-out-expo group-hover:rotate-45 group-hover:bg-white group-hover:text-blue">
+                    <Arrow className="h-3.5 w-3.5" />
+                  </span>
+                </Link>
+              </Magnetic>
+              <a href="#manifesto" className="group inline-flex items-center gap-3 text-[0.8125rem] font-medium text-white/80 hover:text-white">
+                <span aria-hidden="true" className="relative block h-8 w-[1.15rem] rounded-full border border-white/50">
+                  <span className="sh-dot absolute left-1/2 top-1.5 h-1.5 w-1 -translate-x-1/2 rounded-full bg-white" />
+                </span>
+                Scroll to explore
+              </a>
+            </div>
           </div>
 
-          <div className="hidden items-center gap-4 text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-white/65 md:flex">
-            <button
-              type="button"
-              onClick={() => setPaused((p) => !p)}
-              aria-pressed={!playing}
-              aria-label={playing ? "Pause showreel" : "Play showreel"}
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/35 text-white transition-colors hover:border-sky hover:text-sky"
-            >
-              {playing ? (
-                <svg aria-hidden="true" viewBox="0 0 8 8" className="h-2.5 w-2.5 fill-current"><rect width="3" height="8" /><rect x="5" width="3" height="8" /></svg>
-              ) : (
-                <svg aria-hidden="true" viewBox="0 0 8 8" className="ml-0.5 h-2.5 w-2.5 fill-current"><path d="M0 0l8 4-8 4z" /></svg>
-              )}
-            </button>
-            <span className="tabular-nums text-white">{String(index + 1).padStart(2, "0")}</span>
-            <span className="h-px w-10 bg-white/30" />
-            <span>{reel[index].title}</span>
-            <span className="text-white/40">· Studio reel</span>
+          {/* Brand word, edge to edge */}
+          <div data-out className="mt-[clamp(1.5rem,4vh,2.5rem)] md:mt-auto">
+            <div data-depth="5" className="relative [container-type:inline-size]">
+              <p aria-hidden="true" className="sh-word flex select-none font-bold leading-[0.8] tracking-[-0.04em] text-[color:var(--color-blue)]" style={{ fontSize: `calc(100cqw / ${WORD_EM})` }}>
+                {word.map((ch, i) => (
+                  <span key={i} className="inline-block overflow-hidden pt-[0.06em]">
+                    <span className="sh-ch inline-block" style={{ animationDelay: `${300 + i * 45}ms` }}>{ch}</span>
+                  </span>
+                ))}
+              </p>
+              <span aria-hidden="true" className="sh-fade absolute right-0 top-0 hidden -translate-y-full pb-2 text-[0.75rem] font-medium tracking-[0.02em] text-white/70 md:block" style={{ animationDelay: "1150ms" }}>
+                Delhi · Agra · Bangalore
+              </span>
+            </div>
           </div>
-
-          <a href="#manifesto" className="group hidden items-center justify-self-end gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-white md:flex">
-            Scroll to explore
-            <span aria-hidden="true" className="relative block h-10 w-6 rounded-full border border-white/40">
-              <span className="hh-dot absolute left-1/2 top-2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-sky" />
-            </span>
-          </a>
         </div>
-      </div>
 
-      {/* Staircase intro mask */}
-      <div aria-hidden="true" className="hh-steps pointer-events-none absolute inset-0 z-30 grid" style={{ gridTemplateColumns: `repeat(${STEPS}, 1fr)` }}>
-        {Array.from({ length: STEPS }, (_, i) => (
-          <span key={i} className="block h-full bg-ink" style={{ animationDelay: `${120 + i * 65}ms` }} />
-        ))}
+        {/* Staircase intro mask */}
+        <div aria-hidden="true" className="sh-cols pointer-events-none absolute inset-0 z-30 grid max-md:hidden" style={{ gridTemplateColumns: `repeat(${COLS}, 1fr)` }}>
+          {Array.from({ length: COLS }, (_, i) => (
+            <span key={i} className="block h-full bg-ink" style={{ animationDelay: `${80 + i * 55}ms` }} />
+          ))}
+        </div>
+        <div aria-hidden="true" className="sh-rows pointer-events-none absolute inset-0 z-30 grid md:hidden" style={{ gridTemplateRows: `repeat(${ROWS}, 1fr)` }}>
+          {Array.from({ length: ROWS }, (_, i) => (
+            <span key={i} className="-mb-px block w-full bg-ink" style={{ animationDelay: `${80 + i * 45}ms` }} />
+          ))}
+        </div>
       </div>
 
       <style>{`
-        .hh-steps > span { transform-origin: 50% 0%; animation: hh-step 0.95s cubic-bezier(0.76,0,0.24,1) forwards; }
-        @keyframes hh-step { to { transform: scaleY(0); } }
-        .hh-media { animation: hh-zoom 2.4s cubic-bezier(0.16,1,0.3,1) both; }
-        @keyframes hh-zoom { from { transform: scale(1.18); } to { transform: none; } }
-        .js .hh-w > span { transform: translateY(112%); animation: hh-rise 1.25s cubic-bezier(0.16,1,0.3,1) forwards; }
-        @keyframes hh-rise { to { transform: none; } }
-        .js .hh-fade { opacity: 0; animation: hh-fade 1s cubic-bezier(0.16,1,0.3,1) forwards; }
-        @keyframes hh-fade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-        .hh-dot { animation: hh-dot 2s cubic-bezier(0.65,0,0.35,1) infinite; }
-        @keyframes hh-dot { 0% { transform: translate(-50%, 0); opacity: 1; } 70% { transform: translate(-50%, 16px); opacity: 0; } 100% { opacity: 0; } }
+        .sh { height: 175svh; }
+        @media (max-width: 767px) { .sh { height: 150svh; } }
+        .sh-cols > span { transform-origin: 50% 0%; animation: sh-col 0.75s cubic-bezier(0.76,0,0.24,1) forwards; }
+        @keyframes sh-col { to { transform: scaleY(0); } }
+        .sh-rows > span { transform-origin: 100% 50%; animation: sh-row 0.7s cubic-bezier(0.76,0,0.24,1) forwards; }
+        @keyframes sh-row { to { transform: scaleX(0); } }
+        .sh-img { animation: sh-zoom 2.2s cubic-bezier(0.16,1,0.3,1) both; }
+        @keyframes sh-zoom { from { transform: scale(1.14); } to { transform: none; } }
+        .js .sh-ch { transform: translateY(105%); animation: sh-up 1.15s cubic-bezier(0.16,1,0.3,1) forwards; }
+        .js .sh-line { transform: translateY(108%); animation: sh-up 1.1s cubic-bezier(0.16,1,0.3,1) forwards; }
+        @keyframes sh-up { to { transform: none; } }
+        .js .sh-fade { opacity: 0; animation: sh-fade 1s cubic-bezier(0.16,1,0.3,1) 1000ms forwards; }
+        @keyframes sh-fade { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+        .js .sh-op { opacity: 0; animation: sh-op 1.2s ease 1100ms forwards; }
+        @keyframes sh-op { to { opacity: 1; } }
+        .sh-dot { animation: sh-dot 1.8s cubic-bezier(0.65,0,0.35,1) infinite; }
+        @keyframes sh-dot { 0% { transform: translate(-50%, 0); opacity: 1; } 75% { transform: translate(-50%, 10px); opacity: 0; } 100% { opacity: 0; } }
         @media (prefers-reduced-motion: reduce) {
-          .hh-steps { display: none; }
-          .hh-media, .hh-dot { animation: none; }
-          .js .hh-w > span, .js .hh-fade { animation: none !important; opacity: 1; transform: none; }
+          .sh { height: auto; }
+          .sh-cols, .sh-rows { display: none; }
+          .sh-img, .sh-dot { animation: none; }
+          .js .sh-ch, .js .sh-line, .js .sh-fade, .js .sh-op { animation: none !important; opacity: 1; transform: none; }
         }
       `}</style>
     </section>

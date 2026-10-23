@@ -28,15 +28,16 @@ export const posters = {
 /* ---------------------------------------------------------------- Hero */
 
 export const hero = {
-  lines: [["Built", "to"], ["Stand", "Out."], ["Designed"], ["to", "Scale"]] as string[][],
-  /** Sky highlight; its full stop is set in Royal Blue right after it. */
-  accentWord: "Scale",
+  /** H1: the editorial statement, top left (Arpeggio's "One subscription…" position). */
+  statement: ["Built to stand out.", "Designed to scale."],
   support: "A real estate marketing and creative growth agency combining strategy, design, technology and performance.",
-  /** Clips that play in the hero, in order. */
-  reel: ["architecture", "brand", "web", "production", "finale"].map((id) => {
-    const c = clip(id);
-    return { id, title: c.title, landscape: c.landscape, portrait: c.portrait };
-  }),
+  /** Right-hand display line (Arpeggio's "The Creative Agency—" position). */
+  tagline: ["The Real Estate", "Growth Agency—"],
+  /** Giant full-width brand word at the foot of the hero. */
+  word: "ScaleAcres",
+  image: { landscape: "/images/home/hero-light.jpg", portrait: "/images/home/hero-light-portrait.jpg", w: 1920, h: 1080, pw: 900, ph: 1600 },
+  /** Frame source: ScaleAcres concept film "Light sweep" (Higgsfield), stills taken with ffmpeg. */
+  credit: "Light sweep · ScaleAcres concept film",
 };
 
 /* ---------------------------------------------------------------- Manifesto collage */
