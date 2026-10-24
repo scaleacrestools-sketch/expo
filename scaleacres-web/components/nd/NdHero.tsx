@@ -48,7 +48,10 @@ export function NdHero() {
         <div className="nd-grid nd-hero-in pt-5 md:pt-7" style={{ "--d": 250 } as CSSProperties}>
           <p className="nd-cell nd-label">Real estate marketing &amp; creative growth</p>
           <p className="nd-cell nd-label nd-muted hidden md:block">{site.offices.join(" · ")}</p>
-          <p className="nd-cell nd-label nd-muted hidden text-right lg:block">{site.markets.join(" · ")}</p>
+          <div className="nd-cell hidden text-right lg:block">
+            <p className="nd-label nd-muted">{site.markets.join(" · ")}</p>
+            <p className="mt-2 text-[0.875rem] text-white/45">{ndHero.backdrop.credit}</p>
+          </div>
         </div>
 
         {/* Disciplines */}
@@ -96,6 +99,7 @@ export function NdHero() {
           <div className="nd-cell mt-6 flex flex-col justify-end md:mt-0 lg:items-end lg:text-right">
             <a href="#services" className="nd-link nd-label">Explore our services</a>
             <p className="mt-3 max-w-[22rem] text-[1rem] leading-[1.5] text-white/70">Trusted by developers including Adani Realty, Tata Realty and M3M.</p>
+            <p className="mt-3 text-[0.875rem] text-white/45 lg:hidden">{ndHero.backdrop.credit}</p>
           </div>
         </div>
       </div>
@@ -121,8 +125,6 @@ export function NdHero() {
           </ul>
         </div>
       </div>
-
-      <p className="pointer-events-none absolute bottom-[4.75rem] right-[var(--m)] z-10 hidden px-5 text-[0.875rem] text-white/45 md:block">{ndHero.backdrop.credit}</p>
 
       <style>{`
         .nd-hero-bg { animation: ndh-bg 1.6s cubic-bezier(0.16,1,0.3,1) both; }

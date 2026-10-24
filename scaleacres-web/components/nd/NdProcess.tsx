@@ -32,22 +32,20 @@ export function NdProcess() {
               <Words id="nd-proc-title" lines={["From brief", "to launch."]} className="nd-d2 mt-7" />
               <p data-nd="up" className="nd-lead mt-6 max-w-[24rem]">From the first conversation to live campaigns, one process and one accountable team.</p>
             </div>
-            <blockquote data-nd="up" className="max-w-[24rem] border-l-2 border-[color:var(--royal)] pl-5">
-              <p className="text-[1.25rem] font-medium leading-[1.4] tracking-[-0.015em]">We don&apos;t start with deliverables. We start with the buyer, the market and the number the project needs to hit.</p>
-              <footer className="nd-label nd-muted mt-3">How every ScaleAcres project begins</footer>
-            </blockquote>
+            <figure data-nd="up" className="m-0 max-w-[24rem] border-l-2 border-[color:var(--royal)] pl-5">
+              <blockquote className="text-[1.25rem] font-medium leading-[1.4] tracking-[-0.015em]">We don&apos;t start with deliverables. We start with the buyer, the market and the number the project needs to hit.</blockquote>
+              <figcaption className="nd-label nd-muted mt-3">How every ScaleAcres project begins</figcaption>
+            </figure>
           </div>
           <ol data-cards className="grid gap-3 md:grid-cols-2 lg:col-span-2 lg:gap-0" role="list">
             {ndProcess.map((p, i) => {
               const on = i === active;
               return (
-                <li key={p.n} className="nd-cell lg:py-1.5">
+                <li key={p.n} className="nd-cell lg:py-1.5" data-nd="up" style={{ "--d": i * 70 } as CSSProperties}>
                   <article
                     tabIndex={0}
                     onPointerEnter={() => setActive(i)}
                     onFocus={() => setActive(i)}
-                    data-nd="up"
-                    style={{ "--d": i * 70 } as CSSProperties}
                     className={`flex min-h-[18rem] flex-col justify-between p-6 transition-colors duration-500 md:min-h-[21rem] md:p-7 ${on ? "bg-[color:var(--ink)] text-white" : "bg-white text-[color:var(--ink)]"}`}
                   >
                     <div className="flex items-start justify-between">

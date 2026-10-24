@@ -4,6 +4,7 @@
  * Outfit display type with tight tracking, small bold labels, Royal as the single accent.
  * Scoped to .nd so no other page is affected.
  */
+@layer components {
 .nd {
   --m: clamp(1rem, 2.2vw, 2rem);
   --ink: #0b0d0d;
@@ -112,4 +113,5 @@
   .js .nd [data-nd] , .js .nd [data-nd] .nd-w > span { opacity: 1 !important; transform: none !important; clip-path: none !important; transition: none !important; }
   .nd-marquee { animation: none; }
   .nd-zoom img { transition: none; }
+}
 }
