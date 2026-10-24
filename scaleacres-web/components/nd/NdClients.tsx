@@ -30,11 +30,11 @@ export function NdClients() {
               <button type="button" onClick={() => setPlaying(t)} className="group relative block aspect-square w-full overflow-hidden bg-[color:var(--mist)] text-left" aria-label={`Play testimonial from ${t.company}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img key={t.id} src={t.poster} alt="" width={900} height={900} loading="lazy" decoding="async" className="nd-tfade h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]" />
-                <span className="absolute bottom-4 left-4 flex h-12 items-center gap-3 bg-white pl-4 pr-3 text-[0.875rem] font-semibold uppercase text-[color:var(--ink)] transition-colors group-hover:bg-[color:var(--royal)] group-hover:text-white">
+                <span className="absolute bottom-4 left-4 flex h-12 items-center gap-3 bg-white pl-4 pr-3 text-[0.875rem] font-semibold uppercase text-[color:var(--navy)] transition-colors group-hover:bg-[color:var(--royal)] group-hover:text-white">
                   Watch the story
                   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M7 4.5v15l13-7.5z" /></svg>
                 </span>
-                <span className="absolute right-4 top-4 bg-[color:var(--ink)] px-2.5 py-1 text-[0.875rem] font-semibold tabular-nums text-white">{t.duration}</span>
+                <span className="absolute right-4 top-4 bg-[color:var(--navy)] px-2.5 py-1 text-[0.875rem] font-semibold tabular-nums text-white">{t.duration}</span>
               </button>
             </div>
             <div className="nd-cell flex flex-col justify-between gap-8 max-md:mt-6">
@@ -68,7 +68,7 @@ export function NdClients() {
               const col = c.i % clientSprite.cols;
               const row = Math.floor(c.i / clientSprite.cols);
               return (
-                <li key={c.name} data-nd="fade" style={{ "--d": (k % 4) * 60 } as CSSProperties} className="aspect-[2/1] border-b border-r border-[color:var(--line-l)] p-[14%] text-[color:var(--muted-l)] transition-colors duration-300 hover:text-[color:var(--ink)]">
+                <li key={c.name} data-nd="fade" style={{ "--d": (k % 4) * 60 } as CSSProperties} className="aspect-[2/1] border-b border-r border-[color:var(--line-l)] p-[14%] text-[color:var(--muted-l)] transition-colors duration-300 hover:text-[color:var(--royal)]">
                   <span role="img" aria-label={c.name} className="nd-logo" style={{ "--sprite": `url(${clientSprite.src})`, "--mask-size": `${clientSprite.cols * 100}% ${clientSprite.rows * 100}%`, "--mask-pos": `${(col / (clientSprite.cols - 1)) * 100}% ${(row / (clientSprite.rows - 1)) * 100}%` } as CSSProperties} />
                 </li>
               );

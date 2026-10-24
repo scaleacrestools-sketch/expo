@@ -111,10 +111,11 @@ export const ndServices = services.map((s, i) => ({
 
 /* ---------------------------------------------------------------- websites */
 
-export type Site = { name: string; sector: string; note: string; image: Img; tags: string[] };
+/** `video`: a scroll-through recorded from the live site (public/videos/nd), shown muted over the still. */
+export type Site = { name: string; sector: string; note: string; image: Img; tags: string[]; video?: string };
 export const ndSites: Site[] = [
-  { name: "SID Realtech", sector: "Residential developer · Faridabad", note: "A premium developer site built around film, amenities and site-visit booking.", image: img("web-sid"), tags: ["UI/UX", "Development", "Next.js, Node.js"] },
-  { name: "Subata Realty", sector: "Phuket property · Indian and NRI buyers", note: "Guided search, curated listings and investment insight for overseas buyers.", image: img("web-subata"), tags: ["UI/UX", "Development", "Property search"] },
+  { name: "SID Realtech", sector: "Residential developer · Faridabad", note: "A premium developer site built around film, amenities and site-visit booking.", image: img("web-sid"), tags: ["UI/UX", "Development", "Next.js, Node.js"], video: "/videos/nd/web-sid-scroll" },
+  { name: "Subata Realty", sector: "Phuket property · Indian and NRI buyers", note: "Guided search, curated listings and investment insight for overseas buyers.", image: img("web-subata"), tags: ["UI/UX", "Development", "Property search"], video: "/videos/nd/web-subata-scroll" },
   { name: "Imperial Sky Realty", sector: "Luxury property · Dubai", note: "A luxury brokerage experience for sale, rent and off-plan investment.", image: img("web-imperial"), tags: ["UI/UX", "Development", "Listings"] },
 ];
 export const ndMoreSites: Site[] = [
@@ -181,4 +182,31 @@ export const ndNav = [
   { label: "Blog", href: "/blog/" },
   { label: "Careers", href: "/careers/" },
   { label: "Contact", href: "/contact-us/" },
+];
+
+/* ---------------------------------------------------------------- manifesto (drifting work) */
+
+/** Genuine work that drifts past the manifesto statement (no AI pieces here; AI work is labelled in Videos). */
+export const ndManifesto = {
+  lines: ["We build", "real estate brands", "people remember."],
+  collage: [
+    { ...img("slide-5"), alt: "ScaleAcres website portfolio" },
+    { ...img("yt-vgsUylyADPY"), alt: "ScaleAcres real estate ad film" },
+    { ...img("slide-12"), alt: "Nirvana Grand website designed by ScaleAcres" },
+    { ...img("yt-nRFeRCMZG3E"), alt: "ScaleAcres real estate ad film" },
+    { ...img("google"), alt: "Google Ads results from a ScaleAcres campaign" },
+    { ...img("yt-MdluDjATzgA"), alt: "ScaleAcres social media video" },
+  ],
+};
+
+/* ---------------------------------------------------------------- market leaders strip */
+
+export const ndLeaders = [
+  { title: "Ellington 86 hoarding", client: "SID Realtech", image: img("slide-3") },
+  { title: "Ellington 86 launch", client: "SID Realtech", image: img("cr-sid") },
+  { title: "Brand identity system", client: "SID Realtech", image: img("slide-2") },
+  { title: "Launch brochure", client: "Ellington 86", image: img("slide-1") },
+  { title: "Event and site branding", client: "TRG", image: img("slide-4") },
+  { title: "TRG The Mall campaign", client: "TRG", image: img("cr-trg") },
+  { title: "Brochure spreads", client: "Ellington 86", image: img("slide-15") },
 ];

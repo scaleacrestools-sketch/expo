@@ -14,7 +14,11 @@
   --sky: #38bdf8;
   --mist: #eef2fb;
   --line-l: rgb(11 22 64 / 0.12);
-  --line-d: rgb(255 255 255 / 0.1);
+  --line-d: rgb(255 255 255 / 0.12);
+  /* Blue scale built only from the official palette (Royal Navy, Royal Deep, Royal, Sky, White) */
+  --electric: color-mix(in srgb, #1d4ed8 62%, #38bdf8);
+  --ice: color-mix(in srgb, #38bdf8 12%, #ffffff);
+  --royal-tint: color-mix(in srgb, #1d4ed8 9%, #ffffff);
   --muted-l: color-mix(in srgb, #0b1640 66%, #ffffff);
   --muted-d: rgb(255 255 255 / 0.66);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -39,7 +43,9 @@
 .nd-rules > div > span:nth-child(3) { display: none; }
 @media (min-width: 1024px) { .nd-rules > div > span:nth-child(3) { display: block; } }
 @media (max-width: 767px) { .nd-rules > div > span:nth-child(2) { display: none; } }
-.nd-dark { background: var(--ink); color: #fff; --rule: var(--line-d); }
+.nd-dark { background: var(--navy); color: #fff; --rule: var(--line-d); }
+.nd-deep { background: linear-gradient(180deg, var(--deep) 0%, var(--navy) 100%); color: #fff; --rule: var(--line-d); }
+.nd-ink { background: var(--ink); color: #fff; --rule: var(--line-d); }
 .nd-light { background: var(--mist); --rule: var(--line-l); }
 .nd-white { background: #fff; --rule: var(--line-l); }
 .nd-hr { border-top: 1px solid var(--rule, var(--line-l)); }
@@ -47,7 +53,7 @@
 /* ---------------------------------------------------------------- type */
 .nd-label { font-size: 0.875rem; font-weight: 600; line-height: 1.25; letter-spacing: 0.01em; text-transform: uppercase; }
 .nd-muted { color: var(--muted-l); }
-.nd-dark .nd-muted { color: var(--muted-d); }
+.nd-dark .nd-muted, .nd-deep .nd-muted, .nd-ink .nd-muted { color: var(--muted-d); }
 .nd-d1 { font-size: clamp(3.05rem, 9.1vw, 10.75rem); font-weight: 600; line-height: 0.88; letter-spacing: -0.055em; }
 .nd-d2 { font-size: clamp(2.6rem, 5.6vw, 6.25rem); font-weight: 600; line-height: 0.92; letter-spacing: -0.05em; }
 .nd-d3 { font-size: clamp(1.75rem, 2.9vw, 3.25rem); font-weight: 500; line-height: 1.08; letter-spacing: -0.035em; }
@@ -60,7 +66,7 @@
 .nd-tag { display: inline-flex; align-items: center; gap: 0.75rem; }
 .nd-tag i { display: inline-flex; gap: 2px; }
 .nd-tag i b { display: block; width: 5px; height: 12px; background: var(--royal); transform: skewX(-18deg); }
-.nd-dark .nd-tag i b { background: var(--sky); }
+.nd-dark .nd-tag i b, .nd-deep .nd-tag i b, .nd-ink .nd-tag i b { background: var(--sky); }
 
 /* ---------------------------------------------------------------- buttons */
 .nd-btn { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 3.25rem; padding: 0 1.25rem; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.01em; text-transform: uppercase; transition: background-color 0.3s ease, color 0.3s ease; }
@@ -79,15 +85,15 @@
 .nd-link:hover::after { transform: scaleX(1); transform-origin: left; }
 
 /* ---------------------------------------------------------------- reveals (IntersectionObserver adds .in) */
-.js .nd [data-nd="up"] { opacity: 0; transform: translateY(1.75rem); transition: opacity 0.7s var(--ease), transform 0.8s var(--ease); transition-delay: calc(var(--d, 0) * 1ms); }
+.js .nd [data-nd="up"] { opacity: 0; transform: translateY(1.75rem); transition: opacity 0.6s var(--ease), transform 0.7s var(--ease); transition-delay: calc(var(--d, 0) * 1ms); }
 .js .nd [data-nd="up"].in { opacity: 1; transform: none; }
 .js .nd [data-nd="fade"] { opacity: 0; transition: opacity 0.9s ease; transition-delay: calc(var(--d, 0) * 1ms); }
 .js .nd [data-nd="fade"].in { opacity: 1; }
 .nd-w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
 .nd-w > span { display: inline-block; will-change: transform; }
-.js .nd [data-nd="words"] .nd-w > span { transform: translateY(105%); transition: transform 0.75s var(--ease); transition-delay: calc(var(--d, 0) * 1ms + var(--i) * 32ms); }
+.js .nd [data-nd="words"] .nd-w > span { transform: translateY(105%); transition: transform 0.65s var(--ease); transition-delay: calc(var(--d, 0) * 1ms + var(--i) * 28ms); }
 .js .nd [data-nd="words"].in .nd-w > span { transform: none; }
-.js .nd [data-nd="clip"] { clip-path: inset(0 0 100% 0); transition: clip-path 1s var(--ease-io); transition-delay: calc(var(--d, 0) * 1ms); }
+.js .nd [data-nd="clip"] { clip-path: inset(0 0 100% 0); transition: clip-path 0.85s var(--ease-io); transition-delay: calc(var(--d, 0) * 1ms); }
 .js .nd [data-nd="clip"].in { clip-path: inset(0 0 0 0); }
 .js .nd [data-nd="line"] { transform: scaleX(0); transform-origin: left; transition: transform 1s var(--ease); transition-delay: calc(var(--d, 0) * 1ms); }
 .js .nd [data-nd="line"].in { transform: none; }

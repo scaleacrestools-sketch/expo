@@ -2,21 +2,18 @@
 
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { img } from "@/content/nd";
 import { site } from "@/content/site";
-import { ArrowUR, Pic, Plus, Rules, Tag, Words } from "@/components/nd/ui";
-
-const STRIP = ["cr-sid", "slide-2", "web-subata", "cr-jbbr", "slide-4", "web-imperial", "cr-trg", "slide-1"].map((n) => img(n));
+import { ArrowUR, Plus, Rules, Tag, Words } from "@/components/nd/ui";
 
 /**
- * 10 — Contact. "Let's talk." set very large, direct contact details and the two ways to
- * start, over a slow strip of genuine work.
+ * 12 — Contact. "Let's talk." set very large, direct contact details and the two ways to
+ * start. The footer's wordmark picks up directly below, across the navy → white hand-over.
  */
 export function NdContact() {
   return (
     <section id="contact" className="nd-dark relative overflow-hidden" aria-labelledby="nd-contact-title">
       <Rules />
-      <div className="nd-wrap relative pt-[clamp(4.5rem,10vw,9rem)]">
+      <div className="nd-wrap relative pb-[clamp(3rem,6vw,5rem)] pt-[clamp(4.5rem,10vw,9rem)]">
         <div className="nd-cell">
           <Tag>Contact</Tag>
           <Words id="nd-contact-title" lines={["Let's talk."]} accent={["talk."]} accentClass="text-[color:var(--sky)]" className="mt-8 text-[clamp(3.5rem,13vw,15rem)] font-semibold leading-[0.85] tracking-[-0.06em]" />
@@ -49,16 +46,6 @@ export function NdContact() {
         </div>
       </div>
 
-      {/* Work strip */}
-      <div aria-hidden="true" className="nd-marquee-host relative mt-[clamp(3.5rem,7vw,6rem)] overflow-hidden border-y border-white/12 py-5">
-        <div className="nd-marquee" style={{ "--dur": "70s" } as CSSProperties}>
-          {[...STRIP, ...STRIP].map((im, i) => (
-            <div key={i} className="relative mr-4 h-[clamp(9rem,16vw,14rem)] shrink-0 overflow-hidden bg-[color:var(--navy)]" style={{ aspectRatio: im.h > im.w ? "4 / 5" : "16 / 10" }}>
-              <Pic image={im} alt="" sizes="280px" imgClass="absolute inset-0 h-full w-full object-cover object-top" />
-            </div>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

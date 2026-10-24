@@ -12,7 +12,7 @@ import { ArrowUR, Pic, Plus, Rules, Tag, Words } from "@/components/nd/ui";
  */
 export function NdServices() {
   return (
-    <section id="services" className="nd-light relative" aria-labelledby="nd-services-title">
+    <section id="services" className="nd-white relative" aria-labelledby="nd-services-title">
       <Rules />
       <div className="nd-wrap relative">
         <div className="nd-grid">
@@ -26,7 +26,7 @@ export function NdServices() {
             <div data-nd="up" className="mt-10 lg:mt-auto">
               <p className="nd-label">One team, end to end</p>
               <p className="nd-muted mt-1.5 max-w-[22rem] text-[1rem] leading-[1.5]">Brand, websites, media and technology, planned and delivered together.</p>
-              <Link href="/contact-us/" className="nd-btn nd-btn--ink mt-5 w-full max-w-[20rem]">Discuss your project <Plus /></Link>
+              <Link href="/contact-us/" className="nd-btn nd-btn--royal mt-5 w-full max-w-[20rem]">Discuss your project <Plus /></Link>
             </div>
           </div>
 
@@ -59,7 +59,7 @@ export function NdServices() {
                     </div>
                     <div className="nd-cell flex flex-col gap-5" data-nd="up" style={{ "--d": 80 } as CSSProperties}>
                       <ul className="flex flex-wrap gap-1.5" role="list" aria-label="Included">
-                        {s.tags.map((t) => <li key={t} className="nd-pill bg-white/60">{t}</li>)}
+                        {s.tags.map((t) => <li key={t} className="nd-pill bg-[color:var(--ice)]">{t}</li>)}
                       </ul>
                       <Link href={s.href} className="nd-link nd-label w-fit">{s.cta} <ArrowUR className="h-3.5 w-3.5" /></Link>
                     </div>
@@ -78,7 +78,7 @@ function Frame({ m, wide, delay }: { m: ServiceMediaItem; wide: boolean; delay: 
   const sizes = wide ? "(min-width: 1024px) 60vw, 100vw" : "(min-width: 1024px) 30vw, 50vw";
   const show = m.show ?? "cover";
   return (
-    <div data-nd="clip" style={{ "--d": delay } as CSSProperties} className={`nd-zoom relative overflow-hidden ${wide ? "aspect-[16/8.5]" : "aspect-[4/3]"} ${show === "cover" ? "bg-white" : "bg-[color:var(--navy)]"}`}>
+    <div data-nd="clip" style={{ "--d": delay } as CSSProperties} className={`nd-zoom relative overflow-hidden ${wide ? "aspect-[16/8.5]" : "aspect-[4/3]"} ${show === "cover" ? "bg-[color:var(--mist)]" : "bg-[color:var(--navy)]"}`}>
       {show === "cover" ? (
         <Pic image={m} alt={m.alt} sizes={sizes} imgClass="absolute inset-0 h-full w-full object-cover object-top" />
       ) : show === "phone" ? (

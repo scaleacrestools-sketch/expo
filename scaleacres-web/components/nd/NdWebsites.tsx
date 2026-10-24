@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ndMoreSites, ndSites } from "@/content/nd";
 import { useGsap } from "@/lib/motion";
 import { ArrowUR, Pic, Rules, Tag } from "@/components/nd/ui";
@@ -10,14 +10,15 @@ import { ArrowUR, Pic, Rules, Tag } from "@/components/nd/ui";
  * 04 — Website design. A moving title, then three genuine websites shown large in a minimal
  * browser frame (first-screen captures of the live sites, 2× resolution). Each frame widens
  * from a narrow window to the full grid as it scrolls into place. Three more sites follow
- * as a compact list.
+ * as a compact list. Where we recorded a scroll-through of the live site, it plays muted over
+ * the still while the frame is on screen.
  */
 export function NdWebsites() {
   const ref = useRef<HTMLElement>(null);
   useGsap(ref, ({ gsap, el }) => {
     el.querySelectorAll<HTMLElement>("[data-expand]").forEach((f) => {
       gsap.fromTo(f, { clipPath: "inset(8% 17% 8% 17%)" }, { clipPath: "inset(0% 0% 0% 0%)", ease: "none", scrollTrigger: { trigger: f, start: "top 95%", end: "top 30%", scrub: 0.3 } });
-      const im = f.querySelector("img");
+      const im = f.querySelector("[data-media]");
       if (im) gsap.fromTo(im, { scale: 1.16 }, { scale: 1, ease: "none", scrollTrigger: { trigger: f, start: "top 95%", end: "top 30%", scrub: 0.3 } });
     });
   });
@@ -55,7 +56,11 @@ export function NdWebsites() {
                     <span className="mx-auto truncate px-4 text-[0.875rem] text-white/50">{s.name}</span>
                   </div>
                   <div className="relative aspect-[16/10] overflow-hidden">
-                    <Pic image={s.image} alt={`${s.name} website, designed and developed by ScaleAcres`} sizes="(min-width: 1024px) 94vw, 100vw" imgClass="absolute inset-0 h-full w-full object-cover object-top" />
+                    <div data-media className="absolute inset-0">
+                      <Pic image={s.image} alt={`${s.name} website, designed and developed by ScaleAcres`} sizes="(min-width: 1024px) 94vw, 100vw" imgClass="absolute inset-0 h-full w-full object-cover object-top" />
+                      {s.video ? <SiteVideo src={s.video} /> : null}
+                    </div>
+                    {s.video ? <span className="absolute bottom-3 left-3 bg-white px-2.5 py-1 text-[0.8125rem] font-semibold text-[color:var(--navy)] md:bottom-4 md:left-4">Live site · scroll-through</span> : null}
                   </div>
                 </div>
               </div>
@@ -92,5 +97,42 @@ export function NdWebsites() {
         </div>
       </div>
     </section>
+  );
+}
+
+/** Muted scroll-through of a live site: loads only near the viewport, plays only while visible. */
+function SiteVideo({ src }: { src: string }) {
+  const v = useRef<HTMLVideoElement>(null);
+  const [on, setOn] = useState(false);
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
+    const el = v.current;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if ((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setOn(true); if (el.currentSrc) el.play().catch(() => {}); } else el.pause();
+    }, { threshold: 0.2 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  useEffect(() => {
+    if (!on || !v.current) return;
+    v.current.load();
+    v.current.play().catch(() => {});
+  }, [on]);
+  return (
+    <video
+      ref={v}
+      muted
+      loop
+      playsInline
+      preload="none"
+      aria-hidden="true"
+      onPlaying={() => setShown(true)}
+      className={`absolute inset-0 h-full w-full object-cover object-top transition-opacity duration-700 ${shown ? "opacity-100" : "opacity-0"}`}
+    >
+      {on ? <source src={`${src}.webm`} type="video/webm" /> : null}
+      {on ? <source src={`${src}.mp4`} type="video/mp4" /> : null}
+    </video>
   );
 }

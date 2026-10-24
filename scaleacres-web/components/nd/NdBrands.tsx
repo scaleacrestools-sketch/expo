@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ndBrands } from "@/content/nd";
-import { leadersCopy } from "@/content/home";
 import { ArrowUR, Pic, Rules, Tag, Words } from "@/components/nd/ui";
 
 /**
@@ -51,7 +50,7 @@ export function NdBrands() {
 
         <div className="nd-grid mt-[clamp(3rem,6vw,5rem)] gap-y-8">
           <div className="nd-cell flex flex-col justify-between gap-8">
-            <p data-nd="up" className="nd-lead max-w-[26rem] [&_strong]:font-semibold" dangerouslySetInnerHTML={{ __html: leadersCopy }} />
+            <p data-nd="up" className="nd-lead max-w-[26rem]">Identity, print and outdoor work for developers and their projects: logos, brochures, hoardings and launch kits that make a project look as good as it is.</p>
             <Link data-nd="up" href="/our-services/" className="nd-link nd-label w-fit">Branding services <ArrowUR className="h-3.5 w-3.5" /></Link>
           </div>
           {big.map((b, i) => (

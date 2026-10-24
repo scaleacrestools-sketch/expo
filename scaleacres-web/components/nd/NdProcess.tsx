@@ -7,7 +7,7 @@ import { Rules, Tag, Words } from "@/components/nd/ui";
 
 /**
  * 08 — How we work. Four steps as cards on the grid; as the section scrolls through, the
- * current step turns Brand Black (hover or focus also selects a step).
+ * current step turns Royal (hover or focus also selects a step).
  */
 export function NdProcess() {
   const ref = useRef<HTMLElement>(null);
@@ -46,15 +46,15 @@ export function NdProcess() {
                     tabIndex={0}
                     onPointerEnter={() => setActive(i)}
                     onFocus={() => setActive(i)}
-                    className={`flex min-h-[18rem] flex-col justify-between p-6 transition-colors duration-500 md:min-h-[21rem] md:p-7 ${on ? "bg-[color:var(--ink)] text-white" : "bg-white text-[color:var(--ink)]"}`}
+                    className={`flex min-h-[18rem] flex-col justify-between p-6 transition-colors duration-500 md:min-h-[21rem] md:p-7 ${on ? "bg-[color:var(--royal)] text-white shadow-[0_30px_60px_-30px_rgb(29_78_216/0.6)]" : "bg-white text-[color:var(--ink)]"}`}
                   >
                     <div className="flex items-start justify-between">
-                      <span className={`grid h-11 w-11 place-items-center text-[1rem] font-semibold tabular-nums transition-colors duration-500 ${on ? "bg-[color:var(--royal)] text-white" : "bg-[color:var(--mist)] text-[color:var(--royal)]"}`}>{p.n}</span>
-                      <span className={`nd-label ${on ? "text-white/60" : "nd-muted"}`}>{p.key}</span>
+                      <span className={`grid h-11 w-11 place-items-center text-[1rem] font-semibold tabular-nums transition-colors duration-500 ${on ? "bg-white text-[color:var(--royal)]" : "bg-[color:var(--mist)] text-[color:var(--royal)]"}`}>{p.n}</span>
+                      <span className={`nd-label ${on ? "text-white/70" : "nd-muted"}`}>{p.key}</span>
                     </div>
                     <div>
                       <h3 className="text-[clamp(1.5rem,1.9vw,2rem)] font-semibold leading-[1.1] tracking-[-0.03em]">{p.title}</h3>
-                      <p className={`nd-body mt-3 max-w-[28rem] ${on ? "text-white/75" : "nd-muted"}`}>{p.body}</p>
+                      <p className={`nd-body mt-3 max-w-[28rem] ${on ? "text-white/85" : "nd-muted"}`}>{p.body}</p>
                     </div>
                   </article>
                 </li>

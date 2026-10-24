@@ -11,11 +11,12 @@ import { Plus } from "@/components/nd/ui";
 /**
  * Homepage header: official logo on the left, one Menu button on the far right. Nothing else.
  * The white bar tucks away while scrolling down and returns on scroll up; the Menu button stays.
- * The menu opens a Brand Black panel over a blurred page (Esc, the overlay or Close shut it).
+ * The menu opens a Royal Navy panel over a blurred page (Esc, the overlay or Close shut it).
  */
 export function NdHeader() {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [solid, setSolid] = useState(false); // white bar once past the dark hero
   const btn = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
 
@@ -24,8 +25,10 @@ export function NdHeader() {
     const on = () => {
       const y = window.scrollY;
       setHidden(y > 160 && y > last);
+      setSolid(y > window.innerHeight * 0.85);
       last = y;
     };
+    on();
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
   }, []);
@@ -58,12 +61,12 @@ export function NdHeader() {
   return (
     <div className="nd" style={{ background: "transparent" }}>
       <header
-        className={`fixed inset-x-0 top-0 z-50 border-b border-[color:var(--line-l)] bg-white transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${hidden && !open ? "-translate-y-full" : ""}`}
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-[transform,background-color,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${solid ? "border-[color:var(--line-l)] bg-white" : "border-white/12 bg-transparent"} ${hidden && !open ? "-translate-y-full" : ""}`}
       >
         <div className="flex h-14 items-center px-[var(--m)] md:h-16">
           <Link href="/" aria-label="ScaleAcres — Home" className="inline-flex">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={brand.logo.primaryNoStrapline} alt="ScaleAcres" width={brand.logo.noStraplineWidth} height={brand.logo.height} className="h-[38px] w-auto" fetchPriority="high" decoding="async" />
+            <img src={solid ? brand.logo.primaryNoStrapline : brand.logo.reversedNoStrapline} alt="ScaleAcres" width={brand.logo.noStraplineWidth} height={brand.logo.height} className="h-[38px] w-auto" fetchPriority="high" decoding="async" />
           </Link>
         </div>
       </header>
@@ -75,7 +78,7 @@ export function NdHeader() {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="nd-menu"
-        className={`fixed right-[var(--m)] top-[6px] z-[70] flex h-11 items-center gap-3 px-4 text-[0.875rem] font-semibold uppercase tracking-[0.01em] transition-colors duration-300 md:top-[10px] ${open ? "bg-white text-[color:var(--ink)]" : "bg-[color:var(--ink)] text-white hover:bg-[color:var(--royal)]"}`}
+        className={`fixed right-[var(--m)] top-[6px] z-[70] flex h-11 items-center gap-3 px-4 text-[0.875rem] font-semibold uppercase tracking-[0.01em] transition-colors duration-300 md:top-[10px] ${open ? "bg-white text-[color:var(--navy)]" : "bg-[color:var(--royal)] text-white hover:bg-[color:var(--deep)]"}`}
       >
         <span>{open ? "Close" : "Menu"}</span>
         <span aria-hidden="true" className="relative block h-3 w-5">
@@ -96,7 +99,7 @@ export function NdHeader() {
         role="dialog"
         aria-modal="true"
         aria-label="Site menu"
-        className={`nd-menu fixed right-[var(--m)] top-[3.75rem] z-[65] max-h-[calc(100svh-4.5rem)] w-[min(46rem,calc(100vw-2*var(--m)))] overflow-y-auto bg-[color:var(--ink)] text-white md:top-[4.25rem] ${open ? "is-open" : "pointer-events-none"}`}
+        className={`nd-menu fixed right-[var(--m)] top-[3.75rem] z-[65] max-h-[calc(100svh-4.5rem)] w-[min(46rem,calc(100vw-2*var(--m)))] overflow-y-auto bg-[color:var(--navy)] text-white md:top-[4.25rem] ${open ? "is-open" : "pointer-events-none"}`}
         {...(!open ? { inert: true } : {})}
       >
         <div className="grid gap-10 p-6 md:grid-cols-2 md:p-9">

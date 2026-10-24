@@ -8,7 +8,7 @@ import { site } from "@/content/site";
 import { useGsap } from "@/lib/motion";
 import { Plus, Rules } from "@/components/nd/ui";
 
-const LINES: [string, string][] = [["Built to", "stand out."], ["Designed", "to scale."]];
+const LINES: [string, string][] = [["Built to", "Stand Out."], ["Designed", "to Scale."]];
 
 /**
  * 01 — Hero. Monochrome backdrop with grain, hairline grid, a discipline row, the statement set
@@ -38,7 +38,7 @@ export function NdHero() {
             <img src={ndHero.backdrop.landscape.src} alt="" width={ndHero.backdrop.landscape.w} height={ndHero.backdrop.landscape.h} fetchPriority="high" decoding="async" className="h-full w-full object-cover object-[50%_40%]" />
           </picture>
         </div>
-        <div className="nd-grain absolute inset-0 bg-[linear-gradient(180deg,rgb(11_13_13/0.72)_0%,rgb(11_13_13/0.42)_35%,rgb(11_13_13/0.5)_62%,rgb(11_13_13/0.94)_100%)]" />
+        <div className="nd-grain absolute inset-0 bg-[linear-gradient(180deg,rgb(11_22_64/0.72)_0%,rgb(11_22_64/0.42)_35%,rgb(11_22_64/0.5)_62%,rgb(11_22_64/0.94)_100%)]" />
         <div className="absolute inset-0 bg-[color:var(--navy)] opacity-30 mix-blend-multiply" />
       </div>
       <Rules />
@@ -73,7 +73,7 @@ export function NdHero() {
                     {chunk.split(" ").map((word, wi, arr) => (
                       <span key={wi}>
                         <span className="nd-w">
-                          <span className={`nd-hw ${word === "scale." ? "text-[color:var(--sky)]" : ""}`} style={{ "--i": w++ } as CSSProperties}>{word}</span>
+                          <span className={`nd-hw ${word === "Scale." ? "text-[color:var(--sky)]" : ""}`} style={{ "--i": w++ } as CSSProperties}>{word}</span>
                         </span>
                         {wi < arr.length - 1 || ci === 0 ? " " : null}
                       </span>
@@ -85,27 +85,27 @@ export function NdHero() {
           </h1>
         </div>
 
-        {/* Support + CTA */}
-        <div className="nd-grid nd-hero-in pb-6 md:pb-8" style={{ "--d": 650 } as CSSProperties}>
-          <ul className="nd-cell hidden items-end gap-5 lg:flex" role="list" aria-label="ScaleAcres on social media">
-            {site.social.map((s) => (
-              <li key={s.label}><a href={s.href} target="_blank" rel="noopener noreferrer" className="nd-link nd-label">{s.label}</a></li>
-            ))}
-          </ul>
-          <div className="nd-cell">
-            <p className="nd-lead max-w-[30rem] text-white/90">{ndHero.support}</p>
-            <Link href="/contact-us/" className="nd-btn nd-btn--royal mt-6 w-full">Start a project <Plus /></Link>
+        {/* CTA + support (draft: actions under the headline on the left) */}
+        <div className="nd-grid nd-hero-in items-end gap-y-6 pb-7 md:pb-9" style={{ "--d": 620 } as CSSProperties}>
+          <div className="nd-cell flex flex-wrap items-center gap-x-6 gap-y-4">
+            <Link href="/contact-us/" className="nd-btn nd-btn--royal min-w-[15rem]">Start a project <Plus /></Link>
+            <a href="#work" className="nd-link nd-label">See our work</a>
           </div>
-          <div className="nd-cell mt-6 flex flex-col justify-end md:mt-0 lg:items-end lg:text-right">
-            <a href="#services" className="nd-link nd-label">Explore our services</a>
-            <p className="mt-3 max-w-[22rem] text-[1rem] leading-[1.5] text-white/70">Trusted by developers including Adani Realty, Tata Realty and M3M.</p>
-            <p className="mt-3 text-[0.875rem] text-white/45 lg:hidden">{ndHero.backdrop.credit}</p>
+          <p className="nd-cell nd-lead max-w-[30rem] text-white/90">{ndHero.support}</p>
+          <div className="nd-cell flex flex-col gap-3 lg:items-end lg:text-right">
+            <p className="max-w-[22rem] text-[1rem] leading-[1.5] text-white/72">Trusted by developers including Adani Realty, Tata Realty and M3M.</p>
+            <ul className="flex gap-5" role="list" aria-label="ScaleAcres on social media">
+              {site.social.map((s) => (
+                <li key={s.label}><a href={s.href} target="_blank" rel="noopener noreferrer" className="nd-link nd-label">{s.label}</a></li>
+              ))}
+            </ul>
+            <p className="text-[0.875rem] text-white/45 lg:hidden">{ndHero.backdrop.credit}</p>
           </div>
         </div>
       </div>
 
       {/* Client strip */}
-      <div className="nd-hero-in relative z-10 border-t border-white/12 bg-[rgb(11_13_13/0.35)] backdrop-blur-[2px]" style={{ "--d": 760 } as CSSProperties}>
+      <div className="nd-hero-in relative z-10 border-t border-white/12 bg-[rgb(11_22_64/0.35)] backdrop-blur-[2px]" style={{ "--d": 760 } as CSSProperties}>
         <div className="nd-marquee-host overflow-hidden py-4 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
           <ul className="nd-marquee" style={{ "--dur": "55s" } as CSSProperties} role="list" aria-label="Clients">
             {[...clientLogos, ...clientLogos].map((c, i) => {
