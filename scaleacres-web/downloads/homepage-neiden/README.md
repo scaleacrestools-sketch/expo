@@ -15,10 +15,10 @@ What changed:
 
 | File | What it is |
 |---|---|
-| `scaleacres-neiden-homepage-desktop.mp4` | 1440 × 900, 80 s real-browser recording. It shows the hero intro, the menu opening and closing, every service with hover, the expanding website previews, the video tabs, the branding cursor preview, selected work, the process cards, the testimonial switcher, contact and the footer. |
+| `scaleacres-neiden-homepage-desktop.mp4` | 1440 × 900, 83 s real-browser recording. It shows the hero intro, the menu opening and closing, every service with hover, the expanding website previews, the video tabs, the branding cursor preview, selected work, the process cards, the testimonial switcher, contact and the footer. |
 | `scaleacres-neiden-homepage-mobile.mp4` | 390 × 844, 67 s recording of the same journey on a phone. |
-| `scaleacres-neiden-homepage-desktop-fullpage.jpg` | Full page, 1440 × 20728. |
-| `scaleacres-neiden-homepage-mobile-fullpage.jpg` | Full page, 390 px at 2× (780 × 45012). |
+| `scaleacres-neiden-homepage-desktop-fullpage.jpg` | Full page, 1440 × 20796. |
+| `scaleacres-neiden-homepage-mobile-fullpage.jpg` | Full page, 390 px at 2× (780 × 45320). |
 | `scaleacres-neiden-homepage-netlify-preview.zip` | Static build. Drag it onto Netlify Drop. |
 | `scaleacres-neiden-homepage-source.zip` | Next.js source. Run `npm ci && npm run build:static-preview`. |
 
@@ -69,10 +69,22 @@ The palette is the seven brand colours only, with Royal as the single accent and
 - **Videos:** 6 per category from the ScaleAcres YouTube channel. AI videos are tagged "AI" and the AI tab carries an "AI-generated" label.
 - **Hero backdrop:** a monochrome still from a ScaleAcres concept film, labelled on the page.
 
-**Not available, so not invented:**
-1. There are no genuine CRM, dashboard or back-office screens for Custom Applications. Finsckool, a platform ScaleAcres built, is shown instead.
-2. There are no ad-platform previews (feed or story mock-ups) for Performance Marketing. A genuine campaign creative and real results are shown instead.
+**Not available, so not invented.** Each stand-in is labelled on the page, under the service's images:
+1. **Custom Applications:** there are no genuine CRM, dashboard or back-office screens. The page says: "Shown: the Finsckool learning platform, built by ScaleAcres. CRM and dashboard projects to be added when available."
+2. **Performance Marketing:** there are no ad-platform previews (feed or story mock-ups). The page says: "Shown: a TRG campaign creative and Meta Ads results from ScaleAcres campaigns. Ad-platform previews to be added."
 3. There is no founding year, team photography or project statistics, so none appear on the page.
+
+## Video playback
+
+These hosts are blocked in this build environment:
+- YouTube;
+- the testimonial CDN (`d2ol7oe51mr4n9.cloudfront.net`).
+
+The recordings therefore show the video thumbnails and the dialog opening, but not playback. I checked every source from an environment that can reach them:
+- All 25 YouTube videos used on the page resolve (oEmbed 200), and the youtube-nocookie embed responds 200.
+- All 4 testimonial videos return HTTP 200 `video/mp4`.
+
+On Netlify or any normal network, they play when clicked.
 
 ## Performance and checks
 
