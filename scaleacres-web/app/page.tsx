@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { HomeHero } from "@/components/home/HomeHero";
-import { Manifesto } from "@/components/home/Manifesto";
-import { ServicesStack } from "@/components/home/ServicesStack";
-import { MarketLeaders } from "@/components/home/MarketLeaders";
-import { WebsiteShowcase } from "@/components/home/WebsiteShowcase";
-import { VideoStudio } from "@/components/home/VideoStudio";
-import { ClientLogoShowcase } from "@/components/ClientLogoShowcase";
-import { FeaturedWork } from "@/components/home/FeaturedWork";
-import { Testimonials } from "@/components/Testimonials";
-import { FinalCta } from "@/components/home/FinalCta";
 import { homepageSeo } from "@/content/seo/homepage";
+import "@/components/nd/nd.css";
+import { NdMotion } from "@/components/nd/ui";
+import { NdHero } from "@/components/nd/NdHero";
+import { NdAbout } from "@/components/nd/NdAbout";
+import { NdServices } from "@/components/nd/NdServices";
+import { NdWebsites } from "@/components/nd/NdWebsites";
+import { NdVideos } from "@/components/nd/NdVideos";
+import { NdBrands } from "@/components/nd/NdBrands";
+import { NdWork } from "@/components/nd/NdWork";
+import { NdProcess } from "@/components/nd/NdProcess";
+import { NdClients } from "@/components/nd/NdClients";
+import { NdContact } from "@/components/nd/NdContact";
+import { NdFooter } from "@/components/nd/NdFooter";
 
 export const metadata: Metadata = {
   // PROTECTED: identical to the live homepage title. Do not change without SEO approval.
@@ -20,31 +23,28 @@ export const metadata: Metadata = {
 };
 
 /**
- * Homepage v2 — "editorial cinematic" direction (proposal, awaiting approval).
- * The previous homepage (HeroVideo, EditorialIntro, ServicesShowcase, WorkShowcase, HowWeWork,
- * FAQ, ContactBanner) is untouched in /components and recoverable from git (commit fb724e0f).
+ * Homepage — Neiden-inspired direction (proposal under review).
+ * The previous homepage (components/home/*) is untouched and recoverable from git (1a7a591a).
  *
- * 01 Hero · 02 Who we are · 03 Our Services · 04 Website Design · 05 Real Estate Videos ·
- * 06 We Don't Create Brands · 07 Featured Work · 08 Clients · 09 Testimonials · 10 Contact CTA ·
- * 11 Footer (site-wide)
+ * 01 Hero · 02 Who we are · 03 Services · 04 Website design · 05 Videos · 06 Branding ·
+ * 07 Selected work · 08 How we work · 09 Clients & testimonials · 10 Contact · 11 Footer
+ * Header: components/nd/NdHeader (logo left, Menu right), chosen by components/Header on "/".
  */
 export default function HomePage() {
   return (
-    <div className="home-v2">
-      <HomeHero />
-      <Manifesto />
-      <ServicesStack />
-      <WebsiteShowcase />
-      <VideoStudio />
-      <MarketLeaders />
-      <FeaturedWork />
-      <div className="hv2">
-        <ClientLogoShowcase />
-      </div>
-      <div className="hv2">
-        <Testimonials />
-      </div>
-      <FinalCta />
+    <div className="nd">
+      <NdMotion />
+      <NdHero />
+      <NdAbout />
+      <NdServices />
+      <NdWebsites />
+      <NdVideos />
+      <NdBrands />
+      <NdWork />
+      <NdProcess />
+      <NdClients />
+      <NdContact />
+      <NdFooter />
     </div>
   );
 }
