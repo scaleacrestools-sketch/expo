@@ -46,6 +46,12 @@ export function NdServices() {
                       </div>
                     ))}
                   </div>
+                  {s.note ? (
+                    <p className="nd-cell mt-3 flex items-start gap-2 text-[0.9375rem] leading-[1.45] text-[color:var(--muted-l)]">
+                      <span aria-hidden="true" className="mt-[0.45em] h-1.5 w-1.5 shrink-0 bg-[color:var(--royal)]" />
+                      {s.note}
+                    </p>
+                  ) : null}
                   <div className="mt-6 grid gap-y-5 md:grid-cols-2">
                     <div className="nd-cell" data-nd="up">
                       <p className="text-[1.0625rem] font-semibold text-[color:var(--royal)]">{s.headline}</p>

@@ -90,6 +90,12 @@ const media: Record<string, ServiceMediaItem[]> = {
   ],
 };
 
+/** Shown under a service's media when the work is a stand-in for an asset we don't have yet. */
+const notes: Record<string, string> = {
+  "performance-marketing": "Shown: a TRG campaign creative and Meta Ads results from ScaleAcres campaigns. Ad-platform previews to be added.",
+  "custom-applications-software": "Shown: the Finsckool learning platform, built by ScaleAcres. CRM and dashboard projects to be added when available.",
+};
+
 export const ndServices = services.map((s, i) => ({
   number: String(i + 1).padStart(3, "0"),
   title: s.title,
@@ -100,6 +106,7 @@ export const ndServices = services.map((s, i) => ({
   href: s.path,
   cta: s.ctaLabel,
   media: media[s.slug],
+  note: notes[s.slug],
 }));
 
 /* ---------------------------------------------------------------- websites */
