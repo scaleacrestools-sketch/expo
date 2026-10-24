@@ -78,7 +78,7 @@ export function NdHeader() {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="nd-menu"
-        className={`fixed right-[var(--m)] top-[6px] z-[70] flex h-11 items-center gap-3 px-4 text-[0.875rem] font-semibold uppercase tracking-[0.01em] transition-colors duration-300 md:top-[10px] ${open ? "bg-white text-[color:var(--navy)]" : "bg-[color:var(--royal)] text-white hover:bg-[color:var(--deep)]"}`}
+        className={`fixed right-[var(--m)] top-[6px] z-[70] flex h-11 items-center gap-3 px-4 text-[0.875rem] font-semibold uppercase tracking-[0.01em] transition-colors duration-300 md:top-[10px] ${open ? "bg-white text-[color:var(--ink)]" : "bg-[color:var(--royal)] text-white hover:bg-[color:var(--deep)]"}`}
       >
         <span>{open ? "Close" : "Menu"}</span>
         <span aria-hidden="true" className="relative block h-3 w-5">
@@ -99,7 +99,7 @@ export function NdHeader() {
         role="dialog"
         aria-modal="true"
         aria-label="Site menu"
-        className={`nd-menu fixed right-[var(--m)] top-[3.75rem] z-[65] max-h-[calc(100svh-4.5rem)] w-[min(46rem,calc(100vw-2*var(--m)))] overflow-y-auto bg-[color:var(--navy)] text-white md:top-[4.25rem] ${open ? "is-open" : "pointer-events-none"}`}
+        className={`nd-menu fixed right-[var(--m)] top-[3.75rem] z-[65] max-h-[calc(100svh-4.5rem)] w-[min(46rem,calc(100vw-2*var(--m)))] overflow-y-auto bg-[color:var(--ink)] text-white md:top-[4.25rem] ${open ? "is-open" : "pointer-events-none"}`}
         {...(!open ? { inert: true } : {})}
       >
         <div className="grid gap-10 p-6 md:grid-cols-2 md:p-9">

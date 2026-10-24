@@ -34,7 +34,7 @@ export function NdLeaders() {
         },
       });
       track.querySelectorAll<HTMLElement>("[data-frame]").forEach((f) => {
-        gsap.fromTo(f, { clipPath: "inset(8% 0% 8% 16%)" }, { clipPath: "inset(0% 0% 0% 0%)", ease: "none", scrollTrigger: { trigger: f, containerAnimation: tween, start: "left 100%", end: "left 60%", scrub: 0.3 } });
+        gsap.fromTo(f, { clipPath: "inset(8% 0% 8% 16%)" }, { clipPath: "inset(-14% -8% -14% -8%)", ease: "none", scrollTrigger: { trigger: f, containerAnimation: tween, start: "left 100%", end: "left 60%", scrub: 0.3 } });
         const im = f.querySelector("img");
         if (im) gsap.fromTo(im, { xPercent: -4 }, { xPercent: 4, ease: "none", scrollTrigger: { trigger: f, containerAnimation: tween, start: "left right", end: "right left", scrub: true } });
       });
@@ -42,7 +42,7 @@ export function NdLeaders() {
   });
 
   return (
-    <section ref={ref} id="market-leaders" className="nd-light relative overflow-hidden" aria-labelledby="nd-leaders-title">
+    <section ref={ref} id="market-leaders" className="nd-white relative overflow-hidden border-t border-[color:var(--line-l)]" aria-labelledby="nd-leaders-title">
       <Rules />
       <div className="nd-wrap relative pt-[clamp(4.5rem,10vw,9rem)]">
         <div className="nd-cell">
@@ -56,18 +56,18 @@ export function NdLeaders() {
           />
         </div>
         <div className="nd-grid mt-[clamp(2rem,4vw,3.5rem)]">
-          <p data-nd="up" className="nd-cell nd-lead max-w-[36rem] md:col-start-2 lg:col-span-2 lg:col-start-2 [&_strong]:font-semibold [&_strong]:text-[color:var(--navy)]" dangerouslySetInnerHTML={{ __html: leadersCopy }} />
+          <p data-nd="up" className="nd-cell nd-lead max-w-[36rem] md:col-start-2 lg:col-span-2 lg:col-start-2 [&_strong]:font-semibold [&_strong]:text-[color:var(--ink)]" dangerouslySetInnerHTML={{ __html: leadersCopy }} />
         </div>
       </div>
 
       {/* Strip */}
-      <div data-pin className="relative mt-[clamp(2.5rem,5vw,4.5rem)] pb-[clamp(4rem,8vw,7rem)] lg:flex lg:h-[100svh] lg:flex-col lg:justify-center lg:pb-0">
-        <div data-track className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--m)] pb-4 [scrollbar-width:none] lg:w-max lg:snap-none lg:gap-[2vw] lg:overflow-visible lg:pb-0 lg:pr-[14vw]" role="list" aria-label="Branding work">
+      <div data-pin className="relative mt-[clamp(2.5rem,5vw,4.5rem)] pb-[clamp(1.5rem,4vw,3rem)] lg:flex lg:h-[100svh] lg:flex-col lg:justify-center lg:pb-0">
+        <div data-track className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--m)] pb-14 pt-2 [scrollbar-width:none] lg:w-max lg:snap-none lg:gap-[2vw] lg:overflow-visible lg:pb-0 lg:pr-[14vw]" role="list" aria-label="Branding work">
           {ndLeaders.map((b, i) => {
             const portrait = b.image.h > b.image.w;
             return (
               <figure key={b.title} role="listitem" className={`group m-0 shrink-0 snap-start ${portrait ? "w-[62vw] sm:w-[38vw] lg:w-[24vw]" : "w-[86vw] sm:w-[66vw] lg:w-[54vw]"}`}>
-                <div data-frame className="relative overflow-hidden bg-white shadow-[0_30px_70px_-40px_rgb(11_22_64/0.45)]" style={{ aspectRatio: portrait ? "4 / 5" : "16 / 9", maxHeight: "66svh" } as CSSProperties}>
+                <div data-frame className="relative overflow-hidden bg-[color:var(--mist)] shadow-[var(--sh-2)]" style={{ aspectRatio: portrait ? "4 / 5" : "16 / 9", maxHeight: "66svh" } as CSSProperties}>
                   <Pic image={b.image} alt={`${b.title} for ${b.client}`} sizes={portrait ? "(min-width: 1024px) 26vw, 62vw" : "(min-width: 1024px) 56vw, 86vw"} imgClass={`absolute inset-y-0 left-[-6%] h-full w-[112%] max-w-none object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] ${portrait ? "object-top" : ""}`} />
                 </div>
                 <figcaption className="mt-4 flex items-baseline gap-4">

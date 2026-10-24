@@ -27,7 +27,7 @@ function Icon({ children }: { children: ReactNode }) {
 
 /**
  * 13 — Footer (new design from the combined draft). The name set edge to edge across the
- * hand-over from the navy contact section, faded into both grounds; then a white footer with
+ * hand-over from the black contact section, faded into both grounds; then a white footer with
  * the logo and introduction, navigation, services, contact with Royal icons, and the legal bar.
  * The letters of the name rise one after another as it scrolls into view.
  */
@@ -44,8 +44,8 @@ export function NdFooter() {
   const year = new Date().getFullYear();
   return (
     <footer ref={ref} className="nd-white relative overflow-hidden" aria-label="Footer">
-      {/* Wordmark across the navy → white hand-over */}
-      <div aria-hidden="true" className="relative bg-[linear-gradient(180deg,var(--navy)_0%,var(--navy)_52%,#fff_52%)]">
+      {/* Wordmark across the black → white hand-over */}
+      <div aria-hidden="true" className="relative bg-[linear-gradient(180deg,var(--ink)_0%,var(--ink)_52%,#fff_52%)]">
         <div className="nd-wrap [container-type:inline-size]">
           <p className="nd-cell flex select-none justify-center whitespace-nowrap font-semibold leading-[0.84] tracking-[-0.055em]" style={{ fontSize: "calc(100cqw / 4.7)" }}>
             {WORD.split("").map((ch, i) => (
@@ -78,7 +78,7 @@ export function NdFooter() {
 
           {/* Navigation */}
           <nav className="nd-cell" aria-label="Footer navigation" data-nd="up" style={{ "--d": 60 } as CSSProperties}>
-            <p className="nd-label text-[color:var(--navy)]">Navigation</p>
+            <p className="nd-label text-[color:var(--ink)]">Navigation</p>
             <ul className="mt-5 space-y-2.5" role="list">
               {ndNav.map((n) => <li key={n.href}><Link href={n.href} className="nd-link text-[1rem] text-[color:var(--muted-l)] transition-colors hover:text-[color:var(--royal)]">{n.label}</Link></li>)}
             </ul>
@@ -86,7 +86,7 @@ export function NdFooter() {
 
           {/* Services */}
           <nav className="nd-cell" aria-label="Our services" data-nd="up" style={{ "--d": 120 } as CSSProperties}>
-            <p className="nd-label text-[color:var(--navy)]">Our services</p>
+            <p className="nd-label text-[color:var(--ink)]">Our services</p>
             <ul className="mt-5 space-y-2.5" role="list">
               {ndServices.map((s) => <li key={s.href}><Link href={s.href} className="nd-link text-[1rem] leading-snug text-[color:var(--muted-l)] transition-colors hover:text-[color:var(--royal)]">{s.short === "Web" ? "Websites" : s.title.split(" & ")[0]}</Link></li>)}
             </ul>
@@ -94,20 +94,20 @@ export function NdFooter() {
 
           {/* Contact */}
           <div className="nd-cell col-span-2 md:col-span-1" data-nd="up" style={{ "--d": 180 } as CSSProperties}>
-            <p className="nd-label text-[color:var(--navy)]">Contact</p>
+            <p className="nd-label text-[color:var(--ink)]">Contact</p>
             <ul className="mt-5 space-y-4" role="list">
               <li>
                 <a href={site.phones[0].href} className="group flex items-center gap-4">
                   <Icon><path d="M6.6 3.5h2.6l1.4 4-1.9 1.3a11 11 0 0 0 5.5 5.5l1.3-1.9 4 1.4v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z" /></Icon>
                   <span className="text-[1rem] leading-[1.45]">
-                    {site.phones.slice(0, 2).map((p) => <span key={p.number} className="block font-medium text-[color:var(--navy)] transition-colors group-hover:text-[color:var(--royal)]">{p.number}</span>)}
+                    {site.phones.slice(0, 2).map((p) => <span key={p.number} className="block font-medium text-[color:var(--ink)] transition-colors group-hover:text-[color:var(--royal)]">{p.number}</span>)}
                   </span>
                 </a>
               </li>
               <li>
                 <a href={`mailto:${site.email}`} className="group flex items-center gap-4">
                   <Icon><rect x="3.5" y="5.5" width="17" height="13" rx="2" /><path d="m4 7 8 6 8-6" /></Icon>
-                  <span className="break-all text-[1rem] font-medium text-[color:var(--navy)] transition-colors group-hover:text-[color:var(--royal)]">{site.email}</span>
+                  <span className="break-all text-[1rem] font-medium text-[color:var(--ink)] transition-colors group-hover:text-[color:var(--royal)]">{site.email}</span>
                 </a>
               </li>
               <li className="flex items-start gap-4">
@@ -130,7 +130,7 @@ export function NdFooter() {
 
       <style>{`
         .nd-fword {
-          background: linear-gradient(180deg, rgb(255 255 255 / 0.24) 0%, rgb(255 255 255 / 0.08) 52%, rgb(11 22 64 / 0.12) 52%, rgb(29 78 216 / 0.05) 100%);
+          background: linear-gradient(180deg, rgb(255 255 255 / 0.24) 0%, rgb(255 255 255 / 0.08) 52%, rgb(11 13 13 / 0.12) 52%, rgb(29 78 216 / 0.05) 100%);
           -webkit-background-clip: text; background-clip: text; color: transparent;
           background-size: 100% 100%;
         }

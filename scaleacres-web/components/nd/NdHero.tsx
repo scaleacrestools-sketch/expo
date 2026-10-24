@@ -38,8 +38,8 @@ export function NdHero() {
             <img src={ndHero.backdrop.landscape.src} alt="" width={ndHero.backdrop.landscape.w} height={ndHero.backdrop.landscape.h} fetchPriority="high" decoding="async" className="h-full w-full object-cover object-[50%_40%]" />
           </picture>
         </div>
-        <div className="nd-grain absolute inset-0 bg-[linear-gradient(180deg,rgb(11_22_64/0.72)_0%,rgb(11_22_64/0.42)_35%,rgb(11_22_64/0.5)_62%,rgb(11_22_64/0.94)_100%)]" />
-        <div className="absolute inset-0 bg-[color:var(--navy)] opacity-30 mix-blend-multiply" />
+        <div className="nd-grain absolute inset-0 bg-[linear-gradient(180deg,rgb(11_13_13/0.72)_0%,rgb(11_13_13/0.42)_35%,rgb(11_13_13/0.5)_62%,rgb(11_13_13/0.94)_100%)]" />
+        <div className="absolute inset-0 bg-[color:var(--ink)] opacity-30 mix-blend-multiply" />
       </div>
       <Rules />
 
@@ -105,7 +105,7 @@ export function NdHero() {
       </div>
 
       {/* Client strip */}
-      <div className="nd-hero-in relative z-10 border-t border-white/12 bg-[rgb(11_22_64/0.35)] backdrop-blur-[2px]" style={{ "--d": 760 } as CSSProperties}>
+      <div className="nd-hero-in relative z-10 border-t border-white/12 bg-[rgb(11_13_13/0.35)] backdrop-blur-[2px]" style={{ "--d": 760 } as CSSProperties}>
         <div className="nd-marquee-host overflow-hidden py-4 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
           <ul className="nd-marquee" style={{ "--dur": "55s" } as CSSProperties} role="list" aria-label="Clients">
             {[...clientLogos, ...clientLogos].map((c, i) => {

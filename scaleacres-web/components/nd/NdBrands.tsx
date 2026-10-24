@@ -55,7 +55,7 @@ export function NdBrands() {
           </div>
           {big.map((b, i) => (
             <figure key={b.title} className="nd-cell m-0">
-              <div data-nd="clip" style={{ "--d": i * 100 } as CSSProperties} className="nd-zoom relative aspect-[924/522] bg-white">
+              <div data-nd="clip" style={{ "--d": i * 100 } as CSSProperties} className="nd-zoom nd-lift relative aspect-[924/522] bg-white shadow-[var(--sh-2)]">
                 <Pic image={b.image} alt={`${b.title} for ${b.client}`} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" imgClass="absolute inset-0 h-full w-full object-cover" />
               </div>
               <figcaption className="mt-3 flex justify-between gap-4">
@@ -74,7 +74,7 @@ export function NdBrands() {
               <li key={b.title} data-nd="up" style={{ "--d": i * 40 } as CSSProperties} onPointerEnter={() => { setArmed(true); setHover(i); }} className="nd-cell group border-t border-[color:var(--line-l)] last:border-b">
                 <div className="flex items-center gap-4 py-4 md:gap-6">
                   <span className="nd-label w-8 shrink-0 tabular-nums text-[color:var(--royal)]">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="relative aspect-[924/522] w-24 shrink-0 overflow-hidden bg-white lg:hidden">
+                  <span className="relative aspect-[924/522] w-24 shrink-0 overflow-hidden bg-white shadow-[var(--sh-1)] lg:hidden">
                     <Pic image={b.image} alt="" sizes="96px" imgClass="absolute inset-0 h-full w-full object-cover" />
                   </span>
                   <span className="min-w-0 flex-1 text-[clamp(1.25rem,1.9vw,2rem)] font-semibold leading-tight tracking-[-0.03em] transition-[transform,color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2 group-hover:text-[color:var(--royal)]">{b.title}</span>
@@ -90,7 +90,7 @@ export function NdBrands() {
       {/* Cursor preview (desktop) */}
       <div ref={preview} aria-hidden="true" className="pointer-events-none fixed left-0 top-0 z-40 hidden w-[22rem] lg:block">
         {ndBrands.map((b, i) => (
-          <div key={b.title} className="absolute inset-x-0 top-0 aspect-[924/522] overflow-hidden shadow-[0_30px_60px_-20px_rgba(11,22,64,0.45)] transition-[clip-path,opacity] duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]" style={{ clipPath: hover === i ? "inset(0 0 0 0)" : "inset(50% 0 50% 0)", opacity: hover === i ? 1 : 0 }}>
+          <div key={b.title} className="absolute inset-x-0 top-0 aspect-[924/522] overflow-hidden shadow-[var(--sh-3)] transition-[clip-path,opacity] duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]" style={{ clipPath: hover === i ? "inset(0 0 0 0)" : "inset(50% 0 50% 0)", opacity: hover === i ? 1 : 0 }}>
             {armed ? <Pic image={b.image} alt="" sizes="352px" imgClass="h-full w-full object-cover" /> : null}
           </div>
         ))}

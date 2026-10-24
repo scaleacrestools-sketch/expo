@@ -50,12 +50,12 @@ function Item({ w, i }: { w: W; i: number }) {
   const portrait = w.image.h > w.image.w;
   return (
     <figure className="nd-cell group m-0">
-      <div data-nd="clip" style={{ "--d": i * 60 } as CSSProperties} className={`nd-zoom relative overflow-hidden bg-[color:var(--navy)] ${portrait ? "aspect-[4/5]" : "aspect-[16/10]"}`}>
+      <div data-nd="clip" style={{ "--d": i * 60 } as CSSProperties} className={`nd-zoom relative overflow-hidden bg-[color:var(--charcoal)] ${portrait ? "aspect-[4/5]" : "aspect-[16/10]"}`}>
         <Pic image={w.image} alt={w.alt} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" imgClass={`absolute inset-0 h-full w-full object-cover ${portrait ? "object-top" : ""}`} />
       </div>
       <figcaption data-nd="up" className="mt-4">
         <div className="flex items-baseline justify-between gap-4">
-          <span className="text-[clamp(1.25rem,1.6vw,1.75rem)] font-semibold tracking-[-0.03em] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">{w.client}</span>
+          <span className="shrink-0 whitespace-nowrap text-[clamp(1.25rem,1.6vw,1.75rem)] font-semibold leading-[1.1] tracking-[-0.03em] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">{w.client}</span>
           <span className="nd-label nd-muted text-right">{w.project}</span>
         </div>
         <ul className="mt-3 flex flex-wrap gap-1.5" role="list">

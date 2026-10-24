@@ -34,7 +34,7 @@ export function NdAbout() {
             <p data-statement className="nd-d3 max-w-[22em] font-medium max-md:mt-6">
               {parts.map((part, i) =>
                 part === "{a}" || part === "{b}" ? (
-                  <span key={i} data-chip className="relative mx-[0.12em] inline-block h-[0.82em] w-[2.1em] overflow-hidden rounded-full align-[-0.06em]">
+                  <span key={i} data-chip className="relative mx-[0.12em] inline-block h-[0.82em] w-[2.1em] overflow-hidden rounded-full align-[-0.06em] shadow-[var(--sh-1)]">
                     <Pic image={ndAbout.chips[part === "{a}" ? "a" : "b"]} alt="" sizes="120px" imgClass="absolute inset-0 h-full w-full object-cover" />
                   </span>
                 ) : (
@@ -68,7 +68,7 @@ export function NdAbout() {
             </div>
           </div>
           <figure className="nd-cell m-0">
-            <div data-nd="clip" className="nd-zoom relative aspect-[16/10] bg-white">
+            <div data-nd="clip" className="nd-zoom nd-lift relative aspect-[16/10] bg-white shadow-[var(--sh-2)]">
               <Pic image={ndAbout.image} alt={ndAbout.image.alt} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" imgClass="absolute inset-0 h-full w-full object-cover" />
             </div>
             <figcaption className="nd-label nd-muted mt-3">Website portfolio · six live client sites</figcaption>

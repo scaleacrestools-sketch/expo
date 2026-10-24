@@ -27,14 +27,14 @@ export function NdClients() {
 
           <div className="lg:col-span-2 md:col-span-1 grid md:grid-cols-2">
             <div className="nd-cell">
-              <button type="button" onClick={() => setPlaying(t)} className="group relative block aspect-square w-full overflow-hidden bg-[color:var(--mist)] text-left" aria-label={`Play testimonial from ${t.company}`}>
+              <button type="button" onClick={() => setPlaying(t)} className="nd-lift group relative block aspect-square w-full overflow-hidden bg-[color:var(--mist)] text-left shadow-[var(--sh-2)]" aria-label={`Play testimonial from ${t.company}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img key={t.id} src={t.poster} alt="" width={900} height={900} loading="lazy" decoding="async" className="nd-tfade h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]" />
-                <span className="absolute bottom-4 left-4 flex h-12 items-center gap-3 bg-white pl-4 pr-3 text-[0.875rem] font-semibold uppercase text-[color:var(--navy)] transition-colors group-hover:bg-[color:var(--royal)] group-hover:text-white">
+                <span className="absolute bottom-4 left-4 flex h-12 items-center gap-3 bg-white pl-4 pr-3 text-[0.875rem] font-semibold uppercase text-[color:var(--ink)] transition-colors group-hover:bg-[color:var(--royal)] group-hover:text-white">
                   Watch the story
                   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M7 4.5v15l13-7.5z" /></svg>
                 </span>
-                <span className="absolute right-4 top-4 bg-[color:var(--navy)] px-2.5 py-1 text-[0.875rem] font-semibold tabular-nums text-white">{t.duration}</span>
+                <span className="absolute right-4 top-4 bg-[color:var(--ink)] px-2.5 py-1 text-[0.875rem] font-semibold tabular-nums text-white">{t.duration}</span>
               </button>
             </div>
             <div className="nd-cell flex flex-col justify-between gap-8 max-md:mt-6">
@@ -46,7 +46,7 @@ export function NdClients() {
               <ul className="grid grid-cols-4 gap-2" role="list" aria-label="Choose a testimonial">
                 {testimonials.map((x, k) => (
                   <li key={x.id}>
-                    <button type="button" onClick={() => setI(k)} aria-pressed={k === i} aria-label={`Show ${x.company}`} className={`relative block aspect-square w-full overflow-hidden outline-offset-2 transition-opacity ${k === i ? "ring-2 ring-[color:var(--royal)]" : "opacity-60 hover:opacity-100"}`}>
+                    <button type="button" onClick={() => setI(k)} aria-pressed={k === i} aria-label={`Show ${x.company}`} className={`relative block aspect-square w-full overflow-hidden shadow-[var(--sh-1)] outline-offset-2 transition-opacity ${k === i ? "ring-2 ring-[color:var(--royal)]" : "opacity-60 hover:opacity-100"}`}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={x.poster} alt="" width={900} height={900} loading="lazy" decoding="async" className="h-full w-full object-cover" />
                     </button>

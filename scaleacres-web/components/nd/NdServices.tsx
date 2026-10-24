@@ -12,7 +12,7 @@ import { ArrowUR, Pic, Plus, Rules, Tag, Words } from "@/components/nd/ui";
  */
 export function NdServices() {
   return (
-    <section id="services" className="nd-white relative" aria-labelledby="nd-services-title">
+    <section id="services" className="nd-white relative border-t border-[color:var(--line-l)]" aria-labelledby="nd-services-title">
       <Rules />
       <div className="nd-wrap relative">
         <div className="nd-grid">
@@ -78,19 +78,19 @@ function Frame({ m, wide, delay }: { m: ServiceMediaItem; wide: boolean; delay: 
   const sizes = wide ? "(min-width: 1024px) 60vw, 100vw" : "(min-width: 1024px) 30vw, 50vw";
   const show = m.show ?? "cover";
   return (
-    <div data-nd="clip" style={{ "--d": delay } as CSSProperties} className={`nd-zoom relative overflow-hidden ${wide ? "aspect-[16/8.5]" : "aspect-[4/3]"} ${show === "cover" ? "bg-[color:var(--mist)]" : "bg-[color:var(--navy)]"}`}>
+    <div data-nd="clip" style={{ "--d": delay } as CSSProperties} className={`nd-zoom nd-lift relative overflow-hidden bg-[color:var(--mist)] ${wide ? "aspect-[16/8.5]" : "aspect-[4/3]"} ${show === "cover" ? "shadow-[var(--sh-2)]" : "shadow-[var(--sh-1)]"}`}>
       {show === "cover" ? (
         <Pic image={m} alt={m.alt} sizes={sizes} imgClass="absolute inset-0 h-full w-full object-cover object-top" />
       ) : show === "phone" ? (
-        <div className="absolute inset-y-[7%] left-1/2 aspect-[9/16] -translate-x-1/2 overflow-hidden rounded-[clamp(10px,1.4vw,20px)] border-[3px] border-[color:var(--ink)] bg-[color:var(--ink)] shadow-[0_24px_50px_-20px_rgba(0,0,0,0.7)]">
+        <div className="absolute inset-y-[7%] left-1/2 aspect-[9/16] -translate-x-1/2 overflow-hidden rounded-[clamp(10px,1.4vw,20px)] border-[3px] border-[color:var(--ink)] bg-[color:var(--ink)] shadow-[var(--sh-3)]">
           <Pic image={m} alt={m.alt} sizes="(min-width: 1024px) 12vw, 25vw" imgClass="h-full w-full object-cover object-top" />
         </div>
       ) : (
-        <div className="absolute inset-y-[7%] left-1/2 -translate-x-1/2 overflow-hidden shadow-[0_24px_50px_-20px_rgba(0,0,0,0.7)]" style={{ aspectRatio: `${m.w} / ${m.h}` }}>
+        <div className="absolute inset-y-[7%] left-1/2 -translate-x-1/2 overflow-hidden bg-white shadow-[var(--sh-3)]" style={{ aspectRatio: `${m.w} / ${m.h}` }}>
           <Pic image={m} alt={m.alt} sizes="(min-width: 1024px) 14vw, 30vw" imgClass="h-full w-full object-cover" />
         </div>
       )}
-      {m.tag ? <span className="absolute left-3 top-3 bg-white px-2.5 py-1 text-[0.875rem] font-semibold text-[color:var(--ink)]">{m.tag}</span> : null}
+      {m.tag ? <span className="absolute left-3 top-3 bg-white px-2.5 py-1 shadow-[var(--sh-1)] text-[0.875rem] font-semibold text-[color:var(--ink)]">{m.tag}</span> : null}
     </div>
   );
 }

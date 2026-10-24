@@ -53,7 +53,7 @@ export function NdVideos() {
                   aria-selected={i === tab}
                   aria-controls="nd-reel"
                   onClick={() => setTab(i)}
-                  className={`min-h-12 px-2 text-[0.875rem] font-semibold uppercase leading-tight transition-colors duration-300 ${i === tab ? "bg-[color:var(--navy)] text-white" : "text-[color:var(--muted-l)] hover:bg-[color:var(--ice)] hover:text-[color:var(--navy)]"}`}
+                  className={`min-h-12 px-2 text-[0.875rem] font-semibold uppercase leading-tight transition-colors duration-300 ${i === tab ? "bg-[color:var(--ink)] text-white" : "text-[color:var(--muted-l)] hover:bg-[color:var(--ice)] hover:text-[color:var(--ink)]"}`}
                 >
                   {x.label.replace(" Videos", "")}
                 </button>
@@ -74,14 +74,14 @@ export function NdVideos() {
                   key={`${t.id}-${v.id}`}
                   type="button"
                   onClick={() => setPlaying(v.id)}
-                  className="nd-vcard group relative block aspect-[9/16] overflow-hidden bg-[color:var(--navy)] text-left shadow-[0_24px_50px_-30px_rgb(11_22_64/0.55)]"
+                  className="nd-vcard nd-lift group relative block aspect-[9/16] overflow-hidden bg-[color:var(--ink)] text-left shadow-[var(--sh-2)]"
                   style={{ "--k": col * 2 + k } as CSSProperties}
                   aria-label={`Play ${t.ai ? "AI video" : t.label.replace(/s$/, "")} ${col * 2 + k + 1}`}
                 >
                   <span className="nd-zoom absolute inset-0 block">
                     <Pic image={v.poster} alt="" sizes="(min-width: 1024px) 16vw, 45vw" imgClass="h-full w-full object-cover" />
                   </span>
-                  <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgb(11_22_64/0.85))]" />
+                  <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgb(11_13_13/0.85))]" />
                   <span aria-hidden="true" className="absolute left-3 top-3 text-[0.875rem] font-semibold tabular-nums text-white">{String(col * 2 + k + 1).padStart(2, "0")}</span>
                   {t.ai ? <span className="absolute right-3 top-3 bg-[color:var(--sky)] px-1.5 py-0.5 text-[0.8125rem] font-bold uppercase text-[color:var(--ink)]">AI</span> : null}
                   <span aria-hidden="true" className="absolute bottom-3 left-3 grid h-11 w-11 place-items-center bg-white text-[color:var(--ink)] transition-[transform,background-color,color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:bg-[color:var(--royal)] group-hover:text-white">

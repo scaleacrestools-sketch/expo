@@ -7,7 +7,7 @@ import { Rules, Tag, Words } from "@/components/nd/ui";
 
 /**
  * 08 — How we work. Four steps as cards on the grid; as the section scrolls through, the
- * current step turns Royal (hover or focus also selects a step).
+ * current step turns Brand Black (hover or focus also selects a step).
  */
 export function NdProcess() {
   const ref = useRef<HTMLElement>(null);
@@ -46,10 +46,10 @@ export function NdProcess() {
                     tabIndex={0}
                     onPointerEnter={() => setActive(i)}
                     onFocus={() => setActive(i)}
-                    className={`flex min-h-[18rem] flex-col justify-between p-6 transition-colors duration-500 md:min-h-[21rem] md:p-7 ${on ? "bg-[color:var(--royal)] text-white shadow-[0_30px_60px_-30px_rgb(29_78_216/0.6)]" : "bg-white text-[color:var(--ink)]"}`}
+                    className={`flex min-h-[18rem] flex-col justify-between p-6 transition-[background-color,color,box-shadow] duration-500 md:min-h-[21rem] md:p-7 ${on ? "bg-[color:var(--ink)] text-white shadow-[var(--sh-3)]" : "bg-white text-[color:var(--ink)] shadow-[var(--sh-1)]"}`}
                   >
                     <div className="flex items-start justify-between">
-                      <span className={`grid h-11 w-11 place-items-center text-[1rem] font-semibold tabular-nums transition-colors duration-500 ${on ? "bg-white text-[color:var(--royal)]" : "bg-[color:var(--mist)] text-[color:var(--royal)]"}`}>{p.n}</span>
+                      <span className={`grid h-11 w-11 place-items-center text-[1rem] font-semibold tabular-nums transition-colors duration-500 ${on ? "bg-[color:var(--royal)] text-white" : "bg-[color:var(--mist)] text-[color:var(--royal)]"}`}>{p.n}</span>
                       <span className={`nd-label ${on ? "text-white/70" : "nd-muted"}`}>{p.key}</span>
                     </div>
                     <div>

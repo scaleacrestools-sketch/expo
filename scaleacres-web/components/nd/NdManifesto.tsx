@@ -53,7 +53,7 @@ export function NdManifesto() {
               );
             })}
           </div>
-          <h2 id="nd-manifesto-title" data-statement className="relative z-10 px-5 text-center text-[clamp(2.9rem,12vw,5.75rem)] font-semibold leading-[0.92] tracking-[-0.05em] [text-shadow:0_8px_40px_rgb(11_22_64/0.6)] md:text-[clamp(4rem,8.6vw,11.5rem)]">
+          <h2 id="nd-manifesto-title" data-statement className="relative z-10 px-5 text-center text-[clamp(2.9rem,12vw,5.75rem)] font-semibold leading-[0.92] tracking-[-0.05em] [text-shadow:0_8px_40px_rgb(11_13_13/0.6)] md:text-[clamp(4rem,8.6vw,11.5rem)]">
             {ndManifesto.lines.map((l, i) => (
               <span key={l} className="block overflow-hidden pb-[0.06em]">
                 <span data-line className={`block ${i === 2 ? "text-[color:var(--sky)]" : ""}`}>{l}</span>

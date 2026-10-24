@@ -1,25 +1,29 @@
 /*
  * Homepage design system (Neiden-inspired direction, under review).
- * Three-column editorial grid with hairline column rules, Mist and Brand Black grounds,
- * Outfit display type with tight tracking, small bold labels, Royal as the single accent.
+ * Three-column editorial grid with hairline column rules. White-led grounds with Mist for rhythm
+ * and Brand Black for the cinematic sections; blue only as an accent (headline words, CTAs, links,
+ * hovers, thin rules). Media on white sits on a charcoal shadow scale (--sh-1..3).
  * Scoped to .nd so no other page is affected.
  */
 @layer components {
 .nd {
   --m: clamp(1rem, 2.2vw, 2rem);
   --ink: #0b0d0d;
-  --navy: #0b1640;
   --royal: #1d4ed8;
   --deep: #142e8c;
   --sky: #38bdf8;
   --mist: #eef2fb;
-  --line-l: rgb(11 22 64 / 0.12);
+  --line-l: rgb(11 13 13 / 0.1);
+  --charcoal: #161a1a;
   --line-d: rgb(255 255 255 / 0.12);
-  /* Blue scale built only from the official palette (Royal Navy, Royal Deep, Royal, Sky, White) */
-  --electric: color-mix(in srgb, #1d4ed8 62%, #38bdf8);
+  /* Accent tints from the official palette, for small details only (never section grounds) */
   --ice: color-mix(in srgb, #38bdf8 12%, #ffffff);
   --royal-tint: color-mix(in srgb, #1d4ed8 9%, #ffffff);
-  --muted-l: color-mix(in srgb, #0b1640 66%, #ffffff);
+  --muted-l: color-mix(in srgb, #0b0d0d 62%, #ffffff);
+  /* Charcoal shadow scale for media and cards on white */
+  --sh-1: 0 1px 2px rgb(11 13 13 / 0.05), 0 10px 24px -12px rgb(11 13 13 / 0.2);
+  --sh-2: 0 2px 4px rgb(11 13 13 / 0.05), 0 28px 56px -24px rgb(11 13 13 / 0.34);
+  --sh-3: 0 4px 10px rgb(11 13 13 / 0.07), 0 44px 80px -32px rgb(11 13 13 / 0.44);
   --muted-d: rgb(255 255 255 / 0.66);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-io: cubic-bezier(0.76, 0, 0.24, 1);
@@ -43,9 +47,7 @@
 .nd-rules > div > span:nth-child(3) { display: none; }
 @media (min-width: 1024px) { .nd-rules > div > span:nth-child(3) { display: block; } }
 @media (max-width: 767px) { .nd-rules > div > span:nth-child(2) { display: none; } }
-.nd-dark { background: var(--navy); color: #fff; --rule: var(--line-d); }
-.nd-deep { background: linear-gradient(180deg, var(--deep) 0%, var(--navy) 100%); color: #fff; --rule: var(--line-d); }
-.nd-ink { background: var(--ink); color: #fff; --rule: var(--line-d); }
+.nd-dark { background: var(--ink); color: #fff; --rule: var(--line-d); }
 .nd-light { background: var(--mist); --rule: var(--line-l); }
 .nd-white { background: #fff; --rule: var(--line-l); }
 .nd-hr { border-top: 1px solid var(--rule, var(--line-l)); }
@@ -53,7 +55,7 @@
 /* ---------------------------------------------------------------- type */
 .nd-label { font-size: 0.875rem; font-weight: 600; line-height: 1.25; letter-spacing: 0.01em; text-transform: uppercase; }
 .nd-muted { color: var(--muted-l); }
-.nd-dark .nd-muted, .nd-deep .nd-muted, .nd-ink .nd-muted { color: var(--muted-d); }
+.nd-dark .nd-muted { color: var(--muted-d); }
 .nd-d1 { font-size: clamp(3.05rem, 9.1vw, 10.75rem); font-weight: 600; line-height: 0.88; letter-spacing: -0.055em; }
 .nd-d2 { font-size: clamp(2.6rem, 5.6vw, 6.25rem); font-weight: 600; line-height: 0.92; letter-spacing: -0.05em; }
 .nd-d3 { font-size: clamp(1.75rem, 2.9vw, 3.25rem); font-weight: 500; line-height: 1.08; letter-spacing: -0.035em; }
@@ -66,7 +68,7 @@
 .nd-tag { display: inline-flex; align-items: center; gap: 0.75rem; }
 .nd-tag i { display: inline-flex; gap: 2px; }
 .nd-tag i b { display: block; width: 5px; height: 12px; background: var(--royal); transform: skewX(-18deg); }
-.nd-dark .nd-tag i b, .nd-deep .nd-tag i b, .nd-ink .nd-tag i b { background: var(--sky); }
+.nd-dark .nd-tag i b { background: var(--sky); }
 
 /* ---------------------------------------------------------------- buttons */
 .nd-btn { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 3.25rem; padding: 0 1.25rem; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.01em; text-transform: uppercase; transition: background-color 0.3s ease, color 0.3s ease; }
@@ -93,10 +95,18 @@
 .nd-w > span { display: inline-block; will-change: transform; }
 .js .nd [data-nd="words"] .nd-w > span { transform: translateY(105%); transition: transform 0.65s var(--ease); transition-delay: calc(var(--d, 0) * 1ms + var(--i) * 28ms); }
 .js .nd [data-nd="words"].in .nd-w > span { transform: none; }
-.js .nd [data-nd="clip"] { clip-path: inset(0 0 100% 0); transition: clip-path 0.85s var(--ease-io); transition-delay: calc(var(--d, 0) * 1ms); }
-.js .nd [data-nd="clip"].in { clip-path: inset(0 0 0 0); }
+/* Clip reveals open past the box (negative inset) so an element's own shadow is not cut off. */
+.js .nd [data-nd="clip"] { clip-path: inset(0 -100px 100% -100px); transition: clip-path 0.85s var(--ease-io); transition-delay: calc(var(--d, 0) * 1ms); }
+.js .nd [data-nd="clip"].in { clip-path: inset(-100px -100px -100px -100px); }
 .js .nd [data-nd="line"] { transform: scaleX(0); transform-origin: left; transition: transform 1s var(--ease); transition-delay: calc(var(--d, 0) * 1ms); }
 .js .nd [data-nd="line"].in { transform: none; }
+
+/* Elevation on white: charcoal shadows, a little deeper on hover */
+.nd-elev-1 { box-shadow: var(--sh-1); }
+.nd-elev-2 { box-shadow: var(--sh-2); }
+.nd-elev-3 { box-shadow: var(--sh-3); }
+.nd-lift { transition: box-shadow 0.5s var(--ease), transform 0.5s var(--ease); }
+.nd-lift:hover, a:hover > .nd-lift, button.nd-lift:hover { box-shadow: var(--sh-3); }
 
 /* Image hover: slow push */
 .nd-zoom { overflow: hidden; }

@@ -7,7 +7,7 @@ import { ArrowUR, Plus, Rules, Tag, Words } from "@/components/nd/ui";
 
 /**
  * 12 — Contact. "Let's talk." set very large, direct contact details and the two ways to
- * start. The footer's wordmark picks up directly below, across the navy → white hand-over.
+ * start. The footer's wordmark picks up directly below, across the black → white hand-over.
  */
 export function NdContact() {
   return (

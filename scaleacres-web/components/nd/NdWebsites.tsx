@@ -50,8 +50,8 @@ export function NdWebsites() {
                 <p className="nd-cell nd-label nd-muted hidden text-right lg:block">{s.tags.join(" · ")}</p>
               </div>
               <div className="nd-cell">
-                <div data-expand className="overflow-hidden bg-[color:var(--navy)]">
-                  <div className="flex h-8 items-center gap-1.5 border-b border-white/8 bg-[color:var(--navy)] px-3 md:h-9">
+                <div data-expand className="overflow-hidden bg-[color:var(--charcoal)] ring-1 ring-white/10">
+                  <div className="flex h-8 items-center gap-1.5 border-b border-white/8 bg-[color:var(--charcoal)] px-3 md:h-9">
                     {[0, 1, 2].map((d) => <span key={d} className="h-2 w-2 rounded-full bg-white/22" />)}
                     <span className="mx-auto truncate px-4 text-[0.875rem] text-white/50">{s.name}</span>
                   </div>
@@ -60,7 +60,7 @@ export function NdWebsites() {
                       <Pic image={s.image} alt={`${s.name} website, designed and developed by ScaleAcres`} sizes="(min-width: 1024px) 94vw, 100vw" imgClass="absolute inset-0 h-full w-full object-cover object-top" />
                       {s.video ? <SiteVideo src={s.video} /> : null}
                     </div>
-                    {s.video ? <span className="absolute bottom-3 left-3 bg-white px-2.5 py-1 text-[0.8125rem] font-semibold text-[color:var(--navy)] md:bottom-4 md:left-4">Live site · scroll-through</span> : null}
+                    {s.video ? <span className="absolute bottom-3 left-3 bg-white px-2.5 py-1 text-[0.8125rem] font-semibold text-[color:var(--ink)] shadow-[var(--sh-1)] md:bottom-4 md:left-4">Live site · scroll-through</span> : null}
                   </div>
                 </div>
               </div>
@@ -83,7 +83,7 @@ export function NdWebsites() {
             {ndMoreSites.map((s) => (
               <li key={s.name} className="nd-cell border-b border-white/12 py-4 first:pt-0" data-nd="up">
                 <div className="group flex items-center gap-5">
-                  <div className="nd-zoom relative aspect-[16/10] w-[38%] max-w-[15rem] shrink-0 overflow-hidden bg-[color:var(--navy)]">
+                  <div className="nd-zoom relative aspect-[16/10] w-[38%] max-w-[15rem] shrink-0 overflow-hidden bg-[color:var(--charcoal)]">
                     <Pic image={s.image} alt={`${s.name} website by ScaleAcres`} sizes="240px" imgClass="absolute inset-0 h-full w-full object-cover object-top" />
                   </div>
                   <div className="min-w-0">
