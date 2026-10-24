@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { NotOnHome } from "@/components/nd/NotOnHome";
 import { BackToTop } from "@/components/BackToTop";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Analytics } from "@/components/Analytics";
@@ -60,9 +61,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <Header />
         <main id="main">{children}</main>
-        <Footer />
-        <BackToTop />
-        <ScrollProgress />
+        <NotOnHome>
+          <Footer />
+        </NotOnHome>
+        <NotOnHome>
+          <BackToTop />
+          <ScrollProgress />
+        </NotOnHome>
         <Analytics />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }} />
       </body>

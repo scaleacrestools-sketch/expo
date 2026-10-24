@@ -6,6 +6,7 @@ import Link from "next/link";
 import { headerDescriptor, primaryNav } from "@/content/nav";
 import { Logo } from "@/components/ui/Logo";
 import { MenuOverlay } from "@/components/MenuOverlay";
+import { NdHeader } from "@/components/nd/NdHeader";
 
 /** Links shown inline on the homepage header (desktop); the full menu stays behind the button. */
 const HOME_LINKS = primaryNav.filter((n) => ["/our-services/", "/our-work/", "/creative-studio/", "/about-us/"].includes(n.href));
@@ -33,6 +34,9 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Homepage (new direction under review): its own minimal header — logo left, Menu right.
+  if (pathname === "/") return <NdHeader />;
 
   // Pages that open on a full-screen video hero: the homepage and the Delhi city page (under review).
   const overHero = (pathname === "/" || pathname.replace(/\/$/, "") === "/real-estate-marketing-delhi") && !scrolled;
