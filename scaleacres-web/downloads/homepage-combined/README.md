@@ -12,7 +12,28 @@ This is the combined draft, rebuilt from the two original homepage designs in th
 | `scaleacres-homepage-netlify-preview.zip` | A static export with `index.html` at the root. Drag it into Netlify Drop. `_headers` sets `X-Robots-Tag: noindex`. |
 | `scaleacres-homepage-source.zip` | Next.js source without `downloads/` and `dist/`. Run `npm ci && npm run build:static-preview`. |
 
-## Colour and depth (update)
+## Latest corrections
+
+- **Hero.** The hero now uses the reference reel from spectacular-florentine-9c90fa.netlify.app: five ScaleAcres concept films (a blue-hour tower, an identity table, a web studio, a production suite and a light sweep).
+  - The films play in turn with a 1.4 s crossfade, under a Brand Black grade, with the headline and CTAs laid over them.
+  - The files are served locally (`public/videos/nd/hero`). Each film has a 1600 px landscape cut and a 720 × 1280 portrait cut for phones, in both H.264 MP4 and VP9 WebM, about 7 MB in total.
+  - Only the current and next films load. Playback starts after page load and pauses when the hero is off-screen.
+  - The poster image stays visible for reduced-motion and Save-Data visitors.
+  - The credit line labels the films as AI-generated concept films.
+- **Logo grid removed.** The "Brands that trust our work" logo grid has been taken out of True stories.
+- **Service visuals.** Every service visual has been replaced with one composed 16:9 image, built only from genuine ScaleAcres work:
+  - Website design: the SID Realtech site on a laptop, the Imperial Sky Realty browser and the Subata Realty mobile site.
+  - SEO: Search Console growth charts and first-page rankings.
+  - Performance: Google search ads for DLF Privana, M3M, Godrej and Signature Global, Meta Ads results and a TRG creative.
+  - Branding: the SID guideline, the Ellington 86 brochure and hoarding, and the launch poster.
+  - Social: reels and post creatives for JBBR Group and Intech Developers.
+  - Video: frames from ScaleAcres ad films.
+  - Ecommerce: the MW&B store on desktop and mobile.
+  - Custom software: the Finsckool platform.
+  - The high-resolution campaign screenshots come from the scaleacres.com media library.
+  - The composer is in `scripts/nd-service-visuals/`.
+
+## Colour and depth
 
 - The cinematic dark sections from the draft (Hero, Manifesto, Website design, Selected work and Let's talk) use Brand Black `#0B0D0D`. Navy has been removed everywhere, and no blue ground replaces black.
 - The other sections are white or Mist. Market Leaders moved from Mist to white.

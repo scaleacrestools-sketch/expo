@@ -151,19 +151,25 @@ function HeroReel() {
   const b = useRef<HTMLVideoElement>(null);
   const [on, setOn] = useState(false);
   const [portrait, setPortrait] = useState(false);
+  const [ext, setExt] = useState("mp4");
   const [front, setFront] = useState(0);
   const [idx, setIdx] = useState(0);
   const [ready, setReady] = useState(false);
   const n = ndHero.reel.length;
   const el = (k: number) => (k === 0 ? a : b).current;
-  const src = (i: number) => (portrait ? ndHero.reel[i % n].portrait : ndHero.reel[i % n].landscape);
+  const src = (i: number) => `${portrait ? ndHero.reel[i % n].portrait : ndHero.reel[i % n].landscape}.${ext}`;
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if ((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData) return;
     let t = 0;
     const start = () => {
-      t = window.setTimeout(() => { setPortrait(window.matchMedia("(max-width: 767px)").matches); setOn(true); }, 150);
+      t = window.setTimeout(() => {
+        // H.264 where the browser has it (Chrome, Safari, Firefox, Edge); VP9 WebM otherwise
+        setExt(a.current?.canPlayType('video/mp4; codecs="avc1.640028"') ? "mp4" : "webm");
+        setPortrait(window.matchMedia("(max-width: 767px)").matches);
+        setOn(true);
+      }, 150);
     };
     if (document.readyState === "complete") start();
     else window.addEventListener("load", start, { once: true });
@@ -180,7 +186,7 @@ function HeroReel() {
     back.load();
     f.play().catch(() => undefined);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [on, idx, front, portrait]);
+  }, [on, idx, front, portrait, ext]);
 
   // Pause while the hero is off-screen
   useEffect(() => {

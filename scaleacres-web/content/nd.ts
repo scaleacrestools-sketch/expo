@@ -37,12 +37,13 @@ export const ndHero = {
   backdrop: { landscape: img("hero"), portrait: img("hero-p"), credit: "Backdrop: ScaleAcres concept films (AI-generated)" },
   /**
    * Hero reel, the same five concept films as the approved reference hero: they play in turn and
-   * crossfade. 1600 px landscape and 720 × 1280 portrait cuts (public/videos/nd/hero).
+   * crossfade. 1600 px landscape and 720 × 1280 portrait cuts in H.264 MP4 and VP9 WebM
+   * (public/videos/nd/hero); paths are given without the extension.
    */
   reel: ["architecture", "brand", "web", "production", "finale"].map((id) => ({
     id,
-    landscape: `/videos/nd/hero/${id}-1600.mp4`,
-    portrait: `/videos/nd/hero/${id}-720p.mp4`,
+    landscape: `/videos/nd/hero/${id}-1600`,
+    portrait: `/videos/nd/hero/${id}-720p`,
   })),
   poster: {
     landscape: "/images/nd/hero/poster-architecture-1600.webp",
@@ -72,41 +73,25 @@ export const ndAbout = {
 
 /** cover: fills the frame; poster: portrait shown whole on a tint; phone: inside a phone frame. */
 export type ServiceMediaItem = Img & { alt: string; show?: "cover" | "poster" | "phone"; tag?: string };
+/**
+ * One composed visual per service (public/images/nd/svc-*), built only from genuine ScaleAcres
+ * work: live client-site captures, campaign and analytics screenshots published on scaleacres.com,
+ * branding pieces and frames from ScaleAcres ad films, set in device and print mockups.
+ */
+const svc = (slug: string, alt: string): ServiceMediaItem[] => [{ ...img(`svc-${slug}`), alt, show: "cover" }];
 const media: Record<string, ServiceMediaItem[]> = {
-  "website-design-development": [
-    { ...img("web-imperial"), alt: "Imperial Sky Realty website, designed and developed by ScaleAcres", show: "cover" },
-    { ...img("m-subata"), alt: "Subata Realty website on mobile", show: "phone" },
-  ],
-  "search-engine-optimization": [{ ...img("seo"), alt: "Search rankings from ScaleAcres SEO campaigns", show: "cover" }],
-  "performance-marketing": [
-    { ...img("cr-trg"), alt: "TRG The Mall lead-generation ad creative", show: "poster" },
-    { ...img("meta"), alt: "Meta Ads results from ScaleAcres real estate campaigns" },
-  ],
-  "branding-creative-design": [
-    { ...img("slide-2"), alt: "SID Realtech brand style guideline" },
-    { ...img("slide-3"), alt: "Ellington 86 hoarding for SID Realtech" },
-  ],
-  "social-media-marketing": [
-    { ...img("cr-jbbr"), alt: "JBBR Group social creative", show: "poster" },
-    { ...img("cr-intech"), alt: "Intech Developers social creative", show: "poster" },
-  ],
-  "video-creative-production": [
-    { ...img("yt-vODoeG2QEKQ"), alt: "ScaleAcres real estate ad film", show: "poster", tag: "Ad film" },
-    { ...img("yt-FxO_2KVX4zA"), alt: "AI video by ScaleAcres", show: "poster", tag: "AI video" },
-  ],
-  "ecommerce-solutions": [
-    { ...img("web-mwb"), alt: "MW&B online store, built by ScaleAcres", show: "cover" },
-    { ...img("m-mwb"), alt: "MW&B online store on mobile", show: "phone" },
-  ],
-  "custom-applications-software": [
-    { ...img("web-finsckool"), alt: "Finsckool learning platform, built by ScaleAcres", show: "cover" },
-    { ...img("m-finsckool"), alt: "Finsckool learning platform on mobile", show: "phone" },
-  ],
+  "website-design-development": svc("website-design-development", "SID Realtech website on a laptop, with the Imperial Sky Realty site and the Subata Realty mobile site, all designed and developed by ScaleAcres"),
+  "search-engine-optimization": svc("search-engine-optimization", "Search Console growth charts and first-page rankings from ScaleAcres SEO campaigns"),
+  "performance-marketing": svc("performance-marketing", "Google search ads run by ScaleAcres for DLF Privana, M3M, Godrej and Signature Global, Meta Ads results and a TRG campaign creative"),
+  "branding-creative-design": svc("branding-creative-design", "SID Realtech brand guideline, Ellington 86 brochure, hoarding and launch creative by ScaleAcres"),
+  "social-media-marketing": svc("social-media-marketing", "Social reels and post creatives for JBBR Group and Intech Developers by ScaleAcres"),
+  "video-creative-production": svc("video-creative-production", "Frames from real estate ad films produced by ScaleAcres"),
+  "ecommerce-solutions": svc("ecommerce-solutions", "MW&B online store on desktop and mobile, built by ScaleAcres"),
+  "custom-applications-software": svc("custom-applications-software", "Finsckool learning platform on desktop and mobile, built by ScaleAcres"),
 };
 
 /** Shown under a service's media when the work is a stand-in for an asset we don't have yet. */
 const notes: Record<string, string> = {
-  "performance-marketing": "Shown: a TRG campaign creative and Meta Ads results from ScaleAcres campaigns. Ad-platform previews to be added.",
   "custom-applications-software": "Shown: the Finsckool learning platform, built by ScaleAcres. CRM and dashboard projects to be added when available.",
 };
 

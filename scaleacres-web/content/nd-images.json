@@ -541,5 +541,93 @@
 540
 ],
 "avif": false
+},
+"svc-branding-creative-design": {
+"w": 2400,
+"h": 1350,
+"widths": [
+800,
+1200,
+1600,
+2400
+],
+"avif": false
+},
+"svc-custom-applications-software": {
+"w": 2400,
+"h": 1350,
+"widths": [
+800,
+1200,
+1600,
+2400
+],
+"avif": false
+},
+"svc-ecommerce-solutions": {
+"w": 2400,
+"h": 1350,
+"widths": [
+800,
+1200,
+1600,
+2400
+],
+"avif": false
+},
+"svc-performance-marketing": {
+"w": 2400,
+"h": 1350,
+"widths": [
+800,
+1200,
+1600,
+2400
+],
+"avif": false
+},
+"svc-search-engine-optimization": {
+"w": 2400,
+"h": 1350,
+"widths": [
+800,
+1200,
+1600,
+2400
+],
+"avif": false
+},
+"svc-social-media-marketing": {
+"w": 2400,
+"h": 1350,
+"widths": [
+800,
+1200,
+1600,
+2400
+],
+"avif": false
+},
+"svc-video-creative-production": {
+"w": 2400,
+"h": 1350,
+"widths": [
+800,
+1200,
+1600,
+2400
+],
+"avif": false
+},
+"svc-website-design-development": {
+"w": 2400,
+"h": 1350,
+"widths": [
+800,
+1200,
+1600,
+2400
+],
+"avif": false
 }
 }

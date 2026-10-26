@@ -7,8 +7,8 @@ import { ArrowUR, Pic, Plus, Rules, Tag, Words } from "@/components/nd/ui";
 
 /**
  * 03 — Services. A sticky left column ("What we build.") beside the eight disciplines. Each one
- * shows its own genuine work (two frames, or one wide frame), a short description, what's
- * included and a link to the service page. Frames open from the top as they arrive.
+ * shows one composed visual of its own genuine work, a short description, what's included and a
+ * link to the service page. Frames open from the top as they arrive.
  */
 export function NdServices() {
   return (
@@ -75,12 +75,12 @@ export function NdServices() {
 }
 
 function Frame({ m, wide, delay }: { m: ServiceMediaItem; wide: boolean; delay: number }) {
-  const sizes = wide ? "(min-width: 1024px) 60vw, 100vw" : "(min-width: 1024px) 30vw, 50vw";
+  const sizes = wide ? "(min-width: 1024px) 62vw, 100vw" : "(min-width: 1024px) 30vw, 50vw";
   const show = m.show ?? "cover";
   return (
-    <div data-nd="clip" style={{ "--d": delay } as CSSProperties} className={`nd-zoom nd-lift relative overflow-hidden bg-[color:var(--mist)] ${wide ? "aspect-[16/8.5]" : "aspect-[4/3]"} ${show === "cover" ? "shadow-[var(--sh-2)]" : "shadow-[var(--sh-1)]"}`}>
+    <div data-nd="clip" style={{ "--d": delay } as CSSProperties} className={`nd-zoom nd-lift relative overflow-hidden bg-[color:var(--mist)] ${wide ? "aspect-[16/9]" : "aspect-[4/3]"} ${show === "cover" ? "shadow-[var(--sh-2)]" : "shadow-[var(--sh-1)]"}`}>
       {show === "cover" ? (
-        <Pic image={m} alt={m.alt} sizes={sizes} imgClass="absolute inset-0 h-full w-full object-cover object-top" />
+        <Pic image={m} alt={m.alt} sizes={sizes} imgClass="absolute inset-0 h-full w-full object-cover" />
       ) : show === "phone" ? (
         <div className="absolute inset-y-[7%] left-1/2 aspect-[9/16] -translate-x-1/2 overflow-hidden rounded-[clamp(10px,1.4vw,20px)] border-[3px] border-[color:var(--ink)] bg-[color:var(--ink)] shadow-[var(--sh-3)]">
           <Pic image={m} alt={m.alt} sizes="(min-width: 1024px) 12vw, 25vw" imgClass="h-full w-full object-cover object-top" />
