@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { clientLogos, clientSprite, testimonials, type Testimonial } from "@/content/assets";
+import { useEffect, useRef, useState } from "react";
+import { testimonials, type Testimonial } from "@/content/assets";
 import { Plus, Rules, Tag, Words } from "@/components/nd/ui";
 
 /**
  * 09 — Clients and testimonials. The four client video testimonials published on
- * scaleacres.com (one large, the others selectable), then the client logo wall. Videos play
- * only when chosen, in a dialog. No quotes are invented: the clients speak in their videos.
+ * scaleacres.com (one large, the others selectable). Videos play only when chosen, in a dialog. No quotes are invented: the clients speak in their videos.
  */
 export function NdClients() {
   const [i, setI] = useState(0);
@@ -57,24 +56,6 @@ export function NdClients() {
           </div>
         </div>
 
-        {/* Logos */}
-        <div className="nd-grid mt-[clamp(4rem,8vw,7rem)] gap-y-8">
-          <div className="nd-cell">
-            <p className="nd-label">Brands that trust our work</p>
-            <p className="nd-body nd-muted mt-3 max-w-[22rem]">Real estate developers and brands we&apos;ve worked with. Logos as published on scaleacres.com; trademarks belong to their owners.</p>
-          </div>
-          <ul className="grid grid-cols-2 border-l border-t border-[color:var(--line-l)] sm:grid-cols-4 lg:col-span-2" role="list" aria-label="Clients">
-            {clientLogos.map((c, k) => {
-              const col = c.i % clientSprite.cols;
-              const row = Math.floor(c.i / clientSprite.cols);
-              return (
-                <li key={c.name} data-nd="fade" style={{ "--d": (k % 4) * 60 } as CSSProperties} className="aspect-[2/1] border-b border-r border-[color:var(--line-l)] p-[14%] text-[color:var(--muted-l)] transition-colors duration-300 hover:text-[color:var(--royal)]">
-                  <span role="img" aria-label={c.name} className="nd-logo" style={{ "--sprite": `url(${clientSprite.src})`, "--mask-size": `${clientSprite.cols * 100}% ${clientSprite.rows * 100}%`, "--mask-pos": `${(col / (clientSprite.cols - 1)) * 100}% ${(row / (clientSprite.rows - 1)) * 100}%` } as CSSProperties} />
-                </li>
-              );
-            })}
-          </ul>
-        </div>
       </div>
 
       <TestimonialDialog t={playing} onClose={() => setPlaying(null)} />

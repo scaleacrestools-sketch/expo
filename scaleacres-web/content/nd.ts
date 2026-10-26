@@ -34,7 +34,21 @@ export const ndHero = {
   support:
     "A real estate marketing and creative growth agency combining branding, performance marketing, digital experiences and automation.",
   disciplines: ["Branding & identity", "Websites & technology", "Performance & growth"],
-  backdrop: { landscape: img("hero"), portrait: img("hero-p"), credit: "Backdrop: still from a ScaleAcres concept film" },
+  backdrop: { landscape: img("hero"), portrait: img("hero-p"), credit: "Backdrop: ScaleAcres concept films (AI-generated)" },
+  /**
+   * Hero reel, the same five concept films as the approved reference hero: they play in turn and
+   * crossfade. 1600 px landscape and 720 × 1280 portrait cuts (public/videos/nd/hero).
+   */
+  reel: ["architecture", "brand", "web", "production", "finale"].map((id) => ({
+    id,
+    landscape: `/videos/nd/hero/${id}-1600.mp4`,
+    portrait: `/videos/nd/hero/${id}-720p.mp4`,
+  })),
+  poster: {
+    landscape: "/images/nd/hero/poster-architecture-1600.webp",
+    landscapeSet: "/images/nd/hero/poster-architecture-960.webp 960w, /images/nd/hero/poster-architecture-1600.webp 1600w",
+    portrait: "/images/nd/hero/poster-architecture-720p.webp",
+  },
 };
 
 /* ---------------------------------------------------------------- who we are */

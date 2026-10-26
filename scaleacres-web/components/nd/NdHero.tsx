@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { clientLogos, clientSprite } from "@/content/assets";
 import { ndHero } from "@/content/nd";
 import { site } from "@/content/site";
@@ -11,7 +11,8 @@ import { Plus, Rules } from "@/components/nd/ui";
 const LINES: [string, string][] = [["Built to", "Stand Out."], ["Designed", "to Scale."]];
 
 /**
- * 01 — Hero. Monochrome backdrop with grain, hairline grid, a discipline row, the statement set
+ * 01 — Hero. The reference hero reel (five concept films crossfading in turn) under grain and a
+ * Brand Black grade, hairline grid, a discipline row, the statement set
  * edge to edge in two lines (second line set right), supporting copy with a Royal CTA bar and a
  * client-logo strip. Opens with a fast word rise; on scroll the type drifts up over the picture.
  */
@@ -26,20 +27,19 @@ export function NdHero() {
   let w = 0;
   return (
     <section ref={ref} className="nd-dark relative isolate flex min-h-[100svh] flex-col overflow-hidden pt-14 md:pt-16" aria-labelledby="nd-hero-title">
-      {/* Backdrop */}
+      {/* Backdrop: the reference hero reel over its poster */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
         <div data-bg className="nd-hero-bg absolute inset-0">
           <picture>
-            <source media="(max-width: 767px)" type="image/avif" srcSet={ndHero.backdrop.portrait.avif} sizes="100vw" />
-            <source media="(max-width: 767px)" type="image/webp" srcSet={ndHero.backdrop.portrait.srcSet} sizes="100vw" />
-            <source type="image/avif" srcSet={ndHero.backdrop.landscape.avif} sizes="100vw" />
-            <source type="image/webp" srcSet={ndHero.backdrop.landscape.srcSet} sizes="100vw" />
+            <source media="(max-width: 767px)" type="image/webp" srcSet={ndHero.poster.portrait} />
+            <source type="image/webp" srcSet={ndHero.poster.landscapeSet} sizes="100vw" />
             { }
-            <img src={ndHero.backdrop.landscape.src} alt="" width={ndHero.backdrop.landscape.w} height={ndHero.backdrop.landscape.h} fetchPriority="high" decoding="async" className="h-full w-full object-cover object-[50%_40%]" />
+            <img src={ndHero.poster.landscape} alt="" width={1600} height={900} fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
           </picture>
+          <HeroReel />
         </div>
-        <div className="nd-grain absolute inset-0 bg-[linear-gradient(180deg,rgb(11_13_13/0.72)_0%,rgb(11_13_13/0.42)_35%,rgb(11_13_13/0.5)_62%,rgb(11_13_13/0.94)_100%)]" />
-        <div className="absolute inset-0 bg-[color:var(--ink)] opacity-30 mix-blend-multiply" />
+        <div className="nd-grain absolute inset-0 bg-[linear-gradient(180deg,rgb(11_13_13/0.66)_0%,rgb(11_13_13/0.22)_30%,rgb(11_13_13/0.34)_56%,rgb(11_13_13/0.93)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_18%_100%,rgb(11_13_13/0.6),transparent_62%)]" />
       </div>
       <Rules />
 
@@ -138,5 +138,85 @@ export function NdHero() {
         }
       `}</style>
     </section>
+  );
+}
+
+/**
+ * Two stacked videos: the front one plays, the back one preloads the next film; when the front
+ * ends they swap with a slow crossfade. Starts after page load, pauses off-screen, and is skipped
+ * for reduced motion and Save-Data (the poster stays).
+ */
+function HeroReel() {
+  const a = useRef<HTMLVideoElement>(null);
+  const b = useRef<HTMLVideoElement>(null);
+  const [on, setOn] = useState(false);
+  const [portrait, setPortrait] = useState(false);
+  const [front, setFront] = useState(0);
+  const [idx, setIdx] = useState(0);
+  const [ready, setReady] = useState(false);
+  const n = ndHero.reel.length;
+  const el = (k: number) => (k === 0 ? a : b).current;
+  const src = (i: number) => (portrait ? ndHero.reel[i % n].portrait : ndHero.reel[i % n].landscape);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if ((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData) return;
+    let t = 0;
+    const start = () => {
+      t = window.setTimeout(() => { setPortrait(window.matchMedia("(max-width: 767px)").matches); setOn(true); }, 150);
+    };
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
+    return () => { window.clearTimeout(t); window.removeEventListener("load", start); };
+  }, []);
+
+  useEffect(() => {
+    if (!on) return;
+    const f = el(front);
+    const back = el(1 - front);
+    if (!f || !back) return;
+    if (f.getAttribute("src") !== src(idx)) f.setAttribute("src", src(idx));
+    back.setAttribute("src", src(idx + 1));
+    back.load();
+    f.play().catch(() => undefined);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [on, idx, front, portrait]);
+
+  // Pause while the hero is off-screen
+  useEffect(() => {
+    if (!on) return;
+    const host = a.current?.closest("section");
+    if (!host) return;
+    const io = new IntersectionObserver(([e]) => {
+      const f = el(front);
+      if (!f) return;
+      if (e.isIntersecting) f.play().catch(() => undefined); else f.pause();
+    });
+    io.observe(host);
+    return () => io.disconnect();
+  }, [on, front]);
+
+  const next = () => {
+    el(1 - front)?.play().catch(() => undefined);
+    setFront(1 - front);
+    setIdx((i) => (i + 1) % n);
+  };
+
+  return (
+    <>
+      {[0, 1].map((k) => (
+        <video
+          key={k}
+          ref={k === 0 ? a : b}
+          muted
+          playsInline
+          preload="none"
+          tabIndex={-1}
+          onPlaying={k === front ? () => setReady(true) : undefined}
+          onEnded={k === front ? next : undefined}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1400ms] ease-in-out ${k === front && ready ? "opacity-100" : "opacity-0"}`}
+        />
+      ))}
+    </>
   );
 }
