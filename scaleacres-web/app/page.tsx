@@ -5,6 +5,7 @@ import { NdMotion } from "@/components/nd/ui";
 import { NdHero } from "@/components/nd/NdHero";
 import { NdManifesto } from "@/components/nd/NdManifesto";
 import { NdAbout } from "@/components/nd/NdAbout";
+import { NdServices } from "@/components/nd/NdServices";
 
 export const metadata: Metadata = {
   // PROTECTED: identical to the live homepage title. Do not change without SEO approval.
@@ -15,11 +16,11 @@ export const metadata: Metadata = {
 };
 
 /**
- * Homepage — built section by section for approval. This stage: the first three sections as one
+ * Homepage — built section by section for approval. This stage: the first four sections as one
  * continuous introduction. The remaining sections (components/nd/*) return as each is approved.
  *
  * 01 Hero (Brand Black, motion reel) → 02 Creative statement (Brand Black) → 03 Who we are (white,
- * opening out of the black section). Header: components/nd/NdHeader, chosen by components/Header on "/".
+ * opening out of the black section) → 04 Our services (white, stacked Brand Black cards). Header: components/nd/NdHeader, chosen by components/Header on "/".
  */
 export default function HomePage() {
   return (
@@ -31,6 +32,7 @@ export default function HomePage() {
       <div className="bg-[color:var(--ink)]">
         <NdAbout />
       </div>
+      <NdServices />
     </div>
   );
 }

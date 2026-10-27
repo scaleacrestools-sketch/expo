@@ -225,3 +225,67 @@ export const ndLeaders = [
   { title: "TRG The Mall campaign", client: "TRG", image: img("cr-trg") },
   { title: "Brochure spreads", client: "Ellington 86", image: img("slide-15") },
 ];
+
+/* ---------------------------------------------------------------- services (stacked cards) */
+
+/**
+ * Homepage copy for the eight approved services (content/services.ts keeps the service pages'
+ * own copy). Each card plays a short, seamless motion loop composed from genuine ScaleAcres work
+ * (scripts/nd-service-reels): 1200 × 800 VP9 WebM / H.264 MP4 with a poster frame.
+ */
+const SERVICE_COPY: Record<string, { headline: string; description: string; caption: string; note?: string }> = {
+  "website-design-development": {
+    headline: "Websites that turn visits into site visits.",
+    description: "Fast, considered websites for developers and their projects: a clear story, strong visuals and enquiry journeys built to convert on every screen.",
+    caption: "SID Realtech, Subata Realty and Imperial Sky Realty · designed and built by ScaleAcres",
+  },
+  "search-engine-optimization": {
+    headline: "Be found first. Stay there.",
+    description: "Technical foundations, local search and content that ranks, so buyers searching for your location and project find you before anyone else.",
+    caption: "Search Console growth and first-page rankings from ScaleAcres SEO campaigns",
+  },
+  "performance-marketing": {
+    headline: "Every click has a purpose.",
+    description: "Google and Meta campaigns planned around the buyer, tracked to source and optimised every week, so spend turns into enquiries that become site visits.",
+    caption: "Google search ads, Meta Ads results and launch creatives from ScaleAcres campaigns",
+  },
+  "branding-creative-design": {
+    headline: "Make your brand impossible to ignore.",
+    description: "Positioning, identity and launch creative that give a project a clear, ownable presence, from the logo and guidelines to brochures, hoardings and site branding.",
+    caption: "SID Realtech identity, Ellington 86 brochure, hoarding and launch creative",
+  },
+  "social-media-marketing": {
+    headline: "Content that keeps your project in the conversation.",
+    description: "Always-on content plans, reels and post creatives that build familiarity before launch and keep enquiries moving long after it.",
+    caption: "Reels and post creatives produced by ScaleAcres for JBBR Group and Intech Developers",
+  },
+  "video-creative-production": {
+    headline: "Stories built to be seen.",
+    description: "Ad films, walkthroughs, social cuts and AI-assisted concepts, scripted and produced in-house for every platform a buyer scrolls.",
+    caption: "Frames from real estate ad films produced by ScaleAcres",
+  },
+  "ecommerce-solutions": {
+    headline: "Built to sell. Designed to scale.",
+    description: "Storefronts with clear product stories, a smooth checkout and dependable technology underneath, designed for mobile first.",
+    caption: "MW&B online store on desktop and mobile · built by ScaleAcres",
+  },
+  "custom-applications-software": {
+    headline: "Technology that moves business forward.",
+    description: "Web applications, dashboards and automations that take manual work out of the business, from lead routing and CRM integrations to client-facing platforms.",
+    caption: "Finsckool learning platform · built by ScaleAcres",
+    note: "Shown: the Finsckool platform. CRM and dashboard projects will be added when available.",
+  },
+};
+
+export const ndServiceCards = services.map((s) => ({
+  number: s.number,
+  slug: s.slug,
+  title: s.title,
+  short: s.shortTitle,
+  ...SERVICE_COPY[s.slug],
+  tags: s.included,
+  href: s.path,
+  cta: s.ctaLabel,
+  video: `/videos/nd/services/${s.slug}`,
+  poster: { src: `/images/nd/services/${s.slug}-1200.webp`, srcSet: `/images/nd/services/${s.slug}-720.webp 720w, /images/nd/services/${s.slug}-1200.webp 1200w` },
+}));

@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: Outfit; src: url(file:///home/user/expo/scaleacres-web/dist/scaleacres-static-preview/_next/static/media/1b99372b3eaef0c8-s.p.1gsd1jahc5dg_.woff2) format("woff2"); font-weight: 100 900; }
+* { box-sizing: border-box; margin: 0; }
+html, body { background: #0b0d0d; overflow: hidden; }
+#stage { position: relative; width: 1440px; height: 960px; overflow: hidden; font-family: Outfit, sans-serif; color: #fff;
+  background: radial-gradient(70% 70% at 50% 42%, #161b22 0%, #0e1114 55%, #0b0d0d 100%); }
+.cam { position: absolute; inset: 0; perspective: 1800px; perspective-origin: 50% 44%; }
+.world { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; }
+.o { position: absolute; transform-style: preserve-3d; }
+.o img { display: block; }
+.sh { box-shadow: 0 50px 90px -30px rgba(0,0,0,.85), 0 14px 28px rgba(0,0,0,.45); }
+.glow { position: absolute; border-radius: 50%; pointer-events: none; }
+.vign { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(115% 95% at 50% 45%, transparent 48%, rgba(11,13,13,.82) 100%); }
+.film { position: absolute; inset: 0; width: 100%; height: 100%; }
+.bezel { background: #0e1010; border-radius: 22px; padding: 12px; }
+.screen { position: relative; overflow: hidden; border-radius: 9px; background: #fff; width: 100%; height: 100%; }
+.screen img { position: absolute; left: 0; top: 0; width: 100%; height: auto; }
+.screen.cover img { height: 100%; object-fit: cover; object-position: top; }
+.base { position: absolute; left: -7%; right: -7%; height: 16px; bottom: -16px; border-radius: 2px 2px 14px 14px; background: linear-gradient(180deg,#d9dce2 0%,#a9aeb6 60%,#7d838c 100%); }
+.base::before { content: ""; position: absolute; left: 50%; top: 0; width: 15%; height: 6px; transform: translateX(-50%); background: #9da2aa; border-radius: 0 0 8px 8px; }
+.phone { background: #0e1010; border-radius: 46px; padding: 11px; }
+.phone .screen { border-radius: 36px; }
+.notch { position: absolute; top: 20px; left: 50%; width: 30%; height: 22px; transform: translateX(-50%); background: #0e1010; border-radius: 12px; z-index: 2; }
+.browser { border-radius: 14px; overflow: hidden; background: #fff; }
+.bar { height: 34px; background: #f1f3f6; display: flex; align-items: center; gap: 8px; padding: 0 16px; border-bottom: 1px solid #e3e6eb; }
+.bar i { width: 11px; height: 11px; border-radius: 50%; background: #d1d5dc; }
+.bar b { margin-left: 16px; height: 13px; width: 38%; border-radius: 7px; background: #e3e6eb; }
+.card { border-radius: 14px; overflow: hidden; background: #111; }
+.card img { width: 100%; height: 100%; object-fit: cover; }
+.play { position: absolute; left: 50%; top: 50%; width: 74px; height: 74px; margin: -37px 0 0 -37px; border-radius: 50%; background: rgba(255,255,255,.95); display: grid; place-items: center; box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+.sweep { position: absolute; top: 0; bottom: 0; width: 34%; pointer-events: none; background: linear-gradient(90deg, transparent, rgba(56,189,248,.10), transparent); mix-blend-mode: screen; }
+.dim { position: absolute; inset: 0; pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+const Q = new URLSearchParams(location.search);
+const S = Q.get("s");
+const W = 1440, H = 960, D = 8;
+const A = "file:///tmp/claude-0/-home-user-expo/769b79d7-5227-592b-b40b-8d6f12481340/scratchpad/motion/";
+const ND = "file:///home/user/expo/scaleacres-web/public/images/nd/";
+const SV = "file:///tmp/claude-0/-home-user-expo/769b79d7-5227-592b-b40b-8d6f12481340/scratchpad/svc/src/";
+const st = document.getElementById("stage");
+const extra = [];
+const el = (tag, cls, parent, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html) e.innerHTML = html; parent.appendChild(e); return e; };
+const img = (src, parent, cls = "") => { const i = el("img", cls, parent); i.src = src; return i; };
+const box = (parent, w, h, cls = "o") => { const e = el("div", cls, parent); e.style.width = w + "px"; e.style.height = h + "px"; e.style.marginLeft = -w / 2 + "px"; e.style.marginTop = -h / 2 + "px"; return e; };
+const tf = (e, s) => { e.style.transform = s; };
+// every motion is periodic in D, so the loop is seamless
+const ph = (t, k = 1, off = 0) => Math.sin((t / D) * Math.PI * 2 * k + off);
+const scrollK = (t, off = 0) => (1 - Math.cos((t / D) * Math.PI * 2 + off)) / 2;   // 0 → 1 → 0 with eased ends
+
+/* light */
+const g1 = el("div", "glow", st), g2 = el("div", "glow", st);
+Object.assign(g1.style, { width: "1300px", height: "1300px", background: "radial-gradient(closest-side, rgba(29,78,216,.26), transparent)" });
+Object.assign(g2.style, { width: "1000px", height: "1000px", background: "radial-gradient(closest-side, rgba(56,189,248,.12), transparent)" });
+function light(t) {
+  g1.style.left = W * .5 + ph(t) * W * .16 - 650 + "px"; g1.style.top = H * .46 + ph(t, 1, Math.PI / 2) * H * .12 - 650 + "px";
+  g2.style.left = W * .5 - ph(t) * W * .2 - 500 + "px"; g2.style.top = H * .6 - ph(t, 1, Math.PI / 2) * H * .1 - 500 + "px";
+}
+const cam = el("div", "cam", st), w = el("div", "world", cam);
+
+/* builders */
+function laptop(width, src, { cover = false } = {}) {
+  const h = width * 0.625; const e = box(w, width, h, "o bezel sh");
+  const scr = el("div", "screen" + (cover ? " cover" : ""), e); const i = img(src, scr); el("div", "base", e);
+  return { e, i, scrH: h - 24, scrW: width - 24 };
+}
+function phone(width, src, { cover = false } = {}) {
+  const h = width * 2.09; const e = box(w, width, h, "o phone sh"); el("div", "notch", e);
+  const scr = el("div", "screen" + (cover ? " cover" : ""), e); const i = img(src, scr);
+  return { e, i, scrH: h - 22, scrW: width - 22 };
+}
+function browser(width, height, src, pos = "top") {
+  const e = box(w, width, height, "o browser sh"); el("div", "bar", e, "<i></i><i></i><i></i><b></b>");
+  const i = img(src, e); Object.assign(i.style, { width: "100%", height: `calc(100% - 34px)`, objectFit: "cover", objectPosition: pos });
+  return { e, i };
+}
+function card(width, height, src, { radius = 14, pos = "center", fit = "cover" } = {}) {
+  const e = box(w, width, height, "o card sh"); e.style.borderRadius = radius + "px";
+  const i = img(src, e); i.style.objectPosition = pos; i.style.objectFit = fit; return e;
+}
+function scrollImg(dev, k, factor = 1) {
+  const i = dev.i; if (!i.naturalWidth) return;
+  const max = i.naturalHeight * (dev.scrW / i.naturalWidth) - dev.scrH;
+  i.style.transform = `translateY(${-Math.max(0, max) * k * factor}px)`;
+}
+function filmBg(name, opacity, fps = 24) {
+  const c = el("canvas", "film", st); st.insertBefore(c, cam); c.width = 1600; c.height = 900; c.style.opacity = opacity;
+  const frames = []; for (let i = 1; i <= 120; i++) { const im = new Image(); im.src = `${A}f/${name}-l/${String(i).padStart(3, "0")}.jpg`; frames.push(im); extra.push(im); }
+  return (t) => { const g = c.getContext("2d"); const n = Math.floor(((t * fps) % 240)); const idx = n < 120 ? n : 239 - n; g.drawImage(frames[idx], 0, 0, 1600, 900); };   // ping-pong keeps the loop seamless
+}
+
+/* =============================== scenes =============================== */
+const scenes = {
+  "website-design-development"() {
+    const br = browser(760, 500, ND + "web-imperial-2400.webp");
+    const lap = laptop(940, A + "a/sid-page.jpg");
+    const ph1 = phone(250, A + "a/subata-page.jpg");
+    return (t) => {
+      tf(w, `rotateX(7deg) rotateY(${-14 + ph(t) * 6}deg) translateZ(-60px)`);
+      tf(br.e, `translate3d(${330 + ph(t, 1, 1) * 10}px, -150px, -420px) rotateY(10deg)`); br.e.style.opacity = .9;
+      tf(lap.e, `translate3d(-10px, ${-10 + ph(t, 1, .5) * 6}px, 0) rotateX(-4deg)`);
+      tf(ph1.e, `translate3d(-410px, ${100 + ph(t, 1, 2) * 12}px, 240px) rotateY(18deg) rotateZ(-3deg)`);
+      scrollImg(lap, scrollK(t), .9); scrollImg(ph1, scrollK(t, .7), .5);
+    };
+  },
+  "search-engine-optimization"() {
+    const br = browser(1000, 600, SV + "seo-graphs.webp", "top left");
+    const rank = card(620, 355, SV + "seo-result.webp", { radius: 12 });
+    const sweep = el("div", "sweep", st);
+    return (t) => {
+      tf(w, `rotateX(${10 + ph(t, 1, 1) * 2}deg) rotateY(${-16 + ph(t) * 5}deg) translateZ(-120px)`);
+      tf(br.e, `translate3d(-150px, -60px, -80px)`);
+      tf(rank, `translate3d(${330 + ph(t, 1, 2) * 10}px, ${200 + ph(t, 1, .5) * 10}px, 260px) rotateY(-8deg)`);
+      sweep.style.left = (-34 + ((t / D) * 168)) + "%";
+    };
+  },
+  "performance-marketing"() {
+    const ads = browser(900, 560, SV + "ads-search.webp", "top left");
+    const meta = card(600, 344, SV + "meta-result.webp", { radius: 12 });
+    const p1 = phone(230, ND + "cr-trg-900.webp", { cover: true });
+    const p2 = phone(230, ND + "cr-sid-900.webp", { cover: true });
+    return (t) => {
+      tf(w, `rotateX(8deg) rotateY(${12 + ph(t) * 6}deg) translateZ(-90px)`);
+      tf(ads.e, `translate3d(-210px, -40px, -120px) rotateY(-6deg)`);
+      tf(meta, `translate3d(${360 + ph(t, 1, 1) * 8}px, -250px, -360px) rotateY(-14deg)`); meta.style.opacity = .92;
+      tf(p1.e, `translate3d(250px, ${130 + ph(t, 1, 2) * 14}px, 220px) rotateY(-14deg) rotateZ(3deg)`);
+      tf(p2.e, `translate3d(450px, ${170 + ph(t, 1, 3.2) * 14}px, 120px) rotateY(-20deg) rotateZ(5deg)`);
+    };
+  },
+  "branding-creative-design"() {
+    const table = box(w, 3000, 2200); table.style.background = "radial-gradient(42% 46% at 50% 50%, #232829 0%, #15191a 45%, #0b0d0d 80%)";
+    const guide = card(720, 407, ND + "slide-2-924.webp", { radius: 8 });
+    const broch = card(560, 316, ND + "slide-1-924.webp", { radius: 8 });
+    const hoard = card(560, 316, ND + "slide-3-924.webp", { radius: 8 });
+    const post = card(300, 375, ND + "cr-sid-900.webp", { radius: 8 });
+    const spreads = card(480, 271, ND + "slide-15-924.webp", { radius: 8 });
+    return (t) => {
+      tf(w, `translateY(-30px) rotateX(46deg) rotateZ(${-8 + ph(t) * 3}deg) translateZ(${-120 + ph(t, 1, 1) * 30}px)`);
+      tf(guide, `translate3d(-230px, -120px, 4px) rotateZ(-4deg)`);
+      tf(broch, `translate3d(430px, -260px, 8px) rotateZ(7deg)`);
+      tf(hoard, `translate3d(380px, 150px, 6px) rotateZ(-5deg)`);
+      tf(spreads, `translate3d(-420px, 300px, 3px) rotateZ(6deg)`);
+      tf(post, `translate3d(${40 + ph(t, 1, 2) * 6}px, 230px, ${30 + ph(t, 1, 2) * 14}px) rotateZ(-9deg)`);
+    };
+  },
+  "social-media-marketing"() {
+    const l = card(330, 413, ND + "cr-jbbr-900.webp", { radius: 16 });
+    const r = card(330, 413, ND + "cr-intech-900.webp", { radius: 16 });
+    const a = phone(250, ND + "yt-hU-pHCMCKqo-405.webp", { cover: true });
+    const b = phone(290, ND + "yt-MdluDjATzgA-540.webp", { cover: true });
+    const c = phone(250, ND + "yt-tdXNax-PUNQ-405.webp", { cover: true });
+    return (t) => {
+      tf(w, `rotateX(6deg) rotateY(${ph(t) * 7}deg) translateZ(-150px)`);
+      tf(l, `translate3d(-480px, ${40 + ph(t, 1, 0) * 16}px, -160px) rotateY(24deg) rotateZ(-5deg)`);
+      tf(r, `translate3d(480px, ${40 + ph(t, 1, 2) * 16}px, -160px) rotateY(-24deg) rotateZ(5deg)`);
+      tf(a.e, `translate3d(-250px, ${20 + ph(t, 1, 1) * 14}px, 0) rotateY(14deg)`);
+      tf(b.e, `translate3d(0, ${-10 + ph(t, 1, 2.2) * 14}px, 120px)`);
+      tf(c.e, `translate3d(250px, ${20 + ph(t, 1, 3.4) * 14}px, 0) rotateY(-14deg)`);
+    };
+  },
+  "video-creative-production"() {
+    const bg = filmBg("production", .26);
+    const ids = ["vgsUylyADPY", "fRnzr1dSYMg", "vODoeG2QEKQ", "Z1ez2sINaao", "0NmdVrMelSQ", "QkCSgbRHJ0g", "HXVFHKSOmVE", "nRFeRCMZG3E"];
+    const RW = 300, RH = RW * 16 / 9, RAD = 900, n = ids.length, step = 360 / n;
+    const reels = ids.map((id) => { const e = card(RW, RH, `${ND}yt-${id}-540.webp`, { radius: 18 }); return e; });
+    el("div", "play", reels[0], '<svg width="26" height="26" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#0b0d0d"/></svg>');
+    return (t) => {
+      bg(t);
+      const spin = ph(t) * step * 0.85;
+      tf(w, `translateY(-10px) rotateX(-3deg) translateZ(${-RAD - 80}px) rotateY(${spin}deg)`);
+      reels.forEach((e, i) => {
+        const a = i * step; tf(e, `rotateY(${a}deg) translateZ(${RAD}px)`);
+        const rel = ((((a + spin) % 360) + 540) % 360) - 180; const face = Math.cos(rel * Math.PI / 180);
+        e.style.opacity = Math.max(0, Math.min(1, .2 + .8 * face)); e.style.filter = `brightness(${(.4 + .6 * Math.max(0, face)).toFixed(3)})`;
+      });
+    };
+  },
+  "ecommerce-solutions"() {
+    const lap = laptop(960, ND + "web-mwb-2400.webp", { cover: true });
+    const p = phone(260, ND + "m-mwb-720.webp", { cover: true });
+    return (t) => {
+      tf(w, `rotateX(8deg) rotateY(${-18 + ph(t) * 7}deg) translateZ(${-80 + ph(t, 1, 1) * 30}px)`);
+      tf(lap.e, `translate3d(-60px, -20px, 0) rotateX(-4deg)`);
+      tf(p.e, `translate3d(430px, ${110 + ph(t, 1, 2) * 14}px, 230px) rotateY(-16deg) rotateZ(3deg)`);
+    };
+  },
+  "custom-applications-software"() {
+    const lap = laptop(960, ND + "web-finsckool-2400.webp", { cover: true });
+    const p = phone(260, ND + "m-finsckool-720.webp", { cover: true });
+    return (t) => {
+      tf(w, `rotateX(8deg) rotateY(${16 + ph(t) * 7}deg) translateZ(${-80 + ph(t, 1, 1) * 30}px)`);
+      tf(lap.e, `translate3d(60px, -20px, 0) rotateX(-4deg)`);
+      tf(p.e, `translate3d(-420px, ${110 + ph(t, 1, 2) * 14}px, 230px) rotateY(16deg) rotateZ(-3deg)`);
+    };
+  },
+};
+const frame = scenes[S]();
+el("div", "vign", st);
+window.render = async (t) => { t = ((t % D) + D) % D; light(t); frame(t); };
+window.ready = async () => {
+  await document.fonts.ready;
+  const ims = [...document.images, ...extra];
+  await Promise.all(ims.map((i) => (i.complete ? Promise.resolve() : new Promise((r) => { i.onload = i.onerror = r; }))));
+  await Promise.all(ims.map((i) => i.decode().catch(() => {})));
+  return { W, H, D, n: ims.length, broken: ims.filter((i) => !i.naturalWidth).map((i) => i.src.split("/").pop()) };
+};
+</script>
+</body>
+</html>
