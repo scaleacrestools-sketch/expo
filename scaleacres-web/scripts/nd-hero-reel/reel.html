@@ -1,0 +1,339 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: Outfit; src: url(file:///home/user/expo/scaleacres-web/dist/scaleacres-static-preview/_next/static/media/1b99372b3eaef0c8-s.p.1gsd1jahc5dg_.woff2) format("woff2"); font-weight: 100 900; }
+* { box-sizing: border-box; margin: 0; }
+html, body { background: #0b0d0d; overflow: hidden; }
+#stage { position: relative; overflow: hidden; background: #0b0d0d; font-family: Outfit, sans-serif; color: #fff; }
+.full { position: absolute; inset: 0; }
+canvas.film { position: absolute; inset: 0; width: 100%; height: 100%; }
+.chap { position: absolute; inset: 0; will-change: transform, opacity, filter; }
+.cam { position: absolute; inset: 0; perspective: 2000px; perspective-origin: 50% 45%; }
+.world { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; }
+.o { position: absolute; transform-style: preserve-3d; backface-visibility: hidden; }
+.o img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.sh { box-shadow: 0 40px 80px -20px rgba(0,0,0,.75), 0 12px 24px rgba(0,0,0,.45); }
+.card-black { background: linear-gradient(145deg, #1a1e1e, #0d0f0f); border-radius: 14px; }
+.card-white { background: linear-gradient(145deg, #e4e7eb, #c9ced6); border-radius: 14px; }
+.logo { position: absolute; }
+.line { position: absolute; height: 6px; border-radius: 3px; background: #d6dae2; }
+.glow { position: absolute; border-radius: 50%; pointer-events: none; }
+.vign { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 45%, transparent 40%, rgba(11,13,13,.85) 100%); }
+.bezel { background: #0e1010; border-radius: 26px; padding: 14px; }
+.screen { position: relative; overflow: hidden; border-radius: 10px; background: #fff; width: 100%; height: 100%; }
+.screen::after { content: ""; position: absolute; inset: 0; background: rgba(11,13,13,.3); pointer-events: none; }   /* keep screens below the hero type */
+.screen img { position: absolute; left: 0; top: 0; width: 100%; height: auto; }
+.phone { background: #0e1010; border-radius: 52px; padding: 13px; }
+.phone .screen { border-radius: 40px; }
+.notch { position: absolute; top: 24px; left: 50%; width: 30%; height: 26px; transform: translateX(-50%); background: #0e1010; border-radius: 14px; z-index: 2; }
+.bar { height: 36px; background: #f1f3f6; display: flex; align-items: center; gap: 8px; padding: 0 16px; border-bottom: 1px solid #e3e6eb; }
+.bar i { width: 11px; height: 11px; border-radius: 50%; background: #d1d5dc; }
+.reel { border-radius: 18px; overflow: hidden; background: #000; }
+.play { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; background: rgba(255,255,255,.94); display: grid; place-items: center; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+const Q = new URLSearchParams(location.search);
+const P = Q.get("fmt") === "p";           // portrait 1080x1920
+const W = P ? 1080 : 1920, H = P ? 1920 : 1080;
+const D = 18;                               // seconds, seamless loop
+const A = "file:///tmp/claude-0/-home-user-expo/769b79d7-5227-592b-b40b-8d6f12481340/scratchpad/motion/";
+const ND = "file:///home/user/expo/scaleacres-web/public/images/nd/";
+const BR = "file:///home/user/expo/scaleacres-web/public/brand/";
+const SV = "file:///tmp/claude-0/-home-user-expo/769b79d7-5227-592b-b40b-8d6f12481340/scratchpad/svc/src/";
+const st = document.getElementById("stage"); st.style.width = W + "px"; st.style.height = H + "px";
+
+/* ---------- helpers ---------- */
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const lerp = (a, b, k) => a + (b - a) * k;
+const eOut = (k) => 1 - Math.pow(1 - k, 3);
+const eOutX = (k) => (k >= 1 ? 1 : 1 - Math.pow(2, -10 * k));
+const eIO = (k) => (k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
+const L = (land, port) => (P ? port : land);
+const el = (tag, cls, parent, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html) e.innerHTML = html; parent.appendChild(e); return e; };
+const img = (src, parent, cls = "") => { const i = el("img", cls, parent); i.src = src; return i; };
+const box = (parent, w, h, cls = "o") => { const e = el("div", cls, parent); e.style.width = w + "px"; e.style.height = h + "px"; e.style.marginLeft = -w / 2 + "px"; e.style.marginTop = -h / 2 + "px"; return e; };
+const tf = (e, s) => { e.style.transform = s; };
+
+/* ---------- film backdrops (pre-decoded frames on canvas) ---------- */
+const films = {};
+function film(name, count) {
+  const f = { frames: [], c: el("canvas", "film", st) };
+  f.c.width = L(1600, 720); f.c.height = L(900, 1280);
+  for (let i = 1; i <= count; i++) { const im = new Image(); im.src = `${A}f/${name}-${P ? "p" : "l"}/${String(i).padStart(3, "0")}.jpg`; f.frames.push(im); }
+  films[name] = f; return f;
+}
+function drawFilm(f, lt, opacity, zoom = 1) {
+  f.c.style.opacity = opacity;
+  if (opacity <= 0.001) return;
+  const im = f.frames[Math.min(f.frames.length - 1, Math.max(0, Math.floor(lt * 24)))];
+  const g = f.c.getContext("2d"); const w = f.c.width, h = f.c.height;
+  g.clearRect(0, 0, w, h);
+  const zw = w * zoom, zh = h * zoom; g.drawImage(im, (w - zw) / 2, (h - zh) / 2, zw, zh);
+}
+
+/* ---------- global light ---------- */
+const bgGlowA = el("div", "glow", st); const bgGlowB = el("div", "glow", st);
+Object.assign(bgGlowA.style, { width: "1400px", height: "1400px", background: "radial-gradient(closest-side, rgba(29,78,216,.22), transparent)" });
+Object.assign(bgGlowB.style, { width: "1100px", height: "1100px", background: "radial-gradient(closest-side, rgba(56,189,248,.12), transparent)" });
+
+const filmArch = film("architecture", 120), filmProd = film("production", 120), filmFin = film("finale", 120);
+
+/* ---------- chapter scaffolding ---------- */
+const CH = [
+  { id: "brand", a: 0.0, b: 3.3 },
+  { id: "estate", a: 2.9, b: 6.2 },
+  { id: "web", a: 5.8, b: 9.3 },
+  { id: "perf", a: 8.9, b: 12.1 },
+  { id: "video", a: 11.7, b: 14.9 },
+  { id: "final", a: 14.5, b: 18.0 },
+];
+function chapter() {
+  const c = el("div", "chap", st), cam = el("div", "cam", c), w = el("div", "world", cam);
+  return { c, cam, w };
+}
+// push-through transition shared by every chapter: arrive from depth, leave toward camera
+function chapterFrame(ch, t, opts = {}) {
+  const lt = t - ch.a, dur = ch.b - ch.a;
+  const kin = opts.noIn ? 1 : eOut(seg(lt, 0, .75)), kout = opts.noOut ? 0 : eIO(seg(lt, dur - .55, dur));
+  const on = t >= ch.a - .01 && t <= ch.b + .01;
+  const op = on ? Math.min(kin, 1 - kout) : 0;
+  const sc = lerp(.92, 1, kin) * lerp(1, 1.12, kout);
+  const blur = (1 - kin) * 10 + kout * 12;
+  ch.el.c.style.opacity = op;
+  ch.el.c.style.transform = `scale(${sc})`;
+  ch.el.c.style.filter = blur > .05 ? `blur(${blur.toFixed(2)}px)` : "none";
+  ch.el.c.style.visibility = op > 0.001 ? "visible" : "hidden";
+  return { lt, dur, kin, kout, op };
+}
+
+/* =========================================================================================
+   01 BRAND IDENTITY — ScaleAcres stationery system on a dark studio table
+   ========================================================================================= */
+const c1 = chapter(); CH[0].el = c1;
+const table = el("div", "o", c1.w);
+Object.assign(table.style, { width: "3200px", height: "2400px", marginLeft: "-1600px", marginTop: "-1200px", background: "radial-gradient(42% 46% at 50% 50%, #252b2b 0%, #161a1a 45%, #0b0d0d 80%)" });
+function brochure() {
+  const e = box(c1.w, 560, 740); e.classList.add("sh"); e.style.borderRadius = "10px"; e.style.overflow = "hidden";
+  e.style.background = "linear-gradient(160deg,#151919 0%,#0b0d0d 100%)";
+  const band = el("div", "", e); Object.assign(band.style, { position: "absolute", left: 0, right: 0, top: "70%", height: "30%", background: "linear-gradient(120deg,#0f1f5c 0%,#142E8C 50%,#1D4ED8 100%)" });
+  const sym = img(BR + "scaleacres-symbol-gradient.svg", e, "logo"); Object.assign(sym.style, { left: "60px", top: "64px", width: "96px", height: "auto" });
+  const t = el("div", "", e, "Brand<br>Guidelines"); Object.assign(t.style, { position: "absolute", left: "60px", top: "220px", fontSize: "62px", fontWeight: 600, lineHeight: 1, letterSpacing: "-0.03em" });
+  const wm = img(BR + "scaleacres-logo-white.svg", e, "logo"); Object.assign(wm.style, { left: "60px", bottom: "56px", width: "230px", height: "auto" });
+  return e;
+}
+function card(dark) {
+  const e = box(c1.w, 400, 230); e.className = "o sh " + (dark ? "card-black" : "card-white");
+  const l = img(BR + (dark ? "scaleacres-logo-reversed-no-strapline.svg" : "scaleacres-logo-primary-no-strapline.svg"), e, "logo");
+  Object.assign(l.style, { left: "36px", top: "36px", width: "200px", height: "auto" });
+  const s = el("div", "", e); Object.assign(s.style, { position: "absolute", left: "36px", bottom: "34px", width: "120px", height: "5px", borderRadius: "3px", background: dark ? "#38BDF8" : "#1D4ED8" });
+  return e;
+}
+function letterhead() {
+  const e = box(c1.w, 520, 700); e.className = "o sh card-white"; e.style.borderRadius = "6px";
+  const l = img(BR + "scaleacres-logo-primary.svg", e, "logo"); Object.assign(l.style, { left: "48px", top: "48px", width: "210px", height: "auto" });
+  const bar = el("div", "", e); Object.assign(bar.style, { position: "absolute", left: "48px", top: "150px", width: "424px", height: "2px", background: "#1D4ED8" });
+  [[200, 300], [226, 380], [252, 340], [300, 400], [326, 360], [352, 410], [378, 280], [430, 390], [456, 330]].forEach(([y, w]) => { const r = el("div", "line", e); Object.assign(r.style, { left: "48px", top: y + "px", width: w + "px" }); });
+  return e;
+}
+const swatches = ["#1D4ED8", "#142E8C", "#38BDF8", "#0B0D0D", "#FFFFFF"].map((c) => { const s = box(c1.w, 110, 140); s.className = "o sh"; s.style.background = c; s.style.borderRadius = "8px"; if (c === "#0B0D0D") s.style.border = "1px solid #2a2f2f"; return s; });
+const b1 = brochure(), lh = letterhead(), cardsB = [card(true), card(true), card(true)], cardW = card(false);
+// rest positions on the table (x, y, rotZ, z)
+const R1 = L({
+  b1: [-40, -220, -6, 2], lh: [-600, -60, 9, 1], cB: [500, -420, 14, 3], cW: [470, -60, -10, 2], sw: [-40, 280, 0, 1],
+}, {
+  b1: [-130, -430, -6, 2], lh: [90, 330, 9, 1], cB: [300, -560, 14, 3], cW: [270, -170, -10, 2], sw: [0, 900, 0, 1],
+});
+function placeTable(e, [x, y, rz, z], k, i) {
+  const dz = lerp(520, 0, k), dx = lerp(x * 0.15, 0, k), dy = lerp(-220, 0, k), rr = lerp(rz + (i % 2 ? 18 : -18), rz, k);
+  tf(e, `translate3d(${x + dx}px, ${y + dy}px, ${z * 6 + dz}px) rotateZ(${rr}deg)`);
+  e.style.opacity = clamp(k * 1.6);
+}
+
+/* logo hub: the loop point (finale end == opening frame) */
+const hub = document.createElement("div"); hub.className = "full"; st.appendChild(hub);
+const hubGlow = el("div", "glow", hub); const hubSym = img(BR + "scaleacres-symbol-gradient.svg", hub, "logo");
+Object.assign(hubGlow.style, { width: "900px", height: "900px", left: W / 2 - 450 + "px", top: H * L(.46, .42) - 450 + "px", background: "radial-gradient(closest-side, rgba(29,78,216,.38), rgba(56,189,248,.08) 60%, transparent)" });
+const HUBW = L(150, 170);
+Object.assign(hubSym.style, { width: HUBW + "px", height: "auto", left: W / 2 - HUBW / 2 + "px", top: H * L(.46, .42) - HUBW * 0.66 + "px", filter: "drop-shadow(0 20px 50px rgba(29,78,216,.5))" });
+
+function ch1(t) {
+  const f = chapterFrame(CH[0], t, { noIn: true }); if (f.op <= 0) return;
+  const lt = f.lt;
+  const cam = eIO(seg(lt, 0, f.dur));
+  tf(c1.w, `translateY(${L(-20, -80)}px) rotateX(${L(50, 44)}deg) rotateZ(${lerp(-18, -10, cam)}deg) translateZ(${lerp(-260, -60, cam)}px)`);
+  table.style.opacity = eIO(seg(lt, .1, 1.0));   // the floor arrives with the stationery, so frame 0 matches the loop end
+  const k = (d) => eOutX(seg(lt, .25 + d, 1.25 + d));
+  placeTable(b1, R1.b1, k(0), 0); placeTable(lh, R1.lh, k(.1), 1);
+  cardsB.forEach((c, i) => placeTable(c, [R1.cB[0] + i * 10, R1.cB[1] - i * 8, R1.cB[2], R1.cB[3] + i * 2], k(.18 + i * .04), i));
+  placeTable(cardW, R1.cW, k(.26), 3);
+  swatches.forEach((s, i) => placeTable(s, [R1.sw[0] + (i - 2) * L(135, 135), R1.sw[1], 0, 1], k(.34 + i * .05), i));
+}
+
+/* =========================================================================================
+   02 REAL ESTATE MARKETING — blue-hour architecture with genuine launch creatives in space
+   ========================================================================================= */
+const c2 = chapter(); CH[1].el = c2;
+const c2shade = el("div", "full", c2.c); c2shade.style.background = L("linear-gradient(90deg, rgba(11,13,13,.15) 0%, rgba(11,13,13,.55) 70%, rgba(11,13,13,.75) 100%)", "linear-gradient(180deg, rgba(11,13,13,.2) 0%, rgba(11,13,13,.55) 60%, rgba(11,13,13,.8) 100%)");
+c2.c.insertBefore(c2shade, c2.cam);
+const ad1 = box(c2.w, 440, 550); ad1.classList.add("sh"); img(ND + "cr-sid-900.webp", ad1); ad1.style.borderRadius = "14px"; ad1.style.overflow = "hidden";
+const ad2 = box(c2.w, 700, 396); ad2.classList.add("sh"); img(ND + "slide-3-924.webp", ad2); ad2.style.borderRadius = "12px"; ad2.style.overflow = "hidden";
+const ad3 = box(c2.w, 330, 412); ad3.classList.add("sh"); img(ND + "cr-trg-900.webp", ad3); ad3.style.borderRadius = "12px"; ad3.style.overflow = "hidden";
+const R2 = L({ ad1: [360, -10, 0, -14], ad2: [430, -330, -420, -10], ad3: [720, 230, 120, -20] },
+             { ad1: [0, 260, 0, -10], ad2: [40, -40, -420, -8], ad3: [230, 640, 120, -16] });
+function ch2(t) {
+  const f = chapterFrame(CH[1], t);
+  drawFilm(filmArch, Math.max(0, t - CH[1].a), f.op, lerp(1.1, 1.0, eIO(seg(t, CH[1].a, CH[1].b))));
+  if (f.op <= 0) return;
+  const lt = f.lt, cam = eIO(seg(lt, 0, f.dur));
+  tf(c2.w, `rotateY(${lerp(-8, 6, cam)}deg) translateZ(${lerp(-80, 40, cam)}px)`);
+  [[ad1, R2.ad1, 0], [ad2, R2.ad2, .12], [ad3, R2.ad3, .22]].forEach(([e, [x, y, z, ry], d], i) => {
+    const k = eOutX(seg(lt, .2 + d, 1.2 + d)); const bob = Math.sin((t + i) * 1.4) * 8;
+    tf(e, `translate3d(${lerp(x + L(500, 0), x, k)}px, ${y + bob + L(0, lerp(500, 0, k))}px, ${z}px) rotateY(${lerp(ry - 35, ry, k)}deg)`);
+    e.style.opacity = clamp(k * 1.5);
+  });
+}
+
+/* =========================================================================================
+   03 WEBSITE DESIGN — genuine ScaleAcres sites on laptop, browser and phone, screens scrolling
+   ========================================================================================= */
+const c3 = chapter(); CH[2].el = c3;
+const lapW = L(1120, 900), lapH = lapW * 0.625;
+const lap = box(c3.w, lapW, lapH); lap.className = "o bezel sh";
+const lapScr = el("div", "screen", lap); const lapImg = img(A + "a/sid-page.jpg", lapScr);
+const deck = box(c3.w, lapW * 1.08, lapW * 0.62); deck.className = "o"; deck.style.background = "linear-gradient(180deg,#2a2e33 0%,#1a1d21 60%,#121416 100%)"; deck.style.borderRadius = "0 0 26px 26px";
+const brw = box(c3.w, L(820, 760), L(560, 520)); brw.className = "o sh"; brw.style.borderRadius = "14px"; brw.style.overflow = "hidden"; brw.style.background = "#fff";
+el("div", "bar", brw, "<i></i><i></i><i></i>"); const brImg = img(ND + "web-imperial-2400.webp", brw); brImg.style.height = "calc(100% - 36px)"; brImg.style.objectPosition = "top";
+const ph = box(c3.w, 330, 690); ph.className = "o phone sh"; el("div", "notch", ph);
+const phScr = el("div", "screen", ph); const phImg = img(A + "a/subata-page.jpg", phScr);
+function ch3(t) {
+  const f = chapterFrame(CH[2], t); if (f.op <= 0) return;
+  const lt = f.lt, cam = eIO(seg(lt, 0, f.dur));
+  tf(c3.w, `rotateX(${L(8, 6)}deg) rotateY(${lerp(-22, -10, cam)}deg) translateZ(${lerp(-200, 0, cam)}px)`);
+  const k = (d) => eOutX(seg(lt, .15 + d, 1.25 + d));
+  const lx = L(120, -40), ly = L(-20, -260);
+  tf(lap, `translate3d(${lx}px, ${ly + lerp(300, 0, k(0))}px, 0px) rotateX(${lerp(-60, -6, k(0))}deg)`); lap.style.opacity = clamp(k(0) * 1.5);
+  tf(deck, `translate3d(${lx}px, ${ly + lapH / 2 + lerp(300, 0, k(0))}px, ${lapW * 0.31}px) rotateX(90deg)`); deck.style.opacity = clamp(k(0) * 1.5);
+  tf(brw, `translate3d(${L(560, 140)}px, ${L(-260, -760)}px, -520px) rotateY(${lerp(30, 6, k(.1))}deg)`); brw.style.opacity = clamp(k(.1) * 1.3) * .9;
+  tf(ph, `translate3d(${L(-560, -250) + lerp(-300, 0, k(.2))}px, ${L(110, 330)}px, ${L(260, 320)}px) rotateY(${lerp(50, 16, k(.2))}deg) rotateZ(${lerp(-8, -3, k(.2))}deg)`); ph.style.opacity = clamp(k(.2) * 1.5);
+  // screens scroll like a visitor reading: pause, glide, pause
+  const sLap = eIO(seg(lt, 1.0, 2.6)), sPh = eIO(seg(lt, 1.2, 2.9));
+  const lapMax = lapImg.naturalHeight * ((lapW - 28) / lapImg.naturalWidth) - (lapH - 28);
+  lapImg.style.transform = `translateY(${-sLap * Math.max(0, lapMax) * .85}px)`;
+  const phMax = phImg.naturalHeight * ((330 - 26) / phImg.naturalWidth) - (690 - 26);
+  phImg.style.transform = `translateY(${-sPh * Math.max(0, phMax) * .55}px)`;
+}
+
+/* =========================================================================================
+   04 PERFORMANCE MARKETING — genuine campaign creatives fan out from one stack
+   ========================================================================================= */
+const c4 = chapter(); CH[3].el = c4;
+const crs = ["cr-jbbr", "cr-intech", "cr-trg", "cr-sid"].map((n) => { const e = box(c4.w, L(380, 400), L(475, 500)); e.classList.add("sh"); e.style.borderRadius = "18px"; e.style.overflow = "hidden"; img(ND + n + "-900.webp", e); return e; });
+const R4 = L(
+  [[-690, 0, -140, 22, -6], [-230, -10, -20, 8, -2], [230, -10, -20, -8, 2], [690, 0, -140, -22, 6]],
+  [[-250, -380, -60, 10, -4], [250, -380, -60, -10, 4], [-250, 180, -60, 10, -3], [250, 180, -60, -10, 3]]);
+function ch4(t) {
+  const f = chapterFrame(CH[3], t); if (f.op <= 0) return;
+  const lt = f.lt, cam = eIO(seg(lt, 0, f.dur));
+  tf(c4.w, `rotateX(${L(6, 4)}deg) rotateY(${lerp(6, -6, cam)}deg) translateZ(${lerp(-120, 60, cam)}px)`);
+  const enter = eOutX(seg(lt, .1, .9)), spread = eOutX(seg(lt, .7, 1.9));
+  crs.forEach((e, i) => {
+    const [x, y, z, ry, rz] = R4[i];
+    const sx = (i - 1.5) * 14, sy = -i * 6, srz = (i - 1.5) * 4;
+    const bob = Math.sin(t * 1.3 + i) * 6;
+    tf(e, `translate3d(${lerp(sx, x, spread)}px, ${lerp(sy + lerp(260, 0, enter), y, spread) + bob}px, ${lerp(i * 4, z, spread)}px) rotateY(${lerp(0, ry, spread)}deg) rotateZ(${lerp(srz, rz, spread)}deg)`);
+    e.style.opacity = clamp(enter * 1.5);
+  });
+}
+
+/* =========================================================================================
+   05 VIDEO & CREATIVE PRODUCTION — a carousel of ScaleAcres ad and social films
+   ========================================================================================= */
+const c5 = chapter(); CH[4].el = c5;
+const reelIds = ["vgsUylyADPY", "fRnzr1dSYMg", "vODoeG2QEKQ", "Z1ez2sINaao", "0NmdVrMelSQ", "MdluDjATzgA", "QkCSgbRHJ0g", "HXVFHKSOmVE", "nRFeRCMZG3E", "hU-pHCMCKqo"];
+const RW = L(400, 400), RH = RW * 16 / 9, RAD = L(1150, 860);
+const reels = reelIds.map((id, i) => { const e = box(c5.w, RW, RH); e.className = "o reel sh"; const w = /hU-p|tdXN|gRVd|8_U_|Mqaa|3QHj|yILr/.test(id) ? 405 : 540; img(`${ND}yt-${id}-${w}.webp`, e); return e; });
+const playBtn = el("div", "play", reels[2], '<svg width="28" height="28" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#0b0d0d"/></svg>');
+function ch5(t) {
+  const f = chapterFrame(CH[4], t);
+  drawFilm(filmProd, Math.max(0, t - CH[4].a), f.op * 0.16, 1.05);
+  if (f.op <= 0) return;
+  const lt = f.lt, cam = eIO(seg(lt, 0, f.dur));
+  const n = reels.length, step = 360 / n;
+  const spin = lerp(-2 * step, -1.2 * step, cam) + 2 * step;   // drift; reel 2 faces camera mid-chapter
+  tf(c5.w, `translateY(${L(-10, -60)}px) rotateX(${L(-4, -3)}deg) translateZ(${-RAD + L(-80, 0)}px) rotateY(${spin - 2 * step + lerp(10, 0, eOutX(seg(lt, 0, 1.2)))}deg)`);
+  const enter = eOutX(seg(lt, .1, 1.1));
+  reels.forEach((e, i) => {
+    const a = i * step;
+    tf(e, `rotateY(${a}deg) translateZ(${RAD + lerp(-400, 0, enter)}px)`);
+    // dim the cards turning away
+    const rel = (((a + spin - 2 * step) % 360) + 540) % 360 - 180; const face = Math.cos(rel * Math.PI / 180);
+    e.style.opacity = clamp(enter * 1.4) * clamp(.25 + .75 * face);
+    e.style.filter = `brightness(${(.45 + .55 * clamp(face)).toFixed(3)})`;
+  });
+}
+
+/* =========================================================================================
+   06 SCALEACRES FINALE — light sweep, the mark and the wordmark; resolves to the loop frame
+   ========================================================================================= */
+const c6 = chapter(); CH[5].el = c6;
+const wm = img(BR + "scaleacres-logo-white.svg", c6.c, "logo");
+const WMW = L(560, 640);
+const CUT = 0.19; // the mark occupies the left 19% of the lockup; the hub symbol stands in for it
+Object.assign(wm.style, { width: WMW + "px", height: "auto", left: W / 2 - WMW * CUT - (WMW * (1 - CUT)) / 2 + "px", top: H * L(.46, .42) + L(165, 185) + "px" });
+const sweep = el("div", "", c6.c); Object.assign(sweep.style, { position: "absolute", top: 0, bottom: 0, width: "40%", background: "linear-gradient(90deg, transparent, rgba(56,189,248,.16), transparent)" });
+function ch6(t) {
+  const ch = CH[5]; const lt = t - ch.a, dur = ch.b - ch.a;
+  const kin = eOut(seg(lt, 0, .8)), kout = eIO(seg(lt, 2.4, 3.1));
+  const on = t >= ch.a - .01;
+  c6.c.style.opacity = on ? kin : 0; c6.c.style.visibility = on ? "visible" : "hidden"; c6.c.style.transform = "none"; c6.c.style.filter = "none";
+  drawFilm(filmFin, Math.max(0, lt), on ? kin * (1 - kout) * .55 : 0, 1.04);
+  const kw = eOutX(seg(lt, .7, 1.6));
+  wm.style.opacity = on ? kw * (1 - kout) : 0;
+  wm.style.clipPath = `inset(0 ${(1 - kw) * (1 - CUT) * 100}% 0 ${CUT * 100}%)`;
+  sweep.style.left = lerp(-40, 110, seg(lt, .4, 2.4)) + "%"; sweep.style.opacity = on ? (1 - kout) : 0;
+}
+
+/* hub: visible at the loop seam (start of 01, end of 06) */
+function hubFrame(t) {
+  const start = 1 - eIO(seg(t, .15, .85));                 // leaves as the stationery lands
+  const fin = eOutX(seg(t, CH[5].a + .3, CH[5].a + 1.2));    // arrives in the finale
+  const v = Math.max(start, fin);
+  hub.style.opacity = v;
+  const s = t < 2 ? lerp(1, .6, eIO(seg(t, .15, .85))) : lerp(.6, 1, fin);
+  hubSym.style.transform = `scale(${s}) translateY(${t < 2 ? lerp(0, -40, eIO(seg(t, .15, .85))) : lerp(-40, 0, fin)}px)`;
+  hubGlow.style.opacity = v;
+}
+
+/* global light drifts slowly, identical at 0 and D */
+function lightFrame(t) {
+  const a = (t / D) * Math.PI * 2;
+  bgGlowA.style.left = W * .5 + Math.cos(a) * W * .22 - 700 + "px"; bgGlowA.style.top = H * .45 + Math.sin(a) * H * .18 - 700 + "px";
+  bgGlowB.style.left = W * .5 - Math.cos(a) * W * .26 - 550 + "px"; bgGlowB.style.top = H * .55 - Math.sin(a) * H * .16 - 550 + "px";
+}
+
+const vign = el("div", "vign", st);
+// stacking: films behind chapters
+[filmArch.c, filmProd.c, filmFin.c].forEach((c) => st.insertBefore(c, st.firstChild));
+st.insertBefore(bgGlowA, filmArch.c.nextSibling); st.insertBefore(bgGlowB, bgGlowA.nextSibling);
+st.appendChild(hub); st.appendChild(vign);
+
+window.render = async (t) => {
+  t = ((t % D) + D) % D;
+  lightFrame(t); ch1(t); ch2(t); ch3(t); ch4(t); ch5(t); ch6(t); hubFrame(t);
+};
+window.ready = async () => {
+  await document.fonts.ready;
+  const ims = [...document.images, ...Object.values(films).flatMap((f) => f.frames)];
+  await Promise.all(ims.map((i) => (i.complete ? Promise.resolve() : new Promise((r) => { i.onload = i.onerror = r; }))));
+  await Promise.all(ims.map((i) => i.decode().catch(() => {})));
+  return { W, H, D, n: ims.length };
+};
+</script>
+</body>
+</html>

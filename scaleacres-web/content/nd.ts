@@ -30,25 +30,32 @@ export function img(name: string): Img {
 /* ---------------------------------------------------------------- hero */
 
 export const ndHero = {
-  lines: ["Built to", "stand out.", "Designed", "to scale."],
-  support:
-    "A real estate marketing and creative growth agency combining branding, performance marketing, digital experiences and automation.",
-  disciplines: ["Branding & identity", "Websites & technology", "Performance & growth"],
-  backdrop: { landscape: img("hero"), portrait: img("hero-p"), credit: "Backdrop: ScaleAcres concept films (AI-generated)" },
+  support: "A real estate marketing and creative growth agency combining strategy, design, technology and performance.",
   /**
-   * Hero reel, the same five concept films as the approved reference hero: they play in turn and
-   * crossfade. 1600 px landscape and 720 × 1280 portrait cuts in H.264 MP4 and VP9 WebM
-   * (public/videos/nd/hero); paths are given without the extension.
+   * ScaleAcres motion reel: an original 18 s seamless loop in six chapters, rendered from code
+   * (scripts/nd-hero-reel) with the ScaleAcres identity and genuine client work; the architecture,
+   * studio and light-sweep backdrops are ScaleAcres AI concept films. 1920 × 1080 for desktop and a
+   * separately composed 1080 × 1920 cut for phones, in H.264 MP4 and VP9 WebM (paths without extension).
+   * `at` is the second where each chapter takes over, for the indicator in the hero bar.
    */
-  reel: ["architecture", "brand", "web", "production", "finale"].map((id) => ({
-    id,
-    landscape: `/videos/nd/hero/${id}-1600`,
-    portrait: `/videos/nd/hero/${id}-720p`,
-  })),
-  poster: {
-    landscape: "/images/nd/hero/poster-architecture-1600.webp",
-    landscapeSet: "/images/nd/hero/poster-architecture-960.webp 960w, /images/nd/hero/poster-architecture-1600.webp 1600w",
-    portrait: "/images/nd/hero/poster-architecture-720p.webp",
+  reel: {
+    landscape: "/videos/nd/hero/scaleacres-reel-1920",
+    portrait: "/videos/nd/hero/scaleacres-reel-1080x1920",
+    duration: 18,
+    chapters: [
+      { n: "01", label: "Brand identity", at: 0 },
+      { n: "02", label: "Real estate marketing", at: 3.1 },
+      { n: "03", label: "Website design", at: 6.0 },
+      { n: "04", label: "Performance marketing", at: 9.1 },
+      { n: "05", label: "Video production", at: 11.9 },
+      { n: "06", label: "ScaleAcres", at: 14.7 },
+    ],
+    poster: {
+      landscape: "/images/nd/hero/reel-poster-1920.webp",
+      landscapeSet: "/images/nd/hero/reel-poster-960.webp 960w, /images/nd/hero/reel-poster-1920.webp 1920w",
+      portrait: "/images/nd/hero/reel-poster-720x1280.webp 720w, /images/nd/hero/reel-poster-1080x1920.webp 1080w",
+    },
+    credit: "Reel: ScaleAcres motion design with genuine client work. Backdrop footage: AI concept films.",
   },
 };
 
