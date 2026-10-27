@@ -46,7 +46,7 @@ for i, (slug, *_ ) in enumerate(COVERS, 1):
     p = os.path.join(R, f"{slug}.png")
     if os.path.exists(p):
         im = Image.open(p).convert("RGB")
-        tag = "-INTERIM-lowres-source" if slug in INTERIM else ""
+        tag = "-DRAFT-960x600-INTERIM-lowres-source" if slug in INTERIM else ""
         im.save(os.path.join(OUT, f"{i:02d}-{slug}{tag}.jpg"), quality=92, optimize=True, progressive=True)
 
 # contact sheet
@@ -66,7 +66,7 @@ for i, (slug, name, cat) in enumerate(COVERS):
         im = Image.open(p).convert("RGB").resize((CW, CH), Image.LANCZOS)
         sheet.paste(rounded(im, 18), (x, y), rounded(im, 18))
         if slug in INTERIM:
-            tag = "INTERIM · LOW-RES PROFILE SOURCE"
+            tag = "DRAFT · LOW-RES SOURCE · NOT FINAL"
             tw = d.textlength(tag, font=f_cat) + 36
             d.rounded_rectangle((x + 20, y + 20, x + 20 + tw, y + 62), 21, fill=(11, 13, 13))
             d.text((x + 38, y + 29), tag, font=f_cat, fill=(255, 255, 255))
