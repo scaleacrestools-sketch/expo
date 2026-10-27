@@ -12,12 +12,12 @@ R, OUT, FONT = sys.argv[1:4]
 os.makedirs(OUT, exist_ok=True)
 
 COVERS = [
+    ("jbbr-group", "JBBR Group", "Brand Identity & Creative Design"),
+    ("trg-the-mall", "TRG", "Launch Campaign & Event Experience"),
     ("intech-developers", "Intech Developers", "Website Design & Development"),
     ("sid-realtech", "SID Realtech", "Branding & Outdoor Campaign"),
-    ("jbbr-group", "JBBR Group", "Brand Identity & Creative Design"),
     ("rhomes", "Rhomes", "Social Media & Creative Campaign"),
     ("seabreeze-villas", "SeaBreeze Villas", "Brand Identity & Campaign"),
-    ("trg-the-mall", "TRG", "Launch Campaign & Event Experience"),
 ]
 INK, MUTED, PAPER, ROYAL = (11, 13, 13), (95, 99, 104), (247, 246, 242), (29, 78, 216)
 # built from 614 px profile crops: shown for layout approval until the original files arrive
@@ -41,12 +41,13 @@ def rounded(im, r):
     return out
 
 
-# full-size previews
-for slug, *_ in COVERS:
+# full-size covers, numbered in review order; interim ones say so in the file name
+for i, (slug, *_ ) in enumerate(COVERS, 1):
     p = os.path.join(R, f"{slug}.png")
     if os.path.exists(p):
         im = Image.open(p).convert("RGB")
-        im.save(os.path.join(OUT, f"{slug}.jpg"), quality=92, optimize=True, progressive=True)
+        tag = "-INTERIM-lowres-source" if slug in INTERIM else ""
+        im.save(os.path.join(OUT, f"{i:02d}-{slug}{tag}.jpg"), quality=92, optimize=True, progressive=True)
 
 # contact sheet
 W, M, G = 2400, 96, 48
