@@ -8,8 +8,8 @@ No internal pages, live WordPress, DNS or hosting were touched. The preview is s
 
 | File | What it is |
 | --- | --- |
-| `sections-1-5-desktop-1920x1080.mp4` | A real browser recording of all five sections at 1920 × 1080. |
-| `sections-1-5-mobile-390x844.mp4` | The same recording on a phone viewport. |
+| `sections-1-5-desktop-1920x1080.mp4` | A real browser recording of all five sections at 1920 × 1080, 64 s long. |
+| `sections-1-5-mobile-390x844.mp4` | The same recording on a 390 × 844 phone viewport, 55 s long. |
 | `homepage-full-desktop.jpg` | Full-page screenshot at 1440 px wide. |
 | `homepage-full-mobile.jpg` | Full-page screenshot at 390 px wide, rendered at 2×. |
 | `covers/` | The four portfolio covers at 2400 × 1500. |
@@ -40,7 +40,7 @@ Both recordings show:
 
   It is a native modal dialog that closes with Escape, the close button or a click outside, and it returns focus to the card.
 - **CTA.** "Explore all work" links to `/our-work/`.
-- **Images.** AVIF with WebP fallback at 640, 960, 1280 and 1600 px, lazy-loaded with fixed aspect ratios, so nothing shifts as they load. All four covers together weigh 158 KB as AVIF at 1600 px.
+- **Images.** AVIF with WebP fallback at 640, 960, 1280 and 1600 px, lazy-loaded with fixed aspect ratios, so nothing shifts as they load. All four covers together weigh 164 KB as AVIF at 1600 px.
 - **Reduced motion.** Respected. Covers and text appear in place.
 
 ## The four covers
@@ -61,3 +61,13 @@ Both earlier corrections are now in the final covers:
 - **SID:** the highway light trails now cross behind the hoarding, and the skyline windows are smaller and dimmer.
 
 **Rhomes and SeaBreeze Villas are not included**, as agreed. Both need their original files before they can be finished.
+
+## Checks (static build, 27 Oct 2026)
+
+- **Build.** The typecheck, lint and static export all pass.
+- **Section order.** Hero → Creative statement → Who we are → Our services → Our work, at 1440, 768 and 390 px.
+- **Layout.** No horizontal overflow at any width. No console errors and no failed requests.
+- **Media.** The hero video loads, and all four covers load as AVIF.
+- **Project preview.** It opens with focus on the close button. Escape closes it, and the page scroll lock releases.
+- **Speed.** The page first appears in 0.68 s on desktop and 0.60 s on mobile, with zero layout shift. This is unchanged from Sections 1–4.
+- **Noindex.** The preview sends `X-Robots-Tag: noindex, nofollow`, and `robots.txt` disallows all crawling.
