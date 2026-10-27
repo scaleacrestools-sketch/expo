@@ -73,7 +73,15 @@ export const ndAbout = {
     { k: "Markets", v: "India · UAE · Saudi Arabia" },
     { k: "Focus", v: "Real estate developers, channel partners and growth brands" },
   ],
-  image: { ...img("slide-5"), alt: "ScaleAcres website portfolio: Finsckool, R-Homes, SID Realtech, Subata Realty, Intech Developers and Imperial Sky Realty" },
+  /** Live client sites (2400 px first-screen captures), shown as a labelled collage. */
+  portfolio: [
+    { name: "Finsckool", image: img("web-finsckool") },
+    { name: "SID Realtech", image: img("web-sid") },
+    { name: "Research Capital", image: img("web-research") },
+    { name: "Subata Realty", image: img("web-subata") },
+    { name: "Jina Cosmetics", image: img("web-jina") },
+    { name: "Imperial Sky Realty", image: img("web-imperial") },
+  ],
 };
 
 /* ---------------------------------------------------------------- services */
@@ -195,15 +203,16 @@ export const ndNav = [
 /** Genuine work that drifts past the manifesto statement (no AI pieces here; AI work is labelled in Videos). */
 export const ndManifesto = {
   lines: ["We build", "real estate brands", "people remember."],
+  /** The approved collage: brochures, launch creatives and outdoor work by ScaleAcres. */
   collage: [
-    { ...img("slide-5"), alt: "ScaleAcres website portfolio" },
-    { ...img("yt-vgsUylyADPY"), alt: "ScaleAcres real estate ad film" },
-    { ...img("slide-12"), alt: "Nirvana Grand website designed by ScaleAcres" },
-    { ...img("yt-nRFeRCMZG3E"), alt: "ScaleAcres real estate ad film" },
-    { ...img("google"), alt: "Google Ads results from a ScaleAcres campaign" },
-    { ...img("yt-MdluDjATzgA"), alt: "ScaleAcres social media video" },
+    { ...img("slide-1"), alt: "Ellington 86 brochure for SID Realtech" },
+    { ...img("cr-sid"), alt: "Ellington 86 launch creative for SID Realtech" },
+    { ...img("slide-3"), alt: "Ellington 86 outdoor hoarding" },
+    { ...img("cr-jbbr"), alt: "JBBR Group social creative" },
+    { ...img("slide-14"), alt: "Nirvana County brochure" },
+    { ...img("cr-intech"), alt: "Intech Developers social creative" },
   ],
-};
+}
 
 /* ---------------------------------------------------------------- market leaders strip */
 

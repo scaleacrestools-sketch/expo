@@ -17,7 +17,7 @@ import { Plus } from "@/components/nd/ui";
 export function NdHeader() {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const [solid, setSolid] = useState(false); // white bar once past the dark hero
+  const [solid, setSolid] = useState(false); // white bar over light sections
   const btn = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
 
@@ -26,7 +26,9 @@ export function NdHeader() {
     const on = () => {
       const y = window.scrollY;
       setHidden(y > 160 && y > last);
-      setSolid(y > window.innerHeight * 0.85);
+      // white bar only over light sections; stays transparent over the hero and Brand Black sections
+      const under = document.elementFromPoint(12, 72)?.closest("section");
+      setSolid(!!under && (under.classList.contains("nd-white") || under.classList.contains("nd-light")));
       last = y;
     };
     on();
@@ -81,7 +83,7 @@ export function NdHeader() {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="nd-menu"
-        className={`fixed right-[calc(var(--m)-1rem)] top-[10px] z-[70] flex h-11 items-center gap-3 px-4 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] transition-colors duration-300 md:top-[18px] ${open ? "bg-white text-[color:var(--ink)]" : solid ? "text-[color:var(--ink)] hover:text-[color:var(--royal)]" : "text-white hover:text-[color:var(--sky)]"}`}
+        className={`fixed right-[calc(var(--m)-1rem)] top-[10px] z-[70] flex h-11 items-center gap-3 px-4 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] transition-colors duration-300 md:top-[18px] ${open ? "bg-white text-[color:var(--ink)]" : solid ? "text-[color:var(--ink)] hover:text-[color:var(--royal)]" : "text-white hover:text-[color:var(--sky)]"} ${hidden && !open ? (solid ? "rounded-full bg-white/85 shadow-[var(--sh-1)] backdrop-blur-md" : "rounded-full bg-[rgb(11_13_13/0.55)] backdrop-blur-md") : ""}`}
       >
         <span>{open ? "Close" : "Menu"}</span>
         <span aria-hidden="true" className="relative block h-3 w-8">
