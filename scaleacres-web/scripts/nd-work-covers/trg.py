@@ -63,7 +63,7 @@ box("carpet", 2.6, 40, 0.015, loc=(0, 6, 0.0075), mat=carpet)
 # ---- the gate
 navy_clad = principled("navy_clad", (0.008, 0.02, 0.055), rough=0.38, metal=0.5)
 gold = principled("gold", (0.8, 0.58, 0.28), rough=0.25, metal=1.0)
-header_flex = principled("header_flex", NAVY, rough=0.6, emit=NAVY, emit_strength=FLEX)
+# header_flex is built below, once the header size is known
 OPEN, PW, PD, PH = 5.0, 2.5, 1.1, 6.2
 for sx in (-1, 1):
     cx = sx * (OPEN / 2 + PW / 2)
@@ -76,10 +76,18 @@ for sx in (-1, 1):
         box(f"trim{sx}{z}", PW, 0.03, 0.03, loc=(cx, -PD / 2 - 0.015, z), mat=gold)
 HW = OPEN + 2 * PW + 0.6
 box("header", HW, PD + 0.3, 1.7, loc=(0, 0, PH + 0.85), mat=navy_clad, bevel=0.01)
-plane("header_face", HW - 0.3, 1.4, loc=(0, -(PD + 0.3) / 2 - 0.01, PH + 0.85), rot=(90, 0, 0), mat=header_flex)
-LW = 2.1
-plane("logo_trg", LW, LW * 155 / 305, loc=(-HW / 2 + 0.25 + LW / 2 + 0.3, -(PD + 0.3) / 2 - 0.02, PH + 0.85), rot=(90, 0, 0), mat=print_mat("trg_logo", TRG_LOGO, rough=0.6, emit=FLEX))
-plane("logo_mall", LW * 290 / 305, LW * 155 / 305, loc=(HW / 2 - 0.25 - LW * 290 / 305 / 2 - 0.3, -(PD + 0.3) / 2 - 0.02, PH + 0.85), rot=(90, 0, 0), mat=print_mat("trg_mall", MALL_LOGO, rough=0.6, emit=FLEX))
+# one print for the whole header face: the two logo crops placed at native size on the creative's navy
+FW_, FH_ = HW - 0.3, 1.4
+PPM = 305 / 2.1  # logo crop pixels per metre (TRG logo shown 2.1 m wide)
+hdr = Image.new("RGB", (round(FW_ * PPM), round(FH_ * PPM)), NAVY_SRGB)
+tl, ml = Image.open(TRG_LOGO), Image.open(MALL_LOGO)
+pad = round(0.55 * PPM)
+hdr.paste(tl, (pad, (hdr.height - tl.height) // 2))
+hdr.paste(ml, (hdr.width - pad - ml.width, (hdr.height - ml.height) // 2))
+HDR = os.path.join(OUT, "_trg-header.png")
+hdr.save(HDR)
+header_flex = print_mat("header_flex", HDR, rough=0.6, emit=FLEX)
+plane("header_face", FW_, FH_, loc=(0, -(PD + 0.3) / 2 - 0.01, PH + 0.85), rot=(90, 0, 0), mat=header_flex)
 for z in (PH + 0.12, PH + 1.58):
     box(f"htrim{z}", HW, 0.03, 0.03, loc=(0, -(PD + 0.3) / 2 - 0.02, z), mat=gold)
 
