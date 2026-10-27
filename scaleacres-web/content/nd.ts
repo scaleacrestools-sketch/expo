@@ -73,6 +73,12 @@ export const ndAbout = {
     { k: "Markets", v: "India · UAE · Saudi Arabia" },
     { k: "Focus", v: "Real estate developers, channel partners and growth brands" },
   ],
+  /** Genuine photographs from the ScaleAcres Delhi studio (scaleacres.com). */
+  studio: {
+    team: { src: "/images/nd/studio/studio-team-1000.webp", srcSet: "/images/nd/studio/studio-team-600.webp 600w, /images/nd/studio/studio-team-1000.webp 1000w", w: 1000, h: 1065, alt: "The ScaleAcres team at work in the Delhi studio" },
+    founders: { src: "/images/nd/studio/studio-founders-600.webp", srcSet: "/images/nd/studio/studio-founders-600.webp 600w, /images/nd/studio/studio-founders-1000.webp 1000w", w: 600, h: 638, alt: "ScaleAcres leadership reviewing work in the studio" },
+  },
+  disciplines: ["Brand strategy & identity", "Websites & technology", "Performance marketing & SEO", "Video, social & content"],
   /** Live client sites (2400 px first-screen captures), shown as a labelled collage. */
   portfolio: [
     { name: "Finsckool", image: img("web-finsckool") },
@@ -230,8 +236,10 @@ export const ndLeaders = [
 
 /**
  * Homepage copy for the eight approved services (content/services.ts keeps the service pages'
- * own copy). Each card plays a short, seamless motion loop composed from genuine ScaleAcres work
- * (scripts/nd-service-reels): 1200 × 800 VP9 WebM / H.264 MP4 with a poster frame.
+ * own copy). Each card shows one editorial still on a light base (public/images/nd/services,
+ * 3:2, 800/1200/1800 px), composed by scripts/nd-service-visuals-light from genuine ScaleAcres work:
+ * live-site captures, campaign screenshots and pieces taken from the ScaleAcres company profile
+ * (individual creatives only, cleaned and upscaled; never whole slides).
  */
 const SERVICE_COPY: Record<string, { headline: string; description: string; caption: string; note?: string }> = {
   "website-design-development": {
@@ -247,17 +255,17 @@ const SERVICE_COPY: Record<string, { headline: string; description: string; capt
   "performance-marketing": {
     headline: "Every click has a purpose.",
     description: "Google and Meta campaigns planned around the buyer, tracked to source and optimised every week, so spend turns into enquiries that become site visits.",
-    caption: "Google search ads, Meta Ads results and launch creatives from ScaleAcres campaigns",
+    caption: "Google search ads, Meta Ads cost-per-lead results and campaign creatives from ScaleAcres work",
   },
   "branding-creative-design": {
     headline: "Make your brand impossible to ignore.",
     description: "Positioning, identity and launch creative that give a project a clear, ownable presence, from the logo and guidelines to brochures, hoardings and site branding.",
-    caption: "SID Realtech identity, Ellington 86 brochure, hoarding and launch creative",
+    caption: "Identity work for Ottimo, Karyan, Aarize, TRG and JBBR Group by ScaleAcres",
   },
   "social-media-marketing": {
     headline: "Content that keeps your project in the conversation.",
     description: "Always-on content plans, reels and post creatives that build familiarity before launch and keep enquiries moving long after it.",
-    caption: "Reels and post creatives produced by ScaleAcres for JBBR Group and Intech Developers",
+    caption: "Social creatives and feeds for JBBR Group, SID Realtech and Intech Developers",
   },
   "video-creative-production": {
     headline: "Stories built to be seen.",
@@ -286,6 +294,5 @@ export const ndServiceCards = services.map((s) => ({
   tags: s.included,
   href: s.path,
   cta: s.ctaLabel,
-  video: `/videos/nd/services/${s.slug}`,
-  poster: { src: `/images/nd/services/${s.slug}-1200.webp`, srcSet: `/images/nd/services/${s.slug}-720.webp 720w, /images/nd/services/${s.slug}-1200.webp 1200w` },
+  image: { src: `/images/nd/services/${s.slug}-1200.webp`, srcSet: [800, 1200, 1800].map((w) => `/images/nd/services/${s.slug}-${w}.webp ${w}w`).join(", ") },
 }));

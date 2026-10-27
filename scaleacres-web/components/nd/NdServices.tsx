@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useRef, type CSSProperties } from "react";
 import { ndServiceCards } from "@/content/nd";
 import { useGsap } from "@/lib/motion";
 import { ArrowUR, Tag, Words } from "@/components/nd/ui";
@@ -11,8 +11,8 @@ type Card = (typeof ndServiceCards)[number];
 /**
  * 04 — Our services. Eight Brand Black cards stack on a white ground: on desktop each card pins a
  * little lower than the last, so the stack reads as an index, and the card being covered recedes
- * (scale and shade) while the new one becomes dominant. Each card's motion visual opens from a
- * clipped frame and plays only while on screen. Phones get a plain sequence of cards.
+ * (scale and shade) while the new one becomes dominant. Each card's editorial still (on a light
+ * base) opens from a clipped frame and settles from a slight zoom. Phones get a plain sequence.
  */
 export function NdServices() {
   const ref = useRef<HTMLElement>(null);
@@ -95,11 +95,12 @@ function ServiceCard({ s }: { s: Card }) {
           </Link>
         </div>
 
-        {/* Motion visual */}
+        {/* Editorial visual */}
         <div className="order-1 p-2 lg:order-2 lg:col-span-7 lg:h-full lg:p-3">
-          <div data-media className="relative aspect-[4/3] h-full w-full overflow-hidden rounded-[16px] bg-[#0e1114] sm:aspect-[3/2] lg:aspect-auto">
+          <div data-media className="relative aspect-[3/2] h-full w-full overflow-hidden rounded-[16px] bg-[#f4f5f7] lg:aspect-auto">
             <div data-zoom className="absolute inset-0">
-              <ServiceVideo src={s.video} poster={s.poster} />
+              {/* eslint-disable-next-line @next/next/no-img-element -- static export: pre-sized WebP */}
+              <img src={s.image.src} srcSet={s.image.srcSet} sizes="(min-width: 1024px) 56vw, 100vw" alt="" width={1800} height={1200} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
             </div>
             <p className="absolute bottom-3 left-3 max-w-[calc(100%-1.5rem)] truncate rounded-full bg-[rgb(11_13_13/0.72)] px-3.5 py-1.5 text-[0.8125rem] font-medium text-white backdrop-blur-md transition-colors duration-300 group-hover:bg-[color:var(--royal)]">{s.caption}</p>
           </div>
@@ -111,34 +112,3 @@ function ServiceCard({ s }: { s: Card }) {
   );
 }
 
-/** Poster first; the loop loads near the viewport and plays only while visible. Skipped for reduced motion / Save-Data. */
-function ServiceVideo({ src, poster }: { src: string; poster: { src: string; srcSet: string } }) {
-  const v = useRef<HTMLVideoElement>(null);
-  const [on, setOn] = useState(false);
-  const [shown, setShown] = useState(false);
-  useEffect(() => {
-    const el = v.current;
-    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if ((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData) return;
-    const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { setOn(true); el.play().catch(() => undefined); } else el.pause();
-    }, { rootMargin: "200px 0px" });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  useEffect(() => {
-    if (!on || !v.current) return;
-    v.current.load();
-    v.current.play().catch(() => undefined);
-  }, [on]);
-  return (
-    <>
-      {/* eslint-disable-next-line @next/next/no-img-element -- static export: pre-sized WebP posters */}
-      <img src={poster.src} srcSet={poster.srcSet} sizes="(min-width: 1024px) 56vw, 100vw" alt="" width={1200} height={800} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
-      <video ref={v} muted loop playsInline preload="none" aria-hidden="true" tabIndex={-1} onPlaying={() => setShown(true)} className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${shown ? "opacity-100" : "opacity-0"}`}>
-        {on ? <source src={`${src}.webm`} type="video/webm" /> : null}
-        {on ? <source src={`${src}.mp4`} type="video/mp4" /> : null}
-      </video>
-    </>
-  );
-}

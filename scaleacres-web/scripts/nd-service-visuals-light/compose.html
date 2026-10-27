@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: Outfit; src: url(file:///home/user/expo/scaleacres-web/dist/scaleacres-static-preview/_next/static/media/1b99372b3eaef0c8-s.p.1gsd1jahc5dg_.woff2) format("woff2"); font-weight: 100 900; }
+* { box-sizing: border-box; margin: 0; }
+html, body { background: #fff; }
+#s { position: relative; width: 1200px; height: 800px; overflow: hidden; font-family: Outfit, sans-serif; color: #0b0d0d;
+  background: radial-gradient(90% 80% at 50% 38%, #ffffff 0%, #f6f7f9 62%, #eceef2 100%); }
+.a { position: absolute; }
+.sh1 { box-shadow: 0 1px 2px rgba(11,13,13,.06), 0 12px 26px -14px rgba(11,13,13,.28); }
+.sh2 { box-shadow: 0 2px 4px rgba(11,13,13,.05), 0 28px 54px -26px rgba(11,13,13,.36); }
+.sh3 { box-shadow: 0 4px 10px rgba(11,13,13,.06), 0 46px 80px -34px rgba(11,13,13,.44); }
+.card { overflow: hidden; border-radius: 12px; background: #fff; }
+.card img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lap { }
+.lap .scr { border: 9px solid #121414; border-bottom-width: 12px; border-radius: 14px 14px 4px 4px; overflow: hidden; background: #000; aspect-ratio: 16/10; }
+.lap .scr img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.lap .base { height: 12px; margin: 0 -7%; border-radius: 2px 2px 12px 12px; background: linear-gradient(180deg,#e7e9ed 0%,#c2c6cd 60%,#9da2aa 100%); position: relative; }
+.lap .base::before { content:""; position:absolute; left:50%; top:0; width:15%; height:5px; transform:translateX(-50%); background:#b5b9c0; border-radius:0 0 6px 6px; }
+.ph { background: #111314; border-radius: 34px; padding: 8px; }
+.ph .in { position: relative; overflow: hidden; border-radius: 27px; aspect-ratio: 9/19.5; background: #000; }
+.ph .in img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.ph .in::before { content:""; position:absolute; z-index:2; top:9px; left:50%; width:32%; height:17px; transform:translateX(-50%); background:#111314; border-radius:10px; }
+.br { overflow: hidden; border-radius: 12px; background: #fff; }
+.br .bar { height: 26px; background: #f1f3f6; display: flex; align-items: center; gap: 6px; padding: 0 12px; border-bottom: 1px solid #e3e6eb; }
+.br .bar i { width: 8px; height: 8px; border-radius: 50%; background: #d1d5dc; }
+.br img { display: block; width: 100%; object-fit: cover; object-position: top; }
+.chip { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; background: #fff; font-size: 14px; font-weight: 600; letter-spacing: .01em; }
+.chip b { width: 7px; height: 7px; border-radius: 50%; background: #1d4ed8; display: inline-block; }
+.lbl { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #6b7076; }
+.res { width: 230px; padding: 18px 20px; border-radius: 14px; background: #fff; }
+.res h4 { font-size: 16px; font-weight: 600; letter-spacing: -.01em; margin-top: 6px; }
+.res .row { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; }
+.res .old { font-size: 18px; color: #8a8f96; text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.res .new { font-size: 30px; font-weight: 600; letter-spacing: -.03em; color: #1d4ed8; }
+.res .arrow { color: #8a8f96; font-size: 16px; }
+.reel { position: relative; overflow: hidden; border-radius: 16px; background: #000; aspect-ratio: 9/16; }
+.reel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.play { position: absolute; left: 50%; top: 50%; width: 54px; height: 54px; margin: -27px 0 0 -27px; border-radius: 50%; background: rgba(255,255,255,.95); display: grid; place-items: center; box-shadow: 0 8px 22px rgba(0,0,0,.3); }
+</style>
+</head>
+<body>
+<div id="s"></div>
+<script>
+const ND = "file:///home/user/expo/scaleacres-web/public/images/nd/";
+const SV = "file:///tmp/claude-0/-home-user-expo/769b79d7-5227-592b-b40b-8d6f12481340/scratchpad/svc/src/";
+const PR = "file:///tmp/claude-0/-home-user-expo/769b79d7-5227-592b-b40b-8d6f12481340/scratchpad/upscale/final/";
+const S = document.getElementById("s");
+const add = (html, css) => { const d = document.createElement("div"); d.className = "a"; Object.assign(d.style, css); d.innerHTML = html; S.appendChild(d); return d; };
+const card = (src, x, y, w, h, { r = 0, pos = "center", sh = "sh2", rad = 12, fit = "cover" } = {}) =>
+  add(`<div class="card ${sh}" style="width:${w}px;height:${h}px;border-radius:${rad}px"><img src="${src}" style="object-position:${pos};object-fit:${fit}"></div>`, { left: x + "px", top: y + "px", transform: `rotate(${r}deg)` });
+const laptop = (src, x, y, w) => add(`<div class="lap" style="width:${w}px"><div class="scr sh3"><img src="${src}"></div><div class="base sh1"></div></div>`, { left: x + "px", top: y + "px" });
+const phone = (src, x, y, w, r = 0, pos = "top") => add(`<div class="ph sh3" style="width:${w}px"><div class="in"><img src="${src}" style="object-position:${pos}"></div></div>`, { left: x + "px", top: y + "px", transform: `rotate(${r}deg)` });
+const browser = (src, x, y, w, h, pos = "top", r = 0) => add(`<div class="br sh2" style="width:${w}px"><div class="bar"><i></i><i></i><i></i></div><img src="${src}" style="height:${h}px;object-position:${pos}"></div>`, { left: x + "px", top: y + "px", transform: `rotate(${r}deg)` });
+const chip = (t, x, y) => add(`<span class="chip sh1"><b></b>${t}</span>`, { left: x + "px", top: y + "px" });
+const sheet = (src, x, y, w, h, r = 0) => card(src, x, y, w, h, { r, pos: "top", sh: "sh2", rad: 8 });
+
+const scenes = {
+  "website-design-development"() {
+    sheet(SV + "cap-subata.webp", 60, 120, 210, 600, -2);
+    sheet(SV + "cap-imperial.webp", 930, 90, 210, 600, 2);
+    sheet(SV + "cap-aevora.webp", 820, 300, 180, 470, 0);
+    laptop(ND + "web-sid-2400.webp", 215, 190, 700);
+    phone(ND + "m-subata-720.webp", 830, 380, 150, 0);
+    chip("Designed &amp; developed by ScaleAcres", 215, 110);
+  },
+  "search-engine-optimization"() {
+    browser(SV + "seo-graphs.webp", 80, 80, 820, 500, "top left");
+    card(SV + "seo-result.webp", 600, 360, 540, 309, { rad: 12, sh: "sh3" });
+    chip("Organic growth · Search Console", 80, 640);
+    chip("First-page rankings", 600, 700);
+  },
+  "performance-marketing"() {
+    card(SV + "ads-search.webp", 50, 80, 620, 372, { rad: 12, pos: "top left", sh: "sh2" });
+    const R = [["Rhomes Miraabilis", "₹1,300", "₹800"], ["Sea Breeze Villas", "₹478", "₹298"], ["Aarize · Gurgaon", "₹666", "₹320"]];
+    R.forEach(([n, a, b], i) => add(`<div class="res sh2"><p class="lbl">Meta Ads · cost per lead</p><h4>${n}</h4><div class="row"><span class="old">${a}</span><span class="arrow">→</span><span class="new">${b}</span></div></div>`, { left: 700 + (i % 2) * 0 + "px", top: 70 + i * 132 + "px" }));
+    phone(ND + "cr-trg-900.webp", 940, 300, 190, 4, "center");
+    card(PR + "rhomes-influencer.jpg", 250, 490, 250, 270, { rad: 12, sh: "sh3", pos: "right center" });
+    chip("Before → after, from ScaleAcres campaigns", 560, 720);
+  },
+  "branding-creative-design"() {
+    card(PR + "ottimo-hall.jpg", 50, 60, 520, 248, { rad: 10 });
+    card(PR + "karyan-facade.jpg", 590, 60, 260, 296, { rad: 10 });
+    card(PR + "jbbr-jacket.jpg", 870, 60, 280, 380, { rad: 10, pos: "center 30%" });
+    card(PR + "aarize-stationery.jpg", 50, 328, 330, 412, { rad: 10 });
+    card(PR + "trg-bag.jpg", 400, 328, 170, 172, { rad: 10 });
+    card(PR + "karyan-bag.jpg", 400, 520, 170, 220, { rad: 10 });
+    card(PR + "jbbr-flatlay.jpg", 590, 376, 560, 364, { rad: 10, pos: "center" });
+  },
+  "social-media-marketing"() {
+    card(PR + "jbbr-grid.jpg", 40, 110, 380, 370, { r: -4, rad: 12 });
+    card(PR + "sid-grid.jpg", 780, 110, 380, 370, { r: 4, rad: 12 });
+    phone(ND + "cr-jbbr-900.webp", 330, 230, 190, -6, "center");
+    phone(ND + "cr-sid-900.webp", 505, 170, 210, 0, "center");
+    phone(ND + "cr-intech-900.webp", 700, 230, 190, 6, "center");
+    chip("Content · Creatives · Community", 470, 690);
+  },
+  "video-creative-production"() {
+    const ids = [["vgsUylyADPY", 540], ["fRnzr1dSYMg", 540], ["vODoeG2QEKQ", 540], ["Z1ez2sINaao", 540], ["MdluDjATzgA", 540]];
+    const xs = [80, 295, 487, 762, 960], ys = [230, 175, 110, 175, 230], ws = [170, 200, 236, 200, 170];
+    ids.forEach(([id, w], i) => add(`<div class="reel sh3" style="width:${ws[i]}px"><img src="${ND}yt-${id}-${w}.webp">${i === 2 ? '<span class="play"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#0b0d0d"/></svg></span>' : ""}</div>`, { left: xs[i] + "px", top: ys[i] + "px" }));
+    chip("Ad films · Social cuts · AI concepts", 470, 690);
+  },
+  "ecommerce-solutions"() {
+    laptop(ND + "web-mwb-2400.webp", 110, 150, 760);
+    phone(ND + "m-mwb-720.webp", 860, 250, 200, 0);
+    chip("Storefront · Product pages · Checkout", 110, 90);
+  },
+  "custom-applications-software"() {
+    laptop(ND + "web-finsckool-2400.webp", 330, 150, 760);
+    phone(ND + "m-finsckool-720.webp", 140, 250, 200, 0);
+    chip("Web platform · Dashboards · Automation", 680, 90);
+  },
+};
+scenes[new URLSearchParams(location.search).get("s")]();
+window.ready = async () => {
+  await document.fonts.ready;
+  const ims = [...document.images];
+  await Promise.all(ims.map((i) => (i.complete ? Promise.resolve() : new Promise((r) => { i.onload = i.onerror = r; }))));
+  return ims.filter((i) => !i.naturalWidth).map((i) => i.src.split("/").pop());
+};
+</script>
+</body>
+</html>
