@@ -97,7 +97,7 @@ def hazed(name, color, rough=0.4, metal=0.0, start=300.0, end=1600.0, amount=0.3
         br.inputs["Scale"].default_value = 0.18
         br.inputs["Brick Width"].default_value = 0.6
         br.inputs["Row Height"].default_value = 0.5
-        br.inputs["Mortar Size"].default_value = 0.11
+        br.inputs["Mortar Size"].default_value = 0.16
         br.inputs["Color1"].default_value = (1.0, 0.7, 0.42, 1)
         br.inputs["Color2"].default_value = (0, 0, 0, 1)
         br.inputs["Mortar"].default_value = (0, 0, 0, 1)
@@ -108,7 +108,7 @@ def hazed(name, color, rough=0.4, metal=0.0, start=300.0, end=1600.0, amount=0.3
         nt.links.new(co.outputs["Object"], nz.inputs["Vector"])
         gt = nt.nodes.new("ShaderNodeMath")
         gt.operation = "GREATER_THAN"
-        gt.inputs[1].default_value = 0.86
+        gt.inputs[1].default_value = 0.9
         mul = nt.nodes.new("ShaderNodeMix")
         mul.data_type = "RGBA"
         mul.blend_type = "MULTIPLY"
@@ -122,7 +122,7 @@ def hazed(name, color, rough=0.4, metal=0.0, start=300.0, end=1600.0, amount=0.3
         nt.links.new(br.outputs["Color"], sock(mul, "A_Color"))
         nt.links.new(gt.outputs["Value"], sock(mul, "B_Color"))
         nt.links.new(sock(mul, "Result_Color", True), p.inputs["Emission Color"])
-        p.inputs["Emission Strength"].default_value = 4.0
+        p.inputs["Emission Strength"].default_value = 2.2
     cam = nt.nodes.new("ShaderNodeCameraData")
     mr = nt.nodes.new("ShaderNodeMapRange")
     mr.inputs["From Min"].default_value = start
@@ -157,22 +157,23 @@ gn.links.new(_rp.outputs["Color"], gn.nodes["Principled BSDF"].inputs["Base Colo
 box("ground", 2000, 2000, 1, loc=(0, 0, -0.5), mat=grass)
 road = principled("asphalt", (0.018, 0.018, 0.02), rough=0.55, coat=0.15, coat_rough=0.35)
 import mathutils
-RD = Vector((0.32, 1.0, 0)).normalized()
+RD = Vector((0.8, 0.6, 0)).normalized()
+R0 = Vector((-53, -14.0, 0))  # sweeps in behind the hoarding, then recedes toward the skyline
 road_rot = math.degrees(math.atan2(RD.x, RD.y))
-box("road", 18, 900, 0.05, loc=(10 + RD.x * 440, -6 + RD.y * 440, 0.0), rot=(0, 0, -road_rot), mat=road)
+box("road", 16, 900, 0.05, loc=(R0.x + RD.x * 440, R0.y + RD.y * 440, 0.0), rot=(0, 0, -road_rot), mat=road)
 red = principled("tail", (0, 0, 0), emit=(1.0, 0.07, 0.03), emit_strength=9)
 white = principled("head", (0, 0, 0), emit=(1.0, 0.8, 0.55), emit_strength=12)
 side = Vector((RD.y, -RD.x, 0))
 for lane, (off, m, zz) in enumerate([(-6.5, white, 0.72), (-4.0, white, 0.85), (3.6, red, 0.7), (6.2, red, 0.62), (-1.5, white, 0.6)]):
-    base = Vector((10, -6, 0)) + side * off
-    pts = [tuple(base + RD * d + Vector((0, 0, zz + 0.04 * math.sin(d * 0.2 + lane)))) for d in range(26, 700, 5)]
+    base = R0 + side * off
+    pts = [tuple(base + RD * d + Vector((0, 0, zz + 0.04 * math.sin(d * 0.2 + lane)))) for d in range(0, 700, 4)]
     curve(f"trail{lane}", pts, 0.018, m)
 for i in range(40):
-    d = 10 + i * 16
-    pos = Vector((10, -6, 0)) + RD * d + side * 9.5
+    d = 40 + i * 16
+    pos = R0 + RD * d - side * 9.0
     cyl(f"lp{i}", 0.08, 9, loc=(pos.x, pos.y, 4.5), mat=principled("lpole", (0.02, 0.02, 0.02), rough=0.5))
-    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.28, location=(pos.x - side.x * 1.2, pos.y - side.y * 1.2, 8.9))
-    assign(bpy.context.object, principled("lbulb", (0, 0, 0), emit=(1.0, 0.7, 0.4), emit_strength=25))
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.16, location=(pos.x + side.x * 1.2, pos.y + side.y * 1.2, 8.9))
+    assign(bpy.context.object, principled("lbulb", (0, 0, 0), emit=(1.0, 0.7, 0.4), emit_strength=12))
 
 # ---- skyline (procedural towers, aerial haze by distance)
 glass = hazed("tower", (0.012, 0.014, 0.022), rough=0.12, metal=0.55, windows=True)

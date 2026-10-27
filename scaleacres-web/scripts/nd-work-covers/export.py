@@ -16,10 +16,12 @@ COVERS = [
     ("sid-realtech", "SID Realtech", "Branding & Outdoor Campaign"),
     ("jbbr-group", "JBBR Group", "Brand Identity & Creative Design"),
     ("rhomes", "Rhomes", "Social Media & Creative Campaign"),
-    ("seabreeze-villas", "SeaBreeze Villas", "Website Design & Digital Experience"),
+    ("seabreeze-villas", "SeaBreeze Villas", "Brand Identity & Campaign"),
     ("trg-the-mall", "TRG", "Launch Campaign & Event Experience"),
 ]
 INK, MUTED, PAPER, ROYAL = (11, 13, 13), (95, 99, 104), (247, 246, 242), (29, 78, 216)
+# built from 614 px profile crops: shown for layout approval until the original files arrive
+INTERIM = {"rhomes", "seabreeze-villas"}
 
 
 def font(size, weight):
@@ -62,6 +64,11 @@ for i, (slug, name, cat) in enumerate(COVERS):
     if os.path.exists(p):
         im = Image.open(p).convert("RGB").resize((CW, CH), Image.LANCZOS)
         sheet.paste(rounded(im, 18), (x, y), rounded(im, 18))
+        if slug in INTERIM:
+            tag = "INTERIM · LOW-RES PROFILE SOURCE"
+            tw = d.textlength(tag, font=f_cat) + 36
+            d.rounded_rectangle((x + 20, y + 20, x + 20 + tw, y + 62), 21, fill=(11, 13, 13))
+            d.text((x + 38, y + 29), tag, font=f_cat, fill=(255, 255, 255))
     else:
         ph = Image.new("RGB", (CW, CH), (232, 230, 224))
         pd = ImageDraw.Draw(ph)

@@ -23,10 +23,18 @@ These are presentation mockups of genuine artwork, not photographs of installati
 - **JBBR:** the logo foiled on a box and cards, with the creative as a print.
 - **TRG:** a launch gate restaged around the real gate's layout, with both logos on the header (profile p. 4). The gate's original print files were not available, so its side panels carry the campaign creative.
 
-## Not built yet: originals needed
+## Interim covers: original files needed
 
-- **Rhomes (Social Media).** The Rhomes Miraabilis posts exist only inside the 614 × 345 profile pages (pp. 20 and 41), which are far too small. Instagram (@rhomesmiraabilis) needs a login. The 1080 px post exports are needed.
-- **SeaBreeze Villas (Website / Digital Experience).** No SeaBreeze Villas website could be found; seabreeze.vercel.app is an unrelated placeholder. The profile shows only influencer reels (p. 43) and an Analytics chart (p. 38). A website URL or design files are needed, or the reel and post originals for a social cover.
+The ScaleAcres profile PDF stores every page as a single 614 × 345 px JPEG. These two covers are built from individual pieces cut out of those pages. Each piece was perspective-corrected where needed and enlarged 4× with Lanczos only.
+
+Real-ESRGAN was tried and rejected because it corrupts the small campaign text: it turns "Great Moves Don't Wait" into "Creat Moves", mangles "La Fioreza" and changes "Phase 1 Sold Out". Both covers are therefore soft at 2400 × 1500, and are shown for layout approval only.
+
+| File | Project | Category | Pieces used (`src/…`) | Native size | Originals needed |
+|---|---|---|---|---|---|
+| `rhomes.py` | Rhomes (Miraabilis) | Social Media & Creative Campaign | Reels "Miraabilis Luxury Residences" and "Kayaking" (p. 22); posts "Great Moves Don't Wait", chess, and La Fioreza "A Signature Experience", interior and "A Finely Balanced Social Space" (p. 21) | Reels about 100 × 216 px; posts 102 × 119 px | The 1080 × 1350 post exports and 1080 × 1920 reel covers or frames |
+| `seabreeze.py` | SeaBreeze Villas | Brand Identity & Campaign | Roll-up artwork "Luxury Villas in the Heart of Goa", and hoarding artwork "More Than a Home. A Way of Life." (p. 19) | Roll-up 94 × 229 px; hoarding 256 × 96 px | The roll-up and hoarding print files (PDF/AI), the logo (SVG/AI), and the stationery artwork |
+
+No SeaBreeze Villas website could be found (seabreeze.vercel.app is an unrelated placeholder), so the SeaBreeze cover presents the brand and campaign instead.
 
 ## Run
 

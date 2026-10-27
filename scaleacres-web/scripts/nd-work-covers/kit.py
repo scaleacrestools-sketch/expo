@@ -413,7 +413,7 @@ def render(name):
 _LEAF = {}
 
 
-def _frond_material():
+def frond_material():
     """Pinnate frond as an alpha texture drawn with PIL (not a photograph)."""
     if "m" in _LEAF:
         return _LEAF["m"]
@@ -461,7 +461,7 @@ def palm(x, y, h, lean=(0, 0), n=19, size=1.0, rng=None):
     import random as _random
     from mathutils import Matrix
     rnd = rng or _random
-    leaf = _frond_material()
+    leaf = frond_material()
     pts = [(x + lean[0] * (i / 11) ** 2 * h, y + lean[1] * (i / 11) ** 2 * h, i / 11 * h) for i in range(12)]
     poly_curve(f"trunk{x}_{y}", pts, 0.2 * size, _LEAF["trunk"])
     top = Vector(pts[-1])
