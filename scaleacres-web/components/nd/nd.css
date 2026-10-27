@@ -13,6 +13,7 @@
   --deep: #142e8c;
   --sky: #38bdf8;
   --mist: #eef2fb;
+  --paper: #f7f6f2; /* warm white, Section 05 ground */
   --line-l: rgb(11 13 13 / 0.1);
   --charcoal: #161a1a;
   --line-d: rgb(255 255 255 / 0.12);
@@ -50,6 +51,7 @@
 .nd-dark { background: var(--ink); color: #fff; --rule: var(--line-d); }
 .nd-light { background: var(--mist); --rule: var(--line-l); }
 .nd-white { background: #fff; --rule: var(--line-l); }
+.nd-paper { background: var(--paper); --rule: var(--line-l); }
 .nd-hr { border-top: 1px solid var(--rule, var(--line-l)); }
 
 /* ---------------------------------------------------------------- type */
@@ -113,6 +115,18 @@
 .nd-zoom img { transition: transform 0.9s var(--ease); }
 .nd-zoom:hover img, a:hover > .nd-zoom img, button:hover > .nd-zoom img { transform: scale(1.045); }
 
+/* Cover reveal: the frame unmasks upward ([data-nd="clip"]) while the picture settles from a slight zoom */
+.js .nd [data-nd="clip"] .nd-settle { transform: scale(1.12); transition: transform 1.1s var(--ease); transition-delay: calc(var(--d, 0) * 1ms); }
+.js .nd [data-nd="clip"].in .nd-settle { transform: none; }
+
+/* Project preview dialog */
+.nd-dialog { width: min(72rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); margin: auto; padding: 0; border: 0; border-radius: 20px; background: #fff; color: var(--ink); box-shadow: var(--sh-3); overflow: auto; overscroll-behavior: contain; }
+.nd-dialog::backdrop { background: rgb(11 13 13 / 0.72); backdrop-filter: blur(6px); }
+.nd-dialog[open] { animation: nd-dialog-in 0.45s var(--ease); }
+.nd-dialog[open]::backdrop { animation: nd-fade-in 0.35s ease; }
+@keyframes nd-dialog-in { from { opacity: 0; transform: translateY(1.5rem) scale(0.98); } }
+@keyframes nd-fade-in { from { opacity: 0; } }
+
 /* Marquee */
 .nd-marquee { display: flex; width: max-content; animation: nd-marquee var(--dur, 40s) linear infinite; }
 .nd-marquee[data-dir="r"] { animation-direction: reverse; }
@@ -129,5 +143,7 @@
   .js .nd [data-nd] , .js .nd [data-nd] .nd-w > span { opacity: 1 !important; transform: none !important; clip-path: none !important; transition: none !important; }
   .nd-marquee { animation: none; }
   .nd-zoom img { transition: none; }
+  .js .nd [data-nd="clip"] .nd-settle { transform: none; transition: none; }
+  .nd-dialog[open], .nd-dialog[open]::backdrop { animation: none; }
 }
 }

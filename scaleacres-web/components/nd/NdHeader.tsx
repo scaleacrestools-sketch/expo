@@ -28,7 +28,7 @@ export function NdHeader() {
       setHidden(y > 160 && y > last);
       // white bar only over light sections; stays transparent over the hero and Brand Black sections
       const under = document.elementFromPoint(12, 72)?.closest("section");
-      setSolid(!!under && (under.classList.contains("nd-white") || under.classList.contains("nd-light")));
+      setSolid(!!under && (under.classList.contains("nd-white") || under.classList.contains("nd-light") || under.classList.contains("nd-paper")));
       last = y;
     };
     on();

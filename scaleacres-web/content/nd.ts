@@ -181,6 +181,65 @@ export const ndWork = [
   { client: "TRG", project: "TRG The Mall", tags: ["Campaign creatives", "Event branding"], image: img("cr-trg"), alt: "TRG The Mall investment campaign creative" },
 ];
 
+/* ---------------------------------------------------------------- creative showcase */
+
+/**
+ * Section 05 covers: 16:10 renders of genuine client work (scripts/nd-work-covers). No project has a detail page yet, so each opens a preview dialog.
+ */
+const cover = (slug: string): Img => {
+  const set = (ext: string) => [640, 960, 1280, 1600].map((w) => `/images/nd/work/${slug}-${w}.${ext} ${w}w`).join(", ");
+  return { src: `/images/nd/work/${slug}-1280.webp`, srcSet: set("webp"), avif: set("avif"), w: 1600, h: 1000 };
+};
+
+export type ShowcaseProject = {
+  slug: string;
+  client: string;
+  project: string;
+  category: string;
+  summary: string;
+  scope: string[];
+  services: { label: string; href: string }[];
+  cover: Img;
+  alt: string;
+};
+
+const SVC = {
+  branding: { label: "Branding & creative design", href: "/real-estate-branding-agency/" },
+  social: { label: "Social media marketing", href: "/services/social-media-marketing/" },
+  web: { label: "Website design & development", href: "/real-estate-web-development/" },
+};
+
+export const ndShowcase: ShowcaseProject[] = [
+  {
+    slug: "jbbr-group", client: "JBBR Group", project: "Redefining Luxury", category: "Brand Identity & Creative Design",
+    summary: "Brand identity, guidelines and lifestyle campaign creatives for JBBR Group, a Lucknow-based real estate developer.",
+    scope: ["Brand identity", "Brand guidelines", "Campaign creatives", "Social media"],
+    services: [SVC.branding, SVC.social], cover: cover("jbbr-group"),
+    alt: "The JBBR Group logo foiled on a black presentation box and business cards, beside the 'We don't just hand over keys' campaign print",
+  },
+  {
+    slug: "trg-the-mall", client: "TRG", project: "TRG The Mall", category: "Launch Campaign & Event Experience",
+    summary: "Launch branding and the investment campaign for TRG The Mall, an organised commercial project by Trisol Red Group in Ghaziabad.",
+    scope: ["Launch campaign", "Event branding", "Social media", "Performance marketing"],
+    services: [SVC.branding, SVC.social], cover: cover("trg-the-mall"),
+    alt: "A launch-event gate with the TRG and TRG The Mall logos and the '15 Years of Income' campaign panels",
+  },
+  {
+    slug: "intech-developers", client: "Intech Developers", project: "Modern Living in Udupi", category: "Website Design & Development",
+    summary: "The website for Intech Developers' residential, commercial and plotted developments in Udupi, Karnataka, designed and built for desktop and mobile.",
+    scope: ["Website design", "Development", "Brand strategy", "Digital marketing"],
+    services: [SVC.web, SVC.social], cover: cover("intech-developers"),
+    alt: "The Intech Developers website on a laptop and a phone on a marble table",
+  },
+  {
+    slug: "sid-realtech", client: "SID Realtech", project: "Ellington 86", category: "Branding & Outdoor Campaign",
+    summary: "Launch work for Ellington 86, a premium residential development in Sector 86, Faridabad: identity, the coming-soon campaign, hoardings, brochure and website.",
+    scope: ["Brand identity", "Outdoor", "Launch campaign", "Website"],
+    services: [SVC.branding, SVC.web], cover: cover("sid-realtech"),
+    alt: "The Ellington 86 'Coming Soon' campaign on a lit hoarding at sunset",
+  },
+];
+
 /* ---------------------------------------------------------------- process */
 
 export const ndProcess = [
