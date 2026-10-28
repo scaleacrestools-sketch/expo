@@ -131,17 +131,21 @@ export const ndServices = services.map((s, i) => ({
 
 /* ---------------------------------------------------------------- websites */
 
-/** `video`: a scroll-through recorded from the live site (public/videos/nd), shown muted over the still. */
-export type Site = { name: string; sector: string; note: string; image: Img; tags: string[]; video?: string };
+/**
+ * Websites designed and built by ScaleAcres. `url` is the live site (checked 28 Oct 2026); `tags` list
+ * a framework only when the live site's own markup confirms it (Next.js: `/_next/` assets).
+ * `video`: a scroll-through recorded from the live site (public/videos/nd), shown muted over the still.
+ */
+export type Site = { name: string; sector: string; note: string; image: Img; tags: string[]; url?: string; domain?: string; video?: string };
 export const ndSites: Site[] = [
-  { name: "SID Realtech", sector: "Residential developer · Faridabad", note: "A premium developer site built around film, amenities and site-visit booking.", image: img("web-sid"), tags: ["UI/UX", "Development", "Next.js, Node.js"], video: "/videos/nd/web-sid-scroll" },
-  { name: "Subata Realty", sector: "Phuket property · Indian and NRI buyers", note: "Guided search, curated listings and investment insight for overseas buyers.", image: img("web-subata"), tags: ["UI/UX", "Development", "Property search"], video: "/videos/nd/web-subata-scroll" },
-  { name: "Imperial Sky Realty", sector: "Luxury property · Dubai", note: "A luxury brokerage experience for sale, rent and off-plan investment.", image: img("web-imperial"), tags: ["UI/UX", "Development", "Listings"] },
+  { name: "SID Realtech", sector: "Residential developer · Faridabad", note: "A premium developer site built around film, amenities and site-visit booking.", image: img("web-sid"), tags: ["UI/UX", "Development", "Next.js"], url: "https://sidrealtech.com/", domain: "sidrealtech.com", video: "/videos/nd/web-sid-scroll" },
+  { name: "Subata Realty", sector: "Phuket property · Indian and NRI buyers", note: "Guided search, curated listings and buying guidance for Indian and NRI investors in Phuket.", image: img("web-subata"), tags: ["UI/UX", "Development", "Property search"], url: "https://www.subatarealty.com/", domain: "subatarealty.com", video: "/videos/nd/web-subata-scroll" },
+  { name: "Imperial Sky Realty", sector: "Luxury property · Dubai", note: "A luxury brokerage experience for buying, renting and off-plan investment in Dubai.", image: img("web-imperial"), tags: ["UI/UX", "Development", "Listings"], url: "https://imperialskyrealty.com/", domain: "imperialskyrealty.com" },
 ];
 export const ndMoreSites: Site[] = [
-  { name: "Research Capital", sector: "Investment advisory · Gurugram", note: "", image: img("web-research"), tags: ["Website"] },
-  { name: "Finsckool", sector: "Finance education platform", note: "", image: img("web-finsckool"), tags: ["Web platform"] },
-  { name: "Jina Cosmetics", sector: "Private-label manufacturer", note: "", image: img("web-jina"), tags: ["Corporate website"] },
+  { name: "Research Capital", sector: "Real estate advisory · Gurugram", note: "", image: img("web-research"), tags: ["Website"], url: "https://researchcapital.in/", domain: "researchcapital.in" },
+  { name: "Finsckool", sector: "Finance education platform", note: "", image: img("web-finsckool"), tags: ["Web platform"], url: "https://finsckool.com/", domain: "finsckool.com" },
+  { name: "Jina Cosmetics", sector: "Private-label cosmetics manufacturer", note: "", image: img("web-jina"), tags: ["Corporate website"] },
 ];
 
 /* ---------------------------------------------------------------- videos */
@@ -179,6 +183,25 @@ export const ndWork = [
   { client: "JBBR Group", project: "Luxury residences", tags: ["Social creatives"], image: img("cr-jbbr"), alt: "JBBR Group luxury lifestyle creative" },
   { client: "Finsckool", project: "Learning platform", tags: ["Brand", "Web platform"], image: img("slide-6"), alt: "Finsckool learning platform on desktop and page layouts" },
   { client: "TRG", project: "TRG The Mall", tags: ["Campaign creatives", "Event branding"], image: img("cr-trg"), alt: "TRG The Mall investment campaign creative" },
+];
+
+/* ---------------------------------------------------------------- client testimonials */
+
+/**
+ * The four client video testimonials published on scaleacres.com (Wistia originals, re-encoded at
+ * 720 × 720 as WebM (VP9) and MP4 (H.264) in /videos/testimonials; `video` is the path without extension). Names, companies and result lines are only what
+ * appears on screen in each video; thumbnails are Wistia's own stills.
+ */
+export type ClientStory = { id: string; company: string; person?: string; sector?: string; onScreen?: string; duration: string; video: string; poster: Img };
+const still = (id: string): Img => {
+  const set = (ext: string) => [480, 720, 1080].map((w) => `/images/nd/testimonials/${id}-${w}.${ext} ${w}w`).join(", ");
+  return { src: `/images/nd/testimonials/${id}-720.webp`, srcSet: set("webp"), avif: set("avif"), w: 1080, h: 1080 };
+};
+export const ndStories: ClientStory[] = [
+  { id: "lets-movin", company: "Let's Movin", person: "Sunita Bishnoi", sector: "Real estate consultancy", duration: "0:39", video: "/videos/testimonials/lets-movin", poster: still("lets-movin") },
+  { id: "timespro", company: "Timespro Consulting", onScreen: "50% lower cost per lead · 350% increase in site visits", duration: "0:36", video: "/videos/testimonials/timespro", poster: still("timespro") },
+  { id: "nrg-india", company: "NRG India", onScreen: "20× return on marketing · 110% increase in site visits", duration: "0:45", video: "/videos/testimonials/nrg-india", poster: still("nrg-india") },
+  { id: "ipd", company: "IPD · International Property Desk", onScreen: "Major efforts in content creation in real estate", duration: "0:40", video: "/videos/testimonials/ipd", poster: still("ipd") },
 ];
 
 /* ---------------------------------------------------------------- creative showcase */

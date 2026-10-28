@@ -1,21 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ndMoreSites, ndSites } from "@/content/nd";
 import { useGsap } from "@/lib/motion";
-import { ArrowUR, Pic, Rules, Tag } from "@/components/nd/ui";
+import { ArrowUR, Pic, Rules, Tag, Words } from "@/components/nd/ui";
 
 /**
- * 04 — Website design. A moving title, then three genuine websites shown large in a minimal
- * browser frame (first-screen captures of the live sites, 2× resolution). Each frame widens
- * from a narrow window to the full grid as it scrolls into place. Three more sites follow
- * as a compact list. Where we recorded a scroll-through of the live site, it plays muted over
- * the still while the frame is on screen.
+ * 06 — Website design. An editorial two-line title that rises word by word and drifts into place,
+ * then three genuine websites shown large in a minimal browser frame (first-screen captures of the
+ * live sites, 2× resolution). Each frame widens from a narrow window to the full grid as it scrolls
+ * into place. Three more sites follow as a compact list. Where we recorded a scroll-through of the
+ * live site, it plays muted over the still while the frame is on screen.
  */
 export function NdWebsites() {
   const ref = useRef<HTMLElement>(null);
   useGsap(ref, ({ gsap, el }) => {
+    // the second title line slides in from the right as the section arrives (ends at rest, never past the edge)
+    const drift = el.querySelector("#nd-web-title > span:nth-child(2)");
+    if (drift) gsap.fromTo(drift, { xPercent: 9 }, { xPercent: 0, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "top 25%", scrub: 0.4 } });
     el.querySelectorAll<HTMLElement>("[data-expand]").forEach((f) => {
       gsap.fromTo(f, { clipPath: "inset(8% 17% 8% 17%)" }, { clipPath: "inset(0% 0% 0% 0%)", ease: "none", scrollTrigger: { trigger: f, start: "top 95%", end: "top 30%", scrub: 0.3 } });
       const im = f.querySelector("[data-media]");
@@ -24,7 +27,7 @@ export function NdWebsites() {
   });
 
   return (
-    <section ref={ref} id="websites" className="nd-dark relative" aria-labelledby="nd-web-title">
+    <section ref={ref} id="websites" className="nd-dark relative overflow-x-clip" aria-labelledby="nd-web-title">
       <Rules />
       <div className="nd-wrap relative pt-[clamp(4.5rem,10vw,9rem)]">
         <div className="nd-grid items-end">
@@ -32,12 +35,15 @@ export function NdWebsites() {
             <Tag>Website design</Tag>
             <p data-nd="up" className="nd-lead nd-muted mt-5 max-w-[24rem]">Websites we&apos;ve designed and built for developers and brands: fast, clear and made to turn visits into enquiries.</p>
           </div>
-          <div className="relative overflow-hidden lg:col-span-2 max-lg:mt-8">
-            <h2 id="nd-web-title" className="sr-only">Website design</h2>
-            <div aria-hidden="true" className="nd-marquee nd-d1 whitespace-nowrap" style={{ "--dur": "26s" } as CSSProperties}>
-              <span className="pr-[0.35em]">Website design.</span><span className="pr-[0.35em]">Website design.</span>
-              <span className="pr-[0.35em]">Website design.</span><span className="pr-[0.35em]">Website design.</span>
-            </div>
+          <div className="nd-cell lg:col-span-2 max-lg:mt-8">
+            <Words
+              id="nd-web-title"
+              lines={["Website Design.", "Digital Experiences."]}
+              accent={["Experiences."]}
+              accentClass="text-[color:var(--sky)]"
+              lineClass={["", "lg:pl-[0.9em]"]}
+              className="text-[clamp(2rem,10vw,5.75rem)] font-semibold leading-[0.92] tracking-[-0.05em] [overflow-wrap:normal] lg:text-[min(6.6vw,8.75rem)]"
+            />
           </div>
         </div>
 
@@ -53,7 +59,7 @@ export function NdWebsites() {
                 <div data-expand className="overflow-hidden bg-[color:var(--charcoal)] ring-1 ring-white/10">
                   <div className="flex h-8 items-center gap-1.5 border-b border-white/8 bg-[color:var(--charcoal)] px-3 md:h-9">
                     {[0, 1, 2].map((d) => <span key={d} className="h-2 w-2 rounded-full bg-white/22" />)}
-                    <span className="mx-auto truncate px-4 text-[0.875rem] text-white/50">{s.name}</span>
+                    <span className="mx-auto truncate px-4 text-[0.875rem] text-white/50">{s.domain ?? s.name}</span>
                   </div>
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <div data-media className="absolute inset-0">
@@ -67,7 +73,10 @@ export function NdWebsites() {
               <div className="nd-grid mt-5" data-nd="up">
                 <h3 className="nd-cell nd-d4">{s.name}</h3>
                 <p className="nd-cell nd-body nd-muted max-w-[30rem] max-md:mt-2">{s.note}</p>
-                <p className="nd-cell nd-label nd-muted lg:text-right max-lg:mt-3">Designed &amp; developed by ScaleAcres</p>
+                <div className="nd-cell flex flex-col gap-3 lg:items-end max-lg:mt-3">
+                  <p className="nd-label nd-muted">Designed &amp; developed by ScaleAcres</p>
+                  {s.url ? <a href={s.url} target="_blank" rel="noopener noreferrer" className="nd-link nd-label text-white">Visit live site <ArrowUR className="h-3.5 w-3.5" /><span className="sr-only"> (opens {s.domain} in a new tab)</span></a> : null}
+                </div>
               </div>
             </li>
           ))}
@@ -82,21 +91,33 @@ export function NdWebsites() {
           <ul className="lg:col-span-2 max-lg:mt-8" role="list">
             {ndMoreSites.map((s) => (
               <li key={s.name} className="nd-cell border-b border-white/12 py-4 first:pt-0" data-nd="up">
-                <div className="group flex items-center gap-5">
-                  <div className="nd-zoom relative aspect-[16/10] w-[38%] max-w-[15rem] shrink-0 overflow-hidden bg-[color:var(--charcoal)]">
-                    <Pic image={s.image} alt={`${s.name} website by ScaleAcres`} sizes="240px" imgClass="absolute inset-0 h-full w-full object-cover object-top" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[clamp(1.25rem,1.6vw,1.75rem)] font-semibold tracking-[-0.03em] transition-transform duration-500 group-hover:translate-x-1">{s.name}</p>
-                    <p className="nd-muted mt-1 text-[1rem]">{s.sector}</p>
-                  </div>
-                </div>
+                <SiteRow s={s} />
               </li>
             ))}
           </ul>
         </div>
       </div>
     </section>
+  );
+}
+
+function SiteRow({ s }: { s: (typeof ndMoreSites)[number] }) {
+  const body = (
+    <>
+      <div className="nd-zoom relative aspect-[16/10] w-[38%] max-w-[15rem] shrink-0 overflow-hidden bg-[color:var(--charcoal)]">
+        <Pic image={s.image} alt={`${s.name} website by ScaleAcres`} sizes="240px" imgClass="absolute inset-0 h-full w-full object-cover object-top" />
+      </div>
+      <div className="min-w-0 flex-1">
+        <p className="text-[clamp(1.25rem,1.6vw,1.75rem)] font-semibold tracking-[-0.03em] transition-transform duration-500 group-hover:translate-x-1">{s.name}</p>
+        <p className="nd-muted mt-1 text-[1rem]">{s.sector}</p>
+      </div>
+      {s.url ? <ArrowUR className="mr-1 h-4 w-4 shrink-0 text-white/60 transition-[color,transform] duration-500 group-hover:rotate-45 group-hover:text-[color:var(--sky)]" /> : null}
+    </>
+  );
+  return s.url ? (
+    <a href={s.url} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-5" aria-label={`${s.name} — visit the live site (opens ${s.domain} in a new tab)`}>{body}</a>
+  ) : (
+    <div className="group flex items-center gap-5">{body}</div>
   );
 }
 

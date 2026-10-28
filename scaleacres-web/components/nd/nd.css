@@ -121,6 +121,7 @@
 
 /* Project preview dialog */
 .nd-dialog { width: min(72rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); margin: auto; padding: 0; border: 0; border-radius: 20px; background: #fff; color: var(--ink); box-shadow: var(--sh-3); overflow: auto; overscroll-behavior: contain; }
+.nd-dialog--video { width: min(44rem, calc(100vw - 2rem)); background: var(--ink); }
 .nd-dialog::backdrop { background: rgb(11 13 13 / 0.72); backdrop-filter: blur(6px); }
 .nd-dialog[open] { animation: nd-dialog-in 0.45s var(--ease); }
 .nd-dialog[open]::backdrop { animation: nd-fade-in 0.35s ease; }
