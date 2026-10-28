@@ -109,14 +109,38 @@ export function pageKind(p: LegacyPage): PageKind {
 
 /** Images and files keep their WordPress paths. Staging/static preview loads them from the live origin. */
 export const MEDIA_ORIGIN = (process.env.NEXT_PUBLIC_MEDIA_ORIGIN ?? "https://scaleacres.com").replace(/\/$/, "");
+/**
+ * WordPress media mirrored into /public/media/wp (WebP, max 1200 px) are served locally; anything not
+ * mirrored still loads from the media origin.
+ */
+let LOCAL: Set<string> | null = null;
+function localMedia() {
+  if (!LOCAL) {
+    try {
+      LOCAL = new Set(JSON.parse(readFileSync(join(process.cwd(), "content/legacy/local-media.json"), "utf8")) as string[]);
+    } catch {
+      LOCAL = new Set();
+    }
+  }
+  return LOCAL;
+}
+export const localMediaPath = (src: string) => {
+  const m = src.match(/^(?:https?:\/\/(?:www\.)?scaleacres\.com)?\/wp-content\/uploads\/(.+)$/);
+  if (!m) return null;
+  const flat = m[1].replace(/\//g, "__");
+  const key = flat.endsWith(".svg") ? flat : flat.replace(/\.[a-z0-9]+$/i, ".webp");
+  return localMedia().has(key) ? `/media/wp/${key}` : null;
+};
 export const media = (src: string | null | undefined) => {
   if (!src) return "";
+  const local = localMediaPath(src);
+  if (local) return local;
   if (src.startsWith("/wp-content/") || src.startsWith("/wp-includes/")) return MEDIA_ORIGIN + src;
   return src;
 };
 
 /** Rewrites /wp-content/... references inside captured inline HTML to the media origin. */
-export const mediaHtml = (html: string) => html.replace(/(href|src)="(\/wp-(?:content|includes)\/[^"]*)"/g, (_, a, u) => `${a}="${MEDIA_ORIGIN}${u}"`);
+export const mediaHtml = (html: string) => html.replace(/(href|src)="(\/wp-(?:content|includes)\/[^"]*)"/g, (_, a, u) => `${a}="${(a === "src" && localMediaPath(u)) || MEDIA_ORIGIN + u}"`);
 
 /** Metadata exactly as published on the live page. */
 export function legacyMetadata(p: LegacyPage): Metadata {
@@ -127,7 +151,8 @@ export function legacyMetadata(p: LegacyPage): Metadata {
   return {
     title: { absolute: p.title },
     description: p.metaDescription ?? undefined,
-    robots: p.robots ?? undefined,
+    // the static design preview is never indexable, whatever the live page allows
+    robots: process.env.NEXT_PUBLIC_STATIC_PREVIEW === "1" ? "noindex, nofollow" : (p.robots ?? undefined),
     // Canonical is emitted verbatim by <LegacyPageView> (Next would normalise its trailing slash).
     openGraph: og["og:title"]
       ? {

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { brand } from "@/content/brand";
 import { site } from "@/content/site";
@@ -18,6 +19,7 @@ export function NdHeader() {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [solid, setSolid] = useState(false); // white bar over light sections
+  const path = usePathname();
   const btn = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
 
@@ -27,14 +29,15 @@ export function NdHeader() {
       const y = window.scrollY;
       setHidden(y > 160 && y > last);
       // white bar only over light sections; stays transparent over the hero and Brand Black sections
-      const under = document.elementFromPoint(12, 72)?.closest("section, footer");
+      // look beneath the header itself (it covers this point) at the section it sits over
+      const under = document.elementsFromPoint(12, 72).find((e) => !e.closest("header, [data-nd-menu]"))?.closest("section, footer");
       setSolid(!!under && (under.classList.contains("nd-white") || under.classList.contains("nd-light") || under.classList.contains("nd-paper")));
       last = y;
     };
     on();
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
-  }, []);
+  }, [path]);
 
   const close = useCallback(() => {
     setOpen(false);

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/PageHero";
-import { Insights } from "@/components/Insights";
-import { ContactCTA } from "@/components/ContactCTA";
+import { InsightsPage } from "@/components/site/pages/Own";
+import { latestPosts } from "@/components/site/pages/Blog";
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -9,12 +8,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/insights/" },
 };
 
-export default function InsightsPage() {
-  return (
-    <>
-      <PageHero eyebrow="Thinking out loud" title={<>Ideas worth<br />exploring.</>} description="Our latest articles live on the ScaleAcres blog, which continues at its existing address so nothing you've bookmarked or found in search goes missing." />
-      <Insights />
-      <ContactCTA withForm={false} />
-    </>
-  );
+export default function Page() {
+  return <InsightsPage posts={latestPosts(6)} />;
 }

@@ -114,7 +114,7 @@ export function NdFooter() {
               </li>
               <li className="flex items-start gap-4">
                 <Icon><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z" /><circle cx="12" cy="10" r="2.3" /></Icon>
-                <address className="text-[0.9375rem] not-italic leading-[1.55] text-white/62">{liveFooterFacts.address}</address>
+                <div><address className="text-[0.9375rem] not-italic leading-[1.55] text-white/62">{liveFooterFacts.address}</address><Link href="/contact-us/#map" className="nd-link nd-label mt-2 text-white/80 hover:text-[color:var(--sky)]">Map <ArrowUR className="h-3 w-3" /></Link></div>
               </li>
             </ul>
             <Link href="/contact-us/" className="nd-link nd-label mt-7 text-[color:var(--sky)]">Start a project <ArrowUR className="h-3.5 w-3.5" /></Link>

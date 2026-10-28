@@ -299,6 +299,7 @@ export const ndProcess = [
 export const ndNav = [
   { label: "Home", href: "/" },
   { label: "About us", href: "/about-us/" },
+  { label: "Our team", href: "/our-team/" },
   { label: "Our services", href: "/our-services/" },
   { label: "Our work", href: "/our-work/" },
   { label: "Case studies", href: "/case-studies/" },

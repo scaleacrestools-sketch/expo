@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getLegacyPage, legacyMetadata, legacyPages } from "@/lib/legacy";
+import { getLegacyPage, legacyMetadata, legacyPages, pageKind } from "@/lib/legacy";
 import { LegacyPageView } from "@/components/legacy/LegacyPage";
+import { SitePage } from "@/components/site/SitePage";
 
 /**
  * Every existing scaleacres.com URL (except the approved homepage and the new pages that have
@@ -27,5 +28,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function LegacyRoute({ params }: { params: Promise<{ slug: string[] }> }) {
   const page = getLegacyPage(pathOf((await params).slug));
   if (!page) notFound();
-  return <LegacyPageView page={page} />;
+  // Megamenu fragments are WordPress internals, kept at their URLs with the plain renderer.
+  return pageKind(page) === "fragment" ? <LegacyPageView page={page} /> : <SitePage page={page} />;
 }

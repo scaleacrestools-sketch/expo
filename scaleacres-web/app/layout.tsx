@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import "@/components/nd/nd.css";
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { NdFooter } from "@/components/nd/NdFooter";
 import { NotOnHome } from "@/components/nd/NotOnHome";
-import { BackToTop } from "@/components/BackToTop";
-import { ScrollProgress } from "@/components/ScrollProgress";
+import { NdMotion } from "@/components/nd/ui";
 import { Analytics } from "@/components/Analytics";
 import { organizationJsonLd } from "@/lib/seo";
 import { site } from "@/content/site";
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
   },
   twitter: { card: "summary_large_image", title: `${site.name}® — ${site.tagline}`, description: site.description },
-  robots: { index: true, follow: true },
+  robots: process.env.NEXT_PUBLIC_STATIC_PREVIEW === "1" ? { index: false, follow: false } : { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
@@ -42,6 +42,17 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+
+/** The approved black footer closes every page except the homepage, which renders it in its own flow. */
+function NdFooterSlot() {
+  return (
+    <NotOnHome>
+      <div className="nd">
+        <NdFooter />
+      </div>
+    </NotOnHome>
+  );
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -60,14 +71,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <Header />
-        <main id="main">{children}</main>
+        <main id="main" className="nd">{children}</main>
         <NotOnHome>
-          <Footer />
+          <div className="nd">
+            <NdMotion />
+          </div>
         </NotOnHome>
-        <NotOnHome>
-          <BackToTop />
-          <ScrollProgress />
-        </NotOnHome>
+        <NdFooterSlot />
         <Analytics />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }} />
       </body>

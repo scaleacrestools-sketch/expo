@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, type CSSProperties, type ElementType, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import type { Img } from "@/content/nd";
 
 /** Hairline column rules behind a section (3 columns desktop, 2 tablet, edges only on phones). */
@@ -116,6 +117,8 @@ export function Pic({
 
 /** One observer for every [data-nd] element on the page: adds `.in` once it enters the viewport. */
 export function NdMotion() {
+  // re-scan on client navigation: each page brings its own [data-nd] elements
+  const path = usePathname();
   useEffect(() => {
     const els = Array.from(document.querySelectorAll<HTMLElement>(".nd [data-nd]"));
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
@@ -137,6 +140,6 @@ export function NdMotion() {
     );
     targets.forEach((_, t) => io.observe(t));
     return () => io.disconnect();
-  }, []);
+  }, [path]);
   return null;
 }

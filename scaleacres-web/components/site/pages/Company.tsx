@@ -1,0 +1,467 @@
+import Link from "next/link";
+import type { CSSProperties } from "react";
+import { getLegacyPage, media, plain, type Block, type LegacyPage, type LegacySection } from "@/lib/legacy";
+import { ndAbout } from "@/content/nd";
+import { site } from "@/content/site";
+import { liveCountries, liveFooter } from "@/content/legacy-nav";
+import { Band, Cards, Flow, FormPanel, Gallery, Html, Pict, Video, findCards, sectionStats, splitHead, blockText } from "@/components/site/Blocks";
+import { Btn, ClosingCta, Head, Hero, Section, StatRow } from "@/components/site/Kit";
+import { hasFaq, type Prepared } from "@/components/site/compose";
+import { Sections, FaqBand, crumbsFor } from "@/components/site/SitePage";
+import { ServiceIndex } from "@/components/site/Indexes";
+import { WorkStrip } from "@/components/site/Showcase";
+import { NdShowcase } from "@/components/nd/NdShowcase";
+import { NdServices } from "@/components/nd/NdServices";
+import { NdBrands } from "@/components/nd/NdBrands";
+import { NdTestimonials } from "@/components/nd/NdTestimonials";
+import { NdWork } from "@/components/nd/NdWork";
+import { ArrowUR, Pic, Tag, Words } from "@/components/nd/ui";
+
+type I = Extract<Block, { type: "image" }>;
+const d = (n: number) => ({ "--d": n }) as CSSProperties;
+const H1 = ({ text }: { text: string }) => <h1 className="sr-only">{text}</h1>;
+
+/** Studio photograph with the founders inset (genuine ScaleAcres photos). */
+function StudioMedia() {
+  return (
+    <div className="nd-grid">
+      <div className="nd-cell lg:col-span-3">
+        <div className="relative">
+          <div data-nd="clip" className="nd-zoom relative aspect-[16/9] overflow-hidden rounded-[10px] md:aspect-[21/9]">
+            <div className="nd-settle absolute inset-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={ndAbout.studio.team.src} srcSet={ndAbout.studio.team.srcSet} sizes="94vw" alt={ndAbout.studio.team.alt} width={ndAbout.studio.team.w} height={ndAbout.studio.team.h} className="absolute inset-0 h-full w-full object-cover object-[50%_35%]" />
+            </div>
+          </div>
+          <div data-nd="clip" style={d(220)} className="absolute -bottom-8 right-[4%] w-[30%] max-w-[22rem] overflow-hidden rounded-[8px] border-4 border-[color:var(--ink)] shadow-[var(--sh-3)] max-sm:hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={ndAbout.studio.founders.src} srcSet={ndAbout.studio.founders.srcSet} sizes="22rem" alt={ndAbout.studio.founders.alt} width={ndAbout.studio.founders.w} height={ndAbout.studio.founders.h} className="block aspect-[15/16] w-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ================================================================== About */
+
+export function AboutPage({ page, p }: { page: LegacyPage; p: Prepared }) {
+  const why = p.sections.find((s) => s.blocks.some((b) => b.type === "heading" && /why scale/i.test(blockText(b))));
+  const whyText = why?.blocks.find((b) => b.type === "paragraph");
+  return (
+    <>
+      <H1 text={p.h1} />
+      <Hero
+        as="p"
+        tag="About us"
+        title="We build real estate brands people remember."
+        accent={["remember."]}
+        crumbs={crumbsFor(page)}
+        lead={whyText && "html" in whyText ? <Html as="p" html={whyText.html} /> : undefined}
+        actions={<><Btn href="/our-team/" variant="white">Meet the team</Btn><Btn href="/contact-us/">Make an enquiry</Btn></>}
+        media={<StudioMedia />}
+        maxChars={20}
+      />
+      <Sections sections={p.sections} label="About us" />
+      <Section tone="white" label="What we do">
+        <Head tag="What we do" title="One team for brand, digital and growth." accent={["growth."]} intro="Eight connected services, planned together and measured against the same goal: qualified enquiries and site visits." />
+        <div className="mt-[clamp(2.5rem,5vw,4rem)]"><ServiceIndex /></div>
+      </Section>
+      <NdShowcase />
+      <ClosingCta />
+    </>
+  );
+}
+
+/* ================================================================== Team */
+
+export function TeamPage({ page, p }: { page: LegacyPage; p: Prepared }) {
+  const at = p.sections.findIndex((s) => s.blocks.some((b) => b.type === "heading" && /meet our team/i.test(blockText(b))));
+  const intro = at >= 0 ? p.sections.slice(0, at) : p.sections;
+  const people = at >= 0 ? p.sections.slice(at).flatMap((s) => s.blocks) : [];
+  const head = people.length ? splitHead(people) : null;
+  const rest = head ? head.rest : [];
+  const lead = rest[0]?.type === "paragraph" ? rest[0] : null;
+  const grid = findCards(lead ? rest.slice(1) : rest);
+  const group = intro.flatMap((s) => s.blocks).find((b): b is I => b.type === "image" && /div-scaled|team/i.test(b.src + b.alt) && (b.width ?? 0) >= 800);
+  // drop slider controls captured from the culture carousel
+  const cleaned = intro.map((s) => ({ ...s, blocks: s.blocks.filter((b) => !(b.type === "paragraph" && /^(previous|next)$/i.test(plain(b.html))) && b !== group) }));
+  return (
+    <>
+      <H1 text={p.h1} />
+      <Hero
+        as="p"
+        tag="Our team"
+        title="The people behind ScaleAcres."
+        accent={["ScaleAcres."]}
+        crumbs={crumbsFor(page)}
+        lead="Strategists, designers, developers, performance marketers, video editors and writers, working as one team for real estate."
+        actions={<><Btn href="/careers/" variant="white">Join the team</Btn><Btn href="/contact-us/">Work with us</Btn></>}
+        media={group ? (
+          <div data-nd="clip" className="nd-zoom overflow-hidden rounded-[10px]"><div className="nd-settle"><Pict img={group} eager sizes="94vw" className="block aspect-[21/9] h-auto w-full object-cover" /></div></div>
+        ) : <StudioMedia />}
+      />
+      <Sections sections={cleaned} label="Life at ScaleAcres" />
+      {grid ? (
+        <Section tone="white" id="team" label="Meet our team">
+          <Head tag="Meet our team" title={head?.title ? blockText(head.title) : "Meet our team"} intro={lead && "html" in lead ? <Html as="span" html={lead.html} /> : undefined} />
+          <p className="nd-label nd-muted nd-cell mt-6">{grid.cards.length} people</p>
+          <div className="nd-cell mt-8"><Cards cards={grid.cards} people /></div>
+        </Section>
+      ) : null}
+      <ClosingCta title="Let's talk." lead="Want to work with this team, or join it? Call, write, or start a project." />
+    </>
+  );
+}
+
+/* ================================================================== Contact */
+
+export function ContactPage({ p }: { page: LegacyPage; p: Prepared }) {
+  const all = p.sections.flatMap((s) => s.blocks);
+  const map = all.find((b) => b.type === "video" && /maps/.test(b.embed ?? ""));
+  const hours = all.find((b) => b.type === "paragraph" && /assistance hours/i.test(plain(b.html)));
+  const badges = all.filter((b): b is I => b.type === "image" && /partner|iso|privacy/i.test(b.src));
+  const unlock = p.sections.find((s) => s.blocks.some((b) => b.type === "heading" && /unlock/i.test(blockText(b))));
+  const unlockH = unlock?.blocks.find((b) => b.type === "heading");
+  const unlockP = unlock?.blocks.find((b) => b.type === "paragraph");
+  const grow = all.find((b) => b.type === "heading" && /grow your real estate/i.test(blockText(b)));
+  const growP = grow ? all[all.indexOf(grow) + 1] : null;
+  const list = all.find((b) => b.type === "list");
+  return (
+    <>
+      <section className="nd-dark relative overflow-hidden" aria-label="Contact">
+        <div className="nd-wrap relative pb-[clamp(3rem,6vw,5rem)] pt-[clamp(7.5rem,13vw,11rem)]">
+          <div className="nd-cell flex flex-wrap items-center justify-between gap-4"><div data-nd="up"><Tag>Contact us</Tag></div></div>
+          <div className="nd-cell mt-8">
+            <h1 className="sr-only">{p.h1}</h1>
+            <Words as="p" lines={["Let's talk."]} accent={["talk."]} accentClass="text-[color:var(--sky)]" className="text-[clamp(3.5rem,13vw,15rem)] font-semibold leading-[0.85] tracking-[-0.06em]" />
+          </div>
+          <div className="nd-grid mt-[clamp(2.5rem,6vw,5rem)] gap-y-10">
+            <div className="nd-cell" data-nd="up">
+              <p className="nd-label text-white/55">For sales / client enquiries</p>
+              {site.phones.slice(0, 2).map((ph) => <a key={ph.number} href={ph.href} className="mt-2 block text-[clamp(1.5rem,2.2vw,2.25rem)] font-medium tracking-[-0.03em] hover:text-[color:var(--sky)]">{ph.number}</a>)}
+              <p className="nd-label mt-7 text-white/55">Email address</p>
+              <a href={`mailto:${site.email}`} className="mt-2 inline-block text-[1.25rem] font-medium hover:text-[color:var(--sky)]">{site.email}</a>
+            </div>
+            <div className="nd-cell" data-nd="up" style={d(80)}>
+              <p className="nd-label text-white/55">Studio</p>
+              <address className="mt-3 text-[1.0625rem] not-italic leading-[1.6] text-white/85">{site.address.lines.map((l) => <span key={l} className="block">{l}</span>)}</address>
+              <a href="#map" className="nd-link nd-label mt-3 text-[color:var(--sky)]">View on map <ArrowUR className="h-3 w-3" /></a>
+              {hours && "html" in hours ? <Html as="p" html={hours.html} className="mt-7 text-[1rem] leading-[1.6] text-white/66" /> : null}
+            </div>
+            <div className="nd-cell" data-nd="up" style={d(160)}>
+              <p className="nd-label text-white/55">Careers</p>
+              <a href={site.phones[2].href} className="mt-2 block text-[1.5rem] font-medium tracking-[-0.03em] hover:text-[color:var(--sky)]">{site.phones[2].number}</a>
+              <p className="nd-label mt-7 text-white/55">Offices</p>
+              <p className="mt-2 text-[1.0625rem] text-white/85">{site.offices.join(" · ")}</p>
+              <ul className="mt-6 flex flex-wrap gap-5" role="list">{site.social.map((s) => <li key={s.label}><a href={s.href} target="_blank" rel="noopener noreferrer" className="nd-link text-[1rem] font-medium">{s.label}</a></li>)}</ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Section tone="paper" id="enquiry" label="Send an enquiry">
+        <div className="nd-grid gap-y-10">
+          <div className="nd-cell">
+            <div data-nd="up"><Tag>Send an enquiry</Tag></div>
+            {unlockH && "html" in unlockH ? <Html as="h2" html={unlockH.html} className="mt-7 text-[clamp(2rem,3.4vw,3.25rem)] font-semibold leading-[1.02] tracking-[-0.045em]" /> : null}
+            {unlockP && "html" in unlockP ? <Html as="p" html={unlockP.html} className="nd-lead nd-muted mt-6" /> : null}
+            {grow && "html" in grow ? <Html as="h3" html={grow.html} className="nd-h4 mt-10" /> : null}
+            {growP && "html" in growP ? <Html as="p" html={growP.html} className="nd-body nd-muted mt-3" /> : null}
+            {list && list.type === "list" ? <ul className="mt-5 space-y-2" role="list">{list.items.map((it, i) => <li key={i} className="flex gap-3 text-[1rem]"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--royal)]" /><Html as="span" html={it} /></li>)}</ul> : null}
+            {badges.length ? <ul className="mt-9 flex flex-wrap items-center gap-6" role="list">{badges.map((b, i) => <li key={i}><Pict img={b} sizes="140px" className="h-12 w-auto object-contain" /></li>)}</ul> : null}
+          </div>
+          <div className="nd-cell lg:col-span-2" data-nd="up"><FormPanel id="contact-form" /></div>
+        </div>
+      </Section>
+
+      {map && map.type === "video" ? (
+        <Section tone="white" id="map" label="Map">
+          <Head tag="Map" title="Visit the studio." accent={["studio."]} intro={site.address.lines.join(", ")} size="md" />
+          <div className="nd-cell mt-10"><Video b={map} title="ScaleAcres studio, Saidulajab, New Delhi, on Google Maps" /></div>
+        </Section>
+      ) : null}
+      <WorkStrip />
+    </>
+  );
+}
+
+/* ================================================================== Services overview */
+
+export function ServicesPage({ page, p }: { page: LegacyPage; p: Prepared }) {
+  const solutions = p.sections.find((s) => s.blocks.filter((b) => b.type === "heading" && b.level === 2).length >= 4);
+  return (
+    <>
+      <H1 text={p.h1} />
+      <Hero
+        as="p"
+        tag="Our services"
+        title="Everything a project needs to launch and sell."
+        accent={["sell."]}
+        crumbs={crumbsFor(page)}
+        lead={p.leadHtml ? <Html as="p" html={p.leadHtml} /> : "Positioning and identity, websites, media and technology, planned and delivered by one team."}
+        actions={<><Btn href="#services" variant="white">Explore services</Btn><Btn href="/contact-us/">Book a call</Btn></>}
+      />
+      <NdServices />
+      {solutions ? <SolutionRows s={solutions} /> : null}
+      <Sections sections={p.sections.filter((s) => s !== solutions)} label="Services" />
+      <Markets />
+      <WorkStrip />
+      <ClosingCta />
+    </>
+  );
+}
+
+/** "Solution we provide": each h2 with its copy and image, alternating sides. */
+function SolutionRows({ s }: { s: LegacySection }) {
+  const { title, rest } = splitHead(s.blocks);
+  const intro = rest[0]?.type === "paragraph" ? rest[0] : null;
+  const groups: { h: Block; body: Block[]; img?: I }[] = [];
+  const imgs: I[] = [];
+  for (const b of intro ? rest.slice(1) : rest) {
+    if (b.type === "heading") groups.push({ h: b, body: [] });
+    else if (b.type === "image") imgs.push(b);
+    else if (groups.length && !(b.type === "paragraph" && /^learn more$/i.test(plain(b.html)))) groups[groups.length - 1].body.push(b);
+  }
+  // the live layout pairs images with headings in order
+  groups.forEach((g, i) => { g.img = imgs[i]; });
+  return (
+    <Section tone="mist" label="Solutions">
+      <Head tag="Solutions" title={title ? blockText(title) : "Solutions we provide"} intro={intro && "html" in intro ? <Html as="span" html={intro.html} /> : undefined} />
+      <ol role="list" className="mt-[clamp(3rem,6vw,5rem)] space-y-[clamp(3rem,6vw,5rem)]">
+        {groups.map((g, i) => (
+          <li key={i} className="nd-grid items-center gap-y-6">
+            <div className={`nd-cell lg:col-span-2 ${i % 2 ? "lg:order-2" : ""}`}>
+              {g.img ? <div data-nd="clip" className="nd-zoom overflow-hidden rounded-[10px] bg-white shadow-[var(--sh-2)]"><div className="nd-settle"><Pict img={g.img} className="block aspect-[16/10] h-auto w-full object-cover" /></div></div> : null}
+            </div>
+            <div className="nd-cell" data-nd="up">
+              <span className="nd-label tabular-nums text-[color:var(--royal)]">{String(i + 1).padStart(2, "0")}</span>
+              {"html" in g.h ? <Html as="h3" html={g.h.html} className="nd-h3 mt-4" /> : null}
+              <div className="mt-4"><Flow blocks={g.body} /></div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </Section>
+  );
+}
+
+/** Every location page linked from the live footer, as a clean index. */
+export function Markets() {
+  const india = liveFooter.topCities;
+  return (
+    <Section tone="white" label="Markets we serve">
+      <Head tag="Markets we serve" title="From Delhi NCR to Dubai." accent={["Dubai."]} intro="City and country pages for the markets where we plan and run real estate campaigns." size="md" />
+      <div className="nd-grid mt-10 gap-y-10">
+        <div className="nd-cell lg:col-span-2">
+          <p className="nd-label nd-muted">India</p>
+          <ul role="list" className="mt-4 grid gap-x-6 sm:grid-cols-2">
+            {india.map((c) => <li key={c.href} className="border-b border-[color:var(--line-l)]"><Link href={c.href} className="group flex items-center justify-between gap-3 py-3 text-[1rem] transition-colors hover:text-[color:var(--royal)]">{c.label.replace(/^Real Estate (Digital )?Marketing Agency in /, "")}<ArrowUR className="h-3 w-3 opacity-40 transition-transform group-hover:rotate-45 group-hover:opacity-100" /></Link></li>)}
+          </ul>
+        </div>
+        <div className="nd-cell">
+          <p className="nd-label nd-muted">International</p>
+          <ul role="list" className="mt-4">
+            {liveCountries.map((c) => <li key={c.href} className="border-b border-[color:var(--line-l)]"><Link href={c.href} className="group flex items-center justify-between gap-3 py-3 text-[1rem] transition-colors hover:text-[color:var(--royal)]">{c.label.replace(/^.*Real Estate in /, "")}<ArrowUR className="h-3 w-3 opacity-40 transition-transform group-hover:rotate-45 group-hover:opacity-100" /></Link></li>)}
+          </ul>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+/* ================================================================== Our work */
+
+type Site = { logo?: I; shot: I; meta: string[] };
+function parseSites(blocks: Block[]) {
+  const sites: Site[] = [];
+  let pendingLogo: I | undefined;
+  const isShot = (b: I) => /scaled|screencapture|home-page|homee-page|website|landing/i.test(b.src) && !/logo/i.test(b.src);
+  for (const b of blocks) {
+    if (b.type === "image") {
+      if (isShot(b)) { sites.push({ logo: pendingLogo, shot: b, meta: [] }); pendingLogo = undefined; }
+      else pendingLogo = b;
+    } else if (b.type === "heading" && sites.length && b.level >= 5) sites[sites.length - 1].meta.push(blockText(b));
+  }
+  return sites;
+}
+const siteName = (s: Site) => {
+  const a = s.logo?.alt || s.shot.alt || "";
+  const m = a.match(/^(.*?) Client For Scaleacres/i);
+  if (m) return m[1];
+  const f = s.shot.src.split("/").pop()!.replace(/(-scaled)?\.(webp|png|jpe?g)$/i, "").replace(/screencapture-|-\d{4}-\d{2}-\d{2}.*$|-vercel-app|-x-web|-home-?page.*|-new|-lending-page.*/gi, "").replace(/-/g, " ");
+  return f.replace(/\b\w/g, (c) => c.toUpperCase()).trim();
+};
+
+export function WorkPage({ page, p }: { page: LegacyPage; p: Prepared }) {
+  const find = (re: RegExp) => p.sections.find((s) => s.blocks.some((b) => b.type === "heading" && re.test(blockText(b))));
+  const webS = find(/website design/i);
+  const magicS = find(/creative magic/i);
+  const vidS = find(/real estate videos/i);
+  const sites = webS ? parseSites(webS.blocks) : [];
+  const creatives = magicS ? magicS.blocks.filter((b): b is I => b.type === "image" && /\.jpe?g$|jpeg/i.test(b.src)) : [];
+  const vids: { v: Extract<Block, { type: "video" }>; t: string }[] = [];
+  vidS?.blocks.forEach((b, i) => { if (b.type === "video") vids.push({ v: b, t: blockText(vidS.blocks[i + 1] ?? b) }); });
+  return (
+    <>
+      <Hero
+        tag={p.lead ? "Driving real results" : "Our work"}
+        title={p.h1}
+        crumbs={crumbsFor(page)}
+        actions={<><Btn href="#websites" variant="white">Websites</Btn><Btn href="#videos-grid" variant="white">Videos</Btn><Btn href="/contact-us/">Start a project</Btn></>}
+      />
+      <NdShowcase />
+      <NdWork />
+      <NdBrands />
+      {sites.length ? (
+        <Section tone="white" id="websites" label="Website design">
+          <Head tag="Website design" title={webS ? blockText(splitHead(webS.blocks).title ?? webS.blocks[0]) : "Website design"} intro={(() => { const x = webS?.blocks.find((b) => b.type === "paragraph"); return x && "html" in x ? <Html as="span" html={x.html} /> : undefined; })()} />
+          <ul role="list" className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-x-[clamp(1rem,2vw,1.75rem)] gap-y-12 px-[clamp(0.75rem,1.2vw,1.25rem)] sm:grid-cols-2 lg:grid-cols-3">
+            {sites.map((s, i) => (
+              <li key={i} className="group">
+                <div data-nd="clip" style={d((i % 3) * 70)} className="overflow-hidden rounded-[8px] bg-white shadow-[var(--sh-1)] ring-1 ring-[color:var(--line-l)] transition-shadow duration-500 group-hover:shadow-[var(--sh-3)]">
+                  <div className="flex h-8 items-center gap-1.5 border-b border-[color:var(--line-l)] bg-[#f4f5f7] px-3">{[0, 1, 2].map((k) => <span key={k} className="h-2 w-2 rounded-full bg-[#d1d5dc]" />)}</div>
+                  <div className="relative aspect-[16/11] overflow-hidden">
+                    {/* full-page capture: scrolls through the site on hover */}
+                    <Pict img={s.shot} sizes="(min-width: 1024px) 31vw, (min-width: 640px) 48vw, 100vw" className="absolute inset-x-0 top-0 h-auto w-full transition-transform duration-[2600ms] ease-[cubic-bezier(0.45,0,0.2,1)] group-hover:translate-y-[calc(-100%+min(100%,24rem))] motion-reduce:transition-none" />
+                  </div>
+                </div>
+                <div data-nd="up" className="mt-4 flex items-center justify-between gap-4">
+                  <div className="min-w-0">
+                    <p className="text-[1.125rem] font-semibold tracking-[-0.02em]">{siteName(s)}</p>
+                    {s.meta.length ? <p className="nd-label nd-muted mt-1 truncate">{s.meta.map((m) => m.replace(/\s*:\s*/, ": ")).join(" · ")}</p> : null}
+                  </div>
+                  {s.logo ? <Pict img={s.logo} sizes="120px" className="h-8 w-auto max-w-[7rem] object-contain opacity-80" /> : null}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
+      {creatives.length ? (
+        <Section tone="dark" label="Creative">
+          <Head dark tag="Creative" title={magicS ? blockText(splitHead(magicS.blocks).title ?? magicS.blocks[0]) : "Our creative magic"} intro={(() => { const x = magicS?.blocks.find((b) => b.type === "paragraph"); return x && "html" in x ? <Html as="span" html={x.html} /> : undefined; })()} />
+          <ul role="list" className="mt-[clamp(2.5rem,5vw,4rem)] columns-2 gap-[clamp(0.75rem,1.5vw,1.25rem)] px-[clamp(0.75rem,1.2vw,1.25rem)] lg:columns-4">
+            {creatives.map((c, i) => <li key={i} data-nd="clip" style={d((i % 4) * 70)} className="nd-zoom mb-[clamp(0.75rem,1.5vw,1.25rem)] break-inside-avoid overflow-hidden rounded-[8px]"><Pict img={c} sizes="(min-width: 1024px) 23vw, 46vw" className="block h-auto w-full" /></li>)}
+          </ul>
+        </Section>
+      ) : null}
+      {vids.length ? (
+        <Section tone="white" id="videos-grid" label="Real estate videos">
+          <Head tag="Video production" title={vidS ? blockText(splitHead(vidS.blocks).title ?? vidS.blocks[0]) : "Real estate videos"} intro={(() => { const x = vidS?.blocks.find((b) => b.type === "paragraph"); return x && "html" in x ? <Html as="span" html={x.html} /> : undefined; })()} />
+          <ul role="list" className="mt-[clamp(2.5rem,5vw,4rem)] grid grid-cols-2 gap-x-[clamp(0.75rem,2vw,1.75rem)] gap-y-8 px-[clamp(0.75rem,1.2vw,1.25rem)] lg:grid-cols-4">
+            {vids.map(({ v, t }, i) => (
+              <li key={i}>
+                <div data-nd="clip" style={d((i % 4) * 60)} className="aspect-[9/16] overflow-hidden rounded-[8px] bg-[color:var(--ink)] shadow-[var(--sh-2)]">
+                  <iframe src={v.embed} title={`${t} — real estate video by ScaleAcres`} loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen className="h-full w-full border-0" />
+                </div>
+                <p data-nd="up" className="mt-3 text-[1.0625rem] font-semibold tracking-[-0.01em]">{t}</p>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
+      <NdTestimonials />
+      <ClosingCta />
+    </>
+  );
+}
+
+/* ================================================================== Case studies */
+
+const CASE_LINKS: Record<string, string> = {
+  "Scale-Acres-Case-Study-Cards-02": "/blog/casestudy/our-case-one-goa/",
+  "Scale-Acres-Case-Study-Cards-03": "/yugen-case-study/",
+};
+
+export function CaseStudiesPage({ page, p }: { page: LegacyPage; p: Prepared }) {
+  const cards = p.sections.flatMap((s) => s.blocks).filter((b): b is I => b.type === "image" && /case-st/i.test(b.src));
+  const intro = p.sections.flatMap((s) => s.blocks).find((b) => b.type === "paragraph" && plain(b.html).length > 60);
+  return (
+    <>
+      <Hero
+        tag="Case studies"
+        title={p.h1}
+        accent={["Studies"]}
+        crumbs={crumbsFor(page)}
+        lead={intro && "html" in intro ? <Html as="p" html={intro.html} /> : undefined}
+        actions={<Btn href="/contact-us/">Start a project</Btn>}
+      />
+      <Section tone="white" label="Case studies">
+        <Head tag="Delivering success" title="Delivering success, one project at a time." accent={["success,"]} />
+        <ul role="list" className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-[clamp(1rem,2vw,1.75rem)] px-[clamp(0.75rem,1.2vw,1.25rem)] sm:grid-cols-2">
+          {cards.map((c, i) => {
+            const key = c.src.split("/").pop()!.replace(/\.\w+$/, "");
+            const href = CASE_LINKS[key];
+            const img = <div data-nd="clip" style={d((i % 2) * 90)} className="nd-zoom overflow-hidden rounded-[10px] shadow-[var(--sh-2)] transition-shadow duration-500 group-hover:shadow-[var(--sh-3)]"><div className="nd-settle"><Pict img={c} sizes="(min-width: 640px) 48vw, 100vw" className="block h-auto w-full" /></div></div>;
+            return <li key={i} className="group">{href ? <Link href={href} aria-label={c.alt || "Case study"}>{img}<span className="nd-link nd-label mt-4 text-[color:var(--royal)]">Read the case study <ArrowUR className="h-3 w-3" /></span></Link> : img}</li>;
+          })}
+        </ul>
+      </Section>
+      <NdWork />
+      {p.sections.filter(hasFaq).map((s, i) => <FaqBand key={i} s={s} />)}
+      <ClosingCta />
+    </>
+  );
+}
+
+/* ================================================================== Careers */
+
+export function CareersPage({ page, p }: { page: LegacyPage; p: Prepared }) {
+  const team = getLegacyPage("/our-team/");
+  const culture = (team?.sections ?? []).flatMap((s) => s.blocks).filter((b): b is I => b.type === "image" && /^(01|03|04|05|06|02-1|04-1|01-1|2|4|5|6)\.webp$/.test(b.src.split("/").pop() ?? ""));
+  const lifeCards = team ? findCards(team.sections.find((s) => s.blocks.some((b) => b.type === "heading" && /life @/i.test(blockText(b))))?.blocks.slice(2) ?? []) : null;
+  const formS = p.sections.find((s) => s.blocks.some((b) => b.type === "form"));
+  const formHead = formS ? splitHead(formS.blocks) : null;
+  const positions = p.sections.flatMap((s) => s.blocks).find((b) => b.type === "heading" && /open positions/i.test(blockText(b)));
+  return (
+    <>
+      <Hero
+        tag="Careers at ScaleAcres"
+        title={p.h1}
+        accent={["Passionate"]}
+        crumbs={crumbsFor(page)}
+        lead={p.leadHtml ? <Html as="p" html={p.leadHtml} /> : undefined}
+        actions={<><Btn href="#apply">Apply now</Btn><a href={site.phones[2].href} className="nd-btn nd-btn--white">Call {site.phones[2].number} <ArrowUR /></a></>}
+        media={culture.length >= 4 ? (
+          <ul role="list" className="grid grid-cols-2 gap-[clamp(0.5rem,1vw,0.9rem)] lg:grid-cols-4">
+            {culture.slice(0, 4).map((c, i) => <li key={i} data-nd="clip" style={d(i * 80)} className={`nd-zoom overflow-hidden rounded-[8px] ${i % 2 ? "lg:mt-10" : ""}`}><div className="nd-settle"><Pict img={c} sizes="25vw" className="block aspect-[4/5] h-full w-full object-cover" /></div></li>)}
+          </ul>
+        ) : <StudioMedia />}
+      />
+      {lifeCards ? (
+        <Section tone="white" label="Life at ScaleAcres">
+          <Head tag="Life @ ScaleAcres" title="A vibrant mix of innovation, teamwork and joy." accent={["joy."]} intro="Strategy sessions, creative reviews, festivals and team parties: how we work, and how we celebrate the wins together." />
+          <div className="nd-cell mt-12"><Cards cards={lifeCards.cards} /></div>
+        </Section>
+      ) : null}
+      <Section tone="mist" label="Open positions">
+        <div className="nd-grid gap-y-8">
+          <div className="nd-cell">
+            <div data-nd="up"><Tag>Open positions</Tag></div>
+            {positions && "html" in positions ? <Html as="h2" html={positions.html} className="mt-7 text-[clamp(2rem,3.6vw,3.5rem)] font-semibold leading-[1] tracking-[-0.045em]" /> : null}
+          </div>
+          <div className="nd-cell lg:col-span-2" data-nd="up">
+            <p className="nd-lead">There are no roles listed right now. We still want to hear from strategists, designers, developers, performance marketers, video editors and writers who love real estate.</p>
+            <p className="nd-body nd-muted mt-4">Send your details with the form below (choose the service closest to your craft and mention the role in your message), or call the careers line on <a className="text-[color:var(--royal)] underline underline-offset-2" href={site.phones[2].href}>{site.phones[2].number}</a>.</p>
+            <div className="mt-8 flex flex-wrap gap-3"><Btn href="/our-team/" variant="ink">Meet the team</Btn></div>
+          </div>
+        </div>
+      </Section>
+      <Section tone="paper" id="apply" label="Apply">
+        <div className="nd-grid gap-y-10">
+          <div className="nd-cell">
+            <div data-nd="up"><Tag>Get in touch</Tag></div>
+            {formHead?.title && "html" in formHead.title ? <Html as="h2" html={formHead.title.html} className="mt-7 text-[clamp(2rem,3.4vw,3.25rem)] font-semibold leading-[1.02] tracking-[-0.045em]" /> : null}
+            {formHead ? <div className="mt-6"><Flow blocks={formHead.rest.filter((b) => b.type === "paragraph")} /></div> : null}
+          </div>
+          <div className="nd-cell lg:col-span-2" data-nd="up"><FormPanel id="careers-form" /></div>
+        </div>
+      </Section>
+      {p.sections.filter(hasFaq).map((s, i) => <FaqBand key={i} s={s} />)}
+      <ClosingCta />
+    </>
+  );
+}
+
+export { Band, Gallery, StatRow, sectionStats, media, Pic };

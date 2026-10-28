@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { services } from "@/content/services";
-import { ServicePage, serviceMetadata } from "@/components/ServicePage";
+import { serviceMetadata } from "@/components/ServicePage";
+import { ServiceDetail } from "@/components/site/pages/Own";
 
 type Params = { params: Promise<{ slug: string }> };
 const newServices = services.filter((s) => !s.legacy);
@@ -15,5 +16,5 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 export default async function Page({ params }: Params) {
-  return <ServicePage slug={(await params).slug} />;
+  return <ServiceDetail slug={(await params).slug} />;
 }
