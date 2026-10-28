@@ -9,7 +9,7 @@ import { ArrowUR, Pic, Rules, Tag, Words } from "@/components/nd/ui";
 const PER_TAB = 6;
 
 /**
- * 05 — Real estate videos that drive growth. Ad, social and AI videos from the ScaleAcres
+ * 08 — Real estate videos that drive growth (Brand Black). Ad, social and AI videos from the ScaleAcres
  * YouTube channel, two per column so the grid holds; the middle column drifts against the
  * scroll. Nothing autoplays: a video plays only when chosen, in a dialog, one at a time.
  */
@@ -29,7 +29,7 @@ export function NdVideos() {
   });
 
   return (
-    <section ref={ref} id="videos" className="nd-white relative" aria-labelledby="nd-vid-title">
+    <section ref={ref} id="videos" className="nd-dark relative" aria-labelledby="nd-vid-title">
       <Rules />
       <div className="nd-wrap relative py-[clamp(4.5rem,10vw,9rem)]">
         <div className="nd-grid">
@@ -38,13 +38,13 @@ export function NdVideos() {
             <p data-nd="up" className="nd-lead nd-muted mt-5 max-w-[24rem]">We turn real estate stories into videos that attract attention and drive growth.</p>
           </div>
           <div className="nd-cell lg:col-span-2 max-lg:mt-6">
-            <Words id="nd-vid-title" lines={["Real estate videos", "that drive growth."]} accent={["growth."]} className="nd-d2" />
+            <Words id="nd-vid-title" lines={["Real estate videos", "that drive growth."]} accent={["growth."]} accentClass="text-[color:var(--sky)]" className="nd-d2" />
           </div>
         </div>
 
         <div className="nd-grid mt-[clamp(2.5rem,5vw,4rem)] items-end gap-y-5">
           <div className="nd-cell">
-            <div role="tablist" aria-label="Video categories" className="grid grid-cols-3 border border-[color:var(--line-l)]">
+            <div role="tablist" aria-label="Video categories" className="grid grid-cols-3 border border-white/15">
               {ndVideoTabs.map((x, i) => (
                 <button
                   key={x.id}
@@ -53,7 +53,7 @@ export function NdVideos() {
                   aria-selected={i === tab}
                   aria-controls="nd-reel"
                   onClick={() => setTab(i)}
-                  className={`min-h-12 px-2 text-[0.875rem] font-semibold uppercase leading-tight transition-colors duration-300 ${i === tab ? "bg-[color:var(--ink)] text-white" : "text-[color:var(--muted-l)] hover:bg-[color:var(--ice)] hover:text-[color:var(--ink)]"}`}
+                  className={`min-h-12 px-2 text-[0.875rem] font-semibold uppercase leading-tight transition-colors duration-300 ${i === tab ? "bg-white text-[color:var(--ink)]" : "text-white/65 hover:bg-white/10 hover:text-white"}`}
                 >
                   {x.label.replace(" Videos", "")}
                 </button>
@@ -74,7 +74,7 @@ export function NdVideos() {
                   key={`${t.id}-${v.id}`}
                   type="button"
                   onClick={() => setPlaying(v.id)}
-                  className="nd-vcard nd-lift group relative block aspect-[9/16] overflow-hidden bg-[color:var(--ink)] text-left shadow-[var(--sh-2)]"
+                  className="nd-vcard group relative block aspect-[9/16] overflow-hidden bg-[color:var(--charcoal)] text-left ring-1 ring-white/10"
                   style={{ "--k": col * 2 + k } as CSSProperties}
                   aria-label={`Play ${t.ai ? "AI video" : t.label.replace(/s$/, "")} ${col * 2 + k + 1}`}
                 >

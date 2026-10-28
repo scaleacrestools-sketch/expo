@@ -4,10 +4,11 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { site } from "@/content/site";
 import { ArrowUR, Plus, Rules, Tag, Words } from "@/components/nd/ui";
+import { NdContactForm } from "@/components/nd/NdContactForm";
 
 /**
- * 12 — Contact. "Let's talk." set very large, direct contact details and the two ways to
- * start. The footer's wordmark picks up directly below, across the black → white hand-over.
+ * 12 — Contact. "Let's talk." set very large, direct contact details, the two ways to start and
+ * the enquiry form. The footer's wordmark picks up directly below, across the black → white hand-over.
  */
 export function NdContact() {
   return (
@@ -44,8 +45,17 @@ export function NdContact() {
             <a href={`mailto:${site.email}`} className="nd-btn nd-btn--white w-full">Email us <ArrowUR /></a>
           </div>
         </div>
-      </div>
 
+        <div className="nd-grid mt-[clamp(3rem,6vw,5rem)] gap-y-8 border-t border-white/12 pt-[clamp(2.5rem,5vw,4rem)]">
+          <div className="nd-cell" data-nd="up">
+            <p className="nd-label">Send an enquiry</p>
+            <p className="nd-body nd-muted mt-4 max-w-[22rem]">Share a few details about the project and the help you need. A member of the team will reply by email or phone.</p>
+          </div>
+          <div className="nd-cell lg:col-span-2" data-nd="up" style={{ "--d": 80 } as CSSProperties}>
+            <NdContactForm />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

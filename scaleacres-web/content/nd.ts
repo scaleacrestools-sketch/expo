@@ -65,7 +65,7 @@ export const ndAbout = {
   /** Statement; `{a}` and `{b}` mark the inline work images. */
   statement:
     "We're a real estate marketing and creative growth agency {a} helping developers launch, position and sell out projects {b} through brand, digital and performance working as one.",
-  chips: { a: img("slide-12"), b: img("cr-sid") },
+  chips: { a: img("cr-trg"), b: img("cr-sid") },
   body:
     "ScaleAcres is an independent creative, digital and growth agency. Strategy, design, technology and media sit under one roof, so a project's brand, website, campaigns and content are built to the same plan and measured against the same goal: qualified enquiries and site visits.",
   facts: [
@@ -164,25 +164,47 @@ export const ndVideoTabs = (["ad-videos", "social-media-videos", "ai-videos"] as
 
 /* ---------------------------------------------------------------- branding */
 
+/** Responsive source for a locally generated set: /images/nd/<path>-<w>.{avif,webp}. */
+const local = (path: string, widths: number[], w: number, h: number): Img => {
+  const set = (ext: string) => widths.map((x) => `/images/nd/${path}-${x}.${ext} ${x}w`).join(", ");
+  return { src: `/images/nd/${path}-${widths[Math.min(1, widths.length - 1)]}.webp`, srcSet: set("webp"), avif: set("avif"), w, h };
+};
+
+/**
+ * Branding work. Every image is an individual piece of genuine identity work cut from the
+ * ScaleAcres company profile (never a whole slide); the applications board composes six of them.
+ */
+export const ndBrandBoards = [
+  { title: "Brand identity system", client: "Intech Developers", image: local("brand/board-intech", [800, 1200, 1800], 2200, 1238), alt: "Intech Developers identity system: logo, colour palette, typography and stationery" },
+  { title: "Identity applications", client: "TRG · Ottimo · Karyan · JBBR · Aarize", image: local("brand/board-applications", [800, 1200, 1800], 2200, 1238), alt: "Identity applications by ScaleAcres: a TRG carry bag, Ottimo Realty signage, Karyan facade lettering and fleet livery, the JBBR Group brand kit and Aarize stationery" },
+];
 export const ndBrands = [
-  { title: "Brand identity system", client: "SID Realtech", kind: "Identity", image: img("slide-2") },
-  { title: "Ellington 86 launch brochure", client: "SID Realtech", kind: "Print", image: img("slide-1") },
-  { title: "Ellington 86 hoarding", client: "SID Realtech", kind: "Outdoor", image: img("slide-3") },
-  { title: "Project brochure spreads", client: "Ellington 86", kind: "Print", image: img("slide-15") },
-  { title: "Event and site branding", client: "TRG", kind: "Environment", image: img("slide-4") },
-  { title: "Township brochure", client: "Nirvana County", kind: "Print", image: img("slide-14") },
-  { title: "Brochure layouts", client: "Nirvana County", kind: "Print", image: img("slide-13") },
+  { title: "Brand identity system", client: "Intech Developers", kind: "Identity", image: local("brand/intech-identity", [480, 960], 2280, 1240) },
+  { title: "Brand kit and guidelines", client: "JBBR Group", kind: "Identity", image: local("brand/jbbr-brand-kit", [480, 960], 1540, 1180) },
+  { title: "Identity and signage", client: "Ottimo Realty", kind: "Environment", image: local("brand/ottimo-identity", [480, 960], 1064, 504) },
+  { title: "Outdoor billboard", client: "Ottimo Realty", kind: "Outdoor", image: local("brand/ottimo-billboard", [480, 960], 1056, 504) },
+  { title: "Facade lettering and fleet", client: "Karyan", kind: "Environment", image: local("brand/karyan-signage", [480], 908, 1028) },
+  { title: "Stationery and merchandise", client: "TRG", kind: "Print", image: local("brand/trg-merchandise", [480], 632, 648) },
+  { title: "Corporate stationery", client: "Aarize", kind: "Print", image: local("brand/aarize-stationery", [480], 900, 1024) },
+  { title: "Ellington 86 launch hoarding", client: "SID Realtech", kind: "Outdoor", image: local("brand/sid-hoarding", [480, 900], 924, 460) },
 ];
 
 /* ---------------------------------------------------------------- selected work */
 
-export const ndWork = [
-  { client: "SID Realtech", project: "Ellington 86 launch", tags: ["Branding", "Launch creatives", "Website"], image: img("cr-sid"), alt: "Ellington 86 coming-soon launch creative" },
-  { client: "Subata Realty", project: "Phuket property platform", tags: ["Website design", "Development"], image: img("slide-9"), alt: "Subata Realty website on desktop and page layouts" },
-  { client: "Intech Developers", project: "Residential and plotted projects", tags: ["Website", "Social"], image: img("slide-10"), alt: "Intech Developers website on desktop and page layouts" },
-  { client: "JBBR Group", project: "Luxury residences", tags: ["Social creatives"], image: img("cr-jbbr"), alt: "JBBR Group luxury lifestyle creative" },
-  { client: "Finsckool", project: "Learning platform", tags: ["Brand", "Web platform"], image: img("slide-6"), alt: "Finsckool learning platform on desktop and page layouts" },
-  { client: "TRG", project: "TRG The Mall", tags: ["Campaign creatives", "Event branding"], image: img("cr-trg"), alt: "TRG The Mall investment campaign creative" },
+/**
+ * Selected work: genuine campaign creatives (original 1350 px files from scaleacres.com) and
+ * first-screen captures of live client websites built by ScaleAcres (2× resolution). Websites
+ * carry their real domain in a browser frame.
+ */
+export type WorkItem = { client: string; project: string; tags: string[]; image: Img; alt: string; domain?: string };
+export const ndWork: WorkItem[] = [
+  { client: "SID Realtech", project: "Ellington 86 launch", tags: ["Branding", "Launch creatives"], image: local("selected/sid-ellington86", [600, 900, 1200], 1350, 1688), alt: "Ellington 86 'Coming Soon' launch creative for SID Realtech" },
+  { client: "Intech Developers", project: "Creates Value", tags: ["Social media", "Campaign"], image: local("selected/intech-creates-value", [600, 900, 1200], 1350, 1688), alt: "Intech Developers 'Creates Value' social media creative" },
+  { client: "Subata Realty", project: "Phuket property platform", tags: ["Website design", "Development"], image: local("selected/web-subata", [800, 1200, 1800], 2400, 1500), alt: "Subata Realty website homepage", domain: "subatarealty.com" },
+  { client: "Rhomes Miraabilis", project: "Luxury residences, Vaishali", tags: ["Website design", "Development"], image: local("selected/web-miraabilis", [800, 1200, 1800], 2400, 1500), alt: "Rhomes Miraabilis website homepage, 'A Bloom of Luxury'", domain: "miraabilis.com" },
+  { client: "JBBR Group", project: "Redefining luxury", tags: ["Social media", "Campaign"], image: local("selected/jbbr-campaign", [600, 900, 1200], 1350, 1688), alt: "JBBR Group 'We don't just hand over keys' campaign creative" },
+  { client: "TRG", project: "TRG The Mall", tags: ["Campaign creatives", "Performance"], image: local("selected/trg-the-mall", [600, 900, 1200], 1297, 1621), alt: "TRG The Mall '15 Years of Income' investment campaign creative" },
+  { client: "Finsckool", project: "Finance education platform", tags: ["Web platform", "Development"], image: local("selected/web-finsckool", [800, 1200, 1800], 2400, 1500), alt: "Finsckool learning platform homepage", domain: "finsckool.com" },
 ];
 
 /* ---------------------------------------------------------------- client testimonials */
@@ -291,13 +313,13 @@ export const ndNav = [
 /** Genuine work that drifts past the manifesto statement (no AI pieces here; AI work is labelled in Videos). */
 export const ndManifesto = {
   lines: ["We build", "real estate brands", "people remember."],
-  /** The approved collage: brochures, launch creatives and outdoor work by ScaleAcres. */
+  /** Brand kits, launch creatives and outdoor work by ScaleAcres: individual pieces, never whole profile slides. */
   collage: [
-    { ...img("slide-1"), alt: "Ellington 86 brochure for SID Realtech" },
+    { ...local("brand/jbbr-brand-kit", [480, 960], 1540, 1180), alt: "JBBR Group brand kit" },
     { ...img("cr-sid"), alt: "Ellington 86 launch creative for SID Realtech" },
-    { ...img("slide-3"), alt: "Ellington 86 outdoor hoarding" },
+    { ...local("brand/sid-hoarding", [480, 900], 924, 460), alt: "Ellington 86 outdoor hoarding" },
     { ...img("cr-jbbr"), alt: "JBBR Group social creative" },
-    { ...img("slide-14"), alt: "Nirvana County brochure" },
+    { ...local("brand/ottimo-billboard", [480, 960], 1056, 504), alt: "Ottimo Realty outdoor billboard" },
     { ...img("cr-intech"), alt: "Intech Developers social creative" },
   ],
 }

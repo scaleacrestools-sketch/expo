@@ -9,6 +9,12 @@ import { NdServices } from "@/components/nd/NdServices";
 import { NdShowcase } from "@/components/nd/NdShowcase";
 import { NdWebsites } from "@/components/nd/NdWebsites";
 import { NdTestimonials } from "@/components/nd/NdTestimonials";
+import { NdVideos } from "@/components/nd/NdVideos";
+import { NdBrands } from "@/components/nd/NdBrands";
+import { NdWork } from "@/components/nd/NdWork";
+import { NdFaq } from "@/components/nd/NdFaq";
+import { NdContact } from "@/components/nd/NdContact";
+import { NdFooter } from "@/components/nd/NdFooter";
 
 export const metadata: Metadata = {
   // PROTECTED: identical to the live homepage title. Do not change without SEO approval.
@@ -19,12 +25,14 @@ export const metadata: Metadata = {
 };
 
 /**
- * Homepage — built section by section for approval. This stage: the first seven sections. The remaining sections (components/nd/*) return as each is approved.
- *
+ * Homepage — complete, in the approved order:
  * 01 Hero (Brand Black, motion reel) → 02 Creative statement (Brand Black) → 03 Who we are (white,
  * opening out of the black section) → 04 Our services (white, stacked Brand Black cards) → 05 Our
  * work (warm white, four project covers) → 06 Website design (Brand Black, live sites) → 07 Client
- * success stories (white, four video testimonials). Header: components/nd/NdHeader, chosen by components/Header on "/".
+ * success stories (white, video testimonials) → 08 Real estate videos (Brand Black) → 09 Branding /
+ * market leaders (Mist) → 10 Selected work (Brand Black) → 11 FAQ (white) → 12 Let's talk (Brand
+ * Black, enquiry form) → 13 Footer (white, wordmark across the hand-over).
+ * Header: components/nd/NdHeader, chosen by components/Header on "/".
  */
 export default function HomePage() {
   return (
@@ -40,6 +48,12 @@ export default function HomePage() {
       <NdShowcase />
       <NdWebsites />
       <NdTestimonials />
+      <NdVideos />
+      <NdBrands />
+      <NdWork />
+      <NdFaq />
+      <NdContact />
+      <NdFooter />
     </div>
   );
 }

@@ -83,6 +83,9 @@
 .nd-btn--white { background: #fff; color: var(--ink); }
 .nd-btn--white:hover { background: var(--royal); color: #fff; }
 .nd-btn:focus-visible, .nd a:focus-visible, .nd button:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; }
+.nd-input { display: block; width: 100%; margin-top: 0.5rem; padding: 0.6rem 0 0.75rem; border: 0; border-bottom: 1px solid rgb(255 255 255 / 0.25); border-radius: 0; background: transparent; color: #fff; font-size: 1.0625rem; outline: none; transition: border-color 0.3s ease; }
+.nd-input:focus { border-bottom-color: var(--sky); }
+.nd-input[aria-invalid="true"] { border-bottom-color: var(--sky); }
 .nd-pill { display: inline-flex; align-items: center; min-height: 2rem; padding: 0.3rem 0.75rem; border: 1px solid var(--rule, var(--line-l)); font-size: 0.875rem; font-weight: 500; line-height: 1.2; }
 .nd-link { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; }
 .nd-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -0.2em; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.5s var(--ease); }

@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { ndBrands } from "@/content/nd";
+import { ndBrandBoards, ndBrands } from "@/content/nd";
 import { ArrowUR, Pic, Rules, Tag, Words } from "@/components/nd/ui";
 
 /**
- * 06 — We don't create brands. We create market leaders. Type-led: the line set very large,
- * two branding pieces shown big, then an index of identity, print and outdoor work. On
- * desktop a preview of each piece follows the cursor along the index.
+ * 09 — We don't create brands. We create market leaders. Type-led: the line set very large,
+ * two branding boards shown big (genuine identity work from the company profile, composed, never
+ * whole slides), then an index of identity, print and outdoor work. On desktop a preview of each
+ * piece follows the cursor along the index.
  */
 export function NdBrands() {
   const list = useRef<HTMLUListElement>(null);
@@ -32,7 +33,6 @@ export function NdBrands() {
     return () => { ul.removeEventListener("pointermove", move); cancelAnimationFrame(raf); };
   }, []);
 
-  const big = [ndBrands[1], ndBrands[3]];
   return (
     <section id="branding" className="nd-light relative" aria-labelledby="nd-brand-title">
       <Rules />
@@ -50,13 +50,13 @@ export function NdBrands() {
 
         <div className="nd-grid mt-[clamp(3rem,6vw,5rem)] gap-y-8">
           <div className="nd-cell flex flex-col justify-between gap-8">
-            <p data-nd="up" className="nd-lead max-w-[26rem]">Identity, print and outdoor work for developers and their projects: logos, brochures, hoardings and launch kits that make a project look as good as it is.</p>
-            <Link data-nd="up" href="/our-services/" className="nd-link nd-label w-fit">Branding services <ArrowUR className="h-3.5 w-3.5" /></Link>
+            <p data-nd="up" className="nd-lead max-w-[26rem]">Identity, print and outdoor work for developers and their projects: logos, stationery, signage, hoardings and launch kits that make a project look as good as it is.</p>
+            <Link data-nd="up" href="/real-estate-branding-agency/" className="nd-link nd-label w-fit">Branding services <ArrowUR className="h-3.5 w-3.5" /></Link>
           </div>
-          {big.map((b, i) => (
+          {ndBrandBoards.map((b, i) => (
             <figure key={b.title} className="nd-cell m-0">
-              <div data-nd="clip" style={{ "--d": i * 100 } as CSSProperties} className="nd-zoom nd-lift relative aspect-[924/522] bg-white shadow-[var(--sh-2)]">
-                <Pic image={b.image} alt={`${b.title} for ${b.client}`} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" imgClass="absolute inset-0 h-full w-full object-cover" />
+              <div data-nd="clip" style={{ "--d": i * 100 } as CSSProperties} className="nd-zoom nd-lift relative aspect-[2200/1238] overflow-hidden rounded-[6px] bg-white shadow-[var(--sh-2)]">
+                <Pic image={b.image} alt={b.alt} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" imgClass="absolute inset-0 h-full w-full object-cover" />
               </div>
               <figcaption className="mt-3 flex justify-between gap-4">
                 <span className="text-[1.0625rem] font-semibold tracking-[-0.01em]">{b.title}</span>
@@ -74,7 +74,7 @@ export function NdBrands() {
               <li key={b.title} data-nd="up" style={{ "--d": i * 40 } as CSSProperties} onPointerEnter={() => { setArmed(true); setHover(i); }} className="nd-cell group border-t border-[color:var(--line-l)] last:border-b">
                 <div className="flex items-center gap-4 py-4 md:gap-6">
                   <span className="nd-label w-8 shrink-0 tabular-nums text-[color:var(--royal)]">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="relative aspect-[924/522] w-24 shrink-0 overflow-hidden bg-white shadow-[var(--sh-1)] lg:hidden">
+                  <span className="relative aspect-[924/522] w-24 shrink-0 overflow-hidden rounded-[3px] bg-white shadow-[var(--sh-1)] lg:hidden">
                     <Pic image={b.image} alt="" sizes="96px" imgClass="absolute inset-0 h-full w-full object-cover" />
                   </span>
                   <span className="min-w-0 flex-1 text-[clamp(1.25rem,1.9vw,2rem)] font-semibold leading-tight tracking-[-0.03em] transition-[transform,color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2 group-hover:text-[color:var(--royal)]">{b.title}</span>
