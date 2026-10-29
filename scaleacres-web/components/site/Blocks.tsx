@@ -4,6 +4,7 @@ import { media, mediaHtml, plain, type Block, type LegacySection } from "@/lib/l
 import { asButton, isStatHeading, toItems } from "@/components/legacy/LegacyBlocks";
 import { ArrowUR, Tag } from "@/components/nd/ui";
 import { NdContactForm } from "@/components/nd/NdContactForm";
+import { site } from "@/content/site";
 import { Accordion } from "@/components/site/Accordion";
 import { StatRow, lines } from "@/components/site/Kit";
 import { Words } from "@/components/nd/ui";
@@ -86,7 +87,7 @@ export function Heading({ b, dark = false }: { b: H; dark?: boolean }) {
 
 function ListEl({ b }: { b: Extract<Block, { type: "list" }> }) {
   return (
-    <ul role="list" className="nd-list">
+    <ul role="list" className="nd-list" data-ordered={b.ordered ? "1" : undefined}>
       {b.items.map((it, i) => (
         <li key={i} className="flex gap-4 border-t border-[color:var(--rule)] py-3">
           <span className="nd-label w-7 shrink-0 tabular-nums text-[color:var(--royal)] [.nd-dark_&]:text-[color:var(--sky)]">{String(i + 1).padStart(2, "0")}</span>
@@ -145,9 +146,12 @@ export function Buttons({ buttons, dark = false }: { buttons: { href: string; te
 
 export function FormPanel({ dark = false, id = "enquiry" }: { dark?: boolean; id?: string }) {
   return (
-    <div id={id} className={`scroll-mt-28 rounded-[14px] bg-[color:var(--ink)] p-6 text-white md:p-9 ${dark ? "ring-1 ring-white/10" : "shadow-[var(--sh-3)]"}`}>
-      <p className="nd-label text-[color:var(--sky)]">Send an enquiry</p>
-      <div className="nd-dark mt-6 bg-transparent"><NdContactForm /></div>
+    <div id={id} className={`scroll-mt-28 rounded-[16px] bg-[color:var(--ink)] p-[clamp(1.25rem,3vw,2.75rem)] text-white ${dark ? "ring-1 ring-white/10" : "shadow-[var(--sh-3)]"}`}>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-white/12 pb-5">
+        <p className="text-[clamp(1.35rem,2vw,1.75rem)] font-semibold tracking-[-0.025em]">Send an enquiry</p>
+        <p className="text-[0.9375rem] text-white/60">Prefer to talk? <a href={site.phones[0].href} className="font-medium text-white underline-offset-4 hover:underline">{site.phones[0].number}</a></p>
+      </div>
+      <div className="nd-dark mt-7 bg-transparent"><NdContactForm /></div>
     </div>
   );
 }

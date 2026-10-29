@@ -83,9 +83,12 @@
 .nd-btn--white { background: #fff; color: var(--ink); }
 .nd-btn--white:hover { background: var(--royal); color: #fff; }
 .nd-btn:focus-visible, .nd a:focus-visible, .nd button:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; }
-.nd-input { display: block; width: 100%; margin-top: 0.5rem; padding: 0.6rem 0 0.75rem; border: 0; border-bottom: 1px solid rgb(255 255 255 / 0.25); border-radius: 0; background: transparent; color: #fff; font-size: 1.0625rem; outline: none; transition: border-color 0.3s ease; }
+.nd-input { display: block; width: 100%; margin-top: 0.5rem; padding: 0.6rem 0 0.75rem; border: 0; border-bottom: 1px solid rgb(255 255 255 / 0.25); border-radius: 0; background: transparent; color: #fff; font-size: 1.125rem; outline: none; transition: border-color 0.3s ease; }
 .nd-input:focus { border-bottom-color: var(--sky); }
-.nd-input[aria-invalid="true"] { border-bottom-color: var(--sky); }
+.nd-input[aria-invalid="true"] { border-bottom-color: #fca5a5; }
+.nd-input::placeholder { color: rgb(255 255 255 / 0.35); }
+.nd-err { display: flex; align-items: flex-start; gap: 0.45rem; font-size: 0.9375rem; line-height: 1.4; color: #fca5a5; }
+.nd-err::before { content: "!"; display: inline-grid; place-items: center; flex: none; width: 1.05rem; height: 1.05rem; margin-top: 0.1rem; border-radius: 999px; background: #fca5a5; color: #0b0d0d; font-size: 0.75rem; font-weight: 700; }
 .nd-pill { display: inline-flex; align-items: center; min-height: 2rem; padding: 0.3rem 0.75rem; border: 1px solid var(--rule, var(--line-l)); font-size: 0.875rem; font-weight: 500; line-height: 1.2; }
 .nd-link { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; }
 .nd-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -0.2em; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.5s var(--ease); }
@@ -133,15 +136,19 @@
 
 
 /* ---------------------------------------------------------------- internal pages: typeset live content */
+/* internal pages: slightly stronger secondary text for long-form reading */
+.nd-int { --muted-l: color-mix(in srgb, #0b0d0d 74%, #ffffff); --muted-d: rgb(255 255 255 / 0.74); }
+.nd-int .nd-lead { font-size: clamp(1.125rem, 1.3vw, 1.3125rem); }
+.nd-int .nd-body { font-size: 1.0625rem; }
 .nd-h2 { font-size: clamp(1.9rem, 3.4vw, 3.25rem); font-weight: 600; line-height: 1.02; letter-spacing: -0.04em; }
 .nd-h3 { font-size: clamp(1.5rem, 2.3vw, 2.25rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; }
 .nd-h4 { font-size: clamp(1.2rem, 1.5vw, 1.5rem); font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; }
-.nd-flow { display: flex; flex-direction: column; gap: 1.25rem; font-size: 1.0625rem; line-height: 1.68; }
-.nd-flow > p, .nd-flow > .nd-list { color: var(--muted-l); max-width: 70ch; }
+.nd-flow { display: flex; flex-direction: column; gap: 1.25rem; font-size: 1.125rem; line-height: 1.68; }
+.nd-flow > p, .nd-flow > .nd-list { color: var(--muted-l); max-width: 68ch; }
 .nd-dark .nd-flow > p, .nd-dark .nd-flow > .nd-list { color: rgb(255 255 255 / 0.72); }
 .nd-flow > h2, .nd-flow > h3, .nd-flow > h4 { margin-top: 1.25rem; }
 .nd-flow > :first-child { margin-top: 0; }
-.nd-flow--sm { gap: 0.75rem; font-size: 1rem; line-height: 1.6; }
+.nd-flow--sm { gap: 0.75rem; font-size: 1.0625rem; line-height: 1.6; }
 .nd-flow a:not(.nd-btn):not(.nd-link) { color: var(--royal); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .nd-dark .nd-flow a:not(.nd-btn):not(.nd-link) { color: var(--sky); }
 .nd-flow strong, .nd-flow b { color: var(--ink); font-weight: 600; }
@@ -153,7 +160,15 @@
 .nd-table th { font-weight: 600; color: var(--ink); }
 .nd-flow img { max-width: 100%; height: auto; }
 /* long-form articles */
-.nd-article { font-size: 1.125rem; line-height: 1.75; }
+.nd-article { font-size: 1.1875rem; line-height: 1.78; }
+.nd-article .nd-flow { font-size: inherit; line-height: inherit; gap: 1.4rem; }
+.nd-article .nd-flow > p, .nd-article .nd-flow > .nd-list { color: #24282b; max-width: none; }
+.nd-article .nd-flow > h2 { margin-top: 2.25rem; }
+.nd-article .nd-list > li { border-top: 0; padding: 0.35rem 0; gap: 0.9rem; }
+.nd-article .nd-list:not([data-ordered]) > li > span:first-child { width: 0.5rem; font-size: 0; }
+.nd-article .nd-list:not([data-ordered]) > li > span:first-child::before { content: ""; display: block; width: 0.45rem; height: 0.45rem; margin-top: 0.72em; border-radius: 999px; background: var(--royal); }
+.nd-article .nd-list strong { color: var(--ink); }
+.nd-article .nd-flow > h3, .nd-article .nd-flow > h4 { margin-top: 1.5rem; }
 .nd-article > * + * { margin-top: 1.35rem; }
 .nd-article h2 { font-size: clamp(1.6rem, 2.4vw, 2.25rem); font-weight: 600; line-height: 1.12; letter-spacing: -0.03em; margin-top: 3rem; color: var(--ink); }
 .nd-article h3 { font-size: clamp(1.3rem, 1.8vw, 1.6rem); font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; margin-top: 2.25rem; color: var(--ink); }

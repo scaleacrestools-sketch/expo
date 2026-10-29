@@ -4,12 +4,15 @@ import { getLegacyPage, media, plain, type Block, type LegacyPage, type LegacySe
 import { ndAbout } from "@/content/nd";
 import { site } from "@/content/site";
 import { liveCountries, liveFooter } from "@/content/legacy-nav";
-import { Band, Cards, Flow, FormPanel, Gallery, Html, Pict, Video, findCards, sectionStats, splitHead, blockText } from "@/components/site/Blocks";
+import { Band, Cards, Flow, FormPanel, Gallery, Html, Pict, findCards, sectionStats, splitHead, blockText } from "@/components/site/Blocks";
 import { Btn, ClosingCta, Head, Hero, Section, StatRow } from "@/components/site/Kit";
 import { hasFaq, type Prepared } from "@/components/site/compose";
 import { Sections, FaqBand, crumbsFor } from "@/components/site/SitePage";
 import { ServiceIndex } from "@/components/site/Indexes";
 import { WorkStrip } from "@/components/site/Showcase";
+import { FoundersBand, StoryBand, ExpertiseBand, PhotoGrid } from "@/components/site/pages/Parts";
+import { VideoTiles, MapEmbed } from "@/components/site/Media";
+import { CASES } from "@/components/site/pages/Case";
 import { NdShowcase } from "@/components/nd/NdShowcase";
 import { NdServices } from "@/components/nd/NdServices";
 import { NdBrands } from "@/components/nd/NdBrands";
@@ -45,9 +48,19 @@ function StudioMedia() {
 
 /* ================================================================== About */
 
+// the founders' story (its "founders" heading is lifted into the page lead by prepare())
+const isFounders = (s: LegacySection) => s.blocks.some((b) => b.type === "paragraph" && /two young visionaries/i.test(plain(b.html)));
+const sectionWith = (p: Prepared, re: RegExp) => p.sections.find((s) => s.blocks.some((b) => b.type === "heading" && re.test(blockText(b))));
+
 export function AboutPage({ page, p }: { page: LegacyPage; p: Prepared }) {
-  const why = p.sections.find((s) => s.blocks.some((b) => b.type === "heading" && /why scale/i.test(blockText(b))));
+  const why = sectionWith(p, /why scale/i);
   const whyText = why?.blocks.find((b) => b.type === "paragraph");
+  const stats = why ? sectionStats(why) : [];
+  const founders = p.sections.find(isFounders);
+  const journey = sectionWith(p, /our journey/i);
+  const expertise = sectionWith(p, /our expertise/i);
+  const used = new Set([why, founders, journey, expertise]);
+  const rest = p.sections.filter((s) => !used.has(s));
   return (
     <>
       <H1 text={p.h1} />
@@ -62,7 +75,18 @@ export function AboutPage({ page, p }: { page: LegacyPage; p: Prepared }) {
         media={<StudioMedia />}
         maxChars={20}
       />
-      <Sections sections={p.sections} label="About us" />
+      {stats.length ? (
+        <Section tone="dark" pad="tight" label="Why ScaleAcres">
+          <div className="nd-grid items-end gap-y-6">
+            <div className="nd-cell lg:col-span-2"><div data-nd="up"><Tag>In numbers</Tag></div>{why ? <Words as="h2" lines={[blockText(why.blocks[0])]} className="mt-6 text-[clamp(2.2rem,4.4vw,4.25rem)] font-semibold leading-[0.96] tracking-[-0.045em]" /> : null}</div>
+          </div>
+          <div className="nd-cell mt-10"><StatRow dark stats={stats} /></div>
+        </Section>
+      ) : null}
+      {founders ? <FoundersBand s={founders} /> : null}
+      {journey ? <StoryBand s={journey} tag="Our journey" /> : null}
+      {expertise ? <ExpertiseBand s={expertise} /> : null}
+      <Sections sections={rest} label="About us" />
       <Section tone="white" label="What we do">
         <Head tag="What we do" title="One team for brand, digital and growth." accent={["growth."]} intro="Eight connected services, planned together and measured against the same goal: qualified enquiries and site visits." />
         <div className="mt-[clamp(2.5rem,5vw,4rem)]"><ServiceIndex /></div>
@@ -83,9 +107,19 @@ export function TeamPage({ page, p }: { page: LegacyPage; p: Prepared }) {
   const rest = head ? head.rest : [];
   const lead = rest[0]?.type === "paragraph" ? rest[0] : null;
   const grid = findCards(lead ? rest.slice(1) : rest);
-  const group = intro.flatMap((s) => s.blocks).find((b): b is I => b.type === "image" && /div-scaled|team/i.test(b.src + b.alt) && (b.width ?? 0) >= 800);
-  // drop slider controls captured from the culture carousel
-  const cleaned = intro.map((s) => ({ ...s, blocks: s.blocks.filter((b) => !(b.type === "paragraph" && /^(previous|next)$/i.test(plain(b.html))) && b !== group) }));
+  const we = intro.find((s) => s.blocks.some((b) => b.type === "heading" && /we are scaleacres/i.test(blockText(b))));
+  const life = intro.find((s) => s.blocks.some((b) => b.type === "heading" && /life @/i.test(blockText(b))));
+  const founders = intro.find(isFounders);
+  const culture = intro.find((s) => s.blocks.some((b) => b.type === "heading" && /vibrant work culture/i.test(blockText(b))));
+  const lifeCards = life ? findCards(life.blocks.slice(1).filter((b, i) => !(i === 0 && b.type === "paragraph"))) : null;
+  const lifeImgs = life ? life.blocks.filter((b): b is I => b.type === "image") : [];
+  const cultureImgs = culture ? culture.blocks.filter((b): b is I => b.type === "image" && (b.width ?? 0) >= 800) : [];
+  const cultureText = culture?.blocks.filter((b) => b.type === "paragraph" && plain(b.html).length > 40) ?? [];
+  const weText = we?.blocks.filter((b) => b.type === "paragraph") ?? [];
+  const weStats = we ? sectionStats(we) : [];
+  const weImg = we?.blocks.find((b): b is I => b.type === "image");
+  const lifeIntro = life?.blocks.find((b) => b.type === "paragraph");
+  const named = grid ? grid.cards.filter((c) => c.img && plain(c.title.html).trim()) : [];
   return (
     <>
       <H1 text={p.h1} />
@@ -96,21 +130,71 @@ export function TeamPage({ page, p }: { page: LegacyPage; p: Prepared }) {
         accent={["ScaleAcres."]}
         crumbs={crumbsFor(page)}
         lead="Strategists, designers, developers, performance marketers, video editors and writers, working as one team for real estate."
-        actions={<><Btn href="/careers/" variant="white">Join the team</Btn><Btn href="/contact-us/">Work with us</Btn></>}
-        media={group ? (
-          <div data-nd="clip" className="nd-zoom overflow-hidden rounded-[10px]"><div className="nd-settle"><Pict img={group} eager sizes="94vw" className="block aspect-[21/9] h-auto w-full object-cover" /></div></div>
-        ) : <StudioMedia />}
+        actions={<><Btn href="#team" variant="white">Meet the team</Btn><Btn href="/careers/">Join the team</Btn></>}
+        media={lifeImgs.length >= 3 ? <PhotoGrid images={[lifeImgs[1], lifeImgs[0], lifeImgs[2]]} cols="grid-cols-3" ratio="aspect-[4/3]" sizes="31vw" /> : <StudioMedia />}
       />
-      <Sections sections={cleaned} label="Life at ScaleAcres" />
-      {grid ? (
+      {we ? (
+        <Section tone="white" label="We are ScaleAcres">
+          <div className="nd-grid gap-y-10">
+            <div className="nd-cell lg:col-span-2">
+              <div data-nd="up"><Tag>Who we are</Tag></div>
+              <Words as="h2" lines={[blockText(we.blocks[0])]} className="mt-6 text-[clamp(2.2rem,4.8vw,4.75rem)] font-semibold leading-[0.96] tracking-[-0.045em]" />
+              <div className="mt-8 max-w-[44rem]" data-nd="up"><Flow blocks={weText} /></div>
+              {weStats.length ? <div className="mt-10 max-w-[30rem]"><StatRow stats={weStats} /></div> : null}
+            </div>
+            {weImg ? <div className="nd-cell"><div data-nd="clip" className="nd-zoom overflow-hidden rounded-[12px] shadow-[var(--sh-2)]"><div className="nd-settle"><Pict img={weImg} sizes="(min-width: 1024px) 30vw, 92vw" className="block h-auto w-full" /></div></div></div> : null}
+          </div>
+        </Section>
+      ) : null}
+      {lifeCards ? (
+        <Section tone="mist" label="Life at ScaleAcres">
+          <Head tag="Life @ ScaleAcres" title={life ? blockText(life.blocks[0]) : "Life @ ScaleAcres"} intro={lifeIntro && "html" in lifeIntro ? <Html as="span" html={lifeIntro.html} /> : undefined} />
+          <LifeGrid cards={lifeCards.cards} />
+        </Section>
+      ) : null}
+      {founders ? <FoundersBand s={founders} /> : null}
+      {cultureImgs.length ? (
+        <Section tone="mist" label="Work culture">
+          <Head tag="Work culture" title="Vibrant Work Culture" intro={cultureText[0] && "html" in cultureText[0] ? <Html as="span" html={cultureText[0].html} /> : undefined} />
+          <div className="mt-[clamp(2.5rem,5vw,4rem)] px-[clamp(0.75rem,1.2vw,1.25rem)]"><PhotoGrid images={cultureImgs.slice(0, 8)} /></div>
+        </Section>
+      ) : null}
+      {named.length ? (
         <Section tone="white" id="team" label="Meet our team">
           <Head tag="Meet our team" title={head?.title ? blockText(head.title) : "Meet our team"} intro={lead && "html" in lead ? <Html as="span" html={lead.html} /> : undefined} />
-          <p className="nd-label nd-muted nd-cell mt-6">{grid.cards.length} people</p>
-          <div className="nd-cell mt-8"><Cards cards={grid.cards} people /></div>
+          <p className="nd-label nd-muted nd-cell mt-6">{named.length} people · names and roles as published by ScaleAcres</p>
+          <ul role="list" className="mt-8 grid grid-cols-2 gap-x-[clamp(0.6rem,1.2vw,1rem)] gap-y-8 px-[clamp(0.75rem,1.2vw,1.25rem)] sm:grid-cols-3 lg:grid-cols-5">
+            {named.map((c, i) => {
+              const role = c.body.find((b) => b.type === "paragraph");
+              return (
+                <li key={i} className="group">
+                  <div data-nd="clip" style={d((i % 5) * 50)} className="nd-zoom relative aspect-[4/5] overflow-hidden rounded-[10px] bg-[color:var(--mist)]">
+                    <div className="nd-settle absolute inset-0"><Pict img={c.img!} sizes="(min-width: 1024px) 18vw, (min-width: 640px) 30vw, 46vw" className="absolute inset-0 h-full w-full object-cover object-[50%_22%]" /></div>
+                  </div>
+                  <p className="mt-3 text-[1.0625rem] font-semibold leading-tight tracking-[-0.01em]">{plain(c.title.html)}</p>
+                  <p className="nd-muted mt-1 min-h-[1.4em] text-[0.9375rem] leading-snug">{role && "html" in role ? plain(role.html) : null}</p>
+                </li>
+              );
+            })}
+          </ul>
         </Section>
       ) : null}
       <ClosingCta title="Let's talk." lead="Want to work with this team, or join it? Call, write, or start a project." />
     </>
+  );
+}
+
+function LifeGrid({ cards }: { cards: NonNullable<ReturnType<typeof findCards>>["cards"] }) {
+  return (
+    <ul role="list" className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-x-[clamp(0.75rem,1.4vw,1.25rem)] gap-y-10 px-[clamp(0.75rem,1.2vw,1.25rem)] sm:grid-cols-2 lg:grid-cols-4">
+      {cards.map((c, i) => (
+        <li key={i}>
+          {c.img ? <div data-nd="clip" style={d(i * 70)} className="nd-zoom relative aspect-[4/3] overflow-hidden rounded-[10px]"><div className="nd-settle absolute inset-0"><Pict img={c.img} sizes="(min-width: 1024px) 23vw, 46vw" className="absolute inset-0 h-full w-full object-cover" /></div></div> : null}
+          <h3 data-nd="up" className="mt-4 text-[1.25rem] font-semibold tracking-[-0.02em]">{plain(c.title.html)}</h3>
+          {c.body.length ? <div className="nd-flow nd-flow--sm mt-2"><Flow blocks={c.body} /></div> : null}
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -178,7 +262,7 @@ export function ContactPage({ p }: { page: LegacyPage; p: Prepared }) {
       {map && map.type === "video" ? (
         <Section tone="white" id="map" label="Map">
           <Head tag="Map" title="Visit the studio." accent={["studio."]} intro={site.address.lines.join(", ")} size="md" />
-          <div className="nd-cell mt-10"><Video b={map} title="ScaleAcres studio, Saidulajab, New Delhi, on Google Maps" /></div>
+          <div className="nd-cell mt-10"><MapEmbed embed={(map.embed ?? "").replace("z=10", "z=15")} title="ScaleAcres studio, Saidulajab, New Delhi, on Google Maps" link={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Scaleacres Promotech, Saidulajab, New Delhi 110030")}`} /></div>
         </Section>
       ) : null}
       <WorkStrip />
@@ -228,15 +312,15 @@ function SolutionRows({ s }: { s: LegacySection }) {
   return (
     <Section tone="mist" label="Solutions">
       <Head tag="Solutions" title={title ? blockText(title) : "Solutions we provide"} intro={intro && "html" in intro ? <Html as="span" html={intro.html} /> : undefined} />
-      <ol role="list" className="mt-[clamp(3rem,6vw,5rem)] space-y-[clamp(3rem,6vw,5rem)]">
+      <ol role="list" className="mt-[clamp(2.5rem,5vw,4rem)] space-y-[clamp(2.5rem,5vw,4.5rem)]">
         {groups.map((g, i) => (
           <li key={i} className="nd-grid items-center gap-y-6">
             <div className={`nd-cell lg:col-span-2 ${i % 2 ? "lg:order-2" : ""}`}>
-              {g.img ? <div data-nd="clip" className="nd-zoom overflow-hidden rounded-[10px] bg-white shadow-[var(--sh-2)]"><div className="nd-settle"><Pict img={g.img} className="block aspect-[16/10] h-auto w-full object-cover" /></div></div> : null}
+              {g.img ? <div data-nd="clip" className="nd-zoom relative aspect-[16/10] overflow-hidden rounded-[14px] bg-white shadow-[var(--sh-2)] ring-1 ring-[color:var(--line-l)]"><div className="nd-settle absolute inset-[clamp(0.75rem,2vw,1.75rem)]"><Pict img={g.img} sizes="(min-width: 1024px) 60vw, 92vw" className="absolute inset-0 h-full w-full object-contain" /></div></div> : null}
             </div>
             <div className="nd-cell" data-nd="up">
-              <span className="nd-label tabular-nums text-[color:var(--royal)]">{String(i + 1).padStart(2, "0")}</span>
-              {"html" in g.h ? <Html as="h3" html={g.h.html} className="nd-h3 mt-4" /> : null}
+              <span className="nd-label tabular-nums text-[color:var(--royal)]">{String(i + 1).padStart(2, "0")} / {String(groups.length).padStart(2, "0")}</span>
+              {"html" in g.h ? <Html as="h3" html={g.h.html} className="mt-4 text-[clamp(1.6rem,2.6vw,2.5rem)] font-semibold leading-[1.05] tracking-[-0.035em]" /> : null}
               <div className="mt-4"><Flow blocks={g.body} /></div>
             </div>
           </li>
@@ -285,13 +369,29 @@ function parseSites(blocks: Block[]) {
   }
   return sites;
 }
+/** Client names for the website captures (the live page only names some of them in image alt text). */
+const SITE_NAMES: [RegExp, string][] = [
+  [/sidrealtech/i, "SID Realtech"], [/subata/i, "Subata Realty"], [/researchcapital/i, "Research Capital"], [/aevora/i, "Aevora Infratech"],
+  [/jbbr/i, "JBBR Group"], [/scalemiles/i, "ScaleMiles"], [/imperial-sky/i, "Imperial Sky Realty"], [/landload/i, "Landlord Realtor Service"],
+  [/homefynders/i, "Homefynders"], [/aakar/i, "Aakar Interiors"], [/straightup/i, "StraightUp Capital"], [/lets-movin/i, "Let's Movin"],
+  [/innovativedeveloper/i, "Innovative Developers"], [/bizloan/i, "Bizloan India"], [/Investors-Guide/i, "Investors Guide, Gurgaon"],
+  [/jina-cosmetics/i, "Jina Cosmetics"], [/mwbstore/i, "MW&B"], [/yugen/i, "Yugen Infra"], [/Media-pr/i, "Media PR"],
+  [/cloudwaysapps/i, "Eggspert"], [/rudrom/i, "RPS Rudrom"],
+];
 const siteName = (s: Site) => {
-  const a = s.logo?.alt || s.shot.alt || "";
-  const m = a.match(/^(.*?) Client For Scaleacres/i);
-  if (m) return m[1];
-  const f = s.shot.src.split("/").pop()!.replace(/(-scaled)?\.(webp|png|jpe?g)$/i, "").replace(/screencapture-|-\d{4}-\d{2}-\d{2}.*$|-vercel-app|-x-web|-home-?page.*|-new|-lending-page.*/gi, "").replace(/-/g, " ");
-  return f.replace(/\b\w/g, (c) => c.toUpperCase()).trim();
+  const hit = SITE_NAMES.find(([re]) => re.test(s.shot.src));
+  if (hit) return hit[1];
+  const m = (s.logo?.alt || s.shot.alt || "").match(/^(.*?) Client For Scaleacres/i);
+  return m ? m[1] : "Website project";
 };
+const siteMeta = (s: Site) => {
+  const get = (k: string) => s.meta.find((m) => new RegExp(`^${k}\\s*:`, "i").test(m))?.replace(/^[^:]*:\s*/, "").trim();
+  const cat = get("Category"), plat = get("Platform");
+  return [cat ? cat.replace(/^real[- ]estate$/i, "Real estate") : "Website design", plat].filter(Boolean).join(" · ");
+};
+
+/** Real estate video ads published on the Our Work page (Vimeo), with their posters. */
+const VIMEO_H: Record<string, string> = { "1096842100": "06baa9ae7c", "1096842029": "fec77a110e", "1096841907": "b8a900bace", "1096841806": "9139cf65fa", "1096841691": "bccf0a83bb", "1096841538": "b51e5d5007", "1096841460": "8b05c058e4", "1096841377": "0283c34813" };
 
 export function WorkPage({ page, p }: { page: LegacyPage; p: Prepared }) {
   const find = (re: RegExp) => p.sections.find((s) => s.blocks.some((b) => b.type === "heading" && re.test(blockText(b))));
@@ -329,7 +429,7 @@ export function WorkPage({ page, p }: { page: LegacyPage; p: Prepared }) {
                 <div data-nd="up" className="mt-4 flex items-center justify-between gap-4">
                   <div className="min-w-0">
                     <p className="text-[1.125rem] font-semibold tracking-[-0.02em]">{siteName(s)}</p>
-                    {s.meta.length ? <p className="nd-label nd-muted mt-1 truncate">{s.meta.map((m) => m.replace(/\s*:\s*/, ": ")).join(" · ")}</p> : null}
+                    <p className="nd-label nd-muted mt-1 truncate">{siteMeta(s)}</p>
                   </div>
                   {s.logo ? <Pict img={s.logo} sizes="120px" className="h-8 w-auto max-w-[7rem] object-contain opacity-80" /> : null}
                 </div>
@@ -349,16 +449,10 @@ export function WorkPage({ page, p }: { page: LegacyPage; p: Prepared }) {
       {vids.length ? (
         <Section tone="white" id="videos-grid" label="Real estate videos">
           <Head tag="Video production" title={vidS ? blockText(splitHead(vidS.blocks).title ?? vidS.blocks[0]) : "Real estate videos"} intro={(() => { const x = vidS?.blocks.find((b) => b.type === "paragraph"); return x && "html" in x ? <Html as="span" html={x.html} /> : undefined; })()} />
-          <ul role="list" className="mt-[clamp(2.5rem,5vw,4rem)] grid grid-cols-2 gap-x-[clamp(0.75rem,2vw,1.75rem)] gap-y-8 px-[clamp(0.75rem,1.2vw,1.25rem)] lg:grid-cols-4">
-            {vids.map(({ v, t }, i) => (
-              <li key={i}>
-                <div data-nd="clip" style={d((i % 4) * 60)} className="aspect-[9/16] overflow-hidden rounded-[8px] bg-[color:var(--ink)] shadow-[var(--sh-2)]">
-                  <iframe src={v.embed} title={`${t} — real estate video by ScaleAcres`} loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen className="h-full w-full border-0" />
-                </div>
-                <p data-nd="up" className="mt-3 text-[1.0625rem] font-semibold tracking-[-0.01em]">{t}</p>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-[clamp(2.5rem,5vw,4rem)]">
+            <VideoTiles clips={vids.flatMap(({ v, t }) => { const id = v.embed?.match(/vimeo\.com\/video\/(\d+)/)?.[1]; return id ? [{ host: "vimeo" as const, id, hash: VIMEO_H[id], poster: `/media/ext/vm-${id}.webp`, title: t, ratio: "1/1" as const }] : []; })} />
+          </div>
+          <p className="nd-cell nd-label nd-muted mt-8">Video ads produced by ScaleAcres for developers · hosted on Vimeo</p>
         </Section>
       ) : null}
       <NdTestimonials />
@@ -369,14 +463,16 @@ export function WorkPage({ page, p }: { page: LegacyPage; p: Prepared }) {
 
 /* ================================================================== Case studies */
 
-const CASE_LINKS: Record<string, string> = {
-  "Scale-Acres-Case-Study-Cards-02": "/blog/casestudy/our-case-one-goa/",
-  "Scale-Acres-Case-Study-Cards-03": "/yugen-case-study/",
-};
-
 export function CaseStudiesPage({ page, p }: { page: LegacyPage; p: Prepared }) {
-  const cards = p.sections.flatMap((s) => s.blocks).filter((b): b is I => b.type === "image" && /case-st/i.test(b.src));
   const intro = p.sections.flatMap((s) => s.blocks).find((b) => b.type === "paragraph" && plain(b.html).length > 60);
+  const cases = CASES.map((c) => {
+    const lp = getLegacyPage(c.path);
+    const all = lp ? lp.sections.flatMap((s) => s.blocks) : [];
+    const h1 = all.find((b) => b.type === "heading" && b.level === 1 && lp!.sections[0].blocks.includes(b));
+    const ov = all.findIndex((b) => b.type === "heading" && /project overview/i.test(blockText(b)));
+    const sum = h1 ? blockText(h1) : ov >= 0 && "html" in all[ov + 1] ? plain((all[ov + 1] as { html: string }).html).split(/(?<=\.)\s/)[0] : "";
+    return { ...c, sum };
+  });
   return (
     <>
       <Hero
@@ -388,14 +484,26 @@ export function CaseStudiesPage({ page, p }: { page: LegacyPage; p: Prepared }) 
         actions={<Btn href="/contact-us/">Start a project</Btn>}
       />
       <Section tone="white" label="Case studies">
-        <Head tag="Delivering success" title="Delivering success, one project at a time." accent={["success,"]} />
-        <ul role="list" className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-[clamp(1rem,2vw,1.75rem)] px-[clamp(0.75rem,1.2vw,1.25rem)] sm:grid-cols-2">
-          {cards.map((c, i) => {
-            const key = c.src.split("/").pop()!.replace(/\.\w+$/, "");
-            const href = CASE_LINKS[key];
-            const img = <div data-nd="clip" style={d((i % 2) * 90)} className="nd-zoom overflow-hidden rounded-[10px] shadow-[var(--sh-2)] transition-shadow duration-500 group-hover:shadow-[var(--sh-3)]"><div className="nd-settle"><Pict img={c} sizes="(min-width: 640px) 48vw, 100vw" className="block h-auto w-full" /></div></div>;
-            return <li key={i} className="group">{href ? <Link href={href} aria-label={c.alt || "Case study"}>{img}<span className="nd-link nd-label mt-4 text-[color:var(--royal)]">Read the case study <ArrowUR className="h-3 w-3" /></span></Link> : img}</li>;
-          })}
+        <Head tag="Delivering success" title="Delivering success, one project at a time." accent={["success,"]} intro="Full write-ups of two Goa launches: the brief, the strategy, the ad films and the results, as published by ScaleAcres." />
+        <ul role="list" className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-x-[clamp(1rem,2vw,1.75rem)] gap-y-14 px-[clamp(0.75rem,1.2vw,1.25rem)] md:grid-cols-2">
+          {cases.map((c, i) => (
+            <li key={c.path} className="group">
+              <Link href={c.path} className="block">
+                <div data-nd="clip" style={d(i * 90)} className="nd-zoom relative aspect-square overflow-hidden rounded-[14px] bg-[color:var(--ink)] shadow-[var(--sh-2)] transition-shadow duration-500 group-hover:shadow-[var(--sh-3)]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={media(c.card)} alt={`${c.client} case study: results`} width={536} height={536} loading="lazy" className="nd-settle absolute inset-0 h-full w-full object-cover" />
+                </div>
+                <div data-nd="up" className="mt-6 flex items-start justify-between gap-6">
+                  <div>
+                    <p className="nd-label text-[color:var(--royal)]">{c.place}</p>
+                    <h3 className="mt-2 text-[clamp(1.5rem,2.4vw,2.25rem)] font-semibold leading-[1.05] tracking-[-0.035em] transition-colors group-hover:text-[color:var(--royal)]">{c.client}</h3>
+                    {c.sum ? <p className="nd-muted mt-3 max-w-[34rem] text-[1.0625rem] leading-[1.55]">{c.sum}</p> : null}
+                  </div>
+                  <span aria-hidden="true" className="mt-2 grid h-12 w-12 shrink-0 place-items-center rounded-full border border-[color:var(--line-l)] transition-[background-color,border-color,color,transform] duration-500 group-hover:rotate-45 group-hover:border-[color:var(--royal)] group-hover:bg-[color:var(--royal)] group-hover:text-white"><ArrowUR className="h-4 w-4" /></span>
+                </div>
+              </Link>
+            </li>
+          ))}
         </ul>
       </Section>
       <NdWork />
@@ -425,35 +533,32 @@ export function CareersPage({ page, p }: { page: LegacyPage; p: Prepared }) {
         actions={<><Btn href="#apply">Apply now</Btn><a href={site.phones[2].href} className="nd-btn nd-btn--white">Call {site.phones[2].number} <ArrowUR /></a></>}
         media={culture.length >= 4 ? (
           <ul role="list" className="grid grid-cols-2 gap-[clamp(0.5rem,1vw,0.9rem)] lg:grid-cols-4">
-            {culture.slice(0, 4).map((c, i) => <li key={i} data-nd="clip" style={d(i * 80)} className={`nd-zoom overflow-hidden rounded-[8px] ${i % 2 ? "lg:mt-10" : ""}`}><div className="nd-settle"><Pict img={c} sizes="25vw" className="block aspect-[4/5] h-full w-full object-cover" /></div></li>)}
+            {culture.slice(0, 4).map((c, i) => <li key={i} data-nd="clip" style={d(i * 80)} className="nd-zoom overflow-hidden rounded-[10px]"><div className="nd-settle"><Pict img={c} sizes="25vw" className="block aspect-[4/3] h-full w-full object-cover" /></div></li>)}
           </ul>
         ) : <StudioMedia />}
       />
       {lifeCards ? (
         <Section tone="white" label="Life at ScaleAcres">
           <Head tag="Life @ ScaleAcres" title="A vibrant mix of innovation, teamwork and joy." accent={["joy."]} intro="Strategy sessions, creative reviews, festivals and team parties: how we work, and how we celebrate the wins together." />
-          <div className="nd-cell mt-12"><Cards cards={lifeCards.cards} /></div>
+          <LifeGrid cards={lifeCards.cards} />
         </Section>
       ) : null}
-      <Section tone="mist" label="Open positions">
-        <div className="nd-grid gap-y-8">
+      <Section tone="paper" id="apply" label="Open positions and applications">
+        <div className="nd-grid gap-y-12">
           <div className="nd-cell">
             <div data-nd="up"><Tag>Open positions</Tag></div>
-            {positions && "html" in positions ? <Html as="h2" html={positions.html} className="mt-7 text-[clamp(2rem,3.6vw,3.5rem)] font-semibold leading-[1] tracking-[-0.045em]" /> : null}
-          </div>
-          <div className="nd-cell lg:col-span-2" data-nd="up">
-            <p className="nd-lead">There are no roles listed right now. We still want to hear from strategists, designers, developers, performance marketers, video editors and writers who love real estate.</p>
-            <p className="nd-body nd-muted mt-4">Send your details with the form below (choose the service closest to your craft and mention the role in your message), or call the careers line on <a className="text-[color:var(--royal)] underline underline-offset-2" href={site.phones[2].href}>{site.phones[2].number}</a>.</p>
-            <div className="mt-8 flex flex-wrap gap-3"><Btn href="/our-team/" variant="ink">Meet the team</Btn></div>
-          </div>
-        </div>
-      </Section>
-      <Section tone="paper" id="apply" label="Apply">
-        <div className="nd-grid gap-y-10">
-          <div className="nd-cell">
-            <div data-nd="up"><Tag>Get in touch</Tag></div>
-            {formHead?.title && "html" in formHead.title ? <Html as="h2" html={formHead.title.html} className="mt-7 text-[clamp(2rem,3.4vw,3.25rem)] font-semibold leading-[1.02] tracking-[-0.045em]" /> : null}
-            {formHead ? <div className="mt-6"><Flow blocks={formHead.rest.filter((b) => b.type === "paragraph")} /></div> : null}
+            {positions && "html" in positions ? <Html as="h2" html={positions.html} className="mt-7 text-[clamp(2.1rem,3.6vw,3.5rem)] font-semibold leading-[1] tracking-[-0.045em]" /> : null}
+            <div data-nd="up" className="mt-7 rounded-[12px] border border-[color:var(--line-l)] bg-white p-6">
+              <p className="nd-label text-[color:var(--royal)]">Current openings</p>
+              <p className="mt-3 text-[1.125rem] leading-[1.55]">No roles are listed right now. We still want to hear from strategists, designers, developers, performance marketers, video editors and writers who love real estate.</p>
+            </div>
+            <ol role="list" className="mt-8 grid gap-4">
+              {["Choose the service closest to your craft in the form.", "Mention the role you want and add a link to your portfolio, LinkedIn or CV in the message.", `Or call the careers line on ${site.phones[2].number}.`].map((t, i) => (
+                <li key={i} data-nd="up" style={d(i * 60)} className="flex gap-4 text-[1.0625rem] leading-[1.55]"><span className="nd-label mt-0.5 tabular-nums text-[color:var(--royal)]">{String(i + 1).padStart(2, "0")}</span><span>{t}</span></li>
+              ))}
+            </ol>
+            {formHead?.title && "html" in formHead.title ? <Html as="p" html={formHead.title.html} className="mt-10 text-[1.375rem] font-semibold tracking-[-0.02em]" /> : null}
+            {formHead ? <div className="mt-3"><Flow blocks={formHead.rest.filter((b) => b.type === "paragraph")} /></div> : null}
           </div>
           <div className="nd-cell lg:col-span-2" data-nd="up"><FormPanel id="careers-form" /></div>
         </div>

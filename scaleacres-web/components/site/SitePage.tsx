@@ -4,10 +4,13 @@ import { Band, Cards, Flow, FormPanel, Gallery, findCards, sectionStats, splitHe
 import { Btn, ClosingCta, Hero, Section, StatRow, type Ground } from "@/components/site/Kit";
 import { prepare, hasFaq, hasForm, imageShare, accentFor, type Prepared } from "@/components/site/compose";
 import { Accordion } from "@/components/site/Accordion";
-import { Tag } from "@/components/nd/ui";
+import { Tag, ArrowUR } from "@/components/nd/ui";
+import { asButton } from "@/components/legacy/LegacyBlocks";
+import Link from "next/link";
 import { AboutPage, TeamPage, ContactPage, ServicesPage, WorkPage, CaseStudiesPage, CareersPage } from "@/components/site/pages/Company";
 import { ArchivePage, PostPage } from "@/components/site/pages/Blog";
 import { WorkStrip, ServiceVisual } from "@/components/site/Showcase";
+import { CASES, CaseDetailPage } from "@/components/site/pages/Case";
 
 /**
  * Every migrated scaleacres.com page, redesigned in the homepage design language. Content and
@@ -17,7 +20,8 @@ export function SitePage({ page }: { page: LegacyPage }) {
   const kind = pageKind(page);
   const p = prepare(page);
   let body: ReactNode;
-  if (kind === "post") body = <PostPage page={page} />;
+  if (CASES.some((c) => c.path === page.path)) body = <CaseDetailPage page={page} />;
+  else if (kind === "post") body = <PostPage page={page} />;
   else if (kind === "archive") body = <ArchivePage page={page} />;
   else if (page.path === "/about-us/") body = <AboutPage page={page} p={p} />;
   else if (page.path === "/our-team/") body = <TeamPage page={page} p={p} />;
@@ -29,7 +33,7 @@ export function SitePage({ page }: { page: LegacyPage }) {
   else if (kind === "legal") body = <LegalPage page={page} p={p} />;
   else body = <ComposedPage page={page} p={p} kind={kind} />;
   return (
-    <article data-legacy-path={page.path} data-kind={kind}>
+    <article data-legacy-path={page.path} data-kind={kind} className="nd-int">
       {page.canonical ? <link rel="canonical" href={page.canonical} /> : null}
       {body}
       {page.jsonld.map((raw, i) => (
@@ -50,9 +54,12 @@ export function Sections({ sections, start = "white", label, skip = () => false,
   let t: Ground = start === "mist" ? "white" : "mist";
   const out: ReactNode[] = [];
   sections.forEach((s, i) => {
-    if (skip(s, i)) return;
+    if (skip(s, i) || isEmpty(s)) return;
     const stats = sectionStats(s);
-    if (hasFaq(s)) {
+    const cta = ctaOf(s);
+    if (cta) {
+      out.push(<CtaStrip key={i} {...cta} />);
+    } else if (hasFaq(s)) {
       out.push(<FaqBand key={i} s={s} />);
     } else if (stats.length >= 3 && stats.length <= 6 && s.blocks.length <= stats.length * 2 + 4) {
       out.push(<StatsBand key={i} s={s} stats={stats} />);
@@ -70,6 +77,37 @@ export function Sections({ sections, start = "white", label, skip = () => false,
     if (after?.[i]) out.push(<div key={`a${i}`}>{after[i]}</div>);
   });
   return <>{out}</>;
+}
+
+/** A section with nothing to read (a lone heading, decorative shapes, slider controls). */
+export const isEmpty = (s: LegacySection) =>
+  s.blocks.every((b) => (b.type === "image" && /\.svg$/i.test(b.src) && !/logo/i.test(b.src)) || (b.type === "paragraph" && plain(b.html).replace(/[\s\u200b]/g, "").length === 0) || (b.type === "paragraph" && /^(previous|next)$/i.test(plain(b.html).trim()))) ||
+  (s.blocks.length === 1 && s.blocks[0].type === "heading");
+
+/** A short call-to-action section (one line of copy and a button) from the live page. */
+export function ctaOf(s: LegacySection) {
+  if (s.blocks.length > 4) return null;
+  const btn = s.blocks.map(asButton).find(Boolean);
+  const heads = s.blocks.filter((b) => b.type === "heading").map((b) => plain((b as { html: string }).html).trim());
+  const others = s.blocks.filter((b) => b.type !== "heading" && !asButton(b));
+  if (!btn || !heads.length || others.length) return null;
+  // the live page sometimes repeats the same line twice (desktop and mobile copies)
+  const norm = (t: string) => t.replace(/\s+/g, " ").toLowerCase();
+  const uniq = heads.filter((h, i) => heads.findIndex((x) => norm(x) === norm(h)) === i);
+  return { text: uniq[0], href: btn.href.replace(/^#elementor.*/, "/contact-us/"), label: btn.text };
+}
+
+export function CtaStrip({ text, href, label }: { text: string; href: string; label: string }) {
+  return (
+    <section className="nd-white relative border-y border-[color:var(--line-l)]" aria-label={label}>
+      <div className="nd-wrap relative">
+        <Link href={href} className="group nd-cell flex flex-col gap-5 py-[clamp(2rem,4vw,3rem)] md:flex-row md:items-center md:justify-between">
+          <span data-nd="up" className="max-w-[46rem] text-[clamp(1.5rem,2.6vw,2.4rem)] font-semibold leading-[1.1] tracking-[-0.035em] transition-colors duration-500 group-hover:text-[color:var(--royal)]">{text}</span>
+          <span data-nd="up" className="nd-btn nd-btn--royal shrink-0">{label} <ArrowUR /></span>
+        </Link>
+      </div>
+    </section>
+  );
 }
 
 /** FAQ: heading and intro on the left, the homepage accordion on the right (white). */

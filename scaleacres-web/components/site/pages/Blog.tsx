@@ -27,7 +27,9 @@ function postCards() {
     const h1 = bs.find((b) => b.type === "heading" && b.level === 1);
     const img = (bs.find((b) => b.type === "image") as Img | undefined) ?? null;
     const meta = bs.find((b) => b.type === "list" && b.variant === "icon");
-    const author = meta && meta.type === "list" ? plain(meta.items[0] ?? "") : (p.article?.author ?? "");
+    const rawAuthor = (meta && meta.type === "list" ? plain(meta.items[0] ?? "") : (p.article?.author ?? "")).trim();
+    // WordPress shows some usernames in lower case ("prem"); display them as names
+    const author = rawAuthor === rawAuthor.toLowerCase() ? rawAuthor.replace(/\b\w/g, (ch) => ch.toUpperCase()) : rawAuthor;
     const first = bs.find((b) => b.type === "paragraph" && plain(b.html).length > 80);
     const ex = first && "html" in first ? plain(first.html) : "";
     const sec = p.article?.section;
@@ -84,7 +86,7 @@ function topics() {
 
 /* ------------------------------------------------------------------ cards */
 
-function Cover({ c, sizes, eager = false, ratio = "aspect-[16/9]" }: { c: PostCard; sizes: string; eager?: boolean; ratio?: string }) {
+function Cover({ c, sizes, eager = false, ratio = "aspect-[19/10]" }: { c: PostCard; sizes: string; eager?: boolean; ratio?: string }) {
   return (
     <div data-nd="clip" className={`nd-zoom relative overflow-hidden rounded-[10px] bg-[color:var(--mist)] ${ratio}`}>
       <div className="nd-settle absolute inset-0">
@@ -252,7 +254,7 @@ export function PostPage({ page }: { page: LegacyPage }) {
   const parts = chapters(body);
   const toc = parts.filter((p) => p.title);
   const catHref = categoryHref(c.category);
-  const authorHref = archivePaths().has(`/blog/author/${slug(c.author)}/`) ? `/blog/author/${slug(c.author)}/` : null;
+  const authorHref = [slug(c.author), slug(c.author.split(" ")[0])].map((a) => `/blog/author/${a}/`).find((h) => archivePaths().has(h)) ?? null;
   const all = [...postCards().values()].filter((p) => p.path !== c.path).sort(byDate);
   const related = [...all.filter((p) => p.category && p.category === c.category), ...all.filter((p) => p.category !== c.category)].slice(0, 3);
   const ai = share.filter((s) => AI.has(s.label));
@@ -279,11 +281,11 @@ export function PostPage({ page }: { page: LegacyPage }) {
             </div>
           </div>
           {c.img ? (
-            <div className="nd-cell mt-[clamp(2rem,4vw,3.5rem)]">
-              <div data-nd="clip" className="relative aspect-[16/9] overflow-hidden rounded-[14px] bg-[color:var(--mist)] shadow-[var(--sh-2)] md:aspect-[2/1]">
-                <div className="nd-settle absolute inset-0">
+            <div className="nd-grid mt-[clamp(2rem,4vw,3.5rem)]">
+              <div className="nd-cell lg:col-span-2 lg:col-start-2">
+                <div data-nd="clip" className="overflow-hidden rounded-[14px] bg-[color:var(--mist)] shadow-[var(--sh-2)]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={media(c.img.src)} alt={c.img.alt || c.title} width={c.img.width ?? undefined} height={c.img.height ?? undefined} sizes="(min-width: 1024px) 94vw, 100vw" loading="eager" fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+                  <img src={media(c.img.src)} alt={c.img.alt || c.title} width={c.img.width ?? undefined} height={c.img.height ?? undefined} sizes="(min-width: 1024px) 62vw, 100vw" loading="eager" fetchPriority="high" decoding="async" className="block h-auto w-full" />
                 </div>
               </div>
             </div>

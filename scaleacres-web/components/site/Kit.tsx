@@ -13,7 +13,7 @@ export type Ground = "white" | "mist" | "paper" | "dark";
 const GROUND: Record<Ground, string> = { white: "nd-white", mist: "nd-light", paper: "nd-paper", dark: "nd-dark" };
 
 export function Section({ tone = "white", id, rules = true, className = "", pad = "default", children, label }: { tone?: Ground; id?: string; rules?: boolean; className?: string; pad?: "default" | "tight" | "none"; children: ReactNode; label?: string }) {
-  const p = pad === "none" ? "" : pad === "tight" ? "py-[clamp(3rem,6vw,5rem)]" : "py-[clamp(4.5rem,9vw,8rem)]";
+  const p = pad === "none" ? "" : pad === "tight" ? "py-[clamp(2.75rem,5vw,4.25rem)]" : "py-[clamp(4rem,7.5vw,6.75rem)]";
   return (
     <section id={id} aria-label={label} className={`${GROUND[tone]} relative scroll-mt-24 ${className}`}>
       {rules ? <Rules /> : null}

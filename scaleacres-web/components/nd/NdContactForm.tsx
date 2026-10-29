@@ -19,6 +19,27 @@ type Status = { state: "idle" } | { state: "submitting" } | { state: "success"; 
 export function NdContactForm() {
   const [status, setStatus] = useState<Status>({ state: "idle" });
   const [startedAt, setStartedAt] = useState<number>(() => Date.now());
+  // live, per-field validation: a field is checked when it is left, then on every change
+  const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
+  const [msgLen, setMsgLen] = useState(0);
+  const checkField = (name: string, value: string | boolean, force = false) => {
+    if (!(name in clientSchema.shape)) return;
+    if (!force && !(name in fieldErrors)) return;
+    const shape = clientSchema.shape[name as keyof typeof clientSchema.shape];
+    const r = shape.safeParse(value);
+    setFieldErrors((f) => ({ ...f, [name]: r.success ? undefined : r.error.issues[0]?.message }));
+  };
+  const onBlur = (e: React.FocusEvent<HTMLFormElement>) => {
+    const t = e.target as unknown as HTMLInputElement;
+    if (!t.name || t.name === "website") return;
+    if (t.type === "checkbox" || (t.value === "" && !(t.name in fieldErrors))) return;
+    checkField(t.name, t.value, true);
+  };
+  const onChange = (e: React.FormEvent<HTMLFormElement>) => {
+    const t = e.target as unknown as HTMLInputElement;
+    if (t.name === "message") setMsgLen(t.value.trim().length);
+    if (t.name) checkField(t.name, t.type === "checkbox" ? t.checked : t.value);
+  };
   const liveRef = useRef<HTMLParagraphElement>(null);
   const id = useId();
 
@@ -34,7 +55,8 @@ export function NdContactForm() {
         const key = issue.path[0] as keyof ContactFieldErrors | undefined;
         if (key && !fields[key]) fields[key] = issue.message;
       }
-      setStatus({ state: "error", message: "Please check the highlighted fields.", fields });
+      setFieldErrors(fields);
+      setStatus({ state: "error", message: `Please check the ${Object.keys(fields).length === 1 ? "highlighted field" : `${Object.keys(fields).length} highlighted fields`}.`, fields });
       const first = Object.keys(fields)[0];
       if (first) form.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
       return;
@@ -73,12 +95,13 @@ export function NdContactForm() {
     );
   }
 
-  const errors = status.state === "error" ? status.fields ?? {} : {};
+  const errors: ContactFieldErrors = { ...(status.state === "error" ? status.fields ?? {} : {}), ...fieldErrors };
+  for (const k of Object.keys(fieldErrors) as (keyof ContactFieldErrors)[]) if (fieldErrors[k] === undefined) delete errors[k];
   return (
-    <form onSubmit={onSubmit} noValidate aria-describedby={`${id}-privacy`} className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+    <form onSubmit={onSubmit} onBlur={onBlur} onChange={onChange} noValidate aria-describedby={`${id}-privacy`} className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
       <Field id={`${id}-name`} name="fullName" label="Full name" autoComplete="name" error={errors.fullName} />
       <Field id={`${id}-email`} name="email" type="email" label="Work email" autoComplete="email" error={errors.email} />
-      <Field id={`${id}-phone`} name="phone" type="tel" label="Phone" autoComplete="tel" error={errors.phone} />
+      <Field id={`${id}-phone`} name="phone" type="tel" label="Phone" autoComplete="tel" inputMode="tel" placeholder="+91" error={errors.phone} />
       <Field id={`${id}-company`} name="company" label="Company" autoComplete="organization" error={errors.company} />
       <div className="sm:col-span-2">
         <label htmlFor={`${id}-service`} className="nd-label nd-muted block">Service <span aria-hidden="true" className="text-[color:var(--sky)]">*</span></label>
@@ -89,12 +112,15 @@ export function NdContactForm() {
           </select>
           <svg aria-hidden="true" viewBox="0 0 16 16" className="pointer-events-none absolute bottom-4 right-1 h-3.5 w-3.5 text-white/60" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="m3 6 5 5 5-5" /></svg>
         </div>
-        {errors.service ? <p id={`${id}-service-err`} className="mt-2 text-[0.9375rem] text-[color:var(--sky)]">{errors.service}</p> : null}
+        {errors.service ? <p id={`${id}-service-err`} className="nd-err mt-2">{errors.service}</p> : null}
       </div>
       <div className="sm:col-span-2">
         <label htmlFor={`${id}-message`} className="nd-label nd-muted block">Project details <span aria-hidden="true" className="text-[color:var(--sky)]">*</span></label>
         <textarea id={`${id}-message`} name="message" rows={4} required aria-invalid={!!errors.message} aria-describedby={errors.message ? `${id}-message-err` : undefined} className="nd-input resize-y" />
-        {errors.message ? <p id={`${id}-message-err`} className="mt-2 text-[0.9375rem] text-[color:var(--sky)]">{errors.message}</p> : null}
+        <div className="mt-2 flex items-start justify-between gap-4">
+          {errors.message ? <p id={`${id}-message-err`} className="nd-err">{errors.message}</p> : <span />}
+          <span className={`shrink-0 text-[0.875rem] tabular-nums ${msgLen && msgLen < 20 ? "text-white/80" : "text-white/45"}`} aria-hidden="true">{msgLen < 20 ? `${msgLen}/20 min` : `${msgLen} characters`}</span>
+        </div>
       </div>
       {/* Honeypot: hidden from people, tempting for bots. */}
       <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
@@ -103,16 +129,16 @@ export function NdContactForm() {
       </div>
       <div className="sm:col-span-2">
         <label className="flex items-start gap-3 text-[0.9375rem] text-white/70">
-          <input type="checkbox" name="consent" required aria-invalid={!!errors.consent} className="mt-1 h-4 w-4 shrink-0 accent-[#1d4ed8]" />
+          <input type="checkbox" name="consent" required aria-invalid={!!errors.consent} className="mt-1 h-5 w-5 shrink-0 accent-[#1d4ed8]" />
           <span id={`${id}-privacy`}>I agree to ScaleAcres storing my details to respond to this enquiry. See our <Link href="/privacy-policy/" className="underline underline-offset-2 hover:text-white">Privacy Policy</Link>.</span>
         </label>
-        {errors.consent ? <p className="mt-2 text-[0.9375rem] text-[color:var(--sky)]">{errors.consent}</p> : null}
+        {errors.consent ? <p className="nd-err mt-2">{errors.consent}</p> : null}
       </div>
       <div className="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center">
         <button type="submit" disabled={status.state === "submitting"} className="nd-btn nd-btn--royal w-full sm:w-auto sm:min-w-[16rem] disabled:cursor-wait disabled:opacity-70">
           {status.state === "submitting" ? "Sending…" : "Send enquiry"} <ArrowUR />
         </button>
-        <p ref={liveRef} tabIndex={-1} role="status" aria-live="polite" className={`text-[0.9375rem] outline-none ${status.state === "error" ? "text-[color:var(--sky)]" : "nd-muted"}`}>
+        <p ref={liveRef} tabIndex={-1} role="status" aria-live="polite" className={`text-[0.9375rem] outline-none ${status.state === "error" ? "nd-err" : "nd-muted"}`}>
           {status.state === "error" ? status.message : "All fields are required."}
         </p>
       </div>
@@ -120,12 +146,12 @@ export function NdContactForm() {
   );
 }
 
-function Field({ id, name, label, type = "text", autoComplete, error }: { id: string; name: string; label: string; type?: string; autoComplete?: string; error?: string }) {
+function Field({ id, name, label, type = "text", autoComplete, inputMode, placeholder, error }: { id: string; name: string; label: string; type?: string; autoComplete?: string; inputMode?: "tel" | "email"; placeholder?: string; error?: string }) {
   return (
     <div>
       <label htmlFor={id} className="nd-label nd-muted block">{label} <span aria-hidden="true" className="text-[color:var(--sky)]">*</span></label>
-      <input id={id} name={name} type={type} autoComplete={autoComplete} required aria-invalid={!!error} aria-describedby={error ? `${id}-err` : undefined} className="nd-input" />
-      {error ? <p id={`${id}-err`} className="mt-2 text-[0.9375rem] text-[color:var(--sky)]">{error}</p> : null}
+      <input id={id} name={name} type={type} autoComplete={autoComplete} inputMode={inputMode} placeholder={placeholder} required aria-invalid={!!error} aria-describedby={error ? `${id}-err` : undefined} className="nd-input" />
+      {error ? <p id={`${id}-err`} className="nd-err mt-2">{error}</p> : null}
     </div>
   );
 }

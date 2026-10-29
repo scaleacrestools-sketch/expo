@@ -1,19 +1,26 @@
 import type { Metadata } from "next";
-import { caseStudyProjects, getProject } from "@/content/projects";
-import { CaseStudyDetail } from "@/components/site/pages/Own";
+import { notFound } from "next/navigation";
+import { getLegacyPage, legacyMetadata } from "@/lib/legacy";
+import { CASES, CaseDetailPage } from "@/components/site/pages/Case";
 
 type Params = { params: Promise<{ slug: string }> };
 
+// Short case-study URLs show the full live case study; the canonical stays on the live address.
+// (Prominent Realty and Hometrust Realty had no case-study content or visuals, so they are not built.)
 export function generateStaticParams() {
-  return caseStudyProjects.map((p) => ({ slug: p.slug }));
+  return CASES.map((c) => ({ slug: c.slug }));
 }
+export const dynamicParams = false;
+
+const pageFor = (slug: string) => { const c = CASES.find((x) => x.slug === slug); return c ? getLegacyPage(c.path) : undefined; };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const p = getProject((await params).slug);
-  if (!p) return {};
-  return { title: `${p.title} — ${p.category}`, description: p.summary, alternates: { canonical: `/case-studies/${p.slug}` } };
+  const page = pageFor((await params).slug);
+  return page ? legacyMetadata(page) : {};
 }
 
-export default async function ProjectPage({ params }: Params) {
-  return <CaseStudyDetail slug={(await params).slug} />;
+export default async function Page({ params }: Params) {
+  const page = pageFor((await params).slug);
+  if (!page) notFound();
+  return <div className="nd-int"><CaseDetailPage page={page} /></div>;
 }
