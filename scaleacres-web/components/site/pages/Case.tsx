@@ -84,7 +84,7 @@ export function CaseDetailPage({ page }: { page: LegacyPage }) {
             <div data-nd="up"><Tag>Case study</Tag></div>
             <div data-nd="up"><Crumbs items={[{ label: "Home", href: "/" }, { label: "Case studies", href: "/case-studies/" }, { label: meta?.client ?? title }]} /></div>
           </div>
-          <div className="nd-grid mt-[clamp(1.75rem,4vw,3rem)] items-end gap-y-10">
+          <div className="nd-grid mt-[clamp(1.75rem,4vw,3rem)] items-center gap-y-10">
             <div className="nd-cell lg:col-span-2">
               {logo ? <div data-nd="up" className="mb-8 inline-flex h-20 items-center rounded-[12px] bg-white/[0.06] px-5 ring-1 ring-white/10"><Pict img={logo} eager sizes="260px" className="h-14 w-auto max-w-[15rem] object-contain" /></div> : null}
               {h1 && page.sections[0].blocks.includes(h1)
@@ -97,6 +97,8 @@ export function CaseDetailPage({ page }: { page: LegacyPage }) {
             </div>
             {meta ? (
               <div className="nd-cell" data-nd="up" style={d(160)}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={media(meta.card)} alt={`${meta.client}: published campaign results`} width={536} height={536} className="mb-8 aspect-square w-full max-w-[16rem] rounded-[14px] object-cover shadow-[0_30px_60px_-30px_rgb(0_0_0/0.8)] ring-1 ring-white/10" />
                 {stats.length === 1 ? (
                   <div className="mb-8">
                     <p className="text-[clamp(3.5rem,7vw,6.5rem)] font-semibold leading-[0.9] tracking-[-0.05em] text-[color:var(--sky)]">{stats[0].value}</p>

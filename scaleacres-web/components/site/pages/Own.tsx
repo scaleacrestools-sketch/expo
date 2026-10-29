@@ -5,8 +5,9 @@ import { services, getService, serviceHref } from "@/content/services";
 import { ndServiceCards } from "@/content/nd";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { Btn, ClosingCta, Head, Hero, Section } from "@/components/site/Kit";
-import { ServiceVisual, WorkStrip } from "@/components/site/Showcase";
+import { WorkStrip } from "@/components/site/Showcase";
 import { StudioLibrary } from "@/components/site/Studio";
+import { ServiceArt, StudioArt, BlogArt } from "@/components/site/heroes";
 import { PostTile, type PostCard } from "@/components/site/pages/Blog";
 import { ArrowUR, Rules, Tag } from "@/components/nd/ui";
 import { NdServices } from "@/components/nd/NdServices";
@@ -28,6 +29,7 @@ export function CreativeStudioPage() {
         crumbs={[{ label: "Home", href: "/" }, { label: "Creative Studio" }]}
         lead={<p>Ideas don&apos;t have to stay on paper. We turn concepts into compelling visual stories through creative production, AI-powered content and videos that get noticed.</p>}
         actions={<><Btn href="#ad-videos" variant="white">Ad videos</Btn><Btn href="#social-media-videos" variant="white">Social videos</Btn><Btn href="#ai-videos" variant="white">AI videos</Btn></>}
+        art={<StudioArt />}
       />
       <StudioLibrary />
       <WorkStrip title="Creative that sells projects." />
@@ -48,6 +50,7 @@ export function InsightsPage({ posts }: { posts: PostCard[] }) {
         crumbs={[{ label: "Home", href: "/" }, { label: "Insights" }]}
         lead={<p>Our latest articles live on the ScaleAcres blog, which continues at its existing address so nothing you&apos;ve bookmarked or found in search goes missing.</p>}
         actions={<Btn href="/blog/" variant="white">Read the blog</Btn>}
+        art={<BlogArt posts={posts} />}
       />
       <Section tone="white" label="Latest articles">
         <Head tag="Latest" title="From the blog." accent={["blog."]} />
@@ -78,7 +81,7 @@ export function ServiceDetail({ slug }: { slug: string }) {
         crumbs={[{ label: "Home", href: "/" }, { label: "Services", href: "/our-services/" }, { label: s.title }]}
         lead={<p>{s.description}</p>}
         actions={<><Btn href="/contact-us/">{s.ctaLabel.replace(/^Explore/, "Talk about")}</Btn><Btn href="#included" variant="white">What&apos;s included</Btn></>}
-        media={<ServiceVisual slug={s.slug} />}
+        art={<ServiceArt slug={s.slug} />}
       />
       <Section tone="white" id="included" label="What's included">
         <Head tag="What's included" title="Built around your goals." accent={["goals."]} intro={card ? <p>{card.description}</p> : undefined} />

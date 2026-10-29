@@ -44,8 +44,10 @@ export function VideoTiles({ clips, dark = false, cols = 4 }: { clips: Clip[]; d
   );
 }
 
-function ClipDialog({ clip, onClose }: { clip: Clip | null; onClose: () => void }) {
+export function ClipDialog({ clip, onClose }: { clip: Clip | null; onClose: () => void }) {
   const d = useRef<HTMLDialogElement>(null);
+  const [loadedId, setLoadedId] = useState<string | null>(null);
+  const loaded = !!clip && loadedId === clip.id;
   useEffect(() => {
     const el = d.current;
     if (!el) return;
@@ -62,8 +64,14 @@ function ClipDialog({ clip, onClose }: { clip: Clip | null; onClose: () => void 
     <dialog ref={d} aria-label={clip?.title ?? "Video"} onClick={(e) => { if (e.target === d.current) onClose(); }} className="m-auto max-h-none max-w-none overflow-visible bg-transparent p-0 backdrop:bg-[rgb(11_13_13/0.9)] backdrop:backdrop-blur-sm">
       {clip ? (
         <div className="relative">
-          <div className={`overflow-hidden rounded-[8px] bg-black ${clip.ratio === "1/1" ? "aspect-square h-[min(80svh,44rem)] max-w-[92vw]" : "aspect-[9/16] h-[min(82svh,48rem)]"}`}>
-            <iframe src={src(clip)} title={clip.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen className="h-full w-full" />
+          <div className={`relative overflow-hidden rounded-[10px] bg-black bg-cover bg-center ${clip.ratio === "1/1" ? "aspect-square h-[min(76svh,42rem)] max-w-[92vw]" : "aspect-[9/16] h-[min(78svh,46rem)] max-w-[92vw]"}`} style={{ backgroundImage: `url(${clip.poster})` }}>
+            {/* the poster stays visible, with a spinner, until the player has loaded */}
+            {!loaded ? <span aria-hidden="true" className="absolute inset-0 grid place-items-center bg-[rgb(11_13_13/0.45)]"><span className="h-10 w-10 animate-spin rounded-full border-2 border-white/30 border-t-white" /></span> : null}
+            <iframe src={src(clip)} title={clip.title} onLoad={() => setLoadedId(clip.id)} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen className={`relative h-full w-full transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`} />
+          </div>
+          <div className="mt-3 flex items-center justify-between gap-4 text-[0.9375rem] text-white/75">
+            <span className="truncate">{clip.title}</span>
+            <a href={clip.host === "youtube" ? `https://www.youtube.com/shorts/${clip.id}` : `https://vimeo.com/${clip.id}${clip.hash ? `/${clip.hash}` : ""}`} target="_blank" rel="noopener noreferrer" className="shrink-0 underline-offset-4 hover:text-white hover:underline">Watch on {clip.host === "youtube" ? "YouTube" : "Vimeo"} ↗</a>
           </div>
           <button type="button" onClick={onClose} className="nd-btn nd-btn--white absolute -top-14 right-0 min-h-11">Close</button>
         </div>

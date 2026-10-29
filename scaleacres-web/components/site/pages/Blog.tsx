@@ -5,6 +5,7 @@ import { Flow, FormPanel } from "@/components/site/Blocks";
 import { Btn, ClosingCta, Crumbs, Hero, Section } from "@/components/site/Kit";
 import { ArrowUR, Rules, Tag, Words } from "@/components/nd/ui";
 import { crumbsFor } from "@/components/site/SitePage";
+import { BlogArt } from "@/components/site/heroes";
 
 /**
  * Blog: an editorial index, topic/author/date archives and the article template. Every card is
@@ -170,6 +171,7 @@ export function ArchivePage({ page }: { page: LegacyPage }) {
         accent={isIndex ? ["Blog"] : []}
         crumbs={crumbsFor(page)}
         lead={<p>{isIndex ? "Notes from the studio on real estate branding, websites, search and performance marketing." : `${posts.length} article${posts.length === 1 ? "" : "s"}.`}</p>}
+        art={<BlogArt posts={posts.length ? posts : latestPosts(3)} />}
       />
       <Section tone="white" pad="tight" label="Articles">
         <div className="nd-cell"><Topics active={page.path} /></div>

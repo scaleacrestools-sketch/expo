@@ -1,10 +1,9 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { getLegacyPage, media, plain, type Block, type LegacyPage, type LegacySection } from "@/lib/legacy";
-import { ndAbout } from "@/content/nd";
 import { site } from "@/content/site";
 import { liveCountries, liveFooter } from "@/content/legacy-nav";
-import { Band, Cards, Flow, FormPanel, Gallery, Html, Pict, findCards, sectionStats, splitHead, blockText } from "@/components/site/Blocks";
+import { Band, Flow, FormPanel, Gallery, Html, Pict, findCards, sectionStats, splitHead, blockText } from "@/components/site/Blocks";
 import { Btn, ClosingCta, Head, Hero, Section, StatRow } from "@/components/site/Kit";
 import { hasFaq, type Prepared } from "@/components/site/compose";
 import { Sections, FaqBand, crumbsFor } from "@/components/site/SitePage";
@@ -13,38 +12,20 @@ import { WorkStrip } from "@/components/site/Showcase";
 import { FoundersBand, StoryBand, ExpertiseBand, PhotoGrid } from "@/components/site/pages/Parts";
 import { VideoTiles, MapEmbed } from "@/components/site/Media";
 import { CASES } from "@/components/site/pages/Case";
+import { AboutArt, TeamArt, CareersArt, ServicesArt, WorkArt, CaseStudiesArt, ContactArt } from "@/components/site/heroes";
+
+/** "FROM BUILDERS TO BROKERS" → "From builders to brokers" (display only; the words are unchanged). */
+const sentenceCase = (t: string) => (t === t.toUpperCase() ? t.charAt(0) + t.slice(1).toLowerCase() : t);
 import { NdShowcase } from "@/components/nd/NdShowcase";
 import { NdServices } from "@/components/nd/NdServices";
 import { NdBrands } from "@/components/nd/NdBrands";
 import { NdTestimonials } from "@/components/nd/NdTestimonials";
 import { NdWork } from "@/components/nd/NdWork";
-import { ArrowUR, Pic, Tag, Words } from "@/components/nd/ui";
+import { ArrowUR, Pic, Rules, Tag, Words } from "@/components/nd/ui";
 
 type I = Extract<Block, { type: "image" }>;
 const d = (n: number) => ({ "--d": n }) as CSSProperties;
 const H1 = ({ text }: { text: string }) => <h1 className="sr-only">{text}</h1>;
-
-/** Studio photograph with the founders inset (genuine ScaleAcres photos). */
-function StudioMedia() {
-  return (
-    <div className="nd-grid">
-      <div className="nd-cell lg:col-span-3">
-        <div className="relative">
-          <div data-nd="clip" className="nd-zoom relative aspect-[16/9] overflow-hidden rounded-[10px] md:aspect-[21/9]">
-            <div className="nd-settle absolute inset-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={ndAbout.studio.team.src} srcSet={ndAbout.studio.team.srcSet} sizes="94vw" alt={ndAbout.studio.team.alt} width={ndAbout.studio.team.w} height={ndAbout.studio.team.h} className="absolute inset-0 h-full w-full object-cover object-[50%_35%]" />
-            </div>
-          </div>
-          <div data-nd="clip" style={d(220)} className="absolute -bottom-8 right-[4%] w-[30%] max-w-[22rem] overflow-hidden rounded-[8px] border-4 border-[color:var(--ink)] shadow-[var(--sh-3)] max-sm:hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={ndAbout.studio.founders.src} srcSet={ndAbout.studio.founders.srcSet} sizes="22rem" alt={ndAbout.studio.founders.alt} width={ndAbout.studio.founders.w} height={ndAbout.studio.founders.h} className="block aspect-[15/16] w-full object-cover" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /* ================================================================== About */
 
@@ -72,7 +53,7 @@ export function AboutPage({ page, p }: { page: LegacyPage; p: Prepared }) {
         crumbs={crumbsFor(page)}
         lead={whyText && "html" in whyText ? <Html as="p" html={whyText.html} /> : undefined}
         actions={<><Btn href="/our-team/" variant="white">Meet the team</Btn><Btn href="/contact-us/">Make an enquiry</Btn></>}
-        media={<StudioMedia />}
+        art={<AboutArt />}
         maxChars={20}
       />
       {stats.length ? (
@@ -112,7 +93,6 @@ export function TeamPage({ page, p }: { page: LegacyPage; p: Prepared }) {
   const founders = intro.find(isFounders);
   const culture = intro.find((s) => s.blocks.some((b) => b.type === "heading" && /vibrant work culture/i.test(blockText(b))));
   const lifeCards = life ? findCards(life.blocks.slice(1).filter((b, i) => !(i === 0 && b.type === "paragraph"))) : null;
-  const lifeImgs = life ? life.blocks.filter((b): b is I => b.type === "image") : [];
   const cultureImgs = culture ? culture.blocks.filter((b): b is I => b.type === "image" && (b.width ?? 0) >= 800) : [];
   const cultureText = culture?.blocks.filter((b) => b.type === "paragraph" && plain(b.html).length > 40) ?? [];
   const weText = we?.blocks.filter((b) => b.type === "paragraph") ?? [];
@@ -131,7 +111,7 @@ export function TeamPage({ page, p }: { page: LegacyPage; p: Prepared }) {
         crumbs={crumbsFor(page)}
         lead="Strategists, designers, developers, performance marketers, video editors and writers, working as one team for real estate."
         actions={<><Btn href="#team" variant="white">Meet the team</Btn><Btn href="/careers/">Join the team</Btn></>}
-        media={lifeImgs.length >= 3 ? <PhotoGrid images={[lifeImgs[1], lifeImgs[0], lifeImgs[2]]} cols="grid-cols-3" ratio="aspect-[4/3]" sizes="31vw" /> : <StudioMedia />}
+        art={<TeamArt />}
       />
       {we ? (
         <Section tone="white" label="We are ScaleAcres">
@@ -214,32 +194,37 @@ export function ContactPage({ p }: { page: LegacyPage; p: Prepared }) {
   return (
     <>
       <section className="nd-dark relative overflow-hidden" aria-label="Contact">
-        <div className="nd-wrap relative pb-[clamp(3rem,6vw,5rem)] pt-[clamp(7.5rem,13vw,11rem)]">
+        <Rules />
+        <div aria-hidden="true" className="pointer-events-none absolute -right-[10%] top-[10%] h-[70%] w-[60%] rounded-full bg-[radial-gradient(closest-side,rgb(29_78_216/0.22),transparent)] blur-2xl" />
+        <div className="nd-wrap relative pb-[clamp(3rem,5vw,4.5rem)] pt-[clamp(6.5rem,10vw,8.5rem)]">
           <div className="nd-cell flex flex-wrap items-center justify-between gap-4"><div data-nd="up"><Tag>Contact us</Tag></div></div>
-          <div className="nd-cell mt-8">
-            <h1 className="sr-only">{p.h1}</h1>
-            <Words as="p" lines={["Let's talk."]} accent={["talk."]} accentClass="text-[color:var(--sky)]" className="text-[clamp(3.5rem,13vw,15rem)] font-semibold leading-[0.85] tracking-[-0.06em]" />
-          </div>
-          <div className="nd-grid mt-[clamp(2.5rem,6vw,5rem)] gap-y-10">
-            <div className="nd-cell" data-nd="up">
-              <p className="nd-label text-white/55">For sales / client enquiries</p>
-              {site.phones.slice(0, 2).map((ph) => <a key={ph.number} href={ph.href} className="mt-2 block text-[clamp(1.5rem,2.2vw,2.25rem)] font-medium tracking-[-0.03em] hover:text-[color:var(--sky)]">{ph.number}</a>)}
-              <p className="nd-label mt-7 text-white/55">Email address</p>
-              <a href={`mailto:${site.email}`} className="mt-2 inline-block text-[1.25rem] font-medium hover:text-[color:var(--sky)]">{site.email}</a>
+          <div className="mt-[clamp(1.75rem,3.5vw,3rem)] grid items-center gap-y-12 lg:grid-cols-12 lg:gap-x-[clamp(1.5rem,3vw,3.5rem)]">
+            <div className="px-[clamp(0.75rem,1.2vw,1.25rem)] lg:col-span-6">
+              <h1 className="sr-only">{p.h1}</h1>
+              <Words as="p" lines={["Let's talk."]} accent={["talk."]} accentClass="text-[color:var(--sky)]" className="text-[clamp(3.5rem,9vw,9.5rem)] font-semibold leading-[0.85] tracking-[-0.06em]" />
+              <div className="mt-[clamp(2rem,4vw,3rem)] grid gap-x-8 gap-y-8 sm:grid-cols-2">
+                <div data-nd="up">
+                  <p className="nd-label text-white/60">For sales / client enquiries</p>
+                  {site.phones.slice(0, 2).map((ph) => <a key={ph.number} href={ph.href} className="mt-2 block text-[clamp(1.4rem,2vw,1.9rem)] font-medium tracking-[-0.03em] hover:text-[color:var(--sky)]">{ph.number}</a>)}
+                  <p className="nd-label mt-6 text-white/60">Email</p>
+                  <a href={`mailto:${site.email}`} className="mt-2 inline-block text-[1.1875rem] font-medium hover:text-[color:var(--sky)]">{site.email}</a>
+                </div>
+                <div data-nd="up" style={d(80)}>
+                  <p className="nd-label text-white/60">Studio</p>
+                  <address className="mt-2 text-[1.0625rem] not-italic leading-[1.55] text-white/85">{site.address.lines.map((l) => <span key={l} className="block">{l}</span>)}</address>
+                  {hours && "html" in hours ? <Html as="p" html={hours.html} className="mt-4 text-[0.9875rem] leading-[1.55] text-white/70" /> : null}
+                  <p className="nd-label mt-6 text-white/60">Careers</p>
+                  <a href={site.phones[2].href} className="mt-2 block text-[1.25rem] font-medium tracking-[-0.02em] hover:text-[color:var(--sky)]">{site.phones[2].number}</a>
+                </div>
+              </div>
+              <div data-nd="up" style={d(160)} className="mt-8 flex flex-wrap items-center gap-3">
+                <Btn href="#contact-form">Send an enquiry</Btn>
+                <Btn href="#map" variant="white">View on map</Btn>
+                <ul className="ml-1 flex flex-wrap gap-4" role="list">{site.social.map((so) => <li key={so.label}><a href={so.href} target="_blank" rel="noopener noreferrer" className="nd-link text-[1rem] font-medium">{so.label}</a></li>)}</ul>
+              </div>
+              <p className="nd-label mt-6 text-white/50" data-nd="up" style={d(200)}>Offices · {site.offices.join(" · ")}</p>
             </div>
-            <div className="nd-cell" data-nd="up" style={d(80)}>
-              <p className="nd-label text-white/55">Studio</p>
-              <address className="mt-3 text-[1.0625rem] not-italic leading-[1.6] text-white/85">{site.address.lines.map((l) => <span key={l} className="block">{l}</span>)}</address>
-              <a href="#map" className="nd-link nd-label mt-3 text-[color:var(--sky)]">View on map <ArrowUR className="h-3 w-3" /></a>
-              {hours && "html" in hours ? <Html as="p" html={hours.html} className="mt-7 text-[1rem] leading-[1.6] text-white/66" /> : null}
-            </div>
-            <div className="nd-cell" data-nd="up" style={d(160)}>
-              <p className="nd-label text-white/55">Careers</p>
-              <a href={site.phones[2].href} className="mt-2 block text-[1.5rem] font-medium tracking-[-0.03em] hover:text-[color:var(--sky)]">{site.phones[2].number}</a>
-              <p className="nd-label mt-7 text-white/55">Offices</p>
-              <p className="mt-2 text-[1.0625rem] text-white/85">{site.offices.join(" · ")}</p>
-              <ul className="mt-6 flex flex-wrap gap-5" role="list">{site.social.map((s) => <li key={s.label}><a href={s.href} target="_blank" rel="noopener noreferrer" className="nd-link text-[1rem] font-medium">{s.label}</a></li>)}</ul>
-            </div>
+            <div className="px-[clamp(0.75rem,1.2vw,1.25rem)] lg:col-span-6"><ContactArt /></div>
           </div>
         </div>
       </section>
@@ -285,6 +270,7 @@ export function ServicesPage({ page, p }: { page: LegacyPage; p: Prepared }) {
         crumbs={crumbsFor(page)}
         lead={p.leadHtml ? <Html as="p" html={p.leadHtml} /> : "Positioning and identity, websites, media and technology, planned and delivered by one team."}
         actions={<><Btn href="#services" variant="white">Explore services</Btn><Btn href="/contact-us/">Book a call</Btn></>}
+        art={<ServicesArt />}
       />
       <NdServices />
       {solutions ? <SolutionRows s={solutions} /> : null}
@@ -406,9 +392,12 @@ export function WorkPage({ page, p }: { page: LegacyPage; p: Prepared }) {
     <>
       <Hero
         tag={p.lead ? "Driving real results" : "Our work"}
-        title={p.h1}
+        title={sentenceCase(p.h1)}
+        accent={["itself"]}
         crumbs={crumbsFor(page)}
+        lead="Launches, identities, websites, campaigns and films for developers and growth brands: genuine ScaleAcres work."
         actions={<><Btn href="#websites" variant="white">Websites</Btn><Btn href="#videos-grid" variant="white">Videos</Btn><Btn href="/contact-us/">Start a project</Btn></>}
+        art={<WorkArt />}
       />
       <NdShowcase />
       <NdWork />
@@ -418,7 +407,7 @@ export function WorkPage({ page, p }: { page: LegacyPage; p: Prepared }) {
           <Head tag="Website design" title={webS ? blockText(splitHead(webS.blocks).title ?? webS.blocks[0]) : "Website design"} intro={(() => { const x = webS?.blocks.find((b) => b.type === "paragraph"); return x && "html" in x ? <Html as="span" html={x.html} /> : undefined; })()} />
           <ul role="list" className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-x-[clamp(1rem,2vw,1.75rem)] gap-y-12 px-[clamp(0.75rem,1.2vw,1.25rem)] sm:grid-cols-2 lg:grid-cols-3">
             {sites.map((s, i) => (
-              <li key={i} className="group">
+              <li key={i} className="group min-w-0">
                 <div data-nd="clip" style={d((i % 3) * 70)} className="overflow-hidden rounded-[8px] bg-white shadow-[var(--sh-1)] ring-1 ring-[color:var(--line-l)] transition-shadow duration-500 group-hover:shadow-[var(--sh-3)]">
                   <div className="flex h-8 items-center gap-1.5 border-b border-[color:var(--line-l)] bg-[#f4f5f7] px-3">{[0, 1, 2].map((k) => <span key={k} className="h-2 w-2 rounded-full bg-[#d1d5dc]" />)}</div>
                   <div className="relative aspect-[16/11] overflow-hidden">
@@ -481,7 +470,8 @@ export function CaseStudiesPage({ page, p }: { page: LegacyPage; p: Prepared }) 
         accent={["Studies"]}
         crumbs={crumbsFor(page)}
         lead={intro && "html" in intro ? <Html as="p" html={intro.html} /> : undefined}
-        actions={<Btn href="/contact-us/">Start a project</Btn>}
+        actions={<><Btn href="/yugen-case-study/" variant="white">Yugen Infra</Btn><Btn href="/blog/casestudy/our-case-one-goa/" variant="white">One Goa</Btn><Btn href="/contact-us/">Start a project</Btn></>}
+        art={<CaseStudiesArt />}
       />
       <Section tone="white" label="Case studies">
         <Head tag="Delivering success" title="Delivering success, one project at a time." accent={["success,"]} intro="Full write-ups of two Goa launches: the brief, the strategy, the ad films and the results, as published by ScaleAcres." />
@@ -517,7 +507,6 @@ export function CaseStudiesPage({ page, p }: { page: LegacyPage; p: Prepared }) 
 
 export function CareersPage({ page, p }: { page: LegacyPage; p: Prepared }) {
   const team = getLegacyPage("/our-team/");
-  const culture = (team?.sections ?? []).flatMap((s) => s.blocks).filter((b): b is I => b.type === "image" && /^(01|03|04|05|06|02-1|04-1|01-1|2|4|5|6)\.webp$/.test(b.src.split("/").pop() ?? ""));
   const lifeCards = team ? findCards(team.sections.find((s) => s.blocks.some((b) => b.type === "heading" && /life @/i.test(blockText(b))))?.blocks.slice(2) ?? []) : null;
   const formS = p.sections.find((s) => s.blocks.some((b) => b.type === "form"));
   const formHead = formS ? splitHead(formS.blocks) : null;
@@ -531,11 +520,7 @@ export function CareersPage({ page, p }: { page: LegacyPage; p: Prepared }) {
         crumbs={crumbsFor(page)}
         lead={p.leadHtml ? <Html as="p" html={p.leadHtml} /> : undefined}
         actions={<><Btn href="#apply">Apply now</Btn><a href={site.phones[2].href} className="nd-btn nd-btn--white">Call {site.phones[2].number} <ArrowUR /></a></>}
-        media={culture.length >= 4 ? (
-          <ul role="list" className="grid grid-cols-2 gap-[clamp(0.5rem,1vw,0.9rem)] lg:grid-cols-4">
-            {culture.slice(0, 4).map((c, i) => <li key={i} data-nd="clip" style={d(i * 80)} className="nd-zoom overflow-hidden rounded-[10px]"><div className="nd-settle"><Pict img={c} sizes="25vw" className="block aspect-[4/3] h-full w-full object-cover" /></div></li>)}
-          </ul>
-        ) : <StudioMedia />}
+        art={<CareersArt />}
       />
       {lifeCards ? (
         <Section tone="white" label="Life at ScaleAcres">

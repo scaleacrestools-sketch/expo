@@ -3,14 +3,14 @@
 import { useState, type CSSProperties } from "react";
 import { ndVideoTabs } from "@/content/nd";
 import { Pic, Tag } from "@/components/nd/ui";
-import { VideoDialog } from "@/components/nd/NdVideos";
+import { ClipDialog, type Clip } from "@/components/site/Media";
 
 /**
  * Creative studio library: every ScaleAcres short in its category (ad, social, AI), as the
  * homepage video cards. Nothing autoplays; a video opens in the homepage dialog when chosen.
  */
 export function StudioLibrary() {
-  const [playing, setPlaying] = useState<string | null>(null);
+  const [playing, setPlaying] = useState<Clip | null>(null);
   return (
     <>
       {ndVideoTabs.map((t, ti) => (
@@ -31,7 +31,7 @@ export function StudioLibrary() {
                 <li key={v.id} data-nd="clip" style={{ "--d": (k % 4) * 60 } as CSSProperties}>
                   <button
                     type="button"
-                    onClick={() => setPlaying(v.id)}
+                    onClick={() => setPlaying({ host: "youtube", id: v.id, poster: v.poster.src, title: `${t.label.replace(/s$/, "")} ${k + 1} · ScaleAcres`, ratio: "9/16" })}
                     className="group relative block aspect-[9/16] w-full overflow-hidden rounded-[8px] bg-[color:var(--charcoal)] text-left ring-1 ring-black/5"
                     aria-label={`Play ${t.ai ? "AI video" : t.label.replace(/s$/, "")} ${k + 1}`}
                   >
@@ -49,7 +49,7 @@ export function StudioLibrary() {
           </div>
         </section>
       ))}
-      <VideoDialog id={playing} onClose={() => setPlaying(null)} />
+      <ClipDialog clip={playing} onClose={() => setPlaying(null)} />
     </>
   );
 }

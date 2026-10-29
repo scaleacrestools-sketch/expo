@@ -23,8 +23,9 @@ const isImg = (b: Block): b is I => b.type === "image";
 const isP = (b: Block) => b.type === "paragraph" && !asButton(b);
 const text = (b: Block) => ("html" in b ? plain(b.html) : "");
 
+// spaces around <br> keep words apart where a layout hides the live site's manual line breaks
 export const Html = ({ as = "div", html, className }: { as?: string; html: string; className?: string }) =>
-  createElement(as, { className, dangerouslySetInnerHTML: { __html: mediaHtml(html) } });
+  createElement(as, { className, dangerouslySetInnerHTML: { __html: mediaHtml(html).replace(/<br\s*\/?>/gi, " <br> ") } });
 
 /* ------------------------------------------------------------------ images */
 

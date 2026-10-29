@@ -77,6 +77,7 @@ export function Hero({
   tone = "dark",
   maxChars,
   as = "h1",
+  art,
 }: {
   tag: string;
   title: string;
@@ -89,8 +90,11 @@ export function Hero({
   tone?: "dark" | "white";
   maxChars?: number;
   as?: "h1" | "p";
+  /** Page-specific visual: the hero splits into copy (left) and this composition (right). */
+  art?: ReactNode;
 }) {
   const dark = tone === "dark";
+  if (art) return <SplitHero {...{ tag, title, accent, lead, crumbs, actions, art, dark, as, maxChars }} />;
   const size = displaySize(title);
   const mc = maxChars ?? (title.length <= 18 ? 12 : title.length <= 34 ? 18 : title.length <= 64 ? 26 : 34);
   return (
@@ -109,11 +113,43 @@ export function Hero({
         </div>
         {lead || actions ? (
           <div className="nd-grid mt-[clamp(1.75rem,4vw,3rem)] gap-y-6">
-            {lead ? <div className={`nd-cell nd-lead max-w-[40rem] lg:col-span-2 ${dark ? "text-white/75" : "nd-muted"}`} data-nd="up" style={{ "--d": 220 } as CSSProperties}>{lead}</div> : null}
+            {lead ? <div className={`nd-cell nd-lead max-w-[40rem] lg:col-span-2 [&_br]:hidden ${dark ? "text-white/75" : "nd-muted"}`} data-nd="up" style={{ "--d": 220 } as CSSProperties}>{lead}</div> : null}
             {actions ? <div className="nd-cell flex flex-wrap items-end gap-3 lg:justify-end" data-nd="up" style={{ "--d": 280 } as CSSProperties}>{actions}</div> : null}
           </div>
         ) : null}
         {media ? <div className="mt-[clamp(2.5rem,5vw,4.5rem)]">{media}</div> : null}
+      </div>
+    </section>
+  );
+}
+
+function splitSize(n: number) {
+  if (n <= 22) return "text-[clamp(2.9rem,6.4vw,6.5rem)] leading-[0.9] tracking-[-0.055em]";
+  if (n <= 48) return "text-[clamp(2.5rem,4.8vw,5rem)] leading-[0.94] tracking-[-0.05em]";
+  if (n <= 80) return "text-[clamp(2.1rem,3.6vw,3.75rem)] leading-[1] tracking-[-0.04em]";
+  return "text-[clamp(1.8rem,2.8vw,2.9rem)] leading-[1.05] tracking-[-0.035em]";
+}
+
+function SplitHero({ tag, title, accent = [], lead, crumbs, actions, art, dark, as = "h1", maxChars }: { tag: string; title: string; accent?: string[]; lead?: ReactNode; crumbs?: Crumb[]; actions?: ReactNode; art: ReactNode; dark: boolean; as?: "h1" | "p"; maxChars?: number }) {
+  const mc = maxChars ?? (title.length <= 22 ? 11 : title.length <= 48 ? 16 : title.length <= 80 ? 22 : 30);
+  return (
+    <section className={`${dark ? "nd-dark" : "nd-white"} relative overflow-hidden`} aria-label={tag}>
+      <Rules />
+      {/* a soft royal glow behind the art keeps the black ground from reading flat */}
+      <div aria-hidden="true" className="pointer-events-none absolute -right-[10%] top-[10%] h-[70%] w-[60%] rounded-full bg-[radial-gradient(closest-side,rgb(29_78_216/0.22),transparent)] blur-2xl" />
+      <div className="nd-wrap relative pb-[clamp(3rem,5vw,4.5rem)] pt-[clamp(6.5rem,10vw,8.5rem)] lg:flex lg:min-h-[min(100svh,58rem)] lg:flex-col">
+        <div className="nd-cell flex flex-wrap items-center justify-between gap-4">
+          <div data-nd="up"><Tag>{tag}</Tag></div>
+          {crumbs ? <div data-nd="up" style={{ "--d": 60 } as CSSProperties}><Crumbs items={crumbs} dark={dark} /></div> : null}
+        </div>
+        <div className="mt-[clamp(1.75rem,3.5vw,3rem)] grid items-center gap-y-12 lg:flex-1 lg:grid-cols-12 lg:gap-x-[clamp(1.5rem,3vw,3.5rem)]">
+          <div className="px-[clamp(0.75rem,1.2vw,1.25rem)] lg:col-span-6">
+            <Words as={as} lines={lines(title, mc)} accent={accent} accentClass={dark ? "text-[color:var(--sky)]" : "text-[color:var(--royal)]"} className={`font-semibold ${splitSize(title.length)} [overflow-wrap:anywhere]`} />
+            {lead ? <div className={`nd-lead mt-7 max-w-[34rem] [&_br]:hidden ${dark ? "text-white/78" : "nd-muted"}`} data-nd="up" style={{ "--d": 220 } as CSSProperties}>{lead}</div> : null}
+            {actions ? <div className="mt-8 flex flex-wrap gap-3" data-nd="up" style={{ "--d": 280 } as CSSProperties}>{actions}</div> : null}
+          </div>
+          <div className="px-[clamp(0.75rem,1.2vw,1.25rem)] lg:col-span-6">{art}</div>
+        </div>
       </div>
     </section>
   );

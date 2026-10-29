@@ -140,6 +140,8 @@
 .nd-int { --muted-l: color-mix(in srgb, #0b0d0d 74%, #ffffff); --muted-d: rgb(255 255 255 / 0.74); }
 .nd-int .nd-lead { font-size: clamp(1.125rem, 1.3vw, 1.3125rem); }
 .nd-int .nd-body { font-size: 1.0625rem; }
+/* desktop line breaks typed into WordPress copy break badly at other widths */
+.nd-int .nd-lead br, .nd-int .nd-nobr br { display: none; }
 .nd-h2 { font-size: clamp(1.9rem, 3.4vw, 3.25rem); font-weight: 600; line-height: 1.02; letter-spacing: -0.04em; }
 .nd-h3 { font-size: clamp(1.5rem, 2.3vw, 2.25rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; }
 .nd-h4 { font-size: clamp(1.2rem, 1.5vw, 1.5rem); font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; }

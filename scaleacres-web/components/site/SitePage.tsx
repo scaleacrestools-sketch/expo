@@ -9,8 +9,9 @@ import { asButton } from "@/components/legacy/LegacyBlocks";
 import Link from "next/link";
 import { AboutPage, TeamPage, ContactPage, ServicesPage, WorkPage, CaseStudiesPage, CareersPage } from "@/components/site/pages/Company";
 import { ArchivePage, PostPage } from "@/components/site/pages/Blog";
-import { WorkStrip, ServiceVisual } from "@/components/site/Showcase";
+import { WorkStrip } from "@/components/site/Showcase";
 import { CASES, CaseDetailPage } from "@/components/site/pages/Case";
+import { ServiceArt, LocationArt } from "@/components/site/heroes";
 
 /**
  * Every migrated scaleacres.com page, redesigned in the homepage design language. Content and
@@ -121,7 +122,7 @@ export function FaqBand({ s, dark = false }: { s: LegacySection; dark?: boolean 
         <div className="nd-cell lg:sticky lg:top-28 lg:self-start">
           <div data-nd="up"><Tag>{kicker ? plain(kicker.html) : "FAQ"}</Tag></div>
           {title ? <Html as="h2" html={title.html} className="mt-7 text-[clamp(2rem,3.6vw,3.5rem)] font-semibold leading-[1] tracking-[-0.045em]" /> : null}
-          {intro.length ? <div className="mt-6 max-w-[26rem]"><Flow blocks={intro} dark={dark} /></div> : null}
+          {intro.length ? <div className="nd-nobr mt-6 max-w-[26rem]"><Flow blocks={intro} dark={dark} /></div> : null}
         </div>
         <div className="nd-cell lg:col-span-2">
           {faq && faq.type === "faq" ? <Accordion dark={dark} items={faq.items.map((f) => ({ q: plain(f.q), a: <Flow blocks={f.answer} dark={dark} /> }))} /> : null}
@@ -172,7 +173,7 @@ function ComposedPage({ page, p, kind }: { page: LegacyPage; p: Prepared; kind: 
         crumbs={crumbsFor(page)}
         lead={p.leadHtml ? <Html as="p" html={p.leadHtml} /> : undefined}
         actions={<>{p.actions.map((a, i) => <Btn key={i} href={a.href.replace(/^#elementor.*/, "/contact-us/")} variant={i ? "white" : "royal"}>{a.text}</Btn>)}{p.actions.length ? null : <Btn href="/contact-us/">Book a call</Btn>}</>}
-        media={kind === "service" ? <ServiceVisual path={page.path} /> : undefined}
+        art={kind === "service" ? <ServiceArt path={page.path} /> : <LocationArt />}
       />
       <Sections sections={p.sections} label={tag} />
       <WorkStrip />
