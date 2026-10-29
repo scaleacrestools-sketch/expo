@@ -2,10 +2,10 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { legacyPages, media, pageKind, plain, type Block, type LegacyPage } from "@/lib/legacy";
 import { Flow, FormPanel } from "@/components/site/Blocks";
-import { Btn, ClosingCta, Crumbs, Hero, Section } from "@/components/site/Kit";
+import { Btn, ClosingCta, Crumbs, Section } from "@/components/site/Kit";
 import { ArrowUR, Rules, Tag, Words } from "@/components/nd/ui";
 import { crumbsFor } from "@/components/site/SitePage";
-import { BlogArt } from "@/components/site/heroes";
+import { MagazineStage, type Story } from "@/components/site/Stage";
 
 /**
  * Blog: an editorial index, topic/author/date archives and the article template. Every card is
@@ -14,6 +14,10 @@ import { BlogArt } from "@/components/site/heroes";
 
 type Img = Extract<Block, { type: "image" }>;
 export type PostCard = { path: string; title: string; img: Img | null; author: string; date: string; iso: string; category: string | null; excerpt: string; minutes: number };
+
+/** Posts with a featured image, as front-page stories for the magazine hero. */
+export const toStories = (posts: PostCard[], n = 3): Story[] =>
+  posts.filter((p) => p.img).slice(0, n).map((p) => ({ src: media(p.img!.src), alt: p.img!.alt || p.title, title: p.title, href: p.path, meta: [p.category, p.date].filter(Boolean).join(" · ") }));
 
 const fmt = (iso: string) => (iso ? new Date(iso).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" }) : "");
 const slug = (s: string) => s.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -159,33 +163,26 @@ export function ArchivePage({ page }: { page: LegacyPage }) {
   const [, kindLabel, name] = raw.match(/^(Category|Tag|Author|Day|Month|Year|Archives?):\s*(.+)$/i) ?? [];
   const isIndex = page.path === "/blog/";
   const posts = linkedPosts(page);
-  const [lead, ...rest] = posts;
+  const stories = toStories(posts.length ? posts : latestPosts(3));
+  const rest = posts.filter((p) => !stories.some((s) => s.href === p.path));
   const shown = new Set(posts.map((p) => p.path));
   const more = isIndex ? [...postCards().values()].filter((c) => !shown.has(c.path)).sort(byDate) : [];
   const title = isIndex ? "Blog" : (name ?? raw);
   return (
     <>
-      <Hero
+      <MagazineStage
+        stories={stories}
         tag={isIndex ? "Insights" : (kindLabel ?? "Archive")}
         title={isIndex ? "Blog" : title}
         accent={isIndex ? ["Blog"] : []}
         crumbs={crumbsFor(page)}
         lead={<p>{isIndex ? "Notes from the studio on real estate branding, websites, search and performance marketing." : `${posts.length} article${posts.length === 1 ? "" : "s"}.`}</p>}
-        art={<BlogArt posts={posts.length ? posts : latestPosts(3)} />}
       />
       <Section tone="white" pad="tight" label="Articles">
         <div className="nd-cell"><Topics active={page.path} /></div>
-        {lead ? (
-          <div className="nd-grid mt-[clamp(2.5rem,5vw,4rem)] gap-y-14">
-            <div className="nd-cell lg:col-span-2"><PostTile c={lead} size="lg" /></div>
-            <div className="nd-cell grid content-start gap-12">
-              {rest.slice(0, 2).map((c, i) => <PostTile key={c.path} c={c} i={i + 1} />)}
-            </div>
-          </div>
-        ) : null}
-        {rest.length > 2 ? (
-          <div className="mt-[clamp(3.5rem,6vw,5rem)] grid gap-x-[clamp(0.75rem,1.6vw,1.5rem)] gap-y-14 px-[clamp(0.75rem,1.2vw,1.25rem)] sm:grid-cols-2 lg:grid-cols-3">
-            {rest.slice(2).map((c, i) => <PostTile key={c.path} c={c} i={i} />)}
+        {rest.length ? (
+          <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-x-[clamp(0.75rem,1.6vw,1.5rem)] gap-y-14 px-[clamp(0.75rem,1.2vw,1.25rem)] sm:grid-cols-2 lg:grid-cols-3">
+            {rest.map((c, i) => <PostTile key={c.path} c={c} i={i} />)}
           </div>
         ) : null}
       </Section>

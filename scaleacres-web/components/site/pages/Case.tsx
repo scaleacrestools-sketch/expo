@@ -2,9 +2,11 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { getLegacyPage, media, plain, type Block, type LegacyPage } from "@/lib/legacy";
 import { Flow, Html, Pict, blockText } from "@/components/site/Blocks";
-import { Btn, ClosingCta, Crumbs, Head, Section, StatRow } from "@/components/site/Kit";
+import { Btn, ClosingCta, Head, Section, StatRow } from "@/components/site/Kit";
 import { VideoTiles, type Clip } from "@/components/site/Media";
-import { ArrowUR, Rules, Tag, Words } from "@/components/nd/ui";
+import { ArrowUR, Tag, Words } from "@/components/nd/ui";
+import { Stage } from "@/components/site/Stage";
+import { BANNER } from "@/components/site/banners";
 
 /**
  * Case-study detail, built from the live case-study page. Only what the page publishes is shown:
@@ -77,45 +79,22 @@ export function CaseDetailPage({ page }: { page: LegacyPage }) {
   return (
     <>
       {h1 && blockText(h1) !== title ? <h1 className="sr-only">{blockText(h1)}</h1> : null}
-      <section className="nd-dark relative overflow-hidden" aria-label="Case study">
-        <Rules />
-        <div className="nd-wrap relative pb-[clamp(3rem,6vw,5rem)] pt-[clamp(7.5rem,13vw,10.5rem)]">
-          <div className="nd-cell flex flex-wrap items-center justify-between gap-4">
-            <div data-nd="up"><Tag>Case study</Tag></div>
-            <div data-nd="up"><Crumbs items={[{ label: "Home", href: "/" }, { label: "Case studies", href: "/case-studies/" }, { label: meta?.client ?? title }]} /></div>
-          </div>
-          <div className="nd-grid mt-[clamp(1.75rem,4vw,3rem)] items-center gap-y-10">
-            <div className="nd-cell lg:col-span-2">
-              {logo ? <div data-nd="up" className="mb-8 inline-flex h-20 items-center rounded-[12px] bg-white/[0.06] px-5 ring-1 ring-white/10"><Pict img={logo} eager sizes="260px" className="h-14 w-auto max-w-[15rem] object-contain" /></div> : null}
-              {h1 && page.sections[0].blocks.includes(h1)
-                ? <Words as="h1" lines={[title]} className="text-[clamp(2.3rem,5vw,5rem)] font-semibold leading-[0.98] tracking-[-0.045em]" />
-                : <Words as="p" lines={[title]} className="text-[clamp(2.6rem,6vw,6rem)] font-semibold leading-[0.95] tracking-[-0.05em]" />}
-              <div data-nd="up" style={d(200)} className="mt-8 flex flex-wrap gap-3">
-                <Btn href="#approach" variant="white">See how we did it</Btn>
-                <Btn href="/contact-us/">Start a project</Btn>
-              </div>
-            </div>
-            {meta ? (
-              <div className="nd-cell" data-nd="up" style={d(160)}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={media(meta.card)} alt={`${meta.client}: published campaign results`} width={536} height={536} className="mb-8 aspect-square w-full max-w-[16rem] rounded-[14px] object-cover shadow-[0_30px_60px_-30px_rgb(0_0_0/0.8)] ring-1 ring-white/10" />
-                {stats.length === 1 ? (
-                  <div className="mb-8">
-                    <p className="text-[clamp(3.5rem,7vw,6.5rem)] font-semibold leading-[0.9] tracking-[-0.05em] text-[color:var(--sky)]">{stats[0].value}</p>
-                    <p className="nd-label mt-3 text-white/70">{stats[0].label}</p>
-                  </div>
-                ) : null}
-                <dl className="grid gap-5 border-t border-white/12 pt-6">
-                  <div><dt className="nd-label text-white/55">Client</dt><dd className="mt-1 text-[1.125rem] font-medium">{meta.client}</dd></div>
-                  <div><dt className="nd-label text-white/55">Location</dt><dd className="mt-1 text-[1.125rem] font-medium">{meta.place}</dd></div>
-                  <div><dt className="nd-label text-white/55">Services</dt><dd className="mt-1 text-[1.0625rem] text-white/80">{meta.services}</dd></div>
-                </dl>
-              </div>
-            ) : null}
-          </div>
-          {stats.length > 1 ? <div className="nd-cell mt-[clamp(2.5rem,5vw,4rem)]"><StatRow dark stats={stats} /></div> : null}
+      <Stage
+        banner={meta?.slug === "one-goa" ? BANNER.onegoa : BANNER.yugen}
+        as={h1 && page.sections[0].blocks.includes(h1) ? "h1" : "p"}
+        tag="Case study"
+        crumbs={[{ label: "Home", href: "/" }, { label: "Case studies", href: "/case-studies/" }, { label: meta?.client ?? title }]}
+        title={title}
+        actions={<><Btn href="#approach" variant="white">See how we did it</Btn><Btn href="/contact-us/">Start a project</Btn></>}
+      >
+        <div className="grid gap-x-10 gap-y-6 border-t border-white/15 pt-6 sm:grid-cols-2 lg:grid-cols-[auto_auto_minmax(0,1fr)_minmax(0,1.4fr)] lg:items-center" data-nd="up" style={d(320)}>
+          {logo ? <div className="inline-flex h-16 w-fit items-center rounded-[10px] bg-white/[0.08] px-4 ring-1 ring-white/10 backdrop-blur"><Pict img={logo} eager sizes="220px" className="h-11 w-auto max-w-[12rem] object-contain" /></div> : null}
+          {stats.length === 1 ? <div><p className="text-[clamp(2.4rem,4vw,3.75rem)] font-semibold leading-[0.9] tracking-[-0.05em] text-[color:var(--sky)]">{stats[0].value}</p><p className="nd-label mt-2 text-white/70">{stats[0].label}</p></div> : null}
+          {meta ? <div><p className="nd-label text-white/55">Client · Location</p><p className="mt-1 text-[1.0625rem] font-medium">{meta.client}<span className="text-white/60"> · {meta.place}</span></p></div> : null}
+          {meta ? <div><p className="nd-label text-white/55">Services</p><p className="mt-1 text-[1rem] text-white/80">{meta.services}</p></div> : null}
         </div>
-      </section>
+        {stats.length > 1 ? <div className="mt-8"><StatRow dark stats={stats} /></div> : null}
+      </Stage>
 
       {overview || hero || facts.length ? (
         <Section tone="white" label="Project overview">

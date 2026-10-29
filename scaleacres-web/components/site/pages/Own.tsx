@@ -4,11 +4,14 @@ import { notFound } from "next/navigation";
 import { services, getService, serviceHref } from "@/content/services";
 import { ndServiceCards } from "@/content/nd";
 import { breadcrumbJsonLd } from "@/lib/seo";
-import { Btn, ClosingCta, Head, Hero, Section } from "@/components/site/Kit";
+import { Btn, ClosingCta, Head, Section } from "@/components/site/Kit";
 import { WorkStrip } from "@/components/site/Showcase";
 import { StudioLibrary } from "@/components/site/Studio";
-import { ServiceArt, StudioArt, BlogArt } from "@/components/site/heroes";
-import { PostTile, type PostCard } from "@/components/site/pages/Blog";
+import { Stage, Filmstrip, MagazineStage } from "@/components/site/Stage";
+import { serviceBanner } from "@/components/site/banners";
+import { ndVideoTabs } from "@/content/nd";
+import { VideoTiles } from "@/components/site/Media";
+import { PostTile, toStories, type PostCard } from "@/components/site/pages/Blog";
 import { ArrowUR, Rules, Tag } from "@/components/nd/ui";
 import { NdServices } from "@/components/nd/NdServices";
 import { NdTestimonials } from "@/components/nd/NdTestimonials";
@@ -22,14 +25,17 @@ const d = (ms: number) => ({ "--d": ms }) as CSSProperties;
 export function CreativeStudioPage() {
   return (
     <div className="nd-int">
-      <Hero
+      <Stage
+        layout="center"
+        reel
+        labels={["Ad films", "Social videos", "AI films"]}
+        band={<Filmstrip items={ndVideoTabs.flatMap((t) => t.videos.map((v, k) => ({ src: v.poster.src, alt: `${t.label.replace(/s$/, "")} ${k + 1} by ScaleAcres`, href: `#${t.id}` })))} />}
         tag="The creative lab"
         title="Made to be seen."
         accent={["seen."]}
         crumbs={[{ label: "Home", href: "/" }, { label: "Creative Studio" }]}
         lead={<p>Ideas don&apos;t have to stay on paper. We turn concepts into compelling visual stories through creative production, AI-powered content and videos that get noticed.</p>}
         actions={<><Btn href="#ad-videos" variant="white">Ad videos</Btn><Btn href="#social-media-videos" variant="white">Social videos</Btn><Btn href="#ai-videos" variant="white">AI videos</Btn></>}
-        art={<StudioArt />}
       />
       <StudioLibrary />
       <WorkStrip title="Creative that sells projects." />
@@ -43,14 +49,14 @@ export function CreativeStudioPage() {
 export function InsightsPage({ posts }: { posts: PostCard[] }) {
   return (
     <div className="nd-int">
-      <Hero
+      <MagazineStage
+        stories={toStories(posts)}
         tag="Thinking out loud"
         title="Ideas worth exploring."
         accent={["exploring."]}
         crumbs={[{ label: "Home", href: "/" }, { label: "Insights" }]}
         lead={<p>Our latest articles live on the ScaleAcres blog, which continues at its existing address so nothing you&apos;ve bookmarked or found in search goes missing.</p>}
         actions={<Btn href="/blog/" variant="white">Read the blog</Btn>}
-        art={<BlogArt posts={posts} />}
       />
       <Section tone="white" label="Latest articles">
         <Head tag="Latest" title="From the blog." accent={["blog."]} />
@@ -74,14 +80,15 @@ export function ServiceDetail({ slug }: { slug: string }) {
   return (
     <div className="nd-int">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd([{ name: "Services", path: "/our-services/" }, { name: s.title, path: serviceHref(s) }])) }} />
-      <Hero
+      <Stage
+        banner={serviceBanner(s.slug)}
+        labels={s.included.slice(0, 4)}
         tag={`${s.number} · ${s.title}`}
         title={s.headline}
         accent={[s.headline.split(" ").slice(-1)[0]]}
         crumbs={[{ label: "Home", href: "/" }, { label: "Services", href: "/our-services/" }, { label: s.title }]}
         lead={<p>{s.description}</p>}
         actions={<><Btn href="/contact-us/">{s.ctaLabel.replace(/^Explore/, "Talk about")}</Btn><Btn href="#included" variant="white">What&apos;s included</Btn></>}
-        art={<ServiceArt slug={s.slug} />}
       />
       <Section tone="white" id="included" label="What's included">
         <Head tag="What's included" title="Built around your goals." accent={["goals."]} intro={card ? <p>{card.description}</p> : undefined} />
@@ -96,6 +103,14 @@ export function ServiceDetail({ slug }: { slug: string }) {
         {s.focus ? <p className="nd-cell nd-lead mt-10 max-w-[40rem]" data-nd="up">{s.focus}</p> : null}
         {card?.note ? <p className="nd-cell nd-label nd-muted mt-6">{card.note}</p> : null}
       </Section>
+      {s.slug === "video-creative-production" ? (
+        <Section tone="dark" id="films" label="Recent films">
+          <Head dark tag="Recent films" title="Ad films, social videos and AI films." accent={["films."]} intro={<p>A selection from the ScaleAcres studio. Every film opens in the player; the full library is on the <Link href="/creative-studio/" className="nd-link">Creative studio</Link> page.</p>} />
+          <div className="mt-[clamp(2.5rem,5vw,4rem)]">
+            <VideoTiles dark clips={ndVideoTabs.flatMap((t) => t.videos.slice(0, t.ai ? 2 : 3).map((v, k) => ({ host: "youtube" as const, id: v.id, poster: v.poster.src, title: `${t.label.replace(/s$/, "")} ${k + 1} · ScaleAcres`, ratio: "9/16" as const })))} />
+          </div>
+        </Section>
+      ) : null}
       <NdServices />
       <WorkStrip />
       <NdTestimonials />

@@ -4,7 +4,7 @@ import { getLegacyPage, media, plain, type Block, type LegacyPage, type LegacySe
 import { site } from "@/content/site";
 import { liveCountries, liveFooter } from "@/content/legacy-nav";
 import { Band, Flow, FormPanel, Gallery, Html, Pict, findCards, sectionStats, splitHead, blockText } from "@/components/site/Blocks";
-import { Btn, ClosingCta, Head, Hero, Section, StatRow } from "@/components/site/Kit";
+import { Btn, ClosingCta, Head, Section, StatRow } from "@/components/site/Kit";
 import { hasFaq, type Prepared } from "@/components/site/compose";
 import { Sections, FaqBand, crumbsFor } from "@/components/site/SitePage";
 import { ServiceIndex } from "@/components/site/Indexes";
@@ -12,7 +12,9 @@ import { WorkStrip } from "@/components/site/Showcase";
 import { FoundersBand, StoryBand, ExpertiseBand, PhotoGrid } from "@/components/site/pages/Parts";
 import { VideoTiles, MapEmbed } from "@/components/site/Media";
 import { CASES } from "@/components/site/pages/Case";
-import { AboutArt, TeamArt, CareersArt, ServicesArt, WorkArt, CaseStudiesArt, ContactArt } from "@/components/site/heroes";
+import { Stage, SliceStage, FillStage } from "@/components/site/Stage";
+import { BANNER } from "@/components/site/banners";
+import { ndServiceCards } from "@/content/nd";
 
 /** "FROM BUILDERS TO BROKERS" → "From builders to brokers" (display only; the words are unchanged). */
 const sentenceCase = (t: string) => (t === t.toUpperCase() ? t.charAt(0) + t.slice(1).toLowerCase() : t);
@@ -21,7 +23,7 @@ import { NdServices } from "@/components/nd/NdServices";
 import { NdBrands } from "@/components/nd/NdBrands";
 import { NdTestimonials } from "@/components/nd/NdTestimonials";
 import { NdWork } from "@/components/nd/NdWork";
-import { ArrowUR, Pic, Rules, Tag, Words } from "@/components/nd/ui";
+import { ArrowUR, Pic, Tag, Words } from "@/components/nd/ui";
 
 type I = Extract<Block, { type: "image" }>;
 const d = (n: number) => ({ "--d": n }) as CSSProperties;
@@ -45,7 +47,10 @@ export function AboutPage({ page, p }: { page: LegacyPage; p: Prepared }) {
   return (
     <>
       <H1 text={p.h1} />
-      <Hero
+      <Stage
+        layout="center"
+        banner={BANNER.about}
+        labels={["Brand identity", "Websites", "Performance marketing", "Social & film"]}
         as="p"
         tag="About us"
         title="We build real estate brands people remember."
@@ -53,8 +58,7 @@ export function AboutPage({ page, p }: { page: LegacyPage; p: Prepared }) {
         crumbs={crumbsFor(page)}
         lead={whyText && "html" in whyText ? <Html as="p" html={whyText.html} /> : undefined}
         actions={<><Btn href="/our-team/" variant="white">Meet the team</Btn><Btn href="/contact-us/">Make an enquiry</Btn></>}
-        art={<AboutArt />}
-        maxChars={20}
+        maxChars={22}
       />
       {stats.length ? (
         <Section tone="dark" pad="tight" label="Why ScaleAcres">
@@ -103,7 +107,10 @@ export function TeamPage({ page, p }: { page: LegacyPage; p: Prepared }) {
   return (
     <>
       <H1 text={p.h1} />
-      <Hero
+      <Stage
+        layout="center"
+        banner={BANNER.team}
+        labels={["Strategy", "Design", "Technology", "Media", "Film"]}
         as="p"
         tag="Our team"
         title="The people behind ScaleAcres."
@@ -111,7 +118,6 @@ export function TeamPage({ page, p }: { page: LegacyPage; p: Prepared }) {
         crumbs={crumbsFor(page)}
         lead="Strategists, designers, developers, performance marketers, video editors and writers, working as one team for real estate."
         actions={<><Btn href="#team" variant="white">Meet the team</Btn><Btn href="/careers/">Join the team</Btn></>}
-        art={<TeamArt />}
       />
       {we ? (
         <Section tone="white" label="We are ScaleAcres">
@@ -193,16 +199,17 @@ export function ContactPage({ p }: { page: LegacyPage; p: Prepared }) {
   const list = all.find((b) => b.type === "list");
   return (
     <>
-      <section className="nd-dark relative overflow-hidden" aria-label="Contact">
-        <Rules />
-        <div aria-hidden="true" className="pointer-events-none absolute -right-[10%] top-[10%] h-[70%] w-[60%] rounded-full bg-[radial-gradient(closest-side,rgb(29_78_216/0.22),transparent)] blur-2xl" />
-        <div className="nd-wrap relative pb-[clamp(3rem,5vw,4.5rem)] pt-[clamp(6.5rem,10vw,8.5rem)]">
-          <div className="nd-cell flex flex-wrap items-center justify-between gap-4"><div data-nd="up"><Tag>Contact us</Tag></div></div>
-          <div className="mt-[clamp(1.75rem,3.5vw,3rem)] grid items-center gap-y-12 lg:grid-cols-12 lg:gap-x-[clamp(1.5rem,3vw,3.5rem)]">
-            <div className="px-[clamp(0.75rem,1.2vw,1.25rem)] lg:col-span-6">
-              <h1 className="sr-only">{p.h1}</h1>
-              <Words as="p" lines={["Let's talk."]} accent={["talk."]} accentClass="text-[color:var(--sky)]" className="text-[clamp(3.5rem,9vw,9.5rem)] font-semibold leading-[0.85] tracking-[-0.06em]" />
-              <div className="mt-[clamp(2rem,4vw,3rem)] grid gap-x-8 gap-y-8 sm:grid-cols-2">
+      <h1 className="sr-only">{p.h1}</h1>
+      <Stage
+        as="p"
+        layout="bottom"
+        banner={BANNER.contact}
+        pos="62% 50%"
+        tag="Contact us"
+        title="Let's talk."
+        accent={["talk."]}
+>
+              <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-[auto_auto_minmax(0,1fr)] lg:items-start">
                 <div data-nd="up">
                   <p className="nd-label text-white/60">For sales / client enquiries</p>
                   {site.phones.slice(0, 2).map((ph) => <a key={ph.number} href={ph.href} className="mt-2 block text-[clamp(1.4rem,2vw,1.9rem)] font-medium tracking-[-0.03em] hover:text-[color:var(--sky)]">{ph.number}</a>)}
@@ -223,11 +230,7 @@ export function ContactPage({ p }: { page: LegacyPage; p: Prepared }) {
                 <ul className="ml-1 flex flex-wrap gap-4" role="list">{site.social.map((so) => <li key={so.label}><a href={so.href} target="_blank" rel="noopener noreferrer" className="nd-link text-[1rem] font-medium">{so.label}</a></li>)}</ul>
               </div>
               <p className="nd-label mt-6 text-white/50" data-nd="up" style={d(200)}>Offices · {site.offices.join(" · ")}</p>
-            </div>
-            <div className="px-[clamp(0.75rem,1.2vw,1.25rem)] lg:col-span-6"><ContactArt /></div>
-          </div>
-        </div>
-      </section>
+      </Stage>
 
       <Section tone="paper" id="enquiry" label="Send an enquiry">
         <div className="nd-grid gap-y-10">
@@ -262,7 +265,8 @@ export function ServicesPage({ page, p }: { page: LegacyPage; p: Prepared }) {
   return (
     <>
       <H1 text={p.h1} />
-      <Hero
+      <SliceStage
+        items={ndServiceCards.map((c) => ({ n: c.number, title: c.title, href: c.href, src: c.image.src, srcSet: c.image.srcSet, alt: `${c.title}: ScaleAcres work` }))}
         as="p"
         tag="Our services"
         title="Everything a project needs to launch and sell."
@@ -270,7 +274,6 @@ export function ServicesPage({ page, p }: { page: LegacyPage; p: Prepared }) {
         crumbs={crumbsFor(page)}
         lead={p.leadHtml ? <Html as="p" html={p.leadHtml} /> : "Positioning and identity, websites, media and technology, planned and delivered by one team."}
         actions={<><Btn href="#services" variant="white">Explore services</Btn><Btn href="/contact-us/">Book a call</Btn></>}
-        art={<ServicesArt />}
       />
       <NdServices />
       {solutions ? <SolutionRows s={solutions} /> : null}
@@ -390,14 +393,16 @@ export function WorkPage({ page, p }: { page: LegacyPage; p: Prepared }) {
   vidS?.blocks.forEach((b, i) => { if (b.type === "video") vids.push({ v: b, t: blockText(vidS.blocks[i + 1] ?? b) }); });
   return (
     <>
-      <Hero
+      <Stage
+        layout="center"
+        banner={BANNER.work}
+        labels={["Brand identity", "Websites", "Campaigns", "Films"]}
         tag={p.lead ? "Driving real results" : "Our work"}
         title={sentenceCase(p.h1)}
         accent={["itself"]}
         crumbs={crumbsFor(page)}
         lead="Launches, identities, websites, campaigns and films for developers and growth brands: genuine ScaleAcres work."
         actions={<><Btn href="#websites" variant="white">Websites</Btn><Btn href="#videos-grid" variant="white">Videos</Btn><Btn href="/contact-us/">Start a project</Btn></>}
-        art={<WorkArt />}
       />
       <NdShowcase />
       <NdWork />
@@ -464,14 +469,16 @@ export function CaseStudiesPage({ page, p }: { page: LegacyPage; p: Prepared }) 
   });
   return (
     <>
-      <Hero
+      <Stage
+        layout="center"
+        banner={BANNER.cases}
+        labels={["Yugen Infra · North Goa", "One Goa · Bicholim, Goa"]}
         tag="Case studies"
         title={p.h1}
         accent={["Studies"]}
         crumbs={crumbsFor(page)}
         lead={intro && "html" in intro ? <Html as="p" html={intro.html} /> : undefined}
         actions={<><Btn href="/yugen-case-study/" variant="white">Yugen Infra</Btn><Btn href="/blog/casestudy/our-case-one-goa/" variant="white">One Goa</Btn><Btn href="/contact-us/">Start a project</Btn></>}
-        art={<CaseStudiesArt />}
       />
       <Section tone="white" label="Case studies">
         <Head tag="Delivering success" title="Delivering success, one project at a time." accent={["success,"]} intro="Full write-ups of two Goa launches: the brief, the strategy, the ad films and the results, as published by ScaleAcres." />
@@ -513,14 +520,12 @@ export function CareersPage({ page, p }: { page: LegacyPage; p: Prepared }) {
   const positions = p.sections.flatMap((s) => s.blocks).find((b) => b.type === "heading" && /open positions/i.test(blockText(b)));
   return (
     <>
-      <Hero
+      <FillStage
         tag="Careers at ScaleAcres"
         title={p.h1}
-        accent={["Passionate"]}
         crumbs={crumbsFor(page)}
         lead={p.leadHtml ? <Html as="p" html={p.leadHtml} /> : undefined}
-        actions={<><Btn href="#apply">Apply now</Btn><a href={site.phones[2].href} className="nd-btn nd-btn--white">Call {site.phones[2].number} <ArrowUR /></a></>}
-        art={<CareersArt />}
+        actions={<><Btn href="#apply">Apply now</Btn><a href={site.phones[2].href} className="nd-btn nd-btn--ink">Call {site.phones[2].number} <ArrowUR /></a></>}
       />
       {lifeCards ? (
         <Section tone="white" label="Life at ScaleAcres">

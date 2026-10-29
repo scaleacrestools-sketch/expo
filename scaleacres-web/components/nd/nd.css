@@ -206,3 +206,26 @@
   .nd-dialog[open], .nd-dialog[open]::backdrop { animation: none; }
 }
 }
+
+/* ---------------------------------------------------------------- internal-page stages (art-directed banners) */
+@keyframes nd-stage-in { from { transform: scale(1.14); opacity: 0; clip-path: inset(6% 6% 6% 6% round 18px); } to { transform: scale(1); opacity: 1; clip-path: inset(0 0 0 0 round 0); } }
+.nd-stage-art { animation: nd-stage-in 1.5s var(--ease-io, cubic-bezier(0.65, 0, 0.35, 1)) both; }
+@keyframes nd-strip { to { transform: translate3d(-50%, 0, 0); } }
+.nd-strip-track { animation: nd-strip 60s linear infinite; }
+.nd-strip:hover .nd-strip-track { animation-play-state: paused; }
+/* Display lines are balanced for wide screens; on phones the headline flows as one paragraph */
+@media (max-width: 767px) { .nd-inline-lines > span { display: inline; } .nd-inline-lines > span:not(:last-child)::after { content: " "; } }
+/* Careers: the headline filled with the team's own photos */
+.nd-fill-text { color: transparent; background-image: linear-gradient(rgb(11 13 13 / 0.28), rgb(11 13 13 / 0.28)), var(--fill); background-size: cover; background-position: 50% 45%; -webkit-background-clip: text; background-clip: text; }
+.nd-fill-text [data-nd="words"] span, .nd-fill-text span { color: transparent; }
+/* Services: masked slices that open on hover */
+.nd-slices { display: flex; gap: clamp(0.35rem, 0.6vw, 0.6rem); }
+.nd-slice { flex: 1 1 0; min-width: 0; transition: flex-grow 0.9s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)); }
+.nd-slices:hover .nd-slice:hover, .nd-slices:focus-within .nd-slice:focus-within { flex-grow: 3.2; }
+@media (max-width: 767px) { .nd-slice { flex: 0 0 62vw; scroll-snap-align: start; } .nd-slices:hover .nd-slice:hover, .nd-slices:focus-within .nd-slice:focus-within { flex-grow: 0; } }
+.nd-slice .nd-slice-name { writing-mode: vertical-rl; transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) {
+  .nd-stage-art { animation: none; }
+  .nd-strip-track { animation: none; }
+  .nd-slice { transition: none; }
+}

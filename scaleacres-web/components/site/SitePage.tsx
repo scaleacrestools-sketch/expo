@@ -11,7 +11,10 @@ import { AboutPage, TeamPage, ContactPage, ServicesPage, WorkPage, CaseStudiesPa
 import { ArchivePage, PostPage } from "@/components/site/pages/Blog";
 import { WorkStrip } from "@/components/site/Showcase";
 import { CASES, CaseDetailPage } from "@/components/site/pages/Case";
-import { ServiceArt, LocationArt } from "@/components/site/heroes";
+import { Stage } from "@/components/site/Stage";
+import { BANNER, serviceBanner } from "@/components/site/banners";
+import { serviceSlugFor } from "@/components/site/Showcase";
+import { getService } from "@/content/services";
 
 /**
  * Every migrated scaleacres.com page, redesigned in the homepage design language. Content and
@@ -166,14 +169,15 @@ function ComposedPage({ page, p, kind }: { page: LegacyPage; p: Prepared; kind: 
   const tag = TAG[kind] ?? "ScaleAcres";
   return (
     <>
-      <Hero
+      <Stage
+        banner={kind === "service" ? serviceBanner(serviceSlugFor(page.path) ?? "", page.path) : BANNER.location}
+        labels={kind === "service" ? getService(serviceSlugFor(page.path) ?? "")?.included.slice(0, 4) : ["Websites", "Performance marketing", "Branding", "Social media"]}
         tag={tag}
         title={p.h1}
         accent={accentFor(p.h1)}
         crumbs={crumbsFor(page)}
         lead={p.leadHtml ? <Html as="p" html={p.leadHtml} /> : undefined}
         actions={<>{p.actions.map((a, i) => <Btn key={i} href={a.href.replace(/^#elementor.*/, "/contact-us/")} variant={i ? "white" : "royal"}>{a.text}</Btn>)}{p.actions.length ? null : <Btn href="/contact-us/">Book a call</Btn>}</>}
-        art={kind === "service" ? <ServiceArt path={page.path} /> : <LocationArt />}
       />
       <Sections sections={p.sections} label={tag} />
       <WorkStrip />
