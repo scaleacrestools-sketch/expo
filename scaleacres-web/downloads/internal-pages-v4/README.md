@@ -18,9 +18,10 @@ Black stays black, and blue is used only as an accent.
 | `banners-careers.jpg` | The Careers photo fill for the headline and the team strip |
 | `live-heroes-desktop-1.jpg`, `live-heroes-desktop-2.jpg` | The banners live on the pages at 1440 × 900 |
 | `live-heroes-mobile.jpg` | The banners live on the pages at 390 × 844 |
-| `scaleacres-internal-pages-v4-desktop-1440x900.mp4` | Desktop walkthrough, 23 pages |
-| `scaleacres-internal-pages-v4-mobile-390x844.mp4` | Mobile walkthrough, 18 pages |
-| `scaleacres-internal-pages-v4-screenshots.zip` | Full-page screenshots on desktop, tablet and mobile |
+| `scaleacres-internal-pages-v4-desktop-1440x900.mp4` | Desktop walkthrough, 3 min 13 s, 23 pages |
+| `scaleacres-internal-pages-v4-mobile-390x844.mp4` | Mobile walkthrough, 2 min 43 s, 18 pages |
+| `scaleacres-internal-pages-v4-screenshots-desktop.zip`, `-tablet.zip`, `-mobile.zip` | Full-page screenshots of 28 pages at desktop 1440, tablet 820 and mobile 390 (84 images, split by device to stay under GitHub's file-size limit) |
+| `about-us-desktop.jpg`, `our-services-desktop.jpg`, `our-work-mobile.jpg`, `creative-studio-tablet.jpg` | Samples from the screenshot set |
 | `scaleacres-internal-pages-v4-preview.zip` | Staging preview. Every page is noindex, and nothing on the live site was changed. |
 | `scaleacres-internal-pages-v4-source.zip` | Next.js source |
 
