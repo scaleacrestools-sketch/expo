@@ -28,3 +28,7 @@
 !packages/@expo/config-plugins/src/ios/**
 !packages/expo-module-scripts/bin/**
 !packages/expo-symbols/src/android/**
+
+# Standalone CRM practice prototype (has its own ESLint 9 flat config)
+
+/crm-dashboard/**
