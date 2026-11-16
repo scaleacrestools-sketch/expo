@@ -41,7 +41,7 @@ The live homepage is scroll-animated, so I flattened it into one static layout:
 - **Accordions:** these show their default state, with the first item open.
 - **Fixed chrome:** the header, side rail and "Get a quote" button sit in the first screen.
 
-`reddashmedia-home-preview.jpg` shows how the SVG renders.
+`reddashmedia-home-preview-part1.jpg` and `-part2.jpg` show how the SVG renders.
 
 ## Before you use it
 The Red Dash Media logo, photos, client logos and copy in this file belong to Red Dash Media. They are only placeholders for layout. Replace them all with ScaleAcres work, logo and copy.
