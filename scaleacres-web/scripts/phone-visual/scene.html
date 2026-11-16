@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!--
+  ScaleAcres "full-service" visual: the ScaleAcres reel playing in a phone, ringed by floating
+  glass UI cards and platform chips. Every motion is a function of t (seconds) so frames render
+  deterministically; all periods divide 18 s, the length of the reel, so the loop is seamless.
+-->
+<style>
+  @font-face { font-family: "Outfit"; src: url(Outfit-Regular.ttf); font-weight: 400; }
+  @font-face { font-family: "Outfit"; src: url(Outfit-Bold.ttf); font-weight: 700; }
+  :root { --ink: #0B0D0D; --royal: #1D4ED8; --deep: #142E8C; --sky: #38BDF8; --mist: #EEF2FB; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1800px; height: 1200px; overflow: hidden; background: #fff; font-family: Outfit, sans-serif; }
+  #stage { position: absolute; inset: 0; overflow: hidden;
+    background: radial-gradient(ellipse 52% 60% at 50% 52%, #E3EAFB 0%, #F2F5FC 45%, #FAFBFE 75%, #FFFFFF 100%); }
+  .orbit { position: absolute; left: 50%; top: 52%; border-radius: 50%; transform: translate(-50%, -50%); }
+  .orbit svg { display: block; }
+  .glow { position: absolute; left: 50%; top: 54%; width: 760px; height: 760px; border-radius: 50%; transform: translate(-50%, -50%);
+    background: radial-gradient(closest-side, rgba(29,78,216,.16), rgba(29,78,216,0)); filter: blur(10px); }
+
+  /* phone */
+  #phone { position: absolute; left: 50%; top: 50%; width: 404px; height: 820px; margin: -410px 0 0 -202px; border-radius: 58px;
+    background: linear-gradient(145deg, #23272b, #0b0d0d 40%, #16191c); padding: 15px;
+    box-shadow: 0 60px 120px -30px rgba(11,13,13,.55), 0 30px 60px -20px rgba(20,46,140,.25), inset 0 0 0 1.5px rgba(255,255,255,.12); }
+  #phone .side { position: absolute; right: -4px; top: 210px; width: 4px; height: 90px; border-radius: 0 3px 3px 0; background: #1b1f22; }
+  #screen { position: relative; width: 100%; height: 100%; border-radius: 44px; overflow: hidden; background: #000; }
+  #screen video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .island { position: absolute; left: 50%; top: 14px; width: 118px; height: 32px; margin-left: -59px; border-radius: 20px; background: #000; z-index: 3; }
+  .ui { position: absolute; z-index: 2; color: #fff; }
+  .rail { right: 16px; bottom: 150px; display: grid; gap: 22px; justify-items: center; }
+  .rail svg { width: 30px; height: 30px; fill: #fff; filter: drop-shadow(0 2px 6px rgba(0,0,0,.45)); }
+  .meta { left: 18px; bottom: 74px; display: flex; align-items: center; gap: 12px; }
+  .meta .av { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--sky); display: grid; place-items: center; background: rgba(11,13,13,.6); }
+  .meta .av b { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--royal), var(--sky)); }
+  .meta .ln { display: grid; gap: 7px; }
+  .meta .ln i { display: block; height: 4px; border-radius: 3px; background: rgba(255,255,255,.85); }
+  .dots { left: 0; right: 0; bottom: 0; height: 52px; display: flex; align-items: center; justify-content: space-around; padding: 0 30px;
+    background: linear-gradient(0deg, rgba(0,0,0,.75), rgba(0,0,0,0)); }
+  .dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.4); }
+  .dots i.on { background: #fff; width: 10px; height: 10px; }
+  .shade { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,0) 18%, rgba(0,0,0,0) 62%, rgba(0,0,0,.55)); }
+
+  /* floating cards */
+  .card { position: absolute; border-radius: 22px; background: linear-gradient(160deg, rgba(42,47,52,.92), rgba(16,19,21,.94));
+    box-shadow: 0 30px 60px -22px rgba(11,13,13,.55), 0 10px 24px -12px rgba(11,13,13,.35), inset 0 0 0 1px rgba(255,255,255,.08);
+    padding: 22px 24px; color: #fff; will-change: transform; }
+  .chip { position: absolute; width: 84px; height: 84px; border-radius: 22px; display: grid; place-items: center;
+    background: linear-gradient(160deg, rgba(42,47,52,.94), rgba(16,19,21,.96));
+    box-shadow: 0 24px 46px -18px rgba(11,13,13,.6), inset 0 0 0 1px rgba(255,255,255,.08); }
+  .chip svg { width: 46px; height: 46px; }
+  .chip.txt { font-weight: 700; font-size: 25px; letter-spacing: .08em; color: var(--sky); }
+  .line { height: 5px; border-radius: 4px; background: rgba(255,255,255,.22); }
+  .line.b { background: rgba(255,255,255,.4); }
+  .ico { width: 30px; height: 30px; color: var(--sky); }
+  .bar { height: 12px; border-radius: 8px; background: rgba(255,255,255,.14); overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: 8px; background: linear-gradient(90deg, var(--royal), var(--sky)); }
+  .pt { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--royal); box-shadow: 0 0 0 5px rgba(29,78,216,.14); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="glow"></div>
+  <div class="orbit" id="orbit1"><svg width="980" height="980" viewBox="0 0 980 980"><circle cx="490" cy="490" r="488" fill="none" stroke="#9fb3e6" stroke-opacity=".55" stroke-width="2" stroke-dasharray="3 14" stroke-linecap="round"/></svg></div>
+  <div class="orbit" id="orbit2"><svg width="1320" height="1320" viewBox="0 0 1320 1320"><circle cx="660" cy="660" r="658" fill="none" stroke="#b9c7ec" stroke-opacity=".45" stroke-width="2" stroke-dasharray="2 18" stroke-linecap="round"/></svg></div>
+  <!-- orbiting points -->
+  <i class="pt" id="p1"></i><i class="pt" id="p2" style="background:var(--sky);box-shadow:0 0 0 5px rgba(56,189,248,.18)"></i><i class="pt" id="p3"></i><i class="pt" id="p4" style="width:9px;height:9px"></i>
+
+  <!-- left column -->
+  <div class="card" id="c1" style="left:150px;top:150px;width:330px;height:190px">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2c2.3.2 4.1 1.8 4.6 4.8"/></svg>
+    <div class="line b" style="width:100%;margin-top:18px"></div>
+    <div class="line" style="width:72%;margin-top:12px"></div>
+    <svg id="wave" viewBox="0 0 280 60" style="width:240px;height:52px;margin:12px 0 0 30px;display:block;overflow:visible"><path d="M0 40 C40 40 50 14 92 18 S150 52 190 40 S250 10 280 16" fill="none" stroke="url(#gw)" stroke-width="5" stroke-linecap="round"/><defs><linearGradient id="gw" x1="0" x2="1"><stop offset="0" stop-color="#1D4ED8"/><stop offset="1" stop-color="#38BDF8"/></linearGradient></defs></svg>
+  </div>
+  <div class="chip" id="ig" style="left:110px;top:410px">
+    <svg viewBox="0 0 48 48"><defs><radialGradient id="igg" cx=".3" cy="1.05" r="1.2"><stop offset="0" stop-color="#fdf497"/><stop offset=".18" stop-color="#fd5949"/><stop offset=".5" stop-color="#d6249f"/><stop offset="1" stop-color="#285AEB"/></radialGradient></defs><rect x="2" y="2" width="44" height="44" rx="12" fill="url(#igg)"/><rect x="11" y="11" width="26" height="26" rx="8" fill="none" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="6.5" fill="none" stroke="#fff" stroke-width="3"/><circle cx="31.5" cy="16.5" r="2" fill="#fff"/></svg>
+  </div>
+  <div class="card" id="c2" style="left:150px;top:540px;width:330px;height:150px;display:flex;align-items:center;gap:22px">
+    <svg viewBox="0 0 64 64" style="width:78px;height:78px;flex:none"><circle cx="32" cy="32" r="30" fill="#2b3a66"/><path id="pie" d="" fill="url(#gp)"/><defs><linearGradient id="gp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#1D4ED8"/></linearGradient></defs></svg>
+    <div style="flex:1;display:grid;gap:12px"><div class="line b" style="width:100%"></div><div class="line" style="width:80%"></div><div class="line" style="width:92%"></div><div class="line" style="width:60%"></div></div>
+  </div>
+  <div class="chip txt" id="seo" style="left:330px;top:760px;width:112px">SEO</div>
+  <div class="card" id="c3" style="left:120px;top:900px;width:300px;height:118px">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="width:24px;height:24px"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/></svg>
+    <div class="bar" style="margin-top:20px"><i id="b1"></i></div>
+  </div>
+
+  <!-- right column -->
+  <div class="card" id="c4" style="left:1300px;top:120px;width:350px;height:150px">
+    <svg viewBox="0 0 300 100" style="width:300px;height:100px;display:block;overflow:visible">
+      <g id="bars"><rect x="20" y="70" width="24" height="30" rx="3" fill="#2f4a9a"/><rect x="62" y="56" width="24" height="44" rx="3" fill="#2f4a9a"/><rect x="104" y="44" width="24" height="56" rx="3" fill="#1D4ED8"/><rect x="146" y="30" width="24" height="70" rx="3" fill="#38BDF8"/></g>
+      <path id="trend" d="M10 80 L60 62 L100 66 L150 40 L200 30 L270 6" fill="none" stroke="#38BDF8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle id="tdot" cx="270" cy="6" r="8" fill="#38BDF8"/>
+    </svg>
+  </div>
+  <div class="chip" id="yt" style="left:1560px;top:340px">
+    <svg viewBox="0 0 48 48"><rect x="4" y="10" width="40" height="28" rx="9" fill="#FF0033"/><path d="M20 18 L31 24 L20 30 Z" fill="#fff"/></svg>
+  </div>
+  <div class="card" id="c5" style="left:1300px;top:470px;width:330px;height:140px;display:flex;align-items:center;gap:20px">
+    <div style="width:72px;height:72px;border-radius:50%;background:rgba(56,189,248,.12);display:grid;place-items:center;flex:none"><svg viewBox="0 0 24 24" style="width:34px;height:34px"><path d="M12 3a9 9 0 1 0 9 9h-9z" fill="#38BDF8"/><path d="M14 2.2V10h7.8A9 9 0 0 0 14 2.2z" fill="#1D4ED8"/></svg></div>
+    <div style="flex:1;display:grid;gap:14px">
+      <div style="display:flex;gap:10px;align-items:center"><i style="width:8px;height:8px;border-radius:50%;background:#38BDF8"></i><div class="line b" style="flex:1"></div></div>
+      <div style="display:flex;gap:10px;align-items:center"><i style="width:8px;height:8px;border-radius:50%;background:#1D4ED8"></i><div class="line" style="flex:1"></div></div>
+      <div style="display:flex;gap:10px;align-items:center"><i style="width:8px;height:8px;border-radius:50%;background:#9fb3e6"></i><div class="line" style="width:60%"></div></div>
+    </div>
+  </div>
+  <div class="chip" id="li" style="left:1420px;top:680px">
+    <svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="8" fill="#0A66C2"/><rect x="12" y="20" width="6" height="16" fill="#fff"/><circle cx="15" cy="13.5" r="3.5" fill="#fff"/><path d="M22 20h5.5v2.4c.9-1.6 2.6-2.8 5.2-2.8 4 0 5.3 2.6 5.3 6.6V36h-6v-8.4c0-2-.4-3.4-2.3-3.4s-2.7 1.4-2.7 3.4V36h-5z" fill="#fff"/></svg>
+  </div>
+  <div class="chip" id="meta" style="left:1600px;top:820px">
+    <svg viewBox="0 0 48 48"><path d="M8 30c0-8 4-15 9-15 3.4 0 5.6 2.5 7.6 6.1C26.6 17.5 29 15 32.3 15 37.6 15 41 22 41 29c0 4.4-1.9 7-5.1 7-3.2 0-5.1-2.5-8.3-8.4l-3-5.3-3 5.4C18.4 33.6 16.4 36 13.2 36 10 36 8 33.6 8 30z" fill="none" stroke="#0081FB" stroke-width="3.6" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="card" id="c6" style="left:1290px;top:900px;width:340px;height:150px">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+    <div class="line b" style="width:100%;margin-top:16px"></div>
+    <div class="line" style="width:70%;margin-top:12px"></div>
+    <div class="bar" style="margin-top:18px"><i id="b2"></i></div>
+  </div>
+  <div class="chip" id="gg" style="left:520px;top:1010px;width:76px;height:76px;border-radius:20px">
+    <svg viewBox="0 0 48 48" style="width:40px;height:40px"><path d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z" fill="#FFC107"/><path d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z" fill="#FF3D00"/><path d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z" fill="#4CAF50"/><path d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z" fill="#1976D2"/></svg>
+  </div>
+
+  <!-- phone -->
+  <div id="phone"><i class="side"></i>
+    <div id="screen">
+      <video id="v" src="reel.webm" muted playsinline preload="auto"></video>
+      <div class="shade"></div>
+      <div class="island"></div>
+      <div class="ui rail">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.2 0 3.7 1.2 5.3 3 1.6-1.8 3.1-3 5.3-3 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 3.5c5 0 9 3.4 9 7.7s-4 7.7-9 7.7c-1.1 0-2.2-.2-3.2-.5L4 20.5l1.3-4C3.9 15.2 3 13.3 3 11.2 3 6.9 7 3.5 12 3.5z" fill="none" stroke="#fff" stroke-width="2"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M21 3 3 10.5l7 2.5 2.5 7z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M10 13l11-10" stroke="#fff" stroke-width="2"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+      </div>
+      <div class="ui meta"><span class="av"><b></b></span><span class="ln"><i style="width:96px"></i><i style="width:66px;opacity:.7"></i></span></div>
+      <div class="ui dots"><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</div>
+<script>
+  const T = 18, TAU = Math.PI * 2;
+  const $ = (id) => document.getElementById(id);
+  const v = $("v");
+  // float: [period s, amplitude px, phase]
+  const floats = { c1: [6, 9, 0], ig: [4.5, 7, .3], c2: [9, 10, .6], seo: [6, 8, .15], c3: [4.5, 7, .8], c4: [9, 10, .35], yt: [6, 8, .7], c5: [4.5, 8, .5], li: [9, 9, .1], meta: [6, 7, .45], c6: [9, 10, .9], gg: [4.5, 6, .25], phone: [9, 6, 0] };
+  const pie = (f) => { const a = f * TAU, r = 30, x = 32 + r * Math.sin(a), y = 32 - r * Math.cos(a); return f >= .999 ? "M32 2 A30 30 0 1 1 31.99 2 Z" : `M32 32 L32 2 A30 30 0 ${f > .5 ? 1 : 0} 1 ${x.toFixed(2)} ${y.toFixed(2)} Z`; };
+  const ease = (x) => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+  const cycle = (t, p) => { const k = (t % p) / p; return k < .6 ? ease(k / .6) : k < .85 ? 1 : 1 - ease((k - .85) / .15); };
+  window.render = async (t) => {
+    for (const [id, [p, a, ph]] of Object.entries(floats)) {
+      const s = Math.sin(TAU * (t / p + ph)), c = Math.cos(TAU * (t / p + ph) * 0.5);
+      const el = $(id); el.style.transform = `translate3d(${(c * a * .35).toFixed(2)}px, ${(s * a).toFixed(2)}px, 0)`;
+    }
+    $("orbit1").style.transform = `translate(-50%,-50%) rotate(${(t / T) * 360}deg)`;
+    $("orbit2").style.transform = `translate(-50%,-50%) rotate(${-(t / T) * 180}deg)`;
+    const pts = [["p1", 490, 0, 1], ["p2", 490, .5, 1], ["p3", 660, .25, -.5], ["p4", 660, .7, -.5]];
+    for (const [id, r, ph, sp] of pts) { const a = TAU * (ph + sp * t / T); const el = $(id); el.style.left = (900 + r * Math.cos(a) - 6) + "px"; el.style.top = (624 + r * Math.sin(a) - 6) + "px"; }
+    // card details
+    const w = cycle(t, 6), wp = $("wave").querySelector("path"), L = wp.getTotalLength();
+    wp.style.strokeDasharray = `${L} ${L + 20}`; wp.style.opacity = w < .02 ? 0 : 1; wp.style.strokeDashoffset = (L * (1 - w)).toFixed(1);
+    $("pie").setAttribute("d", pie(.18 + .62 * cycle(t + 1.5, 9)));
+    $("b1").style.width = (25 + 62 * cycle(t + .8, 6)) + "%";
+    $("b2").style.width = (30 + 55 * cycle(t + 3.2, 9)) + "%";
+    const g = cycle(t + .4, 9);
+    [...$("bars").children].forEach((r, i) => { const h0 = [30, 44, 56, 70][i], h = h0 * (.35 + .65 * Math.min(1, Math.max(0, g * 1.25 - i * .08))); r.setAttribute("y", 100 - h); r.setAttribute("height", h); });
+    const tr = $("trend"), TL = tr.getTotalLength(); tr.style.strokeDasharray = `${TL} ${TL + 20}`; tr.style.strokeDashoffset = (TL * (1 - g)).toFixed(1);
+    const pt = tr.getPointAtLength(TL * g); $("tdot").setAttribute("cx", pt.x); $("tdot").setAttribute("cy", pt.y);
+    [...document.querySelectorAll(".dots i")].forEach((d, i) => d.classList.toggle("on", i === Math.floor((t % T) / (T / 5))));
+    // reel frame
+    const vt = t % T;
+    if (Math.abs(v.currentTime - vt) > 0.001) await new Promise((res) => { v.addEventListener("seeked", res, { once: true }); v.currentTime = vt; });
+  };
+  window.ready = new Promise((res) => { if (v.readyState >= 2) res(); else v.addEventListener("loadeddata", res, { once: true }); }).then(() => document.fonts.ready);
+</script>
+</body>
+</html>

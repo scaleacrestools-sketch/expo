@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ScaleAcres · Real Estate Marketing &amp; Creative Growth Agency</title>
+<!--
+  Homepage concept v5. Layout follows the approved reference flow (hero film, statement, services,
+  "ideas" banner, creative showcase, how we work, clients, studio cards, CTA, FAQ, footer); type and
+  motion follow the creator-agency video (Outfit + a Playfair Display italic accent); colours are the
+  ScaleAcres brand: Brand Black, Royal, Royal Deep, Sky, White, Mist. Every image, video, logo, fact and
+  line of copy is ScaleAcres' own (scaleacres.com, the brand kit and the project repository).
+  ?static=1 renders every reveal in its finished state (used for the SVG export).
+-->
+<style>
+  @font-face { font-family: "Outfit"; src: url(assets/fonts/outfit.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+  @font-face { font-family: "Playfair Display"; src: url(assets/fonts/playfair-600-italic.woff2) format("woff2"); font-weight: 600; font-style: italic; font-display: swap; }
+  :root {
+    --ink: #0B0D0D; --ink-2: #14181A; --royal: #1D4ED8; --deep: #142E8C; --sky: #38BDF8; --white: #FFFFFF; --mist: #EEF2FB;
+    --muted: #5B6470; --line: rgba(11,13,13,.1); --line-d: rgba(255,255,255,.12);
+    --wrap: 1344px; --ease: cubic-bezier(.16,1,.3,1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: "Outfit", system-ui, sans-serif; color: var(--ink); background: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img, video { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: min(var(--wrap), calc(100% - 96px)); margin: 0 auto; }
+  .serif { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 600; letter-spacing: -0.01em; }
+  .royal { color: var(--royal); } .sky { color: var(--sky); }
+  .grad { background: linear-gradient(90deg, var(--deep), var(--royal) 45%, var(--sky)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow::before { content: ""; width: 30px; height: 2px; background: var(--royal); }
+  .dark .eyebrow { color: rgba(255,255,255,.62); } .dark .eyebrow::before { background: var(--sky); }
+  .eyebrow.center::after { content: ""; width: 30px; height: 2px; background: var(--royal); }
+  .pill { display: inline-flex; align-items: center; gap: 10px; padding: 9px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+  .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .h2 { font-size: clamp(44px, 4.6vw, 68px); font-weight: 600; line-height: 1.02; letter-spacing: -0.035em; }
+  .h2 .serif { font-size: 1.04em; }
+  .lead { font-size: 19px; line-height: 1.6; color: var(--muted); }
+  .dark .lead { color: rgba(255,255,255,.72); }
+  .btn { display: inline-flex; align-items: center; gap: 12px; height: 54px; padding: 0 28px; border-radius: 999px; font-size: 16px; font-weight: 600; transition: transform .5s var(--ease), background .3s, color .3s, box-shadow .3s; }
+  .btn svg { width: 16px; height: 16px; transition: transform .5s var(--ease); }
+  .btn:hover svg { transform: translate(3px, -3px); }
+  .btn-royal { background: var(--royal); color: #fff; box-shadow: 0 14px 30px -12px rgba(29,78,216,.7); }
+  .btn-royal:hover { background: var(--deep); }
+  .btn-line { border: 1.5px solid rgba(255,255,255,.35); color: #fff; }
+  .btn-line:hover { background: #fff; color: var(--ink); }
+  .btn-ink { background: var(--ink); color: #fff; }
+  .btn-sm { height: 44px; padding: 0 20px; font-size: 14px; }
+
+  /* reveal */
+  .rv { opacity: 0; transform: translateY(34px); transition: opacity 1s var(--ease), transform 1s var(--ease); transition-delay: var(--d, 0ms); }
+  .rv.in { opacity: 1; transform: none; }
+  .mask { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+  .mask > span { display: inline-block; transform: translateY(105%); transition: transform 1.1s var(--ease); transition-delay: var(--d, 0ms); }
+  .in .mask > span, .mask.in > span { transform: none; }
+  .zoom { overflow: hidden; } .zoom img, .zoom video { transform: scale(1.12); transition: transform 1.6s var(--ease); }
+  .zoom.in img, .zoom.in video { transform: none; }
+
+  /* ------------------------------------------------ header */
+  .hdr { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .4s, backdrop-filter .4s; }
+  .hdr .bar { width: min(var(--wrap), calc(100% - 96px)); margin: 0 auto; height: 88px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .hdr.solid { background: rgba(11,13,13,.82); backdrop-filter: blur(14px); }
+  .hdr .logo img { height: 46px; width: auto; }
+  .hdr nav { display: flex; gap: 34px; }
+  .hdr nav a { color: rgba(255,255,255,.78); font-size: 15px; font-weight: 500; position: relative; }
+  .hdr nav a.on, .hdr nav a:hover { color: #fff; }
+  .hdr nav a.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 2px; background: var(--sky); }
+  .rail { position: fixed; left: 0; top: 0; bottom: 0; width: 44px; z-index: 40; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+  .rail span { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: rgba(255,255,255,.32); }
+  .fab { position: fixed; right: 40px; bottom: 34px; z-index: 45; }
+
+  /* ------------------------------------------------ hero */
+  .hero { position: relative; height: 100vh; min-height: 760px; overflow: hidden; color: #fff; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .hero .film { position: absolute; inset: 0; }
+  .hero .film video, .hero .film img { width: 100%; height: 100%; object-fit: cover; }
+  .hero .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,13,13,.78) 0%, rgba(11,13,13,.42) 32%, rgba(11,13,13,.5) 62%, rgba(11,13,13,.94) 100%), radial-gradient(ellipse 60% 55% at 50% 50%, rgba(11,13,13,.5), transparent); }
+  .hero .copy { position: relative; max-width: 1080px; padding-top: 40px; }
+  .hero .pill { color: var(--sky); background: rgba(56,189,248,.1); border: 1px solid rgba(56,189,248,.35); }
+  .hero h1 { margin-top: 30px; font-size: clamp(64px, 7.4vw, 112px); font-weight: 600; line-height: .98; letter-spacing: -0.045em; }
+  .hero h1 .serif { font-size: 1.05em; }
+  .hero .support { margin: 30px auto 0; max-width: 640px; font-size: 20px; line-height: 1.55; color: rgba(255,255,255,.78); }
+  .hero .cta { margin-top: 40px; display: flex; gap: 14px; justify-content: center; }
+  .hero .base { position: absolute; left: 0; right: 0; bottom: 34px; }
+  .hero .base .wrap { display: flex; justify-content: space-between; align-items: center; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+  .hero .base .chap { display: flex; gap: 26px; }
+  .hero .base .chap b { color: var(--sky); font-weight: 600; margin-right: 8px; }
+
+  /* trusted strip */
+  .trust { background: #fff; border-bottom: 1px solid var(--line); }
+  .trust .wrap { display: flex; align-items: center; gap: 48px; height: 132px; }
+  .trust h3 { flex: none; font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+  .marquee { flex: 1; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .marquee .track { display: flex; align-items: center; gap: 72px; width: max-content; animation: mq 48s linear infinite; }
+  .marquee img { height: 46px; width: auto; opacity: .82; }
+  @keyframes mq { to { transform: translateX(-50%); } }
+
+  /* statement */
+  .statement { background: #fff; padding: 140px 0 120px; }
+  .statement p { font-size: clamp(40px, 3.6vw, 54px); line-height: 1.22; font-weight: 400; letter-spacing: -0.028em; max-width: 1240px; }
+  .statement .w { color: rgba(11,13,13,.16); transition: color .5s; }
+  .statement .w.lit { color: var(--ink); }
+  .statement .w.acc.lit { color: var(--royal); }
+  .statement .meta { margin-top: 56px; display: flex; gap: 64px; border-top: 1px solid var(--line); padding-top: 28px; }
+  .statement .meta div { font-size: 15px; color: var(--muted); } .statement .meta b { display: block; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
+
+  /* services */
+  .services { background: linear-gradient(180deg, #fff, var(--mist) 70%, #fff); padding: 130px 0 140px; }
+  .services .grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 72px; align-items: start; }
+  .services .h2 { font-size: clamp(44px, 4.2vw, 62px); }
+  .services .visual { margin-top: 42px; border-radius: 28px; overflow: hidden; aspect-ratio: 3/2; background: #fff; box-shadow: 0 40px 80px -50px rgba(20,46,140,.45); }
+  .services .visual video { width: 100%; height: 100%; object-fit: cover; }
+  .acc { border-top: 1px solid var(--line); margin-top: 8px; }
+  .acc details { border-bottom: 1px solid var(--line); }
+  .acc summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 52px 1fr 28px; align-items: center; padding: 24px 0; font-size: 21px; font-weight: 600; letter-spacing: -0.015em; }
+  .acc summary::-webkit-details-marker { display: none; }
+  .acc summary i { font-style: normal; font-size: 14px; font-weight: 600; color: var(--royal); letter-spacing: .06em; }
+  .acc summary em { font-style: normal; width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; font-size: 18px; color: var(--muted); transition: transform .4s var(--ease), background .3s, color .3s; }
+  .acc details[open] summary em { transform: rotate(45deg); background: var(--royal); border-color: var(--royal); color: #fff; }
+  .acc details p { padding: 0 40px 26px 52px; font-size: 16.5px; line-height: 1.6; color: var(--muted); }
+  .acc details p a { display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--royal); border-bottom: 1.5px solid var(--royal); padding-bottom: 3px; }
+
+  /* ideas banner */
+  .ideas { position: relative; height: 760px; overflow: hidden; color: #fff; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .ideas .bg { position: absolute; inset: -8% 0; }
+  .ideas .bg img { width: 100%; height: 100%; object-fit: cover; }
+  .ideas .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,13,13,.88), rgba(20,46,140,.55) 55%, rgba(11,13,13,.9)); }
+  .ideas .copy { position: relative; max-width: 900px; }
+  .ideas h2 { margin-top: 26px; font-size: clamp(64px, 6.6vw, 104px); font-weight: 600; line-height: .96; letter-spacing: -0.045em; }
+  .ideas p { margin: 30px auto 0; max-width: 620px; font-size: 19px; line-height: 1.6; color: rgba(255,255,255,.78); }
+
+  /* showcase */
+  .showcase { background: #fff; padding: 130px 0 140px; }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
+  .head .link { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+  .head .link::before { content: ""; width: 44px; height: 2px; background: var(--royal); }
+  .tiles { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px 32px; }
+  .tile .ph { border-radius: 18px; overflow: hidden; aspect-ratio: 16/10; background: var(--mist); }
+  .tile .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+  .tile:hover .ph img { transform: scale(1.04); }
+  .tile .cap { display: flex; justify-content: space-between; align-items: baseline; margin-top: 18px; }
+  .tile .cap b { font-size: 21px; font-weight: 600; letter-spacing: -0.015em; }
+  .tile .cap span { font-size: 12.5px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .tile .cap small { display: block; font-size: 15px; color: var(--muted); margin-top: 4px; font-weight: 400; letter-spacing: 0; }
+
+  /* how we work */
+  .how { background: var(--ink); color: #fff; padding: 140px 0 120px; position: relative; overflow: hidden; }
+  .how .ghost { position: absolute; right: -40px; top: 90px; font-size: 300px; font-weight: 700; letter-spacing: -0.05em; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.07); line-height: 1; pointer-events: none; }
+  .phase { display: grid; grid-template-columns: 520px 1fr; gap: 96px; align-items: center; margin-top: 110px; }
+  .phase.alt { grid-template-columns: 1fr 520px; } .phase.alt .card { order: 2; }
+  .phase .card { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 4/5; background: var(--ink-2); }
+  .phase .card img { width: 100%; height: 100%; object-fit: cover; }
+  .phase .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(11,13,13,.88), rgba(11,13,13,0) 48%); }
+  .phase .badge { position: absolute; left: 22px; top: 22px; z-index: 2; background: var(--royal); color: #fff; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; padding: 7px 14px; border-radius: 999px; }
+  .phase .card h3 { position: absolute; left: 28px; bottom: 24px; z-index: 2; font-size: 54px; font-weight: 600; letter-spacing: -0.04em; }
+  .phase .card h3 .serif { color: var(--sky); }
+  .phase .body > p { font-size: 19px; line-height: 1.65; color: rgba(255,255,255,.74); max-width: 560px; }
+  .phase .items { margin-top: 36px; border-top: 1px solid var(--line-d); max-width: 560px; }
+  .phase .items div { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--line-d); font-size: 16px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .phase .items div i { font-style: normal; color: var(--sky); font-size: 20px; font-weight: 400; }
+
+  /* clients */
+  .clients { background: #fff; padding: 140px 0 130px; text-align: center; }
+  .clients .h2 { margin-top: 22px; }
+  .clients .lead { margin: 22px auto 0; max-width: 620px; }
+  .logos { margin-top: 64px; display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .logos div { height: 170px; display: grid; place-items: center; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .4s; }
+  .logos div:hover { background: var(--mist); }
+  .logos img { max-width: 62%; max-height: 74px; width: auto; height: auto; }
+
+  /* studio cards */
+  .studio { background: var(--mist); padding: 120px 0; }
+  .bento { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .bento .col { display: grid; gap: 28px; grid-template-rows: 1fr auto; }
+  .b-dark { position: relative; border-radius: 26px; background: var(--ink); color: #fff; padding: 44px; overflow: hidden; min-height: 400px; }
+  .b-dark .num { font-size: 132px; font-weight: 600; letter-spacing: -0.06em; line-height: .9; }
+  .b-dark .num sup { font-size: .4em; color: var(--sky); vertical-align: top; margin-left: 6px; }
+  .b-dark p { margin-top: 18px; font-size: 22px; font-weight: 500; line-height: 1.3; max-width: 240px; }
+  .b-dark .tag { position: absolute; right: 30px; top: 28px; font-size: 13px; color: rgba(255,255,255,.55); }
+  .b-dark .cities { position: absolute; left: 44px; bottom: 36px; display: flex; gap: 10px; }
+  .b-dark .cities span { padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.16); font-size: 14px; }
+  .b-dark svg.globe { position: absolute; right: -30px; bottom: -60px; width: 430px; height: 430px; opacity: .9; }
+  .b-light { border-radius: 26px; background: #fff; padding: 36px 40px; display: flex; justify-content: space-between; align-items: flex-end; box-shadow: 0 30px 60px -45px rgba(20,46,140,.4); }
+  .b-light h4 { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+  .b-light h4 .serif { color: var(--royal); }
+  .b-video { position: relative; border-radius: 26px; overflow: hidden; color: #fff; padding: 40px; background: radial-gradient(ellipse 80% 60% at 85% 0%, rgba(56,189,248,.45), transparent 60%), linear-gradient(160deg, var(--royal), var(--deep) 45%, var(--ink) 100%); }
+  .b-video .tag { font-size: 13px; color: rgba(255,255,255,.72); }
+  .b-video h4 { margin-top: 14px; font-size: 38px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; }
+  .b-video .vids { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .b-video .v { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 1; background: #000; }
+  .b-video .v img { width: 100%; height: 100%; object-fit: cover; }
+  .b-video .v::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(11,13,13,.85), transparent 55%); }
+  .b-video .v b { position: absolute; left: 16px; bottom: 14px; z-index: 2; font-size: 16px; font-weight: 600; }
+  .b-video .v small { display: block; font-size: 12.5px; font-weight: 400; color: rgba(255,255,255,.7); }
+  .b-video .v i { position: absolute; right: 14px; bottom: 14px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; background: #fff; display: grid; place-items: center; }
+  .b-video .v i svg { width: 14px; height: 14px; fill: var(--ink); margin-left: 2px; }
+
+  /* CTA */
+  .cta-out { position: relative; background: var(--ink); color: #fff; text-align: center; padding: 170px 0 160px; overflow: hidden; }
+  .cta-out svg.sky-bg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .cta-out h2 { position: relative; font-size: clamp(76px, 8vw, 128px); font-weight: 600; letter-spacing: -0.05em; line-height: 1; }
+  .flip { display: inline-block; position: relative; height: 1.12em; overflow: hidden; vertical-align: bottom; min-width: 3.4em; }
+  .flip span { display: block; color: var(--sky); transition: transform .9s var(--ease); }
+  .flip .stack { display: block; transition: transform .9s var(--ease); }
+  .cta-out .mail { position: relative; display: inline-block; margin-top: 34px; font-size: 30px; font-weight: 500; color: var(--sky); border-bottom: 1.5px solid rgba(56,189,248,.5); padding-bottom: 4px; }
+  .cta-out .btns { position: relative; margin-top: 36px; display: flex; gap: 14px; justify-content: center; }
+
+  /* FAQ */
+  .faq { position: relative; background: #fff; padding: 140px 0 130px; overflow: hidden; }
+  .faq::before { content: ""; position: absolute; left: 50%; top: -120px; width: 900px; height: 520px; margin-left: -450px; background: radial-gradient(closest-side, rgba(56,189,248,.16), transparent); }
+  .faq::after { content: ""; position: absolute; right: -120px; bottom: -120px; width: 520px; height: 520px; background: radial-gradient(closest-side, rgba(29,78,216,.1), transparent); }
+  .faq .in-wrap { position: relative; max-width: 880px; margin: 0 auto; text-align: center; }
+  .faq .pill { color: var(--royal); background: rgba(56,189,248,.12); border: 1px solid rgba(56,189,248,.4); }
+  .faq h2 { margin-top: 24px; font-size: 56px; font-weight: 600; letter-spacing: -0.035em; }
+  .faq h2 .serif { color: var(--sky); }
+  .faq .lead { margin-top: 14px; }
+  .faq .list { margin-top: 50px; display: grid; gap: 14px; text-align: left; }
+  .faq details { border-radius: 16px; background: #fff; border: 1px solid var(--line); box-shadow: 0 18px 40px -32px rgba(20,46,140,.35); }
+  .faq details[open] { border-color: rgba(29,78,216,.25); box-shadow: 0 24px 50px -30px rgba(29,78,216,.35); }
+  .faq summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 46px 1fr 30px; align-items: center; padding: 22px 26px; font-size: 18px; font-weight: 600; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary i { font-style: normal; font-size: 14px; color: var(--royal); font-weight: 600; }
+  .faq summary em { font-style: normal; width: 30px; height: 30px; border-radius: 50%; background: var(--mist); display: grid; place-items: center; color: var(--royal); transition: transform .4s var(--ease); }
+  .faq details[open] summary em { transform: rotate(180deg); }
+  .faq details p { padding: 0 60px 24px 72px; font-size: 16.5px; line-height: 1.65; color: var(--muted); }
+  .faq .more { margin-top: 26px; padding: 20px; border-radius: 16px; background: var(--mist); font-size: 16px; color: var(--muted); }
+  .faq .more a { color: var(--royal); font-weight: 600; }
+
+  /* footer */
+  .foot { position: relative; background: var(--ink); color: #fff; padding: 40px 0 0; overflow: hidden; }
+  .foot .word { font-size: 300px; font-weight: 700; letter-spacing: -0.06em; line-height: .9; text-align: center; background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.015) 85%); -webkit-background-clip: text; background-clip: text; color: transparent; user-select: none; }
+  .foot .cols { display: grid; grid-template-columns: 1.5fr 1fr 1.25fr 1.5fr; gap: 56px; padding: 60px 0 70px; }
+  .foot .brand img { height: 56px; width: auto; }
+  .foot .brand p { margin-top: 26px; font-size: 15.5px; line-height: 1.7; color: rgba(255,255,255,.62); max-width: 360px; }
+  .foot h5 { font-size: 14px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #fff; margin-bottom: 22px; }
+  .foot ul { list-style: none; display: grid; gap: 13px; }
+  .foot li, .foot li a { font-size: 15.5px; color: rgba(255,255,255,.66); }
+  .foot li a:hover { color: var(--sky); }
+  .foot .contact li { display: flex; gap: 12px; line-height: 1.55; }
+  .foot .contact svg { flex: none; width: 18px; height: 18px; margin-top: 3px; stroke: var(--sky); fill: none; stroke-width: 1.8; }
+  .foot .social { display: flex; gap: 10px; margin-top: 22px; }
+  .foot .social a { width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); display: grid; place-items: center; transition: background .3s, border-color .3s; }
+  .foot .social a:hover { background: var(--royal); border-color: var(--royal); }
+  .foot .social svg { width: 17px; height: 17px; fill: #fff; }
+  .foot .base { border-top: 1px solid var(--line-d); padding: 26px 0 34px; display: flex; justify-content: space-between; font-size: 14px; color: rgba(255,255,255,.5); }
+  .foot .base nav { display: flex; gap: 28px; }
+
+  /* static export: every reveal finished, motion stopped */
+  .static .rv, .static .mask > span { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .static .zoom img, .static .zoom video { transform: none !important; transition: none !important; }
+  .static .marquee .track { animation: none; }
+  .static .statement .w { color: var(--ink); } .static .statement .w.acc { color: var(--royal); }
+  .static .hdr, .static .rail, .static .fab { position: absolute; }
+  .static .fab { top: calc(100vh - 94px); bottom: auto; }
+  .static .grad { background: none; color: var(--royal); -webkit-text-fill-color: var(--royal); }
+  .static .foot .word { background: none; color: rgba(255,255,255,.09); -webkit-text-fill-color: rgba(255,255,255,.09); }
+</style>
+</head>
+<body>
+
+<!-- header -->
+<header class="hdr" id="hdr">
+  <div class="bar">
+    <a class="logo" href="#top" aria-label="ScaleAcres home"><img src="assets/img/scaleacres-logo-white.svg" alt="ScaleAcres"></a>
+    <nav aria-label="Main">
+      <a class="on" href="#top">Home</a><a href="#services">Services</a><a href="#work">Our Work</a><a href="#how">How We Work</a><a href="#clients">Clients</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-royal btn-sm" href="#contact">Book a call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+  </div>
+</header>
+<div class="rail" aria-hidden="true"><span>Branding — Websites — SEO — Performance — Social — Video — Ecommerce — Technology</span></div>
+<a class="fab btn btn-royal" href="#contact">Get a quote <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+
+<main id="top">
+
+<!-- 01 hero: the ScaleAcres motion reel -->
+<section class="hero dark" aria-label="ScaleAcres">
+  <div class="film">
+    <video id="reel" autoplay muted loop playsinline poster="assets/img/reel-poster-1920.webp">
+      <source src="assets/video/scaleacres-reel-1920.webm" type="video/webm">
+      <source src="assets/video/scaleacres-reel-1920.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="scrim"></div>
+  <div class="copy">
+    <span class="pill rv">Real estate marketing agency</span>
+    <h1><span class="mask"><span style="--d:120ms">Built to Stand Out.</span></span><span class="mask"><span style="--d:240ms">Designed to <span class="serif sky">Scale.</span></span></span></h1>
+    <p class="support rv" style="--d:420ms">A real estate marketing and creative growth agency combining strategy, design, technology and performance.</p>
+    <div class="cta rv" style="--d:540ms">
+      <a class="btn btn-royal" href="#contact">Start a project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+      <a class="btn btn-line" href="#work">See our work</a>
+    </div>
+  </div>
+  <div class="base"><div class="wrap">
+    <span>Delhi · Agra · Bangalore</span>
+    <span class="chap" id="chap"><span><b>01</b>Brand identity</span><span><b>02</b>Real estate marketing</span><span><b>03</b>Websites</span><span><b>04</b>Performance</span><span><b>05</b>Video</span></span>
+    <span>Scroll ↓</span>
+  </div></div>
+</section>
+
+<!-- trusted by -->
+<section class="trust" aria-label="Trusted by">
+  <div class="wrap">
+    <h3>Trusted by</h3>
+    <div class="marquee"><div class="track" id="track"></div></div>
+  </div>
+</section>
+
+<!-- 02 statement -->
+<section class="statement" aria-label="Who we are">
+  <div class="wrap">
+    <span class="eyebrow rv">Who we are</span>
+    <p id="stmt" style="margin-top:34px">We're a real estate marketing and creative growth agency helping developers launch, position and sell out projects, through <span class="acc-src">brand, digital and performance</span> working as one.</p>
+    <div class="meta rv">
+      <div><b>Studios</b>Delhi · Agra · Bangalore</div>
+      <div><b>Markets</b>India · UAE · Saudi Arabia</div>
+      <div><b>Focus</b>Real estate developers, channel partners and growth brands</div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 services (creator-agency layout: phone visual + accordion) -->
+<section class="services" id="services" aria-label="Services">
+  <div class="wrap grid">
+    <div>
+      <span class="eyebrow rv">What we do</span>
+      <h2 class="h2" style="margin-top:22px"><span class="mask"><span>Our Full-Service</span></span><span class="mask"><span style="--d:120ms"><span class="serif grad">Real Estate Marketing</span> Solutions</span></span></h2>
+      <p class="lead rv" style="margin-top:22px;max-width:620px">Brand, websites, media and technology for developers and growth brands, planned and delivered by one team under one roof.</p>
+      <div class="visual zoom rv" style="--d:200ms">
+        <video autoplay muted loop playsinline poster="assets/img/services-phone-visual-poster.jpg">
+          <source src="assets/video/services-phone-visual-1800x1200.webm" type="video/webm">
+          <source src="assets/video/services-phone-visual-1800x1200.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <div class="acc rv" id="acc" style="--d:160ms"></div>
+  </div>
+</section>
+
+<!-- 04 ideas banner -->
+<section class="ideas dark" aria-label="The ScaleAcres standard">
+  <div class="bg"><img id="ideasBg" src="assets/img/video-2400.webp" alt="Posters of ScaleAcres ad films, social videos and AI films"></div>
+  <div class="scrim"></div>
+  <div class="copy">
+    <span class="eyebrow center rv">The ScaleAcres standard</span>
+    <h2><span class="mask"><span>Ideas that</span></span><span class="mask"><span style="--d:120ms"><span class="serif sky">stop the scroll</span></span></span></h2>
+    <p class="rv" style="--d:240ms">Every launch deserves a big idea, and every idea deserves flawless execution. Strategy, creative, technology and media under one roof.</p>
+  </div>
+</section>
+
+<!-- 05 creative showcase -->
+<section class="showcase" id="work" aria-label="Creative showcase">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow rv">Our work does the talking</span><h2 class="h2" style="margin-top:22px"><span class="mask"><span>Creative <span class="serif royal">showcase</span></span></span></h2></div>
+      <a class="link rv" href="#work">Full portfolio</a>
+    </div>
+    <div class="tiles" id="tiles"></div>
+  </div>
+</section>
+
+<!-- 06 how we work -->
+<section class="how dark" id="how" aria-label="How we work">
+  <div class="ghost" aria-hidden="true">Journey</div>
+  <div class="wrap">
+    <span class="eyebrow rv">How we work</span>
+    <h2 class="h2" style="margin-top:22px"><span class="mask"><span>From a plan, to a</span></span><span class="mask"><span style="--d:120ms"><span class="serif sky">brand journey.</span></span></span></h2>
+    <div id="phases"></div>
+  </div>
+</section>
+
+<!-- 07 clients -->
+<section class="clients" id="clients" aria-label="Clients">
+  <div class="wrap">
+    <span class="eyebrow center rv">Trusted by developers</span>
+    <h2 class="h2"><span class="mask"><span>Our precious <span class="serif royal">clients</span></span></span></h2>
+    <p class="lead rv">Developers and real estate brands that have trusted ScaleAcres with their launches, websites and campaigns.</p>
+    <div class="logos rv" id="logos"></div>
+  </div>
+</section>
+
+<!-- 08 studio cards -->
+<section class="studio" aria-label="Studio">
+  <div class="wrap bento">
+    <div class="col">
+      <div class="b-dark rv">
+        <span class="tag">(Our studios)</span>
+        <div class="num">03</div>
+        <p>studios across India, one team</p>
+        <div class="cities"><span>Delhi</span><span>Agra</span><span>Bangalore</span></div>
+        <svg class="globe" viewBox="0 0 400 400" id="globe"></svg>
+      </div>
+      <div class="b-light rv" style="--d:120ms">
+        <h4>Eight services,<br><span class="serif">one accountable team</span></h4>
+        <a class="btn btn-royal btn-sm" href="#services">View services <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+      </div>
+    </div>
+    <div class="b-video rv" style="--d:180ms">
+      <span class="tag">(In their words)</span>
+      <h4>Hear it from <span class="serif">our clients</span></h4>
+      <div class="vids">
+        <div class="v"><img src="assets/img/sunita-bishnoi-lets-movin-poster.webp" alt="Sunita Bishnoi, Let's Movin, video testimonial"><b>Let's Movin<small>Real estate consultancy</small></b><i><svg viewBox="0 0 12 12"><path d="M2 1v10l9-5z"/></svg></i></div>
+        <div class="v"><img src="assets/img/nrg-india-poster.webp" alt="NRG India video testimonial"><b>NRG India<small>Real estate</small></b><i><svg viewBox="0 0 12 12"><path d="M2 1v10l9-5z"/></svg></i></div>
+        <div class="v"><img src="assets/img/ipd-poster.webp" alt="IPD International Property Deal video testimonial"><b>IPD<small>Luxury homes</small></b><i><svg viewBox="0 0 12 12"><path d="M2 1v10l9-5z"/></svg></i></div>
+        <div class="v"><img src="assets/img/timespro-poster.webp" alt="TimesPro video testimonial"><b>TimesPro<small>Client testimonial</small></b><i><svg viewBox="0 0 12 12"><path d="M2 1v10l9-5z"/></svg></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 CTA -->
+<section class="cta-out dark" id="contact" aria-label="Contact">
+  <svg class="sky-bg" viewBox="0 0 1440 760" preserveAspectRatio="none" aria-hidden="true" id="stars"></svg>
+  <h2><span class="mask"><span>Let's <span class="flip serif"><span class="stack" id="flip"><span>work</span><span>create</span><span>build</span><span>grow</span><span>launch</span><span>work</span></span></span> together.</span></span></h2>
+  <a class="mail rv" href="mailto:scaleacres@gmail.com">scaleacres@gmail.com</a>
+  <div class="btns rv" style="--d:120ms">
+    <a class="btn btn-royal" href="mailto:scaleacres@gmail.com">Contact us <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+    <a class="btn btn-line" href="tel:+917017169215">+91 70171 69215</a>
+  </div>
+</section>
+
+<!-- 10 FAQ -->
+<section class="faq" id="faq" aria-label="Frequently asked questions">
+  <div class="in-wrap">
+    <span class="pill rv">Common questions</span>
+    <h2><span class="mask"><span>Frequently Asked <span class="serif">Questions</span></span></span></h2>
+    <p class="lead rv">Real estate marketing, websites, SEO and campaigns: what clients ask us most.</p>
+    <div class="list rv" id="faqList"></div>
+    <div class="more rv">Still have questions? Write to us at <a href="mailto:scaleacres@gmail.com">scaleacres@gmail.com</a></div>
+  </div>
+</section>
+</main>
+
+<!-- footer -->
+<footer class="foot" aria-label="Footer">
+  <div class="word" aria-hidden="true">ScaleAcres</div>
+  <div class="wrap">
+    <div class="cols">
+      <div class="brand">
+        <img src="assets/img/scaleacres-logo-white.svg" alt="ScaleAcres">
+        <p>ScaleAcres is an independent creative, digital and growth agency where powerful ideas meet thoughtful design, innovative technology and performance-driven marketing.</p>
+        <div class="social">
+          <a href="https://www.instagram.com/scaleacres/" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM21.9 8c0-1.7-.5-3.2-1.7-4.4C19 2.5 17.6 2.1 15.9 2c-1.7-.1-6.2-.1-7.9 0C6.4 2.1 4.9 2.5 3.7 3.7S2.1 6.3 2 8c-.1 1.7-.1 6.2 0 7.9.1 1.7.5 3.2 1.7 4.4s2.7 1.6 4.4 1.7c1.7.1 6.2.1 7.9 0 1.7-.1 3.2-.5 4.4-1.7s1.6-2.7 1.7-4.4c.1-1.7.1-6.2-.2-7.9zm-2.3 9.8a3 3 0 0 1-1.7 1.7c-1.2.5-4 .4-5.3.4s-4.1.1-5.3-.4a3 3 0 0 1-1.7-1.7c-.5-1.2-.4-4-.4-5.3s-.1-4.1.4-5.3a3 3 0 0 1 1.7-1.7c1.2-.5 4-.4 5.3-.4s4.1-.1 5.3.4a3 3 0 0 1 1.7 1.7c.5 1.2.4 4 .4 5.3s.1 4.1-.4 5.3z"/></svg></a>
+          <a href="https://www.facebook.com/scaleacrespromotech" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v1.9H8v3.2h2.6V22H14v-10.3h2.6l.4-3.2z"/></svg></a>
+          <a href="https://www.linkedin.com/company/scaleacres" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.9 21H3.2V9h3.7zM5 7.4a2.1 2.1 0 1 1 0-4.3 2.1 2.1 0 0 1 0 4.3zM21 21h-3.7v-5.8c0-1.4 0-3.2-2-3.2s-2.2 1.5-2.2 3.1V21H9.4V9h3.5v1.6h.1c.5-.9 1.7-2 3.5-2 3.7 0 4.5 2.5 4.5 5.7z"/></svg></a>
+        </div>
+      </div>
+      <div><h5>Quick links</h5><ul><li><a href="#">About us</a></li><li><a href="#">Our team</a></li><li><a href="#work">Our work</a></li><li><a href="#">Case studies</a></li><li><a href="#">Creative studio</a></li><li><a href="#">Careers</a></li><li><a href="#">Blog</a></li></ul></div>
+      <div><h5>Services</h5><ul id="footSvc"></ul></div>
+      <div class="contact"><h5>Get in touch</h5><ul>
+        <li><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Plot 5, 2nd Floor, Kehar Singh Estate, Westend Marg, Lane 2, Saidulajab, New Delhi 110030, India</span></li>
+        <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:scaleacres@gmail.com">scaleacres@gmail.com</a></li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span><a href="tel:+917017169215">+91 70171 69215</a><br><a href="tel:+919266023436">+91 92660 23436</a></span></li>
+      </ul></div>
+    </div>
+    <div class="base"><span>© 2026 ScaleAcres PromoTech. All rights reserved.</span><nav><a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a><a href="#contact">Contact us</a></nav></div>
+  </div>
+</footer>
+
+<script>
+const STATIC = /static=1/.test(location.search);
+if (STATIC) document.documentElement.classList.add("static");
+const $ = (s) => document.querySelector(s);
+
+/* data — all ScaleAcres */
+const CLIENTS = ["adani-realty","tata-realty","m3m","signature-global","elan","ats","bhutani-infra","smartworld","birla-navya","hero-realty","trehan-luxury-floors","the-islands-by-gaurs","yugen-infra","hometrust","rps-rudrom","seabreeze-villas","bric-x-infra","raksha-towers","shf-square","mi-casa"];
+const NAMES = {"adani-realty":"Adani Realty","tata-realty":"Tata Realty","m3m":"M3M","signature-global":"Signature Global","elan":"Elan","ats":"ATS","bhutani-infra":"Bhutani Infra","smartworld":"Smartworld","birla-navya":"Birla Navya","hero-realty":"Hero Realty","trehan-luxury-floors":"Trehan Luxury Floors","the-islands-by-gaurs":"The Islands by Gaurs","yugen-infra":"Yugen Infra","hometrust":"Hometrust","rps-rudrom":"RPS Rudrom","seabreeze-villas":"SeaBreeze Villas","bric-x-infra":"Bric-X Infra","raksha-towers":"Raksha Towers","shf-square":"SHF Square","mi-casa":"Mi Casa"};
+const SERVICES = [
+  ["Website Design & Development","We create modern, responsive websites that combine compelling design, intuitive user experiences and performance-focused development to help brands make a stronger digital impression."],
+  ["Search Engine Optimization","We develop search strategies that help businesses increase online visibility, attract relevant organic traffic and establish a stronger presence across search platforms."],
+  ["Performance Marketing","We create and optimize paid advertising campaigns using audience insights, creative thinking and performance data to support qualified lead generation and measurable business goals."],
+  ["Branding & Creative Design","We develop distinctive brand identities and creative communication systems that reflect your personality, strengthen recognition and create memorable audience experiences."],
+  ["Social Media Marketing","We help brands build meaningful digital connections through thoughtful content strategies, engaging creatives and consistent communication across social media platforms."],
+  ["Video & Creative Production","We bring brand ideas to life through compelling videos, creative storytelling and impactful digital content designed for today's fast-moving platforms."],
+  ["Ecommerce Solutions","We build digital storefronts that combine attractive design, user-friendly shopping experiences and dependable ecommerce technology."],
+  ["Custom Applications & Software","We develop tailored digital solutions that simplify workflows, improve user experiences and help businesses operate more efficiently."],
+];
+const WORK = [
+  ["jbbr-group-1600","JBBR Group","Brand identity & creative","Redefining Luxury, Lucknow"],
+  ["trg-the-mall-1600","TRG The Mall","Launch campaign & event","Trisol Red Group, Ghaziabad"],
+  ["sid-realtech-1600","SID Realtech","Branding & outdoor","Ellington 86, Faridabad"],
+  ["intech-developers-1600","Intech Developers","Website design & development","Modern living in Udupi"],
+  ["yugen-1600","Yugen Infra","Campaign & ad films","Case study, North Goa"],
+  ["onegoa-1600","One Goa","Brand & performance","Case study, Bicholim, Goa"],
+  ["web-subata-2400","Subata Realty","Website","Phuket property platform"],
+  ["web-finsckool-2400","Finsckool","Platform design & build","Finance learning platform"],
+];
+const PHASES = [
+  ["01","Discovery","studio-founders-1000","We study the project, the buyer and the competition: who is buying, what they compare, and what makes them enquire.",["Market & buyer research","Competition mapping","Sales goals & launch calendar"]],
+  ["02","Strategy","studio-team-1000","One clear direction for brand, message and media, tied to sales targets and the launch calendar.",["Positioning & message","Media & channel plan","Budgets & targets"]],
+  ["03","Creation","board-applications-1800","Identity, website, creatives, films and campaigns, designed together so the project looks and sounds the same everywhere.",["Identity & collateral","Website & landing pages","Films & campaign creatives"]],
+  ["04","Growth","svc-performance-marketing-2400","Campaigns go live, enquiries are tracked to source, and we keep improving what brings qualified buyers.",["Campaigns go live","Enquiries tracked to source","Continuous optimisation"]],
+];
+const FAQ = [
+  ["How can ScaleAcres help generate more leads?","ScaleAcres helps generate high-quality leads through targeted digital campaigns, audience segmentation, optimized landing pages, and data-driven advertising strategies designed to reach potential customers at the right time."],
+  ["How can ScaleAcres enhance your website's visibility?","ScaleAcres improves website visibility through SEO, content optimization, technical improvements, keyword targeting, and digital marketing strategies that help your website reach a larger and more relevant audience."],
+  ["What makes ScaleAcres different from other marketing agencies?","ScaleAcres combines real estate industry expertise, creative strategy, technology, and performance-driven marketing to deliver customized solutions focused on measurable business growth."],
+  ["How can I track the success of my campaigns?","Campaign performance can be tracked through key metrics such as leads generated, conversions, cost per lead, website traffic, engagement, and return on ad spend, supported by regular performance reports and analysis."],
+];
+
+/* build */
+const logoImg = (k) => `<img src="assets/clients/${k}.png" alt="${NAMES[k]}">`;
+$("#track").innerHTML = CLIENTS.concat(CLIENTS).map(logoImg).join("");
+$("#logos").innerHTML = CLIENTS.map((k) => `<div>${logoImg(k)}</div>`).join("");
+$("#acc").innerHTML = SERVICES.map(([t, d], i) => `<details${i === 0 ? " open" : ""}><summary><i>${String(i + 1).padStart(2, "0")}</i>${t}<em>+</em></summary><p>${d}<br><a href="#">Explore ${t.split(" ")[0].replace(/&/, "").toLowerCase()} →</a></p></details>`).join("");
+$("#footSvc").innerHTML = SERVICES.map(([t]) => `<li><a href="#services">${t}</a></li>`).join("");
+$("#tiles").innerHTML = WORK.map(([img, name, cat, sub], i) => `<a class="tile rv" style="--d:${(i % 2) * 120}ms" href="#work"><div class="ph zoom"><img src="assets/img/${img}.webp" alt="${name}: ${sub}"></div><div class="cap"><b>${name}<small>${sub}</small></b><span>${cat}</span></div></a>`).join("");
+$("#phases").innerHTML = PHASES.map(([n, t, img, body, items], i) => `
+  <div class="phase${i % 2 ? " alt" : ""}">
+    <div class="card zoom rv"><span class="badge">Phase ${n}</span><img src="assets/img/${img}.webp" alt="${t}: ScaleAcres"><h3>${t}<span class="serif">.</span></h3></div>
+    <div class="body rv" style="--d:140ms"><p>${body}</p><div class="items">${items.map((x) => `<div>${x}<i>+</i></div>`).join("")}</div></div>
+  </div>`).join("");
+$("#faqList").innerHTML = FAQ.map(([q, a], i) => `<details${i === 0 ? " open" : ""}><summary><i>${String(i + 1).padStart(2, "0")}</i>${q}<em>⌄</em></summary><p>${a}</p></details>`).join("");
+
+/* statement: word-by-word lighting */
+(() => {
+  const p = $("#stmt"); const acc = p.querySelector(".acc-src").textContent;
+  const before = p.innerHTML.split('<span class="acc-src">')[0], after = p.innerHTML.split("</span>").pop();
+  const words = (s, cls = "") => s.trim().split(/\s+/).map((w) => `<span class="w${cls}">${w}</span>`).join(" ");
+  p.innerHTML = `${words(before)} <span class="serif">${words(acc, " acc")}</span> ${words(after)}`;
+})();
+
+/* globe of dots */
+(() => {
+  let s = ""; for (let lat = -80; lat <= 80; lat += 10) for (let lon = -180; lon < 180; lon += 9) {
+    const la = lat * Math.PI / 180, lo = lon * Math.PI / 180, x = Math.cos(la) * Math.sin(lo), z = Math.cos(la) * Math.cos(lo);
+    if (z < 0) continue; const cx = 200 + 175 * x, cy = 200 - 175 * Math.sin(la);
+    s += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(1.2 + z * 1.3).toFixed(2)}" fill="${Math.abs(lat - 28) < 6 && Math.abs(lon - 10) < 14 ? "#38BDF8" : "rgba(255,255,255," + (0.12 + z * 0.35).toFixed(2) + ")"}"/>`;
+  }
+  $("#globe").innerHTML = s;
+})();
+/* starfield + cable */
+(() => {
+  let s = "", r = 7; const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280;
+  for (let i = 0; i < 120; i++) s += `<circle cx="${(rnd() * 1440).toFixed(1)}" cy="${(rnd() * 760).toFixed(1)}" r="${(0.6 + rnd() * 1.4).toFixed(2)}" fill="#fff" opacity="${(0.15 + rnd() * 0.55).toFixed(2)}"/>`;
+  s += `<path d="M-20 300 C 300 240, 520 230, 760 205 S 1200 140, 1460 60" fill="none" stroke="rgba(56,189,248,.35)" stroke-width="1.5"/>`;
+  $("#stars").innerHTML = s;
+})();
+
+if (!STATIC) {
+  /* reveals */
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.15 });
+  document.querySelectorAll(".rv, .mask, .zoom").forEach((el) => io.observe(el));
+  /* header + statement lighting */
+  const ws = [...document.querySelectorAll("#stmt .w")];
+  const onScroll = () => {
+    $("#hdr").classList.toggle("solid", scrollY > 60);
+    const r = $("#stmt").getBoundingClientRect(), k = Math.min(1, Math.max(0, (innerHeight * 0.85 - r.top) / (r.height + innerHeight * 0.35)));
+    const n = Math.round(k * ws.length); ws.forEach((w, i) => w.classList.toggle("lit", i < n));
+  };
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  /* rotating CTA word */
+  let fi = 0; setInterval(() => { fi = (fi + 1) % 6; const st = $("#flip"); if (fi === 0) { st.style.transition = "none"; st.style.transform = "translateY(0)"; void st.offsetWidth; st.style.transition = ""; fi = 0; return; } st.style.transform = `translateY(${-fi * 1.12}em)`; }, 2200);
+  /* hero chapter indicator follows the reel */
+  const v = $("#reel"), ch = [...document.querySelectorAll("#chap > span")], at = [0, 3.1, 6.0, 9.1, 11.9];
+  v.addEventListener("timeupdate", () => { let i = at.length - 1; while (i > 0 && v.currentTime < at[i]) i--; ch.forEach((c, k) => c.style.opacity = k === i ? 1 : .45); });
+} else {
+  document.querySelectorAll("video").forEach((v) => { v.removeAttribute("autoplay"); v.pause(); });
+}
+</script>
+</body>
+</html>
