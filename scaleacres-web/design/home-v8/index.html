@@ -10,21 +10,23 @@
 <meta property="og:image" content="assets/img/hero-ai-poster.jpg">
 <meta name="theme-color" content="#0B0D0D">
 <link rel="preload" href="assets/img/hero-ai-poster.jpg" as="image">
-<link rel="preload" href="assets/fonts/anton.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/chivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/clash-display-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/satoshi-400.woff2" as="font" type="font/woff2" crossorigin>
 <title>ScaleAcres · Real Estate Marketing &amp; Creative Growth Agency</title>
 <!--
   Homepage concept v8 (hero: copy left, enquiry form right, over a wall of faceless ScaleAcres AI and ad-film renders). Layout follows the approved reference flow (hero film, statement, services,
   "ideas" banner, creative showcase, how we work, clients, studio cards, CTA, FAQ, footer); type and
-  type follows reddashmedia.com (Anton display + Chivo text); colours are the
+  type is Clash Display (headlines) + Satoshi (text); colours are the
   ScaleAcres brand: Brand Black, Royal, Royal Deep, Sky, White, Mist. Every image, video, logo, fact and
   line of copy is ScaleAcres' own (scaleacres.com, the brand kit and the project repository).
   ?static=1 renders every reveal in its finished state (used for the SVG export).
 -->
 <style>
-  /* Type pairing as on reddashmedia.com: Anton (condensed display, uppercase) + Chivo (text and UI). Both SIL OFL. */
-  @font-face { font-family: "Anton"; src: url(assets/fonts/anton.woff2) format("woff2"); font-weight: 400; font-display: swap; }
-  @font-face { font-family: "Chivo"; src: url(assets/fonts/chivo.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+  /* Type (approved option 3): Clash Display for headlines, Satoshi for text and UI. Both from Fontshare (ITF Free Font License). */
+  @font-face { font-family: "Clash Display"; src: url(assets/fonts/clash-display-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+  @font-face { font-family: "Satoshi"; src: url(assets/fonts/satoshi-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Satoshi"; src: url(assets/fonts/satoshi-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: "Satoshi"; src: url(assets/fonts/satoshi-700.woff2) format("woff2"); font-weight: 600 900; font-display: swap; }
   :root {
     --ink: #0B0D0D; --ink-2: #15181B; --navy: #0B1640; --royal: #1D4ED8; --deep: #142E8C; --sky: #38BDF8; --white: #FFFFFF; --mist: #EEF2FB;
     --muted: #5F6878; --line: #DDE3EF; --graphite: #2B3140; --silver: #AEB6C6; --grey-soft: #C9CFDB;
@@ -33,11 +35,11 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: "Chivo", system-ui, sans-serif; color: var(--ink); background: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body { font-family: "Satoshi", system-ui, sans-serif; color: var(--ink); background: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   img, video { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
   .wrap { width: min(var(--wrap), calc(100% - 96px)); margin: 0 auto; }
-  .serif { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 600; letter-spacing: -0.01em; }
+  .serif { font-style: normal; }
   .royal { color: var(--royal); } .sky { color: var(--sky); }
   .grad { background: linear-gradient(90deg, var(--deep), var(--royal) 45%, var(--sky)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
@@ -298,14 +300,14 @@
   .hform .f { display: grid; } .hform .f.full { grid-column: 1 / -1; }
   .hform .f > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .hform input, .hform select { width: 100%; height: 56px; padding: 0 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04);
-    color: #fff; font: 500 16px/1 "Chivo", system-ui, sans-serif; outline: none; transition: border-color .25s, background .25s, box-shadow .25s; }
+    color: #fff; font: 500 16px/1 "Satoshi", system-ui, sans-serif; outline: none; transition: border-color .25s, background .25s, box-shadow .25s; }
   .hform input::placeholder { color: var(--silver); opacity: .8; }
   .hform input:focus, .hform select:focus { border-color: var(--sky); background: rgba(56,189,248,.05); box-shadow: 0 0 0 3px rgba(56,189,248,.16); }
   .hform [aria-invalid=true] { border-color: var(--sky) !important; box-shadow: 0 0 0 3px rgba(56,189,248,.22); }
   .hform .sel { position: relative; } .hform select { appearance: none; -webkit-appearance: none; padding-right: 40px; cursor: pointer; }
   .hform select:invalid { color: var(--silver); } .hform option { background: var(--ink); color: #fff; }
   .hform .sel svg { position: absolute; right: 18px; top: 21px; width: 14px; height: 14px; color: var(--silver); pointer-events: none; }
-  .hf-send { margin-top: 16px; width: 100%; height: 58px; justify-content: center; border: 0; cursor: pointer; font: 600 16.5px "Chivo", system-ui, sans-serif; }
+  .hf-send { margin-top: 16px; width: 100%; height: 58px; justify-content: center; border: 0; cursor: pointer; font: 600 16.5px "Satoshi", system-ui, sans-serif; }
   .hf-legal { margin-top: 14px; font-size: 13.5px; line-height: 1.5; color: var(--silver); text-align: center; }
   .hf-note { margin-top: 10px; font-size: 13.5px; line-height: 1.5; color: var(--sky); text-align: center; }
   .hf-note:empty { display: none; }
@@ -428,38 +430,39 @@
   .static .grad { background: none; color: var(--royal); -webkit-text-fill-color: var(--royal); }
   .static .foot .word { background: none; color: rgba(255,255,255,.09); -webkit-text-fill-color: rgba(255,255,255,.09); }
 
-  /* ---------- Typography: Anton headlines, Chivo text (reddashmedia.com pairing) ---------- */
-  h1, h2, .h2, .jh, .phase .card h3, .b-dark .num, .hero2 .stat strong, .todo span, .tile .cap h3, .b-light h4, .b-video h4 {
-    font-family: "Anton", Impact, "Arial Narrow", sans-serif; font-weight: 400 !important; text-transform: uppercase; letter-spacing: .008em !important; font-synthesis: none; }
-  .serif { font-family: inherit; font-style: normal; font-weight: inherit; letter-spacing: inherit; color: var(--royal); }
+  /* ---------- Typography: Clash Display headlines, Satoshi text ---------- */
+  h1, h2, .h2, .jh, .phase .card h3, .b-dark .num, .hero2 .stat strong, .todo span, .tile .cap h3, .b-light h4, .b-video h4, .hform h2 {
+    font-family: "Clash Display", "Satoshi", system-ui, sans-serif; font-weight: 600 !important; letter-spacing: -0.012em; word-spacing: .04em; font-synthesis: none; }
+  .serif { font-family: inherit; font-weight: inherit; letter-spacing: inherit; color: var(--royal); }
   .dark .serif, .journey .serif, .cta-out .serif, .ideas .serif, .b-dark .serif, .b-video .serif { color: var(--sky); }
   .form-white .hform .serif { color: var(--royal); }
-  .hero2 h1 { font-size: clamp(54px, 5.1vw, 80px); line-height: 1.02; margin-top: 22px; }
-  .hero2 .hgrid { padding: 118px 0 64px; }
-  .hero2 .support { margin-top: 22px; font-size: 18.5px; }
-  .hero2 .ticks { margin-top: 18px; }
-  .hero2 .cta { margin-top: 30px; }
-  .hero2 .stat { margin-top: 30px; padding-top: 20px; }
-  .hero2 h1 .big { font-size: 1em; line-height: 1.0; padding-right: 0; }
-  .h2, .services .h2 { font-size: clamp(50px, 5vw, 78px); line-height: 1.0; }
-  .h2 .serif { font-size: 1em; }
-  .ideas h2 { font-size: clamp(72px, 7.6vw, 122px); line-height: .98; }
-  .cta-out h2 { font-size: clamp(86px, 9vw, 150px); line-height: 1; }
-  .faq h2 { font-size: 64px; line-height: 1.02; }
-  .jh { font-size: clamp(72px, 6.8vw, 108px); line-height: .98; font-weight: 400; }
-  .phase .card h3 { font-size: 62px; }
-  .b-dark .num { font-size: 150px; line-height: .9; }
-  .hero2 .stat strong { font-size: 60px; letter-spacing: .01em; }
-  .hform h2 { font-size: 38px; line-height: 1.04; letter-spacing: .01em; }
+  /* hero: three lines, one per phrase */
+  .hero2 h1 { margin-top: 24px; font-size: clamp(50px, 4.5vw, 68px); line-height: 1.06; letter-spacing: -0.015em; word-spacing: .05em; }
+  .hero2 h1 .mask, .hero2 h1 .mask > span { white-space: nowrap; }
+  .hero2 h1 .big { font-size: 1em; line-height: 1.06; padding-right: 0; }
+  .hero2 .support { margin-top: 24px; font-size: 18.5px; line-height: 1.62; }
+  .hero2 .ticks { margin-top: 20px; } .hero2 .cta { margin-top: 32px; }
+  .hero2 .stat { margin-top: 36px; padding-top: 24px; }
+  .hero2 .stat strong { font-size: 60px; letter-spacing: -0.03em; }
+  .hform h2 { font-size: 32px; line-height: 1.12; letter-spacing: -0.012em; word-spacing: .05em; }
   .hform h2 .serif { font-size: 1em; }
-  .statement p { font-weight: 300; letter-spacing: -0.012em; }
-  .statement p .serif { font-weight: 500; }
-  .pill, .eyebrow, .hf-kicker, .btn { font-family: "Chivo", system-ui, sans-serif; }
-  .btn { font-weight: 600; letter-spacing: .01em; }
+  /* section headlines: Clash runs wider than the old face, so sizes step down slightly */
+  .h2, .services .h2 { font-size: clamp(42px, 4.2vw, 62px); line-height: 1.04; }
+  .h2 .serif { font-size: 1em; }
+  .ideas h2 { font-size: clamp(60px, 6vw, 94px); line-height: 1; }
+  .cta-out h2 { font-size: clamp(70px, 7.4vw, 118px); line-height: 1.02; }
+  .faq h2 { font-size: 52px; line-height: 1.06; }
+  .jh { font-size: clamp(56px, 5.4vw, 84px); line-height: .98; }
+  .phase .card h3 { font-size: 50px; }
+  .b-dark .num { font-size: 124px; line-height: .92; letter-spacing: -0.04em; }
+  .statement p { font-weight: 400; letter-spacing: -0.02em; }
+  .statement p .serif { font-weight: 700; }
+  .btn { font-weight: 700; letter-spacing: 0; }
   .support b, .lead b { font-weight: 700; }
   @media (max-width: 640px) {
-    .hero2 h1 { font-size: 52px; } .h2, .services .h2 { font-size: 44px; } .ideas h2 { font-size: 60px; } .cta-out h2 { font-size: 56px; }
-    .faq h2 { font-size: 44px; } .jh { font-size: 54px; } .hform h2 { font-size: 32px; } .hero2 .stat strong { font-size: 60px; } .b-dark .num { font-size: 110px; }
+    .hero2 h1 { font-size: 40px; } .hero2 h1 .mask, .hero2 h1 .mask > span { white-space: normal; }
+    .h2, .services .h2 { font-size: 36px; } .ideas h2 { font-size: 48px; } .cta-out h2 { font-size: 46px; }
+    .faq h2 { font-size: 36px; } .jh { font-size: 44px; } .hform h2 { font-size: 27px; } .hero2 .stat strong { font-size: 52px; } .b-dark .num { font-size: 96px; }
   }
 </style>
 </head>
