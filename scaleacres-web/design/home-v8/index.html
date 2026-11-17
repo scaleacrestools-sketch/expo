@@ -258,26 +258,30 @@
   /* hero: AI film wall, copy left, enquiry form right */
   .hero2 { position: relative; min-height: max(100vh, 880px); overflow: hidden; color: #fff; display: flex; align-items: center; background: #070809; }
   .hero2 .wall { position: absolute; inset: 0; }
-  .hero2 .wall video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero2 .wall video { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.62) saturate(.85) contrast(1.05); }
   .hero2 .veil { position: absolute; inset: 0; background:
-      linear-gradient(90deg, rgba(7,8,9,.9) 0%, rgba(7,8,9,.78) 34%, rgba(7,8,9,.42) 60%, rgba(7,8,9,.5) 100%),
-      linear-gradient(180deg, rgba(7,8,9,.8), rgba(7,8,9,0) 20%, rgba(7,8,9,0) 78%, rgba(7,8,9,.92)); }
+      radial-gradient(ellipse 52% 70% at 22% 55%, rgba(7,8,9,.62), rgba(7,8,9,0) 70%),
+      linear-gradient(90deg, rgba(7,8,9,.94) 0%, rgba(7,8,9,.88) 30%, rgba(7,8,9,.62) 52%, rgba(7,8,9,.5) 72%, rgba(7,8,9,.62) 100%),
+      linear-gradient(180deg, rgba(7,8,9,.85), rgba(7,8,9,0) 22%, rgba(7,8,9,0) 76%, rgba(7,8,9,.95)); }
   .hero2 .hgrid { position: relative; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(400px, .88fr); gap: 72px; align-items: center; padding: 132px 0 84px; }
-  .hero2 .copy { text-align: left; }
+  .hero2 .copy { text-align: left; text-shadow: 0 2px 24px rgba(0,0,0,.55); }
   .hero2 .pill { color: var(--sky); background: rgba(56,189,248,.08); border: 1px solid rgba(56,189,248,.4); }
   .hero2 h1 { margin-top: 28px; font-size: clamp(54px, 5.2vw, 82px); font-weight: 600; line-height: 1.06; letter-spacing: -0.025em; }
   .hero2 h1 .big { display: inline-block; font-size: 1.06em; line-height: 1.1; padding-right: .08em; }
-  .hero2 .support { margin-top: 26px; max-width: 590px; font-size: 19px; line-height: 1.65; color: rgba(255,255,255,.76); }
+  .hero2 .support { margin-top: 26px; max-width: 560px; font-size: 19.5px; line-height: 1.6; color: rgba(255,255,255,.88); }
   .hero2 .support b { color: #fff; font-weight: 600; }
-  .hero2 .cta { margin-top: 38px; display: flex; gap: 16px; }
+  .hero2 .ticks { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px 22px; list-style: none; }
+  .hero2 .ticks li { display: flex; align-items: center; gap: 9px; font-size: 15.5px; font-weight: 500; color: #fff; }
+  .hero2 .ticks svg { width: 18px; height: 18px; flex: none; }
+  .hero2 .cta { margin-top: 36px; display: flex; gap: 16px; }
   .btn-grad { background: linear-gradient(90deg, var(--deep), var(--royal) 50%, #2f7ae5); color: #fff; box-shadow: 0 16px 34px -14px rgba(29,78,216,.85); height: 58px; padding: 0 32px; }
   .btn-grad:hover { filter: brightness(1.08); }
-  .hero2 .btn-line { height: 58px; padding: 0 30px; }
-  .hero2 .stat { margin-top: 46px; display: inline-flex; align-items: center; gap: 18px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.16); }
+  .hero2 .btn-line { height: 58px; padding: 0 30px; background: rgba(7,8,9,.35); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .hero2 .stat { margin-top: 42px; display: inline-flex; align-items: center; gap: 18px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.16); }
   .hero2 .stat strong { font-size: 64px; font-weight: 600; line-height: 1; letter-spacing: -0.04em; color: #fff; }
   .hero2 .stat span { font-size: 14px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; line-height: 1.5; color: #fff; }
   /* enquiry form */
-  .hform { position: relative; padding: 38px 36px 32px; border-radius: 28px; background: rgba(12,15,17,.72); border: 1px solid rgba(255,255,255,.14);
+  .hform { position: relative; padding: 38px 36px 32px; border-radius: 28px; background: rgba(12,15,17,.84); border: 1px solid rgba(255,255,255,.14);
     backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); box-shadow: 0 40px 90px -30px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.08); }
   .hform::before { content: ""; position: absolute; inset: 0 30% auto; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, var(--sky), transparent); }
   .hf-kicker { font-size: 12.5px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--sky); }
@@ -363,7 +367,8 @@
     .hdr nav { display: none; }
     .rail { display: none; }
     .hero2 .hgrid { grid-template-columns: 1fr; gap: 48px; padding-top: 128px; } .hform { max-width: 620px; }
-    .hero2 .veil { background: linear-gradient(180deg, rgba(7,8,9,.86), rgba(7,8,9,.7) 40%, rgba(7,8,9,.88)); }
+    .hero2 .veil { background: linear-gradient(180deg, rgba(7,8,9,.9), rgba(7,8,9,.8) 40%, rgba(7,8,9,.92)); }
+    .hero2 .hform.rv { opacity: 1; transform: none; }
     .services .grid, .bento, .foot .cols { grid-template-columns: 1fr; gap: 48px; }
     .tiles { grid-template-columns: 1fr 1fr; gap: 40px 20px; }
     .jrow, .jrow.rev { grid-template-columns: 1fr; gap: 36px; } .jrow.rev .jimg { order: 0; }
@@ -378,7 +383,7 @@
   @media (max-width: 640px) {
     .wrap { width: calc(100% - 32px); }
     .hdr .bar { width: calc(100% - 32px); height: 72px; } .hdr .logo img { height: 38px; } .hdr .btn { display: none; }
-    .hero2 .hgrid { padding: 112px 0 56px; gap: 40px; } .hero2 h1 { font-size: 42px; } .hero2 .support { font-size: 16.5px; }
+    .hero2 .hgrid { padding: 112px 0 56px; gap: 40px; } .hero2 h1 { font-size: 42px; } .hero2 .support { font-size: 17px; } .hero2 .ticks { flex-direction: column; gap: 10px; } .hero2 .ticks li { font-size: 15px; }
     .hero2 .cta { flex-direction: column; align-items: stretch; } .hero2 .stat strong { font-size: 52px; }
     .hform { padding: 28px 20px 24px; border-radius: 22px; } .hform h2 { font-size: 27px; } .hf-grid { grid-template-columns: 1fr; }
     .trust .wrap { height: auto; padding: 22px 0; flex-direction: column; align-items: flex-start; gap: 14px; } .marquee { width: 100%; }
@@ -436,8 +441,13 @@
     <div class="copy">
       <span class="pill rv">Real estate marketing agency</span>
       <h1><span class="mask"><span style="--d:120ms">Real Estate Marketing</span></span><span class="mask"><span style="--d:220ms">That Builds</span></span><span class="mask"><span style="--d:320ms" class="serif sky big">Real Demand.</span></span></h1>
-      <p class="support rv" style="--d:420ms"><b>ScaleAcres</b> connects <b>developers</b> with the right buyers through scroll-stopping creatives, websites and performance campaigns, built on strategy, powered by data and <b>designed</b> to deliver qualified enquiries and site visits.</p>
-      <div class="cta rv" style="--d:520ms">
+      <p class="support rv" style="--d:420ms">We help <b>developers</b> sell faster with scroll-stopping ad films, high-converting websites and performance campaigns that bring the right buyers to <b>site visits</b>.</p>
+      <ul class="ticks rv" style="--d:470ms">
+        <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#1D4ED8"/><path d="m6 10.2 2.6 2.6L14 7.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Ad films &amp; AI creatives</li>
+        <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#1D4ED8"/><path d="m6 10.2 2.6 2.6L14 7.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Websites that convert</li>
+        <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#1D4ED8"/><path d="m6 10.2 2.6 2.6L14 7.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Meta &amp; Google lead campaigns</li>
+      </ul>
+      <div class="cta rv" style="--d:540ms">
         <a class="btn btn-grad" href="#enquire">Start a Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
         <a class="btn btn-line" href="#work">See Our Work</a>
       </div>
@@ -445,8 +455,8 @@
     </div>
     <form class="hform rv" id="enquire" style="--d:360ms" novalidate aria-labelledby="hf-title">
       <span class="hf-kicker">Free strategy call</span>
-      <h2 id="hf-title">Tell us about <span class="serif sky">your project</span></h2>
-      <p class="hf-sub">Share a few details and we&rsquo;ll call you back within one working day.</p>
+      <h2 id="hf-title">Let&rsquo;s plan <span class="serif sky">your launch</span></h2>
+      <p class="hf-sub">Tell us about your project and our team will call you back to plan the next steps.</p>
       <div class="hf-grid">
         <label class="f"><span>Full name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label>
         <label class="f"><span>Phone</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+91"></label>
@@ -778,6 +788,8 @@ if (!STATIC) {
   /* reveals */
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.15 });
   document.querySelectorAll(".rv, .mask, .zoom").forEach((el) => io.observe(el));
+  // the hero is above the fold: reveal all of it on load, whatever the screen height
+  requestAnimationFrame(() => document.querySelectorAll(".hero2 .rv, .hero2 .mask").forEach((el) => { el.classList.add("in"); io.unobserve(el); }));
   /* header + statement lighting */
   const ws = [...document.querySelectorAll("#stmt .w")];
   const onScroll = () => {

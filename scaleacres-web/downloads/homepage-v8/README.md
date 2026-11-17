@@ -3,6 +3,7 @@
 | File | What it is |
 | --- | --- |
 | `scaleacres-hero-v8-1440x900.mp4` | The new hero as it plays on the page, 18 s |
+| `scaleacres-hero-v8-phone.mp4` | The hero on a phone, scrolling down to the form, 14 s |
 | `hero-ai-film-wall-1920x1080.mp4` | The background film on its own: a 48 s seamless loop |
 | `scaleacres-hero-v8-preview.jpg` | A still of the hero |
 
@@ -24,6 +25,16 @@ The live page is at `design/home-v8/index.html`. Only the hero has changed; ever
   - "3 studios across India" (from the hero only; the "Our studios" section further down is unchanged).
 - **Added:** "250+ Projects worked on" in white.
 - **"Get a quote" button:** stays hidden while the hero form is on screen.
+
+## Text and legibility
+- **Copy:** the paragraph is shorter and sharper: "We help developers sell faster with scroll-stopping ad films, high-converting websites and performance campaigns that bring the right buyers to site visits."
+- **Service ticks:** three were added:
+  - Ad films & AI creatives
+  - Websites that convert
+  - Meta & Google lead campaigns
+- **Form heading:** "Let's plan your launch".
+- **Background:** the video is dimmed and the veil is darker behind the copy, so the text reads clearly while the videos stay in the background.
+- **Phone:** the whole hero, including the "250+" stat and the form, appears straight away.
 
 ## Background videos
 The background uses faceless, render-only ScaleAcres work, with no people, captions or logo bars:
