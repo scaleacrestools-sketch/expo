@@ -121,16 +121,8 @@
 
   /* services */
   .services { background: linear-gradient(180deg, #fff, var(--mist) 70%, #fff); padding: 130px 0 140px; }
-  .services .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .services .grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 80px; align-items: start; }
   .svc-pin { position: sticky; top: 150px; padding-bottom: 40px; }
-  .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; padding-top: 6px; }
-  .svc { position: relative; padding: 30px 0 44px; will-change: transform, opacity; }
-  .svc-rule { position: absolute; left: 0; right: 0; top: 0; height: 1.5px; background: var(--ink); transform-origin: left center; }
-  .svc-n { display: block; font-size: 13px; font-weight: 700; letter-spacing: .16em; color: var(--royal); }
-  .svc h3 { margin-top: 14px; font-family: "Clash Display", "Satoshi", sans-serif; font-weight: 600; font-size: 25px; line-height: 1.12; letter-spacing: -0.01em; color: var(--ink); }
-  .svc p { margin-top: 12px; font-size: 15.5px; line-height: 1.6; color: var(--muted); will-change: filter, opacity; }
-  .svc a { display: inline-block; margin-top: 16px; font-size: 12.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); border-bottom: 1.5px solid var(--royal); padding-bottom: 3px; transition: color .3s; }
-  .svc a:hover { color: var(--royal); }
   .services .h2 { font-size: clamp(44px, 4.2vw, 62px); }
   .services .visual { margin-top: 30px; max-width: 470px; border-radius: 22px; overflow: hidden; aspect-ratio: 3/2; background: #fff; box-shadow: 0 40px 80px -50px rgba(20,46,140,.45); }
   .services .visual video { width: 100%; height: 100%; object-fit: cover; }
@@ -422,7 +414,7 @@
     .hform h2 { font-size: 25px; } .hf-gets { grid-template-columns: 1fr; } .hform { padding: 40px 20px 22px; } .hf-send { font-size: 16.5px; } .hf-grid { grid-template-columns: 1fr; }
     .trust .wrap { height: auto; padding: 22px 0; flex-direction: column; align-items: flex-start; gap: 14px; } .marquee { width: 100%; }
     .statement { padding: 90px 0 80px; } .statement p { font-size: 28px; } .statement .meta { flex-direction: column; gap: 18px; }
-    .h2, .services .h2 { font-size: 38px; } .lead { font-size: 16.5px; } .svc-grid { grid-template-columns: 1fr; } .svc { padding: 26px 0 34px; }
+    .h2, .services .h2 { font-size: 38px; } .lead { font-size: 16.5px; }
     .services, .showcase, .clients, .partners, .projects, .faq, .studio { padding: 84px 0; }
     .tiles { grid-template-columns: 1fr; } .todo span { font-size: 30px; }
     .ideas { height: 560px; } .ideas h2 { font-size: 52px; }
@@ -576,7 +568,7 @@
   </div>
 </section>
 
-<!-- 03 services: pinned heading on the left, scroll-driven 2-column service grid on the right -->
+<!-- 03 services: pinned, scroll-driven heading and description on the left; service accordion on the right -->
 <section class="services" id="services" aria-label="Services">
   <div class="wrap grid">
     <div class="svc-pin">
@@ -584,7 +576,7 @@
       <h2 class="h2" style="margin-top:22px"><span class="mask"><span>Our Full-Service</span></span><span class="mask"><span style="--d:120ms"><span class="serif grad">Real Estate Marketing</span> Solutions</span></span></h2>
       <p class="lead rv" style="margin-top:22px;max-width:620px">Brand, websites, media and technology for developers and growth brands, planned and delivered by one team under one roof.</p>
     </div>
-    <div class="svc-grid" id="acc"></div>
+    <div class="acc rv" id="acc" style="--d:160ms"></div>
   </div>
 </section>
 
@@ -796,7 +788,7 @@ const WALL = LOGOS.filter((l) => l.set === "developer").concat(LOGOS.filter((l) 
 $("#pcount").textContent = WALL.length;
 $("#pwall").innerHTML = WALL.map((l) => `<div title="${l.name}">${logoImg2(l)}</div>`).join("") + `<a class="next" href="#contact">Your project<br>could be next <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12 12 4M5 4h7v7"/></svg></a>`;
 $("#logos").innerHTML = CLIENTS.map((k) => `<div>${logoImg(k)}</div>`).join("");
-$("#acc").innerHTML = SERVICES.map(([t, d], i) => `<article class="svc"><i class="svc-rule"></i><span class="svc-n">${String(i + 1).padStart(2, "0")}</span><h3>${t}</h3><p>${d}</p><a href="#">Explore ${t.split(" ")[0].replace(/&/, "").toLowerCase()} →</a></article>`).join("");
+$("#acc").innerHTML = SERVICES.map(([t, d], i) => `<details${i === 0 ? " open" : ""}><summary><i>${String(i + 1).padStart(2, "0")}</i>${t}<em>+</em></summary><p>${d}<br><a href="#">Explore ${t.split(" ")[0].replace(/&/, "").toLowerCase()} →</a></p></details>`).join("");
 $("#footSvc").innerHTML = SERVICES.map(([t]) => `<li><a href="#services">${t}</a></li>`).join("");
 $("#tiles").innerHTML = WORK.map(([img, name, cat, sub], i) => `<a class="tile rv" style="--d:${(i % 2) * 120}ms" href="#work"><div class="ph zoom">${img ? `<img src="assets/img/${img}.webp" alt="${name}: ${sub}" width="1600" height="1000" loading="lazy" decoding="async">` : `<div class="todo"><span>${name}</span><small>Add project image</small></div>`}</div><div class="cap"><b>${name}<small>${sub}</small></b><span>${cat}</span></div></a>`).join("");
 $("#phases").innerHTML = PHASES.map(([n, img, alt, title, intro, sub, para, items], i) => `
@@ -891,22 +883,24 @@ if (!/[?&]form=dark/.test(location.search)) document.documentElement.classList.a
   f.addEventListener("input", (e) => e.target.removeAttribute("aria-invalid"));
 })();
 
-/* services: scroll-scrubbed reveal. Each service rises, its rule draws and its text sharpens as it moves up the screen. */
+
+/* services heading + description: pinned while the accordion scrolls, and moved by the scroll itself.
+   Each headline line rises out of its mask, then the description sharpens from a blur, in step with the
+   scroll position (it runs backwards when you scroll up). */
 (() => {
-  const items = [...document.querySelectorAll(".svc")]; if (!items.length) return;
+  const sec = document.getElementById("services"); if (!sec) return;
+  const lines = [...sec.querySelectorAll(".svc-pin h2 .mask > span")], eb = sec.querySelector(".svc-pin .eyebrow"), lead = sec.querySelector(".svc-pin .lead");
   const still = document.documentElement.classList.contains("static") || matchMedia("(prefers-reduced-motion: reduce)").matches;
+  [...lines, eb, lead].forEach((el) => { el.style.transition = "none"; el.classList.remove("rv"); });
   const clamp = (v) => Math.max(0, Math.min(1, v)), ease = (k) => 1 - Math.pow(1 - k, 3);
   const paint = () => {
-    const vh = innerHeight;
-    items.forEach((el, i) => {
-      const top = el.getBoundingClientRect().top + (still ? 0 : 0);
-      const k = still ? 1 : ease(clamp((vh * 0.98 - top) / (vh * 0.42) - (i % 2) * 0.12));
-      el.style.transform = `translate3d(0, ${((1 - k) * 80).toFixed(1)}px, 0)`;
-      el.style.opacity = (0.08 + 0.92 * k).toFixed(3);
-      el.querySelector(".svc-rule").style.transform = `scaleX(${k.toFixed(3)})`;
-      const pk = clamp(k * 1.25 - 0.25);
-      const p = el.querySelector("p"); p.style.filter = pk < 1 ? `blur(${((1 - pk) * 6).toFixed(2)}px)` : "none"; p.style.opacity = (0.2 + 0.8 * pk).toFixed(3);
-    });
+    const vh = innerHeight, top = sec.getBoundingClientRect().top;
+    const k = still ? 1 : clamp((vh - top) / (vh * 0.75));          // 0 as the section enters, 1 once it is well in view
+    eb.style.opacity = ease(clamp(k * 3)).toFixed(3);
+    lines.forEach((el, i) => { const ki = ease(clamp(k * 1.7 - 0.12 - i * 0.22)); el.style.transform = `translate3d(0, ${((1 - ki) * 105).toFixed(1)}%, 0)`; });
+    const kl = ease(clamp(k * 1.7 - 0.62));
+    lead.style.opacity = kl.toFixed(3); lead.style.transform = `translate3d(0, ${((1 - kl) * 28).toFixed(1)}px, 0)`;
+    lead.style.filter = kl < 1 ? `blur(${((1 - kl) * 8).toFixed(2)}px)` : "none";
   };
   let raf = 0; const on = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; paint(); }); };
   addEventListener("scroll", on, { passive: true }); addEventListener("resize", on); paint();

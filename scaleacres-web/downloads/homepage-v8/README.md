@@ -19,11 +19,11 @@ The page is `design/home-v8/index.html`. The white form is the default; `?form=d
 - The text is unchanged. The sizes are re-tuned for the new type, and the hero headline sits on three lines: "Real Estate Marketing / That Builds / Real Demand."
 - Highlighted words use colour instead of the old italic serif: Royal on light sections, Sky on dark ones.
 
-## Services section (scroll-driven, Red Dash Media style)
-- **Left column:** stays pinned while you scroll. It is text only: "What we do", a larger headline and the description. The services video was removed, as requested.
-- **Right column:** a two-column grid of the eight services. Each has its number, title, description and "Explore" link, with a thin rule above it.
-- **Scroll motion:** as each service moves up the screen, it rises into place, its rule draws across and its description sharpens from a soft blur. The motion follows the scroll position and runs in reverse when you scroll back up.
-- **Text:** unchanged; the same headline, description and service copy as before.
+## Services section (heading animation in the Red Dash Media style)
+- **Left column:** text only: "What we do", the headline and the description, with no video. It stays pinned while the services list scrolls beside it.
+- **Scroll motion:** the headline rises line by line out of its mask, then the description slides up and sharpens from a soft blur. The motion follows the scroll position and runs in reverse when you scroll back up.
+- **Right column:** the services list is unchanged, with the same eight click-to-open items.
+- **Text:** unchanged.
 
 ## Hero
 - **Copy on the left:**
