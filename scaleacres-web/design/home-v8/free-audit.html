@@ -509,6 +509,55 @@
   @media (max-width: 1100px) { .audit .grid { grid-template-columns: 1fr; gap: 48px; } }
   @media (max-width: 640px) { .audit { padding: 84px 0; } .aform { padding: 28px 20px 22px; } .aform .fg { grid-template-columns: 1fr; } .report .row { grid-template-columns: 90px 1fr 32px; } }
 
+  /* lead-magnet bands */
+  .lmb { background: var(--mist); padding: 70px 0; }
+  .lmb.wh { background: #fff; }
+  .lmb .card { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; border-radius: 28px; background: var(--ink); color: #fff; padding: 44px 48px; position: relative; overflow: hidden; }
+  .lmb .card::after { content: ""; position: absolute; right: -160px; top: -160px; width: 460px; height: 460px; background: radial-gradient(closest-side, rgba(29,78,216,.32), transparent); pointer-events: none; }
+  .lmb .tag { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(56,189,248,.1); border: 1px solid rgba(56,189,248,.4); color: var(--sky); font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .lmb h3 { margin-top: 18px; font-family: "Clash Display", "Satoshi", sans-serif; font-size: 36px; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; }
+  .lmb h3 .serif { color: var(--sky); }
+  .lmb p { margin-top: 12px; color: var(--grey-soft); font-size: 16.5px; line-height: 1.6; max-width: 480px; }
+  .lmb form { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .lmb label > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .lmb input, .lmb select { width: 100%; height: 54px; padding: 0 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); color: #fff; font: 500 15.5px "Satoshi", system-ui, sans-serif; outline: none; }
+  .lmb input::placeholder { color: var(--silver); }
+  .lmb select { appearance: none; -webkit-appearance: none; cursor: pointer; } .lmb select:invalid { color: var(--silver); } .lmb option { background: var(--ink); color: #fff; }
+  .lmb input:focus, .lmb select:focus { border-color: var(--sky); box-shadow: 0 0 0 3px rgba(56,189,248,.18); }
+  .lmb [aria-invalid=true] { border-color: var(--sky) !important; }
+  .lmb .full { grid-column: 1 / -1; }
+  .lmb button { grid-column: 1 / -1; height: 56px; border: 0; border-radius: 999px; background: var(--royal); color: #fff; font: 700 16px "Satoshi", system-ui, sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .lmb button:hover { background: var(--deep); } .lmb button svg { width: 16px; height: 16px; }
+  .lmb .note { grid-column: 1 / -1; font-size: 13.5px; color: var(--sky); } .lmb .note:empty { display: none; }
+  /* contact: "Let's talk about your next launch" */
+  .talk { background: #fff; padding: 70px 0 0; }
+  .talk .card { border-radius: 30px; background: var(--ink); color: #fff; display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; align-items: center; padding: 72px 64px; position: relative; overflow: hidden; }
+  .talk .card::before { content: ""; position: absolute; left: -200px; bottom: -260px; width: 640px; height: 640px; background: radial-gradient(closest-side, rgba(29,78,216,.25), transparent); }
+  .talk .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.04); font-size: 14px; font-weight: 500; }
+  .talk .chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--sky); box-shadow: 0 0 10px var(--sky); }
+  .talk h2 { position: relative; margin-top: 26px; font-size: clamp(48px, 5vw, 76px); line-height: 1.04; letter-spacing: -0.015em; }
+  .talk h2 .serif { color: var(--sky); }
+  .talk .lead { position: relative; margin-top: 22px; color: var(--grey-soft); max-width: 470px; font-size: 18px; }
+  .talk .phones { position: relative; margin-top: 30px; display: flex; gap: 34px; flex-wrap: wrap; }
+  .talk .phones a { font-family: "Satoshi", system-ui, sans-serif; font-size: 24px; font-weight: 700; letter-spacing: .01em; word-spacing: .12em; }
+  .talk .phones a:hover { color: var(--sky); }
+  .tform { position: relative; background: #fff; color: var(--ink); border-radius: 22px; padding: 34px 32px 30px; box-shadow: 0 50px 100px -40px rgba(0,0,0,.9); }
+  .tform h3 { font-family: "Clash Display", "Satoshi", sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
+  .tform label { display: block; margin-top: 18px; }
+  .tform label > span { display: block; font-size: 13px; font-weight: 500; color: var(--muted); }
+  .tform input, .tform select { width: 100%; height: 44px; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); font: 500 16px "Satoshi", system-ui, sans-serif; outline: none; padding: 0; border-radius: 0; }
+  .tform input::placeholder { color: var(--muted); opacity: .75; }
+  .tform select { appearance: none; -webkit-appearance: none; cursor: pointer; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%235F6878' stroke-width='1.6'%3E%3Cpath d='m3 6 5 5 5-5'/%3E%3C/svg%3E") no-repeat right 2px center / 14px; }
+  .tform input:focus, .tform select:focus { border-bottom-color: var(--royal); }
+  .tform [aria-invalid=true] { border-bottom-color: var(--royal) !important; border-bottom-width: 2px; }
+  .tform button { margin-top: 26px; width: 100%; height: 54px; border: 0; border-radius: 999px; background: linear-gradient(60deg, #142E8C 0%, #1D4ED8 50%, #38BDF8 100%); color: #fff; font: 700 16px "Satoshi", system-ui, sans-serif; cursor: pointer; box-shadow: 0 16px 34px -14px rgba(29,78,216,.85); }
+  .tform .note { margin-top: 10px; font-size: 13.5px; color: var(--royal); text-align: center; } .tform .note:empty { display: none; }
+  .talk .bar { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 26px 4px 34px; font-size: 13.5px; color: var(--muted); }
+  .talk .bar a:hover { color: var(--royal); }
+  @media (max-width: 1100px) { .lmb .card, .talk .card { grid-template-columns: 1fr; gap: 32px; } .talk .card { padding: 56px 40px; } }
+  @media (max-width: 640px) { .lmb { padding: 48px 0; } .lmb .card { padding: 30px 22px; } .lmb h3 { font-size: 28px; } .lmb form { grid-template-columns: 1fr; }
+    .talk { padding-top: 48px; } .talk .card { padding: 40px 22px; border-radius: 24px; } .talk h2 { font-size: 42px; } .talk .phones a { font-size: 20px; } .tform { padding: 26px 22px; } .talk .bar { flex-direction: column; gap: 8px; } }
+
   /* ---------- landing pages ---------- */
   .lp-hdr { position: absolute; inset: 0 0 auto; z-index: 50; }
   .lp-hdr .bar { width: min(var(--wrap), calc(100% - 96px)); margin: 0 auto; height: 88px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.12); }
@@ -610,7 +659,7 @@
       <span class="pill rv">Free marketing audit</span>
       <h1 class="rv">Find out what is holding <span class="serif">your leads back.</span></h1>
       <p class="sub rv">A ScaleAcres strategist reviews your project's website, ads, social and search, then walks you through what to fix first. Free, with no obligation.</p>
-      <ul class="rv"><li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i>Website, ads, social and SEO reviewed</li><li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i>A prioritised action plan</li><li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i>From a real estate marketing &amp; creative agency</li></ul>
+      <ul class="rv"><li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i>Website, ads, social and SEO reviewed</li><li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i>A prioritised action plan</li><li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i>From a real estate 360° marketing &amp; creative agency</li></ul>
       <div class="nums rv"><div><b>250+</b><span>Projects</span></div><div><b>75+</b><span>Brands</span></div><div><b>2</b><span>Offices · Agra &amp; Delhi</span></div></div>
     </div>
     <div id="lead"><form class="aform rv" id="auditForm" style="--d:160ms" novalidate aria-labelledby="af-title">
@@ -638,6 +687,16 @@
     <div class="row">Search (SEO)<div class="bar"><b style="width:55%"></b></div><span>55</span></div>
     <div class="row">Lead follow-up<div class="bar"><b style="width:40%"></b></div><span>40</span></div></div>
 </div></div></div></section>
+<section class="lmb " aria-label="Free creative concept"><div class="wrap"><div class="card rv">
+  <div><span class="tag">Free creative concept</span><h3>Get a free ad concept <span class="serif">for your project.</span></h3><p>Share your project and our creative studio sends one campaign idea, with a key visual direction and headline, made for your buyers.</p></div>
+  <form class="lm-form" id="lmCreative" novalidate aria-label="Free creative concept">
+    <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label>
+    <label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label>
+    <label class="full"><span>Project name and city</span><input name="project" required placeholder="Project name and city"></label>
+    <button type="submit">Send me a free concept <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <p class="note" role="status" aria-live="polite"></p>
+  </form>
+</div></div></section>
 <section class="lp-sec mist" aria-label="Who it is for"><div class="wrap"><div class="center"><span class="eyebrow center rv">Who it is for</span><h2 class="h2 rv" style="margin-top:20px">Built for <span class="serif royal">growth.</span></h2></div><div class="lp-who"><div class="rv" style="--d:0ms"><b>Real estate</b><h3>Developers</h3><p>Launching or selling a project and want more qualified enquiries and site visits.</p></div><div class="rv" style="--d:80ms"><b>Real estate</b><h3>Channel partners &amp; brokers</h3><p>Running ads for several projects and want a lower cost per lead.</p></div><div class="rv" style="--d:160ms"><b>Real estate</b><h3>Real estate brands</h3><p>Builders, consultancies and project marketers who want stronger creative and better leads.</p></div></div></div></section>
 <section class="lp-sec dark" aria-label="How it works"><div class="wrap"><div class="center"><span class="eyebrow center rv">How it works</span><h2 class="h2 rv" style="margin-top:20px">Three simple <span class="serif sky">steps.</span></h2></div><div class="lp-how"><div class="rv" style="--d:0ms"><b>01</b><h3>Share your link</h3><p>Send your website or Instagram link and a few details in the form.</p></div><div class="rv" style="--d:100ms"><b>02</b><h3>We review it</h3><p>A ScaleAcres strategist reviews your website, ads, social and search.</p></div><div class="rv" style="--d:200ms"><b>03</b><h3>Get your plan</h3><p>We walk you through what we found and what to fix first.</p></div></div></div></section>
 <section class="lp-sec dark" style="padding-top:0" aria-label="Results"><div class="wrap"><div class="lp-res">
@@ -645,18 +704,46 @@
   <div class="rv" style="--d:80ms"><small>TimesPro Consulting</small><div class="n"><div><b>50%</b><span>Lower cost per lead</span></div><div><b>350%</b><span>More site visits</span></div></div></div>
   <div class="rv" style="--d:160ms"><small>NRG India</small><div class="n"><div><b>20×</b><span>Return on marketing</span></div><div><b>110%</b><span>More site visits</span></div></div></div>
 </div></div></section>
+<section class="lmb wh" aria-label="Free 90-day launch plan"><div class="wrap"><div class="card rv">
+  <div><span class="tag">Free 90-day launch plan</span><h3>Plan your launch <span class="serif">before you spend.</span></h3><p>A strategist maps your expected cost per lead, channel and budget split, creative direction and a week-by-week timeline, free.</p></div>
+  <form class="lm-form" id="lmPlan" novalidate aria-label="Free 90-day launch plan">
+    <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label>
+    <label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label>
+    <label><span>Project or company</span><input name="project" required placeholder="Project or company"></label><label><span>You are a</span><select name="role" required><option value="" disabled selected>You are a</option><option>Developer</option><option>Channel partner / broker</option><option>Real estate brand</option><option>Other</option></select></label>
+    <button type="submit">Get my free plan <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <p class="note" role="status" aria-live="polite"></p>
+  </form>
+</div></div></section>
 <section class="lp-sec mist" aria-label="FAQ"><div class="wrap"><div class="center"><span class="eyebrow center rv">FAQ</span><h2 class="h2 rv" style="margin-top:20px">Audit <span class="serif royal">questions.</span></h2></div><div class="lp-faq"><details class="rv" open><summary>Is the audit really free?</summary><p>Yes. There is no cost and no obligation to work with us.</p></details><details class="rv"><summary>What do you need from me?</summary><p>Your website or social link and a few details about your business. If you run ads, we may ask to see results to make the review more precise.</p></details><details class="rv"><summary>Who reviews my marketing?</summary><p>A ScaleAcres strategist who works on real estate launches every day.</p></details><details class="rv"><summary>How long does the audit take?</summary><p>Once we have your details, a strategist reviews your marketing and calls you to walk through it.</p></details></div></div></section>
-<section class="lp-final" aria-label="Get started"><div class="wrap">
-  <h2 class="rv">Ready to see <span class="serif">what to fix?</span></h2><p class="rv">Get your free marketing audit today.</p>
-  <div class="btns rv"><a class="btn btn-royal" href="#lead">Get my free audit <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><a class="btn btn-wa" href="https://wa.me/917017169215">Chat on WhatsApp</a></div>
-</div></section></main>
+<section class="talk" id="contact" aria-label="Contact">
+  <div class="wrap">
+    <div class="card">
+      <div>
+        <span class="chip rv">Start a project</span>
+        <h2><span class="mask"><span>Let&rsquo;s talk about</span></span><span class="mask"><span style="--d:120ms">your <span class="serif">next launch.</span></span></span></h2>
+        <p class="lead rv">Tell us about the project. We come back with a clear plan for the brand, the creative, the launch and lead generation.</p>
+        <div class="phones rv"><a href="tel:+917017169215">+91 70171 69215</a><a href="tel:+919266023436">+91 92660 23436</a></div>
+      </div>
+      <form class="tform lm-form rv" id="talkForm" style="--d:120ms" novalidate aria-labelledby="tf-title">
+        <h3 id="tf-title">Tell us about your project</h3>
+        <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Full name"></label>
+        <label><span>Phone</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+91"></label>
+        <label><span>Company or project</span><input name="project" autocomplete="organization" required placeholder="Project name"></label>
+        <label><span>You are a</span><select name="role" required><option value="" disabled selected>Select one</option><option>Developer</option><option>Channel partner / broker</option><option>Real estate brand</option><option>Other</option></select></label>
+        <button type="submit">Book a strategy call</button>
+        <p class="note" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+    <div class="bar"><span>ScaleAcres Promotech, Westend Marg, Saidulajab, New Delhi 110030</span><span>Offices in Agra and Delhi</span><a href="mailto:scaleacres@gmail.com">scaleacres@gmail.com</a></div>
+  </div>
+</section></main>
 <footer class="foot" aria-label="Footer">
   <div class="word" aria-hidden="true">ScaleAcres</div>
   <div class="wrap">
     <div class="cols">
       <div class="brand">
         <img src="assets/img/scaleacres-logo-white.svg" alt="ScaleAcres">
-        <p>ScaleAcres is an independent creative, digital and growth agency where powerful ideas meet thoughtful design, innovative technology and performance-driven marketing.</p>
+        <p>ScaleAcres is a real estate 360° marketing and creative agency, where powerful ideas meet thoughtful design, film, technology and performance-driven marketing.</p>
         <div class="social">
           <a href="https://www.instagram.com/scaleacres/" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM21.9 8c0-1.7-.5-3.2-1.7-4.4C19 2.5 17.6 2.1 15.9 2c-1.7-.1-6.2-.1-7.9 0C6.4 2.1 4.9 2.5 3.7 3.7S2.1 6.3 2 8c-.1 1.7-.1 6.2 0 7.9.1 1.7.5 3.2 1.7 4.4s2.7 1.6 4.4 1.7c1.7.1 6.2.1 7.9 0 1.7-.1 3.2-.5 4.4-1.7s1.6-2.7 1.7-4.4c.1-1.7.1-6.2-.2-7.9zm-2.3 9.8a3 3 0 0 1-1.7 1.7c-1.2.5-4 .4-5.3.4s-4.1.1-5.3-.4a3 3 0 0 1-1.7-1.7c-.5-1.2-.4-4-.4-5.3s-.1-4.1.4-5.3a3 3 0 0 1 1.7-1.7c1.2-.5 4-.4 5.3-.4s4.1-.1 5.3.4a3 3 0 0 1 1.7 1.7c.5 1.2.4 4 .4 5.3s.1 4.1-.4 5.3z"/></svg></a>
           <a href="https://www.facebook.com/scaleacrespromotech" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v1.9H8v3.2h2.6V22H14v-10.3h2.6l.4-3.2z"/></svg></a>
@@ -691,5 +778,18 @@ if (/static=1/.test(location.search)) document.documentElement.classList.add("st
   });
   f.addEventListener("input", (e) => e.target.removeAttribute("aria-invalid"));
 })();
+/* lead-magnet and contact forms: client-side checks; this static concept does not send data anywhere */
+document.querySelectorAll(".lm-form").forEach((f) => {
+  const note = f.querySelector(".note");
+  f.addEventListener("submit", (e) => {
+    e.preventDefault(); let first = null;
+    f.querySelectorAll("input[required], select[required]").forEach((el) => {
+      const v = el.value.trim(); const bad = el.name === "phone" ? !/^[+\d][\d\s().-]{6,}$/.test(v) : v.length < 2;
+      el.setAttribute("aria-invalid", bad); if (bad && !first) first = el; });
+    if (first) { note.textContent = "Please complete the highlighted fields."; first.focus(); return; }
+    note.textContent = "Thank you. This is a design preview, so nothing was sent; on the live site this goes straight to the ScaleAcres team.";
+  });
+  f.addEventListener("input", (e) => e.target.removeAttribute("aria-invalid"));
+});
 </script>
 </body></html>

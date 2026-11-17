@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="ScaleAcres is a real estate marketing and creative agency: a 360° team for brand, creative, ad films, websites and performance campaigns for real estate developers.">
+<meta name="description" content="ScaleAcres is a real estate 360° marketing and creative agency: branding, ad films, creative, websites and performance campaigns for developers, from one studio.">
 <meta property="og:title" content="ScaleAcres · Real Estate Marketing That Builds Real Demand">
 <meta property="og:description" content="Real estate marketing and creative from one 360° team: brand, ad films, websites and performance campaigns for developers.">
 <meta property="og:image" content="assets/img/hero-ai-poster.jpg">
@@ -12,7 +12,7 @@
 <link rel="preload" href="assets/img/hero-ai-poster.jpg" as="image">
 <link rel="preload" href="assets/fonts/clash-display-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/satoshi-400.woff2" as="font" type="font/woff2" crossorigin>
-<title>ScaleAcres · Real Estate Marketing &amp; Creative Agency</title>
+<title>ScaleAcres · Real Estate 360° Marketing &amp; Creative Agency</title>
 <!--
   Homepage concept v8 (hero: copy left, enquiry form right, over a wall of faceless ScaleAcres AI and ad-film renders). Layout follows the approved reference flow (hero film, statement, services,
   "ideas" banner, creative showcase, how we work, clients, studio cards, CTA, FAQ, footer); type and
@@ -519,6 +519,55 @@
   .aform .note { margin-top: 8px; text-align: center; font-size: 13.5px; color: var(--royal); } .aform .note:empty { display: none; }
   @media (max-width: 1100px) { .audit .grid { grid-template-columns: 1fr; gap: 48px; } }
   @media (max-width: 640px) { .audit { padding: 84px 0; } .aform { padding: 28px 20px 22px; } .aform .fg { grid-template-columns: 1fr; } .report .row { grid-template-columns: 90px 1fr 32px; } }
+
+  /* lead-magnet bands */
+  .lmb { background: var(--mist); padding: 70px 0; }
+  .lmb.wh { background: #fff; }
+  .lmb .card { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; border-radius: 28px; background: var(--ink); color: #fff; padding: 44px 48px; position: relative; overflow: hidden; }
+  .lmb .card::after { content: ""; position: absolute; right: -160px; top: -160px; width: 460px; height: 460px; background: radial-gradient(closest-side, rgba(29,78,216,.32), transparent); pointer-events: none; }
+  .lmb .tag { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(56,189,248,.1); border: 1px solid rgba(56,189,248,.4); color: var(--sky); font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .lmb h3 { margin-top: 18px; font-family: "Clash Display", "Satoshi", sans-serif; font-size: 36px; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; }
+  .lmb h3 .serif { color: var(--sky); }
+  .lmb p { margin-top: 12px; color: var(--grey-soft); font-size: 16.5px; line-height: 1.6; max-width: 480px; }
+  .lmb form { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .lmb label > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .lmb input, .lmb select { width: 100%; height: 54px; padding: 0 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); color: #fff; font: 500 15.5px "Satoshi", system-ui, sans-serif; outline: none; }
+  .lmb input::placeholder { color: var(--silver); }
+  .lmb select { appearance: none; -webkit-appearance: none; cursor: pointer; } .lmb select:invalid { color: var(--silver); } .lmb option { background: var(--ink); color: #fff; }
+  .lmb input:focus, .lmb select:focus { border-color: var(--sky); box-shadow: 0 0 0 3px rgba(56,189,248,.18); }
+  .lmb [aria-invalid=true] { border-color: var(--sky) !important; }
+  .lmb .full { grid-column: 1 / -1; }
+  .lmb button { grid-column: 1 / -1; height: 56px; border: 0; border-radius: 999px; background: var(--royal); color: #fff; font: 700 16px "Satoshi", system-ui, sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .lmb button:hover { background: var(--deep); } .lmb button svg { width: 16px; height: 16px; }
+  .lmb .note { grid-column: 1 / -1; font-size: 13.5px; color: var(--sky); } .lmb .note:empty { display: none; }
+  /* contact: "Let's talk about your next launch" */
+  .talk { background: #fff; padding: 70px 0 0; }
+  .talk .card { border-radius: 30px; background: var(--ink); color: #fff; display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; align-items: center; padding: 72px 64px; position: relative; overflow: hidden; }
+  .talk .card::before { content: ""; position: absolute; left: -200px; bottom: -260px; width: 640px; height: 640px; background: radial-gradient(closest-side, rgba(29,78,216,.25), transparent); }
+  .talk .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.04); font-size: 14px; font-weight: 500; }
+  .talk .chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--sky); box-shadow: 0 0 10px var(--sky); }
+  .talk h2 { position: relative; margin-top: 26px; font-size: clamp(48px, 5vw, 76px); line-height: 1.04; letter-spacing: -0.015em; }
+  .talk h2 .serif { color: var(--sky); }
+  .talk .lead { position: relative; margin-top: 22px; color: var(--grey-soft); max-width: 470px; font-size: 18px; }
+  .talk .phones { position: relative; margin-top: 30px; display: flex; gap: 34px; flex-wrap: wrap; }
+  .talk .phones a { font-family: "Satoshi", system-ui, sans-serif; font-size: 24px; font-weight: 700; letter-spacing: .01em; word-spacing: .12em; }
+  .talk .phones a:hover { color: var(--sky); }
+  .tform { position: relative; background: #fff; color: var(--ink); border-radius: 22px; padding: 34px 32px 30px; box-shadow: 0 50px 100px -40px rgba(0,0,0,.9); }
+  .tform h3 { font-family: "Clash Display", "Satoshi", sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
+  .tform label { display: block; margin-top: 18px; }
+  .tform label > span { display: block; font-size: 13px; font-weight: 500; color: var(--muted); }
+  .tform input, .tform select { width: 100%; height: 44px; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); font: 500 16px "Satoshi", system-ui, sans-serif; outline: none; padding: 0; border-radius: 0; }
+  .tform input::placeholder { color: var(--muted); opacity: .75; }
+  .tform select { appearance: none; -webkit-appearance: none; cursor: pointer; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%235F6878' stroke-width='1.6'%3E%3Cpath d='m3 6 5 5 5-5'/%3E%3C/svg%3E") no-repeat right 2px center / 14px; }
+  .tform input:focus, .tform select:focus { border-bottom-color: var(--royal); }
+  .tform [aria-invalid=true] { border-bottom-color: var(--royal) !important; border-bottom-width: 2px; }
+  .tform button { margin-top: 26px; width: 100%; height: 54px; border: 0; border-radius: 999px; background: linear-gradient(60deg, #142E8C 0%, #1D4ED8 50%, #38BDF8 100%); color: #fff; font: 700 16px "Satoshi", system-ui, sans-serif; cursor: pointer; box-shadow: 0 16px 34px -14px rgba(29,78,216,.85); }
+  .tform .note { margin-top: 10px; font-size: 13.5px; color: var(--royal); text-align: center; } .tform .note:empty { display: none; }
+  .talk .bar { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 26px 4px 34px; font-size: 13.5px; color: var(--muted); }
+  .talk .bar a:hover { color: var(--royal); }
+  @media (max-width: 1100px) { .lmb .card, .talk .card { grid-template-columns: 1fr; gap: 32px; } .talk .card { padding: 56px 40px; } }
+  @media (max-width: 640px) { .lmb { padding: 48px 0; } .lmb .card { padding: 30px 22px; } .lmb h3 { font-size: 28px; } .lmb form { grid-template-columns: 1fr; }
+    .talk { padding-top: 48px; } .talk .card { padding: 40px 22px; border-radius: 24px; } .talk h2 { font-size: 42px; } .talk .phones a { font-size: 20px; } .tform { padding: 26px 22px; } .talk .bar { flex-direction: column; gap: 8px; } }
 </style>
 </head>
 <body>
@@ -547,9 +596,9 @@
   <div class="veil"></div>
   <div class="wrap hgrid">
     <div class="copy">
-      <span class="pill rv">Real estate marketing &amp; creative agency</span>
+      <span class="pill rv">Real estate 360° marketing &amp; creative agency</span>
       <h1><span class="mask"><span style="--d:120ms">Real Estate Marketing</span></span><span class="mask"><span style="--d:220ms">That Builds</span></span><span class="mask"><span style="--d:320ms" class="serif sky big">Real Demand.</span></span></h1>
-      <p class="support rv" style="--d:420ms">We help <b>developers</b> sell faster with scroll-stopping ad films, high-converting websites and performance campaigns that bring the right buyers to <b>site visits</b>.</p>
+      <p class="support rv" style="--d:420ms">A <b>creative-first</b> 360° team for <b>developers</b>: big ideas, branding, ad films, websites and performance campaigns that bring the right buyers to <b>site visits</b>.</p>
       <ul class="ticks rv" style="--d:470ms">
         <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#1D4ED8"/><path d="m6 10.2 2.6 2.6L14 7.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Ad films &amp; AI creatives</li>
         <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#1D4ED8"/><path d="m6 10.2 2.6 2.6L14 7.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Websites that convert</li>
@@ -604,7 +653,7 @@
 <section class="statement" aria-label="Who we are">
   <div class="wrap">
     <span class="eyebrow rv">Who we are</span>
-    <p id="stmt" style="margin-top:34px">We're a real estate marketing and creative agency, a 360° team helping developers launch, position and sell out projects, through <span class="acc-src">brand, creative, digital and performance</span> working as one.</p>
+    <p id="stmt" style="margin-top:34px">We're a real estate 360° marketing and creative agency. Our studio creates the brands, films and campaigns that help developers launch, position and sell out projects, with <span class="acc-src">brand, creative, digital and performance</span> working as one.</p>
     <div class="meta rv">
       <div><b>Offices</b>Agra · Delhi</div>
       <div><b>Markets</b>Pan-India · UAE · Australia</div>
@@ -618,12 +667,24 @@
   <div class="wrap grid">
     <div class="svc-pin">
       <span class="eyebrow rv">What we do</span>
-      <h2 class="h2" style="margin-top:22px"><span class="mask"><span>Our Full-Service</span></span><span class="mask"><span style="--d:120ms"><span class="serif grad">Real Estate Marketing</span> Solutions</span></span></h2>
-      <p class="lead rv" style="margin-top:22px;max-width:620px">Brand, websites, media and technology for developers and growth brands, planned and delivered by one team under one roof.</p>
+      <h2 class="h2" style="margin-top:22px"><span class="mask"><span>Our 360° Real Estate</span></span><span class="mask"><span style="--d:120ms"><span class="serif grad">Creative &amp; Marketing</span></span></span></h2>
+      <p class="lead rv" style="margin-top:22px;max-width:620px">Branding, ad films, websites, media and technology for real estate developers, created and delivered by one studio under one roof.</p>
     </div>
     <div class="acc rv" id="acc" style="--d:160ms"></div>
   </div>
 </section>
+
+<!-- 03b lead magnet: free creative concept -->
+<section class="lmb " aria-label="Free creative concept"><div class="wrap"><div class="card rv">
+  <div><span class="tag">Free creative concept</span><h3>Get a free ad concept <span class="serif">for your project.</span></h3><p>Share your project and our creative studio sends one campaign idea, with a key visual direction and headline, made for your buyers.</p></div>
+  <form class="lm-form" id="lmCreative" novalidate aria-label="Free creative concept">
+    <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label>
+    <label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label>
+    <label class="full"><span>Project name and city</span><input name="project" required placeholder="Project name and city"></label>
+    <button type="submit">Send me a free concept <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <p class="note" role="status" aria-live="polite"></p>
+  </form>
+</div></div></section>
 
 <!-- 04 ideas banner -->
 <section class="ideas dark" aria-label="The ScaleAcres standard">
@@ -632,7 +693,7 @@
   <div class="copy">
     <span class="eyebrow center rv">The ScaleAcres standard</span>
     <h2><span class="mask"><span>Ideas that</span></span><span class="mask"><span style="--d:120ms"><span class="serif sky">stop the scroll</span></span></span></h2>
-    <p class="rv" style="--d:240ms">Every launch deserves a big idea, and every idea deserves flawless execution. Strategy, creative, technology and media under one roof.</p>
+    <p class="rv" style="--d:240ms">Every launch deserves a big idea, and every idea deserves flawless execution. Creative, strategy, technology and media under one roof.</p>
   </div>
 </section>
 
@@ -656,12 +717,24 @@
   </div>
 </section>
 
+<!-- 06b lead magnet: free 90-day launch plan -->
+<section class="lmb wh" aria-label="Free 90-day launch plan"><div class="wrap"><div class="card rv">
+  <div><span class="tag">Free 90-day launch plan</span><h3>Plan your launch <span class="serif">before you spend.</span></h3><p>A strategist maps your expected cost per lead, channel and budget split, creative direction and a week-by-week timeline, free.</p></div>
+  <form class="lm-form" id="lmPlan" novalidate aria-label="Free 90-day launch plan">
+    <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label>
+    <label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label>
+    <label><span>Project or company</span><input name="project" required placeholder="Project or company"></label><label><span>You are a</span><select name="role" required><option value="" disabled selected>You are a</option><option>Developer</option><option>Channel partner / broker</option><option>Real estate brand</option><option>Other</option></select></label>
+    <button type="submit">Get my free plan <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <p class="note" role="status" aria-live="polite"></p>
+  </form>
+</div></div></section>
+
 <!-- 07 clients -->
 <section class="clients" id="clients" aria-label="Clients">
   <div class="wrap">
     <span class="eyebrow center rv">Trusted by developers</span>
     <h2 class="h2"><span class="mask"><span>Our precious <span class="serif royal">clients</span></span></span></h2>
-    <p class="lead rv">Developers and real estate brands that have trusted ScaleAcres with their launches, websites and campaigns.</p>
+    <p class="lead rv">Developers and real estate brands that have trusted ScaleAcres with their launches, creative and campaigns.</p>
     <div class="logos rv" id="logos"></div>
   </div>
 </section>
@@ -756,14 +829,27 @@
   </div>
 </section>
 
-<!-- 09 CTA -->
-<section class="cta-out dark" id="contact" aria-label="Contact">
-  <svg class="sky-bg" viewBox="0 0 1440 760" preserveAspectRatio="none" aria-hidden="true" id="stars"></svg>
-  <h2><span class="mask"><span>Let's <span class="flip serif"><span class="stack" id="flip"><span>work</span><span>create</span><span>build</span><span>grow</span><span>launch</span><span>work</span></span></span> together.</span></span></h2>
-  <a class="mail rv" href="mailto:scaleacres@gmail.com">scaleacres@gmail.com</a>
-  <div class="btns rv" style="--d:120ms">
-    <a class="btn btn-royal" href="mailto:scaleacres@gmail.com">Contact us <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
-    <a class="btn btn-line" href="tel:+917017169215">+91 70171 69215</a>
+<!-- 09 contact: "Let's talk about your next launch" -->
+<section class="talk" id="contact" aria-label="Contact">
+  <div class="wrap">
+    <div class="card">
+      <div>
+        <span class="chip rv">Start a project</span>
+        <h2><span class="mask"><span>Let&rsquo;s talk about</span></span><span class="mask"><span style="--d:120ms">your <span class="serif">next launch.</span></span></span></h2>
+        <p class="lead rv">Tell us about the project. We come back with a clear plan for the brand, the creative, the launch and lead generation.</p>
+        <div class="phones rv"><a href="tel:+917017169215">+91 70171 69215</a><a href="tel:+919266023436">+91 92660 23436</a></div>
+      </div>
+      <form class="tform lm-form rv" id="talkForm" style="--d:120ms" novalidate aria-labelledby="tf-title">
+        <h3 id="tf-title">Tell us about your project</h3>
+        <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Full name"></label>
+        <label><span>Phone</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+91"></label>
+        <label><span>Company or project</span><input name="project" autocomplete="organization" required placeholder="Project name"></label>
+        <label><span>You are a</span><select name="role" required><option value="" disabled selected>Select one</option><option>Developer</option><option>Channel partner / broker</option><option>Real estate brand</option><option>Other</option></select></label>
+        <button type="submit">Book a strategy call</button>
+        <p class="note" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+    <div class="bar"><span>ScaleAcres Promotech, Westend Marg, Saidulajab, New Delhi 110030</span><span>Offices in Agra and Delhi</span><a href="mailto:scaleacres@gmail.com">scaleacres@gmail.com</a></div>
   </div>
 </section>
 
@@ -772,7 +858,7 @@
   <div class="in-wrap">
     <span class="pill rv">Common questions</span>
     <h2><span class="mask"><span>Frequently Asked <span class="serif">Questions</span></span></span></h2>
-    <p class="lead rv">Real estate marketing, websites, SEO and campaigns: what clients ask us most.</p>
+    <p class="lead rv">Real estate creative, marketing, websites and campaigns: what clients ask us most.</p>
     <div class="list rv" id="faqList"></div>
     <div class="more rv">Still have questions? Write to us at <a href="mailto:scaleacres@gmail.com">scaleacres@gmail.com</a></div>
   </div>
@@ -786,7 +872,7 @@
     <div class="cols">
       <div class="brand">
         <img src="assets/img/scaleacres-logo-white.svg" alt="ScaleAcres">
-        <p>ScaleAcres is an independent creative, digital and growth agency where powerful ideas meet thoughtful design, innovative technology and performance-driven marketing.</p>
+        <p>ScaleAcres is a real estate 360° marketing and creative agency, where powerful ideas meet thoughtful design, film, technology and performance-driven marketing.</p>
         <div class="social">
           <a href="https://www.instagram.com/scaleacres/" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM21.9 8c0-1.7-.5-3.2-1.7-4.4C19 2.5 17.6 2.1 15.9 2c-1.7-.1-6.2-.1-7.9 0C6.4 2.1 4.9 2.5 3.7 3.7S2.1 6.3 2 8c-.1 1.7-.1 6.2 0 7.9.1 1.7.5 3.2 1.7 4.4s2.7 1.6 4.4 1.7c1.7.1 6.2.1 7.9 0 1.7-.1 3.2-.5 4.4-1.7s1.6-2.7 1.7-4.4c.1-1.7.1-6.2-.2-7.9zm-2.3 9.8a3 3 0 0 1-1.7 1.7c-1.2.5-4 .4-5.3.4s-4.1.1-5.3-.4a3 3 0 0 1-1.7-1.7c-.5-1.2-.4-4-.4-5.3s-.1-4.1.4-5.3a3 3 0 0 1 1.7-1.7c1.2-.5 4-.4 5.3-.4s4.1-.1 5.3.4a3 3 0 0 1 1.7 1.7c.5 1.2.4 4 .4 5.3s.1 4.1-.4 5.3z"/></svg></a>
           <a href="https://www.facebook.com/scaleacrespromotech" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v1.9H8v3.2h2.6V22H14v-10.3h2.6l.4-3.2z"/></svg></a>
@@ -814,12 +900,12 @@ const $ = (s) => document.querySelector(s);
 const CLIENTS = ["adani-realty","tata-realty","m3m","signature-global","elan","ats","bhutani-infra","smartworld","birla-navya","hero-realty","trehan-luxury-floors","the-islands-by-gaurs","yugen-infra","hometrust","rps-rudrom","seabreeze-villas","bric-x-infra","raksha-towers","shf-square","mi-casa"];
 const NAMES = {"adani-realty":"Adani Realty","tata-realty":"Tata Realty","m3m":"M3M","signature-global":"Signature Global","elan":"Elan","ats":"ATS","bhutani-infra":"Bhutani Infra","smartworld":"Smartworld","birla-navya":"Birla Navya","hero-realty":"Hero Realty","trehan-luxury-floors":"Trehan Luxury Floors","the-islands-by-gaurs":"The Islands by Gaurs","yugen-infra":"Yugen Infra","hometrust":"Hometrust","rps-rudrom":"RPS Rudrom","seabreeze-villas":"SeaBreeze Villas","bric-x-infra":"Bric-X Infra","raksha-towers":"Raksha Towers","shf-square":"SHF Square","mi-casa":"Mi Casa"};
 const SERVICES = [
-  ["Website Design & Development","We create modern, responsive websites that combine compelling design, intuitive user experiences and performance-focused development to help brands make a stronger digital impression."],
-  ["Search Engine Optimization","We develop search strategies that help businesses increase online visibility, attract relevant organic traffic and establish a stronger presence across search platforms."],
-  ["Performance Marketing","We create and optimize paid advertising campaigns using audience insights, creative thinking and performance data to support qualified lead generation and measurable business goals."],
-  ["Branding & Creative Design","We develop distinctive brand identities and creative communication systems that reflect your personality, strengthen recognition and create memorable audience experiences."],
-  ["Social Media Marketing","We help brands build meaningful digital connections through thoughtful content strategies, engaging creatives and consistent communication across social media platforms."],
-  ["Custom Applications & Software","We develop tailored digital solutions that simplify workflows, improve user experiences and help businesses operate more efficiently."],
+  ["Branding & Creative Design","We create real estate brands and launch creative, from identity and brochures to hoardings, site branding and the campaign ideas that make buyers stop."],
+  ["Social Media Marketing","Our studio produces ad films, AI creatives, reels and always-on content that keep your project visible and talked about."],
+  ["Performance Marketing","We take the creative to market on Meta and Google, with audience targeting and constant testing built to lower cost per lead and raise site visits."],
+  ["Website Design & Development","We design and build project websites and landing pages that look premium and turn visitors into qualified enquiries."],
+  ["Search Engine Optimization","We help buyers find your project on Google with local SEO, project pages and content that build organic visibility."],
+  ["Custom Applications & Software","We build CRM integrations, lead-routing and sales tools that help your team follow up faster and close more."],
 ];
 const WORK = [
   ["sc-seabreeze-1600","SeaBreeze Villas","Outdoor, print & reels","La Wisteria, North Goa","Editorial collage for La Wisteria by SeaBreeze Villas: facade and courtyard renders with ScaleAcres print creatives and reels"],
@@ -848,9 +934,10 @@ const PHASES = [
    ["WhatsApp & Email Nurture Journeys","Channel-Partner Collateral & Kits","Site-Visit Campaigns & Events","Weekly Reporting & Optimisation"]],
 ];
 const FAQ = [
+  ["Are you a creative agency or a marketing agency?","Both. We are a real estate 360° marketing and creative agency: branding, ad films, AI creatives and campaign design are made in our own studio, and our marketing team takes them to market through Meta, Google, websites and SEO."],
   ["How can ScaleAcres help generate more leads?","ScaleAcres helps generate high-quality leads through targeted digital campaigns, audience segmentation, optimized landing pages, and data-driven advertising strategies designed to reach potential customers at the right time."],
   ["How can ScaleAcres enhance your website's visibility?","ScaleAcres improves website visibility through SEO, content optimization, technical improvements, keyword targeting, and digital marketing strategies that help your website reach a larger and more relevant audience."],
-  ["What makes ScaleAcres different from other marketing agencies?","ScaleAcres combines real estate industry expertise, creative strategy, technology, and performance-driven marketing to deliver customized solutions focused on measurable business growth."],
+  ["What makes ScaleAcres different from other marketing agencies?","ScaleAcres is a real estate 360° marketing and creative agency. One studio creates the brand, ad films and campaign creative, and the same team runs the websites and performance media, so every launch is creative-led and measured on qualified leads and site visits."],
   ["How can I track the success of my campaigns?","Campaign performance can be tracked through key metrics such as leads generated, conversions, cost per lead, website traffic, engagement, and return on ad spend, supported by regular performance reports and analysis."],
 ];
 
@@ -906,7 +993,7 @@ $("#faqList").innerHTML = FAQ.map(([q, a], i) => `<details${i === 0 ? " open" : 
   let s = "", r = 7; const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280;
   for (let i = 0; i < 120; i++) s += `<circle cx="${(rnd() * 1440).toFixed(1)}" cy="${(rnd() * 760).toFixed(1)}" r="${(0.6 + rnd() * 1.4).toFixed(2)}" fill="#fff" opacity="${(0.15 + rnd() * 0.55).toFixed(2)}"/>`;
   s += `<path d="M-20 300 C 300 240, 520 230, 760 205 S 1200 140, 1460 60" fill="none" stroke="rgba(56,189,248,.35)" stroke-width="1.5"/>`;
-  $("#stars").innerHTML = s;
+  if ($("#stars")) $("#stars").innerHTML = s;
 })();
 
 /* below-the-fold films load when near the viewport and pause when off screen */
@@ -939,7 +1026,7 @@ if (!STATIC) {
   };
   addEventListener("scroll", onScroll, { passive: true }); onScroll();
   /* rotating CTA word */
-  let fi = 0; setInterval(() => { fi = (fi + 1) % 6; const st = $("#flip"); if (fi === 0) { st.style.transition = "none"; st.style.transform = "translateY(0)"; void st.offsetWidth; st.style.transition = ""; fi = 0; return; } st.style.transform = `translateY(${-fi * 1.12}em)`; }, 2200);
+  let fi = 0; if ($("#flip")) setInterval(() => { fi = (fi + 1) % 6; const st = $("#flip"); if (fi === 0) { st.style.transition = "none"; st.style.transform = "translateY(0)"; void st.offsetWidth; st.style.transition = ""; fi = 0; return; } st.style.transform = `translateY(${-fi * 1.12}em)`; }, 2200);
 } else {
   document.querySelectorAll('img[loading="lazy"]').forEach((i) => (i.loading = "eager"));
   lazyv.forEach((v) => { v.querySelectorAll("source[data-src]").forEach((s) => (s.src = s.dataset.src)); v.load(); });
@@ -998,6 +1085,20 @@ if (!/[?&]form=dark/.test(location.search)) document.documentElement.classList.a
   });
   f.addEventListener("input", (e) => e.target.removeAttribute("aria-invalid"));
 })();
+
+/* lead-magnet and contact forms: client-side checks; this static concept does not send data anywhere */
+document.querySelectorAll(".lm-form").forEach((f) => {
+  const note = f.querySelector(".note");
+  f.addEventListener("submit", (e) => {
+    e.preventDefault(); let first = null;
+    f.querySelectorAll("input[required], select[required]").forEach((el) => {
+      const v = el.value.trim(); const bad = el.name === "phone" ? !/^[+\d][\d\s().-]{6,}$/.test(v) : v.length < 2;
+      el.setAttribute("aria-invalid", bad); if (bad && !first) first = el; });
+    if (first) { note.textContent = "Please complete the highlighted fields."; first.focus(); return; }
+    note.textContent = "Thank you. This is a design preview, so nothing was sent; on the live site this goes straight to the ScaleAcres team.";
+  });
+  f.addEventListener("input", (e) => e.target.removeAttribute("aria-invalid"));
+});
 </script>
 </body>
 </html>

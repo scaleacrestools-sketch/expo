@@ -12,6 +12,8 @@ footer = home[home.index('<footer class="foot"') : home.index("</footer>") + 9]
 footer = footer.replace('<ul id="footSvc"></ul>', "<ul>" + "".join(f'<li><a href="index.html#services">{t}</a></li>' for t in ["Website Design &amp; Development", "Search Engine Optimization", "Performance Marketing", "Branding &amp; Creative Design", "Social Media Marketing", "Custom Applications &amp; Software"]) + "</ul>")
 footer = footer.replace('href="#', 'href="index.html#')
 aform = home[home.index('<form class="aform') : home.index("</form>", home.index('<form class="aform')) + 7]
+talk = home[home.index('<section class="talk"') : home.index("</section>", home.index('<section class="talk"')) + 10]
+bands = re.findall(r'<section class="lmb.*?</section>', home, flags=re.S)
 TICK = '<svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg>'
 ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>'
 
@@ -162,12 +164,14 @@ def faq(items):
     return '<div class="lp-faq">' + "".join(f'<details class="rv"{" open" if i == 0 else ""}><summary>{q}</summary><p>{a}</p></details>' for i, (q, a) in enumerate(items)) + "</div>"
 
 FORM_JS = home[home.index("/* free-audit form:") : home.index("})();", home.index("/* free-audit form:")) + 5]
+LM_JS = home[home.index("/* lead-magnet and contact forms:") : home.index("\n});", home.index("/* lead-magnet and contact forms:")) + 4]
 SCRIPT = f"""<script>
 const io = new IntersectionObserver((es) => es.forEach((e) => {{ if (e.isIntersecting) {{ e.target.classList.add("in"); io.unobserve(e.target); }} }}), {{ threshold: 0.12 }});
 document.querySelectorAll(".rv, .mask").forEach((el) => io.observe(el));
 requestAnimationFrame(() => document.querySelectorAll(".lp-hero .rv, .lp-hero .mask").forEach((el) => {{ el.classList.add("in"); io.unobserve(el); }}));
 if (/static=1/.test(location.search)) document.documentElement.classList.add("static");
 {FORM_JS}
+{LM_JS}
 </script>"""
 
 def hero(pill, h1, sub, ticks, media):
@@ -187,10 +191,7 @@ def hero(pill, h1, sub, ticks, media):
 </section>"""
 
 def final(h2, p):
-    return f"""<section class="lp-final" aria-label="Get started"><div class="wrap">
-  <h2 class="rv">{h2}</h2><p class="rv">{p}</p>
-  <div class="btns rv"><a class="btn btn-royal" href="#lead">Get my free audit {ARROW}</a><a class="btn btn-wa" href="https://wa.me/917017169215">Chat on WhatsApp</a></div>
-</div></section>"""
+    return talk
 
 VIDEO = '<video autoplay muted loop playsinline preload="auto" poster="assets/img/hero-ai-poster.jpg" aria-hidden="true"><source src="assets/video/hero-ai-wall-1280.webm" type="video/webm"><source src="assets/video/hero-ai-wall-1280.mp4" type="video/mp4"></video>'
 
@@ -204,18 +205,20 @@ steps = '<div class="lp-steps">' + "".join(f'<figure class="rv" style="--d:{i*10
     ("journey-01-strategy", "Strategy", "We study your market, buyers and competitors, and set the plan, budget and targets."),
     ("journey-02-execution", "Execution", "Our studio produces the creative and ad films; our media team launches the campaigns."),
     ("journey-03-growth", "Growth", "We track every lead to its source and keep improving what brings qualified buyers.")])) + "</div>"
-LP_FAQ = [("What does ScaleAcres do?", "We are a real estate marketing and creative agency. One 360° team handles strategy, branding, creative, ad films, websites, performance marketing, social and SEO, so every part of your launch works together."),
+LP_FAQ = [("What does ScaleAcres do?", "We are a real estate 360° marketing and creative agency. One creative-first team handles strategy, branding, creative, ad films, websites, performance marketing, social and SEO, so every part of your launch works together."),
           ("Who do you work with?", "Real estate developers, channel partners and brokers, across residential, commercial and plotted projects. We have worked on 250+ projects."),
           ("How soon can a campaign go live?", "Once the plan and creative are approved, most campaigns can launch quickly. We share a clear timeline in your first call."),
           ("What does it cost?", "It depends on your goals and channels. Start with the free audit and we will recommend a plan and budget that fits.")]
-landing = head("ScaleAcres · Real Estate Marketing & Creative Agency", "ScaleAcres is a real estate marketing and creative agency: a 360° team for strategy, creative, ad films, websites and performance campaigns.") + \
-  hero("Real estate marketing &amp; creative agency", 'Real estate marketing that turns attention into <span class="serif">qualified leads.</span>',
-       "A 360° team for strategy, creative, ad films, websites and performance campaigns, built for developers and channel partners.",
+landing = head("ScaleAcres · Real Estate 360° Marketing & Creative Agency", "ScaleAcres is a real estate 360° marketing and creative agency: branding, ad films, creative, websites and performance campaigns from one studio.") + \
+  hero("Real estate 360° marketing &amp; creative agency", 'Real estate creative that turns attention into <span class="serif">qualified leads.</span>',
+       "A creative-first 360° team: branding, ad films, websites and performance campaigns from one studio, built for developers and channel partners.",
        ["Big ideas, made in our own creative studio", "Meta &amp; Google campaigns built for qualified leads", "One team, one plan, clear reporting"], VIDEO) + logos + \
   f"""<section class="lp-sec mist" aria-label="Services"><div class="wrap"><div class="center"><span class="eyebrow center rv">360° under one roof</span><h2 class="h2 rv" style="margin-top:20px">Everything your brand needs to <span class="serif royal">grow.</span></h2><p class="lead rv">Six capabilities, one accountable team.</p></div>{svc}</div></section>
+{bands[0]}
 <section class="lp-sec" aria-label="Our work"><div class="wrap"><div class="center"><span class="eyebrow center rv">Our work</span><h2 class="h2 rv" style="margin-top:20px">Creative that <span class="serif royal">sells.</span></h2></div>{work}</div></section>
 <section class="lp-sec dark" aria-label="Results"><div class="wrap"><div class="center"><span class="eyebrow center rv">Results</span><h2 class="h2 rv" style="margin-top:20px">Numbers our clients <span class="serif sky">talk about.</span></h2></div>{RESULTS}</div></section>
 <section class="lp-sec mist" aria-label="How we work"><div class="wrap"><div class="center"><span class="eyebrow center rv">How we work</span><h2 class="h2 rv" style="margin-top:20px">From a plan to <span class="serif royal">real growth.</span></h2></div>{steps}</div></section>
+{bands[1]}
 <section class="lp-sec" aria-label="Testimonials"><div class="wrap"><div class="center"><span class="eyebrow center rv">Client stories</span><h2 class="h2 rv" style="margin-top:20px">Hear it from <span class="serif royal">our clients.</span></h2></div>{TST}</div></section>
 <section class="lp-sec mist" aria-label="FAQ"><div class="wrap"><div class="center"><span class="eyebrow center rv">FAQ</span><h2 class="h2 rv" style="margin-top:20px">Questions, <span class="serif royal">answered.</span></h2></div>{faq(LP_FAQ)}</div></section>
 """ + final('Let&rsquo;s build your <span class="serif">next launch.</span>', "Start with a free marketing audit. No cost, no obligation.") + "</main>\n" + footer + SCRIPT + "\n</body></html>\n"
@@ -251,11 +254,13 @@ AU_FAQ = [("Is the audit really free?", "Yes. There is no cost and no obligation
 audit = head("Free Marketing Audit · ScaleAcres", "Get a free marketing audit from ScaleAcres: a review of your website, ads, social and search, with a prioritised action plan.") + \
   hero("Free marketing audit", 'Find out what is holding <span class="serif">your leads back.</span>',
        "A ScaleAcres strategist reviews your project's website, ads, social and search, then walks you through what to fix first. Free, with no obligation.",
-       ["Website, ads, social and SEO reviewed", "A prioritised action plan", "From a real estate marketing &amp; creative agency"], '<img src="assets/img/ideas-city-1440.webp" alt="" aria-hidden="true">') + logos + \
+       ["Website, ads, social and SEO reviewed", "A prioritised action plan", "From a real estate 360° marketing &amp; creative agency"], '<img src="assets/img/ideas-city-1440.webp" alt="" aria-hidden="true">') + logos + \
   f"""<section class="lp-sec dark" aria-label="What is in the audit"><div class="wrap"><div class="center" style="margin-bottom:56px"><span class="eyebrow center rv">What you get</span><h2 class="h2 rv" style="margin-top:20px">Inside your <span class="serif sky">free audit.</span></h2></div>{inside}</div></section>
+{bands[0]}
 <section class="lp-sec mist" aria-label="Who it is for"><div class="wrap"><div class="center"><span class="eyebrow center rv">Who it is for</span><h2 class="h2 rv" style="margin-top:20px">Built for <span class="serif royal">growth.</span></h2></div>{who}</div></section>
 <section class="lp-sec dark" aria-label="How it works"><div class="wrap"><div class="center"><span class="eyebrow center rv">How it works</span><h2 class="h2 rv" style="margin-top:20px">Three simple <span class="serif sky">steps.</span></h2></div>{how}</div></section>
 <section class="lp-sec dark" style="padding-top:0" aria-label="Results"><div class="wrap">{RESULTS}</div></section>
+{bands[1]}
 <section class="lp-sec mist" aria-label="FAQ"><div class="wrap"><div class="center"><span class="eyebrow center rv">FAQ</span><h2 class="h2 rv" style="margin-top:20px">Audit <span class="serif royal">questions.</span></h2></div>{faq(AU_FAQ)}</div></section>
 """ + final('Ready to see <span class="serif">what to fix?</span>', "Get your free marketing audit today.") + "</main>\n" + footer + SCRIPT + "\n</body></html>\n"
 (ROOT / "free-audit.html").write_text(audit)
