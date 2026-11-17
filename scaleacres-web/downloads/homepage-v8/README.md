@@ -25,6 +25,15 @@ The page is `design/home-v8/index.html`. The white form is the default; `?form=d
 - **Right column:** the services list is unchanged, with the same eight click-to-open items.
 - **Text:** unchanged.
 
+## Content updates
+- **Who we are:**
+  - Offices: Agra · Delhi
+  - Markets: Pan-India · UAE · Australia
+  - Focus: Real estate developers and channel partners
+- **Services:** "Video & Creative Production" and "Ecommerce Solutions" are removed. Six services remain, in the services list and the footer. The side rail no longer lists Video and Ecommerce.
+- **Offices card:** "02 offices, Agra and Delhi, one team". The services card now reads "Six services, one accountable team".
+- **"Ideas that stop the scroll" banner:** now plays a real-estate film, a ScaleAcres AI film of a premium residential tower at blue hour, in the style of Red Dash Media's banner.
+
 ## Hero
 - **Copy on the left:**
   - the headline;
