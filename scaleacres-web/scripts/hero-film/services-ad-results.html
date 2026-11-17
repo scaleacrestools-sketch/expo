@@ -1,0 +1,134 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!--
+  Services visual v2: a real ScaleAcres ad (the La Wisteria film for SeaBreeze Villas) running as a
+  sponsored placement in a phone, with campaign results floating above the screen. Every figure is
+  one ScaleAcres publishes on its own case-study cards, labelled with the campaign it belongs to.
+  Every motion is a function of t; the loop is the 24 s length of the ad segment.
+-->
+<style>
+  @font-face { font-family: "Outfit"; src: url(outfit.woff2) format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Playfair Display"; src: url(playfair-600-italic.woff2) format("woff2"); font-weight: 600; font-style: italic; }
+  :root { --ink: #0B0D0D; --royal: #1D4ED8; --deep: #142E8C; --sky: #38BDF8; --mist: #EEF2FB; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1800px; height: 1200px; overflow: hidden; font-family: Outfit, sans-serif; }
+  #stage { position: absolute; inset: 0; background: radial-gradient(ellipse 55% 62% at 50% 56%, #DDE6FA 0%, #EFF3FC 48%, #FAFBFE 78%, #fff 100%); overflow: hidden; }
+  .orbit { position: absolute; left: 50%; top: 58%; transform: translate(-50%, -50%); }
+  .glow { position: absolute; left: 50%; top: 60%; width: 780px; height: 780px; border-radius: 50%; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgba(29,78,216,.18), transparent); }
+
+  #phone { position: absolute; left: 50%; top: 318px; width: 400px; height: 812px; margin-left: -200px; border-radius: 58px; padding: 14px;
+    background: linear-gradient(145deg, #23272b, #0b0d0d 40%, #16191c);
+    box-shadow: 0 60px 120px -30px rgba(11,13,13,.55), 0 30px 60px -20px rgba(20,46,140,.28), inset 0 0 0 1.5px rgba(255,255,255,.12); }
+  #screen { position: relative; width: 100%; height: 100%; border-radius: 44px; overflow: hidden; background: #000; color: #fff; }
+  .bgblur { position: absolute; inset: -40px; filter: blur(28px) brightness(.55) saturate(1.2); }
+  .bgblur video, .main video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .main { position: absolute; left: 0; right: 0; top: 178px; height: 372px; }
+  .island { position: absolute; left: 50%; top: 13px; width: 116px; height: 31px; margin-left: -58px; border-radius: 20px; background: #000; z-index: 5; }
+  .top { position: absolute; left: 18px; right: 18px; top: 70px; display: flex; align-items: center; gap: 11px; z-index: 3; }
+  .top .av { width: 40px; height: 40px; border-radius: 50%; background: #fff; display: grid; place-items: center; border: 2px solid var(--sky); }
+  .top .av img { width: 30px; }
+  .top b { display: block; font-size: 15px; font-weight: 600; }
+  .top small { display: block; font-size: 12px; color: rgba(255,255,255,.75); }
+  .live { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; background: rgba(255,255,255,.14); padding: 6px 10px; border-radius: 999px; }
+  .live i { width: 7px; height: 7px; border-radius: 50%; background: #34D399; }
+  .rail { position: absolute; right: 14px; bottom: 150px; display: grid; gap: 20px; z-index: 3; }
+  .rail svg { width: 28px; height: 28px; fill: #fff; filter: drop-shadow(0 2px 6px rgba(0,0,0,.5)); }
+  .cap { position: absolute; left: 18px; right: 70px; bottom: 146px; z-index: 3; }
+  .cap b { font-size: 15px; font-weight: 600; } .cap p { margin-top: 6px; font-size: 13px; line-height: 1.45; color: rgba(255,255,255,.85); }
+  .ctab { position: absolute; left: 16px; right: 16px; bottom: 74px; height: 50px; border-radius: 14px; z-index: 3; display: flex; align-items: center; justify-content: space-between; padding: 0 18px;
+    background: linear-gradient(90deg, var(--royal), #2f7ae5); font-size: 15.5px; font-weight: 600; box-shadow: 0 10px 24px -10px rgba(29,78,216,.9); }
+  .prog { position: absolute; left: 16px; right: 16px; bottom: 54px; height: 3px; border-radius: 3px; background: rgba(255,255,255,.25); z-index: 3; overflow: hidden; }
+  .prog i { display: block; height: 100%; background: #fff; }
+  .nav { position: absolute; left: 0; right: 0; bottom: 0; height: 44px; display: flex; justify-content: space-around; align-items: center; background: rgba(0,0,0,.6); z-index: 3; }
+  .nav i { width: 20px; height: 20px; border-radius: 6px; border: 2px solid rgba(255,255,255,.75); }
+
+  /* results above the screen */
+  .res { position: absolute; border-radius: 26px; color: #fff; background: linear-gradient(160deg, rgba(36,41,46,.95), rgba(13,15,17,.97));
+    box-shadow: 0 40px 80px -30px rgba(11,13,13,.6), 0 12px 30px -14px rgba(11,13,13,.4), inset 0 0 0 1px rgba(255,255,255,.08); padding: 26px 30px; will-change: transform; }
+  .res .k { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--sky); }
+  .res .k i { width: 8px; height: 8px; border-radius: 50%; background: #34D399; }
+  .res .row { display: flex; gap: 34px; margin-top: 16px; }
+  .res .n { font-size: 54px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+  .res .n sup { font-size: .5em; color: var(--sky); vertical-align: top; margin-left: 3px; }
+  .res .l { margin-top: 8px; font-size: 14px; color: rgba(255,255,255,.66); }
+  .res .src { margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.12); font-size: 13.5px; color: rgba(255,255,255,.6); display: flex; justify-content: space-between; }
+  .res .src b { color: #fff; font-weight: 600; }
+  #r1 { left: 520px; top: 70px; width: 760px; }
+  #r2 { left: 1210px; top: 560px; width: 470px; }
+  .chip { position: absolute; width: 82px; height: 82px; border-radius: 22px; display: grid; place-items: center; background: linear-gradient(160deg, rgba(36,41,46,.95), rgba(13,15,17,.97)); box-shadow: 0 24px 46px -18px rgba(11,13,13,.6), inset 0 0 0 1px rgba(255,255,255,.08); }
+  .chip svg { width: 44px; height: 44px; }
+  .bar { position: absolute; border-radius: 22px; padding: 22px 26px; color: #fff; background: linear-gradient(160deg, rgba(36,41,46,.95), rgba(13,15,17,.97)); box-shadow: 0 30px 60px -24px rgba(11,13,13,.55), inset 0 0 0 1px rgba(255,255,255,.08); }
+  .bar small { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.62); font-weight: 600; }
+  .bar .track { margin-top: 14px; height: 12px; border-radius: 8px; background: rgba(255,255,255,.12); overflow: hidden; }
+  .bar .track i { display: block; height: 100%; border-radius: 8px; background: linear-gradient(90deg, var(--royal), var(--sky)); }
+  .bar b { display: block; margin-top: 10px; font-size: 24px; font-weight: 600; }
+</style></head>
+<body><div id="stage">
+  <div class="glow"></div>
+  <div class="orbit" id="o1"><svg width="1000" height="1000" viewBox="0 0 1000 1000"><circle cx="500" cy="500" r="498" fill="none" stroke="#9fb3e6" stroke-opacity=".55" stroke-width="2" stroke-dasharray="3 14" stroke-linecap="round"/></svg></div>
+
+  <!-- results above the screen -->
+  <div class="res" id="r1">
+    <div class="k"><i></i>Campaign results</div>
+    <div class="row">
+      <div><div class="n" id="n1">0</div><div class="l">Leads generated</div></div>
+      <div><div class="n" id="n2">0</div><div class="l">Lead qualification</div></div>
+      <div><div class="n" id="n3">0</div><div class="l">Plots sold</div></div>
+    </div>
+    <div class="src"><span><b>Yugen Infra</b> · North Goa · Meta &amp; Google Ads</span><span>ScaleAcres case study</span></div>
+  </div>
+  <div class="res" id="r2">
+    <div class="k"><i></i>Campaign results</div>
+    <div class="row" style="gap:26px">
+      <div><div class="n" id="m1" style="font-size:44px">0</div><div class="l">Leads</div></div>
+      <div><div class="n" id="m2" style="font-size:44px">0</div><div class="l">Qualified</div></div>
+      <div><div class="n" id="m3" style="font-size:44px">0</div><div class="l">Video meetings</div></div>
+    </div>
+    <div class="src"><span><b>One Goa</b> · Bicholim, Goa</span></div>
+  </div>
+  <div class="bar" id="b1" style="left:150px;top:640px;width:330px"><small>Ad running on</small><b>Instagram · Facebook</b><div class="track"><i id="bt"></i></div></div>
+  <div class="chip" id="cm" style="left:300px;top:470px"><svg viewBox="0 0 48 48"><path d="M8 30c0-8 4-15 9-15 3.4 0 5.6 2.5 7.6 6.1C26.6 17.5 29 15 32.3 15 37.6 15 41 22 41 29c0 4.4-1.9 7-5.1 7-3.2 0-5.1-2.5-8.3-8.4l-3-5.3-3 5.4C18.4 33.6 16.4 36 13.2 36 10 36 8 33.6 8 30z" fill="none" stroke="#0081FB" stroke-width="3.6" stroke-linejoin="round"/></svg></div>
+  <div class="chip" id="cg" style="left:200px;top:900px"><svg viewBox="0 0 48 48"><path d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z" fill="#FFC107"/><path d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z" fill="#FF3D00"/><path d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z" fill="#4CAF50"/><path d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z" fill="#1976D2"/></svg></div>
+  <div class="chip" id="ci" style="left:1440px;top:390px"><svg viewBox="0 0 48 48"><defs><radialGradient id="igg" cx=".3" cy="1.05" r="1.2"><stop offset="0" stop-color="#fdf497"/><stop offset=".18" stop-color="#fd5949"/><stop offset=".5" stop-color="#d6249f"/><stop offset="1" stop-color="#285AEB"/></radialGradient></defs><rect x="2" y="2" width="44" height="44" rx="12" fill="url(#igg)"/><rect x="11" y="11" width="26" height="26" rx="8" fill="none" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="6.5" fill="none" stroke="#fff" stroke-width="3"/><circle cx="31.5" cy="16.5" r="2" fill="#fff"/></svg></div>
+  <div class="chip" id="cy" style="left:1500px;top:960px"><svg viewBox="0 0 48 48"><rect x="4" y="10" width="40" height="28" rx="9" fill="#FF0033"/><path d="M20 18 L31 24 L20 30 Z" fill="#fff"/></svg></div>
+
+  <!-- the running ad -->
+  <div id="phone"><div id="screen">
+    <div class="bgblur"><video id="vb" src="ad.webm" muted preload="auto"></video></div>
+    <div class="main"><video id="vm" src="ad.webm" muted preload="auto"></video></div>
+    <div class="island"></div>
+    <div class="top"><span class="av"><img src="seabreeze-villas.png" alt=""></span><span><b>La Wisteria · SeaBreeze</b><small>Sponsored</small></span><span class="live"><i></i>Live</span></div>
+    <div class="rail">
+      <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.2 0 3.7 1.2 5.3 3 1.6-1.8 3.1-3 5.3-3 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 3.5c5 0 9 3.4 9 7.7s-4 7.7-9 7.7c-1.1 0-2.2-.2-3.2-.5L4 20.5l1.3-4C3.9 15.2 3 13.3 3 11.2 3 6.9 7 3.5 12 3.5z" fill="none" stroke="#fff" stroke-width="2"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M21 3 3 10.5l7 2.5 2.5 7z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="cap"><b>Luxury villas in North Goa</b><p>Each with a private pool. Book your site visit at La Wisteria.</p></div>
+    <div class="ctab">Book a site visit <span>›</span></div>
+    <div class="prog"><i id="pg"></i></div>
+    <div class="nav"><i></i><i></i><i></i><i></i><i></i></div>
+  </div></div>
+</div>
+<script>
+  const T = 24, TAU = Math.PI * 2, $ = (id) => document.getElementById(id);
+  const vb = $("vb"), vm = $("vm");
+  const ease = (x) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
+  const floats = { r1: [8, 7, 0], r2: [6, 8, .4], b1: [6, 8, .2], cm: [4, 7, .6], cg: [8, 8, .1], ci: [6, 7, .8], cy: [4, 6, .3], phone: [12, 5, 0] };
+  const fmt = (v, d) => v.toFixed(d);
+  window.ready = Promise.all([vb, vm].map((v) => new Promise((r) => v.readyState >= 2 ? r() : v.addEventListener("loadeddata", r, { once: true })))).then(() => document.fonts.ready);
+  window.render = async (t) => {
+    for (const [id, [p, a, ph]] of Object.entries(floats)) { const s = Math.sin(TAU * (t / p + ph)); $(id).style.transform = `translate3d(0, ${(s * a).toFixed(2)}px, 0)`; }
+    $("o1").style.transform = `translate(-50%,-50%) rotate(${(t / T) * 360}deg)`;
+    const k = ease((t % T) / 2.6), k2 = ease(((t % T) - 1) / 2.6);
+    $("n1").innerHTML = (15 * k).toFixed(k < 1 ? 1 : 0) + "k<sup>+</sup>";
+    $("n2").innerHTML = fmt(37.8 * k, 1) + "<sup>%</sup>";
+    $("n3").innerHTML = Math.round(200 * k) + "<sup>+</sup>";
+    $("m1").innerHTML = fmt(3.4 * k2, 1) + "k";
+    $("m2").innerHTML = Math.round(28 * k2) + "<sup>%</sup>";
+    $("m3").innerHTML = Math.round(270 * k2) + "<sup>+</sup>";
+    $("bt").style.width = (100 * ((t % T) / T)) + "%";
+    $("pg").style.width = (100 * ((t % T) / T)) + "%";
+    const vt = t % T;
+    await Promise.all([vb, vm].map((v) => Math.abs(v.currentTime - vt) < 0.001 ? null : new Promise((r) => { v.addEventListener("seeked", r, { once: true }); v.currentTime = vt; })));
+  };
+</script></body></html>

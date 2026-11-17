@@ -1,0 +1,452 @@
+[
+ {
+  "slug": "dlf",
+  "name": "DLF",
+  "set": "developer",
+  "file": "dlf.png"
+ },
+ {
+  "slug": "m3m",
+  "name": "M3M",
+  "set": "developer",
+  "file": "m3m.png"
+ },
+ {
+  "slug": "aarize",
+  "name": "Aarize",
+  "set": "developer",
+  "file": "aarize.png"
+ },
+ {
+  "slug": "godrej-properties",
+  "name": "Godrej Properties",
+  "set": "developer",
+  "file": "godrej-properties.png"
+ },
+ {
+  "slug": "orris",
+  "name": "Orris",
+  "set": "developer",
+  "file": "orris.png"
+ },
+ {
+  "slug": "yugen-infra",
+  "name": "Yugen Infra",
+  "set": "developer",
+  "file": "yugen-infra.png"
+ },
+ {
+  "slug": "signature-global",
+  "name": "Signature Global",
+  "set": "developer",
+  "file": "signature-global.png"
+ },
+ {
+  "slug": "tata-housing",
+  "name": "Tata Housing",
+  "set": "developer",
+  "file": "tata-housing.png"
+ },
+ {
+  "slug": "bestech",
+  "name": "Bestech",
+  "set": "developer",
+  "file": "bestech.png"
+ },
+ {
+  "slug": "ats",
+  "name": "ATS",
+  "set": "developer",
+  "file": "ats.png"
+ },
+ {
+  "slug": "tulip-crimson",
+  "name": "Tulip Crimson",
+  "set": "developer",
+  "file": "tulip-crimson.png"
+ },
+ {
+  "slug": "paras-buildtech",
+  "name": "Paras Buildtech",
+  "set": "developer",
+  "file": "paras-buildtech.png"
+ },
+ {
+  "slug": "aipl",
+  "name": "AIPL",
+  "set": "developer",
+  "file": "aipl.png"
+ },
+ {
+  "slug": "ansal-api",
+  "name": "Ansal API",
+  "set": "developer",
+  "file": "ansal-api.png"
+ },
+ {
+  "slug": "pyramid-infratech",
+  "name": "Pyramid Infratech",
+  "set": "developer",
+  "file": "pyramid-infratech.png"
+ },
+ {
+  "slug": "smartworld",
+  "name": "Smartworld",
+  "set": "developer",
+  "file": "smartworld.png"
+ },
+ {
+  "slug": "experion",
+  "name": "Experion",
+  "set": "developer",
+  "file": "experion.png"
+ },
+ {
+  "slug": "mvn-infrastructure",
+  "name": "MVN Infrastructure",
+  "set": "developer",
+  "file": "mvn-infrastructure.png"
+ },
+ {
+  "slug": "raheja",
+  "name": "Raheja",
+  "set": "developer",
+  "file": "raheja.png"
+ },
+ {
+  "slug": "suncity-projects",
+  "name": "Suncity Projects",
+  "set": "developer",
+  "file": "suncity-projects.png"
+ },
+ {
+  "slug": "prestige-group",
+  "name": "Prestige Group",
+  "set": "developer",
+  "file": "prestige-group.png"
+ },
+ {
+  "slug": "emaar-india",
+  "name": "Emaar India",
+  "set": "developer",
+  "file": "emaar-india.png"
+ },
+ {
+  "slug": "sobha-realty",
+  "name": "Sobha Realty",
+  "set": "developer",
+  "file": "sobha-realty.png"
+ },
+ {
+  "slug": "bptp",
+  "name": "BPTP",
+  "set": "developer",
+  "file": "bptp.png"
+ },
+ {
+  "slug": "shapoorji-pallonji",
+  "name": "Shapoorji Pallonji",
+  "set": "developer",
+  "file": "shapoorji-pallonji.png"
+ },
+ {
+  "slug": "ss-group",
+  "name": "SS Group",
+  "set": "developer",
+  "file": "ss-group.png"
+ },
+ {
+  "slug": "adani-realty",
+  "name": "Adani Realty",
+  "set": "developer",
+  "file": "adani-realty.png"
+ },
+ {
+  "slug": "realty-canvas",
+  "name": "Realty Canvas",
+  "set": "developer",
+  "file": "realty-canvas.png"
+ },
+ {
+  "slug": "trevoc",
+  "name": "Trevoc",
+  "set": "developer",
+  "file": "trevoc.png"
+ },
+ {
+  "slug": "mapsko",
+  "name": "Mapsko",
+  "set": "developer",
+  "file": "mapsko.png"
+ },
+ {
+  "slug": "vatika",
+  "name": "Vatika",
+  "set": "developer",
+  "file": "vatika.png"
+ },
+ {
+  "slug": "birla-estates",
+  "name": "Birla Estates",
+  "set": "developer",
+  "file": "birla-estates.png"
+ },
+ {
+  "slug": "eldeco",
+  "name": "Eldeco",
+  "set": "developer",
+  "file": "eldeco.png"
+ },
+ {
+  "slug": "eros-group",
+  "name": "Eros Group",
+  "set": "developer",
+  "file": "eros-group.png"
+ },
+ {
+  "slug": "conscient",
+  "name": "Conscient",
+  "set": "developer",
+  "file": "conscient.png"
+ },
+ {
+  "slug": "whiteland",
+  "name": "Whiteland",
+  "set": "developer",
+  "file": "whiteland.png"
+ },
+ {
+  "slug": "jms-group",
+  "name": "JMS Group",
+  "set": "developer",
+  "file": "jms-group.png"
+ },
+ {
+  "slug": "rof",
+  "name": "ROF",
+  "set": "developer",
+  "file": "rof.png"
+ },
+ {
+  "slug": "mahindra-lifespaces",
+  "name": "Mahindra Lifespaces",
+  "set": "developer",
+  "file": "mahindra-lifespaces.png"
+ },
+ {
+  "slug": "satya-group",
+  "name": "Satya Group",
+  "set": "developer",
+  "file": "satya-group.png"
+ },
+ {
+  "slug": "tata-realty",
+  "name": "Tata Realty",
+  "set": "client",
+  "file": "tata-realty.png"
+ },
+ {
+  "slug": "elan",
+  "name": "Elan",
+  "set": "client",
+  "file": "elan.png"
+ },
+ {
+  "slug": "bhutani-infra",
+  "name": "Bhutani Infra",
+  "set": "client",
+  "file": "bhutani-infra.png"
+ },
+ {
+  "slug": "birla-navya",
+  "name": "Birla Navya",
+  "set": "client",
+  "file": "birla-navya.png"
+ },
+ {
+  "slug": "hero-realty",
+  "name": "Hero Realty",
+  "set": "client",
+  "file": "hero-realty.png"
+ },
+ {
+  "slug": "trehan-luxury-floors",
+  "name": "Trehan Luxury Floors",
+  "set": "client",
+  "file": "trehan-luxury-floors.png"
+ },
+ {
+  "slug": "the-islands-by-gaurs",
+  "name": "The Islands by Gaurs",
+  "set": "client",
+  "file": "the-islands-by-gaurs.png"
+ },
+ {
+  "slug": "hometrust",
+  "name": "Hometrust",
+  "set": "client",
+  "file": "hometrust.png"
+ },
+ {
+  "slug": "rps-rudrom",
+  "name": "RPS Rudrom",
+  "set": "client",
+  "file": "rps-rudrom.png"
+ },
+ {
+  "slug": "seabreeze-villas",
+  "name": "SeaBreeze Villas",
+  "set": "client",
+  "file": "seabreeze-villas.png"
+ },
+ {
+  "slug": "bric-x-infra",
+  "name": "Bric-X Infra",
+  "set": "client",
+  "file": "bric-x-infra.png"
+ },
+ {
+  "slug": "raksha-towers",
+  "name": "Raksha Towers",
+  "set": "client",
+  "file": "raksha-towers.png"
+ },
+ {
+  "slug": "shf-square",
+  "name": "SHF Square",
+  "set": "client",
+  "file": "shf-square.png"
+ },
+ {
+  "slug": "mi-casa",
+  "name": "Mi Casa",
+  "set": "client",
+  "file": "mi-casa.png"
+ },
+ {
+  "slug": "sid-realtech",
+  "name": "SID Realtech",
+  "set": "client",
+  "file": "sid-realtech.png"
+ },
+ {
+  "slug": "intech-developers",
+  "name": "Intech Developers",
+  "set": "client",
+  "file": "intech-developers.svg"
+ },
+ {
+  "slug": "trg",
+  "name": "TRG \u00b7 Trisol Red Group",
+  "set": "client",
+  "file": "trg.png"
+ },
+ {
+  "slug": "aevora-infratech",
+  "name": "Aevora Infratech",
+  "set": "client",
+  "file": "aevora-infratech.svg"
+ },
+ {
+  "slug": "aakar-interior",
+  "name": "Aakar Interior",
+  "set": "client",
+  "file": "aakar-interior.png"
+ },
+ {
+  "slug": "innovative",
+  "name": "Innovative Developers",
+  "set": "client",
+  "file": "innovative.png"
+ },
+ {
+  "slug": "bizloan",
+  "name": "Bizloan",
+  "set": "client",
+  "file": "bizloan.png"
+ },
+ {
+  "slug": "eggspert",
+  "name": "Eggspert",
+  "set": "client",
+  "file": "eggspert.svg"
+ },
+ {
+  "slug": "media-pr",
+  "name": "Media PR",
+  "set": "client",
+  "file": "media-pr.png"
+ },
+ {
+  "slug": "mwb",
+  "name": "MW&B",
+  "set": "client",
+  "file": "mwb.png"
+ },
+ {
+  "slug": "jina-cosmetics",
+  "name": "Jina Cosmetics",
+  "set": "client",
+  "file": "jina-cosmetics.png"
+ },
+ {
+  "slug": "lets-movin",
+  "name": "Let's Movin",
+  "set": "partner",
+  "file": "lets-movin.png"
+ },
+ {
+  "slug": "land-lord-realtor",
+  "name": "Land Lord Realtor Service",
+  "set": "partner",
+  "file": "land-lord-realtor.png"
+ },
+ {
+  "slug": "homefynders",
+  "name": "Homefynders",
+  "set": "partner",
+  "file": "homefynders.png"
+ },
+ {
+  "slug": "imperial-sky-realty",
+  "name": "Imperial Sky Realty",
+  "set": "partner",
+  "file": "imperial-sky-realty.png"
+ },
+ {
+  "slug": "straight-up-capital",
+  "name": "Straight Up Capital Realty",
+  "set": "partner",
+  "file": "straight-up-capital.png"
+ },
+ {
+  "slug": "investors-guide",
+  "name": "Investors Guide",
+  "set": "partner",
+  "file": "investors-guide.svg"
+ },
+ {
+  "slug": "subata-realty",
+  "name": "Subata Realty",
+  "set": "partner",
+  "file": "subata-realty.png"
+ },
+ {
+  "slug": "scalemiles",
+  "name": "ScaleMiles",
+  "set": "partner",
+  "file": "scalemiles.png"
+ },
+ {
+  "slug": "research-capital",
+  "name": "Research Capital",
+  "set": "partner",
+  "file": "research-capital.svg"
+ },
+ {
+  "slug": "jbbr-group",
+  "name": "JBBR Group",
+  "set": "client",
+  "file": "jbbr-group.png"
+ }
+]

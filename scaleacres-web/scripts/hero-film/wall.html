@@ -1,0 +1,62 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!--
+  Hero background: a drifting wall of genuine ScaleAcres work. Square tiles play the ScaleAcres
+  ad films (from the ScaleAcres Vimeo library); tall tiles are covers of ScaleAcres AI, social and
+  ad shorts (YouTube). Everything is a function of t, so frames render exactly; the wall travels one
+  full cycle in T seconds, so the loop is seamless.
+-->
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: #070809; }
+  #wall { position: absolute; inset: 0 16px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .col { position: relative; overflow: hidden; }
+  .stack { display: grid; gap: 16px; will-change: transform; }
+  .t { position: relative; border-radius: 22px; overflow: hidden; background: #111; }
+  .t.sq { aspect-ratio: 1/1; } .t.tall { aspect-ratio: 9/16; }
+  .t video, .t img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+</style></head>
+<body><div id="wall"></div>
+<script>
+  const T = 48, GAP = 16;
+  const V = (n, o = 0) => ({ k: "v", src: `seg/${n}.webm`, o });
+  const P = (id) => ({ k: "p", src: `posters/${id}.webp` });
+  // five columns: ad film, cover, ad film, cover
+  const cols = [
+    [V("la-wisteria"), P("1ZXNwVLM7T4"), V("godrej"), P("MdluDjATzgA")],
+    [P("O1FJdO2yZOY"), V("signature-global"), P("nRFeRCMZG3E"), V("aarize")],
+    [V("karyan"), P("z37JFVVNIYk"), V("bhartiya-city"), P("5Pm2Z6WszRc")],
+    [P("FxO_2KVX4zA"), V("dualis"), P("9GUSJ8zlvRA"), V("rps")],
+    [V("signature-global", 11), P("TyFCnkRBg_I"), V("la-wisteria", 12), P("ZQa0XNGiN7Y")],
+  ];
+  const wall = document.getElementById("wall");
+  const tiles = [];
+  cols.forEach((c, ci) => {
+    const col = document.createElement("div"); col.className = "col";
+    const st = document.createElement("div"); st.className = "stack"; col.appendChild(st);
+    for (let rep = 0; rep < 3; rep++) for (const [i, m] of c.entries()) {
+      const t = document.createElement("div"); t.className = "t " + (m.k === "v" ? "sq" : "tall");
+      if (m.k === "v") { const v = document.createElement("video"); v.src = m.src; v.muted = true; v.preload = "auto"; t.appendChild(v); tiles.push({ v, o: m.o + rep * 7 + i * 3 }); }
+      else { const im = document.createElement("img"); im.src = m.src; t.appendChild(im); tiles.push({ im, s: (ci + i) % 2 }); }
+      st.appendChild(t);
+    }
+    wall.appendChild(col);
+  });
+  const stacks = [...document.querySelectorAll(".stack")];
+  let cycle = 0;
+  window.ready = Promise.all([...document.querySelectorAll("video")].map((v) => new Promise((r) => v.readyState >= 2 ? r() : v.addEventListener("loadeddata", r, { once: true })))).then(() => {
+    const kids = stacks[0].children; let h = 0; for (let i = 0; i < 4; i++) h += kids[i].getBoundingClientRect().height + GAP; cycle = h;
+  });
+  window.render = async (t) => {
+    stacks.forEach((s, i) => {
+      const k = (t / T) % 1, dir = i % 2 ? 1 : -1, start = i % 2 ? -cycle : -cycle * 0.35 - i * 90;
+      s.style.transform = `translate3d(0, ${(start + dir * k * cycle).toFixed(2)}px, 0)`;
+    });
+    const seeks = [];
+    for (const x of tiles) {
+      if (x.v) { const want = (t + x.o) % 24; if (Math.abs(x.v.currentTime - want) > 0.001) seeks.push(new Promise((r) => { x.v.addEventListener("seeked", r, { once: true }); x.v.currentTime = want; })); }
+      else { const z = 1.04 + 0.04 * Math.sin((t / T) * Math.PI * 2 + x.s * Math.PI); x.im.style.transform = `scale(${z.toFixed(4)})`; }
+    }
+    await Promise.all(seeks);
+  };
+</script></body></html>
