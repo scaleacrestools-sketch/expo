@@ -25,6 +25,17 @@ The page is `design/home-v8/index.html`. The white form is the default; `?form=d
 - **Right column:** the services list is unchanged, with the same eight click-to-open items.
 - **Text:** unchanged.
 
+## Client work showcase (redesigned)
+- **Header:** "Our work does the talking" above "Client work *showcase*", with "showcase" in Royal.
+- **Grid:** two columns of large rounded 16:10 cards (one column on phones). Each card has the client name, a project or location line and a category label with a Royal dash.
+- **Grading and hover:** every card shares a cohesive dark grade and a soft bottom shade. On hover the card lifts slightly, the image zooms gently and the shade lightens.
+- **Former placeholders:** now real campaign work from the Drive reels, each shown as a presentation board (darkened render, project name, and three phones with the actual ad frames):
+  - **Sohom Estate:** Pravya, Rajarhat New Town, Kolkata (Soham Group × DTC Group).
+  - **DTC Group:** Sojon, Joka, South Kolkata.
+  - **Bhatia Group:** Auriga 9, Borivali West, Mumbai.
+- **The other seven cards:** they keep their existing visuals.
+- **"Ideas that stop the scroll" banner:** now uses a dusk city film (towers and a metro line at golden hour) under a navy-to-dusk shade, closer to Red Dash Media's banner.
+
 ## Content updates
 - **Who we are:**
   - Offices: Agra · Delhi
@@ -32,7 +43,6 @@ The page is `design/home-v8/index.html`. The white form is the default; `?form=d
   - Focus: Real estate developers and channel partners
 - **Services:** "Video & Creative Production" and "Ecommerce Solutions" are removed. Six services remain, in the services list and the footer. The side rail no longer lists Video and Ecommerce.
 - **Offices card:** "02 offices, Agra and Delhi, one team". The services card now reads "Six services, one accountable team".
-- **"Ideas that stop the scroll" banner:** now plays a real-estate film, a ScaleAcres AI film of a premium residential tower at blue hour, in the style of Red Dash Media's banner.
 
 ## Hero
 - **Copy on the left:**

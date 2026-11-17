@@ -1,0 +1,33 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:"Clash Display";src:url(../../design/home-v8/assets/fonts/clash-display-600.woff2);font-weight:600}
+@font-face{font-family:"Satoshi";src:url(../../design/home-v8/assets/fonts/satoshi-500.woff2);font-weight:500}
+@font-face{font-family:"Satoshi";src:url(../../design/home-v8/assets/fonts/satoshi-700.woff2);font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1600px;height:1000px;overflow:hidden;background:#0B0D0D}
+.bg{position:absolute;inset:0;overflow:hidden}
+.bg div{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:brightness(.62) saturate(.9) contrast(1.06)}
+.shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,13,13,.92) 0%,rgba(11,13,13,.72) 34%,rgba(11,22,64,.25) 62%,rgba(11,13,13,.35) 100%),linear-gradient(180deg,rgba(11,13,13,0) 55%,rgba(11,13,13,.75) 100%)}
+.txt{position:absolute;left:84px;bottom:96px;color:#fff;width:560px}
+.k{display:inline-flex;align-items:center;gap:10px;font:700 14px Satoshi;letter-spacing:.18em;text-transform:uppercase;color:#38BDF8}
+.k:before{content:"";width:28px;height:2px;background:linear-gradient(60deg,#142E8C,#1D4ED8,#38BDF8)}
+h1{margin-top:18px;font:600 84px/1 "Clash Display";letter-spacing:-.01em}
+p{margin-top:16px;font:500 24px Satoshi;color:#C9CFDB}
+.chips{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap}
+.chips span{font:700 13px Satoshi;letter-spacing:.12em;text-transform:uppercase;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.22);color:#fff;background:rgba(11,13,13,.35)}
+.ph{position:absolute;width:270px;height:560px;border-radius:40px;background:#0B0D0D;padding:9px;box-shadow:0 50px 90px -30px rgba(0,0,0,.95),0 0 0 1.5px rgba(255,255,255,.14)}
+.ph img{width:100%;height:100%;object-fit:cover;border-radius:32px;display:block}
+.ph:after{content:"";position:absolute;top:18px;left:50%;width:86px;height:22px;margin-left:-43px;border-radius:12px;background:#0B0D0D}
+.p1{right:520px;top:250px;transform:rotate(-7deg)}
+.p2{right:300px;top:170px;z-index:2}
+.p3{right:80px;top:250px;transform:rotate(7deg)}
+</style></head><body>
+<div class="bg"><div id="bg"></div></div><div class="shade"></div>
+<div class="txt"><span class="k" id="k"></span><h1 id="t"></h1><p id="s"></p><div class="chips" id="c"></div></div>
+<div class="ph p1"><img id="i1"></div><div class="ph p2"><img id="i2"></div><div class="ph p3"><img id="i3"></div>
+<script>
+const q=new URLSearchParams(location.search);
+document.getElementById("bg").style.backgroundImage="url("+q.get("bg")+")";
+k.textContent=q.get("k");t.textContent=q.get("t");s.textContent=q.get("s");
+c.innerHTML=q.get("c").split("|").map(x=>"<span>"+x+"</span>").join("");
+["i1","i2","i3"].forEach((id,n)=>document.getElementById(id).src=q.get("p"+(n+1)));
+</script></body></html>
