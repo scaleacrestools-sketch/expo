@@ -8,33 +8,35 @@
 -->
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 1920px; height: 1080px; overflow: hidden; background: #070809; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0B0D0D; }
   #wall { position: absolute; inset: 0 16px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
   .col { position: relative; overflow: hidden; }
   .stack { display: grid; gap: 16px; will-change: transform; }
-  .t { position: relative; border-radius: 22px; overflow: hidden; background: #111; }
-  .t.sq { aspect-ratio: 1/1; } .t.tall { aspect-ratio: 9/16; }
+  .t { position: relative; border-radius: 22px; overflow: hidden; background: #15181B; }
+  .t.sq { aspect-ratio: 1/1; } .t.tall { aspect-ratio: 9/16; } .t.pt { aspect-ratio: 4/5; }
   .t video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 </style></head>
 <body><div id="wall"></div>
 <script>
   const L = 9.68, T = L * 5, GAP = 16;
   const S = (n) => ({ k: "sq", n }), V = (n) => ({ k: "tall", n });
-  // JBBR Kanvas + JBBR warehouse AI films, a tech data film, AI builder renders, and faceless
-  // render shots from the ScaleAcres property ad films (cropped clear of captions and logo bars).
+  // 20 tiles from the "Builders AI Videos" Drive folder (d-*: Auriga 9, DTC Sojon, Kanvas, Pravya, La Wisteria,
+  // SkyByte, JBBR Krystal and JBBR warehouse films, each cropped clear of captions and logos) plus 10 ScaleAcres
+  // AI films (JBBR Kanvas gate and township, JBBR warehouse, tech data film, AI tower render).
+  const P = (n) => ({ k: "pt", n });
   const cols = [
-    [S("kv-aerial"), V("kv-gate-a"), S("ad-lw-aerial"), V("16f0b7b3")],
-    [V("wh-blueprint"), S("ad-bh-aerial"), V("336116a6"), S("wh-night")],
-    [S("ad-du-metro"), V("kv-gate-b"), S("kv-plots"), V("tech-data")],
-    [V("wh-aerial"), S("ad-lw-villas"), V("3e7af501"), S("ad-sg-towers")],
-    [S("wh-dock"), V("wh-approach"), S("ad-bh-towers"), V("d3edb836")],
+    [P("d-dtc-towers"), V("kv-gate-a"), P("d-sb-lagoon"), S("d-kry-night"), P("d-auriga-night"), S("kv-plots")],
+    [V("wh-blueprint"), P("d-sbai-plots"), S("d-sbad-highway"), P("d-pravya-drive"), P("d-dtc-metro"), S("kv-aerial")],
+    [P("d-sbr-holo"), S("d-kry-plot"), V("tech-data"), P("d-sb-beach"), P("d-jbbr-wh-a"), S("wh-night")],
+    [P("d-auriga-tower"), V("kv-gate-b"), P("d-dtc-garden"), S("wh-dock"), P("d-sbr-street"), V("336116a6")],
+    [P("d-kanvas-plots"), V("wh-aerial"), P("d-sb-villas"), P("d-jbbr-wh-b"), P("d-sbai-villas"), P("d-dtc-podium")],
   ];
   const wall = document.getElementById("wall");
   const tiles = [];
   cols.forEach((c, ci) => {
     const col = document.createElement("div"); col.className = "col";
     const st = document.createElement("div"); st.className = "stack"; col.appendChild(st);
-    for (let rep = 0; rep < 3; rep++) for (const [i, m] of c.entries()) {
+    for (let rep = 0; rep < 2; rep++) for (const [i, m] of c.entries()) {
       const t = document.createElement("div"); t.className = "t " + m.k;
       const v = document.createElement("video"); v.src = `seg/${m.n}.webm`; v.muted = true; v.preload = "auto";
       t.appendChild(v); tiles.push({ v, o: (ci * 1.9 + i * 2.7 + rep * 3.3) % L });
@@ -43,13 +45,13 @@
     wall.appendChild(col);
   });
   const stacks = [...document.querySelectorAll(".stack")];
-  let cycle = 0;
+  const cycles = [];
   window.ready = Promise.all([...document.querySelectorAll("video")].map((v) => new Promise((r) => v.readyState >= 2 ? r() : v.addEventListener("loadeddata", r, { once: true })))).then(() => {
-    const kids = stacks[0].children; let h = 0; for (let i = 0; i < 4; i++) h += kids[i].getBoundingClientRect().height + GAP; cycle = h;
+    stacks.forEach((st, si) => { const kids = st.children, n = cols[si].length; let h = 0; for (let i = 0; i < n; i++) h += kids[i].getBoundingClientRect().height + GAP; cycles[si] = h; });
   });
   window.render = async (t) => {
     stacks.forEach((s, i) => {
-      const k = (t / T) % 1, dir = i % 2 ? 1 : -1, start = i % 2 ? -cycle : -cycle * 0.35 - i * 90;
+      const cycle = cycles[i], k = (t / T) % 1, dir = i % 2 ? 1 : -1, start = i % 2 ? -cycle : -cycle * 0.35 - i * 90;
       s.style.transform = `translate3d(0, ${(start + dir * k * cycle).toFixed(2)}px, 0)`;
     });
     const seeks = [];
