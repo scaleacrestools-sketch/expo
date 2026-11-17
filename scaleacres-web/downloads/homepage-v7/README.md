@@ -49,7 +49,7 @@ Note: the published case-study pages give different lead totals from these cards
   - No horizontal scrolling at any width.
 - **Accessibility:** visible keyboard focus, labelled videos, and every animation and video stops for visitors who prefer reduced motion.
 - **Search and sharing:** a meta description, Open Graph tags and a theme colour.
-- **Size:** page assets are 25 MB, down from 31 MB in v6.
+- **Size:** page assets are 21 MB, down from 31 MB in v6.
 
 ## Still to come
 - **Showcase images:** for Sohom Estate, DTC Group and Bhatia Group. Their tiles are marked "Add project image".
