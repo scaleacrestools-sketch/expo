@@ -140,7 +140,8 @@
   .ideas { position: relative; height: 760px; overflow: hidden; color: #fff; display: flex; align-items: center; justify-content: center; text-align: center; }
   .ideas .bg { position: absolute; inset: -8% 0; }
   .ideas .bg img, .ideas .bg video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .ideas .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,22,64,.9) 0%, rgba(11,22,64,.62) 38%, rgba(11,13,13,.42) 68%, rgba(11,13,13,.88) 100%), radial-gradient(ellipse 60% 50% at 50% 45%, rgba(11,13,13,.45), rgba(11,13,13,0) 70%); }
+  .ideas .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,13,13,.9) 0%, rgba(11,13,13,.6) 36%, rgba(11,13,13,.5) 64%, rgba(11,13,13,.92) 100%), radial-gradient(ellipse 60% 50% at 50% 45%, rgba(11,13,13,.5), rgba(11,13,13,0) 70%); }
+  .ideas .bg video, .ideas .bg img { filter: saturate(.82) contrast(1.06); }
   .ideas .copy { position: relative; max-width: 900px; }
   .ideas h2 { margin-top: 26px; font-size: clamp(64px, 6.6vw, 104px); font-weight: 600; line-height: .96; letter-spacing: -0.045em; }
   .ideas p { margin: 30px auto 0; max-width: 620px; font-size: 19px; line-height: 1.6; color: var(--grey-soft); }
@@ -153,11 +154,11 @@
   .tiles { margin-top: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px 36px; }
   .tile { display: block; }
   .tile .ph { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 16/10; background: var(--ink);
-    box-shadow: 0 34px 60px -44px rgba(11,22,64,.55); transition: transform .7s var(--ease), box-shadow .7s var(--ease); }
+    box-shadow: 0 34px 60px -44px rgba(11,13,13,.6); transition: transform .7s var(--ease), box-shadow .7s var(--ease); }
   .tile .ph::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
-    background: linear-gradient(180deg, rgba(11,13,13,0) 52%, rgba(11,13,13,.38) 100%), linear-gradient(0deg, rgba(11,22,64,.06), rgba(11,22,64,.06));
+    background: linear-gradient(180deg, rgba(11,13,13,0) 55%, rgba(11,13,13,.4) 100%);
     box-shadow: inset 0 0 0 1px rgba(11,13,13,.06); transition: opacity .7s var(--ease); }
-  .tile:hover .ph { transform: translateY(-6px); box-shadow: 0 50px 80px -44px rgba(11,22,64,.75); }
+  .tile:hover .ph { transform: translateY(-6px); box-shadow: 0 50px 80px -44px rgba(11,13,13,.8); }
   .tile:hover .ph::after { opacity: .55; }
   .tile .ph img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.94) contrast(1.05) brightness(.97); transition: transform 1.2s var(--ease), filter .7s; }
   .tile:hover .ph img { transform: scale(1.045); filter: saturate(1) contrast(1.05) brightness(1); }
