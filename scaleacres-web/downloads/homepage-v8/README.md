@@ -1,5 +1,16 @@
 # ScaleAcres homepage v8
 
+**Positioning:** a real estate marketing and creative agency, run as one 360° team.
+
+**Lead magnet:** a free marketing audit. It appears in three places:
+- a homepage section, placed after the studio cards and before the closing call to action;
+- `landing.html`, a full ad landing page;
+- `free-audit.html`, a dedicated lead-magnet page.
+
+The existing homepage sections are unchanged apart from copy. Both new pages are generated from the homepage design system by `scripts/landing-pages/build.py`.
+
+Videos: `scaleacres-homepage-v8-1440x900.mp4`, `scaleacres-landing-page-1440x900.mp4` and `scaleacres-free-audit-page-1440x900.mp4`.
+
 The full homepage with the new hero (white form) and Clash Display + Satoshi type.
 
 | File | What it is |

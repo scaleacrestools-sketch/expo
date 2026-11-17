@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="ScaleAcres is a real estate marketing and creative growth agency: brand, websites, ad films and performance campaigns that deliver qualified enquiries and site visits.">
+<meta name="description" content="ScaleAcres is a real estate marketing and creative agency: a 360° team for brand, creative, ad films, websites and performance campaigns for real estate developers.">
 <meta property="og:title" content="ScaleAcres · Real Estate Marketing That Builds Real Demand">
-<meta property="og:description" content="Brand, websites, ad films and performance campaigns for real estate developers, from one team.">
+<meta property="og:description" content="Real estate marketing and creative from one 360° team: brand, ad films, websites and performance campaigns for developers.">
 <meta property="og:image" content="assets/img/hero-ai-poster.jpg">
 <meta name="theme-color" content="#0B0D0D">
 <link rel="preload" href="assets/img/hero-ai-poster.jpg" as="image">
 <link rel="preload" href="assets/fonts/clash-display-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/satoshi-400.woff2" as="font" type="font/woff2" crossorigin>
-<title>ScaleAcres · Real Estate Marketing &amp; Creative Growth Agency</title>
+<title>ScaleAcres · Real Estate Marketing &amp; Creative Agency</title>
 <!--
   Homepage concept v8 (hero: copy left, enquiry form right, over a wall of faceless ScaleAcres AI and ad-film renders). Layout follows the approved reference flow (hero film, statement, services,
   "ideas" banner, creative showcase, how we work, clients, studio cards, CTA, FAQ, footer); type and
@@ -481,6 +481,44 @@
     .h2, .services .h2 { font-size: 36px; } .ideas h2 { font-size: 48px; } .cta-out h2 { font-size: 46px; }
     .faq h2 { font-size: 36px; } .jh { font-size: 44px; } .hform h2 { font-size: 27px; } .hero2 .stat strong { font-size: 52px; } .b-dark .num { font-size: 96px; }
   }
+
+  /* lead magnet: free marketing audit */
+  .audit { background: var(--ink); color: #fff; padding: 130px 0; position: relative; overflow: hidden; }
+  .audit::before { content: ""; position: absolute; right: -200px; top: -200px; width: 700px; height: 700px; background: radial-gradient(closest-side, rgba(29,78,216,.28), transparent); }
+  .audit .grid { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 72px; align-items: start; }
+  .audit .h2 { color: #fff; } .audit .h2 .serif { color: var(--sky); }
+  .audit .lead { color: var(--grey-soft); margin-top: 20px; max-width: 560px; }
+  .audit ul.gets { list-style: none; margin-top: 32px; display: grid; gap: 14px; }
+  .audit ul.gets li { display: flex; gap: 14px; align-items: flex-start; font-size: 17px; line-height: 1.45; }
+  .audit ul.gets li i { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--royal); display: grid; place-items: center; margin-top: 1px; }
+  .audit ul.gets li i svg { width: 14px; height: 14px; }
+  .audit ul.gets li small { display: block; color: var(--silver); font-size: 14.5px; margin-top: 3px; }
+  .report { margin-top: 40px; max-width: 520px; border-radius: 20px; background: #15181B; border: 1px solid rgba(255,255,255,.1); padding: 22px 24px; }
+  .report .rh { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--silver); }
+  .report .rh em { font-style: normal; padding: 5px 10px; border-radius: 999px; border: 1px solid rgba(56,189,248,.4); color: var(--sky); }
+  .report .row { margin-top: 16px; display: grid; grid-template-columns: 120px 1fr 36px; align-items: center; gap: 14px; font-size: 14px; color: var(--grey-soft); }
+  .report .row .bar { height: 8px; border-radius: 4px; background: rgba(255,255,255,.08); overflow: hidden; }
+  .report .row .bar b { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #142E8C, #1D4ED8 60%, #38BDF8); }
+  .report .row span { text-align: right; font-weight: 700; color: #fff; }
+  .aform { border-radius: 26px; background: #fff; color: var(--ink); padding: 36px 34px 28px; box-shadow: 0 50px 100px -40px rgba(0,0,0,.9); }
+  .aform h3 { font-family: "Clash Display", "Satoshi", sans-serif; font-size: 28px; font-weight: 600; letter-spacing: -0.01em; }
+  .aform > p { margin-top: 8px; font-size: 15px; color: var(--muted); line-height: 1.5; }
+  .aform .fg { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .aform .full { grid-column: 1 / -1; }
+  .aform label > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .aform input, .aform select { width: 100%; height: 52px; padding: 0 16px; border-radius: 14px; border: 1px solid var(--line); background: #fff; color: var(--ink); font: 500 15.5px "Satoshi", system-ui, sans-serif; outline: none; }
+  .aform input::placeholder { color: var(--muted); }
+  .aform select { appearance: none; -webkit-appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%235F6878' stroke-width='1.6'%3E%3Cpath d='m3 6 5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; background-size: 14px; padding-right: 40px; }
+  .aform select:invalid { color: var(--muted); }
+  .aform input:focus, .aform select:focus { border-color: var(--royal); box-shadow: 0 0 0 3px rgba(29,78,216,.14); }
+  .aform [aria-invalid=true] { border-color: var(--royal) !important; box-shadow: 0 0 0 3px rgba(29,78,216,.2); }
+  .aform .send { margin-top: 14px; width: 100%; height: 58px; border: 0; border-radius: 999px; cursor: pointer; background: var(--royal); color: #fff; font: 700 17px "Satoshi", system-ui, sans-serif; display: flex; align-items: center; justify-content: center; gap: 12px; box-shadow: 0 16px 34px -14px rgba(29,78,216,.85); }
+  .aform .send:hover { background: var(--deep); }
+  .aform .send svg { width: 16px; height: 16px; }
+  .aform .legal { margin-top: 12px; text-align: center; font-size: 13px; color: var(--muted); }
+  .aform .note { margin-top: 8px; text-align: center; font-size: 13.5px; color: var(--royal); } .aform .note:empty { display: none; }
+  @media (max-width: 1100px) { .audit .grid { grid-template-columns: 1fr; gap: 48px; } }
+  @media (max-width: 640px) { .audit { padding: 84px 0; } .aform { padding: 28px 20px 22px; } .aform .fg { grid-template-columns: 1fr; } .report .row { grid-template-columns: 90px 1fr 32px; } }
 </style>
 </head>
 <body>
@@ -490,7 +528,7 @@
   <div class="bar">
     <a class="logo" href="#top" aria-label="ScaleAcres home"><img src="assets/img/scaleacres-logo-white.svg" alt="ScaleAcres"></a>
     <nav aria-label="Main">
-      <a class="on" href="#top">Home</a><a href="#services">Services</a><a href="#work">Our Work</a><a href="#how">How We Work</a><a href="#clients">Clients</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+      <a class="on" href="#top">Home</a><a href="#services">Services</a><a href="#work">Our Work</a><a href="#how">How We Work</a><a href="#clients">Clients</a><a href="#audit">Free audit</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
     </nav>
     <a class="btn btn-royal btn-sm" href="#contact">Book a call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
   </div>
@@ -509,7 +547,7 @@
   <div class="veil"></div>
   <div class="wrap hgrid">
     <div class="copy">
-      <span class="pill rv">Real estate marketing agency</span>
+      <span class="pill rv">Real estate marketing &amp; creative agency</span>
       <h1><span class="mask"><span style="--d:120ms">Real Estate Marketing</span></span><span class="mask"><span style="--d:220ms">That Builds</span></span><span class="mask"><span style="--d:320ms" class="serif sky big">Real Demand.</span></span></h1>
       <p class="support rv" style="--d:420ms">We help <b>developers</b> sell faster with scroll-stopping ad films, high-converting websites and performance campaigns that bring the right buyers to <b>site visits</b>.</p>
       <ul class="ticks rv" style="--d:470ms">
@@ -566,7 +604,7 @@
 <section class="statement" aria-label="Who we are">
   <div class="wrap">
     <span class="eyebrow rv">Who we are</span>
-    <p id="stmt" style="margin-top:34px">We're a real estate marketing and creative growth agency helping developers launch, position and sell out projects, through <span class="acc-src">brand, digital and performance</span> working as one.</p>
+    <p id="stmt" style="margin-top:34px">We're a real estate marketing and creative agency, a 360° team helping developers launch, position and sell out projects, through <span class="acc-src">brand, creative, digital and performance</span> working as one.</p>
     <div class="meta rv">
       <div><b>Offices</b>Agra · Delhi</div>
       <div><b>Markets</b>Pan-India · UAE · Australia</div>
@@ -676,6 +714,45 @@
         <div class="v"><img src="assets/img/timespro-poster.webp" loading="lazy" decoding="async" width="720" height="720" alt="TimesPro video testimonial"><b>TimesPro<small>Client testimonial</small></b><i><svg viewBox="0 0 12 12"><path d="M2 1v10l9-5z"/></svg></i></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- 08b lead magnet: free marketing audit -->
+<section class="audit dark" id="audit" aria-label="Free marketing audit">
+  <div class="wrap grid">
+    <div>
+      <span class="eyebrow rv">Free marketing audit</span>
+      <h2 class="h2" style="margin-top:22px"><span class="mask"><span>Find out what is <span class="serif sky">holding your leads back.</span></span></span></h2>
+      <p class="lead rv">Share your website or social link. A ScaleAcres strategist reviews your marketing and walks you through what to fix first, at no cost.</p>
+      <ul class="gets rv" style="--d:120ms">
+        <li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i><div>Website &amp; landing page review<small>Speed, layout and how well each page turns visitors into enquiries.</small></div></li>
+        <li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i><div>Ads &amp; cost-per-lead check<small>Targeting, creative and budget on Meta and Google.</small></div></li>
+        <li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i><div>Social &amp; creative review<small>What your feed and ads say about your brand.</small></div></li>
+        <li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i><div>A prioritised action plan<small>The three changes likely to move your numbers first.</small></div></li>
+      </ul>
+      <div class="report rv" style="--d:200ms" aria-label="Sample audit scorecard">
+        <div class="rh">Audit scorecard <em>Sample</em></div>
+        <div class="row">Website<div class="bar"><b style="width:62%"></b></div><span>62</span></div>
+        <div class="row">Paid ads<div class="bar"><b style="width:48%"></b></div><span>48</span></div>
+        <div class="row">Social &amp; creative<div class="bar"><b style="width:71%"></b></div><span>71</span></div>
+        <div class="row">Search (SEO)<div class="bar"><b style="width:55%"></b></div><span>55</span></div>
+      </div>
+    </div>
+    <form class="aform rv" id="auditForm" style="--d:160ms" novalidate aria-labelledby="af-title">
+      <h3 id="af-title">Get your free audit</h3>
+      <p>For real estate developers and channel partners.</p>
+      <div class="fg">
+        <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label>
+        <label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label>
+        <label class="full"><span>Work email</span><input name="email" type="email" autocomplete="email" required placeholder="Work email"></label>
+        <label class="full"><span>Website or social link</span><input name="url" type="text" inputmode="url" required placeholder="Website or Instagram link"></label>
+        <label><span>Business type</span><select name="type" required><option value="" disabled selected>Business type</option><option>Real estate developer</option><option>Channel partner / broker</option><option>Real estate brand / other</option></select></label>
+        <label><span>Monthly marketing budget</span><select name="budget" required><option value="" disabled selected>Monthly budget</option><option>Under ₹1 lakh</option><option>₹1–3 lakh</option><option>₹3–5 lakh</option><option>₹5–10 lakh</option><option>₹10 lakh+</option></select></label>
+      </div>
+      <button class="send" type="submit">Get my free audit <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+      <p class="legal">No spam. Your details stay with ScaleAcres.</p>
+      <p class="note" role="status" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
@@ -906,6 +983,20 @@ if (!/[?&]form=dark/.test(location.search)) document.documentElement.classList.a
   };
   let raf = 0; const on = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; paint(); }); };
   addEventListener("scroll", on, { passive: true }); addEventListener("resize", on); paint();
+})();
+
+/* free-audit form: client-side checks; this static concept does not send data anywhere */
+(() => {
+  const f = document.getElementById("auditForm"); if (!f) return;
+  const note = f.querySelector(".note");
+  const ok = { fullName: (v) => v.trim().length >= 2, phone: (v) => /^[+\d][\d\s().-]{6,}$/.test(v.trim()), email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()), url: (v) => v.trim().length >= 4, type: (v) => !!v, budget: (v) => !!v };
+  f.addEventListener("submit", (e) => {
+    e.preventDefault(); let first = null;
+    for (const [n, t] of Object.entries(ok)) { const el = f.elements[n]; const bad = !t(el.value); el.setAttribute("aria-invalid", bad); if (bad && !first) first = el; }
+    if (first) { note.textContent = "Please complete the highlighted fields."; first.focus(); return; }
+    note.textContent = "Thank you. This is a design preview, so nothing was sent; on the live site your audit request goes straight to a ScaleAcres strategist.";
+  });
+  f.addEventListener("input", (e) => e.target.removeAttribute("aria-invalid"));
 })();
 </script>
 </body>
