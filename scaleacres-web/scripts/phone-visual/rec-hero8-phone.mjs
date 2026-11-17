@@ -1,9 +1,9 @@
 // Records the v8 hero on a phone (390 × 844): headline, then a slow scroll to the form.
 import { chromium } from "playwright";
-const URL = "file:///home/user/expo/scaleacres-web/design/home-v8/index.html";
+const URL = "file:///home/user/expo/scaleacres-web/design/home-v8/" + (process.argv[2] || "index.html");
 const b = await chromium.launch({ args: ["--autoplay-policy=no-user-gesture-required"] });
 { const c = await b.newContext({ viewport: { width: 390, height: 844 } }); const p = await c.newPage(); await p.goto(URL); await p.waitForTimeout(2500); await c.close(); }
-const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, recordVideo: { dir: "rec-hero8-phone", size: { width: 390, height: 844 } } });
+const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, recordVideo: { dir: process.argv[3] || "rec-hero8-phone", size: { width: 390, height: 844 } } });
 const p = await ctx.newPage();
 await p.goto(URL);
 await p.waitForTimeout(5000);

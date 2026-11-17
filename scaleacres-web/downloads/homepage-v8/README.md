@@ -2,52 +2,61 @@
 
 | File | What it is |
 | --- | --- |
-| `scaleacres-hero-v8-1440x900.mp4` | The new hero as it plays on the page, 18 s |
-| `scaleacres-hero-v8-phone.mp4` | The hero on a phone, scrolling down to the form, 14 s |
+| `hero-v8-dark-form-1440x900.mp4` / `-phone.mp4` | The hero with the dark glass form, on desktop and on a phone |
+| `hero-v8-white-form-1440x900.mp4` / `-phone.mp4` | The same hero with the white form |
+| `hero-v8-dark-form-preview.jpg` / `hero-v8-white-form-preview.jpg` | Stills of both variants |
 | `hero-ai-film-wall-1920x1080.mp4` | The background film on its own: a 48 s seamless loop |
-| `scaleacres-hero-v8-preview.jpg` | A still of the hero |
 
-The live page is at `design/home-v8/index.html`. Only the hero has changed; every other section is the same as v7.
+Pages:
+- **Dark form:** `design/home-v8/index.html`.
+- **White form:** `design/home-v8/index-white-form.html`, or add `?form=white` to the first page.
 
-## What changed in the hero
-- **Layout:** all the copy sits on the left. A "Tell us about your project" enquiry form sits on the right, with these fields:
-  - name
-  - phone
-  - work email
-  - company / project
-  - service
-  - consent
-  - "Get my free consultation"
-- **Removed:**
-  - the Google, Meta, Instagram and YouTube icons;
-  - the client-logo circles;
-  - "75+ brands & projects";
-  - "3 studios across India" (from the hero only; the "Our studios" section further down is unchanged).
-- **Added:** "250+ Projects worked on" in white.
-- **"Get a quote" button:** stays hidden while the hero form is on screen.
+Only the hero has changed; the rest of the page matches v7, with colours aligned to the brand guidelines.
 
-## Text and legibility
-- **Copy:** the paragraph is shorter and sharper: "We help developers sell faster with scroll-stopping ad films, high-converting websites and performance campaigns that bring the right buyers to site visits."
-- **Service ticks:** three were added:
-  - Ad films & AI creatives
-  - Websites that convert
-  - Meta & Google lead campaigns
-- **Form heading:** "Let's plan your launch".
-- **Background:** the video is dimmed and the veil is darker behind the copy, so the text reads clearly while the videos stay in the background.
-- **Phone:** the whole hero, including the "250+" stat and the form, appears straight away.
+## Hero
+- **Layout:** copy on the left, with:
+  - the headline;
+  - a shorter paragraph;
+  - three service ticks;
+  - "Start a Project" and "See Our Work";
+  - "250+ Projects worked on" in white.
+- **Removed from the hero:** the platform icons, the client logos, "75+ brands & projects" and "3 studios across India". The "Our studios" section further down is unchanged.
+- **Form:** short and quiet, with name, phone and service, a "Get a call back" button and a one-line consent note.
+  - The dark variant is a soft glass card; the white variant is a solid white card with Mist fields.
+  - It checks the fields. This preview sends nothing; on the live site it connects to the enquiry inbox or CRM.
+- **Video shadow:** the film is dimmed, framed by an edge shadow and darkened behind the copy and the form, so the text and the form stand out.
 
 ## Background videos
-The background uses faceless, render-only ScaleAcres work, with no people, captions or logo bars:
-- **JBBR Kanvas:** AI films of the gate and the township aerials.
-- **JBBR warehouse:** AI films of the blueprint-to-building reveal, the aerials, the night exterior and the loading dock.
-- **Tech:** an AI data-visualisation film.
-- **AI tower renders:** four of them.
-- **Ad films:** render shots from La Wisteria, Bhartiya City, Dualis and Signature Global, cropped clear of the captions and logo bars.
+The wall has 30 tiles.
 
-The AI films come from the existing ScaleAcres Higgsfield library. Nothing new was generated.
+**20 tiles come from the "Builders AI Videos" Drive folder:**
+- Auriga 9 (2)
+- DTC Sojon (4)
+- Kanvas ad reel (1)
+- Pravya (1)
+- La Wisteria / Sea Breeze (3)
+- SkyByte AI reel (2)
+- SkyByte reel (2)
+- SkyByte ad (1)
+- JBBR Krystal (2)
+- JBBR warehouse (2)
 
-## Form
-The form checks each field. This static preview does not send anything yet; on the live site it will be connected to the enquiry inbox or CRM.
+Each reel is cropped to the band between its logo bar and its captions, so the wall shows no people, no captions and no logos. "SkyByte Developers 1 min" is only a logo reveal, so it is not used.
 
-## Next
-- Add the clips from the Drive link.
+**10 tiles are ScaleAcres AI films:**
+- the JBBR Kanvas gate and township;
+- the JBBR warehouse: the blueprint reveal, aerials, night and the dock;
+- the tech data film;
+- an AI tower render.
+
+The page loads a 1280 × 720 version, about 5 MB, which is enough under the shadow.
+
+## Brand colours (Brand Guidelines v1.0)
+- **Primary buttons:** Royal `#1D4ED8`, with Royal Deep `#142E8C` on hover. The signature gradient appears only as a short accent rule.
+- **Accent text on dark:** Sky `#38BDF8`. On white, accents are Royal.
+- **Neutrals:**
+  - Brand Black `#0B0D0D` for dark grounds.
+  - Graphite `#15181B` for raised surfaces.
+  - Silver `#AEB6C6` and Grey-soft `#C9CFDB` for secondary text on dark.
+  - Steel `#5F6878`, Line `#DDE3EF` and Mist `#EEF2FB` on light.
+- **Removed:** the purple journey-timeline gradient, the off-brand blue `#2F7AE5`, the red error colour, and the off-palette greys and near-blacks.
