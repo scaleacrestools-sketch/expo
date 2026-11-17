@@ -55,12 +55,12 @@ The sources of all renders are listed in `scripts/showcase-boards/sources/`.
 
 ## "Ideas that stop the scroll" banner
 The banner recreates the reference composition:
-- a billboard on the left;
+- a blank billboard on the left;
 - an elevated metro with a train on the right;
 - a busy multi-lane road with evening traffic;
 - a navy-to-orange dusk sky.
 
-The billboard carries a ScaleAcres site hoarding: the white logo on the signature gradient with "Real estate marketing. Reimagined.", following the guidelines' site-hoarding layout in the site's fonts. Deep Brand Black shading keeps the existing headline and copy clear, and a slow push-in adds motion. The background was generated in Higgsfield, which you approved for this banner; this was the only image generated. The hoarding template is `scripts/showcase-boards/ideas-hoarding.html`.
+Only the image and the existing headline and copy are used, with no hoarding. Deep Brand Black shading keeps the text clear, and a slow push-in adds motion. The image was generated in Higgsfield, which you approved for this banner.
 
 ## "From a plan, to a brand journey" images
 These are three custom cinematic visuals at 1210 × 1100 (the section's 1.1:1 ratio). Each is built from ScaleAcres' own AI film library, with no new generation, and finished with brand overlays: Brand Black vignette, Sky highlights and the site fonts. The section's layout and text are unchanged.
