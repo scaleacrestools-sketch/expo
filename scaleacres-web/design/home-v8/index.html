@@ -757,15 +757,15 @@ const WORK = [
   ["sc-yugen-1600","Yugen Infra","Website, reels & ads","Goa villas, North Goa","Yugen Infra website and reels by ScaleAcres over the La Mandre villas at dusk"],
 ];
 const PHASES = [
-  ["01","journey-01-awareness","Frames from ScaleAcres real estate ad films",
+  ["01","journey-01-strategy","Strategy: a project masterplan render with audience-targeting rings, buyer persona, catchment and price-band markers",
    "Creating Buzz & Attracting Serious Eyeballs","At this stage, it's all about making your project the talk of the town and driving high-quality discovery.",
    "Increase online visibility","Buyers start their search online. The right digital presence puts your project where those decisions are being made, through SEO, paid media, content and outdoor working together.",
    ["Geo-Targeted Awareness Ad Films","Hyperlocal SEO & Location-Based Content","Luxury & Mass-Market Segmentation","Digital Billboards & Rich Media Ads"]],
-  ["02","journey-02-leads","Live campaign dashboard with ScaleAcres campaign creatives",
+  ["02","journey-02-execution","Execution: a cinema camera rig with the La Wisteria ad film by ScaleAcres on the edit monitor",
    "Turning Interest Into Qualified Enquiries","Once the project is noticed, every campaign is built to capture genuine buyers, not just clicks.",
    "Generate quality leads","Performance campaigns, landing pages and lead forms work as one funnel, so each enquiry is tracked to its source and reaches your sales team while intent is high.",
    ["Google & Meta Performance Campaigns","High-Converting Landing Pages","Instant Lead Capture & CRM Integration","Retargeting for Warm Prospects"]],
-  ["03","journey-03-growth","The ScaleAcres team at work in the Delhi studio",
+  ["03","journey-03-growth","Growth: rising brand bars over a live performance dashboard tracking qualified leads, cost per lead, site visits and ROI",
    "Converting Enquiries Into Site Visits & Sales","The final stretch is about nurturing intent and giving sales teams everything they need to close.",
    "Drive site visits & growth","Follow-ups, channel-partner support and clear reporting keep buyers moving from first call to site visit, while we keep improving what brings qualified buyers.",
    ["WhatsApp & Email Nurture Journeys","Channel-Partner Collateral & Kits","Site-Visit Campaigns & Events","Weekly Reporting & Optimisation"]],
@@ -795,7 +795,7 @@ $("#footSvc").innerHTML = SERVICES.map(([t]) => `<li><a href="#services">${t}</a
 $("#tiles").innerHTML = WORK.map(([img, name, cat, sub, alt], i) => `<a class="tile rv" style="--d:${(i % 2) * 120}ms" href="#work"><div class="ph zoom"><img src="assets/img/${img}.webp" alt="${alt}" width="1600" height="1000" loading="lazy" decoding="async"></div><div class="cap"><b>${name}<small>${sub}</small></b><span>${cat}</span></div></a>`).join("");
 $("#phases").innerHTML = PHASES.map(([n, img, alt, title, intro, sub, para, items], i) => `
   <div class="jrow${i % 2 ? " rev" : ""}">
-    <div class="jimg zoom rv"><span class="jpill">Phase ${n}</span><img src="assets/img/${img}.webp" alt="${alt}" width="1100" height="1100" loading="lazy" decoding="async"></div>
+    <div class="jimg zoom rv"><span class="jpill">Phase ${n}</span><img src="assets/img/${img}.webp" alt="${alt}" width="1210" height="1100" loading="lazy" decoding="async"></div>
     <div class="jtext rv" style="--d:140ms">
       <span class="jmark"><img src="assets/img/scaleacres-symbol-gradient.svg" alt=""></span>
       <h3>${title}</h3>

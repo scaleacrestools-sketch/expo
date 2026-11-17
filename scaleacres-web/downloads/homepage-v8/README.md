@@ -53,6 +53,14 @@ The "Ideas that stop the scroll" banner and the card shadows now use Brand Black
 
 The sources of all renders are listed in `scripts/showcase-boards/sources/`.
 
+## "From a plan, to a brand journey" images
+These are three custom cinematic visuals at 1210 × 1100 (the section's 1.1:1 ratio). Each is built from ScaleAcres' own AI film library, with no new generation, and finished with brand overlays: Brand Black vignette, Sky highlights and the site fonts. The section's layout and text are unchanged.
+- **Strategy:** a JBBR project masterplan render with audience-targeting rings and planning markers (market research, buyer persona, catchment, price band).
+- **Execution:** a cinema camera rig at night, with the real La Wisteria ad film by ScaleAcres playing on the edit monitor. Tags: ad films, reels and social, media buying.
+- **Growth:** glowing brand "rising bars" over a live performance dashboard. Tags: qualified leads, cost per lead, site visits, ROI.
+
+The composer is `scripts/showcase-boards/journey.html`.
+
 ## Content updates
 - **Who we are:**
   - Offices: Agra · Delhi
