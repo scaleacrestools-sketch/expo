@@ -1,0 +1,19 @@
+<html><head><style>
+*{margin:0;box-sizing:border-box} body{width:1600px;height:1000px;overflow:hidden}
+.wall{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 60% 35%,#f6efe4,#e8dccb 70%,#dccdb8)}
+.floor{position:absolute;left:0;right:0;bottom:0;height:230px;background:linear-gradient(180deg,#cdb99c,#bba585)}
+.light{position:absolute;left:-200px;top:-150px;width:900px;height:700px;background:radial-gradient(closest-side,rgba(255,250,240,.7),transparent);transform:rotate(-12deg)}
+.shadowleaf{position:absolute;right:-60px;top:-40px;width:520px;height:620px;opacity:.13;background:repeating-linear-gradient(115deg,#5b4a32 0 26px,transparent 26px 70px);filter:blur(6px);border-radius:50%}
+.frame{position:absolute;left:560px;top:250px;width:900px;height:338px;border-radius:6px;background:#1d3a30;padding:12px;box-shadow:0 40px 60px -30px rgba(60,40,15,.55),0 12px 24px -12px rgba(60,40,15,.35)}
+.frame img{width:100%;height:100%;object-fit:cover;border-radius:2px;display:block}
+.roll{position:absolute;left:160px;top:150px;width:330px;height:804px}
+.roll img{width:100%;height:100%;object-fit:cover;display:block;box-shadow:0 30px 50px -24px rgba(60,40,15,.55)}
+.base{position:absolute;left:140px;top:944px;width:370px;height:22px;border-radius:6px;background:linear-gradient(180deg,#d9d9d9,#9d9d9d);box-shadow:0 14px 22px -6px rgba(60,40,15,.45)}
+.pole{position:absolute;left:322px;top:120px;width:6px;height:32px;background:#b9b9b9}
+.cast{position:absolute;left:560px;top:600px;width:900px;height:60px;background:radial-gradient(closest-side,rgba(60,40,15,.18),transparent)}
+</style></head><body>
+<div class="wall"></div><div class="light"></div><div class="shadowleaf"></div><div class="floor"></div>
+<div class="cast"></div>
+<div class="frame"><img src="hoarding.png"></div>
+<div class="pole"></div><div class="roll"><img src="rollup.png"></div><div class="base"></div>
+</body></html>
