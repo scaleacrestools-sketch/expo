@@ -1,0 +1,62 @@
+{
+  "client": "Aarize Group (Aarize Realtech LLP)",
+  "website": "https://www.aarize.in/",
+  "instagram": "@aarizegroup (https://www.instagram.com/aarizegroup/); Facebook /Aarizegroup; YouTube @Aarizegroup",
+  "projects": [
+    "Aarize The Tessoro (Sector 114, Gurugram, commercial/retail)",
+    "Aarize South Drive (Sector 69, Gurugram, commercial SCO)",
+    "Karnelya (residential)"
+  ],
+  "images": [
+    {
+      "file": "tessoro-entrance-plaza.webp",
+      "source_url": "https://www.aarize.in/commercial/thetessoro/images/large-tproject_1.webp",
+      "page_url": "https://www.aarize.in/commercial/thetessoro/",
+      "what": "The Tessoro entrance plaza and storefronts with signage (render)",
+      "w": 2732,
+      "h": 1537
+    },
+    {
+      "file": "tessoro-facade.webp",
+      "source_url": "https://www.aarize.in/images/aarize-banner.webp",
+      "page_url": "https://www.aarize.in/",
+      "what": "The Tessoro facade with wooden canopy and vertical fins (homepage banner)",
+      "w": 1920,
+      "h": 1080
+    },
+    {
+      "file": "tessoro-exterior-elevation.webp",
+      "source_url": "https://www.aarize.in/commercial/thetessoro/images/tpro1.webp",
+      "page_url": "https://www.aarize.in/commercial/thetessoro/",
+      "what": "The Tessoro exterior elevation from the road",
+      "w": 1200,
+      "h": 1100
+    },
+    {
+      "file": "tessoro-atrium.webp",
+      "source_url": "https://www.aarize.in/commercial/thetessoro/images/tpro3.webp",
+      "page_url": "https://www.aarize.in/commercial/thetessoro/",
+      "what": "The Tessoro multi-level retail atrium interior",
+      "w": 1200,
+      "h": 1100
+    },
+    {
+      "file": "tessoro-food-court.webp",
+      "source_url": "https://www.aarize.in/commercial/thetessoro/images/tpro2.webp",
+      "page_url": "https://www.aarize.in/commercial/thetessoro/",
+      "what": "The Tessoro food court / cafe interior render",
+      "w": 1200,
+      "h": 1100
+    },
+    {
+      "file": "south-drive-plaza.webp",
+      "source_url": "https://www.aarize.in/images/Commercial-web.webp",
+      "page_url": "https://www.aarize.in/commercial/",
+      "what": "Aarize South Drive retail plaza with canopy and SCO blocks (wide banner 1366x575)",
+      "w": 1366,
+      "h": 575
+    }
+  ],
+  "logo": "logo.svg",
+  "notes": "aarize.com is an unrelated contests site; official is aarize.in. logo.svg is the white wordmark extracted from the homepage inline SVG (white fill, needs dark background); logo-white.png (826x170) from the Tessoro microsite; logo-tessoro.svg is the Tessoro project logo. South Drive microsite images are only 600x550, so only the 1366x575 banner was kept. Tessoro HRERA reg. 102 of 2024. Logo source: inline <svg aria-label='Aarize Group'> in https://www.aarize.in/ navbar."
+}

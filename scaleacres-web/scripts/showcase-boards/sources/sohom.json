@@ -1,0 +1,61 @@
+{
+  "client": "Soham Group (Soham Estates), Kolkata",
+  "website": "https://www.sohamestates.com",
+  "instagram": "https://www.instagram.com/sohamgroup",
+  "projects": [
+    "Pravya (Jogardanga More, Rajarhat; Soham Group x DTC Group)"
+  ],
+  "images": [
+    {
+      "file": "01-pravya-towers-elevation.jpg",
+      "source_url": "https://api.sohamestates.com/uploads/lawn_to_Building_Cam_ce524c532a.jpg",
+      "page_url": "https://www.sohamestates.com/projects/pravya",
+      "what": "Pravya twin residential towers elevation from landscaped lawn",
+      "w": 5000,
+      "h": 3336
+    },
+    {
+      "file": "02-pravya-aerial.jpg",
+      "source_url": "https://api.sohamestates.com/uploads/Cam_09_c981a945bc.jpg",
+      "page_url": "https://www.sohamestates.com/projects/pravya",
+      "what": "Pravya aerial view of towers, clubhouse and green surroundings",
+      "w": 5000,
+      "h": 2813
+    },
+    {
+      "file": "03-pravya-terrace-pool.jpg",
+      "source_url": "https://api.sohamestates.com/uploads/Terrace_pool_Extend_c5892b61ab.jpg",
+      "page_url": "https://www.sohamestates.com/projects/pravya",
+      "what": "Pravya rooftop infinity-edge pool at sunset",
+      "w": 5000,
+      "h": 2901
+    },
+    {
+      "file": "04-pravya-drop-off.jpg",
+      "source_url": "https://api.sohamestates.com/uploads/Cam_08_dab5f61490.jpg",
+      "page_url": "https://www.sohamestates.com/projects/pravya",
+      "what": "Pravya entrance drop-off and podium street-level view",
+      "w": 5000,
+      "h": 2500
+    },
+    {
+      "file": "05-pravya-lawn-evening.jpg",
+      "source_url": "https://api.sohamestates.com/uploads/lawn_evening_75762652d5.jpg",
+      "page_url": "https://www.sohamestates.com/projects/pravya",
+      "what": "Pravya party lawn with string lights at dusk",
+      "w": 5000,
+      "h": 2500
+    },
+    {
+      "file": "06-pravya-living-room.jpg",
+      "source_url": "https://api.sohamestates.com/uploads/Living_Shot_1e539b01b5.jpg",
+      "page_url": "https://www.sohamestates.com/projects/pravya",
+      "what": "Pravya sample apartment living room interior",
+      "w": 4000,
+      "h": 2485
+    }
+  ],
+  "logo": "logo.png",
+  "notes": "\"Sohom Estate\" appears to be a misspelling of Soham Estates: the Kolkata real-estate developer Soham Group uses the domain sohamestates.com (page titles \"Soham Group\"), and lists Pravya (5 towers, B+G+13, 3 & 4 BHK, Jogardanga More, Rajarhat) as its ongoing project. No business literally named \"Sohom Estate\" was found. Not to be confused with sohamgroup.in (an unrelated logistics/minerals firm) or sohamgroup.co (Pune). DTC Group lists Pravya as \"Soham & DTC Group\" at dtcgroup.in/pravya-rajarhat/. Images are the full-resolution originals from the site gallery (served via the site API host api.sohamestates.com/uploads/); files are large (1-3 MB, up to 5000 px wide). Facebook: facebook.com/SohamGroupKolkata.",
+  "logo_source_url": "https://sohamestates.com/logo.png"
+}

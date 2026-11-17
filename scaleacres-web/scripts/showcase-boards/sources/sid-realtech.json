@@ -1,0 +1,60 @@
+{
+  "client": "SID Realtech",
+  "website": "https://sidrealtech.com/",
+  "instagram": "@sidrealtech (https://www.instagram.com/sidrealtech/); Facebook /sidrealtech; YouTube @SIDREALTECH",
+  "projects": [
+    "Ellington 86 (Sector 86, Faridabad)"
+  ],
+  "images": [
+    {
+      "file": "ellington86-tower-elevation-day.webp",
+      "source_url": "https://res.cloudinary.com/dsmxmmdtt/image/upload/v1780038303/sid-realtech/1780038301659-heroBanner2.webp",
+      "page_url": "https://sidrealtech.com/projects/ellington-86",
+      "what": "Ellington 86 neo-classical tower elevation, daytime blue sky",
+      "w": 3000,
+      "h": 1729
+    },
+    {
+      "file": "ellington86-aerial.webp",
+      "source_url": "https://res.cloudinary.com/dsmxmmdtt/image/upload/v1780038307/sid-realtech/1780038305945-heroBanner3.webp",
+      "page_url": "https://sidrealtech.com/projects/ellington-86",
+      "what": "Aerial view of the tower over Faridabad at golden hour",
+      "w": 3000,
+      "h": 1729
+    },
+    {
+      "file": "ellington86-podium-street.webp",
+      "source_url": "https://res.cloudinary.com/dsmxmmdtt/image/upload/v1780038324/sid-realtech/1780038321323-heroBanner5.webp",
+      "page_url": "https://sidrealtech.com/projects/ellington-86",
+      "what": "Street-level view of arched podium/retail base",
+      "w": 3000,
+      "h": 1729
+    },
+    {
+      "file": "ellington86-elevation-dusk.webp",
+      "source_url": "https://res.cloudinary.com/dsmxmmdtt/image/upload/v1780039028/sid-realtech/1780039027188-elevation.webp",
+      "page_url": "https://sidrealtech.com/projects/ellington-86",
+      "what": "Ultra-wide dusk elevation of the tower with lit podium (11520 px wide)",
+      "w": 11520,
+      "h": 4500
+    },
+    {
+      "file": "ellington86-lobby.webp",
+      "source_url": "https://res.cloudinary.com/dsmxmmdtt/image/upload/v1780038297/sid-realtech/1780038296411-heroBanner01.webp",
+      "page_url": "https://sidrealtech.com/projects/ellington-86",
+      "what": "Double-height chandelier entrance lobby interior render",
+      "w": 3372,
+      "h": 1943
+    },
+    {
+      "file": "ellington86-clubhouse-pool-lounge.webp",
+      "source_url": "https://res.cloudinary.com/dsmxmmdtt/image/upload/v1780039022/sid-realtech/1780039021320-club-house.webp",
+      "page_url": "https://sidrealtech.com/projects/ellington-86",
+      "what": "Clubhouse poolside lounge with fire pit at dusk (amenity render)",
+      "w": 2000,
+      "h": 1121
+    }
+  ],
+  "logo": "logo.png",
+  "notes": "Site is client-rendered Next.js; image URLs come from the site's own public project API (admin.sidrealtech.com/api/projects) which serves Cloudinary-hosted renders. logo.png = brown main logo (2686x1552); logo-light.png = light/beige footer variant. Possession stated as July 2029. Note: sidrealtech.com rate-limits (429) browser-like User-Agents; plain curl works. Logo source: https://sidrealtech.com/images/logo-main.png."
+}

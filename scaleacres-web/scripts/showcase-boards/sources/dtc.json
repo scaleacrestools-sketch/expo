@@ -1,0 +1,62 @@
+{
+  "client": "DTC Group (DTC Projects Pvt. Ltd.)",
+  "website": "https://dtcgroup.in",
+  "instagram": "https://www.instagram.com/dtcgroupindia",
+  "projects": [
+    "DTC Sojon (Joka, South Kolkata)",
+    "Pravya (Rajarhat, with Soham Group)"
+  ],
+  "images": [
+    {
+      "file": "01-sojon-elevation-dusk.jpg",
+      "source_url": "https://dtcsojon.com/wp-content/uploads/2022/11/dtc_joka-ph-ii_podium_with_elevation_view_002_evening_2022.10.23_hires-1.jpg",
+      "page_url": "https://dtcsojon.com/",
+      "what": "Sojon tower elevation from podium at dusk",
+      "w": 2400,
+      "h": 1200
+    },
+    {
+      "file": "02-sojon-aerial.jpg",
+      "source_url": "https://dtcsojon.com/wp-content/uploads/2022/11/sojon-home-banner.jpg",
+      "page_url": "https://dtcsojon.com/",
+      "what": "Sojon aerial view of towers and central landscape at dusk",
+      "w": 1920,
+      "h": 986
+    },
+    {
+      "file": "03-sojon-infinity-pool-night.jpg",
+      "source_url": "https://dtcsojon.com/wp-content/uploads/2022/10/aminities-bg.jpg",
+      "page_url": "https://dtcsojon.com/",
+      "what": "Sojon rooftop/podium infinity pool at night",
+      "w": 2049,
+      "h": 791
+    },
+    {
+      "file": "04-sojon-pool.jpg",
+      "source_url": "https://dtcsojon.com/wp-content/uploads/2022/10/dtc_joka_swimming_pool_view.jpg",
+      "page_url": "https://dtcsojon.com/",
+      "what": "Sojon swimming pool deck view",
+      "w": 1200,
+      "h": 800
+    },
+    {
+      "file": "05-sojon-club-lobby.jpg",
+      "source_url": "https://dtcsojon.com/wp-content/uploads/2022/10/block_b_g_floor_club_lobby.jpg",
+      "page_url": "https://dtcsojon.com/",
+      "what": "Sojon clubhouse lobby interior",
+      "w": 1200,
+      "h": 800
+    },
+    {
+      "file": "06-sojon-miniplex.jpg",
+      "source_url": "https://dtcsojon.com/wp-content/uploads/2022/10/miniplex.jpg",
+      "page_url": "https://dtcsojon.com/",
+      "what": "Sojon clubhouse miniplex theatre",
+      "w": 1200,
+      "h": 800
+    }
+  ],
+  "logo": "logo.png",
+  "notes": "Sojon images from the official project microsite dtcsojon.com (linked from dtcgroup.in/dtc-sojon/). Facebook: facebook.com/dtcprojects. DTC logo available only as a small PNG (151x66); a white version exists at dtcgroup.in/wp-content/uploads/2022/07/DTC-white-logo.png. A Sojon project logo SVG is saved as sojon-logo.svg. Pravya images are in the sohom folder (official Pravya page also on dtcgroup.in/pravya-rajarhat/, 1200x628 versions).",
+  "logo_source_url": "https://dtcgroup.in/wp-content/uploads/2022/06/Untitled-1.png"
+}

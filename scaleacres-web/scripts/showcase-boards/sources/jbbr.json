@@ -1,0 +1,72 @@
+{
+  "client": "JBBR Group",
+  "website": "https://jbbr.co.in",
+  "instagram": "https://www.instagram.com/jbbrgroup",
+  "projects": [
+    "JBBR Kanvas (plotted township, Lucknow-Kanpur Road)",
+    "Krystal, Rashmi Khand (commercial, Lucknow)",
+    "Logistics warehouse (Kanpur Road)",
+    "Urban Paradise (township)"
+  ],
+  "images": [
+    {
+      "file": "01-kanvas-entrance-gate.jpg",
+      "source_url": "https://ik.imagekit.io/jbbrgroup/images-paper/op-09-d/image_1788947032139_e5hhy3jha_fUG8XDJ4O.webp",
+      "page_url": "https://jbbr.co.in/projects/jbbr-kanvas",
+      "what": "Kanvas grand entrance gate render (has small architect watermark bottom-right)",
+      "w": 1672,
+      "h": 941
+    },
+    {
+      "file": "02-kanvas-fountain.png",
+      "source_url": "https://ik.imagekit.io/jbbrgroup/images-paper/fountain/image_1785923319996_smbh828xz_3PlyqCVnj.webp",
+      "page_url": "https://jbbr.co.in/projects/jbbr-kanvas",
+      "what": "Kanvas landscaped fountain feature wall",
+      "w": 1919,
+      "h": 750
+    },
+    {
+      "file": "03-kanvas-amenities-aerial.png",
+      "source_url": "https://ik.imagekit.io/jbbrgroup/images-paper/image-3-optimized/image_1785917151785_xtgq1erf1_BTi7UAdSC.webp",
+      "page_url": "https://jbbr.co.in/projects/jbbr-kanvas",
+      "what": "Kanvas aerial amenity view: badminton court, clubhouse pavilion, green avenues",
+      "w": 1920,
+      "h": 1090
+    },
+    {
+      "file": "04-krystal-night-facade.jpg",
+      "source_url": "https://ik.imagekit.io/subata/images-paper/gallery-3/image_1777977563014_nj7q4lspb_cR2QZEqrO.webp",
+      "page_url": "https://jbbr.co.in/projects/krystal-rashmi-khand",
+      "what": "Krystal commercial building facade at night",
+      "w": 2000,
+      "h": 980
+    },
+    {
+      "file": "05-krystal-aerial.jpg",
+      "source_url": "https://ik.imagekit.io/subata/images-paper/herobanner-1/image_1777977300269_73fua8929_23hESSjkE.webp",
+      "page_url": "https://jbbr.co.in/projects/krystal-rashmi-khand",
+      "what": "Krystal aerial render with rooftop and road frontage",
+      "w": 3000,
+      "h": 1729
+    },
+    {
+      "file": "06-krystal-lobby.jpg",
+      "source_url": "https://ik.imagekit.io/subata/images-paper/amenities-2/image_1777977503809_0ppf8eopi_LdTzkX20B.webp",
+      "page_url": "https://jbbr.co.in/projects/krystal-rashmi-khand",
+      "what": "Krystal double-height reception lobby interior",
+      "w": 3840,
+      "h": 1500
+    },
+    {
+      "file": "07-warehouse-exterior.jpg",
+      "source_url": "https://ik.imagekit.io/subata/images-paper/horizontal-00-01-14-08-still004/image_1780645222698_hh99l5645_h94mNKmWx.jpg",
+      "page_url": "https://jbbr.co.in/projects/warehouse-exterior",
+      "what": "Logistics warehouse exterior render with gated entry",
+      "w": 1920,
+      "h": 1080
+    }
+  ],
+  "logo": "logo.svg",
+  "notes": "Official site jbbr.co.in (tagline \"Redefining Luxury\"); Facebook: facebook.com/JbbrGroup.2003. Project images hosted on ImageKit (ik.imagekit.io/jbbrgroup and ik.imagekit.io/subata) and served by the official project pages. Warehouse images are stills from a walkthrough video. logo.svg is an SVG wrapping a small embedded raster (~121x92), so it is low-resolution. Kanvas gate render carries an \"EDGE architects\" watermark.",
+  "logo_source_url": "https://jbbr.co.in/images/logo.svg"
+}

@@ -1,17 +1,33 @@
-# Showcase boards (Sohom Estate, DTC Group, Bhatia Group)
+# Client work showcase boards
 
-`board.html` composes a 1600 × 1000 presentation board from three pieces:
-- a darkened project render;
-- the project name and location, taken from the reel;
-- three phones showing real frames from the ScaleAcres campaign reels.
+There is one 1600 × 1000 presentation board per client. Each board pairs two things:
+- the client's official project render, taken from their own website;
+- ScaleAcres' own creatives for that client, such as reels, social posts, hoardings, websites, brand kits and print.
 
-`board.mjs` renders the three boards with Playwright.
+Design (ScaleAcres Brand Guidelines v1.0):
+- **Ground:** Brand Black.
+- **Render grade:** cool and clean, with deep black shading.
+- **Accents:** Sky, and a short gradient rule above the kicker.
+- **Type:** the site's type (Clash Display + Satoshi), as requested.
 
-Sources (Drive folder "Builders AI Videos"):
-| Board | Reel | Background crop | Phone frames |
-| --- | --- | --- | --- |
-| Sohom Estate | Pravya FD2 | 29.5 s, y 300 | 7.8 s, 29.5 s, 47.8 s |
-| DTC Group | DTC Sojon AI FD1 | 7.0 s, y 260 | 1.5 s, 4.2 s, 7.0 s |
-| Bhatia Group | Auriga 9 Reel_1 | 39.5 s, y 420 | 10.6 s, 39.5 s, 17.0 s |
+Files:
+- `board.html`: the composer. Each config is passed as JSON in the URL hash.
+- `boards.json`: one config per client (background, creatives, text).
+- `board.mjs`: renders every board, or only the ones named, e.g. `node board.mjs sid,dtc`.
+- `sources/<client>.json`: the official website, Instagram handle and source URL of every downloaded render.
 
-Each background crop is 1080 × 675, taken between the reel's logo bar and its captions. Frames that show people are not used. Output goes to `design/home-v8/assets/img/*-1600.webp`.
+Backgrounds:
+| Client | Background |
+| --- | --- |
+| SeaBreeze | La Wisteria facade |
+| SID Realtech | Ellington 86 at dusk |
+| Aarize | Tessoro entrance plaza |
+| TRG | TRG The Mall at dusk |
+| JBBR | Krystal at night |
+| Soham Group | Pravya rooftop pool |
+| DTC | Sojon at dusk |
+| Bhatia | Auriga 9 elevation |
+| Yugen | La Mandre villas at dusk |
+| Intech | none: it has no official website, so its board uses ScaleAcres' Intech identity board as the background |
+
+The ScaleAcres creatives come from `public/images/nd/…`, the Drive reels (Pravya, Sojon, Auriga 9, La Wisteria, Kanvas) and the Aarize ad film (Vimeo). Output goes to `design/home-v8/assets/img/sc-*-1600.webp`.

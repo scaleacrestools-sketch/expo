@@ -4,30 +4,43 @@
 @font-face{font-family:"Satoshi";src:url(../../design/home-v8/assets/fonts/satoshi-700.woff2);font-weight:700}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1600px;height:1000px;overflow:hidden;background:#0B0D0D}
-.bg{position:absolute;inset:0;overflow:hidden}
-.bg div{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:brightness(.62) saturate(.9) contrast(1.06)}
-.shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,13,13,.92) 0%,rgba(11,13,13,.72) 34%,rgba(11,22,64,.25) 62%,rgba(11,13,13,.35) 100%),linear-gradient(180deg,rgba(11,13,13,0) 55%,rgba(11,13,13,.75) 100%)}
-.txt{position:absolute;left:84px;bottom:96px;color:#fff;width:560px}
-.k{display:inline-flex;align-items:center;gap:10px;font:700 14px Satoshi;letter-spacing:.18em;text-transform:uppercase;color:#38BDF8}
-.k:before{content:"";width:28px;height:2px;background:linear-gradient(60deg,#142E8C,#1D4ED8,#38BDF8)}
-h1{margin-top:18px;font:600 84px/1 "Clash Display";letter-spacing:-.01em}
-p{margin-top:16px;font:500 24px Satoshi;color:#C9CFDB}
-.chips{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap}
-.chips span{font:700 13px Satoshi;letter-spacing:.12em;text-transform:uppercase;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.22);color:#fff;background:rgba(11,13,13,.35)}
-.ph{position:absolute;width:270px;height:560px;border-radius:40px;background:#0B0D0D;padding:9px;box-shadow:0 50px 90px -30px rgba(0,0,0,.95),0 0 0 1.5px rgba(255,255,255,.14)}
-.ph img{width:100%;height:100%;object-fit:cover;border-radius:32px;display:block}
-.ph:after{content:"";position:absolute;top:18px;left:50%;width:86px;height:22px;margin-left:-43px;border-radius:12px;background:#0B0D0D}
-.p1{right:520px;top:250px;transform:rotate(-7deg)}
-.p2{right:300px;top:170px;z-index:2}
-.p3{right:80px;top:250px;transform:rotate(7deg)}
+/* Brand Guidelines v1.0: Brand Black ground, cool clean grade, deep shadows, Sky accents on dark only */
+#bg{position:absolute;inset:0;background-size:cover;filter:saturate(.86) contrast(1.08) brightness(.9)}
+.sh{position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(11,13,13,.95) 0%,rgba(11,13,13,.78) 28%,rgba(11,13,13,.22) 56%,rgba(11,13,13,.12) 100%),
+  linear-gradient(180deg,rgba(11,13,13,.35) 0%,rgba(11,13,13,0) 26%,rgba(11,13,13,0) 62%,rgba(11,13,13,.88) 100%)}
+.txt{position:absolute;left:80px;bottom:84px;width:600px;color:#fff;z-index:20}
+.k{display:inline-flex;align-items:center;gap:12px;font:700 15px Satoshi;letter-spacing:.18em;text-transform:uppercase;color:#38BDF8}
+.k:before{content:"";width:32px;height:2px;background:linear-gradient(60deg,#142E8C,#1D4ED8 50%,#38BDF8)}
+h1{margin-top:18px;font:600 76px/1 "Clash Display";letter-spacing:-.012em}
+p{margin-top:14px;font:500 24px Satoshi;color:#C9CFDB}
+.chips{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+.chips span{font:700 13px Satoshi;letter-spacing:.14em;text-transform:uppercase;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.24);color:#fff;background:rgba(11,13,13,.4)}
+.logo{position:absolute;left:80px;top:72px;height:56px;z-index:20;filter:brightness(0) invert(1);opacity:.92}
+.it{position:absolute;z-index:5;box-shadow:0 60px 110px -40px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.1)}
+.it img{display:block;width:100%;height:100%;object-fit:cover}
+.post{border-radius:18px;overflow:hidden}
+.sheet{border-radius:16px;overflow:hidden}
+.phone{border-radius:42px;background:#0B0D0D;padding:10px;box-shadow:0 60px 110px -36px rgba(0,0,0,.95),0 0 0 1.5px rgba(255,255,255,.16)}
+.phone img{border-radius:33px}
+.phone:after{content:"";position:absolute;top:20px;left:50%;width:84px;height:22px;margin-left:-42px;border-radius:12px;background:#0B0D0D}
+.web{border-radius:14px;overflow:hidden;background:#15181B}
+.web .bar{height:34px;display:flex;align-items:center;gap:8px;padding:0 16px;background:#15181B;border-bottom:1px solid rgba(255,255,255,.08)}
+.web .bar i{width:10px;height:10px;border-radius:50%;background:#2B3140}
+.web .bar b{margin-left:14px;flex:1;height:18px;border-radius:9px;background:#0B0D0D;max-width:360px}
+.web img{height:calc(100% - 34px)}
 </style></head><body>
-<div class="bg"><div id="bg"></div></div><div class="shade"></div>
+<div id="bg"></div><div class="sh"></div><div id="items"></div>
 <div class="txt"><span class="k" id="k"></span><h1 id="t"></h1><p id="s"></p><div class="chips" id="c"></div></div>
-<div class="ph p1"><img id="i1"></div><div class="ph p2"><img id="i2"></div><div class="ph p3"><img id="i3"></div>
 <script>
-const q=new URLSearchParams(location.search);
-document.getElementById("bg").style.backgroundImage="url("+q.get("bg")+")";
-k.textContent=q.get("k");t.textContent=q.get("t");s.textContent=q.get("s");
-c.innerHTML=q.get("c").split("|").map(x=>"<span>"+x+"</span>").join("");
-["i1","i2","i3"].forEach((id,n)=>document.getElementById(id).src=q.get("p"+(n+1)));
+const C=JSON.parse(decodeURIComponent(location.hash.slice(1)));
+const bg=document.getElementById("bg"); bg.style.backgroundImage="url("+C.bg+")"; bg.style.backgroundPosition=C.bgpos||"center";
+if(C.shade==="full") document.querySelector(".sh").style.background="linear-gradient(90deg,rgba(11,13,13,.96),rgba(11,13,13,.7) 45%,rgba(11,13,13,.55)),linear-gradient(180deg,rgba(11,13,13,.4),rgba(11,13,13,0) 30%,rgba(11,13,13,.9))";
+k.textContent=C.k; t.innerHTML=C.t; s.textContent=C.s; c.innerHTML=C.c.map(x=>"<span>"+x+"</span>").join("");
+document.getElementById("items").innerHTML=C.items.map(i=>{
+  const st=`left:${i.x}px;top:${i.y}px;width:${i.w}px;height:${i.h}px;transform:rotate(${i.r||0}deg);z-index:${i.z||5}`;
+  const im=`<img src="${i.src}" style="object-position:${i.pos||'center'}">`;
+  if(i.type==="web") return `<div class="it web" style="${st}"><div class="bar"><i></i><i></i><i></i><b></b></div>${im}</div>`;
+  return `<div class="it ${i.type}" style="${st}">${im}</div>`;
+}).join("");
 </script></body></html>

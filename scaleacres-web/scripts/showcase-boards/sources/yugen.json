@@ -1,0 +1,64 @@
+{
+  "client": "Yugen Infra",
+  "website": "https://yugeninfra.com",
+  "instagram": "https://www.instagram.com/yugeninfra",
+  "projects": [
+    "La Mandre (palatial villas, Mandrem, North Goa)",
+    "Yugen Golf City / Garden of Eden (villa plots near Mopa)",
+    "Sohna Greens (Gurugram)",
+    "Sonipat Global Industrial Township"
+  ],
+  "images": [
+    {
+      "file": "01-la-mandre-aerial.webp",
+      "source_url": "https://yugeninfra.com/uploads/projects/la-mandre/hero-2.webp",
+      "page_url": "https://yugeninfra.com/projects/la-mandre",
+      "what": "La Mandre villa cluster aerial among palms",
+      "w": 1500,
+      "h": 844
+    },
+    {
+      "file": "02-la-mandre-villas-dusk.webp",
+      "source_url": "https://yugeninfra.com/uploads/projects/la-mandre/gallery-villa.webp",
+      "page_url": "https://yugeninfra.com/projects/la-mandre",
+      "what": "La Mandre villas at dusk",
+      "w": 1500,
+      "h": 844
+    },
+    {
+      "file": "03-la-mandre-exterior.webp",
+      "source_url": "https://yugeninfra.com/uploads/projects/la-mandre/gallery-exterior.webp",
+      "page_url": "https://yugeninfra.com/projects/la-mandre",
+      "what": "La Mandre villa row exterior with lawns",
+      "w": 1500,
+      "h": 1023
+    },
+    {
+      "file": "04-la-mandre-villa.webp",
+      "source_url": "https://yugeninfra.com/uploads/projects/la-mandre/hero-3.webp",
+      "page_url": "https://yugeninfra.com/projects/la-mandre",
+      "what": "La Mandre single villa elevation",
+      "w": 1500,
+      "h": 1194
+    },
+    {
+      "file": "05-garden-of-eden-villa.webp",
+      "source_url": "https://yugeninfra.com/uploads/projects/aquafrontvilla.webp",
+      "page_url": "https://yugeninfra.com/projects/garden-of-eden",
+      "what": "Garden of Eden aqua-front villa render at sunset",
+      "w": 1248,
+      "h": 1037
+    },
+    {
+      "file": "06-villa-living-room.webp",
+      "source_url": "https://yugeninfra.com/uploads/projects/edenhero.webp",
+      "page_url": "https://yugeninfra.com/projects/garden-of-eden",
+      "what": "Furnished villa living room interior (Garden of Eden hero image)",
+      "w": 2300,
+      "h": 1380
+    }
+  ],
+  "logo": "logo.webp",
+  "notes": "Official site yugeninfra.com (Gurugram & Goa). Facebook: facebook.com/yugeninfra. Logo is a black-on-transparent WEBP (769x252). Press and listing sites note that the Garden of Eden phase is MahaRERA-registered at Village Banda, Sawantwadi (Sindhudurg, Maharashtra), near the Goa border, although it is marketed as North Goa; La Mandre (Mandrem) is in North Goa. The Garden of Eden hero image (villa-living-room) is an interior shot and may be an interior from La Mandre.",
+  "logo_source_url": "https://yugeninfra.com/yugeninfologo.webp"
+}

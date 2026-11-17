@@ -25,16 +25,33 @@ The page is `design/home-v8/index.html`. The white form is the default; `?form=d
 - **Right column:** the services list is unchanged, with the same eight click-to-open items.
 - **Text:** unchanged.
 
-## Client work showcase (redesigned)
-- **Header:** "Our work does the talking" above "Client work *showcase*", with "showcase" in Royal.
-- **Grid:** two columns of large rounded 16:10 cards (one column on phones). Each card has the client name, a project or location line and a category label with a Royal dash.
-- **Grading and hover:** every card shares a cohesive dark grade and a soft bottom shade. On hover the card lifts slightly, the image zooms gently and the shade lightens.
-- **Former placeholders:** now real campaign work from the Drive reels, each shown as a presentation board (darkened render, project name, and three phones with the actual ad frames):
-  - **Sohom Estate:** Pravya, Rajarhat New Town, Kolkata (Soham Group × DTC Group).
-  - **DTC Group:** Sojon, Joka, South Kolkata.
-  - **Bhatia Group:** Auriga 9, Borivali West, Mumbai.
-- **The other seven cards:** they keep their existing visuals.
-- **"Ideas that stop the scroll" banner:** now uses a dusk city film (towers and a metro line at golden hour) under a navy-to-dusk shade, closer to Red Dash Media's banner.
+## Client work showcase (custom boards, ScaleAcres Brand Guidelines v1.0)
+Every client card is a custom 1600 × 1000 board. Each board pairs:
+- the client's official project render, researched from their own website;
+- the real ScaleAcres creatives for that client: reels in phones, social posts, hoardings, websites in a browser frame, brand kits and print.
+
+Design (Brand Guidelines v1.0):
+- **Ground:** Brand Black (#0B0D0D).
+- **Render grade:** cool and clean, with deep black shading.
+- **Accents:** Sky for the kicker, and a short gradient rule above it.
+- **Type:** the site's existing type; the fonts are unchanged, as requested.
+
+| Client | Project render (official) | ScaleAcres work shown |
+| --- | --- | --- |
+| SeaBreeze Villas | La Wisteria facade | Roll-up and hoarding print, two La Wisteria reels |
+| SID Realtech | Ellington 86 at dusk | Website, "Coming soon" post, hoarding |
+| Aarize | The Tessoro entrance plaza | Brand identity and stationery, Tessoro ad |
+| Intech Developers | No official site found | Identity board, website, "Creates Value" post |
+| TRG The Mall | Mall at dusk | Launch event gate, investor ad |
+| JBBR Group | Krystal at night | Brand kit, campaign post, Kanvas reel |
+| Sohom Estate (Soham Group) | Pravya rooftop pool | Three Pravya launch reels |
+| DTC Group | Sojon at dusk | Three Sojon AI ad film frames |
+| Bhatia Group | Auriga 9 tower elevation | Three Auriga 9 launch ads |
+| Yugen Infra | La Mandre villas at dusk | Website and reels |
+
+The "Ideas that stop the scroll" banner and the card shadows now use Brand Black shading instead of the blue tint.
+
+The sources of all renders are listed in `scripts/showcase-boards/sources/`.
 
 ## Content updates
 - **Who we are:**

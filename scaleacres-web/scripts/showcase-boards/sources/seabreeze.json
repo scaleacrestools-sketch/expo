@@ -1,0 +1,59 @@
+{
+  "client": "Sea Breeze Villas (Sea Breeze Group)",
+  "website": "https://seabreezevilas.com/ (mirror: https://seabreezevillas.in/)",
+  "instagram": "@seabreezevilas (https://www.instagram.com/seabreezevilas/); YouTube @SeaBreezeVillas",
+  "projects": [
+    "La Wisteria (Siolim, North Goa)",
+    "Villa Encanto",
+    "Villa Magnolias",
+    "Villa Mayfair",
+    "Villa Nova",
+    "La Celine Villas",
+    "Sea La Vie",
+    "Casa del Mar"
+  ],
+  "images": [
+    {
+      "file": "la-wisteria-facade.webp",
+      "source_url": "https://seabreezevillas.in/wp-content/uploads/2025/08/Div-1-1-scaled.webp",
+      "page_url": "https://seabreezevillas.in/la-wisteria/",
+      "what": "La Wisteria terracotta wave-arched facade render, street view",
+      "w": 2560,
+      "h": 2207
+    },
+    {
+      "file": "la-wisteria-courtyard.webp",
+      "source_url": "https://seabreezevillas.in/wp-content/uploads/2025/08/Div-5.webp",
+      "page_url": "https://seabreezevillas.in/la-wisteria/",
+      "what": "La Wisteria inner courtyard with lagoon and green balconies (render, small 'Artistic Image' tag)",
+      "w": 2401,
+      "h": 2056
+    },
+    {
+      "file": "la-wisteria-aerial-masterplan.webp",
+      "source_url": "https://seabreezevillas.in/wp-content/uploads/2025/08/Image-3-scaled.webp",
+      "page_url": "https://seabreezevillas.in/la-wisteria/",
+      "what": "La Wisteria aerial view / ground-floor masterplan with central lagoon",
+      "w": 2560,
+      "h": 2197
+    },
+    {
+      "file": "la-wisteria-facade-closeup.webp",
+      "source_url": "https://seabreezevillas.in/wp-content/uploads/2025/08/div.top-image.webp",
+      "page_url": "https://seabreezevillas.in/",
+      "what": "La Wisteria facade close-up, curved terracotta balconies",
+      "w": 1481,
+      "h": 1041
+    },
+    {
+      "file": "villa-pool.jpg",
+      "source_url": "https://seabreezevillas.in/wp-content/uploads/2025/06/IMG_9669-min-scaled.jpeg",
+      "page_url": "https://seabreezevillas.in/",
+      "what": "Completed Sea Breeze luxury villa with private pool (homepage og:image; specific villa project not labelled)",
+      "w": 1600,
+      "h": 1067
+    }
+  ],
+  "logo": "logo.png",
+  "notes": "www.seabreezevillas.com (as in the reel) is a parked domain for sale at HugeDomains; the live official site is seabreezevilas.com (single 'l'), same site also served at seabreezevillas.in. Images downloaded from seabreezevillas.in (identical WordPress uploads). La Wisteria: RERA PRGO04252441. Site also has construction-progress photos (2026/06/Construction-Updates-*.webp) not included. Logo is green PNG 629x178. Logo source: https://seabreezevillas.in/wp-content/uploads/2025/05/SeaBreeze-Green-Logo-e1732010285888-1.png."
+}

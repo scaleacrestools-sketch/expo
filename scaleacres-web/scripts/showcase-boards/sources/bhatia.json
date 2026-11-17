@@ -1,0 +1,37 @@
+{
+  "client": "Bhatia Group (Bhatia Builders), Mumbai",
+  "website": "https://www.bhatiabuilders.com",
+  "instagram": "https://www.instagram.com/bhatiabuildersmumbai",
+  "projects": [
+    "Auriga 9 (Jambli Galli, Borivali West; with Rajyog)"
+  ],
+  "images": [
+    {
+      "file": "01-auriga9-tower-elevation.webp",
+      "source_url": "https://www.bhatiabuilders.com/images/projects/auriga-9-borivali-west-project.webp",
+      "page_url": "https://www.bhatiabuilders.com/projects/auriga-9",
+      "what": "Auriga 9 full-height tower elevation (portrait)",
+      "w": 3840,
+      "h": 5486
+    },
+    {
+      "file": "02-auriga9-street-view.webp",
+      "source_url": "https://www.bhatiabuilders.com/images/news/auriga-9-vs-other-projects-in-borivali-west-what-stands-out.webp",
+      "page_url": "https://www.bhatiabuilders.com/news/auriga-9-vs-other-projects-in-borivali-west-what-stands-out",
+      "what": "Auriga 9 tower and podium from street level",
+      "w": 1600,
+      "h": 800
+    },
+    {
+      "file": "03-auriga9-podium-exterior.jpg",
+      "source_url": "https://www.bhatiabuilders.com/images/auriga-9/exterior-daytime.jpg",
+      "page_url": "https://www.bhatiabuilders.com/projects/auriga-9",
+      "what": "Auriga 9 podium/retail frontage exterior, daytime",
+      "w": 1200,
+      "h": 675
+    }
+  ],
+  "logo": "logo.webp",
+  "notes": "Official site bhatiabuilders.com (Bhatia Group, Mumbai, est. 1987); Facebook: facebook.com/BhatiaBuildersMumbai. Only 3 usable project images were available: the Auriga 9 page gallery is loaded by a JavaScript bundle that the site blocked for automated requests, so it was not retrieved. A 4th official image (news banner) was skipped for heavy text overlay. bhatiagroup.in and bhatiagroup.co.in are unrelated businesses; rajyogdevelopers.com is an unrelated Pandharpur developer, so no official Rajyog site was found. A PNG logo (312x198) also exists at /images/bhatia-group-logo.png.",
+  "logo_source_url": "https://www.bhatiabuilders.com/images/bhatia-group-logo.webp"
+}

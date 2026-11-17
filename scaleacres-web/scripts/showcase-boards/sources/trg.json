@@ -1,0 +1,62 @@
+{
+  "client": "TRG Group (formerly Trisol Red Group)",
+  "website": "https://www.trggroup.in/",
+  "instagram": "@trg_group_ (https://www.instagram.com/trg_group_); Facebook /trggroup; YouTube @trggroup_in",
+  "projects": [
+    "TRG The Mall (Ghaziabad, between Gaur City and Crossing Republik)",
+    "Independent floors/villas Ghaziabad",
+    "Shrikunj Farmhouse land (Hapur)"
+  ],
+  "images": [
+    {
+      "file": "trg-mall-front-elevation.webp",
+      "source_url": "https://www.trggroup.in/images/projects/trg-mall/5.webp",
+      "page_url": "https://www.trggroup.in/trg-the-mall-commercial-project.php",
+      "what": "TRG The Mall front elevation with plaza and 'TRG Mall' signage",
+      "w": 1920,
+      "h": 1080
+    },
+    {
+      "file": "trg-mall-side-elevation.webp",
+      "source_url": "https://www.trggroup.in/images/projects/trg-mall/6.webp",
+      "page_url": "https://www.trggroup.in/trg-the-mall-commercial-project.php",
+      "what": "TRG The Mall angled elevation with pergola and road frontage",
+      "w": 1920,
+      "h": 1080
+    },
+    {
+      "file": "trg-mall-corner-dusk.jpg",
+      "source_url": "https://www.trggroup.in/images/projects/trg-mall/22.jpg",
+      "page_url": "https://www.trggroup.in/trg-the-mall-commercial-project.php",
+      "what": "Corner view at dusk with large facade billboard and TRG logo",
+      "w": 1280,
+      "h": 960
+    },
+    {
+      "file": "trg-mall-aerial.jpg",
+      "source_url": "https://www.trggroup.in/images/projects/trg-mall/11.jpg",
+      "page_url": "https://www.trggroup.in/trg-the-mall-commercial-project.php",
+      "what": "Aerial/bird's-eye view of the mall block and frontage road",
+      "w": 1280,
+      "h": 960
+    },
+    {
+      "file": "trg-mall-interior-corridor.webp",
+      "source_url": "https://www.trggroup.in/images/projects/trg-mall/1.webp",
+      "page_url": "https://www.trggroup.in/trg-the-mall-commercial-project.php",
+      "what": "Interior retail corridor with skylight and storefronts",
+      "w": 1920,
+      "h": 1080
+    },
+    {
+      "file": "trg-mall-upper-terrace.webp",
+      "source_url": "https://www.trggroup.in/images/projects/trg-mall/4.webp",
+      "page_url": "https://www.trggroup.in/trg-the-mall-commercial-project.php",
+      "what": "Upper-level open terrace walkway with wooden pergola",
+      "w": 1920,
+      "h": 1080
+    }
+  ],
+  "logo": "logo.png",
+  "notes": "trgthemall.com is an empty GoDaddy placeholder; project page lives on trggroup.in. Two images are 1280x960 (aerial, dusk corner); others 1920x1080. Floor plans (ground/first/second/lower-ground.webp) available on the page but not included. UP RERA UPRERAPRJ378928/05/2025 (promoter Trisol Red Developers LLP). Logo source: https://www.trggroup.in/images/logo/logo.png."
+}
