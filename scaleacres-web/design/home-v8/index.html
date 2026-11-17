@@ -140,8 +140,11 @@
   .ideas { position: relative; height: 760px; overflow: hidden; color: #fff; display: flex; align-items: center; justify-content: center; text-align: center; }
   .ideas .bg { position: absolute; inset: -8% 0; }
   .ideas .bg img, .ideas .bg video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .ideas .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,13,13,.9) 0%, rgba(11,13,13,.6) 36%, rgba(11,13,13,.5) 64%, rgba(11,13,13,.92) 100%), radial-gradient(ellipse 60% 50% at 50% 45%, rgba(11,13,13,.5), rgba(11,13,13,0) 70%); }
-  .ideas .bg video, .ideas .bg img { filter: saturate(.82) contrast(1.06); }
+  .ideas .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,13,13,.82) 0%, rgba(11,13,13,.5) 30%, rgba(11,13,13,.5) 62%, rgba(11,13,13,.94) 100%), radial-gradient(ellipse 46% 52% at 50% 46%, rgba(11,13,13,.62), rgba(11,13,13,0) 72%), linear-gradient(90deg, rgba(11,13,13,.35), rgba(11,13,13,0) 25%, rgba(11,13,13,0) 75%, rgba(11,13,13,.35)); }
+  .ideas .bg img { object-position: center 58%; filter: saturate(.92) contrast(1.06); animation: ideasPush 26s ease-in-out infinite alternate; }
+  @keyframes ideasPush { from { transform: scale(1.02); } to { transform: scale(1.09) translate3d(-.6%, -.4%, 0); } }
+  @media (prefers-reduced-motion: reduce) { .ideas .bg img { animation: none; } }
+  .static .ideas .bg img { animation: none; }
   .ideas .copy { position: relative; max-width: 900px; }
   .ideas h2 { margin-top: 26px; font-size: clamp(64px, 6.6vw, 104px); font-weight: 600; line-height: .96; letter-spacing: -0.045em; }
   .ideas p { margin: 30px auto 0; max-width: 620px; font-size: 19px; line-height: 1.6; color: var(--grey-soft); }
@@ -586,10 +589,7 @@
 
 <!-- 04 ideas banner -->
 <section class="ideas dark" aria-label="The ScaleAcres standard">
-  <div class="bg"><video class="lazyv" muted loop playsinline preload="none" poster="assets/img/ideas-city-poster.jpg" aria-label="A ScaleAcres AI film: residential towers and a metro line over the city at golden hour">
-    <source data-src="assets/video/ideas-city-1440.webm" type="video/webm">
-    <source data-src="assets/video/ideas-city-1440.mp4" type="video/mp4">
-  </video></div>
+  <div class="bg"><img src="assets/img/ideas-city-billboard-1440.webp" srcset="assets/img/ideas-city-billboard-1440.webp 1440w, assets/img/ideas-city-billboard-2688.webp 2688w" sizes="100vw" width="2688" height="1504" loading="lazy" decoding="async" alt="A city road at dusk with a ScaleAcres hoarding on a billboard, an elevated metro and evening traffic"></div>
   <div class="scrim"></div>
   <div class="copy">
     <span class="eyebrow center rv">The ScaleAcres standard</span>
