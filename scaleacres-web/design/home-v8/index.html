@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="form-white">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,18 +10,21 @@
 <meta property="og:image" content="assets/img/hero-ai-poster.jpg">
 <meta name="theme-color" content="#0B0D0D">
 <link rel="preload" href="assets/img/hero-ai-poster.jpg" as="image">
+<link rel="preload" href="assets/fonts/anton.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/chivo.woff2" as="font" type="font/woff2" crossorigin>
 <title>ScaleAcres · Real Estate Marketing &amp; Creative Growth Agency</title>
 <!--
   Homepage concept v8 (hero: copy left, enquiry form right, over a wall of faceless ScaleAcres AI and ad-film renders). Layout follows the approved reference flow (hero film, statement, services,
   "ideas" banner, creative showcase, how we work, clients, studio cards, CTA, FAQ, footer); type and
-  motion follow the creator-agency video (Outfit + a Playfair Display italic accent); colours are the
+  type follows reddashmedia.com (Anton display + Chivo text); colours are the
   ScaleAcres brand: Brand Black, Royal, Royal Deep, Sky, White, Mist. Every image, video, logo, fact and
   line of copy is ScaleAcres' own (scaleacres.com, the brand kit and the project repository).
   ?static=1 renders every reveal in its finished state (used for the SVG export).
 -->
 <style>
-  @font-face { font-family: "Outfit"; src: url(assets/fonts/outfit.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
-  @font-face { font-family: "Playfair Display"; src: url(assets/fonts/playfair-600-italic.woff2) format("woff2"); font-weight: 600; font-style: italic; font-display: swap; }
+  /* Type pairing as on reddashmedia.com: Anton (condensed display, uppercase) + Chivo (text and UI). Both SIL OFL. */
+  @font-face { font-family: "Anton"; src: url(assets/fonts/anton.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Chivo"; src: url(assets/fonts/chivo.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
   :root {
     --ink: #0B0D0D; --ink-2: #15181B; --navy: #0B1640; --royal: #1D4ED8; --deep: #142E8C; --sky: #38BDF8; --white: #FFFFFF; --mist: #EEF2FB;
     --muted: #5F6878; --line: #DDE3EF; --graphite: #2B3140; --silver: #AEB6C6; --grey-soft: #C9CFDB;
@@ -30,7 +33,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: "Outfit", system-ui, sans-serif; color: var(--ink); background: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body { font-family: "Chivo", system-ui, sans-serif; color: var(--ink); background: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   img, video { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
   .wrap { width: min(var(--wrap), calc(100% - 96px)); margin: 0 auto; }
@@ -266,7 +269,7 @@
       radial-gradient(ellipse 34% 60% at 80% 55%, rgba(11,13,13,.55), rgba(11,13,13,0) 72%),
       linear-gradient(90deg, rgba(11,13,13,.95) 0%, rgba(11,13,13,.9) 30%, rgba(11,13,13,.66) 52%, rgba(11,13,13,.58) 72%, rgba(11,13,13,.7) 100%),
       linear-gradient(180deg, rgba(11,13,13,.88), rgba(11,13,13,0) 22%, rgba(11,13,13,0) 74%, rgba(11,13,13,.96)); }
-  .hero2 .hgrid { position: relative; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(360px, .75fr); gap: 80px; align-items: center; padding: 132px 0 84px; }
+  .hero2 .hgrid { position: relative; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(400px, .85fr); gap: 64px; align-items: center; padding: 132px 0 84px; }
   .hero2 .copy { text-align: left; text-shadow: 0 2px 24px rgba(0,0,0,.55); }
   .hero2 .pill { color: var(--sky); background: rgba(56,189,248,.08); border: 1px solid rgba(56,189,248,.4); }
   .hero2 h1 { margin-top: 28px; font-size: clamp(54px, 5.2vw, 82px); font-weight: 600; line-height: 1.06; letter-spacing: -0.025em; }
@@ -284,26 +287,26 @@
   .hero2 .stat strong { font-size: 64px; font-weight: 600; line-height: 1; letter-spacing: -0.04em; color: #fff; }
   .hero2 .stat span { font-size: 14px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; line-height: 1.5; color: #fff; }
   /* enquiry form: three fields, quiet glass card (dark) or white card (?form=white) */
-  .hform { position: relative; justify-self: end; width: 100%; max-width: 430px; padding: 30px 28px 26px; border-radius: 22px;
+  .hform { position: relative; justify-self: end; width: 100%; max-width: 500px; padding: 38px 36px 32px; border-radius: 26px;
     background: rgba(11,13,13,.62); border: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(16px) saturate(1.1); -webkit-backdrop-filter: blur(16px) saturate(1.1);
     box-shadow: 0 30px 70px -34px rgba(0,0,0,.85); }
-  .hf-kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--sky); }
+  .hf-kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--sky); }
   .hf-kicker::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: var(--grad); }
-  .hform h2 { margin-top: 12px; font-size: 26px; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; }
+  .hform h2 { margin-top: 14px; font-size: 33px; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; }
   .hform h2 .serif { font-size: 1.05em; }
-  .hf-grid { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hf-grid { margin-top: 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .hform .f { display: grid; } .hform .f.full { grid-column: 1 / -1; }
   .hform .f > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  .hform input, .hform select { width: 100%; height: 48px; padding: 0 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04);
-    color: #fff; font: 500 15px/1 "Outfit", system-ui, sans-serif; outline: none; transition: border-color .25s, background .25s, box-shadow .25s; }
+  .hform input, .hform select { width: 100%; height: 56px; padding: 0 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04);
+    color: #fff; font: 500 16px/1 "Chivo", system-ui, sans-serif; outline: none; transition: border-color .25s, background .25s, box-shadow .25s; }
   .hform input::placeholder { color: var(--silver); opacity: .8; }
   .hform input:focus, .hform select:focus { border-color: var(--sky); background: rgba(56,189,248,.05); box-shadow: 0 0 0 3px rgba(56,189,248,.16); }
   .hform [aria-invalid=true] { border-color: var(--sky) !important; box-shadow: 0 0 0 3px rgba(56,189,248,.22); }
   .hform .sel { position: relative; } .hform select { appearance: none; -webkit-appearance: none; padding-right: 40px; cursor: pointer; }
   .hform select:invalid { color: var(--silver); } .hform option { background: var(--ink); color: #fff; }
-  .hform .sel svg { position: absolute; right: 15px; top: 17px; width: 14px; height: 14px; color: var(--silver); pointer-events: none; }
-  .hf-send { margin-top: 14px; width: 100%; height: 52px; justify-content: center; border: 0; cursor: pointer; font: 600 15.5px "Outfit", system-ui, sans-serif; }
-  .hf-legal { margin-top: 12px; font-size: 12.5px; line-height: 1.5; color: var(--silver); text-align: center; }
+  .hform .sel svg { position: absolute; right: 18px; top: 21px; width: 14px; height: 14px; color: var(--silver); pointer-events: none; }
+  .hf-send { margin-top: 16px; width: 100%; height: 58px; justify-content: center; border: 0; cursor: pointer; font: 600 16.5px "Chivo", system-ui, sans-serif; }
+  .hf-legal { margin-top: 14px; font-size: 13.5px; line-height: 1.5; color: var(--silver); text-align: center; }
   .hf-note { margin-top: 10px; font-size: 13.5px; line-height: 1.5; color: var(--sky); text-align: center; }
   .hf-note:empty { display: none; }
   /* white form variant */
@@ -398,7 +401,7 @@
     .hdr .bar { width: calc(100% - 32px); height: 72px; } .hdr .logo img { height: 38px; } .hdr .btn { display: none; }
     .hero2 .hgrid { padding: 112px 0 56px; gap: 40px; } .hero2 h1 { font-size: 42px; } .hero2 .support { font-size: 17px; } .hero2 .ticks { flex-direction: column; gap: 10px; } .hero2 .ticks li { font-size: 15px; }
     .hero2 .cta { flex-direction: column; align-items: stretch; } .hero2 .stat strong { font-size: 52px; }
-    .hform { padding: 24px 18px 20px; } .hform h2 { font-size: 23px; } .hf-grid { grid-template-columns: 1fr; }
+    .hform { padding: 28px 20px 24px; } .hform h2 { font-size: 27px; } .hf-grid { grid-template-columns: 1fr; }
     .trust .wrap { height: auto; padding: 22px 0; flex-direction: column; align-items: flex-start; gap: 14px; } .marquee { width: 100%; }
     .statement { padding: 90px 0 80px; } .statement p { font-size: 28px; } .statement .meta { flex-direction: column; gap: 18px; }
     .h2, .services .h2 { font-size: 38px; } .lead { font-size: 16.5px; }
@@ -424,6 +427,40 @@
   .static .fab { top: calc(100vh - 94px); bottom: auto; display: none; }
   .static .grad { background: none; color: var(--royal); -webkit-text-fill-color: var(--royal); }
   .static .foot .word { background: none; color: rgba(255,255,255,.09); -webkit-text-fill-color: rgba(255,255,255,.09); }
+
+  /* ---------- Typography: Anton headlines, Chivo text (reddashmedia.com pairing) ---------- */
+  h1, h2, .h2, .jh, .phase .card h3, .b-dark .num, .hero2 .stat strong, .todo span, .tile .cap h3, .b-light h4, .b-video h4 {
+    font-family: "Anton", Impact, "Arial Narrow", sans-serif; font-weight: 400 !important; text-transform: uppercase; letter-spacing: .008em !important; font-synthesis: none; }
+  .serif { font-family: inherit; font-style: normal; font-weight: inherit; letter-spacing: inherit; color: var(--royal); }
+  .dark .serif, .journey .serif, .cta-out .serif, .ideas .serif, .b-dark .serif, .b-video .serif { color: var(--sky); }
+  .form-white .hform .serif { color: var(--royal); }
+  .hero2 h1 { font-size: clamp(54px, 5.1vw, 80px); line-height: 1.02; margin-top: 22px; }
+  .hero2 .hgrid { padding: 118px 0 64px; }
+  .hero2 .support { margin-top: 22px; font-size: 18.5px; }
+  .hero2 .ticks { margin-top: 18px; }
+  .hero2 .cta { margin-top: 30px; }
+  .hero2 .stat { margin-top: 30px; padding-top: 20px; }
+  .hero2 h1 .big { font-size: 1em; line-height: 1.0; padding-right: 0; }
+  .h2, .services .h2 { font-size: clamp(50px, 5vw, 78px); line-height: 1.0; }
+  .h2 .serif { font-size: 1em; }
+  .ideas h2 { font-size: clamp(72px, 7.6vw, 122px); line-height: .98; }
+  .cta-out h2 { font-size: clamp(86px, 9vw, 150px); line-height: 1; }
+  .faq h2 { font-size: 64px; line-height: 1.02; }
+  .jh { font-size: clamp(72px, 6.8vw, 108px); line-height: .98; font-weight: 400; }
+  .phase .card h3 { font-size: 62px; }
+  .b-dark .num { font-size: 150px; line-height: .9; }
+  .hero2 .stat strong { font-size: 60px; letter-spacing: .01em; }
+  .hform h2 { font-size: 38px; line-height: 1.04; letter-spacing: .01em; }
+  .hform h2 .serif { font-size: 1em; }
+  .statement p { font-weight: 300; letter-spacing: -0.012em; }
+  .statement p .serif { font-weight: 500; }
+  .pill, .eyebrow, .hf-kicker, .btn { font-family: "Chivo", system-ui, sans-serif; }
+  .btn { font-weight: 600; letter-spacing: .01em; }
+  .support b, .lead b { font-weight: 700; }
+  @media (max-width: 640px) {
+    .hero2 h1 { font-size: 52px; } .h2, .services .h2 { font-size: 44px; } .ideas h2 { font-size: 60px; } .cta-out h2 { font-size: 56px; }
+    .faq h2 { font-size: 44px; } .jh { font-size: 54px; } .hform h2 { font-size: 32px; } .hero2 .stat strong { font-size: 60px; } .b-dark .num { font-size: 110px; }
+  }
 </style>
 </head>
 <body>
@@ -817,8 +854,8 @@ if (!STATIC) {
   document.querySelectorAll("video").forEach((v) => { v.removeAttribute("autoplay"); v.pause(); });
 }
 
-/* form variant: dark glass by default, white with ?form=white (or <html data-form="white">) */
-if (/[?&]form=white/.test(location.search) || document.documentElement.dataset.form === "white") document.documentElement.classList.add("form-white");
+/* form variant: white card by default (approved); ?form=dark shows the dark glass card */
+if (!/[?&]form=dark/.test(location.search)) document.documentElement.classList.add("form-white");
 /* hero enquiry form: client-side checks; this static concept does not send data anywhere */
 (() => {
   const f = document.getElementById("enquire"); if (!f) return;
