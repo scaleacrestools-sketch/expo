@@ -15,13 +15,9 @@ const glide = (y, pxs) => p.evaluate(async ([y, pxs]) => {
 await p.waitForTimeout(5200); // hero: words rise, reel plays
 const H = await p.evaluate(() => document.documentElement.scrollHeight - innerHeight);
 const svcTop = await p.evaluate(() => Math.round(document.querySelector("#services").getBoundingClientRect().top + scrollY));
-let clicked = false;
 for (let y = 620; y < H; y += 620) {
-  await glide(Math.min(y, H), 620); await p.waitForTimeout(950);
-  if (!clicked && y >= svcTop + 100) {
-    clicked = true;
-    for (const i of [3, 6]) { await p.click(`#acc details:nth-child(${i}) summary`); await p.waitForTimeout(1300); }
-  }
+  const slow = y > svcTop - 500 && y < svcTop + 1500;            // services: slower so the scroll-driven grid reads
+  await glide(Math.min(y, H), slow ? 380 : 620); await p.waitForTimeout(slow ? 700 : 950);
 }
 await glide(H, 900); await p.waitForTimeout(2200);
 await p.close(); await ctx.close(); await b.close();
