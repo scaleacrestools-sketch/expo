@@ -25,50 +25,21 @@ The page is `design/home-v8/index.html`. The white form is the default; `?form=d
 - **Right column:** the services list is unchanged, with the same eight click-to-open items.
 - **Text:** unchanged.
 
-## Client work showcase (custom boards, ScaleAcres Brand Guidelines v1.0)
-Every client card is a custom 1600 × 1000 board. Each board pairs:
-- the client's official project render, researched from their own website;
-- the real ScaleAcres creatives for that client: reels in phones, social posts, hoardings, websites in a browser frame, brand kits and print.
+## Client work showcase (v2: a distinct composition per client)
+| Client | Composition |
+| --- | --- |
+| SeaBreeze Villas | Editorial collage: official La Wisteria facade and courtyard with print creatives and reels |
+| SID Realtech | Spotlit "Coming soon" launch poster, website and hoarding |
+| Aarize | Brand identity flat-lay with a Tessoro ad |
+| Intech Developers | Wall of five real Intech reels and the "Creates Value" post |
+| TRG The Mall | Diagonal split: the official mall at dusk (the project) and the event gate (the launch) |
+| JBBR Group | Luxury still life with a Kanvas reel |
+| Sohom Estate | Pravya launch-film frame with a six-scene storyboard |
+| DTC Group | Tilted 3D social grid across Sojon, Good Earth, Skyler and Stillwaters |
+| Bhatia Group | Auriga 9 brochure spread: tower, floor plan, launch ad |
+| Yugen Infra | New campaign results board (15k+ leads, 37.8% qualification, 200+ plots sold) with two real campaign reels; the old website visual is gone |
 
-Design (Brand Guidelines v1.0):
-- **Ground:** Brand Black (#0B0D0D).
-- **Render grade:** cool and clean, with deep black shading.
-- **Accents:** Sky for the kicker, and a short gradient rule above it.
-- **Type:** the site's existing type; the fonts are unchanged, as requested.
-
-| Client | Project render (official) | ScaleAcres work shown |
-| --- | --- | --- |
-| SeaBreeze Villas | La Wisteria facade | Roll-up and hoarding print, two La Wisteria reels |
-| SID Realtech | Ellington 86 at dusk | Website, "Coming soon" post, hoarding |
-| Aarize | The Tessoro entrance plaza | Brand identity and stationery, Tessoro ad |
-| Intech Developers | No official site found | Identity board, website, "Creates Value" post |
-| TRG The Mall | Mall at dusk | Launch event gate, investor ad |
-| JBBR Group | Krystal at night | Brand kit, campaign post, Kanvas reel |
-| Sohom Estate (Soham Group) | Pravya rooftop pool | Three Pravya launch reels |
-| DTC Group | Sojon at dusk | Three Sojon AI ad film frames |
-| Bhatia Group | Auriga 9 tower elevation | Three Auriga 9 launch ads |
-| Yugen Infra | La Mandre villas at dusk | Website and reels |
-
-The "Ideas that stop the scroll" banner and the card shadows now use Brand Black shading instead of the blue tint.
-
-The sources of all renders are listed in `scripts/showcase-boards/sources/`.
-
-## "Ideas that stop the scroll" banner
-The banner recreates the reference composition:
-- a blank billboard on the left;
-- an elevated metro with a train on the right;
-- a busy multi-lane road with evening traffic;
-- a navy-to-orange dusk sky.
-
-Only the image and the existing headline and copy are used, with no hoarding. Deep Brand Black shading keeps the text clear, and a slow push-in adds motion. The image was generated in Higgsfield, which you approved for this banner.
-
-## "From a plan, to a brand journey" images
-These are three custom cinematic visuals at 1210 × 1100 (the section's 1.1:1 ratio). Each is built from ScaleAcres' own AI film library, with no new generation, and finished with brand overlays: Brand Black vignette, Sky highlights and the site fonts. The section's layout and text are unchanged.
-- **Strategy:** a JBBR project masterplan render with audience-targeting rings and planning markers (market research, buyer persona, catchment, price band).
-- **Execution:** a cinema camera rig at night, with the real La Wisteria ad film by ScaleAcres playing on the edit monitor. Tags: ad films, reels and social, media buying.
-- **Growth:** glowing brand "rising bars" over a live performance dashboard. Tags: qualified leads, cost per lead, site visits, ROI.
-
-The composer is `scripts/showcase-boards/journey.html`.
+Every card is on Brand Black with a cool grade and deep shading. Official renders come from the clients' own websites (sources in `scripts/showcase-boards/sources/`). Every creative shown is real ScaleAcres work.
 
 ## Content updates
 - **Who we are:**

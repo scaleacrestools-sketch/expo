@@ -3,44 +3,96 @@
 @font-face{font-family:"Satoshi";src:url(../../design/home-v8/assets/fonts/satoshi-500.woff2);font-weight:500}
 @font-face{font-family:"Satoshi";src:url(../../design/home-v8/assets/fonts/satoshi-700.woff2);font-weight:700}
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1600px;height:1000px;overflow:hidden;background:#0B0D0D}
-/* Brand Guidelines v1.0: Brand Black ground, cool clean grade, deep shadows, Sky accents on dark only */
-#bg{position:absolute;inset:0;background-size:cover;filter:saturate(.86) contrast(1.08) brightness(.9)}
-.sh{position:absolute;inset:0;background:
-  linear-gradient(90deg,rgba(11,13,13,.95) 0%,rgba(11,13,13,.78) 28%,rgba(11,13,13,.22) 56%,rgba(11,13,13,.12) 100%),
-  linear-gradient(180deg,rgba(11,13,13,.35) 0%,rgba(11,13,13,0) 26%,rgba(11,13,13,0) 62%,rgba(11,13,13,.88) 100%)}
-.txt{position:absolute;left:80px;bottom:84px;width:600px;color:#fff;z-index:20}
-.k{display:inline-flex;align-items:center;gap:12px;font:700 15px Satoshi;letter-spacing:.18em;text-transform:uppercase;color:#38BDF8}
-.k:before{content:"";width:32px;height:2px;background:linear-gradient(60deg,#142E8C,#1D4ED8 50%,#38BDF8)}
-h1{margin-top:18px;font:600 76px/1 "Clash Display";letter-spacing:-.012em}
-p{margin-top:14px;font:500 24px Satoshi;color:#C9CFDB}
-.chips{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
-.chips span{font:700 13px Satoshi;letter-spacing:.14em;text-transform:uppercase;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.24);color:#fff;background:rgba(11,13,13,.4)}
-.logo{position:absolute;left:80px;top:72px;height:56px;z-index:20;filter:brightness(0) invert(1);opacity:.92}
-.it{position:absolute;z-index:5;box-shadow:0 60px 110px -40px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.1)}
-.it img{display:block;width:100%;height:100%;object-fit:cover}
-.post{border-radius:18px;overflow:hidden}
-.sheet{border-radius:16px;overflow:hidden}
-.phone{border-radius:42px;background:#0B0D0D;padding:10px;box-shadow:0 60px 110px -36px rgba(0,0,0,.95),0 0 0 1.5px rgba(255,255,255,.16)}
-.phone img{border-radius:33px}
-.phone:after{content:"";position:absolute;top:20px;left:50%;width:84px;height:22px;margin-left:-42px;border-radius:12px;background:#0B0D0D}
-.web{border-radius:14px;overflow:hidden;background:#15181B}
-.web .bar{height:34px;display:flex;align-items:center;gap:8px;padding:0 16px;background:#15181B;border-bottom:1px solid rgba(255,255,255,.08)}
-.web .bar i{width:10px;height:10px;border-radius:50%;background:#2B3140}
-.web .bar b{margin-left:14px;flex:1;height:18px;border-radius:9px;background:#0B0D0D;max-width:360px}
-.web img{height:calc(100% - 34px)}
-</style></head><body>
-<div id="bg"></div><div class="sh"></div><div id="items"></div>
-<div class="txt"><span class="k" id="k"></span><h1 id="t"></h1><p id="s"></p><div class="chips" id="c"></div></div>
-<script>
-const C=JSON.parse(decodeURIComponent(location.hash.slice(1)));
-const bg=document.getElementById("bg"); bg.style.backgroundImage="url("+C.bg+")"; bg.style.backgroundPosition=C.bgpos||"center";
-if(C.shade==="full") document.querySelector(".sh").style.background="linear-gradient(90deg,rgba(11,13,13,.96),rgba(11,13,13,.7) 45%,rgba(11,13,13,.55)),linear-gradient(180deg,rgba(11,13,13,.4),rgba(11,13,13,0) 30%,rgba(11,13,13,.9))";
-k.textContent=C.k; t.innerHTML=C.t; s.textContent=C.s; c.innerHTML=C.c.map(x=>"<span>"+x+"</span>").join("");
-document.getElementById("items").innerHTML=C.items.map(i=>{
-  const st=`left:${i.x}px;top:${i.y}px;width:${i.w}px;height:${i.h}px;transform:rotate(${i.r||0}deg);z-index:${i.z||5}`;
-  const im=`<img src="${i.src}" style="object-position:${i.pos||'center'}">`;
-  if(i.type==="web") return `<div class="it web" style="${st}"><div class="bar"><i></i><i></i><i></i><b></b></div>${im}</div>`;
-  return `<div class="it ${i.type}" style="${st}">${im}</div>`;
-}).join("");
+html,body{width:1600px;height:1000px;overflow:hidden;background:#0B0D0D;color:#fff}
+.abs{position:absolute} img{display:block}
+.cover{width:100%;height:100%;object-fit:cover}
+.g{filter:saturate(.88) contrast(1.08) brightness(.9)}
+.r{border-radius:16px;overflow:hidden}
+.sh{box-shadow:0 50px 100px -40px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.08)}
+.k{font:700 14px Satoshi;letter-spacing:.2em;text-transform:uppercase;color:#38BDF8;display:inline-flex;align-items:center;gap:12px}
+.k:before{content:"";width:30px;height:2px;background:linear-gradient(60deg,#142E8C,#1D4ED8 50%,#38BDF8)}
+.disp{font:600 64px/1 "Clash Display";letter-spacing:-.01em}
+.lab{font:700 13px Satoshi;letter-spacing:.18em;text-transform:uppercase;color:#AEB6C6}
+.phone{border-radius:44px;background:#0B0D0D;padding:10px;box-shadow:0 60px 110px -36px rgba(0,0,0,.95),0 0 0 1.5px rgba(255,255,255,.16)}
+.phone img{border-radius:34px;width:100%;height:100%;object-fit:cover}
+.fade-b{background:linear-gradient(180deg,rgba(11,13,13,0) 50%,rgba(11,13,13,.85))}
+</style></head><body><div id="R"></div><script>
+const k=location.hash.slice(1), R=document.getElementById("R"); let h="";
+const I=(src,css,cls="")=>`<div class="abs ${cls}" style="${css}"><img class="cover g" src="${src}"></div>`;
+const P=(src,css)=>`<div class="abs phone" style="${css}"><img src="${src}"></div>`;
+const shade=(css)=>`<div class="abs" style="inset:0;${css}"></div>`;
+if(k==="seabreeze"){ // editorial collage
+  h+=I("sb-facade.jpg","left:0;top:0;width:760px;height:1000px");
+  h+=shade("width:760px;background:linear-gradient(90deg,rgba(11,13,13,0) 70%,rgba(11,13,13,.6))");
+  h+=I("sb-court.jpg","left:776px;top:0;width:400px;height:560px","r");
+  h+=I("sb-r1.jpg","left:1192px;top:0;width:408px;height:560px","r");
+  h+=I("sb-print.webp","left:776px;top:576px;width:520px;height:424px","r");
+  h+=I("sb-close.jpg","left:1312px;top:576px;width:288px;height:424px","r");
+  h+=shade("background:linear-gradient(180deg,rgba(11,13,13,.35),rgba(11,13,13,.12) 30%,rgba(11,13,13,.12) 60%,rgba(11,13,13,.7)),radial-gradient(ellipse 80% 90% at 50% 50%,rgba(11,13,13,0) 50%,rgba(11,13,13,.55))");
+}
+if(k==="sid"){ // spotlit launch poster
+  h+=I("sid-dusk.jpg","inset:0;filter:blur(2px)");
+  h+=shade("background:radial-gradient(ellipse 38% 70% at 62% 48%,rgba(11,13,13,.2),rgba(11,13,13,.92) 70%),linear-gradient(180deg,rgba(11,13,13,.4),rgba(11,13,13,.85))");
+  h+=`<div class="abs" style="left:770px;top:-120px;width:420px;height:1100px;background:linear-gradient(180deg,rgba(56,189,248,.16),rgba(56,189,248,0) 80%);clip-path:polygon(40% 0,60% 0,100% 100%,0 100%);filter:blur(10px)"></div>`;
+  h+=I("sid-post.webp","left:760px;top:90px;width:656px;height:820px","r sh");
+  h+=I("sid-hoard.webp","left:150px;top:560px;width:560px;height:279px;transform:rotate(-3deg)","r sh");
+  h+=I("sid-web.webp","left:120px;top:150px;width:560px;height:350px;object-position:top","r sh");
+}
+if(k==="aarize"){ // brand flat-lay
+  h+=I("ar-stat.webp","inset:0");
+  h+=shade("background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(11,13,13,0) 55%,rgba(11,13,13,.7)),linear-gradient(180deg,rgba(11,13,13,0) 70%,rgba(11,13,13,.6))");
+  h+=I("ar-3.jpg","left:90px;top:560px;width:330px;height:330px;transform:rotate(-4deg)","r sh");
+}
+if(k==="intech"){ // reels wall
+  h+=shade("background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(29,78,216,.18),rgba(11,13,13,0) 70%)");
+  const rs=[["in-r1.jpg",52,267,262,466],["in-r5.jpg",336,247,262,466],["in-post.webp",620,198,360,605],["in-r2.jpg",1002,247,262,466],["in-r3.jpg",1286,267,262,466]];
+  rs.forEach(([src,x,y,w,hh])=>{h+=I(src,"left:"+x+"px;top:"+y+"px;width:"+w+"px;height:"+hh+"px","r sh");});
+  h+=shade("background:linear-gradient(180deg,rgba(11,13,13,.4),rgba(11,13,13,0) 20%,rgba(11,13,13,0) 75%,rgba(11,13,13,.8))");
+}
+if(k==="trg"){ // diagonal split: project -> campaign
+  h+=I("trg-dusk.jpg","inset:0");
+  h+=`<div class="abs" style="inset:0;clip-path:polygon(52% 0,100% 0,100% 100%,38% 100%)"><img class="cover g" src="trg-gate.webp"></div>`;
+  h+=`<div class="abs" style="left:0;top:0;width:1600px;height:1000px;background:linear-gradient(105deg,transparent calc(45% - 2px),#38BDF8 45%,transparent calc(45% + 2px));opacity:.0"></div>`;
+  h+='<svg class="abs" style="inset:0" width="1600" height="1000"><line x1="832" y1="0" x2="608" y2="1000" stroke="#38BDF8" stroke-width="3" opacity=".9"/></svg>';
+  h+=shade("background:linear-gradient(180deg,rgba(11,13,13,.25),rgba(11,13,13,0) 25%,rgba(11,13,13,0) 70%,rgba(11,13,13,.8))");
+  h+='<div class="abs lab" style="left:60px;bottom:56px">The project</div><div class="abs lab" style="right:60px;bottom:56px">The launch</div>';
+}
+if(k==="jbbr"){ // luxury still life
+  h+=I("jb-box.webp","inset:0");
+  h+=shade("background:radial-gradient(ellipse 70% 80% at 40% 50%,rgba(11,13,13,0) 45%,rgba(11,13,13,.75)),linear-gradient(90deg,rgba(11,13,13,0) 60%,rgba(11,13,13,.7))");
+  h+=P("jb-r1.jpg","left:1210px;top:150px;width:300px;height:620px;transform:rotate(4deg)");
+}
+if(k==="sohom"){ // launch film frame + storyboard
+  h+=`<div class="abs" style="left:60px;top:60px;width:1480px;height:620px;overflow:hidden;border-radius:12px"><img class="cover g" src="pv-pool.jpg" style="object-position:center 60%"></div>`;
+  h+=shade("left:60px;top:60px;width:1480px;height:620px;border-radius:12px;background:linear-gradient(180deg,rgba(11,13,13,.15),rgba(11,13,13,0) 30%,rgba(11,13,13,0) 60%,rgba(11,13,13,.7))");
+  h+='<div class="abs" style="left:96px;top:92px;display:flex;align-items:center;gap:10px;font:700 15px Satoshi;letter-spacing:.18em"><i style="width:12px;height:12px;border-radius:50%;background:#38BDF8;box-shadow:0 0 14px #38BDF8"></i>REC</div>';
+  h+='<div class="abs" style="right:96px;top:92px;font:700 15px Satoshi;letter-spacing:.14em;color:#C9CFDB">00:00:24:12</div>';
+  h+='<div class="abs" style="left:96px;top:560px"><span class="k">Launch film · Soham × DTC</span><div class="disp" style="margin-top:12px;font-size:56px">Pravya</div></div>';
+  ["pv-a.jpg","pv-tow.jpg","pv-b.jpg","pv-lawn.jpg","pv-c.jpg","pv-drop.jpg"].forEach((s,i)=>{h+=I(s,`left:${60+i*250}px;top:712px;width:230px;height:228px`,"r");});
+  h+='<div class="abs lab" style="left:60px;top:956px">Storyboard · 6 scenes</div>';
+}
+if(k==="dtc"){ // tilted social grid
+  h+=I("dt-pool.jpg","inset:0;filter:blur(6px) brightness(.45)");
+  const gs=["dt-g1.jpg","dt-a.jpg","dt-g3.jpg","dt-g2.jpg","dt-b.jpg","dt-g4.jpg","dt-c.jpg","dt-g5.jpg","dt-g1.jpg"];
+  h+='<div class="abs" style="left:430px;top:-260px;width:980px;transform:perspective(2400px) rotateX(48deg) rotateZ(-28deg);transform-origin:center;display:grid;grid-template-columns:repeat(3,1fr);gap:18px">'+gs.slice(0,9).map(s=>`<div class="r sh" style="aspect-ratio:9/16"><img class="cover g" src="${s}"></div>`).join("")+'</div>';
+  h+=shade("background:linear-gradient(90deg,rgba(11,13,13,.85),rgba(11,13,13,0) 35%),linear-gradient(180deg,rgba(11,13,13,0) 60%,rgba(11,13,13,.85))");
+  h+='<div class="abs" style="left:64px;top:80px"><span class="k">DTC Group</span><div class="disp" style="margin-top:14px;font-size:52px;line-height:1.05">Sojon · Good Earth<br>Skyler · Stillwaters</div></div>';
+}
+if(k==="bhatia"){ // brochure spread
+  h+=`<div class="abs" style="left:0;top:0;width:700px;height:1000px;overflow:hidden"><img class="cover g" src="au-tower.jpg" style="object-position:center 18%"></div>`;
+  h+=shade("width:700px;background:linear-gradient(90deg,rgba(11,13,13,0) 70%,rgba(11,13,13,.9))");
+  h+=I("au-c.jpg","left:780px;top:120px;width:380px;height:676px","r sh");
+  h+=P("au-b.jpg","left:1210px;top:220px;width:300px;height:620px");
+  h+='<div class="abs" style="left:780px;top:840px"><span class="k">Bhatia Group · Rajyog</span></div><div class="abs lab" style="left:780px;top:880px;color:#C9CFDB">2, 3 &amp; 4.5 BHK · Borivali West, Mumbai</div>';
+}
+if(k==="yugen"){ // campaign results
+  h+=I("yu-dusk.jpg","inset:0");
+  h+=shade("background:linear-gradient(90deg,rgba(11,13,13,.96) 0%,rgba(11,13,13,.85) 42%,rgba(11,13,13,.35) 70%,rgba(11,13,13,.45)),linear-gradient(180deg,rgba(11,13,13,.3),rgba(11,13,13,0) 30%,rgba(11,13,13,.7))");
+  h+='<div class="abs" style="left:80px;top:96px"><span class="k">Yugen Infra · Lead campaign, North Goa</span></div>';
+  [["15k+","Leads generated"],["37.8%","Lead qualification"],["200+","Plots sold"]].forEach(([n,l],i)=>{h+=`<div class="abs" style="left:80px;top:${190+i*240}px"><div class="disp" style="font-size:118px;line-height:.9">${n}</div><div class="lab" style="margin-top:14px">${l}</div></div>`;});
+  h+='<div class="abs" style="left:80px;top:190px;width:4px;height:0"></div>';
+  h+=P("yu-r1.jpg","left:900px;top:150px;width:300px;height:640px;transform:rotate(-5deg)");
+  h+=P("yu-r2.jpg","left:1210px;top:110px;width:300px;height:640px;transform:rotate(4deg)");
+}
+R.innerHTML=h;
 </script></body></html>
