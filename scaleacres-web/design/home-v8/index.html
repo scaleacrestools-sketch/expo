@@ -568,6 +568,64 @@
   @media (max-width: 1100px) { .lmb .card, .talk .card { grid-template-columns: 1fr; gap: 32px; } .talk .card { padding: 56px 40px; } }
   @media (max-width: 640px) { .lmb { padding: 48px 0; } .lmb .card { padding: 30px 22px; } .lmb h3 { font-size: 28px; } .lmb form { grid-template-columns: 1fr; }
     .talk { padding-top: 48px; } .talk .card { padding: 40px 22px; border-radius: 24px; } .talk h2 { font-size: 42px; } .talk .phones a { font-size: 20px; } .tform { padding: 26px 22px; } .talk .bar { flex-direction: column; gap: 8px; } }
+
+  /* ---------- colour balance (Brand Guidelines v1.0 proportion: White & Mist 55% · Black & Navy 25% · Royal 12%) ----------
+     Black is kept for the hero film, the billboard banner and the footer. Everything else sits on White, Mist or Royal. */
+  /* how we work: Mist ground, dark imagery cards */
+  .journey { background: var(--mist); color: var(--ink); }
+  .journey .eyebrow { color: var(--muted); } .journey .eyebrow::before { background: var(--royal); }
+  .journey .jh { color: var(--ink); } .journey .serif { color: var(--royal); }
+  .jimg img { border-radius: 22px; box-shadow: 0 40px 70px -46px rgba(11,22,64,.6); }
+  .jmark { box-shadow: 0 8px 20px -8px rgba(29,78,216,.55), 0 0 0 1px var(--line); }
+  .jtext h3 { color: var(--ink); } .jintro { color: var(--muted); } .jpara { color: var(--muted); }
+  .jtext h4 { color: var(--ink); } .jtext h4::after { background: var(--royal); }
+  .jtext li { color: var(--graphite); }
+  .jtext::before { background: linear-gradient(180deg, var(--royal), var(--sky) 60%, rgba(56,189,248,.15)); }
+  /* projects wall: white ground, logos on Mist tiles */
+  .projects { background: #fff; color: var(--ink); }
+  .projects .lead { color: var(--muted); }
+  .pwall > div { background: var(--mist); border: 1px solid var(--line); }
+  /* lead-magnet bands: Royal and White instead of black */
+  .lmb .card { background: var(--royal); }
+  .lmb .card::after { background: radial-gradient(closest-side, rgba(56,189,248,.45), transparent); }
+  .lmb .tag { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.35); color: #fff; }
+  .lmb h3 .serif { color: #fff; text-decoration: underline; text-decoration-color: var(--sky); text-decoration-thickness: 3px; text-underline-offset: 8px; }
+  .lmb p { color: rgba(255,255,255,.88); }
+  .lmb input, .lmb select { background: #fff; border-color: transparent; color: var(--ink); }
+  .lmb input::placeholder, .lmb select:invalid { color: var(--muted); } .lmb option { background: #fff; color: var(--ink); }
+  .lmb input:focus, .lmb select:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(11,13,13,.15); }
+  .lmb button { background: var(--ink); } .lmb button:hover { background: #000; }
+  .lmb .note { color: #fff; }
+  .lmb.wh { background: var(--mist); }
+  .lmb.wh .card { background: #fff; color: var(--ink); border: 1px solid var(--line); box-shadow: 0 40px 80px -60px rgba(11,22,64,.5); }
+  .lmb.wh .card::after { background: radial-gradient(closest-side, rgba(29,78,216,.12), transparent); }
+  .lmb.wh .tag { background: var(--mist); border-color: rgba(29,78,216,.3); color: var(--royal); }
+  .lmb.wh h3 .serif { color: var(--royal); text-decoration: none; }
+  .lmb.wh p { color: var(--muted); }
+  .lmb.wh input, .lmb.wh select { background: var(--mist); border-color: var(--line); }
+  .lmb.wh input:focus, .lmb.wh select:focus { border-color: var(--royal); box-shadow: 0 0 0 3px rgba(29,78,216,.14); }
+  .lmb.wh button { background: var(--royal); } .lmb.wh button:hover { background: var(--deep); }
+  .lmb.wh .note { color: var(--royal); }
+  /* free audit: Mist ground, white scorecard */
+  .audit { background: var(--mist); color: var(--ink); }
+  .audit::before { background: radial-gradient(closest-side, rgba(56,189,248,.22), transparent); }
+  .audit .h2 { color: var(--ink); } .audit .h2 .serif { color: var(--royal); }
+  .audit .lead { color: var(--muted); }
+  .audit .eyebrow { color: var(--muted); } .audit .eyebrow::before { background: var(--royal); }
+  .audit ul.gets li small { color: var(--muted); }
+  .report { background: #fff; border-color: var(--line); box-shadow: 0 30px 60px -44px rgba(11,22,64,.45); }
+  .report .rh { color: var(--muted); } .report .rh em { color: var(--royal); border-color: rgba(29,78,216,.35); }
+  .report .row { color: var(--graphite); } .report .row .bar { background: var(--mist); } .report .row span { color: var(--ink); }
+  .aform { box-shadow: 0 40px 80px -50px rgba(11,22,64,.55); border: 1px solid var(--line); }
+  /* contact card: the signature gradient (its one large use on the page) */
+  .talk .card { background: linear-gradient(60deg, #142E8C 0%, #1D4ED8 55%, #38BDF8 120%); }
+  .talk .card::before { background: radial-gradient(closest-side, rgba(255,255,255,.14), transparent); }
+  .talk .chip { border-color: rgba(255,255,255,.35); background: rgba(255,255,255,.1); }
+  .talk .chip::before { background: #fff; box-shadow: none; }
+  .talk h2 .serif { color: #fff; text-decoration: underline; text-decoration-color: rgba(255,255,255,.55); text-decoration-thickness: 4px; text-underline-offset: 10px; }
+  .talk .lead { color: rgba(255,255,255,.9); }
+  .talk .phones a:hover { color: var(--ink); }
+  .tform button { background: var(--ink); } .tform button:hover { background: #000; }
 </style>
 </head>
 <body>
@@ -709,7 +767,7 @@
 </section>
 
 <!-- 06 how we work: brand journey -->
-<section class="journey dark" id="how" aria-label="How we work">
+<section class="journey" id="how" aria-label="How we work">
   <div class="wrap">
     <span class="eyebrow rv">How we work</span>
     <h2 class="jh"><span class="mask"><span>From a plan, to a</span></span><span class="mask"><span style="--d:120ms">brand journey.</span></span></h2>
@@ -751,10 +809,10 @@
 </section>
 
 <!-- 07c projects wall -->
-<section class="projects dark" id="projects" aria-label="Projects">
+<section class="projects" id="projects" aria-label="Projects">
   <div class="wrap">
     <div class="head">
-      <div><span class="eyebrow rv">Our projects</span><h2 class="h2" style="margin-top:22px"><span class="mask"><span><span id="pcount">75</span>+ brands &amp; <span class="serif sky">projects</span></span></span></h2></div>
+      <div><span class="eyebrow rv">Our projects</span><h2 class="h2" style="margin-top:22px"><span class="mask"><span><span id="pcount">75</span>+ brands &amp; <span class="serif royal">projects</span></span></span></h2></div>
       <p class="lead rv" style="max-width:460px">Developers, projects and brands we have marketed, from launch campaigns and websites to films and performance media.</p>
     </div>
     <div class="pwall rv" id="pwall"></div>
@@ -791,7 +849,7 @@
 </section>
 
 <!-- 08b lead magnet: free marketing audit -->
-<section class="audit dark" id="audit" aria-label="Free marketing audit">
+<section class="audit" id="audit" aria-label="Free marketing audit">
   <div class="wrap grid">
     <div>
       <span class="eyebrow rv">Free marketing audit</span>

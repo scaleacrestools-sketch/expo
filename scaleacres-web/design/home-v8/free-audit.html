@@ -558,6 +558,64 @@
   @media (max-width: 640px) { .lmb { padding: 48px 0; } .lmb .card { padding: 30px 22px; } .lmb h3 { font-size: 28px; } .lmb form { grid-template-columns: 1fr; }
     .talk { padding-top: 48px; } .talk .card { padding: 40px 22px; border-radius: 24px; } .talk h2 { font-size: 42px; } .talk .phones a { font-size: 20px; } .tform { padding: 26px 22px; } .talk .bar { flex-direction: column; gap: 8px; } }
 
+  /* ---------- colour balance (Brand Guidelines v1.0 proportion: White & Mist 55% · Black & Navy 25% · Royal 12%) ----------
+     Black is kept for the hero film, the billboard banner and the footer. Everything else sits on White, Mist or Royal. */
+  /* how we work: Mist ground, dark imagery cards */
+  .journey { background: var(--mist); color: var(--ink); }
+  .journey .eyebrow { color: var(--muted); } .journey .eyebrow::before { background: var(--royal); }
+  .journey .jh { color: var(--ink); } .journey .serif { color: var(--royal); }
+  .jimg img { border-radius: 22px; box-shadow: 0 40px 70px -46px rgba(11,22,64,.6); }
+  .jmark { box-shadow: 0 8px 20px -8px rgba(29,78,216,.55), 0 0 0 1px var(--line); }
+  .jtext h3 { color: var(--ink); } .jintro { color: var(--muted); } .jpara { color: var(--muted); }
+  .jtext h4 { color: var(--ink); } .jtext h4::after { background: var(--royal); }
+  .jtext li { color: var(--graphite); }
+  .jtext::before { background: linear-gradient(180deg, var(--royal), var(--sky) 60%, rgba(56,189,248,.15)); }
+  /* projects wall: white ground, logos on Mist tiles */
+  .projects { background: #fff; color: var(--ink); }
+  .projects .lead { color: var(--muted); }
+  .pwall > div { background: var(--mist); border: 1px solid var(--line); }
+  /* lead-magnet bands: Royal and White instead of black */
+  .lmb .card { background: var(--royal); }
+  .lmb .card::after { background: radial-gradient(closest-side, rgba(56,189,248,.45), transparent); }
+  .lmb .tag { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.35); color: #fff; }
+  .lmb h3 .serif { color: #fff; text-decoration: underline; text-decoration-color: var(--sky); text-decoration-thickness: 3px; text-underline-offset: 8px; }
+  .lmb p { color: rgba(255,255,255,.88); }
+  .lmb input, .lmb select { background: #fff; border-color: transparent; color: var(--ink); }
+  .lmb input::placeholder, .lmb select:invalid { color: var(--muted); } .lmb option { background: #fff; color: var(--ink); }
+  .lmb input:focus, .lmb select:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(11,13,13,.15); }
+  .lmb button { background: var(--ink); } .lmb button:hover { background: #000; }
+  .lmb .note { color: #fff; }
+  .lmb.wh { background: var(--mist); }
+  .lmb.wh .card { background: #fff; color: var(--ink); border: 1px solid var(--line); box-shadow: 0 40px 80px -60px rgba(11,22,64,.5); }
+  .lmb.wh .card::after { background: radial-gradient(closest-side, rgba(29,78,216,.12), transparent); }
+  .lmb.wh .tag { background: var(--mist); border-color: rgba(29,78,216,.3); color: var(--royal); }
+  .lmb.wh h3 .serif { color: var(--royal); text-decoration: none; }
+  .lmb.wh p { color: var(--muted); }
+  .lmb.wh input, .lmb.wh select { background: var(--mist); border-color: var(--line); }
+  .lmb.wh input:focus, .lmb.wh select:focus { border-color: var(--royal); box-shadow: 0 0 0 3px rgba(29,78,216,.14); }
+  .lmb.wh button { background: var(--royal); } .lmb.wh button:hover { background: var(--deep); }
+  .lmb.wh .note { color: var(--royal); }
+  /* free audit: Mist ground, white scorecard */
+  .audit { background: var(--mist); color: var(--ink); }
+  .audit::before { background: radial-gradient(closest-side, rgba(56,189,248,.22), transparent); }
+  .audit .h2 { color: var(--ink); } .audit .h2 .serif { color: var(--royal); }
+  .audit .lead { color: var(--muted); }
+  .audit .eyebrow { color: var(--muted); } .audit .eyebrow::before { background: var(--royal); }
+  .audit ul.gets li small { color: var(--muted); }
+  .report { background: #fff; border-color: var(--line); box-shadow: 0 30px 60px -44px rgba(11,22,64,.45); }
+  .report .rh { color: var(--muted); } .report .rh em { color: var(--royal); border-color: rgba(29,78,216,.35); }
+  .report .row { color: var(--graphite); } .report .row .bar { background: var(--mist); } .report .row span { color: var(--ink); }
+  .aform { box-shadow: 0 40px 80px -50px rgba(11,22,64,.55); border: 1px solid var(--line); }
+  /* contact card: the signature gradient (its one large use on the page) */
+  .talk .card { background: linear-gradient(60deg, #142E8C 0%, #1D4ED8 55%, #38BDF8 120%); }
+  .talk .card::before { background: radial-gradient(closest-side, rgba(255,255,255,.14), transparent); }
+  .talk .chip { border-color: rgba(255,255,255,.35); background: rgba(255,255,255,.1); }
+  .talk .chip::before { background: #fff; box-shadow: none; }
+  .talk h2 .serif { color: #fff; text-decoration: underline; text-decoration-color: rgba(255,255,255,.55); text-decoration-thickness: 4px; text-underline-offset: 10px; }
+  .talk .lead { color: rgba(255,255,255,.9); }
+  .talk .phones a:hover { color: var(--ink); }
+  .tform button { background: var(--ink); } .tform button:hover { background: #000; }
+
   /* ---------- landing pages ---------- */
   .lp-hdr { position: absolute; inset: 0 0 auto; z-index: 50; }
   .lp-hdr .bar { width: min(var(--wrap), calc(100% - 96px)); margin: 0 auto; height: 88px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.12); }
@@ -583,7 +641,7 @@
   .lp-logos .wrap { display: flex; align-items: center; justify-content: space-between; gap: 34px; height: 120px; }
   .lp-logos small { flex: none; font-size: 12.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
   .lp-logos img { height: 42px; width: auto; max-width: 120px; object-fit: contain; opacity: .85; filter: grayscale(.2); }
-  .lp-sec { padding: 120px 0; background: #fff; color: var(--ink); }
+  .lp-sec { padding: 120px 0; background: #fff; color: var(--ink); display: flow-root; }
   .lp-sec.mist { background: var(--mist); } .lp-sec.dark { background: var(--ink); color: #fff; }
   .lp-sec .center { text-align: center; max-width: 780px; margin: 0 auto; }
   .lp-sec .center .lead { margin: 18px auto 0; }
@@ -643,6 +701,12 @@
   .lp-how b { font-family: "Clash Display", sans-serif; font-size: 64px; font-weight: 600; color: transparent; -webkit-text-stroke: 1.5px rgba(56,189,248,.8); line-height: 1; }
   .lp-how h3 { margin-top: 18px; font-family: "Clash Display", sans-serif; font-size: 24px; font-weight: 600; }
   .lp-how p { margin-top: 8px; color: var(--grey-soft); line-height: 1.6; font-size: 15.5px; max-width: 340px; }
+  /* light variants (colour balance) */
+  .lp-sec:not(.dark) .lp-res > div { background: var(--mist); border-color: var(--line); }
+  .lp-sec:not(.dark) .lp-res small { color: var(--royal); } .lp-sec:not(.dark) .lp-res b { color: var(--ink); } .lp-sec:not(.dark) .lp-res span { color: var(--muted); }
+  .lp-sec:not(.dark) .lp-how { border-top-color: var(--line); }
+  .lp-sec:not(.dark) .lp-how b { -webkit-text-stroke-color: var(--royal); } .lp-sec:not(.dark) .lp-how p { color: var(--muted); }
+  .lp-sec.dark { background: var(--navy); }
   @media (max-width: 1100px) { .lp-hero .grid { grid-template-columns: 1fr; gap: 44px; } .lp-svc, .lp-res, .lp-who, .lp-how { grid-template-columns: 1fr 1fr; } .lp-tst { grid-template-columns: 1fr 1fr; } .lp-logos .wrap { flex-wrap: wrap; height: auto; padding: 24px 0; justify-content: center; } }
   @media (max-width: 640px) { .lp-hdr .bar { width: calc(100% - 32px); height: 72px; } .lp-hdr .tel { display: none; } .lp-hero .grid { padding: 110px 0 56px; } .lp-hero h1 { font-size: 38px; } .lp-hero .nums { gap: 24px; } .lp-hero .nums b { font-size: 34px; }
     .lp-sec, .lp-final { padding: 84px 0; } .lp-svc, .lp-work, .lp-res, .lp-steps, .lp-who, .lp-how, .lp-tst { grid-template-columns: 1fr; } .lp-final .btns { flex-direction: column; align-items: center; } .lp-logos img { height: 32px; } }
@@ -678,7 +742,7 @@
       <p class="note" role="status" aria-live="polite"></p>
     </form></div>
   </div>
-</section><section class="lp-logos" aria-label="Trusted by"><div class="wrap"><small>Trusted by 75+ brands</small><img src="assets/logos/dlf.png" alt="Dlf" loading="lazy"><img src="assets/logos/godrej-properties.png" alt="Godrej Properties" loading="lazy"><img src="assets/logos/m3m.png" alt="M3M" loading="lazy"><img src="assets/logos/sobha-realty.png" alt="Sobha Realty" loading="lazy"><img src="assets/logos/signature-global.png" alt="Signature Global" loading="lazy"><img src="assets/logos/tata-realty.png" alt="Tata Realty" loading="lazy"><img src="assets/logos/adani-realty.png" alt="Adani Realty" loading="lazy"><img src="assets/logos/trg.png" alt="Trg" loading="lazy"></div></section><section class="lp-sec dark" aria-label="What is in the audit"><div class="wrap"><div class="center" style="margin-bottom:56px"><span class="eyebrow center rv">What you get</span><h2 class="h2 rv" style="margin-top:20px">Inside your <span class="serif sky">free audit.</span></h2></div><div class="audit" style="padding:0;background:none"><div class="grid" style="grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+</section><section class="lp-logos" aria-label="Trusted by"><div class="wrap"><small>Trusted by 75+ brands</small><img src="assets/logos/dlf.png" alt="Dlf" loading="lazy"><img src="assets/logos/godrej-properties.png" alt="Godrej Properties" loading="lazy"><img src="assets/logos/m3m.png" alt="M3M" loading="lazy"><img src="assets/logos/sobha-realty.png" alt="Sobha Realty" loading="lazy"><img src="assets/logos/signature-global.png" alt="Signature Global" loading="lazy"><img src="assets/logos/tata-realty.png" alt="Tata Realty" loading="lazy"><img src="assets/logos/adani-realty.png" alt="Adani Realty" loading="lazy"><img src="assets/logos/trg.png" alt="Trg" loading="lazy"></div></section><section class="lp-sec mist" aria-label="What is in the audit"><div class="wrap"><div class="center" style="margin-bottom:56px"><span class="eyebrow center rv">What you get</span><h2 class="h2 rv" style="margin-top:20px">Inside your <span class="serif royal">free audit.</span></h2></div><div class="audit" style="padding:0;background:none"><div class="grid" style="grid-template-columns:1fr 1fr;gap:56px;align-items:center">
   <ul class="gets" style="margin-top:0"><li class="rv"><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i><div>Website &amp; landing page review<small>Speed, layout, messaging and how well each page turns visitors into enquiries.</small></div></li><li class="rv"><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i><div>Ads &amp; cost-per-lead check<small>Targeting, creative, budget split and tracking on Meta and Google.</small></div></li><li class="rv"><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i><div>Social &amp; creative review<small>What your feed, reels and ads say about your brand, and what to change.</small></div></li><li class="rv"><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i><div>Search (SEO) snapshot<small>How easily buyers find you on Google, including local search.</small></div></li><li class="rv"><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i><div>A prioritised action plan<small>The three changes likely to move your numbers first.</small></div></li></ul>
   <div class="report rv" style="margin-top:0;max-width:none" aria-label="Sample audit scorecard"><div class="rh">Audit scorecard <em>Sample</em></div>
     <div class="row">Website<div class="bar"><b style="width:62%"></b></div><span>62</span></div>
@@ -698,8 +762,8 @@
   </form>
 </div></div></section>
 <section class="lp-sec mist" aria-label="Who it is for"><div class="wrap"><div class="center"><span class="eyebrow center rv">Who it is for</span><h2 class="h2 rv" style="margin-top:20px">Built for <span class="serif royal">growth.</span></h2></div><div class="lp-who"><div class="rv" style="--d:0ms"><b>Real estate</b><h3>Developers</h3><p>Launching or selling a project and want more qualified enquiries and site visits.</p></div><div class="rv" style="--d:80ms"><b>Real estate</b><h3>Channel partners &amp; brokers</h3><p>Running ads for several projects and want a lower cost per lead.</p></div><div class="rv" style="--d:160ms"><b>Real estate</b><h3>Real estate brands</h3><p>Builders, consultancies and project marketers who want stronger creative and better leads.</p></div></div></div></section>
-<section class="lp-sec dark" aria-label="How it works"><div class="wrap"><div class="center"><span class="eyebrow center rv">How it works</span><h2 class="h2 rv" style="margin-top:20px">Three simple <span class="serif sky">steps.</span></h2></div><div class="lp-how"><div class="rv" style="--d:0ms"><b>01</b><h3>Share your link</h3><p>Send your website or Instagram link and a few details in the form.</p></div><div class="rv" style="--d:100ms"><b>02</b><h3>We review it</h3><p>A ScaleAcres strategist reviews your website, ads, social and search.</p></div><div class="rv" style="--d:200ms"><b>03</b><h3>Get your plan</h3><p>We walk you through what we found and what to fix first.</p></div></div></div></section>
-<section class="lp-sec dark" style="padding-top:0" aria-label="Results"><div class="wrap"><div class="lp-res">
+<section class="lp-sec" aria-label="How it works"><div class="wrap"><div class="center"><span class="eyebrow center rv">How it works</span><h2 class="h2 rv" style="margin-top:20px">Three simple <span class="serif royal">steps.</span></h2></div><div class="lp-how"><div class="rv" style="--d:0ms"><b>01</b><h3>Share your link</h3><p>Send your website or Instagram link and a few details in the form.</p></div><div class="rv" style="--d:100ms"><b>02</b><h3>We review it</h3><p>A ScaleAcres strategist reviews your website, ads, social and search.</p></div><div class="rv" style="--d:200ms"><b>03</b><h3>Get your plan</h3><p>We walk you through what we found and what to fix first.</p></div></div></div></section>
+<section class="lp-sec" style="padding-top:0;display:flow-root" aria-label="Results"><div class="wrap"><div class="lp-res">
   <div class="rv"><small>Yugen Infra · Real estate</small><div class="n"><div><b>15k+</b><span>Leads</span></div><div><b>200+</b><span>Plots sold</span></div></div></div>
   <div class="rv" style="--d:80ms"><small>TimesPro Consulting</small><div class="n"><div><b>50%</b><span>Lower cost per lead</span></div><div><b>350%</b><span>More site visits</span></div></div></div>
   <div class="rv" style="--d:160ms"><small>NRG India</small><div class="n"><div><b>20×</b><span>Return on marketing</span></div><div><b>110%</b><span>More site visits</span></div></div></div>

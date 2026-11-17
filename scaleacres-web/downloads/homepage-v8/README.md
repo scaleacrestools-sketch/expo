@@ -2,6 +2,14 @@
 
 **Positioning:** a real estate 360° marketing and creative agency, creative-first. The copy across the homepage, both new pages, the services list, the FAQ, the footer and the meta tags says so.
 
+**Colour balance (final):** the page now follows the Brand Guidelines v1.0 proportion. Near-black coverage dropped from 42% to 20% of the homepage (guideline: Black & Navy about 25%). See `colour-redline-before-after.jpg`.
+- **Kept black:** the hero film, the billboard banner, the studio card and the footer.
+- **Now Mist:** "How we work" and the free audit.
+- **Now white:** the projects wall.
+- **Lead bands:** the creative-concept band is on Royal; the launch-plan band is a white card on Mist.
+- **Contact card:** uses the signature gradient (its one large use on the page).
+- **Landing pages:** the same treatment, with only the hero, one Royal Navy results band (landing page) and the footer dark.
+
 **Lead magnets:** four on the homepage, and the same ones on both new pages.
 1. **Free 90-day launch plan:** the hero form.
 2. **Free creative concept:** a new band after Services, offering one campaign idea with a key visual direction and a headline.

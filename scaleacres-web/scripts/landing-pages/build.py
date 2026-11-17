@@ -43,7 +43,7 @@ PAGE_CSS = """
   .lp-logos .wrap { display: flex; align-items: center; justify-content: space-between; gap: 34px; height: 120px; }
   .lp-logos small { flex: none; font-size: 12.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
   .lp-logos img { height: 42px; width: auto; max-width: 120px; object-fit: contain; opacity: .85; filter: grayscale(.2); }
-  .lp-sec { padding: 120px 0; background: #fff; color: var(--ink); }
+  .lp-sec { padding: 120px 0; background: #fff; color: var(--ink); display: flow-root; }
   .lp-sec.mist { background: var(--mist); } .lp-sec.dark { background: var(--ink); color: #fff; }
   .lp-sec .center { text-align: center; max-width: 780px; margin: 0 auto; }
   .lp-sec .center .lead { margin: 18px auto 0; }
@@ -103,6 +103,12 @@ PAGE_CSS = """
   .lp-how b { font-family: "Clash Display", sans-serif; font-size: 64px; font-weight: 600; color: transparent; -webkit-text-stroke: 1.5px rgba(56,189,248,.8); line-height: 1; }
   .lp-how h3 { margin-top: 18px; font-family: "Clash Display", sans-serif; font-size: 24px; font-weight: 600; }
   .lp-how p { margin-top: 8px; color: var(--grey-soft); line-height: 1.6; font-size: 15.5px; max-width: 340px; }
+  /* light variants (colour balance) */
+  .lp-sec:not(.dark) .lp-res > div { background: var(--mist); border-color: var(--line); }
+  .lp-sec:not(.dark) .lp-res small { color: var(--royal); } .lp-sec:not(.dark) .lp-res b { color: var(--ink); } .lp-sec:not(.dark) .lp-res span { color: var(--muted); }
+  .lp-sec:not(.dark) .lp-how { border-top-color: var(--line); }
+  .lp-sec:not(.dark) .lp-how b { -webkit-text-stroke-color: var(--royal); } .lp-sec:not(.dark) .lp-how p { color: var(--muted); }
+  .lp-sec.dark { background: var(--navy); }
   @media (max-width: 1100px) { .lp-hero .grid { grid-template-columns: 1fr; gap: 44px; } .lp-svc, .lp-res, .lp-who, .lp-how { grid-template-columns: 1fr 1fr; } .lp-tst { grid-template-columns: 1fr 1fr; } .lp-logos .wrap { flex-wrap: wrap; height: auto; padding: 24px 0; justify-content: center; } }
   @media (max-width: 640px) { .lp-hdr .bar { width: calc(100% - 32px); height: 72px; } .lp-hdr .tel { display: none; } .lp-hero .grid { padding: 110px 0 56px; } .lp-hero h1 { font-size: 38px; } .lp-hero .nums { gap: 24px; } .lp-hero .nums b { font-size: 34px; }
     .lp-sec, .lp-final { padding: 84px 0; } .lp-svc, .lp-work, .lp-res, .lp-steps, .lp-who, .lp-how, .lp-tst { grid-template-columns: 1fr; } .lp-final .btns { flex-direction: column; align-items: center; } .lp-logos img { height: 32px; } }
@@ -255,11 +261,11 @@ audit = head("Free Marketing Audit · ScaleAcres", "Get a free marketing audit f
   hero("Free marketing audit", 'Find out what is holding <span class="serif">your leads back.</span>',
        "A ScaleAcres strategist reviews your project's website, ads, social and search, then walks you through what to fix first. Free, with no obligation.",
        ["Website, ads, social and SEO reviewed", "A prioritised action plan", "From a real estate 360° marketing &amp; creative agency"], '<img src="assets/img/ideas-city-1440.webp" alt="" aria-hidden="true">') + logos + \
-  f"""<section class="lp-sec dark" aria-label="What is in the audit"><div class="wrap"><div class="center" style="margin-bottom:56px"><span class="eyebrow center rv">What you get</span><h2 class="h2 rv" style="margin-top:20px">Inside your <span class="serif sky">free audit.</span></h2></div>{inside}</div></section>
+  f"""<section class="lp-sec mist" aria-label="What is in the audit"><div class="wrap"><div class="center" style="margin-bottom:56px"><span class="eyebrow center rv">What you get</span><h2 class="h2 rv" style="margin-top:20px">Inside your <span class="serif royal">free audit.</span></h2></div>{inside}</div></section>
 {bands[0]}
 <section class="lp-sec mist" aria-label="Who it is for"><div class="wrap"><div class="center"><span class="eyebrow center rv">Who it is for</span><h2 class="h2 rv" style="margin-top:20px">Built for <span class="serif royal">growth.</span></h2></div>{who}</div></section>
-<section class="lp-sec dark" aria-label="How it works"><div class="wrap"><div class="center"><span class="eyebrow center rv">How it works</span><h2 class="h2 rv" style="margin-top:20px">Three simple <span class="serif sky">steps.</span></h2></div>{how}</div></section>
-<section class="lp-sec dark" style="padding-top:0" aria-label="Results"><div class="wrap">{RESULTS}</div></section>
+<section class="lp-sec" aria-label="How it works"><div class="wrap"><div class="center"><span class="eyebrow center rv">How it works</span><h2 class="h2 rv" style="margin-top:20px">Three simple <span class="serif royal">steps.</span></h2></div>{how}</div></section>
+<section class="lp-sec" style="padding-top:0;display:flow-root" aria-label="Results"><div class="wrap">{RESULTS}</div></section>
 {bands[1]}
 <section class="lp-sec mist" aria-label="FAQ"><div class="wrap"><div class="center"><span class="eyebrow center rv">FAQ</span><h2 class="h2 rv" style="margin-top:20px">Audit <span class="serif royal">questions.</span></h2></div>{faq(AU_FAQ)}</div></section>
 """ + final('Ready to see <span class="serif">what to fix?</span>', "Get your free marketing audit today.") + "</main>\n" + footer + SCRIPT + "\n</body></html>\n"
