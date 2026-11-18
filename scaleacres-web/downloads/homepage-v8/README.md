@@ -1,5 +1,15 @@
 # ScaleAcres homepage v8
 
+## SVG files (final version)
+| File | Use |
+| --- | --- |
+| `scaleacres-homepage-v8-editable.svg` | Editable: 379 live text layers, 171 image layers and 771 vector shapes, grouped by section (`01-hero` … `17-footer`, plus header, side rail and quote button). Install the fonts in `fonts/` first. |
+| `scaleacres-homepage-v8.svg` | The same file with Clash Display and Satoshi embedded, so it displays exactly in any browser |
+| `scaleacres-homepage-v8-svg-preview-part1.jpg` / `-part2.jpg` | How the SVG renders, top and bottom halves |
+| `fonts/` | Clash Display and Satoshi as `.ttf` (install for Figma or Illustrator) and `.woff2` |
+
+Every photo, logo and showcase card is its own image layer and can be replaced. The hero film appears as one still frame. Rebuild with `scripts/reference-svg/build-home8.mjs` and then `assemble-home8.py`.
+
 **Positioning:** a real estate 360° marketing and creative agency, creative-first. The copy across the homepage, both new pages, the services list, the FAQ, the footer and the meta tags says so.
 
 **Colour balance (final):** the page now follows the Brand Guidelines v1.0 proportion. Near-black coverage dropped from 42% to 20% of the homepage (guideline: Black & Navy about 25%). See `colour-redline-before-after.jpg`.
