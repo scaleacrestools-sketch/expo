@@ -1,8 +1,9 @@
 // Records the ScaleAcres v8 homepage (static mode) as layers: out-home8/ops.json + snaps.
 import fs from "node:fs";
 import { chromium } from "playwright";
-const PAGE = "file:///home/user/expo/scaleacres-web/design/home-v8/index.html?static=1";
-fs.mkdirSync("out-home8/snap", { recursive: true });
+const PAGE = "file:///home/user/expo/scaleacres-web/design/home-v8/" + (process.env.SVG_PAGE || "index.html") + "?static=1";
+const OUT = process.env.SVG_OUT || "out-home8";
+fs.mkdirSync(OUT + "/snap", { recursive: true });
 const b = await chromium.launch();
 const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
 await p.goto(PAGE, { waitUntil: "load" });
@@ -64,11 +65,11 @@ console.log("ops", data.ops.length, "H", data.H, data.groups.map((g) => `${g.nam
 for (const s of data.ops.filter((o) => o.k === "snap")) {
   const w = Math.max(1, Math.ceil(s.w)), h = Math.max(1, Math.ceil(s.h));
   const tag = await p.addStyleTag({ content: `html,body{background:transparent!important} body *{visibility:hidden!important} [data-snap="${s.id}"]${s.all ? `,[data-snap="${s.id}"] *` : ""}{visibility:visible!important}` });
-  await p.screenshot({ path: `out-home8/snap/${s.id}.png`, fullPage: true, omitBackground: true, clip: { x: Math.floor(s.x), y: Math.floor(s.y), width: w, height: h } });
+  await p.screenshot({ path: `${OUT}/snap/${s.id}.png`, fullPage: true, omitBackground: true, clip: { x: Math.floor(s.x), y: Math.floor(s.y), width: w, height: h } });
   await tag.evaluate((n) => n.remove());
 }
 const images = {};
 for (const o of data.ops.filter((o) => o.k === "img")) images[o.src] = decodeURIComponent(o.src.replace(/^file:\/\//, "").split("?")[0]);
-fs.writeFileSync("out-home8/ops.json", JSON.stringify({ ...data, images }));
-await p.screenshot({ path: "out-home8/flat.png", fullPage: true });
+fs.writeFileSync(OUT + "/ops.json", JSON.stringify({ ...data, images }));
+await p.screenshot({ path: OUT + "/flat.png", fullPage: true });
 await b.close();

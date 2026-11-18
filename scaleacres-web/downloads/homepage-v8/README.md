@@ -1,5 +1,35 @@
 # ScaleAcres homepage v8
 
+## Landing-page version (no footer, a lead magnet in every section)
+The homepage as a landing page: `design/home-v8/home-landing.html`. Every homepage section is unchanged. The page is generated from `index.html` by `scripts/landing-pages/build_home_landing.py`, so the homepage itself is not touched.
+
+- **No footer.** The page ends on a final "Get a call back" band.
+- **A lead-magnet band after every section** (13 forms in all, including the hero form, the free audit and the contact card):
+  - free strategy call
+  - free creative concept
+  - free outdoor / hoarding concept
+  - full portfolio
+  - free 90-day plan
+  - free competitor ad report
+  - channel-partner plan
+  - free website review
+  - free marketing audit
+  - call back
+- **A button inside every section** (10 in all). Each one scrolls to its matching form and puts the cursor in the first field. Every button reads "Free · no obligation".
+
+| File | Use |
+| --- | --- |
+| `scaleacres-homepage-landing-editable.svg` | Editable: 434 live text layers and 178 image layers, grouped in page order (`01-hero` … `23-lead-magnet-call-back`). Install the fonts in `fonts/` first. |
+| `scaleacres-homepage-landing.svg` | The same file with the fonts embedded |
+| `scaleacres-homepage-landing-svg-preview-part1.jpg` / `-part2.jpg` | How the SVG renders |
+
+Rebuild:
+
+```
+SVG_PAGE=home-landing.html SVG_OUT=out-hl node scripts/reference-svg/build-home8.mjs
+SVG_OUT=out-hl python3 scripts/reference-svg/assemble-home8.py
+```
+
 ## SVG files (final version)
 | File | Use |
 | --- | --- |

@@ -1,15 +1,16 @@
-"""Builds one editable SVG from out-home8/ops.json: live text, vector shapes and icons, and every
+"""Builds one editable SVG from <SVG_OUT, default out-home8>/ops.json: live text, vector shapes and icons, and every
 picture as its own named, replaceable <image> layer. Groups follow the page's sections.
 
     python3 -I assemble.py <out.svg> [--embed-fonts]
 """
-import base64, io, json, re, sys
+import base64, io, json, os, re, sys
 from html import escape
 from PIL import Image
 
 OUT = sys.argv[1]
 EMBED_FONTS = "--embed-fonts" in sys.argv
-d = json.load(open("out-home8/ops.json"))
+OUTDIR = os.environ.get("SVG_OUT", "out-home8")
+d = json.load(open(OUTDIR + "/ops.json"))
 W, H = d["W"], d["H"]
 ids = {}
 
@@ -171,7 +172,7 @@ def draw(o):
             if not src:
                 return ""
         else:
-            src = f"out-home8/snap/{o['id']}.png"
+            src = f"{OUTDIR}/snap/{o['id']}.png"
         if src.endswith(".svg"):
             # vector file: nest it as live vector layers, ids prefixed so copies don't clash
             raw = open(src).read()

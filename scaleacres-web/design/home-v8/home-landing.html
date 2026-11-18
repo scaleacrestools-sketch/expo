@@ -1,0 +1,1242 @@
+<!doctype html>
+<html lang="en" class="form-white">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="ScaleAcres is a real estate 360° marketing and creative agency: branding, ad films, creative, websites and performance campaigns for developers, from one studio.">
+<meta property="og:title" content="ScaleAcres · Real Estate Marketing That Builds Real Demand">
+<meta property="og:description" content="Real estate marketing and creative from one 360° team: brand, ad films, websites and performance campaigns for developers.">
+<meta property="og:image" content="assets/img/hero-ai-poster.jpg">
+<meta name="theme-color" content="#0B0D0D">
+<link rel="preload" href="assets/img/hero-ai-poster.jpg" as="image">
+<link rel="preload" href="assets/fonts/clash-display-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/satoshi-400.woff2" as="font" type="font/woff2" crossorigin>
+<title>ScaleAcres · Real Estate 360° Marketing &amp; Creative Agency · Free Consultation</title>
+<!--
+  Homepage concept v8 (hero: copy left, enquiry form right, over a wall of faceless ScaleAcres AI and ad-film renders). Layout follows the approved reference flow (hero film, statement, services,
+  "ideas" banner, creative showcase, how we work, clients, studio cards, CTA, FAQ, footer); type and
+  type is Clash Display (headlines) + Satoshi (text); colours are the
+  ScaleAcres brand: Brand Black, Royal, Royal Deep, Sky, White, Mist. Every image, video, logo, fact and
+  line of copy is ScaleAcres' own (scaleacres.com, the brand kit and the project repository).
+  ?static=1 renders every reveal in its finished state (used for the SVG export).
+-->
+<style>
+  /* Type (approved option 3): Clash Display for headlines, Satoshi for text and UI. Both from Fontshare (ITF Free Font License). */
+  @font-face { font-family: "Clash Display"; src: url(assets/fonts/clash-display-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+  @font-face { font-family: "Satoshi"; src: url(assets/fonts/satoshi-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Satoshi"; src: url(assets/fonts/satoshi-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: "Satoshi"; src: url(assets/fonts/satoshi-700.woff2) format("woff2"); font-weight: 600 900; font-display: swap; }
+  :root {
+    --ink: #0B0D0D; --ink-2: #15181B; --navy: #0B1640; --royal: #1D4ED8; --deep: #142E8C; --sky: #38BDF8; --white: #FFFFFF; --mist: #EEF2FB;
+    --muted: #5F6878; --line: #DDE3EF; --graphite: #2B3140; --silver: #AEB6C6; --grey-soft: #C9CFDB;
+    --grad: linear-gradient(60deg, #142E8C 0%, #1D4ED8 50%, #38BDF8 100%); --line-d: rgba(255,255,255,.12);
+    --wrap: 1344px; --ease: cubic-bezier(.16,1,.3,1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: "Satoshi", system-ui, sans-serif; color: var(--ink); background: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img, video { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: min(var(--wrap), calc(100% - 96px)); margin: 0 auto; }
+  .serif { font-style: normal; }
+  .royal { color: var(--royal); } .sky { color: var(--sky); }
+  .grad { background: linear-gradient(90deg, var(--deep), var(--royal) 45%, var(--sky)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow::before { content: ""; width: 30px; height: 2px; background: var(--royal); }
+  .dark .eyebrow { color: var(--silver); } .dark .eyebrow::before { background: var(--sky); }
+  .eyebrow.center::after { content: ""; width: 30px; height: 2px; background: var(--royal); }
+  .pill { display: inline-flex; align-items: center; gap: 10px; padding: 9px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+  .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .h2 { font-size: clamp(44px, 4.6vw, 68px); font-weight: 600; line-height: 1.02; letter-spacing: -0.035em; }
+  .h2 .serif { font-size: 1.04em; }
+  .lead { font-size: 19px; line-height: 1.6; color: var(--muted); }
+  .dark .lead { color: var(--grey-soft); }
+  .btn { display: inline-flex; align-items: center; gap: 12px; height: 54px; padding: 0 28px; border-radius: 999px; font-size: 16px; font-weight: 600; transition: transform .5s var(--ease), background .3s, color .3s, box-shadow .3s; }
+  .btn svg { width: 16px; height: 16px; transition: transform .5s var(--ease); }
+  .btn:hover svg { transform: translate(3px, -3px); }
+  .btn-royal { background: var(--royal); color: #fff; box-shadow: 0 14px 30px -12px rgba(29,78,216,.7); }
+  .btn-royal:hover { background: var(--deep); }
+  .btn-line { border: 1.5px solid rgba(255,255,255,.35); color: #fff; }
+  .btn-line:hover { background: #fff; color: var(--ink); }
+  .btn-ink { background: var(--ink); color: #fff; }
+  .btn-sm { height: 44px; padding: 0 20px; font-size: 14px; }
+
+  /* reveal */
+  .rv { opacity: 0; transform: translateY(34px); transition: opacity 1s var(--ease), transform 1s var(--ease); transition-delay: var(--d, 0ms); }
+  .rv.in { opacity: 1; transform: none; }
+  .mask { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+  .mask > span { display: inline-block; transform: translateY(105%); transition: transform 1.1s var(--ease); transition-delay: var(--d, 0ms); }
+  .in .mask > span, .mask.in > span { transform: none; }
+  .zoom { overflow: hidden; } .zoom img, .zoom video { transform: scale(1.12); transition: transform 1.6s var(--ease); }
+  .zoom.in img, .zoom.in video { transform: none; }
+
+  /* ------------------------------------------------ header */
+  .hdr { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .4s, backdrop-filter .4s; }
+  .hdr .bar { width: min(var(--wrap), calc(100% - 96px)); margin: 0 auto; height: 88px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .hdr.solid { background: rgba(11,13,13,.82); backdrop-filter: blur(14px); }
+  .hdr .logo img { height: 46px; width: auto; }
+  .hdr nav { display: flex; gap: 34px; }
+  .hdr nav a { color: var(--grey-soft); font-size: 15px; font-weight: 500; position: relative; }
+  .hdr nav a.on, .hdr nav a:hover { color: #fff; }
+  .hdr nav a.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 2px; background: var(--sky); }
+  .rail { position: fixed; left: 0; top: 0; bottom: 0; width: 44px; z-index: 40; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+  .rail span { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; color: rgba(255,255,255,.32); }
+  .fab { position: fixed; right: 40px; bottom: 34px; z-index: 45; transition: opacity .4s, transform .5s var(--ease), background .3s; }
+  .fab.off { opacity: 0; transform: translateY(16px); pointer-events: none; }
+
+  /* ------------------------------------------------ hero */
+  .hero { position: relative; height: 100vh; min-height: 760px; overflow: hidden; color: #fff; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .hero .film { position: absolute; inset: 0; }
+  .hero .film video, .hero .film img { width: 100%; height: 100%; object-fit: cover; }
+  .hero .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,13,13,.78) 0%, rgba(11,13,13,.42) 32%, rgba(11,13,13,.5) 62%, rgba(11,13,13,.94) 100%), radial-gradient(ellipse 60% 55% at 50% 50%, rgba(11,13,13,.5), transparent); }
+  .hero .copy { position: relative; max-width: 1080px; padding-top: 40px; }
+  .hero .pill { color: var(--sky); background: rgba(56,189,248,.1); border: 1px solid rgba(56,189,248,.35); }
+  .hero h1 { margin-top: 30px; font-size: clamp(64px, 7.4vw, 112px); font-weight: 600; line-height: .98; letter-spacing: -0.045em; }
+  .hero h1 .serif { font-size: 1.05em; }
+  .hero .support { margin: 30px auto 0; max-width: 640px; font-size: 20px; line-height: 1.55; color: var(--grey-soft); }
+  .hero .cta { margin-top: 40px; display: flex; gap: 14px; justify-content: center; }
+  .hero .base { position: absolute; left: 0; right: 0; bottom: 34px; }
+  .hero .base .wrap { display: flex; justify-content: space-between; align-items: center; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--silver); }
+  .hero .base .chap { display: flex; gap: 26px; }
+  .hero .base .chap b { color: var(--sky); font-weight: 600; margin-right: 8px; }
+
+  /* trusted strip */
+  .trust { background: #fff; border-bottom: 1px solid var(--line); }
+  .trust .wrap { display: flex; align-items: center; gap: 48px; height: 132px; }
+  .trust h3 { flex: none; font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+  .marquee { flex: 1; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .marquee .track { display: flex; align-items: center; gap: 72px; width: max-content; animation: mq 48s linear infinite; }
+  .marquee img { height: 46px; width: auto; opacity: .82; }
+  @keyframes mq { to { transform: translateX(-50%); } }
+
+  /* statement */
+  .statement { background: #fff; padding: 140px 0 120px; }
+  .statement p { font-size: clamp(40px, 3.6vw, 54px); line-height: 1.22; font-weight: 400; letter-spacing: -0.028em; max-width: 1240px; }
+  .statement .w { color: rgba(11,13,13,.16); transition: color .5s; }
+  .statement .w.lit { color: var(--ink); }
+  .statement .w.acc.lit { color: var(--royal); }
+  .statement .meta { margin-top: 56px; display: flex; gap: 64px; border-top: 1px solid var(--line); padding-top: 28px; }
+  .statement .meta div { font-size: 15px; color: var(--muted); } .statement .meta b { display: block; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
+
+  /* services */
+  .services { background: linear-gradient(180deg, #fff, var(--mist) 70%, #fff); padding: 130px 0 140px; }
+  .services .grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 80px; align-items: start; }
+  .svc-pin { position: sticky; top: 150px; padding-bottom: 40px; }
+  .services .h2 { font-size: clamp(44px, 4.2vw, 62px); }
+  .services .visual { margin-top: 30px; max-width: 470px; border-radius: 22px; overflow: hidden; aspect-ratio: 3/2; background: #fff; box-shadow: 0 40px 80px -50px rgba(20,46,140,.45); }
+  .services .visual video { width: 100%; height: 100%; object-fit: cover; }
+  .acc { border-top: 1px solid var(--line); margin-top: 8px; }
+  .acc details { border-bottom: 1px solid var(--line); }
+  .acc summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 52px 1fr 28px; align-items: center; padding: 24px 0; font-size: 21px; font-weight: 600; letter-spacing: -0.015em; }
+  .acc summary::-webkit-details-marker { display: none; }
+  .acc summary i { font-style: normal; font-size: 14px; font-weight: 600; color: var(--royal); letter-spacing: .06em; }
+  .acc summary em { font-style: normal; width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; font-size: 18px; color: var(--muted); transition: transform .4s var(--ease), background .3s, color .3s; }
+  .acc details[open] summary em { transform: rotate(45deg); background: var(--royal); border-color: var(--royal); color: #fff; }
+  .acc details p { padding: 0 40px 26px 52px; font-size: 16.5px; line-height: 1.6; color: var(--muted); }
+  .acc details p a { display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--royal); border-bottom: 1.5px solid var(--royal); padding-bottom: 3px; }
+
+  /* ideas banner */
+  .ideas { position: relative; height: 760px; overflow: hidden; color: #fff; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .ideas .bg { position: absolute; inset: -8% 0; }
+  .ideas .bg img, .ideas .bg video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ideas .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,13,13,.82) 0%, rgba(11,13,13,.5) 30%, rgba(11,13,13,.5) 62%, rgba(11,13,13,.94) 100%), radial-gradient(ellipse 46% 52% at 50% 46%, rgba(11,13,13,.62), rgba(11,13,13,0) 72%), linear-gradient(90deg, rgba(11,13,13,.35), rgba(11,13,13,0) 25%, rgba(11,13,13,0) 75%, rgba(11,13,13,.35)); }
+  .ideas .bg img { object-position: center 58%; filter: saturate(.92) contrast(1.06); animation: ideasPush 26s ease-in-out infinite alternate; }
+  @keyframes ideasPush { from { transform: scale(1.02); } to { transform: scale(1.09) translate3d(-.6%, -.4%, 0); } }
+  @media (prefers-reduced-motion: reduce) { .ideas .bg img { animation: none; } }
+  .static .ideas .bg img { animation: none; }
+  .ideas .copy { position: relative; max-width: 900px; }
+  .ideas h2 { margin-top: 26px; font-size: clamp(64px, 6.6vw, 104px); font-weight: 600; line-height: .96; letter-spacing: -0.045em; }
+  .ideas p { margin: 30px auto 0; max-width: 620px; font-size: 19px; line-height: 1.6; color: var(--grey-soft); }
+
+  /* showcase */
+  .showcase { background: #fff; padding: 130px 0 140px; }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
+  .head .link { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+  .head .link::before { content: ""; width: 44px; height: 2px; background: var(--royal); }
+  .tiles { margin-top: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px 36px; }
+  .tile { display: block; }
+  .tile .ph { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 16/10; background: var(--ink);
+    box-shadow: 0 34px 60px -44px rgba(11,13,13,.6); transition: transform .7s var(--ease), box-shadow .7s var(--ease); }
+  .tile .ph::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+    background: linear-gradient(180deg, rgba(11,13,13,0) 55%, rgba(11,13,13,.4) 100%);
+    box-shadow: inset 0 0 0 1px rgba(11,13,13,.06); transition: opacity .7s var(--ease); }
+  .tile:hover .ph { transform: translateY(-6px); box-shadow: 0 50px 80px -44px rgba(11,13,13,.8); }
+  .tile:hover .ph::after { opacity: .55; }
+  .tile .ph img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.94) contrast(1.05) brightness(.97); transition: transform 1.2s var(--ease), filter .7s; }
+  .tile:hover .ph img { transform: scale(1.045); filter: saturate(1) contrast(1.05) brightness(1); }
+  .tile .cap { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-top: 20px; padding: 0 4px; }
+  .tile .cap b { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
+  .tile .cap span { flex: none; display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--steel, #5F6878); }
+  .tile .cap span::before { content: ""; width: 14px; height: 2px; background: var(--royal); }
+  .tile .cap small { display: block; font-size: 15px; color: var(--muted); margin-top: 4px; font-weight: 400; letter-spacing: 0; }
+
+  /* how we work */
+  .how { background: var(--ink); color: #fff; padding: 140px 0 120px; position: relative; overflow: hidden; }
+  .how .ghost { position: absolute; right: -40px; top: 90px; font-size: 300px; font-weight: 700; letter-spacing: -0.05em; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.07); line-height: 1; pointer-events: none; }
+  .phase { display: grid; grid-template-columns: 520px 1fr; gap: 96px; align-items: center; margin-top: 110px; }
+  .phase.alt { grid-template-columns: 1fr 520px; } .phase.alt .card { order: 2; }
+  .phase .card { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 4/5; background: var(--ink-2); }
+  .phase .card img { width: 100%; height: 100%; object-fit: cover; }
+  .phase .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(11,13,13,.88), rgba(11,13,13,0) 48%); }
+  .phase .badge { position: absolute; left: 22px; top: 22px; z-index: 2; background: var(--royal); color: #fff; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; padding: 7px 14px; border-radius: 999px; }
+  .phase .card h3 { position: absolute; left: 28px; bottom: 24px; z-index: 2; font-size: 54px; font-weight: 600; letter-spacing: -0.04em; }
+  .phase .card h3 .serif { color: var(--sky); }
+  .phase .body > p { font-size: 19px; line-height: 1.65; color: var(--grey-soft); max-width: 560px; }
+  .phase .items { margin-top: 36px; border-top: 1px solid var(--line-d); max-width: 560px; }
+  .phase .items div { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--line-d); font-size: 16px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .phase .items div i { font-style: normal; color: var(--sky); font-size: 20px; font-weight: 400; }
+
+  /* clients */
+  .clients { background: #fff; padding: 140px 0 130px; text-align: center; }
+  .clients .h2 { margin-top: 22px; }
+  .clients .lead { margin: 22px auto 0; max-width: 620px; }
+  .logos { margin-top: 64px; display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .logos div { height: 170px; display: grid; place-items: center; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .4s; }
+  .logos div:hover { background: var(--mist); }
+  .logos img { max-width: 62%; max-height: 74px; width: auto; height: auto; }
+
+  /* studio cards */
+  .studio { background: var(--mist); padding: 120px 0; }
+  .bento { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .bento .col { display: grid; gap: 28px; grid-template-rows: 1fr auto; }
+  .b-dark { position: relative; border-radius: 26px; background: var(--ink); color: #fff; padding: 44px; overflow: hidden; min-height: 400px; }
+  .b-dark .num { font-size: 132px; font-weight: 600; letter-spacing: -0.06em; line-height: .9; }
+  .b-dark .num sup { font-size: .4em; color: var(--sky); vertical-align: top; margin-left: 6px; }
+  .b-dark p { margin-top: 18px; font-size: 22px; font-weight: 500; line-height: 1.3; max-width: 240px; }
+  .b-dark .tag { position: absolute; right: 30px; top: 28px; font-size: 13px; color: var(--silver); }
+  .b-dark .cities { position: absolute; left: 44px; bottom: 36px; display: flex; gap: 10px; }
+  .b-dark .cities span { padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.16); font-size: 14px; }
+  .b-dark svg.globe { position: absolute; right: -30px; bottom: -60px; width: 430px; height: 430px; opacity: .9; }
+  .b-light { border-radius: 26px; background: #fff; padding: 36px 40px; display: flex; justify-content: space-between; align-items: flex-end; box-shadow: 0 30px 60px -45px rgba(20,46,140,.4); }
+  .b-light h4 { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+  .b-light h4 .serif { color: var(--royal); }
+  .b-video { position: relative; border-radius: 26px; overflow: hidden; color: #fff; padding: 40px; background: radial-gradient(ellipse 80% 60% at 85% 0%, rgba(56,189,248,.45), transparent 60%), linear-gradient(160deg, var(--royal), var(--deep) 45%, var(--ink) 100%); }
+  .b-video .tag { font-size: 13px; color: var(--grey-soft); }
+  .b-video h4 { margin-top: 14px; font-size: 38px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; }
+  .b-video .vids { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .b-video .v { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 1; background: #000; }
+  .b-video .v img { width: 100%; height: 100%; object-fit: cover; }
+  .b-video .v::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(11,13,13,.85), transparent 55%); }
+  .b-video .v b { position: absolute; left: 16px; bottom: 14px; z-index: 2; font-size: 16px; font-weight: 600; }
+  .b-video .v small { display: block; font-size: 12.5px; font-weight: 400; color: var(--grey-soft); }
+  .b-video .v i { position: absolute; right: 14px; bottom: 14px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; background: #fff; display: grid; place-items: center; }
+  .b-video .v i svg { width: 14px; height: 14px; fill: var(--ink); margin-left: 2px; }
+
+  /* CTA */
+  .cta-out { position: relative; background: var(--ink); color: #fff; text-align: center; padding: 170px 0 160px; overflow: hidden; }
+  .cta-out svg.sky-bg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .cta-out h2 { position: relative; font-size: clamp(76px, 8vw, 128px); font-weight: 600; letter-spacing: -0.05em; line-height: 1; }
+  .flip { display: inline-block; position: relative; height: 1.12em; overflow: hidden; vertical-align: bottom; min-width: 3.4em; }
+  .flip span { display: block; color: var(--sky); transition: transform .9s var(--ease); }
+  .flip .stack { display: block; transition: transform .9s var(--ease); }
+  .cta-out .mail { position: relative; display: inline-block; margin-top: 34px; font-size: 30px; font-weight: 500; color: var(--sky); border-bottom: 1.5px solid rgba(56,189,248,.5); padding-bottom: 4px; }
+  .cta-out .btns { position: relative; margin-top: 36px; display: flex; gap: 14px; justify-content: center; }
+
+  /* FAQ */
+  .faq { position: relative; background: #fff; padding: 140px 0 130px; overflow: hidden; }
+  .faq::before { content: ""; position: absolute; left: 50%; top: -120px; width: 900px; height: 520px; margin-left: -450px; background: radial-gradient(closest-side, rgba(56,189,248,.16), transparent); }
+  .faq::after { content: ""; position: absolute; right: -120px; bottom: -120px; width: 520px; height: 520px; background: radial-gradient(closest-side, rgba(29,78,216,.1), transparent); }
+  .faq .in-wrap { position: relative; max-width: 880px; margin: 0 auto; text-align: center; }
+  .faq .pill { color: var(--royal); background: rgba(56,189,248,.12); border: 1px solid rgba(56,189,248,.4); }
+  .faq h2 { margin-top: 24px; font-size: 56px; font-weight: 600; letter-spacing: -0.035em; }
+  .faq h2 .serif { color: var(--sky); }
+  .faq .lead { margin-top: 14px; }
+  .faq .list { margin-top: 50px; display: grid; gap: 14px; text-align: left; }
+  .faq details { border-radius: 16px; background: #fff; border: 1px solid var(--line); box-shadow: 0 18px 40px -32px rgba(20,46,140,.35); }
+  .faq details[open] { border-color: rgba(29,78,216,.25); box-shadow: 0 24px 50px -30px rgba(29,78,216,.35); }
+  .faq summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 46px 1fr 30px; align-items: center; padding: 22px 26px; font-size: 18px; font-weight: 600; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary i { font-style: normal; font-size: 14px; color: var(--royal); font-weight: 600; }
+  .faq summary em { font-style: normal; width: 30px; height: 30px; border-radius: 50%; background: var(--mist); display: grid; place-items: center; color: var(--royal); transition: transform .4s var(--ease); }
+  .faq details[open] summary em { transform: rotate(180deg); }
+  .faq details p { padding: 0 60px 24px 72px; font-size: 16.5px; line-height: 1.65; color: var(--muted); }
+  .faq .more { margin-top: 26px; padding: 20px; border-radius: 16px; background: var(--mist); font-size: 16px; color: var(--muted); }
+  .faq .more a { color: var(--royal); font-weight: 600; }
+
+  /* footer */
+  .foot { position: relative; background: var(--ink); color: #fff; padding: 40px 0 0; overflow: hidden; }
+  .foot .word { font-size: 300px; font-weight: 700; letter-spacing: -0.06em; line-height: .9; text-align: center; background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.015) 85%); -webkit-background-clip: text; background-clip: text; color: transparent; user-select: none; }
+  .foot .cols { display: grid; grid-template-columns: 1.5fr 1fr 1.25fr 1.5fr; gap: 56px; padding: 60px 0 70px; }
+  .foot .brand img { height: 56px; width: auto; }
+  .foot .brand p { margin-top: 26px; font-size: 15.5px; line-height: 1.7; color: var(--silver); max-width: 360px; }
+  .foot h5 { font-size: 14px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #fff; margin-bottom: 22px; }
+  .foot ul { list-style: none; display: grid; gap: 13px; }
+  .foot li, .foot li a { font-size: 15.5px; color: var(--silver); }
+  .foot li a:hover { color: var(--sky); }
+  .foot .contact li { display: flex; gap: 12px; line-height: 1.55; }
+  .foot .contact svg { flex: none; width: 18px; height: 18px; margin-top: 3px; stroke: var(--sky); fill: none; stroke-width: 1.8; }
+  .foot .social { display: flex; gap: 10px; margin-top: 22px; }
+  .foot .social a { width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); display: grid; place-items: center; transition: background .3s, border-color .3s; }
+  .foot .social a:hover { background: var(--royal); border-color: var(--royal); }
+  .foot .social svg { width: 17px; height: 17px; fill: #fff; }
+  .foot .base { border-top: 1px solid var(--line-d); padding: 26px 0 34px; display: flex; justify-content: space-between; font-size: 14px; color: var(--silver); }
+  .foot .base nav { display: flex; gap: 28px; }
+
+
+  /* hero: AI film wall, copy left, enquiry form right */
+  .hero2 { position: relative; min-height: max(100vh, 880px); overflow: hidden; color: #fff; display: flex; align-items: center; background: #0B0D0D; }
+  .hero2 .wall { position: absolute; inset: 0; }
+  .hero2 .wall video { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.5) saturate(.8) contrast(1.05); }
+  .hero2 .wall::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 220px 60px rgba(11,13,13,.85); pointer-events: none; }
+  .hero2 .veil { position: absolute; inset: 0; background:
+      radial-gradient(ellipse 50% 70% at 22% 55%, rgba(11,13,13,.7), rgba(11,13,13,0) 70%),
+      radial-gradient(ellipse 34% 60% at 80% 55%, rgba(11,13,13,.55), rgba(11,13,13,0) 72%),
+      linear-gradient(90deg, rgba(11,13,13,.95) 0%, rgba(11,13,13,.9) 30%, rgba(11,13,13,.66) 52%, rgba(11,13,13,.58) 72%, rgba(11,13,13,.7) 100%),
+      linear-gradient(180deg, rgba(11,13,13,.88), rgba(11,13,13,0) 22%, rgba(11,13,13,0) 74%, rgba(11,13,13,.96)); }
+  .hero2 .hgrid { position: relative; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(400px, .85fr); gap: 64px; align-items: center; padding: 132px 0 84px; }
+  .hero2 .copy { text-align: left; text-shadow: 0 2px 24px rgba(0,0,0,.55); }
+  .hero2 .pill { color: var(--sky); background: rgba(56,189,248,.08); border: 1px solid rgba(56,189,248,.4); }
+  .hero2 h1 { margin-top: 28px; font-size: clamp(54px, 5.2vw, 82px); font-weight: 600; line-height: 1.06; letter-spacing: -0.025em; }
+  .hero2 h1 .big { display: inline-block; font-size: 1.06em; line-height: 1.1; padding-right: .08em; }
+  .hero2 .support { margin-top: 26px; max-width: 560px; font-size: 19.5px; line-height: 1.6; color: var(--grey-soft); }
+  .hero2 .support b { color: #fff; font-weight: 600; }
+  .hero2 .ticks { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px 22px; list-style: none; }
+  .hero2 .ticks li { display: flex; align-items: center; gap: 9px; font-size: 15.5px; font-weight: 500; color: #fff; }
+  .hero2 .ticks svg { width: 18px; height: 18px; flex: none; }
+  .hero2 .cta { margin-top: 36px; display: flex; gap: 16px; }
+  .btn-grad { background: var(--royal); color: #fff; box-shadow: 0 16px 34px -14px rgba(29,78,216,.85); height: 58px; padding: 0 32px; }
+  .btn-grad:hover { background: var(--deep); }
+  .hero2 .btn-line { height: 58px; padding: 0 30px; background: rgba(11,13,13,.35); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .hero2 .stat { margin-top: 42px; display: inline-flex; align-items: center; gap: 18px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.16); }
+  .hero2 .stat strong { font-size: 64px; font-weight: 600; line-height: 1; letter-spacing: -0.04em; color: #fff; }
+  .hero2 .stat span { font-size: 14px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; line-height: 1.5; color: #fff; }
+  /* enquiry form: "90-day launch plan" card (white by default; ?form=dark gives a dark glass card) */
+  .hform { position: relative; justify-self: end; width: 100%; max-width: 540px; margin-top: 18px; padding: 44px 34px 26px; border-radius: 30px;
+    background: #fff; color: var(--ink); box-shadow: 0 44px 100px -40px rgba(0,0,0,.95); }
+  .hf-tag { position: absolute; top: -17px; left: 26px; display: inline-flex; align-items: center; height: 34px; padding: 0 18px; border-radius: 999px;
+    background: var(--royal); color: #fff; font-size: 14px; font-weight: 700; letter-spacing: 0; box-shadow: 0 10px 24px -10px rgba(29,78,216,.9); }
+  .hform h2 { font-size: 30px; line-height: 1.12; color: var(--ink); }
+  .hf-sub { margin-top: 10px; font-size: 15.5px; line-height: 1.55; color: var(--muted); }
+  .hf-gets { margin-top: 18px; padding: 16px 18px; border-radius: 16px; background: var(--mist); display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; list-style: none; }
+  .hf-gets li { display: flex; align-items: center; gap: 9px; font-size: 14.5px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+  .hf-gets svg { width: 15px; height: 15px; flex: none; color: var(--royal); }
+  .hf-grid { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hform .f { display: grid; } .hform .f.full { grid-column: 1 / -1; }
+  .hform .f > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .hform input, .hform select { width: 100%; height: 52px; padding: 0 18px; border-radius: 14px; border: 1px solid var(--line); background: #fff;
+    color: var(--ink); font: 500 15.5px/1 "Satoshi", system-ui, sans-serif; outline: none; transition: border-color .25s, box-shadow .25s; }
+  .hform input::placeholder { color: var(--muted); opacity: .85; }
+  .hform input:focus, .hform select:focus { border-color: var(--royal); box-shadow: 0 0 0 3px rgba(29,78,216,.14); }
+  .hform [aria-invalid=true] { border-color: var(--royal) !important; box-shadow: 0 0 0 3px rgba(29,78,216,.2); }
+  .hform .sel { position: relative; } .hform select { appearance: none; -webkit-appearance: none; padding-right: 44px; cursor: pointer; }
+  .hform select:invalid { color: var(--ink); } .hform option { background: #fff; color: var(--ink); }
+  .hform .sel svg { position: absolute; right: 18px; top: 19px; width: 14px; height: 14px; color: var(--muted); pointer-events: none; }
+  .hf-send { margin-top: 14px; width: 100%; height: 64px; padding: 0 8px 0 28px; border: 0; border-radius: 999px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(90deg, #1D4ED8 0%, #2F6FE4 55%, #38BDF8 100%); color: #fff; font: 700 18px "Satoshi", system-ui, sans-serif;
+    box-shadow: 0 18px 36px -16px rgba(29,78,216,.85); transition: filter .3s, transform .5s var(--ease); }
+  .hf-send:hover { filter: brightness(1.06); }
+  .hf-send i { width: 48px; height: 48px; border-radius: 50%; background: #fff; display: grid; place-items: center; transition: transform .5s var(--ease); }
+  .hf-send i svg { width: 15px; height: 15px; color: var(--royal); }
+  .hf-send:hover i { transform: rotate(45deg); }
+  .hf-legal { margin-top: 12px; font-size: 13.5px; line-height: 1.5; color: var(--muted); text-align: center; }
+  .hf-note { margin-top: 8px; font-size: 13.5px; line-height: 1.5; color: var(--royal); text-align: center; }
+  .hf-note:empty { display: none; }
+  /* dark glass variant (?form=dark) */
+  html:not(.form-white) .hform { background: rgba(11,13,13,.7); color: #fff; border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  html:not(.form-white) .hform h2, html:not(.form-white) .hf-gets li { color: #fff; }
+  html:not(.form-white) .hf-sub, html:not(.form-white) .hf-legal { color: var(--silver); }
+  html:not(.form-white) .hf-gets { background: rgba(255,255,255,.06); }
+  html:not(.form-white) .hf-gets svg { color: var(--sky); }
+  html:not(.form-white) .hform input, html:not(.form-white) .hform select { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.14); color: #fff; }
+  html:not(.form-white) .hform input::placeholder, html:not(.form-white) .hform .sel svg { color: var(--silver); }
+  html:not(.form-white) .hform select:invalid { color: #fff; } html:not(.form-white) .hform option { background: var(--ink); color: #fff; }
+
+
+  /* brand journey */
+  .journey { background: #0B0D0D; color: #fff; padding: 110px 0 120px; }
+  .journey .eyebrow { color: var(--grey-soft); font-size: 12.5px; }
+  .jh { margin-top: 18px; font-size: clamp(64px, 6vw, 92px); font-weight: 700; line-height: .92; letter-spacing: -0.035em; text-transform: uppercase; }
+  .jrow { display: grid; grid-template-columns: 520px 1fr; gap: 64px; align-items: start; margin-top: 96px; }
+  .jrow.rev { grid-template-columns: 1fr 520px; } .jrow.rev .jimg { order: 2; }
+  .jimg { position: relative; aspect-ratio: 1.1/1; overflow: visible; }
+  .jimg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .jimg.zoom { overflow: hidden; }
+  .jpill { position: absolute; left: 14px; top: 14px; z-index: 2; background: var(--royal); color: #fff; font-size: 12px; font-weight: 600; letter-spacing: .08em; padding: 8px 18px; border-radius: 999px; box-shadow: 0 10px 22px -10px rgba(29,78,216,.9); }
+  .jtext { position: relative; padding: 4px 0 10px 66px; }
+  .jtext::before { content: ""; position: absolute; left: 21px; top: 46px; bottom: 0; width: 3px; border-radius: 2px; background: linear-gradient(180deg, var(--sky), var(--royal) 55%, rgba(20,46,140,.25)); }
+  .jmark { position: absolute; left: 0; top: 0; width: 46px; height: 46px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 0 8px 20px -8px rgba(56,189,248,.7); }
+  .jmark img { width: 22px; height: auto; }
+  .jtext h3 { font-size: 26px; font-weight: 400; letter-spacing: -0.01em; line-height: 1.3; }
+  .jintro { margin-top: 14px; font-size: 15.5px; line-height: 1.6; color: var(--grey-soft); max-width: 560px; }
+  .jtext h4 { position: relative; margin-top: 40px; font-size: 25px; font-weight: 700; letter-spacing: 0; text-transform: uppercase; max-width: 560px; }
+  .jtext h4::after { content: ""; position: absolute; right: 0; top: 4px; width: 2.5px; height: 18px; background: var(--sky); }
+  .jpara { margin-top: 26px; font-size: 15.5px; line-height: 1.75; letter-spacing: .015em; color: var(--silver); max-width: 560px; }
+  .jtext ul { list-style: none; margin-top: 30px; display: grid; gap: 16px; }
+  .jtext li { display: flex; align-items: center; gap: 16px; font-size: 17px; color: rgba(255,255,255,.92); }
+  .jtext li i { flex: none; width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--royal), var(--deep)); display: grid; place-items: center; box-shadow: 0 0 0 4px rgba(29,78,216,.15); }
+  .jtext li i svg { width: 14px; height: 14px; }
+
+  /* channel partners */
+  .partners { background: var(--mist); padding: 120px 0; }
+  .cp { margin-top: 54px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .cp > div { background: #fff; border-radius: 20px; padding: 26px 28px; display: flex; align-items: center; gap: 22px; box-shadow: 0 24px 50px -40px rgba(20,46,140,.5); border: 1px solid rgba(20,46,140,.06); transition: transform .5s var(--ease), box-shadow .5s; }
+  .cp > div:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -36px rgba(20,46,140,.55); }
+  .cp span { flex: none; width: 150px; height: 74px; display: grid; place-items: center; }
+  .cp span img { max-width: 150px; max-height: 64px; width: auto; height: auto; }
+  .cp b { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; border-left: 1px solid var(--line); padding-left: 22px; }
+
+  /* projects wall */
+  .projects { background: var(--ink); color: #fff; padding: 130px 0 140px; }
+  .pwall { margin-top: 56px; display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
+  .pwall > div { height: 104px; border-radius: 14px; background: #fff; display: grid; place-items: center; padding: 14px; transition: transform .4s var(--ease); }
+  .pwall > div:hover { transform: translateY(-3px); }
+  .pwall img { max-width: 82%; max-height: 62px; width: auto; height: auto; }
+  .pwall .next { grid-column: span 5; border-radius: 14px; display: flex; align-items: center; justify-content: center; gap: 14px; font-size: 22px; font-weight: 600; text-align: center; line-height: 1.2; background: linear-gradient(120deg, var(--royal), var(--deep)); }
+  .pwall .next svg { width: 22px; height: 22px; }
+
+  /* focus and reduced motion */
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; border-radius: 6px; }
+  @media (prefers-reduced-motion: reduce) {
+    .rv, .mask > span, .zoom img, .zoom video { transition: none !important; opacity: 1 !important; transform: none !important; }
+    .marquee .track { animation: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* tablet */
+  @media (max-width: 1100px) {
+    .wrap { width: calc(100% - 64px); }
+    .hdr nav { display: none; }
+    .rail { display: none; }
+    .hero2 .hgrid { grid-template-columns: 1fr; gap: 48px; padding-top: 128px; } .hform { max-width: 520px; justify-self: start; }
+    .hero2 .veil { background: linear-gradient(180deg, rgba(11,13,13,.9), rgba(11,13,13,.8) 40%, rgba(11,13,13,.92)); }
+    .hero2 .hform.rv { opacity: 1; transform: none; }
+    .services .grid, .bento, .foot .cols { grid-template-columns: 1fr; gap: 48px; }
+    .svc-pin { position: static; }
+    .tiles { grid-template-columns: 1fr 1fr; gap: 40px 20px; }
+    .jrow, .jrow.rev { grid-template-columns: 1fr; gap: 36px; } .jrow.rev .jimg { order: 0; }
+    .jimg { max-width: 620px; }
+    .logos { grid-template-columns: repeat(4, 1fr); }
+    .cp { grid-template-columns: 1fr 1fr; }
+    .pwall { grid-template-columns: repeat(5, 1fr); } .pwall .next { grid-column: span 5; min-height: 90px; }
+    .head { flex-direction: column; align-items: flex-start; }
+    .foot .word { font-size: 22vw; }
+  }
+  /* phone */
+  @media (max-width: 640px) {
+    .wrap { width: calc(100% - 32px); }
+    .hdr .bar { width: calc(100% - 32px); height: 72px; } .hdr .logo img { height: 38px; } .hdr .btn { display: none; }
+    .hero2 .hgrid { padding: 112px 0 56px; gap: 40px; } .hero2 h1 { font-size: 42px; } .hero2 .support { font-size: 17px; } .hero2 .ticks { flex-direction: column; gap: 10px; } .hero2 .ticks li { font-size: 15px; }
+    .hero2 .cta { flex-direction: column; align-items: stretch; } .hero2 .stat strong { font-size: 52px; }
+    .hform h2 { font-size: 25px; } .hf-gets { grid-template-columns: 1fr; } .hform { padding: 40px 20px 22px; } .hf-send { font-size: 16.5px; } .hf-grid { grid-template-columns: 1fr; }
+    .trust .wrap { height: auto; padding: 22px 0; flex-direction: column; align-items: flex-start; gap: 14px; } .marquee { width: 100%; }
+    .statement { padding: 90px 0 80px; } .statement p { font-size: 28px; } .statement .meta { flex-direction: column; gap: 18px; }
+    .h2, .services .h2 { font-size: 38px; } .lead { font-size: 16.5px; }
+    .services, .showcase, .clients, .partners, .projects, .faq, .studio { padding: 84px 0; }
+    .tiles { grid-template-columns: 1fr; gap: 44px; } .tile .cap { flex-direction: column; gap: 8px; } .tile .cap span { margin-top: 0; }
+    .ideas { height: 560px; } .ideas h2 { font-size: 52px; }
+    .journey { padding: 84px 0; } .jh { font-size: 46px; } .jrow { margin-top: 64px; } .jtext { padding-left: 58px; } .jtext h3 { font-size: 21px; } .jtext h4 { font-size: 20px; } .jtext li { font-size: 15px; }
+    .logos { grid-template-columns: repeat(2, 1fr); } .logos div { height: 120px; }
+    .cp { grid-template-columns: 1fr; }
+    .pwall { grid-template-columns: repeat(3, 1fr); } .pwall > div { height: 84px; } .pwall .next { grid-column: span 3; }
+    .b-dark { min-height: 360px; padding: 32px; } .b-dark .num { font-size: 96px; } .b-light { flex-direction: column; align-items: flex-start; gap: 18px; }
+    .b-video { padding: 28px; } .b-video h4 { font-size: 30px; }
+    .cta-out { padding: 110px 0; } .cta-out h2 { font-size: 46px; } .cta-out .mail { font-size: 20px; } .cta-out .btns { flex-direction: column; align-items: center; }
+    .faq h2 { font-size: 36px; } .faq summary { font-size: 16px; padding: 18px; grid-template-columns: 36px 1fr 26px; } .faq details p { padding: 0 20px 20px 54px; }
+    .foot .base { flex-direction: column; gap: 14px; } .fab { right: 16px; bottom: 16px; }
+  }
+  /* static export: every reveal finished, motion stopped */
+  .static .rv, .static .mask > span { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .static .zoom img, .static .zoom video { transform: none !important; transition: none !important; }
+  .static .marquee .track { animation: none; }
+  .static .statement .w { color: var(--ink); } .static .statement .w.acc { color: var(--royal); }
+  .static .hdr, .static .rail, .static .fab { position: absolute; }
+  .static .fab { top: calc(100vh - 94px); bottom: auto; display: none; }
+  .static .grad { background: none; color: var(--royal); -webkit-text-fill-color: var(--royal); }
+  .static .foot .word { background: none; color: rgba(255,255,255,.09); -webkit-text-fill-color: rgba(255,255,255,.09); }
+
+  /* ---------- Typography: Clash Display headlines, Satoshi text ---------- */
+  h1, h2, .h2, .jh, .phase .card h3, .b-dark .num, .hero2 .stat strong, .tile .cap h3, .b-light h4, .b-video h4, .hform h2 {
+    font-family: "Clash Display", "Satoshi", system-ui, sans-serif; font-weight: 600 !important; letter-spacing: -0.012em; word-spacing: .04em; font-synthesis: none; }
+  .serif { font-family: inherit; font-weight: inherit; letter-spacing: inherit; color: var(--royal); }
+  .dark .serif, .journey .serif, .cta-out .serif, .ideas .serif, .b-dark .serif, .b-video .serif { color: var(--sky); }
+  .form-white .hform .serif { color: var(--royal); }
+  /* hero: three lines, one per phrase */
+  .hero2 h1 { margin-top: 24px; font-size: clamp(50px, 4.5vw, 68px); line-height: 1.06; letter-spacing: -0.015em; word-spacing: .05em; }
+  .hero2 h1 .mask, .hero2 h1 .mask > span { white-space: nowrap; }
+  .hero2 h1 .big { font-size: 1em; line-height: 1.06; padding-right: 0; }
+  .hero2 .support { margin-top: 24px; font-size: 18.5px; line-height: 1.62; }
+  .hero2 .ticks { margin-top: 20px; } .hero2 .cta { margin-top: 32px; }
+  .hero2 .stat { margin-top: 36px; padding-top: 24px; }
+  .hero2 .stat strong { font-size: 60px; letter-spacing: -0.03em; }
+  .hform h2 { font-size: 30px; line-height: 1.12; letter-spacing: -0.012em; word-spacing: .05em; }
+  .hform h2 .serif { font-size: 1em; }
+  /* section headlines: Clash runs wider than the old face, so sizes step down slightly */
+  .h2 { font-size: clamp(42px, 4.2vw, 62px); line-height: 1.04; }
+  .services .h2 { font-size: clamp(52px, 5.4vw, 82px); line-height: 1.02; }
+  .services .lead { max-width: 520px !important; }
+  .h2 .serif { font-size: 1em; }
+  .ideas h2 { font-size: clamp(60px, 6vw, 94px); line-height: 1; }
+  .cta-out h2 { font-size: clamp(70px, 7.4vw, 118px); line-height: 1.02; }
+  .faq h2 { font-size: 52px; line-height: 1.06; }
+  .jh { font-size: clamp(56px, 5.4vw, 84px); line-height: .98; }
+  .phase .card h3 { font-size: 50px; }
+  .b-dark .num { font-size: 124px; line-height: .92; letter-spacing: -0.04em; }
+  .statement p { font-weight: 400; letter-spacing: -0.02em; }
+  .statement p .serif { font-weight: 700; }
+  .btn { font-weight: 700; letter-spacing: 0; }
+  .support b, .lead b { font-weight: 700; }
+  @media (max-width: 640px) {
+    .hero2 h1 { font-size: 40px; } .hero2 h1 .mask, .hero2 h1 .mask > span { white-space: normal; }
+    .h2, .services .h2 { font-size: 36px; } .ideas h2 { font-size: 48px; } .cta-out h2 { font-size: 46px; }
+    .faq h2 { font-size: 36px; } .jh { font-size: 44px; } .hform h2 { font-size: 27px; } .hero2 .stat strong { font-size: 52px; } .b-dark .num { font-size: 96px; }
+  }
+
+  /* lead magnet: free marketing audit */
+  .audit { background: var(--ink); color: #fff; padding: 130px 0; position: relative; overflow: hidden; }
+  .audit::before { content: ""; position: absolute; right: -200px; top: -200px; width: 700px; height: 700px; background: radial-gradient(closest-side, rgba(29,78,216,.28), transparent); }
+  .audit .grid { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 72px; align-items: start; }
+  .audit .h2 { color: #fff; } .audit .h2 .serif { color: var(--sky); }
+  .audit .lead { color: var(--grey-soft); margin-top: 20px; max-width: 560px; }
+  .audit ul.gets { list-style: none; margin-top: 32px; display: grid; gap: 14px; }
+  .audit ul.gets li { display: flex; gap: 14px; align-items: flex-start; font-size: 17px; line-height: 1.45; }
+  .audit ul.gets li i { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--royal); display: grid; place-items: center; margin-top: 1px; }
+  .audit ul.gets li i svg { width: 14px; height: 14px; }
+  .audit ul.gets li small { display: block; color: var(--silver); font-size: 14.5px; margin-top: 3px; }
+  .report { margin-top: 40px; max-width: 520px; border-radius: 20px; background: #15181B; border: 1px solid rgba(255,255,255,.1); padding: 22px 24px; }
+  .report .rh { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--silver); }
+  .report .rh em { font-style: normal; padding: 5px 10px; border-radius: 999px; border: 1px solid rgba(56,189,248,.4); color: var(--sky); }
+  .report .row { margin-top: 16px; display: grid; grid-template-columns: 120px 1fr 36px; align-items: center; gap: 14px; font-size: 14px; color: var(--grey-soft); }
+  .report .row .bar { height: 8px; border-radius: 4px; background: rgba(255,255,255,.08); overflow: hidden; }
+  .report .row .bar b { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #142E8C, #1D4ED8 60%, #38BDF8); }
+  .report .row span { text-align: right; font-weight: 700; color: #fff; }
+  .aform { border-radius: 26px; background: #fff; color: var(--ink); padding: 36px 34px 28px; box-shadow: 0 50px 100px -40px rgba(0,0,0,.9); }
+  .aform h3 { font-family: "Clash Display", "Satoshi", sans-serif; font-size: 28px; font-weight: 600; letter-spacing: -0.01em; }
+  .aform > p { margin-top: 8px; font-size: 15px; color: var(--muted); line-height: 1.5; }
+  .aform .fg { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .aform .full { grid-column: 1 / -1; }
+  .aform label > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .aform input, .aform select { width: 100%; height: 52px; padding: 0 16px; border-radius: 14px; border: 1px solid var(--line); background: #fff; color: var(--ink); font: 500 15.5px "Satoshi", system-ui, sans-serif; outline: none; }
+  .aform input::placeholder { color: var(--muted); }
+  .aform select { appearance: none; -webkit-appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%235F6878' stroke-width='1.6'%3E%3Cpath d='m3 6 5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; background-size: 14px; padding-right: 40px; }
+  .aform select:invalid { color: var(--muted); }
+  .aform input:focus, .aform select:focus { border-color: var(--royal); box-shadow: 0 0 0 3px rgba(29,78,216,.14); }
+  .aform [aria-invalid=true] { border-color: var(--royal) !important; box-shadow: 0 0 0 3px rgba(29,78,216,.2); }
+  .aform .send { margin-top: 14px; width: 100%; height: 58px; border: 0; border-radius: 999px; cursor: pointer; background: var(--royal); color: #fff; font: 700 17px "Satoshi", system-ui, sans-serif; display: flex; align-items: center; justify-content: center; gap: 12px; box-shadow: 0 16px 34px -14px rgba(29,78,216,.85); }
+  .aform .send:hover { background: var(--deep); }
+  .aform .send svg { width: 16px; height: 16px; }
+  .aform .legal { margin-top: 12px; text-align: center; font-size: 13px; color: var(--muted); }
+  .aform .note { margin-top: 8px; text-align: center; font-size: 13.5px; color: var(--royal); } .aform .note:empty { display: none; }
+  @media (max-width: 1100px) { .audit .grid { grid-template-columns: 1fr; gap: 48px; } }
+  @media (max-width: 640px) { .audit { padding: 84px 0; } .aform { padding: 28px 20px 22px; } .aform .fg { grid-template-columns: 1fr; } .report .row { grid-template-columns: 90px 1fr 32px; } }
+
+  /* lead-magnet bands */
+  .lmb { background: var(--mist); padding: 70px 0; }
+  .lmb.wh { background: #fff; }
+  .lmb .card { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; border-radius: 28px; background: var(--ink); color: #fff; padding: 44px 48px; position: relative; overflow: hidden; }
+  .lmb .card::after { content: ""; position: absolute; right: -160px; top: -160px; width: 460px; height: 460px; background: radial-gradient(closest-side, rgba(29,78,216,.32), transparent); pointer-events: none; }
+  .lmb .tag { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(56,189,248,.1); border: 1px solid rgba(56,189,248,.4); color: var(--sky); font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .lmb h3 { margin-top: 18px; font-family: "Clash Display", "Satoshi", sans-serif; font-size: 36px; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; }
+  .lmb h3 .serif { color: var(--sky); }
+  .lmb p { margin-top: 12px; color: var(--grey-soft); font-size: 16.5px; line-height: 1.6; max-width: 480px; }
+  .lmb form { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .lmb label > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .lmb input, .lmb select { width: 100%; height: 54px; padding: 0 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); color: #fff; font: 500 15.5px "Satoshi", system-ui, sans-serif; outline: none; }
+  .lmb input::placeholder { color: var(--silver); }
+  .lmb select { appearance: none; -webkit-appearance: none; cursor: pointer; } .lmb select:invalid { color: var(--silver); } .lmb option { background: var(--ink); color: #fff; }
+  .lmb input:focus, .lmb select:focus { border-color: var(--sky); box-shadow: 0 0 0 3px rgba(56,189,248,.18); }
+  .lmb [aria-invalid=true] { border-color: var(--sky) !important; }
+  .lmb .full { grid-column: 1 / -1; }
+  .lmb button { grid-column: 1 / -1; height: 56px; border: 0; border-radius: 999px; background: var(--royal); color: #fff; font: 700 16px "Satoshi", system-ui, sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .lmb button:hover { background: var(--deep); } .lmb button svg { width: 16px; height: 16px; }
+  .lmb .note { grid-column: 1 / -1; font-size: 13.5px; color: var(--sky); } .lmb .note:empty { display: none; }
+  /* contact: "Let's talk about your next launch" */
+  .talk { background: #fff; padding: 70px 0 0; }
+  .talk .card { border-radius: 30px; background: var(--ink); color: #fff; display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; align-items: center; padding: 72px 64px; position: relative; overflow: hidden; }
+  .talk .card::before { content: ""; position: absolute; left: -200px; bottom: -260px; width: 640px; height: 640px; background: radial-gradient(closest-side, rgba(29,78,216,.25), transparent); }
+  .talk .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.04); font-size: 14px; font-weight: 500; }
+  .talk .chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--sky); box-shadow: 0 0 10px var(--sky); }
+  .talk h2 { position: relative; margin-top: 26px; font-size: clamp(48px, 5vw, 76px); line-height: 1.04; letter-spacing: -0.015em; }
+  .talk h2 .serif { color: var(--sky); }
+  .talk .lead { position: relative; margin-top: 22px; color: var(--grey-soft); max-width: 470px; font-size: 18px; }
+  .talk .phones { position: relative; margin-top: 30px; display: flex; gap: 34px; flex-wrap: wrap; }
+  .talk .phones a { font-family: "Satoshi", system-ui, sans-serif; font-size: 24px; font-weight: 700; letter-spacing: .01em; word-spacing: .12em; }
+  .talk .phones a:hover { color: var(--sky); }
+  .tform { position: relative; background: #fff; color: var(--ink); border-radius: 22px; padding: 34px 32px 30px; box-shadow: 0 50px 100px -40px rgba(0,0,0,.9); }
+  .tform h3 { font-family: "Clash Display", "Satoshi", sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
+  .tform label { display: block; margin-top: 18px; }
+  .tform label > span { display: block; font-size: 13px; font-weight: 500; color: var(--muted); }
+  .tform input, .tform select { width: 100%; height: 44px; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); font: 500 16px "Satoshi", system-ui, sans-serif; outline: none; padding: 0; border-radius: 0; }
+  .tform input::placeholder { color: var(--muted); opacity: .75; }
+  .tform select { appearance: none; -webkit-appearance: none; cursor: pointer; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%235F6878' stroke-width='1.6'%3E%3Cpath d='m3 6 5 5 5-5'/%3E%3C/svg%3E") no-repeat right 2px center / 14px; }
+  .tform input:focus, .tform select:focus { border-bottom-color: var(--royal); }
+  .tform [aria-invalid=true] { border-bottom-color: var(--royal) !important; border-bottom-width: 2px; }
+  .tform button { margin-top: 26px; width: 100%; height: 54px; border: 0; border-radius: 999px; background: linear-gradient(60deg, #142E8C 0%, #1D4ED8 50%, #38BDF8 100%); color: #fff; font: 700 16px "Satoshi", system-ui, sans-serif; cursor: pointer; box-shadow: 0 16px 34px -14px rgba(29,78,216,.85); }
+  .tform .note { margin-top: 10px; font-size: 13.5px; color: var(--royal); text-align: center; } .tform .note:empty { display: none; }
+  .talk .bar { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 26px 4px 34px; font-size: 13.5px; color: var(--muted); }
+  .talk .bar a:hover { color: var(--royal); }
+  @media (max-width: 1100px) { .lmb .card, .talk .card { grid-template-columns: 1fr; gap: 32px; } .talk .card { padding: 56px 40px; } }
+  @media (max-width: 640px) { .lmb { padding: 48px 0; } .lmb .card { padding: 30px 22px; } .lmb h3 { font-size: 28px; } .lmb form { grid-template-columns: 1fr; }
+    .talk { padding-top: 48px; } .talk .card { padding: 40px 22px; border-radius: 24px; } .talk h2 { font-size: 42px; } .talk .phones a { font-size: 20px; } .tform { padding: 26px 22px; } .talk .bar { flex-direction: column; gap: 8px; } }
+
+  /* ---------- colour balance (Brand Guidelines v1.0 proportion: White & Mist 55% · Black & Navy 25% · Royal 12%) ----------
+     Black is kept for the hero film, the billboard banner and the footer. Everything else sits on White, Mist or Royal. */
+  /* how we work: Mist ground, dark imagery cards */
+  .journey { background: var(--mist); color: var(--ink); }
+  .journey .eyebrow { color: var(--muted); } .journey .eyebrow::before { background: var(--royal); }
+  .journey .jh { color: var(--ink); } .journey .serif { color: var(--royal); }
+  .jimg img { border-radius: 22px; box-shadow: 0 40px 70px -46px rgba(11,22,64,.6); }
+  .jmark { box-shadow: 0 8px 20px -8px rgba(29,78,216,.55), 0 0 0 1px var(--line); }
+  .jtext h3 { color: var(--ink); } .jintro { color: var(--muted); } .jpara { color: var(--muted); }
+  .jtext h4 { color: var(--ink); } .jtext h4::after { background: var(--royal); }
+  .jtext li { color: var(--graphite); }
+  .jtext::before { background: linear-gradient(180deg, var(--royal), var(--sky) 60%, rgba(56,189,248,.15)); }
+  /* projects wall: white ground, logos on Mist tiles */
+  .projects { background: #fff; color: var(--ink); }
+  .projects .lead { color: var(--muted); }
+  .pwall > div { background: var(--mist); border: 1px solid var(--line); }
+  /* lead-magnet bands: Royal and White instead of black */
+  .lmb .card { background: var(--royal); }
+  .lmb .card::after { background: radial-gradient(closest-side, rgba(56,189,248,.45), transparent); }
+  .lmb .tag { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.35); color: #fff; }
+  .lmb h3 .serif { color: #fff; text-decoration: underline; text-decoration-color: var(--sky); text-decoration-thickness: 3px; text-underline-offset: 8px; }
+  .lmb p { color: rgba(255,255,255,.88); }
+  .lmb input, .lmb select { background: #fff; border-color: transparent; color: var(--ink); }
+  .lmb input::placeholder, .lmb select:invalid { color: var(--muted); } .lmb option { background: #fff; color: var(--ink); }
+  .lmb input:focus, .lmb select:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(11,13,13,.15); }
+  .lmb button { background: var(--ink); } .lmb button:hover { background: #000; }
+  .lmb .note { color: #fff; }
+  .lmb.wh { background: var(--mist); }
+  .lmb.wh .card { background: #fff; color: var(--ink); border: 1px solid var(--line); box-shadow: 0 40px 80px -60px rgba(11,22,64,.5); }
+  .lmb.wh .card::after { background: radial-gradient(closest-side, rgba(29,78,216,.12), transparent); }
+  .lmb.wh .tag { background: var(--mist); border-color: rgba(29,78,216,.3); color: var(--royal); }
+  .lmb.wh h3 .serif { color: var(--royal); text-decoration: none; }
+  .lmb.wh p { color: var(--muted); }
+  .lmb.wh input, .lmb.wh select { background: var(--mist); border-color: var(--line); }
+  .lmb.wh input:focus, .lmb.wh select:focus { border-color: var(--royal); box-shadow: 0 0 0 3px rgba(29,78,216,.14); }
+  .lmb.wh button { background: var(--royal); } .lmb.wh button:hover { background: var(--deep); }
+  .lmb.wh .note { color: var(--royal); }
+  /* free audit: Mist ground, white scorecard */
+  .audit { background: var(--mist); color: var(--ink); }
+  .audit::before { background: radial-gradient(closest-side, rgba(56,189,248,.22), transparent); }
+  .audit .h2 { color: var(--ink); } .audit .h2 .serif { color: var(--royal); }
+  .audit .lead { color: var(--muted); }
+  .audit .eyebrow { color: var(--muted); } .audit .eyebrow::before { background: var(--royal); }
+  .audit ul.gets li small { color: var(--muted); }
+  .report { background: #fff; border-color: var(--line); box-shadow: 0 30px 60px -44px rgba(11,22,64,.45); }
+  .report .rh { color: var(--muted); } .report .rh em { color: var(--royal); border-color: rgba(29,78,216,.35); }
+  .report .row { color: var(--graphite); } .report .row .bar { background: var(--mist); } .report .row span { color: var(--ink); }
+  .aform { box-shadow: 0 40px 80px -50px rgba(11,22,64,.55); border: 1px solid var(--line); }
+  /* contact card: the signature gradient (its one large use on the page) */
+  .talk .card { background: linear-gradient(60deg, #142E8C 0%, #1D4ED8 55%, #38BDF8 120%); }
+  .talk .card::before { background: radial-gradient(closest-side, rgba(255,255,255,.14), transparent); }
+  .talk .chip { border-color: rgba(255,255,255,.35); background: rgba(255,255,255,.1); }
+  .talk .chip::before { background: #fff; box-shadow: none; }
+  .talk h2 .serif { color: #fff; text-decoration: underline; text-decoration-color: rgba(255,255,255,.55); text-decoration-thickness: 4px; text-underline-offset: 10px; }
+  .talk .lead { color: rgba(255,255,255,.9); }
+  .talk .phones a:hover { color: var(--ink); }
+  .tform button { background: var(--ink); } .tform button:hover { background: #000; }
+
+  /* ---------- landing-page version: slim lead bands and closing ---------- */
+  .lmb.slim { background: #fff; padding: 46px 0; }
+  .lmb.slim .card { grid-template-columns: 1fr 1.2fr; gap: 40px; padding: 30px 38px; border-radius: 22px; }
+  .lmb.slim h3 { margin-top: 12px; font-size: 28px; } .lmb.slim p { margin-top: 8px; font-size: 15.5px; }
+  .lmb.slim form { grid-template-columns: 1fr 1fr 1fr; } .lmb.slim .full { grid-column: auto; }
+  .lmb.slim button { grid-column: 1 / -1; height: 52px; }
+  main > .lmb:last-child { padding-bottom: 90px; }
+  .sec-cta { position: relative; z-index: 2; width: min(var(--wrap), calc(100% - 96px)); margin: 56px auto 0; display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; }
+  .sec-cta .btn { height: 58px; padding: 0 30px; font-size: 16.5px; box-shadow: 0 18px 36px -16px rgba(29,78,216,.75); }
+  .sec-cta span { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .sec-cta.light span { color: rgba(255,255,255,.75); }
+  .btn-white { background: #fff; color: var(--ink); } .btn-white:hover { background: var(--mist); }
+  .ideas .sec-cta { position: absolute; left: 0; right: 0; bottom: 64px; margin: 0 auto; }
+  @media (max-width: 640px) { .sec-cta { width: calc(100% - 32px); margin-top: 40px; } .sec-cta .btn { width: 100%; justify-content: center; } .ideas .sec-cta { bottom: 32px; } }
+  @media (max-width: 1100px) { .lmb.slim .card { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .lmb.slim form { grid-template-columns: 1fr; } .lmb.slim .card { padding: 26px 20px; } }
+</style>
+</head>
+<body>
+
+<!-- header -->
+<header class="hdr" id="hdr">
+  <div class="bar">
+    <a class="logo" href="#top" aria-label="ScaleAcres home"><img src="assets/img/scaleacres-logo-white.svg" alt="ScaleAcres"></a>
+    <nav aria-label="Main">
+      <a class="on" href="#top">Home</a><a href="#services">Services</a><a href="#work">Our Work</a><a href="#how">How We Work</a><a href="#clients">Clients</a><a href="#audit">Free audit</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-royal btn-sm" href="#contact">Book a call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+  </div>
+</header>
+<div class="rail" aria-hidden="true"><span>Branding — Websites — SEO — Performance — Social — Technology</span></div>
+<a class="fab off btn btn-royal" href="#contact">Get a quote <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+
+<main id="top">
+
+<!-- 01 hero: copy left, enquiry form right, over a wall of ScaleAcres AI builder films -->
+<section class="hero2 dark" aria-label="ScaleAcres">
+  <div class="wall"><video id="heroFilm" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-ai-poster.jpg" aria-hidden="true">
+    <source src="assets/video/hero-ai-wall-1280.webm" type="video/webm">
+    <source src="assets/video/hero-ai-wall-1280.mp4" type="video/mp4">
+  </video></div>
+  <div class="veil"></div>
+  <div class="wrap hgrid">
+    <div class="copy">
+      <span class="pill rv">Real estate 360° marketing &amp; creative agency</span>
+      <h1><span class="mask"><span style="--d:120ms">Real Estate Marketing</span></span><span class="mask"><span style="--d:220ms">That Builds</span></span><span class="mask"><span style="--d:320ms" class="serif sky big">Real Demand.</span></span></h1>
+      <p class="support rv" style="--d:420ms">A <b>creative-first</b> 360° team for <b>developers</b>: big ideas, branding, ad films, websites and performance campaigns that bring the right buyers to <b>site visits</b>.</p>
+      <ul class="ticks rv" style="--d:470ms">
+        <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#1D4ED8"/><path d="m6 10.2 2.6 2.6L14 7.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Ad films &amp; AI creatives</li>
+        <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#1D4ED8"/><path d="m6 10.2 2.6 2.6L14 7.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Websites that convert</li>
+        <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#1D4ED8"/><path d="m6 10.2 2.6 2.6L14 7.4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Meta &amp; Google lead campaigns</li>
+      </ul>
+      <div class="cta rv" style="--d:540ms">
+        <a class="btn btn-grad" href="#enquire">Start a Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a class="btn btn-line" href="#work">See Our Work</a>
+      </div>
+      <div class="stat rv" style="--d:620ms"><strong>250+</strong><span>Projects<br>worked on</span></div>
+    </div>
+    <form class="hform rv" id="enquire" style="--d:360ms" novalidate aria-labelledby="hf-title">
+      <span class="hf-tag">Free, no obligation</span>
+      <h2 id="hf-title">Get a 90-day launch<br> plan for your project</h2>
+      <p class="hf-sub">Tell us about the project. A strategist sends your plan within one working day.</p>
+      <ul class="hf-gets" aria-label="Your plan includes">
+        <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 8.5 3.2 3L13 4.5"/></svg>Expected cost per lead</li>
+        <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 8.5 3.2 3L13 4.5"/></svg>Channel and budget split</li>
+        <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 8.5 3.2 3L13 4.5"/></svg>Creative direction</li>
+        <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 8.5 3.2 3L13 4.5"/></svg>Week-by-week timeline</li>
+      </ul>
+      <div class="hf-grid">
+        <label class="f"><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label>
+        <label class="f"><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label>
+        <label class="f"><span>Project or company</span><input name="company" autocomplete="organization" required placeholder="Project or company"></label>
+        <label class="f"><span>City</span><input name="city" autocomplete="address-level2" required placeholder="City"></label>
+        <label class="f full sel"><span>Monthly marketing budget</span><select name="budget" required>
+          <option value="" disabled selected>Monthly marketing budget</option>
+          <option value="under-1l">Under ₹1 lakh</option>
+          <option value="1-3l">₹1–3 lakh</option>
+          <option value="3-5l">₹3–5 lakh</option>
+          <option value="5-10l">₹5–10 lakh</option>
+          <option value="10l-plus">₹10 lakh+</option>
+        </select><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 6 5 5 5-5"/></svg></label>
+      </div>
+      <button class="hf-send" type="submit">Send me my plan <i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12 12 4M6 4h6v6"/></svg></i></button>
+      <p class="hf-legal">No spam. Your details stay with ScaleAcres.</p>
+      <p class="hf-note" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- trusted by -->
+<section class="trust" aria-label="Trusted by">
+  <div class="wrap">
+    <h3>Trusted by</h3>
+    <div class="marquee"><div class="track" id="track"></div></div>
+  </div>
+</section>
+
+<!-- 02 statement -->
+<section class="statement" aria-label="Who we are">
+  <div class="wrap">
+    <span class="eyebrow rv">Who we are</span>
+    <p id="stmt" style="margin-top:34px">We're a real estate 360° marketing and creative agency. Our studio creates the brands, films and campaigns that help developers launch, position and sell out projects, with <span class="acc-src">brand, creative, digital and performance</span> working as one.</p>
+    <div class="meta rv">
+      <div><b>Offices</b>Agra · Delhi</div>
+      <div><b>Markets</b>Pan-India · UAE · Australia</div>
+      <div><b>Focus</b>Real estate developers and channel partners</div>
+    </div>
+  </div>
+<div class="sec-cta rv"><a class="btn btn-royal" href="#lmCall" data-focus="lmCall">Book a free strategy call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><span>Free · no obligation</span></div>
+</section>
+
+<!-- lead magnet (landing page) -->
+<section class="lmb slim" aria-label="Free strategy call"><div class="wrap"><div class="card rv">
+  <div><span class="tag">Free strategy call</span><h3>Talk to a strategist <span class="serif">this week.</span></h3><p>A 30-minute call on your project: positioning, buyer profile and where your first leads should come from.</p></div>
+  <form class="lm-form" id="lmCall" novalidate aria-label="Free strategy call">
+    <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label><label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label><label><span>You are a</span><select name="role" required><option value="" disabled selected>You are a</option><option>Developer</option><option>Channel partner / broker</option><option>Real estate brand</option><option>Other</option></select></label>
+    <button type="submit">Book my free call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <p class="note" role="status" aria-live="polite"></p>
+  </form>
+</div></div></section>
+
+<!-- 03 services: pinned, scroll-driven heading and description on the left; service accordion on the right -->
+<section class="services" id="services" aria-label="Services">
+  <div class="wrap grid">
+    <div class="svc-pin">
+      <span class="eyebrow rv">What we do</span>
+      <h2 class="h2" style="margin-top:22px"><span class="mask"><span>Our 360° Real Estate</span></span><span class="mask"><span style="--d:120ms"><span class="serif grad">Creative &amp; Marketing</span></span></span></h2>
+      <p class="lead rv" style="margin-top:22px;max-width:620px">Branding, ad films, websites, media and technology for real estate developers, created and delivered by one studio under one roof.</p>
+    </div>
+    <div class="acc rv" id="acc" style="--d:160ms"></div>
+  </div>
+<div class="sec-cta rv"><a class="btn btn-royal" href="#lmCreative" data-focus="lmCreative">Get a free creative concept <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><span>Free · no obligation</span></div>
+</section>
+
+<!-- 03b lead magnet: free creative concept -->
+<section class="lmb " aria-label="Free creative concept"><div class="wrap"><div class="card rv">
+  <div><span class="tag">Free creative concept</span><h3>Get a free ad concept <span class="serif">for your project.</span></h3><p>Share your project and our creative studio sends one campaign idea, with a key visual direction and headline, made for your buyers.</p></div>
+  <form class="lm-form" id="lmCreative" novalidate aria-label="Free creative concept">
+    <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label>
+    <label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label>
+    <label class="full"><span>Project name and city</span><input name="project" required placeholder="Project name and city"></label>
+    <button type="submit">Send me a free concept <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <p class="note" role="status" aria-live="polite"></p>
+  </form>
+</div></div></section>
+
+<!-- 04 ideas banner -->
+<section class="ideas dark" aria-label="The ScaleAcres standard">
+  <div class="bg"><img src="assets/img/ideas-city-1440.webp" srcset="assets/img/ideas-city-1440.webp 1440w, assets/img/ideas-city-2688.webp 2688w" sizes="100vw" width="2688" height="1504" loading="lazy" decoding="async" alt="A city road at dusk with a ScaleAcres hoarding on a billboard, an elevated metro and evening traffic"></div>
+  <div class="scrim"></div>
+  <div class="copy">
+    <span class="eyebrow center rv">The ScaleAcres standard</span>
+    <h2><span class="mask"><span>Ideas that</span></span><span class="mask"><span style="--d:120ms"><span class="serif sky">stop the scroll</span></span></span></h2>
+    <p class="rv" style="--d:240ms">Every launch deserves a big idea, and every idea deserves flawless execution. Creative, strategy, technology and media under one roof.</p>
+  </div>
+<div class="sec-cta rv light"><a class="btn btn-white" href="#lmOutdoor" data-focus="lmOutdoor">Get a free hoarding concept <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><span>Free · no obligation</span></div>
+</section>
+
+<!-- lead magnet (landing page) -->
+<section class="lmb wh" aria-label="Free outdoor concept"><div class="wrap"><div class="card rv">
+  <div><span class="tag">Free outdoor concept</span><h3>See your project <span class="serif">on a hoarding.</span></h3><p>Our studio designs one hoarding or site-branding concept for your project, the kind of idea that stops traffic.</p></div>
+  <form class="lm-form" id="lmOutdoor" novalidate aria-label="Free outdoor concept">
+    <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label><label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label><label class="full"><span>Project name and city</span><input name="project" required placeholder="Project name and city"></label>
+    <button type="submit">Get my hoarding concept <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <p class="note" role="status" aria-live="polite"></p>
+  </form>
+</div></div></section>
+
+<!-- 05 client work showcase: editorial 2-column grid of graded project cards -->
+<section class="showcase" id="work" aria-label="Client work showcase">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow rv">Our work does the talking</span><h2 class="h2" style="margin-top:22px"><span class="mask"><span>Client work <span class="serif royal">showcase</span></span></span></h2></div>
+      <a class="link rv" href="#work">Full portfolio</a>
+    </div>
+    <div class="tiles" id="tiles"></div>
+  </div>
+<div class="sec-cta rv"><a class="btn btn-royal" href="#lmPortfolio" data-focus="lmPortfolio">Get the full portfolio <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><span>Free · no obligation</span></div>
+</section>
+
+<!-- lead magnet (landing page) -->
+<section class="lmb slim" aria-label="Full portfolio"><div class="wrap"><div class="card rv">
+  <div><span class="tag">Full portfolio</span><h3>Get the full portfolio <span class="serif">on WhatsApp.</span></h3><p>Launch campaigns, ad films, brand identities and websites for 250+ real estate projects.</p></div>
+  <form class="lm-form" id="lmPortfolio" novalidate aria-label="Full portfolio">
+    <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label><label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label><label><span>You are a</span><select name="role" required><option value="" disabled selected>You are a</option><option>Developer</option><option>Channel partner / broker</option><option>Real estate brand</option><option>Other</option></select></label>
+    <button type="submit">Send me the portfolio <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <p class="note" role="status" aria-live="polite"></p>
+  </form>
+</div></div></section>
+
+<!-- 06 how we work: brand journey -->
+<section class="journey" id="how" aria-label="How we work">
+  <div class="wrap">
+    <span class="eyebrow rv">How we work</span>
+    <h2 class="jh"><span class="mask"><span>From a plan, to a</span></span><span class="mask"><span style="--d:120ms">brand journey.</span></span></h2>
+    <div id="phases"></div>
+  </div>
+<div class="sec-cta rv"><a class="btn btn-royal" href="#lmPlan" data-focus="lmPlan">Get my free 90-day plan <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><span>Free · no obligation</span></div>
+</section>
+
+<!-- 06b lead magnet: free 90-day launch plan -->
+<section class="lmb wh" aria-label="Free 90-day launch plan"><div class="wrap"><div class="card rv">
+  <div><span class="tag">Free 90-day launch plan</span><h3>Plan your launch <span class="serif">before you spend.</span></h3><p>A strategist maps your expected cost per lead, channel and budget split, creative direction and a week-by-week timeline, free.</p></div>
+  <form class="lm-form" id="lmPlan" novalidate aria-label="Free 90-day launch plan">
+    <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label>
+    <label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label>
+    <label><span>Project or company</span><input name="project" required placeholder="Project or company"></label><label><span>You are a</span><select name="role" required><option value="" disabled selected>You are a</option><option>Developer</option><option>Channel partner / broker</option><option>Real estate brand</option><option>Other</option></select></label>
+    <button type="submit">Get my free plan <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <p class="note" role="status" aria-live="polite"></p>
+  </form>
+</div></div></section>
+
+<!-- 07 clients -->
+<section class="clients" id="clients" aria-label="Clients">
+  <div class="wrap">
+    <span class="eyebrow center rv">Trusted by developers</span>
+    <h2 class="h2"><span class="mask"><span>Our precious <span class="serif royal">clients</span></span></span></h2>
+    <p class="lead rv">Developers and real estate brands that have trusted ScaleAcres with their launches, creative and campaigns.</p>
+    <div class="logos rv" id="logos"></div>
+  </div>
+<div class="sec-cta rv"><a class="btn btn-royal" href="#lmCompetitor" data-focus="lmCompetitor">Get a free competitor report <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><span>Free · no obligation</span></div>
+</section>
+
+<!-- lead magnet (landing page) -->
+<section class="lmb " aria-label="Free competitor ad report"><div class="wrap"><div class="card rv">
+  <div><span class="tag">Free competitor ad report</span><h3>See what your competitors <span class="serif">are running.</span></h3><p>We review the Meta and Google ads that developers in your micro-market are running, and show you where the gap is.</p></div>
+  <form class="lm-form" id="lmCompetitor" novalidate aria-label="Free competitor ad report">
+    <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label><label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label><label class="full"><span>Your micro-market or city</span><input name="project" required placeholder="Your micro-market or city"></label>
+    <button type="submit">Get my competitor report <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <p class="note" role="status" aria-live="polite"></p>
+  </form>
+</div></div></section>
+
+<!-- 07b channel partners -->
+<section class="partners" id="partners" aria-label="Channel partners">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow rv">Channel partners</span><h2 class="h2" style="margin-top:22px"><span class="mask"><span>Our channel <span class="serif royal">partners</span></span></span></h2></div>
+      <p class="lead rv" style="max-width:420px">Realty consultancies and advisory firms that rely on ScaleAcres for their brand, websites and lead generation.</p>
+    </div>
+    <div class="cp rv" id="cp"></div>
+  </div>
+<div class="sec-cta rv"><a class="btn btn-royal" href="#lmPartner" data-focus="lmPartner">Get a free channel-partner plan <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><span>Free · no obligation</span></div>
+</section>
+
+<!-- lead magnet (landing page) -->
+<section class="lmb wh" aria-label="For channel partners"><div class="wrap"><div class="card rv">
+  <div><span class="tag">For channel partners</span><h3>More leads for <span class="serif">every project you sell.</span></h3><p>A free lead-generation plan for brokers and channel partners: projects to push, ad budget per project and expected cost per lead.</p></div>
+  <form class="lm-form" id="lmPartner" novalidate aria-label="For channel partners">
+    <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label><label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label><label class="full"><span>Company name and city</span><input name="project" required placeholder="Company name and city"></label>
+    <button type="submit">Get my lead plan <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <p class="note" role="status" aria-live="polite"></p>
+  </form>
+</div></div></section>
+
+<!-- 07c projects wall -->
+<section class="projects" id="projects" aria-label="Projects">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow rv">Our projects</span><h2 class="h2" style="margin-top:22px"><span class="mask"><span><span id="pcount">75</span>+ brands &amp; <span class="serif royal">projects</span></span></span></h2></div>
+      <p class="lead rv" style="max-width:460px">Developers, projects and brands we have marketed, from launch campaigns and websites to films and performance media.</p>
+    </div>
+    <div class="pwall rv" id="pwall"></div>
+  </div>
+<div class="sec-cta rv"><a class="btn btn-royal" href="#lmWebsite" data-focus="lmWebsite">Get a free website review <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><span>Free · no obligation</span></div>
+</section>
+
+<!-- lead magnet (landing page) -->
+<section class="lmb slim" aria-label="Free website review"><div class="wrap"><div class="card rv">
+  <div><span class="tag">Free website review</span><h3>Is your project website <span class="serif">losing leads?</span></h3><p>We review speed, layout and enquiry flow, and send the three fixes that will bring in more enquiries.</p></div>
+  <form class="lm-form" id="lmWebsite" novalidate aria-label="Free website review">
+    <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label><label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label><label><span>Website link</span><input name="project" required placeholder="Website link"></label>
+    <button type="submit">Review my website <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <p class="note" role="status" aria-live="polite"></p>
+  </form>
+</div></div></section>
+
+<!-- 08 studio cards -->
+<section class="studio" aria-label="Studio">
+  <div class="wrap bento">
+    <div class="col">
+      <div class="b-dark rv">
+        <span class="tag">(Our offices)</span>
+        <div class="num">02</div>
+        <p>offices, Agra and Delhi, one team</p>
+        <div class="cities"><span>Agra</span><span>Delhi</span></div>
+        <svg class="globe" viewBox="0 0 400 400" id="globe"></svg>
+      </div>
+      <div class="b-light rv" style="--d:120ms">
+        <h4>Six services,<br><span class="serif">one accountable team</span></h4>
+        <a class="btn btn-royal btn-sm" href="#services">View services <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+      </div>
+    </div>
+    <div class="b-video rv" style="--d:180ms">
+      <span class="tag">(In their words)</span>
+      <h4>Hear it from <span class="serif">our clients</span></h4>
+      <div class="vids">
+        <div class="v"><img src="assets/img/sunita-bishnoi-lets-movin-poster.webp" loading="lazy" decoding="async" width="720" height="720" alt="Sunita Bishnoi, Let's Movin, video testimonial"><b>Let's Movin<small>Real estate consultancy</small></b><i><svg viewBox="0 0 12 12"><path d="M2 1v10l9-5z"/></svg></i></div>
+        <div class="v"><img src="assets/img/nrg-india-poster.webp" loading="lazy" decoding="async" width="720" height="720" alt="NRG India video testimonial"><b>NRG India<small>Real estate</small></b><i><svg viewBox="0 0 12 12"><path d="M2 1v10l9-5z"/></svg></i></div>
+        <div class="v"><img src="assets/img/ipd-poster.webp" loading="lazy" decoding="async" width="720" height="720" alt="IPD International Property Deal video testimonial"><b>IPD<small>Luxury homes</small></b><i><svg viewBox="0 0 12 12"><path d="M2 1v10l9-5z"/></svg></i></div>
+        <div class="v"><img src="assets/img/timespro-poster.webp" loading="lazy" decoding="async" width="720" height="720" alt="TimesPro video testimonial"><b>TimesPro<small>Client testimonial</small></b><i><svg viewBox="0 0 12 12"><path d="M2 1v10l9-5z"/></svg></i></div>
+      </div>
+    </div>
+  </div>
+<div class="sec-cta rv"><a class="btn btn-royal" href="#auditForm" data-focus="auditForm">Get my free marketing audit <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><span>Free · no obligation</span></div>
+</section>
+
+<!-- 08b lead magnet: free marketing audit -->
+<section class="audit" id="audit" aria-label="Free marketing audit">
+  <div class="wrap grid">
+    <div>
+      <span class="eyebrow rv">Free marketing audit</span>
+      <h2 class="h2" style="margin-top:22px"><span class="mask"><span>Find out what is <span class="serif sky">holding your leads back.</span></span></span></h2>
+      <p class="lead rv">Share your website or social link. A ScaleAcres strategist reviews your marketing and walks you through what to fix first, at no cost.</p>
+      <ul class="gets rv" style="--d:120ms">
+        <li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i><div>Website &amp; landing page review<small>Speed, layout and how well each page turns visitors into enquiries.</small></div></li>
+        <li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i><div>Ads &amp; cost-per-lead check<small>Targeting, creative and budget on Meta and Google.</small></div></li>
+        <li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i><div>Social &amp; creative review<small>What your feed and ads say about your brand.</small></div></li>
+        <li><i><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8.5 3.2 3L13 4.5"/></svg></i><div>A prioritised action plan<small>The three changes likely to move your numbers first.</small></div></li>
+      </ul>
+      <div class="report rv" style="--d:200ms" aria-label="Sample audit scorecard">
+        <div class="rh">Audit scorecard <em>Sample</em></div>
+        <div class="row">Website<div class="bar"><b style="width:62%"></b></div><span>62</span></div>
+        <div class="row">Paid ads<div class="bar"><b style="width:48%"></b></div><span>48</span></div>
+        <div class="row">Social &amp; creative<div class="bar"><b style="width:71%"></b></div><span>71</span></div>
+        <div class="row">Search (SEO)<div class="bar"><b style="width:55%"></b></div><span>55</span></div>
+      </div>
+    </div>
+    <form class="aform rv" id="auditForm" style="--d:160ms" novalidate aria-labelledby="af-title">
+      <h3 id="af-title">Get your free audit</h3>
+      <p>For real estate developers and channel partners.</p>
+      <div class="fg">
+        <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label>
+        <label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label>
+        <label class="full"><span>Work email</span><input name="email" type="email" autocomplete="email" required placeholder="Work email"></label>
+        <label class="full"><span>Website or social link</span><input name="url" type="text" inputmode="url" required placeholder="Website or Instagram link"></label>
+        <label><span>Business type</span><select name="type" required><option value="" disabled selected>Business type</option><option>Real estate developer</option><option>Channel partner / broker</option><option>Real estate brand / other</option></select></label>
+        <label><span>Monthly marketing budget</span><select name="budget" required><option value="" disabled selected>Monthly budget</option><option>Under ₹1 lakh</option><option>₹1–3 lakh</option><option>₹3–5 lakh</option><option>₹5–10 lakh</option><option>₹10 lakh+</option></select></label>
+      </div>
+      <button class="send" type="submit">Get my free audit <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+      <p class="legal">No spam. Your details stay with ScaleAcres.</p>
+      <p class="note" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- 09 contact: "Let's talk about your next launch" -->
+<section class="talk" id="contact" aria-label="Contact">
+  <div class="wrap">
+    <div class="card">
+      <div>
+        <span class="chip rv">Start a project</span>
+        <h2><span class="mask"><span>Let&rsquo;s talk about</span></span><span class="mask"><span style="--d:120ms">your <span class="serif">next launch.</span></span></span></h2>
+        <p class="lead rv">Tell us about the project. We come back with a clear plan for the brand, the creative, the launch and lead generation.</p>
+        <div class="phones rv"><a href="tel:+917017169215">+91 70171 69215</a><a href="tel:+919266023436">+91 92660 23436</a></div>
+      </div>
+      <form class="tform lm-form rv" id="talkForm" style="--d:120ms" novalidate aria-labelledby="tf-title">
+        <h3 id="tf-title">Tell us about your project</h3>
+        <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Full name"></label>
+        <label><span>Phone</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+91"></label>
+        <label><span>Company or project</span><input name="project" autocomplete="organization" required placeholder="Project name"></label>
+        <label><span>You are a</span><select name="role" required><option value="" disabled selected>Select one</option><option>Developer</option><option>Channel partner / broker</option><option>Real estate brand</option><option>Other</option></select></label>
+        <button type="submit">Book a strategy call</button>
+        <p class="note" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+    <div class="bar"><span>ScaleAcres Promotech, Westend Marg, Saidulajab, New Delhi 110030</span><span>Offices in Agra and Delhi</span><a href="mailto:scaleacres@gmail.com">scaleacres@gmail.com</a></div>
+  </div>
+</section>
+
+<!-- 10 FAQ -->
+<section class="faq" id="faq" aria-label="Frequently asked questions">
+  <div class="in-wrap">
+    <span class="pill rv">Common questions</span>
+    <h2><span class="mask"><span>Frequently Asked <span class="serif">Questions</span></span></span></h2>
+    <p class="lead rv">Real estate creative, marketing, websites and campaigns: what clients ask us most.</p>
+    <div class="list rv" id="faqList"></div>
+    <div class="more rv">Still have questions? Write to us at <a href="mailto:scaleacres@gmail.com">scaleacres@gmail.com</a></div>
+  </div>
+<div class="sec-cta rv"><a class="btn btn-royal" href="#lmFinal" data-focus="lmFinal">Get a call back <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a><span>Free · no obligation</span></div>
+</section>
+<!-- lead magnet (landing page): closing -->
+<section class="lmb " aria-label="Still deciding?"><div class="wrap"><div class="card rv">
+  <div><span class="tag">Still deciding?</span><h3>Get a call back <span class="serif">from our team.</span></h3><p>Leave your number and a ScaleAcres strategist will call you to answer your questions and plan the next step.</p></div>
+  <form class="lm-form" id="lmFinal" novalidate aria-label="Still deciding?">
+    <label><span>Your name</span><input name="fullName" autocomplete="name" required placeholder="Your name"></label><label><span>Phone or WhatsApp</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone or WhatsApp"></label><label class="full"><span>You are a</span><select name="role" required><option value="" disabled selected>You are a</option><option>Developer</option><option>Channel partner / broker</option><option>Real estate brand</option><option>Other</option></select></label>
+    <button type="submit">Call me back <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+    <p class="note" role="status" aria-live="polite"></p>
+  </form>
+</div></div></section>
+
+</main>
+
+
+
+<script>
+const STATIC = /static=1/.test(location.search);
+if (STATIC) document.documentElement.classList.add("static");
+const $ = (s) => document.querySelector(s);
+
+/* data — all ScaleAcres */
+const CLIENTS = ["adani-realty","tata-realty","m3m","signature-global","elan","ats","bhutani-infra","smartworld","birla-navya","hero-realty","trehan-luxury-floors","the-islands-by-gaurs","yugen-infra","hometrust","rps-rudrom","seabreeze-villas","bric-x-infra","raksha-towers","shf-square","mi-casa"];
+const NAMES = {"adani-realty":"Adani Realty","tata-realty":"Tata Realty","m3m":"M3M","signature-global":"Signature Global","elan":"Elan","ats":"ATS","bhutani-infra":"Bhutani Infra","smartworld":"Smartworld","birla-navya":"Birla Navya","hero-realty":"Hero Realty","trehan-luxury-floors":"Trehan Luxury Floors","the-islands-by-gaurs":"The Islands by Gaurs","yugen-infra":"Yugen Infra","hometrust":"Hometrust","rps-rudrom":"RPS Rudrom","seabreeze-villas":"SeaBreeze Villas","bric-x-infra":"Bric-X Infra","raksha-towers":"Raksha Towers","shf-square":"SHF Square","mi-casa":"Mi Casa"};
+const SERVICES = [
+  ["Branding & Creative Design","We create real estate brands and launch creative, from identity and brochures to hoardings, site branding and the campaign ideas that make buyers stop."],
+  ["Social Media Marketing","Our studio produces ad films, AI creatives, reels and always-on content that keep your project visible and talked about."],
+  ["Performance Marketing","We take the creative to market on Meta and Google, with audience targeting and constant testing built to lower cost per lead and raise site visits."],
+  ["Website Design & Development","We design and build project websites and landing pages that look premium and turn visitors into qualified enquiries."],
+  ["Search Engine Optimization","We help buyers find your project on Google with local SEO, project pages and content that build organic visibility."],
+  ["Custom Applications & Software","We build CRM integrations, lead-routing and sales tools that help your team follow up faster and close more."],
+];
+const WORK = [
+  ["sc-seabreeze-1600","SeaBreeze Villas","Outdoor, print & reels","La Wisteria, North Goa","Editorial collage for La Wisteria by SeaBreeze Villas: facade and courtyard renders with ScaleAcres print creatives and reels"],
+  ["sc-sid-realtech-1600","SID Realtech","Launch campaign & website","Ellington 86, Sector 86, Faridabad","Spotlit 'Coming soon' launch poster for Ellington 86 with the ScaleAcres website and hoarding for SID Realtech"],
+  ["sc-aarize-1600","Aarize","Commercial brand identity","The Tessoro, Sector 114, Gurugram","Aarize brand identity and stationery flat-lay with a Tessoro ad by ScaleAcres"],
+  ["sc-intech-1600","Intech Developers","Social reels & brand","Modern living in Udupi","A wall of Intech Developers reels and the 'Creates Value' post by ScaleAcres"],
+  ["sc-trg-1600","TRG The Mall","Launch campaign & event","Trisol Red Group, Ghaziabad","Split view of TRG The Mall at dusk and the ScaleAcres launch event gate"],
+  ["sc-jbbr-1600","JBBR Group","Brand identity & creative","Kanvas & Krystal, Lucknow","JBBR Group luxury box, brochure and cards with a Kanvas reel by ScaleAcres"],
+  ["sc-sohom-1600","Sohom Estate","Launch film & reels","Pravya, Rajarhat New Town, Kolkata","Launch film frame and six-scene storyboard for Pravya by Soham Group and DTC Group"],
+  ["sc-dtc-1600","DTC Group","AI ad films & social","Sojon, Good Earth, Skyler, Stillwaters","A social grid of ScaleAcres creatives for four DTC Group projects"],
+  ["sc-bhatia-1600","Bhatia Group","Launch campaign & ads","Auriga 9, Borivali West, Mumbai","Brochure-style spread for Auriga 9: tower elevation, floor-plan creative and launch ad"],
+  ["sc-yugen-1600","Yugen Infra","Lead campaign & reels","Villa plots, North Goa","Yugen Infra campaign results (15k+ leads, 37.8% qualification, 200+ plots sold) with campaign reels by ScaleAcres"],
+];
+const PHASES = [
+  ["01","journey-01-strategy","Strategy: a project masterplan render with audience-targeting rings, buyer persona, catchment and price-band markers",
+   "Creating Buzz & Attracting Serious Eyeballs","At this stage, it's all about making your project the talk of the town and driving high-quality discovery.",
+   "Increase online visibility","Buyers start their search online. The right digital presence puts your project where those decisions are being made, through SEO, paid media, content and outdoor working together.",
+   ["Geo-Targeted Awareness Ad Films","Hyperlocal SEO & Location-Based Content","Luxury & Mass-Market Segmentation","Digital Billboards & Rich Media Ads"]],
+  ["02","journey-02-execution","Execution: a cinema camera rig with the La Wisteria ad film by ScaleAcres on the edit monitor",
+   "Turning Interest Into Qualified Enquiries","Once the project is noticed, every campaign is built to capture genuine buyers, not just clicks.",
+   "Generate quality leads","Performance campaigns, landing pages and lead forms work as one funnel, so each enquiry is tracked to its source and reaches your sales team while intent is high.",
+   ["Google & Meta Performance Campaigns","High-Converting Landing Pages","Instant Lead Capture & CRM Integration","Retargeting for Warm Prospects"]],
+  ["03","journey-03-growth","Growth: rising brand bars over a live performance dashboard tracking qualified leads, cost per lead, site visits and ROI",
+   "Converting Enquiries Into Site Visits & Sales","The final stretch is about nurturing intent and giving sales teams everything they need to close.",
+   "Drive site visits & growth","Follow-ups, channel-partner support and clear reporting keep buyers moving from first call to site visit, while we keep improving what brings qualified buyers.",
+   ["WhatsApp & Email Nurture Journeys","Channel-Partner Collateral & Kits","Site-Visit Campaigns & Events","Weekly Reporting & Optimisation"]],
+];
+const FAQ = [
+  ["Are you a creative agency or a marketing agency?","Both. We are a real estate 360° marketing and creative agency: branding, ad films, AI creatives and campaign design are made in our own studio, and our marketing team takes them to market through Meta, Google, websites and SEO."],
+  ["How can ScaleAcres help generate more leads?","ScaleAcres helps generate high-quality leads through targeted digital campaigns, audience segmentation, optimized landing pages, and data-driven advertising strategies designed to reach potential customers at the right time."],
+  ["How can ScaleAcres enhance your website's visibility?","ScaleAcres improves website visibility through SEO, content optimization, technical improvements, keyword targeting, and digital marketing strategies that help your website reach a larger and more relevant audience."],
+  ["What makes ScaleAcres different from other marketing agencies?","ScaleAcres is a real estate 360° marketing and creative agency. One studio creates the brand, ad films and campaign creative, and the same team runs the websites and performance media, so every launch is creative-led and measured on qualified leads and site visits."],
+  ["How can I track the success of my campaigns?","Campaign performance can be tracked through key metrics such as leads generated, conversions, cost per lead, website traffic, engagement, and return on ad spend, supported by regular performance reports and analysis."],
+];
+
+/* logo sets (assets/logos/logos.json, inlined) */
+const LOGOS = [{"slug":"dlf","name":"DLF","set":"developer","file":"dlf.png"},{"slug":"m3m","name":"M3M","set":"developer","file":"m3m.png"},{"slug":"aarize","name":"Aarize","set":"developer","file":"aarize.png"},{"slug":"godrej-properties","name":"Godrej Properties","set":"developer","file":"godrej-properties.png"},{"slug":"orris","name":"Orris","set":"developer","file":"orris.png"},{"slug":"yugen-infra","name":"Yugen Infra","set":"developer","file":"yugen-infra.png"},{"slug":"signature-global","name":"Signature Global","set":"developer","file":"signature-global.png"},{"slug":"tata-housing","name":"Tata Housing","set":"developer","file":"tata-housing.png"},{"slug":"bestech","name":"Bestech","set":"developer","file":"bestech.png"},{"slug":"ats","name":"ATS","set":"developer","file":"ats.png"},{"slug":"tulip-crimson","name":"Tulip Crimson","set":"developer","file":"tulip-crimson.png"},{"slug":"paras-buildtech","name":"Paras Buildtech","set":"developer","file":"paras-buildtech.png"},{"slug":"aipl","name":"AIPL","set":"developer","file":"aipl.png"},{"slug":"ansal-api","name":"Ansal API","set":"developer","file":"ansal-api.png"},{"slug":"pyramid-infratech","name":"Pyramid Infratech","set":"developer","file":"pyramid-infratech.png"},{"slug":"smartworld","name":"Smartworld","set":"developer","file":"smartworld.png"},{"slug":"experion","name":"Experion","set":"developer","file":"experion.png"},{"slug":"mvn-infrastructure","name":"MVN Infrastructure","set":"developer","file":"mvn-infrastructure.png"},{"slug":"raheja","name":"Raheja","set":"developer","file":"raheja.png"},{"slug":"suncity-projects","name":"Suncity Projects","set":"developer","file":"suncity-projects.png"},{"slug":"prestige-group","name":"Prestige Group","set":"developer","file":"prestige-group.png"},{"slug":"emaar-india","name":"Emaar India","set":"developer","file":"emaar-india.png"},{"slug":"sobha-realty","name":"Sobha Realty","set":"developer","file":"sobha-realty.png"},{"slug":"bptp","name":"BPTP","set":"developer","file":"bptp.png"},{"slug":"shapoorji-pallonji","name":"Shapoorji Pallonji","set":"developer","file":"shapoorji-pallonji.png"},{"slug":"ss-group","name":"SS Group","set":"developer","file":"ss-group.png"},{"slug":"adani-realty","name":"Adani Realty","set":"developer","file":"adani-realty.png"},{"slug":"realty-canvas","name":"Realty Canvas","set":"developer","file":"realty-canvas.png"},{"slug":"trevoc","name":"Trevoc","set":"developer","file":"trevoc.png"},{"slug":"mapsko","name":"Mapsko","set":"developer","file":"mapsko.png"},{"slug":"vatika","name":"Vatika","set":"developer","file":"vatika.png"},{"slug":"birla-estates","name":"Birla Estates","set":"developer","file":"birla-estates.png"},{"slug":"eldeco","name":"Eldeco","set":"developer","file":"eldeco.png"},{"slug":"eros-group","name":"Eros Group","set":"developer","file":"eros-group.png"},{"slug":"conscient","name":"Conscient","set":"developer","file":"conscient.png"},{"slug":"whiteland","name":"Whiteland","set":"developer","file":"whiteland.png"},{"slug":"jms-group","name":"JMS Group","set":"developer","file":"jms-group.png"},{"slug":"rof","name":"ROF","set":"developer","file":"rof.png"},{"slug":"mahindra-lifespaces","name":"Mahindra Lifespaces","set":"developer","file":"mahindra-lifespaces.png"},{"slug":"satya-group","name":"Satya Group","set":"developer","file":"satya-group.png"},{"slug":"tata-realty","name":"Tata Realty","set":"client","file":"tata-realty.png"},{"slug":"elan","name":"Elan","set":"client","file":"elan.png"},{"slug":"bhutani-infra","name":"Bhutani Infra","set":"client","file":"bhutani-infra.png"},{"slug":"birla-navya","name":"Birla Navya","set":"client","file":"birla-navya.png"},{"slug":"hero-realty","name":"Hero Realty","set":"client","file":"hero-realty.png"},{"slug":"trehan-luxury-floors","name":"Trehan Luxury Floors","set":"client","file":"trehan-luxury-floors.png"},{"slug":"the-islands-by-gaurs","name":"The Islands by Gaurs","set":"client","file":"the-islands-by-gaurs.png"},{"slug":"hometrust","name":"Hometrust","set":"client","file":"hometrust.png"},{"slug":"rps-rudrom","name":"RPS Rudrom","set":"client","file":"rps-rudrom.png"},{"slug":"seabreeze-villas","name":"SeaBreeze Villas","set":"client","file":"seabreeze-villas.png"},{"slug":"bric-x-infra","name":"Bric-X Infra","set":"client","file":"bric-x-infra.png"},{"slug":"raksha-towers","name":"Raksha Towers","set":"client","file":"raksha-towers.png"},{"slug":"shf-square","name":"SHF Square","set":"client","file":"shf-square.png"},{"slug":"mi-casa","name":"Mi Casa","set":"client","file":"mi-casa.png"},{"slug":"sid-realtech","name":"SID Realtech","set":"client","file":"sid-realtech.png"},{"slug":"intech-developers","name":"Intech Developers","set":"client","file":"intech-developers.svg"},{"slug":"trg","name":"TRG \u00b7 Trisol Red Group","set":"client","file":"trg.png"},{"slug":"aevora-infratech","name":"Aevora Infratech","set":"client","file":"aevora-infratech.svg"},{"slug":"aakar-interior","name":"Aakar Interior","set":"client","file":"aakar-interior.png"},{"slug":"innovative","name":"Innovative Developers","set":"client","file":"innovative.png"},{"slug":"bizloan","name":"Bizloan","set":"client","file":"bizloan.png"},{"slug":"eggspert","name":"Eggspert","set":"client","file":"eggspert.svg"},{"slug":"media-pr","name":"Media PR","set":"client","file":"media-pr.png"},{"slug":"mwb","name":"MW&B","set":"client","file":"mwb.png"},{"slug":"jina-cosmetics","name":"Jina Cosmetics","set":"client","file":"jina-cosmetics.png"},{"slug":"lets-movin","name":"Let's Movin","set":"partner","file":"lets-movin.png"},{"slug":"land-lord-realtor","name":"Land Lord Realtor Service","set":"partner","file":"land-lord-realtor.png"},{"slug":"homefynders","name":"Homefynders","set":"partner","file":"homefynders.png"},{"slug":"imperial-sky-realty","name":"Imperial Sky Realty","set":"partner","file":"imperial-sky-realty.png"},{"slug":"straight-up-capital","name":"Straight Up Capital Realty","set":"partner","file":"straight-up-capital.png"},{"slug":"investors-guide","name":"Investors Guide","set":"partner","file":"investors-guide.svg"},{"slug":"subata-realty","name":"Subata Realty","set":"partner","file":"subata-realty.png"},{"slug":"scalemiles","name":"ScaleMiles","set":"partner","file":"scalemiles.png"},{"slug":"research-capital","name":"Research Capital","set":"partner","file":"research-capital.svg"},{"slug":"jbbr-group","name":"JBBR Group","set":"client","file":"jbbr-group.png"}];
+const L = Object.fromEntries(LOGOS.map((l) => [l.slug, l]));
+const logoImg2 = (l) => `<img src="assets/logos/${l.file}" alt="${l.name}" loading="lazy" decoding="async">`;
+/* build */
+const logoImg = (k) => logoImg2(L[k]);
+const STRIP = ["dlf","godrej-properties","sobha-realty","m3m","signature-global","adani-realty","tata-housing","prestige-group","emaar-india","smartworld","birla-estates","mahindra-lifespaces"];
+$("#track").innerHTML = STRIP.concat(STRIP).map(logoImg).join("");
+$("#cp").innerHTML = LOGOS.filter((l) => l.set === "partner").map((l) => `<div><span>${logoImg2(l)}</span><b>${l.name}</b></div>`).join("");
+const WALL = LOGOS.filter((l) => l.set === "developer").concat(LOGOS.filter((l) => l.set === "client"), LOGOS.filter((l) => l.set === "partner"));
+$("#pcount").textContent = WALL.length;
+$("#pwall").innerHTML = WALL.map((l) => `<div title="${l.name}">${logoImg2(l)}</div>`).join("") + `<a class="next" href="#contact">Your project<br>could be next <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12 12 4M5 4h7v7"/></svg></a>`;
+$("#logos").innerHTML = CLIENTS.map((k) => `<div>${logoImg(k)}</div>`).join("");
+$("#acc").innerHTML = SERVICES.map(([t, d], i) => `<details${i === 0 ? " open" : ""}><summary><i>${String(i + 1).padStart(2, "0")}</i>${t}<em>+</em></summary><p>${d}<br><a href="#">Explore ${t.split(" ")[0].replace(/&/, "").toLowerCase()} →</a></p></details>`).join("");
+if ($("#footSvc")) $("#footSvc").innerHTML = SERVICES.map(([t]) => `<li><a href="#services">${t}</a></li>`).join("");
+$("#tiles").innerHTML = WORK.map(([img, name, cat, sub, alt], i) => `<a class="tile rv" style="--d:${(i % 2) * 120}ms" href="#work"><div class="ph zoom"><img src="assets/img/${img}.webp" alt="${alt}" width="1600" height="1000" loading="lazy" decoding="async"></div><div class="cap"><b>${name}<small>${sub}</small></b><span>${cat}</span></div></a>`).join("");
+$("#phases").innerHTML = PHASES.map(([n, img, alt, title, intro, sub, para, items], i) => `
+  <div class="jrow${i % 2 ? " rev" : ""}">
+    <div class="jimg zoom rv"><span class="jpill">Phase ${n}</span><img src="assets/img/${img}.webp" alt="${alt}" width="1210" height="1100" loading="lazy" decoding="async"></div>
+    <div class="jtext rv" style="--d:140ms">
+      <span class="jmark"><img src="assets/img/scaleacres-symbol-gradient.svg" alt=""></span>
+      <h3>${title}</h3>
+      <p class="jintro">${intro}</p>
+      <h4>${sub}</h4>
+      <p class="jpara">${para}</p>
+      <ul>${items.map((x) => `<li><i><svg viewBox="0 0 16 16"><path d="M4 8.5l2.6 2.5L12 5.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>${x}</li>`).join("")}</ul>
+    </div>
+  </div>`).join("");
+$("#faqList").innerHTML = FAQ.map(([q, a], i) => `<details${i === 0 ? " open" : ""}><summary><i>${String(i + 1).padStart(2, "0")}</i>${q}<em>⌄</em></summary><p>${a}</p></details>`).join("");
+
+/* statement: word-by-word lighting */
+(() => {
+  const p = $("#stmt"); const acc = p.querySelector(".acc-src").textContent;
+  const before = p.innerHTML.split('<span class="acc-src">')[0], after = p.innerHTML.split("</span>").pop();
+  const words = (s, cls = "") => s.trim().split(/\s+/).map((w) => `<span class="w${cls}">${w}</span>`).join(" ");
+  p.innerHTML = `${words(before)} <span class="serif">${words(acc, " acc")}</span> ${words(after)}`;
+})();
+
+/* globe of dots */
+(() => {
+  let s = ""; for (let lat = -80; lat <= 80; lat += 10) for (let lon = -180; lon < 180; lon += 9) {
+    const la = lat * Math.PI / 180, lo = lon * Math.PI / 180, x = Math.cos(la) * Math.sin(lo), z = Math.cos(la) * Math.cos(lo);
+    if (z < 0) continue; const cx = 200 + 175 * x, cy = 200 - 175 * Math.sin(la);
+    s += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(1.2 + z * 1.3).toFixed(2)}" fill="${Math.abs(lat - 28) < 6 && Math.abs(lon - 10) < 14 ? "#38BDF8" : "rgba(255,255,255," + (0.12 + z * 0.35).toFixed(2) + ")"}"/>`;
+  }
+  $("#globe").innerHTML = s;
+})();
+/* starfield + cable */
+(() => {
+  let s = "", r = 7; const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280;
+  for (let i = 0; i < 120; i++) s += `<circle cx="${(rnd() * 1440).toFixed(1)}" cy="${(rnd() * 760).toFixed(1)}" r="${(0.6 + rnd() * 1.4).toFixed(2)}" fill="#fff" opacity="${(0.15 + rnd() * 0.55).toFixed(2)}"/>`;
+  s += `<path d="M-20 300 C 300 240, 520 230, 760 205 S 1200 140, 1460 60" fill="none" stroke="rgba(56,189,248,.35)" stroke-width="1.5"/>`;
+  if ($("#stars")) $("#stars").innerHTML = s;
+})();
+
+/* below-the-fold films load when near the viewport and pause when off screen */
+const lazyv = [...document.querySelectorAll("video.lazyv")];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!STATIC) {
+  const vio = new IntersectionObserver((es) => es.forEach((e) => {
+    const v = e.target;
+    if (e.isIntersecting) {
+      if (!v.dataset.loaded) { v.querySelectorAll("source[data-src]").forEach((s) => (s.src = s.dataset.src)); v.load(); v.dataset.loaded = 1; }
+      if (!reduce) v.play().catch(() => {});
+    } else v.pause();
+  }), { rootMargin: "300px 0px" });
+  lazyv.forEach((v) => vio.observe(v));
+  if (reduce) { const h = document.getElementById("heroFilm"); h.removeAttribute("autoplay"); h.pause(); }
+}
+if (!STATIC) {
+  /* reveals */
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.15 });
+  document.querySelectorAll(".rv, .mask, .zoom").forEach((el) => io.observe(el));
+  // the hero is above the fold: reveal all of it on load, whatever the screen height
+  requestAnimationFrame(() => document.querySelectorAll(".hero2 .rv, .hero2 .mask").forEach((el) => { el.classList.add("in"); io.unobserve(el); }));
+  /* header + statement lighting */
+  const ws = [...document.querySelectorAll("#stmt .w")];
+  const onScroll = () => {
+    $("#hdr").classList.toggle("solid", scrollY > 60);
+    document.querySelector(".fab").classList.toggle("off", scrollY < document.querySelector(".hero2").offsetHeight * 0.75);
+    const r = $("#stmt").getBoundingClientRect(), k = Math.min(1, Math.max(0, (innerHeight * 0.85 - r.top) / (r.height + innerHeight * 0.35)));
+    const n = Math.round(k * ws.length); ws.forEach((w, i) => w.classList.toggle("lit", i < n));
+  };
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  /* rotating CTA word */
+  let fi = 0; if ($("#flip")) setInterval(() => { fi = (fi + 1) % 6; const st = $("#flip"); if (fi === 0) { st.style.transition = "none"; st.style.transform = "translateY(0)"; void st.offsetWidth; st.style.transition = ""; fi = 0; return; } st.style.transform = `translateY(${-fi * 1.12}em)`; }, 2200);
+} else {
+  document.querySelectorAll('img[loading="lazy"]').forEach((i) => (i.loading = "eager"));
+  lazyv.forEach((v) => { v.querySelectorAll("source[data-src]").forEach((s) => (s.src = s.dataset.src)); v.load(); });
+  document.querySelectorAll("video").forEach((v) => { v.removeAttribute("autoplay"); v.pause(); });
+}
+
+/* form variant: white card by default (approved); ?form=dark shows the dark glass card */
+if (!/[?&]form=dark/.test(location.search)) document.documentElement.classList.add("form-white");
+/* hero enquiry form: client-side checks; this static concept does not send data anywhere */
+(() => {
+  const f = document.getElementById("enquire"); if (!f) return;
+  const note = f.querySelector(".hf-note");
+  const ok = { fullName: (v) => v.trim().length >= 2, phone: (v) => /^[+\d][\d\s().-]{6,}$/.test(v.trim()), company: (v) => v.trim().length >= 2, city: (v) => v.trim().length >= 2, budget: (v) => !!v };
+  f.addEventListener("submit", (e) => {
+    e.preventDefault(); let first = null;
+    for (const [n, test] of Object.entries(ok)) { const el = f.elements[n]; const bad = !test(el.value); el.setAttribute("aria-invalid", bad); if (bad && !first) first = el; }
+    if (first) { note.textContent = "Please complete the highlighted fields."; first.focus(); return; }
+    note.textContent = "Thank you. This is a design preview, so nothing was sent; on the live site your plan request goes straight to a ScaleAcres strategist.";
+  });
+  f.addEventListener("input", (e) => e.target.removeAttribute("aria-invalid"));
+})();
+
+
+/* services heading + description: pinned while the accordion scrolls, and moved by the scroll itself.
+   Each headline line rises out of its mask, then the description sharpens from a blur, in step with the
+   scroll position (it runs backwards when you scroll up). */
+(() => {
+  const sec = document.getElementById("services"); if (!sec) return;
+  const lines = [...sec.querySelectorAll(".svc-pin h2 .mask > span")], eb = sec.querySelector(".svc-pin .eyebrow"), lead = sec.querySelector(".svc-pin .lead");
+  const still = document.documentElement.classList.contains("static") || matchMedia("(prefers-reduced-motion: reduce)").matches;
+  [...lines, eb, lead].forEach((el) => { el.style.transition = "none"; el.classList.remove("rv"); });
+  const clamp = (v) => Math.max(0, Math.min(1, v)), ease = (k) => 1 - Math.pow(1 - k, 3);
+  const paint = () => {
+    const vh = innerHeight, top = sec.getBoundingClientRect().top;
+    const k = still ? 1 : clamp((vh - top) / (vh * 0.75));          // 0 as the section enters, 1 once it is well in view
+    eb.style.opacity = ease(clamp(k * 3)).toFixed(3);
+    lines.forEach((el, i) => { const ki = ease(clamp(k * 1.7 - 0.12 - i * 0.22)); el.style.transform = `translate3d(0, ${((1 - ki) * 105).toFixed(1)}%, 0)`; });
+    const kl = ease(clamp(k * 1.7 - 0.62));
+    lead.style.opacity = kl.toFixed(3); lead.style.transform = `translate3d(0, ${((1 - kl) * 28).toFixed(1)}px, 0)`;
+    lead.style.filter = kl < 1 ? `blur(${((1 - kl) * 8).toFixed(2)}px)` : "none";
+  };
+  let raf = 0; const on = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; paint(); }); };
+  addEventListener("scroll", on, { passive: true }); addEventListener("resize", on); paint();
+})();
+
+/* free-audit form: client-side checks; this static concept does not send data anywhere */
+(() => {
+  const f = document.getElementById("auditForm"); if (!f) return;
+  const note = f.querySelector(".note");
+  const ok = { fullName: (v) => v.trim().length >= 2, phone: (v) => /^[+\d][\d\s().-]{6,}$/.test(v.trim()), email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()), url: (v) => v.trim().length >= 4, type: (v) => !!v, budget: (v) => !!v };
+  f.addEventListener("submit", (e) => {
+    e.preventDefault(); let first = null;
+    for (const [n, t] of Object.entries(ok)) { const el = f.elements[n]; const bad = !t(el.value); el.setAttribute("aria-invalid", bad); if (bad && !first) first = el; }
+    if (first) { note.textContent = "Please complete the highlighted fields."; first.focus(); return; }
+    note.textContent = "Thank you. This is a design preview, so nothing was sent; on the live site your audit request goes straight to a ScaleAcres strategist.";
+  });
+  f.addEventListener("input", (e) => e.target.removeAttribute("aria-invalid"));
+})();
+
+/* lead-magnet and contact forms: client-side checks; this static concept does not send data anywhere */
+document.querySelectorAll(".lm-form").forEach((f) => {
+  const note = f.querySelector(".note");
+  f.addEventListener("submit", (e) => {
+    e.preventDefault(); let first = null;
+    f.querySelectorAll("input[required], select[required]").forEach((el) => {
+      const v = el.value.trim(); const bad = el.name === "phone" ? !/^[+\d][\d\s().-]{6,}$/.test(v) : v.length < 2;
+      el.setAttribute("aria-invalid", bad); if (bad && !first) first = el; });
+    if (first) { note.textContent = "Please complete the highlighted fields."; first.focus(); return; }
+    note.textContent = "Thank you. This is a design preview, so nothing was sent; on the live site this goes straight to the ScaleAcres team.";
+  });
+  f.addEventListener("input", (e) => e.target.removeAttribute("aria-invalid"));
+});
+
+/* section buttons: scroll to the lead magnet that follows, then put the cursor in its first field */
+document.querySelectorAll(".sec-cta a[data-focus]").forEach((a) => a.addEventListener("click", (e) => {
+  const f = document.getElementById(a.dataset.focus); if (!f) return; e.preventDefault();
+  f.scrollIntoView({ behavior: "smooth", block: "center" });
+  setTimeout(() => f.querySelector("input, select")?.focus({ preventScroll: true }), 650);
+}));
+</script>
+</body>
+</html>
