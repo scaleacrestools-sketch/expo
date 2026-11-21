@@ -41,7 +41,8 @@
   $$('.enq-open').forEach(b => b.addEventListener('click', () => {
     const f = $('#popup-form'); if (!f) return;
     const t = b.dataset.type; const p = b.dataset.project;
-    if (t) { f.dataset.type = t; f.querySelector('[name=type]').value = t; const h = $('#popup-title'); if (h) h.textContent = t === 'Brochure' ? 'Request Brochure' : t === 'Site Visit' ? 'Book a Site Visit' : 'Enquire Now'; }
+    const tt = t || 'Enquiry'; f.dataset.type = tt; f.querySelector('[name=type]').value = tt;
+    const h = $('#popup-title'); if (h) h.textContent = tt === 'Brochure' ? 'Request Brochure' : tt === 'Site Visit' ? 'Book a Site Visit' : 'Get in Touch with us';
     if (p) { const s = f.querySelector('[name=project]'); if (s) s.value = p; }
     track('enquiry_open', { source: b.dataset.source || 'button', enquiry_type: t || 'Enquiry' });
   }));
@@ -88,9 +89,9 @@
   /* Counters */
   const counters = $$('[data-count]');
   const runCounter = el => {
-    const target = parseFloat(el.dataset.count), dec = parseInt(el.dataset.decimals || '0', 10), suffix = el.querySelector('sup');
-    const sup = suffix ? suffix.outerHTML : ''; const start = performance.now(), dur = reduce ? 0 : 1800;
-    const frame = now => { const p = dur ? Math.min(1, (now - start) / dur) : 1; const e = 1 - Math.pow(1 - p, 3); el.innerHTML = (target * e).toLocaleString('en-IN', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + sup; if (p < 1) requestAnimationFrame(frame); };
+    const target = parseFloat(el.dataset.count), dec = parseInt(el.dataset.decimals || '0', 10), sfx = el.dataset.suffix || '';
+    const start = performance.now(), dur = reduce ? 0 : 1800;
+    const frame = now => { const p = dur ? Math.min(1, (now - start) / dur) : 1; const e = 1 - Math.pow(1 - p, 3); el.textContent = (target * e).toLocaleString('en-IN', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + sfx; if (p < 1) requestAnimationFrame(frame); };
     requestAnimationFrame(frame);
   };
   if (counters.length) {
@@ -118,19 +119,88 @@
     if (auto && !reduce) { const next = () => { const max = trackEl.scrollWidth - trackEl.clientWidth; if (trackEl.scrollLeft >= max - 4) trackEl.scrollTo({ left: 0, behavior: 'smooth' }); else trackEl.scrollBy({ left: slides[0].offsetWidth + 20, behavior: 'smooth' }); }; timer = setInterval(next, parseInt(auto, 10)); sl.addEventListener('mouseenter', () => clearInterval(timer)); sl.addEventListener('mouseleave', () => { timer = setInterval(next, parseInt(auto, 10)); }); }
   });
 
-  /* Pillars accordion */
-  const pillars = $$('.pillar');
-  pillars.forEach(p => ['mouseenter', 'focusin', 'click'].forEach(ev => p.addEventListener(ev, () => pillars.forEach(x => x.classList.toggle('active', x === p)))));
+  /* Horizontal tracks with external arrows (awards, collection, journal) */
+  const step = el => { const c = el.firstElementChild; if (!c) return el.clientWidth; const gap = parseFloat(getComputedStyle(el).columnGap) || 0; return c.getBoundingClientRect().width + gap; };
+  $$('[data-scroll]').forEach(group => {
+    const trackEl = document.getElementById(group.dataset.scroll); if (!trackEl) return;
+    $$('[data-dir]', group).forEach(b => b.addEventListener('click', () => {
+      const dir = parseInt(b.dataset.dir, 10); const max = trackEl.scrollWidth - trackEl.clientWidth;
+      if (dir > 0 && trackEl.scrollLeft >= max - 4) trackEl.scrollTo({ left: 0, behavior: reduce ? 'auto' : 'smooth' });
+      else if (dir < 0 && trackEl.scrollLeft <= 4) trackEl.scrollTo({ left: max, behavior: reduce ? 'auto' : 'smooth' });
+      else trackEl.scrollBy({ left: step(trackEl) * dir, behavior: reduce ? 'auto' : 'smooth' });
+    }));
+  });
 
-  /* Project hero gallery + thumbs + lightbox */
-  const gal = $$('.p-hero .gallery img');
-  if (gal.length) {
-    let i = 0; const count = $('#g-count'); const thumbs = $$('.thumbs button');
-    const show = n => { i = (n + gal.length) % gal.length; gal.forEach((g, k) => g.classList.toggle('active', k === i)); thumbs.forEach((t, k) => t.setAttribute('aria-current', String(k === i))); if (count) count.textContent = (i + 1) + ' / ' + gal.length; };
+  /* Collection slider: active slide drives the progress bar, autoplay every 7 s */
+  const iconic = $('#iconic-track');
+  if (iconic) {
+    const slides = $$('.slide', iconic);
+    const setActive = () => { const x = iconic.scrollLeft; let best = 0, d = Infinity; slides.forEach((s, k) => { const dd = Math.abs(s.offsetLeft - iconic.offsetLeft - parseFloat(getComputedStyle(iconic).paddingLeft || 0) - x); if (dd < d) { d = dd; best = k; } }); slides.forEach((s, k) => s.classList.toggle('is-active', k === best)); };
+    let t; iconic.addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(setActive, 80); }, { passive: true });
+    if (!reduce) { let timer = setInterval(() => { const max = iconic.scrollWidth - iconic.clientWidth; if (iconic.scrollLeft >= max - 4) iconic.scrollTo({ left: 0, behavior: 'smooth' }); else iconic.scrollBy({ left: step(iconic), behavior: 'smooth' }); }, 7000);
+      iconic.addEventListener('pointerenter', () => clearInterval(timer)); }
+  }
+
+  /* Philosophy accordion */
+  const accs = $$('.acc');
+  const accSet = p => accs.forEach(x => { const on = x === p; x.classList.toggle('active', on); x.setAttribute('aria-expanded', String(on)); });
+  accs.forEach(p => { p.addEventListener('click', () => accSet(p)); p.addEventListener('focusin', () => accSet(p)); if (window.matchMedia('(hover: hover)').matches) p.addEventListener('mouseenter', () => accSet(p)); });
+
+  /* Project hero slides */
+  const slidesEl = $$('#pdp-slides img');
+  if (slidesEl.length) {
+    let i = 0; const count = $('#g-count');
+    const show = n => { i = (n + slidesEl.length) % slidesEl.length; slidesEl.forEach((g, k) => g.classList.toggle('active', k === i)); if (count) count.textContent = (i + 1) + ' / ' + slidesEl.length; };
     $('#g-prev') && $('#g-prev').addEventListener('click', () => show(i - 1));
     $('#g-next') && $('#g-next').addEventListener('click', () => show(i + 1));
-    thumbs.forEach((t, k) => t.addEventListener('click', () => show(k)));
     if (!reduce) setInterval(() => show(i + 1), 6000);
+  }
+
+  /* Read more (line-clamped text) */
+  $$('[data-clamp]').forEach(b => {
+    const el = document.getElementById(b.dataset.clamp); if (!el) return;
+    if (el.scrollHeight <= el.clientHeight + 2) { b.hidden = true; return; }
+    b.addEventListener('click', () => { const open = el.classList.toggle('open'); b.firstChild.textContent = open ? 'Read less ' : 'Read more '; });
+  });
+
+  /* Floor-plan carousel */
+  const fpTrack = $('#fp-track');
+  if (fpTrack) {
+    const items = $$('.fp', fpTrack); const thumbs = $$('[data-fp-go]'); const cnt = $('#fp-count');
+    const cur = () => Math.round(fpTrack.scrollLeft / step(fpTrack));
+    const sync = () => { const k = Math.min(items.length - 1, cur()); thumbs.forEach((t, j) => t.setAttribute('aria-current', String(j === k))); if (cnt) cnt.textContent = (k + 1) + ' / ' + items.length; };
+    const go = k => fpTrack.scrollTo({ left: step(fpTrack) * Math.max(0, Math.min(items.length - 1, k)), behavior: reduce ? 'auto' : 'smooth' });
+    $$('[data-fp-dir]').forEach(b => b.addEventListener('click', () => go(cur() + parseInt(b.dataset.fpDir, 10))));
+    thumbs.forEach(t => t.addEventListener('click', () => go(parseInt(t.dataset.fpGo, 10))));
+    fpTrack.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
+  }
+
+  /* EMI calculator (illustrative) */
+  const emi = $('#emi');
+  if (emi) {
+    const amt = $('#emi-amt'), rate = $('#emi-rate'), yrs = $('#emi-yrs');
+    const inr = n => '₹' + Math.round(n).toLocaleString('en-IN');
+    const calc = () => {
+      const P = parseFloat(amt.value.replace(/[^\d.]/g, '')) || 0, r = parseFloat(rate.value) / 1200, n = parseInt(yrs.value, 10) * 12;
+      const m = r ? P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1) : P / n; const total = m * n;
+      $('#emi-rate-o').textContent = parseFloat(rate.value).toFixed(2) + '%'; $('#emi-yrs-o').textContent = yrs.value + ' yrs';
+      $('#emi-out').textContent = inr(m); $('#emi-total').textContent = inr(total);
+      $('#emi-ring').style.setProperty('--p', (total ? (P / total) * 100 : 50).toFixed(1) + '%');
+    };
+    amt.addEventListener('input', () => { const d = amt.value.replace(/\D/g, ''); amt.value = d ? parseInt(d, 10).toLocaleString('en-IN') : ''; calc(); });
+    rate.addEventListener('input', calc); yrs.addEventListener('input', calc); calc();
+  }
+
+  /* Project page: reading progress + active section anchor */
+  const prog = $('#pdp-progress');
+  if (prog) {
+    const anchors = $$('.pdp-header .anchors a'); const secs = anchors.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+    const upd = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight; prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      let on = null; secs.forEach(s => { if (s.getBoundingClientRect().top < 120) on = s.id; });
+      anchors.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + on));
+    };
+    upd(); window.addEventListener('scroll', upd, { passive: true });
   }
   const lb = $('#lightbox'); const lbImg = $('#lb-img'); const lbCap = $('#lb-cap'); let lbList = [], lbIdx = 0;
   const lbShow = n => { lbIdx = (n + lbList.length) % lbList.length; lbImg.src = lbList[lbIdx].src; lbImg.alt = lbList[lbIdx].cap; lbCap.textContent = lbList[lbIdx].cap; };
@@ -140,6 +210,7 @@
     $('#lb-close').addEventListener('click', lbClose); $('#lb-prev').addEventListener('click', () => lbShow(lbIdx - 1)); $('#lb-next').addEventListener('click', () => lbShow(lbIdx + 1));
     lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
     document.addEventListener('keydown', e => { if (!lb.classList.contains('open')) return; if (e.key === 'Escape') lbClose(); if (e.key === 'ArrowLeft') lbShow(lbIdx - 1); if (e.key === 'ArrowRight') lbShow(lbIdx + 1); });
+    $$('[data-lightbox-single]').forEach(b => b.addEventListener('click', () => lbOpen([{ src: b.dataset.src, cap: b.dataset.cap || '' }], 0)));
     $$('[data-lightbox]').forEach(group => { const items = $$('[data-src]', group); items.forEach((it, k) => it.addEventListener('click', e => { e.preventDefault(); lbOpen(items.map(x => ({ src: x.dataset.src, cap: x.dataset.cap || '' })), k); })); });
   }
 

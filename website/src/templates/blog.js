@@ -25,18 +25,18 @@ function render({ blogs, projects, site }, b) {
   return `
 <section class="page-hero has-img" style="min-height:56vh">
   <div class="bg parallax"><img src="${cover.src}" alt="" width="1920" height="1080"></div>
-  <div class="container"><div class="copy"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span><a href="/blogs/">Blogs</a></span><span>${esc(b.category)}</span></nav><span class="eyebrow" style="color:var(--bronze-2)">${esc(b.category)}</span><h1 style="font-size:clamp(2.2rem,4.6vw,4rem)">${esc(b.title)}</h1><div class="meta"><span>${fmtDate(b.date)}</span><span>${b.readMinutes} min read</span><span>By the Assetz editorial team</span></div></div></div>
+  <div class="container"><div class="copy"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span><a href="/blogs/">Blogs</a></span><span>${esc(b.category)}</span></nav><span class="eyebrow" style="color:var(--brand-light)">${esc(b.category)}</span><h1 style="font-size:clamp(2.2rem,4.6vw,4rem)">${esc(b.title)}</h1><div class="meta"><span>${fmtDate(b.date)}</span><span>${b.readMinutes} min read</span><span>By the Assetz editorial team</span></div></div></div>
 </section>
 <section class="band">
   <div class="container article">
     <article class="body reveal">
-      <p style="font-size:1.2rem;color:var(--charcoal)">${esc(b.excerpt)}</p>
+      <p style="font-size:1.2rem;color:var(--brand-dark)">${esc(b.excerpt)}</p>
       ${b.bodyHtml}
-      <div class="form-card" style="margin-top:2.5rem;background:var(--ivory-2);box-shadow:none"><span class="eyebrow">Explore Assetz developments</span><div class="related" style="margin-top:.5rem">${links.map(o => `<a href="/projects/${o.slug}/"><div class="img"><img src="${o.cover}" alt="${esc(o.name)}" loading="lazy" width="800" height="600"></div><b>${esc(o.name)}</b><span>${esc(o.locationShort)} · ${esc(o.configurations.join(' & '))} ${esc(o.propertyType)}</span></a>`).join('')}</div></div>
+      <div class="form-card" style="margin-top:2.5rem;background:var(--brand-10);box-shadow:none"><span class="eyebrow">Explore Assetz developments</span><div class="related" style="margin-top:.5rem">${links.map(o => `<a href="/projects/${o.slug}/"><div class="img"><img src="${o.cover}" alt="${esc(o.name)}" loading="lazy" width="800" height="600"></div><b>${esc(o.name)}</b><span>${esc(o.locationShort)} · ${esc(o.configurations.join(' & '))} ${esc(o.propertyType)}</span></a>`).join('')}</div></div>
       <div class="share" style="margin-top:2rem">Share: <a class="link" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}" target="_blank" rel="noopener">LinkedIn</a> <a class="link" href="https://wa.me/?text=${encodeURIComponent(b.title + ' ' + url)}" target="_blank" rel="noopener">WhatsApp</a> <a class="link" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}" target="_blank" rel="noopener">Facebook</a></div>
     </article>
     <aside>
-      <div class="form-card"><h3>Speak to an advisor</h3><p style="font-size:.88rem;color:var(--stone)">Questions about a project or the buying process? We will call you back.</p>${leadForm({ id: 'blog-form', type: 'Enquiry', projects, compact: true, purpose: false, time: false, button: 'Request a Call Back' })}</div>
+      <div class="form-card"><h3>Speak to an advisor</h3><p style="font-size:.88rem;color:var(--text-3)">Questions about a project or the buying process? We will call you back.</p>${leadForm({ id: 'blog-form', type: 'Enquiry', projects, compact: true, purpose: false, time: false, button: 'Request a Call Back' })}</div>
       <div><span class="eyebrow">Related articles</span><div style="display:grid;gap:1rem;margin-top:1rem">${related.map(r => `<a class="post" href="/blogs/${r.slug}/"><span class="cat">${esc(r.category)}</span><h3 style="font-size:1.25rem">${esc(r.title)}</h3><span class="date">${fmtDate(r.date)}</span></a>`).join('')}</div></div>
     </aside>
   </div>

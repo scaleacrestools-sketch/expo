@@ -56,6 +56,6 @@ const PAGES = {
 const meta = ({ site }, key) => ({ title: `${PAGES[key].title} | Assetz`, description: PAGES[key].description, solidHeader: true, noindex: false });
 function render({ site }, key) {
   const p = PAGES[key];
-  return `<section class="band" style="padding-top:calc(var(--header-h) + 3rem)"><div class="container"><nav class="crumbs" aria-label="Breadcrumb" style="color:var(--stone)"><a href="/">Home</a><span>${esc(p.title)}</span></nav><h1 style="margin-bottom:2rem">${esc(p.title)}</h1><div class="prose-page">${p.body(site)}</div></div></section>`;
+  return `<section class="band" style="padding-top:calc(var(--header-h) + 3rem)"><div class="container"><nav class="crumbs" aria-label="Breadcrumb" style="color:var(--text-3)"><a href="/">Home</a><span>${esc(p.title)}</span></nav><h1 style="margin-bottom:2rem">${esc(p.title)}</h1><div class="prose-page">${p.body(site)}</div></div></section>`;
 }
 module.exports = { meta, render };

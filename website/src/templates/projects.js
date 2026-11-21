@@ -15,7 +15,7 @@ function render({ projects }) {
   return `
 <section class="page-hero has-img">
   <div class="bg parallax"><img src="${hero.cover}" alt="" width="1920" height="1080"></div>
-  <div class="container"><div class="copy"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>Projects</span></nav><span class="eyebrow" style="color:var(--bronze-2)">Our Projects</span><h1>Explore Homes Designed for Better Living.</h1><p class="lede">Discover five distinctive Assetz developments across Bengaluru, each created around its own vision of contemporary life.</p></div></div>
+  <div class="container"><div class="copy"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>Projects</span></nav><span class="eyebrow" style="color:var(--brand-light)">Our Projects</span><h1>Explore Homes Designed for Better Living.</h1><p class="lede">Discover five distinctive Assetz developments across Bengaluru, each created around its own vision of contemporary life.</p></div></div>
 </section>
 <section class="band tight">
   <div class="container">
@@ -34,7 +34,7 @@ function render({ projects }) {
         <div class="body">
           <span class="loc">${esc(pr.location)}</span>
           <h3><a href="/projects/${pr.slug}/">${esc(pr.name)}</a></h3>
-          <p style="color:var(--stone);font-size:.92rem">${esc(pr.blurb)}</p>
+          <p style="color:var(--text-3);font-size:.92rem">${esc(pr.blurb)}</p>
           <div class="facts"><span>Configuration<b>${esc(pr.configurations.join(', '))} ${esc(pr.propertyType)}</b></span><span>Size<b>${esc(pr.sizes || 'Not Mentioned')}</b></span><span>Starting price<b>${esc(pr.startingPrice)}</b></span><span>Status<b>${esc(pr.status)}</b></span></div>
           <div class="ctas"><a class="btn btn-ink" href="/projects/${pr.slug}/">View Details</a><button class="btn btn-outline enq-open" type="button" data-project="${esc(pr.name)}" data-source="projects-list">Enquire Now</button></div>
         </div>

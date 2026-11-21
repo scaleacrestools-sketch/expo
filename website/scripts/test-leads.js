@@ -22,9 +22,11 @@ const post = b => fetch(BASE + '/api/lead', { method: 'POST', headers: { 'Conten
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
   const fill = async (sel) => { await p.fill(`${sel} [name=name]`, 'Browser Tester'); await p.fill(`${sel} [name=phone]`, '9123456780'); await p.fill(`${sel} [name=email]`, 'browser@example.com'); const s = await p.$(`${sel} [name=project]`); if (await s.inputValue() === '') await s.selectOption({ index: 2 }); await p.check(`${sel} [name=consent]`); };
   await p.goto(BASE + '/?utm_source=meta&utm_campaign=launch'); await p.click('#cookie-accept');
-  await p.click('#home-enquiry button[type=submit]'); console.log('empty submit msg:', await p.textContent('#home-enquiry .status'));
-  await fill('#home-enquiry'); await Promise.all([p.waitForURL('**/thank-you/**'), p.click('#home-enquiry button[type=submit]')]); console.log('home enquiry →', new URL(p.url()).pathname + new URL(p.url()).search);
-  await p.goto(BASE + '/projects/assetz-muse-and-maison/'); await p.click('.p-hero .enq-open[data-type="Brochure"]'); await p.waitForTimeout(300);
+  await p.goto(BASE + '/projects/assetz-mizumi-reserve/');
+  await p.click('#hero-form button[type=submit]'); console.log('empty submit msg:', await p.textContent('#hero-form .status'));
+  await fill('#hero-form'); await Promise.all([p.waitForURL('**/thank-you/**'), p.click('#hero-form button[type=submit]')]); console.log('project hero enquiry →', new URL(p.url()).pathname + new URL(p.url()).search);
+  await p.goto(BASE + '/'); await p.click('.header .enq-link'); await p.waitForTimeout(300); console.log('header enquire popup title:', await p.textContent('#popup-title'));
+  await p.goto(BASE + '/projects/assetz-muse-and-maison/'); await p.click('#overview .enq-open[data-type="Brochure"]'); await p.waitForTimeout(300);
   console.log('popup title:', await p.textContent('#popup-title'), '| project preselected:', await p.inputValue('#popup-form [name=project]'));
   await fill('#popup-form'); await Promise.all([p.waitForURL('**/thank-you/**'), p.click('#popup-form button[type=submit]')]);
   console.log('brochure → download visible:', await p.isVisible('#ty-download'), await p.getAttribute('#ty-download', 'href'));
@@ -32,9 +34,9 @@ const post = b => fetch(BASE + '/api/lead', { method: 'POST', headers: { 'Conten
   console.log('guide → download visible:', await p.isVisible('#ty-download'), await p.getAttribute('#ty-download', 'href'), '| msg:', (await p.textContent('#ty-msg')).slice(0, 50));
   const dl = await fetch(BASE + (await p.getAttribute('#ty-download', 'href'))); console.log('guide PDF:', dl.status, dl.headers.get('content-type'), (await dl.arrayBuffer()).byteLength, 'bytes');
   // finder → filtered listing
-  await p.goto(BASE + '/'); await p.selectOption('#finder [name=configuration]', '4 BHK'); await Promise.all([p.waitForURL('**/projects/**'), p.click('#finder button[type=submit]')]);
-  console.log('finder 4 BHK →', new URL(p.url()).search, '| visible cards:', await p.$$eval('#results .card:not([hidden]) h3', els => els.map(e => e.textContent.trim())));
-  await p.selectOption('#filters [name=location]', 'Hoskote'); console.log('4 BHK + Hoskote → empty state shown:', await p.isVisible('#empty'));
+  await p.goto(BASE + '/'); await p.selectOption('#finder [name=location]', 'Hoskote'); await Promise.all([p.waitForURL('**/projects/**'), p.click('#finder button[type=submit]')]);
+  console.log('finder Hoskote →', new URL(p.url()).search, '| visible cards:', await p.$$eval('#results .card:not([hidden]) h3', els => els.map(e => e.textContent.trim())));
+  await p.selectOption('#filters [name=configuration]', '4 BHK'); console.log('Hoskote + 4 BHK → empty state shown:', await p.isVisible('#empty'));
   await p.click('#clear-filters'); console.log('cleared → count:', await p.textContent('#result-count'));
   await b.close();
 })();

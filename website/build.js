@@ -39,7 +39,7 @@ function write(route, html) {
 }
 function page(route, meta, body) {
   const p = Object.assign({ path: route, buildId }, meta);
-  const html = T.layout.head({ site, page: p }) + T.layout.header({ site, page: p, projects }) + body + T.layout.footer({ site, projects, buildId });
+  const html = T.layout.head({ site, page: p }) + T.layout.header({ site, page: p, projects }) + body + T.layout.footer({ site, projects, buildId, page: p });
   write(route, html);
   return p;
 }

@@ -10,14 +10,14 @@ function render({ faqs, projects }) {
   const cats = [...new Set(faqs.map(f => f.category))];
   return `
 <section class="page-hero">
-  <div class="container"><div class="copy"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>FAQs</span></nav><span class="eyebrow" style="color:var(--bronze-2)">Frequently Asked Questions</span><h1>Everything You Need to Know.</h1><p class="lede">Find helpful answers to common questions about Assetz projects, buying a home and planning a property visit.</p></div></div>
+  <div class="container"><div class="copy"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>FAQs</span></nav><span class="eyebrow" style="color:var(--brand-light)">Frequently Asked Questions</span><h1>Everything You Need to Know.</h1><p class="lede">Find helpful answers to common questions about Assetz projects, buying a home and planning a property visit.</p></div></div>
 </section>
 <section class="band">
   <div class="container faq-split">
     <div class="side reveal">
       <label class="field faq-search">Search questions<input id="faq-search" type="search" placeholder="e.g. brochure, RERA, NRI"></label>
       <div class="tabs" role="tablist" data-tabs="faq" style="flex-direction:column;align-items:flex-start"><button class="tab" role="tab" aria-selected="true" data-tab="all">All questions</button>${cats.map(c => `<button class="tab" role="tab" aria-selected="false" data-tab="${esc(c)}">${esc(c)}</button>`).join('')}</div>
-      <div class="form-card" style="padding:1.4rem"><b style="font-family:var(--font-display);font-size:1.3rem;font-weight:500">Still have a question?</b><p style="font-size:.88rem;color:var(--stone)">Our advisors answer project-specific questions and can arrange a site visit.</p><button class="btn btn-ink enq-open" type="button" data-source="faqs" style="width:100%">Ask an advisor</button></div>
+      <div class="form-card" style="padding:1.4rem"><b style="font-family:var(--f-display);font-size:1.3rem;font-weight:500">Still have a question?</b><p style="font-size:.88rem;color:var(--text-3)">Our advisors answer project-specific questions and can arrange a site visit.</p><button class="btn btn-ink enq-open" type="button" data-source="faqs" style="width:100%">Ask an advisor</button></div>
     </div>
     <div class="reveal">
       ${cats.map(c => `<div data-panel="${esc(c)}" data-scope="faq" data-filterable class="active" style="margin-bottom:2.5rem"><span class="eyebrow">${esc(c)}</span><div class="faq-list" style="margin-top:.6rem">${faqs.filter(f => f.category === c).map(f => `<details><summary>${esc(f.question)}<span class="plus"></span></summary><div class="answer">${f.answerHtml}</div></details>`).join('')}</div></div>`).join('')}

@@ -19,7 +19,7 @@ function render({ blogs, projects }) {
   const rest = blogs.filter(b => b !== featured);
   return `
 <section class="page-hero">
-  <div class="container"><div class="copy"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>Blogs</span></nav><span class="eyebrow" style="color:var(--bronze-2)">The Assetz Journal</span><h1>The Art of Better Living.</h1><p class="lede">Ideas, perspectives and useful guidance for making informed property and lifestyle decisions.</p></div></div>
+  <div class="container"><div class="copy"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>Blogs</span></nav><span class="eyebrow" style="color:var(--brand-light)">The Assetz Journal</span><h1>The Art of Better Living.</h1><p class="lede">Ideas, perspectives and useful guidance for making informed property and lifestyle decisions.</p></div></div>
 </section>
 <section class="band">
   <div class="container">
@@ -30,6 +30,6 @@ function render({ blogs, projects }) {
     </div>
   </div>
 </section>
-<section class="band dark"><div class="container final-cta reveal"><span class="eyebrow" style="color:var(--bronze-2)">Ready to explore?</span><h2>See how these ideas take shape at Assetz.</h2><div class="btns"><a class="btn btn-bronze" href="/projects/">Explore Projects</a><button class="btn btn-outline enq-open" type="button" data-source="blogs">Talk to an advisor</button></div></div></section>`;
+<section class="band dark"><div class="container final-cta reveal"><span class="eyebrow" style="color:var(--brand-light)">Ready to explore?</span><h2>See how these ideas take shape at Assetz.</h2><div class="btns"><a class="btn btn-bronze" href="/projects/">Explore Projects</a><button class="btn btn-outline enq-open" type="button" data-source="blogs">Talk to an advisor</button></div></div></section>`;
 }
 module.exports = { meta, render, blogImage, CATEGORIES };

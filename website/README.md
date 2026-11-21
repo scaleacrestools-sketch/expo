@@ -25,9 +25,9 @@ node scripts/test-leads.js # end-to-end lead tests (API validation + browser for
 
 | Route | Template |
 |---|---|
-| `/` | `src/templates/home.js` (13 sections) |
+| `/` | `src/templates/home.js` (M3M order: hero + finder, intro, awards, counters, collection slider, philosophy accordion, journal, links, guide lead magnet, FAQs) |
 | `/projects/` | `projects.js` (5 filters, clear filters, empty state, URL-synced) |
-| `/projects/assetz-naru-and-nami/` and four more | `project.js` (17-section shared template, sticky sidebar, mobile CTA bar) |
+| `/projects/assetz-naru-and-nami/` and four more | `project.js` (100acress order: section-anchor header, hero with info + enquiry cards, overview, highlights, price list, verified facts, source notes, amenities, gallery, floor plans, location map, contact band, developer, comparison + EMI, FAQs, mobile CTA bar) |
 | `/about-us/`, `/contact-us/`, `/faqs/` | `about.js`, `contact.js`, `faqs.js` |
 | `/blogs/`, `/blogs/<slug>/` (6 articles) | `blogs.js`, `blog.js` |
 | `/privacy-policy/`, `/terms-and-conditions/`, `/disclaimer/`, `/thank-you/` | `legal.js`, `thankyou.js` |
@@ -42,6 +42,13 @@ All content is in `data/`:
 - `blogs.json`, `faqs.json`, `guide.json`, `about.json`: editorial content.
 
 Edit the JSON, run `node build.js`, deploy `dist/`.
+
+## Design references and colours
+
+- Homepage layout follows m3mindia.com; project pages follow 100acress.com (Godrej Verano template). Measurements are in `docs/reference-audit.md`.
+- Colours come only from the client's Hostinger reference site: `#AA7761` (brand), `#2C191F` (brand dark), `#D4A48C` (light accent), `#FFFFFF`, `#000000`, plus `#25D366` for WhatsApp. They are CSS variables at the top of `src/css/styles.css`.
+- Fonts: Libre Caslon Display (headings) and Figtree (body) on site pages; Plus Jakarta Sans on project pages.
+- Side-by-side comparison sheets (reference vs this site, desktop and mobile) are in `docs/comparison/`.
 
 ## Hero video
 
@@ -126,4 +133,4 @@ Brand assets, renders and footage belong to Assetz Property Group. Confirm usage
 - `scripts/qa.js`: 22 routes × desktop (1440) and phone (390): no console errors, no failed requests, no horizontal overflow, exactly one `h1` per page, no placeholder links; 23 internal link targets, 0 broken.
 - `scripts/test-leads.js`: API returns 422 with field errors for missing consent, invalid phone/email and unknown project; honeypot dropped; guide and brochure downloads returned; NRI (+971) accepted; duplicate flagged; browser flows for homepage enquiry, project brochure popup (project preselected) and guide download all reach `/thank-you/` with the right download; finder → filtered listing → empty state → clear filters.
 - CRM adapter verified against a mock webhook (auth header, idempotency key, mapped payload).
-- Google Maps embeds were not testable in the sandbox (blocked network); they load normally on a public host.
+- Location maps are the developer's published static maps (`assets/img/maps/`), with an "Open in Google Maps" link; no embedded iframes.

@@ -5,7 +5,7 @@ const DIST = path.join(__dirname, '..', 'dist'); const OUT = process.argv[2] || 
 fs.rmSync(OUT, { recursive: true, force: true });
 const skip = f => /\.webm$|e-brochure\.pdf$|_redirects$|404\.html$/.test(f);
 const walk = d => fs.readdirSync(d, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]);
-const notice = `<div style="position:fixed;left:0;right:0;top:0;z-index:200;background:#b08d57;color:#1f2422;font:600 12px/1.4 Manrope,Arial,sans-serif;text-align:center;padding:6px 12px">Preview build: enquiry forms submit only on the deployed site with the lead API. Everything else is fully interactive.</div>`;
+const notice = `<div style="position:fixed;left:0;right:0;top:0;z-index:200;background:#aa7761;color:#ffffff;font:600 12px/1.4 Figtree,Arial,sans-serif;text-align:center;padding:6px 12px">Preview build: enquiry forms submit only on the deployed site with the lead API. Everything else is fully interactive.</div>`;
 for (const f of walk(DIST)) {
   const rel = path.relative(DIST, f); if (skip(rel)) continue;
   const dest = path.join(OUT, rel); fs.mkdirSync(path.dirname(dest), { recursive: true });
