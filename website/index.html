@@ -3,357 +3,160 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Scale Acres Developers</title>
-<meta name="description" content="Scale Acres Developers: premium residential and commercial real estate in Bengaluru. Explore ongoing, completed and upcoming projects.">
+<title>Assetz Life Reimagined</title>
+<meta name="description" content="Assetz Property Group: human-centric residential and commercial developments in Bengaluru. Explore new launches, ongoing and completed projects.">
+<link rel="icon" href="assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Jost:wght@300;400&display=swap">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- ===== Top bar ===== -->
-<div class="topbar">
-  <div class="wrap">
-    <span>Bengaluru · Est. 2008 · RERA registered developer</span>
-    <div class="right">
-      <a href="#enquire">Book a site visit</a>
-      <a href="#" id="top-phone">+91 80000 00000</a>
-    </div>
-  </div>
-</div>
-
 <!-- ===== Header ===== -->
 <header class="header" id="header">
-  <div class="wrap">
-    <a class="logo" href="#top" aria-label="Scale Acres Developers home">
-      <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 28V12l12-8 12 8v16" stroke="#d4b27c" stroke-width="1.6"/><path d="M11 28V18h10v10" stroke="#d4b27c" stroke-width="1.6"/><path d="M16 4v6" stroke="#d4b27c" stroke-width="1.6"/></svg>
-      <span>Scale Acres<small>Developers</small></span>
-    </a>
-    <nav class="nav" aria-label="Primary">
-      <a href="#top" class="active">Home</a>
-      <a href="#about">About Us</a>
-      <a href="#projects">Projects</a>
-      <a href="#blog">Blogs</a>
-      <a href="#faq">FAQ</a>
-      <a href="#enquire">Contact Us</a>
-    </nav>
-    <div class="header-cta">
-      <span class="phone">+91 80000 00000</span>
-      <a class="btn btn-primary" href="#enquire">Enquire Now</a>
-      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-  <div class="mobile-nav" id="mobile-nav">
-    <div class="wrap">
-      <a href="#top">Home</a><a href="#about">About Us</a><a href="#projects">Projects</a><a href="#blog">Blogs</a><a href="#faq">FAQ</a><a href="#enquire">Contact Us</a>
-      <a class="btn btn-primary" href="#enquire">Enquire Now</a>
-    </div>
-  </div>
+  <a class="brand" href="#top" aria-label="Assetz home">
+    <img src="assets/img/logo.svg" alt="Assetz">
+    <span class="divider" aria-hidden="true"></span>
+    <span class="tagline">Life<br>Reimagined</span>
+  </a>
+  <nav class="tabs" aria-label="Primary">
+    <a class="tab" href="#projects"><span>Projects</span></a>
+    <a class="tab" href="#about"><span>About Us</span></a>
+    <a class="tab" href="#testimony"><span>Testimony</span></a>
+    <a class="tab" href="#contact"><span>Connect</span></a>
+  </nav>
+  <button class="menu-btn" id="menu-open" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+    <img src="assets/img/menu_open_white.svg" alt="">
+  </button>
 </header>
+
+<!-- Full-screen menu -->
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="top">
+    <img class="logo" src="assets/img/logo_white.svg" alt="Assetz">
+    <button class="close" id="menu-close" aria-label="Close menu"><img src="assets/img/close_white.svg" alt="" width="18"></button>
+  </div>
+  <nav aria-label="Menu">
+    <a href="#top">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#about">About Us</a>
+    <a href="#about">Life Reimagined</a>
+    <a href="#testimony">Testimony</a>
+    <a href="#contact">Connect</a>
+  </nav>
+  <div class="bottom"><span>Blog</span><span>Careers</span><span>Channel Partner</span><span>Investors</span><span>FAQs</span></div>
+</div>
 
 <main id="top">
 
-<!-- ===== Hero (video) ===== -->
-<section class="hero" aria-label="Introduction">
-  <video autoplay muted loop playsinline poster="assets/poster.jpg" id="hero-video">
-    <source src="assets/hero.mp4" type="video/mp4">
+<!-- ===== Hero: brand film ===== -->
+<section class="hero" aria-label="Life Reimagined, brand film">
+  <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.jpg">
+    <source src="assets/video/hero-mobile.mp4" media="(max-width: 767px)" type="video/mp4">
+    <source src="assets/video/hero-desktop.mp4" type="video/mp4">
   </video>
-  <div class="wrap">
-    <span class="eyebrow">Premium homes & workspaces in Bengaluru</span>
-    <h1>Spaces designed around <em>the way you live</em></h1>
-    <p class="lede">Seven landmark communities across the city's fastest-growing corridors. Thoughtful architecture, generous greens and delivery you can plan your life around.</p>
-    <div class="actions">
-      <a class="btn btn-primary" href="#projects">Explore Projects</a>
-      <a class="btn btn-outline" href="#enquire">Download Brochure</a>
-    </div>
-  </div>
-  <div class="scroll-cue" aria-hidden="true">Scroll</div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <button class="hero-sound" id="hero-sound" aria-label="Unmute video" data-unmuted="false">
+    <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9l4 6M21 9l-4 6"/></svg>
+    <svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9.5c1 .8 1.5 1.8 1.5 2.5s-.5 1.7-1.5 2.5"/><path d="M18.5 7c1.5 1.3 2.5 3 2.5 5s-1 3.7-2.5 5"/></svg>
+  </button>
 </section>
 
-<!-- ===== Project finder ===== -->
-<div class="finder">
-  <div class="wrap">
-    <form id="finder" aria-label="Find a project">
-      <label>Location
-        <select id="f-loc"><option>Any location</option><option>Whitefield</option><option>Sarjapur Road</option><option>Hebbal</option><option>Indiranagar</option><option>Outer Ring Road</option><option>Kanakapura Road</option><option>Devanahalli</option></select>
-      </label>
-      <label>Property type
-        <select id="f-type"><option>Any type</option><option>Apartments</option><option>Villas</option><option>Row houses</option><option>Plots</option><option>Offices</option></select>
-      </label>
-      <label>Status
-        <select id="f-status"><option>Any status</option><option>Ongoing</option><option>Completed</option><option>Upcoming</option></select>
-      </label>
-      <button class="btn btn-ink" type="submit">Search</button>
-    </form>
+<!-- ===== About + stats ===== -->
+<section class="page about-stats" id="about">
+  <div class="about-panel fade">
+    <p>Assetz is a human-centric company that consistently sets new benchmarks in the built environment, ensuring a better quality of life for generations to come. Our iterative design philosophy creates ecosystems that are deeply attuned to today's needs while anticipating tomorrow's possibilities. For us, sustainability isn't an afterthought. It's fundamental to our vision. Every environment is designed to continuously evolve and adapt. Guided by the philosophy of a complete life, we seamlessly integrate nature, fitness, efficiency, and aesthetics into our ecosystems alongside experiential design, technology, and sustainability.</p>
+    <div><a class="btn-outline" href="#about">Learn More</a></div>
   </div>
-</div>
-
-<!-- ===== Stats ===== -->
-<section class="section tight">
-  <div class="wrap stats reveal">
-    <div class="stat"><div class="num" data-count="17">0<sup>+</sup></div><div class="label">Years of building Bengaluru</div></div>
-    <div class="stat"><div class="num" data-count="7">0</div><div class="label">Landmark projects across the city</div></div>
-    <div class="stat"><div class="num" data-count="4.2" data-decimals="1">0<sup>M</sup></div><div class="label">Sq. ft. designed and delivered</div></div>
-    <div class="stat"><div class="num" data-count="2400">0<sup>+</sup></div><div class="label">Families and businesses who call us home</div></div>
-  </div>
-</section>
-
-<!-- ===== Projects ===== -->
-<section class="section band-ink" id="projects">
-  <div class="wrap">
-    <div class="section-head split reveal">
-      <div>
-        <span class="eyebrow">Our projects</span>
-        <h2>Seven addresses, one standard of living</h2>
-      </div>
-      <div class="tabs" role="tablist" aria-label="Filter projects by status">
-        <button class="tab" role="tab" aria-selected="true" data-filter="all">All</button>
-        <button class="tab" role="tab" aria-selected="false" data-filter="ongoing">Ongoing</button>
-        <button class="tab" role="tab" aria-selected="false" data-filter="completed">Completed</button>
-        <button class="tab" role="tab" aria-selected="false" data-filter="upcoming">Upcoming</button>
-      </div>
+  <div class="stats-panel fade" id="stats">
+    <div class="row">
+      <div class="stat tl"><div class="num"><span data-count="50">0</span> <small>Mn. +</small></div><div class="lbl">SQFT</div></div>
+      <div class="stat tr"><div class="num"><span data-count="50">0</span>+</div><div class="lbl">Projects</div></div>
     </div>
-
-    <div class="projects" id="project-grid">
-      <a class="card reveal" href="#enquire" data-status="ongoing" data-loc="Whitefield" data-type="Apartments">
-        <img src="assets/p1-skyline-residences.jpg" alt="Skyline Residences towers at dusk" loading="lazy">
-        <span class="status ongoing">Ongoing</span>
-        <div class="body">
-          <span class="loc">Whitefield · East Bengaluru</span>
-          <h3>Skyline Residences</h3>
-          <div class="meta"><span>2, 3 & 4 BHK</span><span>1,240 – 2,860 sq. ft.</span><span>Possession Dec 2027</span></div>
-          <span class="btn-link more">View project <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-      <a class="card reveal" href="#enquire" data-status="ongoing" data-loc="Sarjapur Road" data-type="Villas">
-        <img src="assets/p2-garden-villas.jpg" alt="Garden Villas low-rise homes in golden light" loading="lazy">
-        <span class="status ongoing">Ongoing</span>
-        <div class="body">
-          <span class="loc">Sarjapur Road</span>
-          <h3>Garden Villas</h3>
-          <div class="meta"><span>4 BHK villas</span><span>3,400 sq. ft.</span><span>Possession Jun 2027</span></div>
-          <span class="btn-link more">View project <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-      <a class="card reveal" href="#enquire" data-status="upcoming" data-loc="Hebbal" data-type="Apartments">
-        <img src="assets/p3-lake-view.jpg" alt="Lake View Heights beside the lake" loading="lazy">
-        <span class="status upcoming">Upcoming</span>
-        <div class="body">
-          <span class="loc">Hebbal · North Bengaluru</span>
-          <h3>Lake View Heights</h3>
-          <div class="meta"><span>3 & 4 BHK</span><span>Lake-facing</span><span>Launching 2026</span></div>
-          <span class="btn-link more">Register interest <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-      <a class="card reveal" href="#enquire" data-status="completed" data-loc="Indiranagar" data-type="Apartments">
-        <img src="assets/p4-urban-lofts.jpg" alt="Urban Lofts at night" loading="lazy">
-        <span class="status completed">Completed</span>
-        <div class="body">
-          <span class="loc">Indiranagar</span>
-          <h3>Urban Lofts</h3>
-          <div class="meta"><span>Studio & 2 BHK</span><span>640 – 1,180 sq. ft.</span><span>Ready to move</span></div>
-          <span class="btn-link more">View project <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-      <a class="card reveal" href="#enquire" data-status="completed" data-loc="Outer Ring Road" data-type="Offices">
-        <img src="assets/p5-business-park.jpg" alt="Business Park office towers in the morning" loading="lazy">
-        <span class="status completed">Completed</span>
-        <div class="body">
-          <span class="loc">Outer Ring Road</span>
-          <h3>Meridian Business Park</h3>
-          <div class="meta"><span>Grade A offices</span><span>5,000 – 60,000 sq. ft.</span><span>LEED Gold</span></div>
-          <span class="btn-link more">View project <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-      <a class="card reveal" href="#enquire" data-status="ongoing" data-loc="Kanakapura Road" data-type="Row houses">
-        <img src="assets/p6-riverside.jpg" alt="Riverside Enclave row houses" loading="lazy">
-        <span class="status ongoing">Ongoing</span>
-        <div class="body">
-          <span class="loc">Kanakapura Road</span>
-          <h3>Riverside Enclave</h3>
-          <div class="meta"><span>3 BHK row houses</span><span>2,100 sq. ft.</span><span>Possession Mar 2027</span></div>
-          <span class="btn-link more">View project <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-      <a class="card reveal" href="#enquire" data-status="upcoming" data-loc="Devanahalli" data-type="Plots">
-        <img src="assets/p7-plots.jpg" alt="Meadow Plots plotted development near the airport" loading="lazy">
-        <span class="status upcoming">Upcoming</span>
-        <div class="body">
-          <span class="loc">Devanahalli · Airport corridor</span>
-          <h3>Meadow Plots</h3>
-          <div class="meta"><span>Plotted development</span><span>1,200 – 2,400 sq. ft.</span><span>Launching 2026</span></div>
-          <span class="btn-link more">Register interest <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
-    </div>
-    <p id="no-results" class="lede" hidden>No projects match that filter yet. Try another combination or talk to our team.</p>
-    <div class="projects-foot"><a class="btn btn-outline" href="#enquire">View all projects</a></div>
-  </div>
-</section>
-
-<!-- ===== About ===== -->
-<section class="section" id="about">
-  <div class="wrap about">
-    <div class="frame reveal">
-      <img src="assets/about.jpg" alt="Scale Acres community in the morning light">
-      <div class="badge"><b>2008</b><span>Founded in Bengaluru</span></div>
-    </div>
-    <div class="copy reveal">
-      <span class="eyebrow">About Scale Acres</span>
-      <h2>Building the city we would want to live in</h2>
-      <p>Scale Acres began with a single apartment block in Whitefield and a simple rule: design every home as if our own families would move in. Seventeen years later that rule still decides where we build, who we partner with, and how we hand over keys.</p>
-      <p>Every project is RERA-registered, delivered by an in-house execution team, and backed by a customer desk that stays with you long after possession.</p>
-      <div class="pillars">
-        <div class="pillar"><b>Design first</b><span>Architecture that gives you light, air and privacy before square footage.</span></div>
-        <div class="pillar"><b>On-time delivery</b><span>Milestone-linked construction with transparent progress updates.</span></div>
-        <div class="pillar"><b>Lasting value</b><span>Locations chosen for the next decade of growth, not the next quarter.</span></div>
-      </div>
-      <div><a class="btn btn-ink" href="#about">Our story</a></div>
+    <div class="row">
+      <div class="stat bl"><div class="num"><span data-count="22000">0</span>+</div><div class="lbl">Units</div></div>
+      <div class="stat br"><div>As Of August 31, 2026</div></div>
     </div>
   </div>
 </section>
 
-<!-- ===== Why us ===== -->
-<section class="section band-ivory2">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Why Scale Acres</span>
-      <h2>What you can count on, project after project</h2>
+<!-- ===== New launches ===== -->
+<section class="page launches" id="projects">
+  <div class="head"><p class="label">+ New Launches</p></div>
+  <div class="strip-wrap">
+    <div class="spacer" aria-hidden="true"></div>
+    <div class="strip" id="launch-strip">
+      <div class="track" id="launch-track">
+        <a class="item" href="#contact"><div class="img" style="background-image:url(assets/img/miru-and-miyo.jpg)" role="img" aria-label="Miru & Miyo"></div><p class="name">Miru &amp; Miyo</p><p class="loc">Yelahanka</p></a>
+        <a class="item" href="#contact"><div class="img" style="background-image:url(assets/img/muse-and-maison.jpg)" role="img" aria-label="Muse & Maison"></div><p class="name">Muse &amp; Maison</p><p class="loc">Off Hosa Road</p></a>
+        <a class="item" href="#contact"><div class="img" style="background-image:url(assets/img/mizumi-reserve.jpg)" role="img" aria-label="Mizumi Reserve"></div><p class="name">Mizumi Reserve</p><p class="loc">Off HSR Layout</p></a>
+        <a class="item" href="#contact"><div class="img" style="background-image:url(assets/img/melodies-of-life.jpg)" role="img" aria-label="Melodies of Life Apartments"></div><p class="name">Melodies of Life Apartments</p><p class="loc">Off Hosa Road</p></a>
+        <a class="item" href="#contact"><div class="img" style="background-image:url(assets/img/zen-and-sato.jpg)" role="img" aria-label="Zen & Sato"></div><p class="name">Zen &amp; Sato</p><p class="loc">Yelahanka, North Bengaluru</p></a>
+        <a class="item" href="#contact"><div class="img" style="background-image:url(assets/img/trees-and-tandem.jpg)" role="img" aria-label="Trees & Tandem"></div><p class="name">Trees &amp; Tandem</p><p class="loc">Off Sarjapur Road</p></a>
+        <a class="item" href="#contact"><div class="img" style="background-image:url(assets/img/sora-and-saki.jpg)" role="img" aria-label="Sora & Saki"></div><p class="name">Sora &amp; Saki</p><p class="loc">KIADB Aerospace, Bagalur</p></a>
+      </div>
     </div>
-    <div class="why">
-      <div class="item reveal">
-        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 6l16 6v12c0 9-7 15-16 18-9-3-16-9-16-18V12l16-6z"/><path d="M17 24l5 5 9-10"/></svg>
-        <h3>RERA registered</h3><p>Every project carries a Karnataka RERA number, published on the project page with approval documents.</p>
-      </div>
-      <div class="item reveal">
-        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="17"/><path d="M24 13v11l7 5"/></svg>
-        <h3>Delivered on schedule</h3><p>Milestone-based payment plans and quarterly construction updates sent straight to your inbox.</p>
-      </div>
-      <div class="item reveal">
-        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 40c-9 0-15-6-15-14 0-10 9-16 20-20-1 11 7 16 7 24 0 6-5 10-12 10z"/><path d="M24 40c0-10 3-16 10-22"/></svg>
-        <h3>Green by design</h3><p>Rainwater harvesting, solar-assisted common areas and 60% open space as a baseline, not an upgrade.</p>
-      </div>
-      <div class="item reveal">
-        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 36V20l16-10 16 10v16"/><path d="M20 36V26h8v10"/><path d="M6 36h36"/></svg>
-        <h3>After-sales desk</h3><p>A dedicated relationship manager from booking to registration, and a 24-month defect-liability promise.</p>
+  </div>
+  <div class="center"><a class="btn-ghost" href="#projects">View All Projects</a></div>
+</section>
+
+<!-- ===== Testimony / Blog ===== -->
+<section class="page two-fold" id="testimony">
+  <a class="fold fade" href="#testimony">
+    <span class="label-sm">+ Testimony</span>
+    <div class="media"><img src="assets/img/testimony.jpg" alt="Concrete villa facade photographed on site"><span class="plus"><img src="assets/img/Plusicon.svg" alt=""></span></div>
+    <p class="title">A Collection of Shot at Site Images</p>
+    <p class="desc">From architectural excellence to thoughtfully designed spaces, every image tells a story of innovation, quality, and craftsmanship.</p>
+  </a>
+  <a class="fold fade" href="#blog" id="blog">
+    <span class="label-sm">+ Blog</span>
+    <div class="media"><img src="assets/img/blog.jpg" alt="Row of white villas with balcony screens"><span class="plus"><img src="assets/img/Plusicon.svg" alt=""></span></div>
+    <p class="title">Explore the Assetz Blog</p>
+    <p class="desc">Read about the top real estate tips, latest market trends, investment guidelines, and more.</p>
+  </a>
+</section>
+
+<!-- ===== Awards & Recognition ===== -->
+<section class="page" id="awards">
+  <div class="awards">
+    <p class="label">+ Awards &amp; Recognition</p>
+    <hr class="rule">
+    <div class="strip" id="award-strip">
+      <div class="track" id="award-track">
+        <div class="award"><p class="year">2025</p><h3>ET Real Estate<br>Conclave &amp; Awards</h3><p class="project">Special Jury Mention</p><p class="title">Developer of the Year (South)</p></div>
+        <div class="award"><p class="year">2025</p><h3>ET Real Estate<br>Conclave &amp; Awards</h3><p class="project">Earth &amp; Essence</p><p class="title">Plotted Development of the Year (South)</p></div>
+        <div class="award"><p class="year">2025</p><h3>Global Real Estate<br>Brand Awards</h3><p class="project">Luxury Assetz</p><p class="title">Developer of the Year</p></div>
+        <div class="award"><p class="year">2024</p><h3>Times Business Awards</h3><p class="project">Assetz</p><p class="title">Excellence in Architectural Design</p></div>
+        <div class="award"><p class="year">2024</p><h3>Real Estate<br>&amp; Business<br>Excellence Awards</h3><p class="project">Assetz</p><p class="title">Brand of the Year - Real Estate</p></div>
+        <div class="award"><p class="year">2024</p><h3>GRI<br>Awards</h3><p class="project">63° East</p><p class="title">Sustainable Project of the Year</p></div>
+        <div class="award"><p class="year">2024</p><h3>Real Estate<br>&amp; Business<br>Excellence Awards</h3><p class="project">66 &amp; Shibui</p><p class="title">Luxury Project of the Year</p></div>
+        <div class="award"><p class="year">2023</p><h3>Realty+<br>Conclave &amp;<br>Excellence Awards</h3><p class="project">Assetz 38 &amp; Banyan</p><p class="title">Design Project of the Year</p></div>
+        <div class="award"><p class="year">2023</p><h3>International<br>Brand Equity<br>Awards</h3><p class="project">Assetz</p><p class="title">Developer of the Year 2023 (Sustainable Development)</p></div>
+        <div class="award"><p class="year">2023</p><h3>Construction<br>Week Awards</h3><p class="project">63° East</p><p class="title">Green Project of the Year</p></div>
+        <div class="award"><p class="year">2023</p><h3>Real Estate<br>&amp; Business<br>Excellence Awards</h3><p class="project">Assetz</p><p class="title">Developer of the Year – Luxury</p></div>
+        <div class="award"><p class="year">2017</p><h3>Realty+<br>Conclave &amp;<br>Excellence Awards</h3><p class="project">Stratos</p><p class="title">Ultra Luxury-Lifestyle Project of the Year</p></div>
+        <div class="award"><p class="year">2016</p><h3>CREDAI<br>Care Award</h3><p class="project">27 Park Avenue</p><p class="title">Best Dwelling</p></div>
+        <div class="award"><p class="year">2014</p><h3>MIPIM<br>Asia Green<br>Building Award</h3><p class="project">Vrindavan Tech Village</p><p class="title">Green Building Award</p></div>
+        <div class="award"><p class="year">2013</p><h3>Cityscape<br>Awards</h3><p class="project">Here &amp; Now</p><p class="title">Green Development</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== Awards ===== -->
-<section class="section tight">
-  <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">Recognition</span><h2>Awards that followed the work</h2></div>
-    <div class="awards reveal">
-      <div class="award"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 21h8M12 17v4M5 3h14v5a7 7 0 0 1-14 0V3z"/><path d="M5 5H2v2a4 4 0 0 0 4 4M19 5h3v2a4 4 0 0 1-4 4"/></svg><b>Developer of the Year</b><span>South India · 2025</span></div>
-      <div class="award"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 21h8M12 17v4M5 3h14v5a7 7 0 0 1-14 0V3z"/><path d="M5 5H2v2a4 4 0 0 0 4 4M19 5h3v2a4 4 0 0 1-4 4"/></svg><b>Best Residential Project</b><span>Skyline Residences · 2024</span></div>
-      <div class="award"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 21h8M12 17v4M5 3h14v5a7 7 0 0 1-14 0V3z"/><path d="M5 5H2v2a4 4 0 0 0 4 4M19 5h3v2a4 4 0 0 1-4 4"/></svg><b>Green Building Excellence</b><span>Meridian Business Park · 2023</span></div>
-      <div class="award"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 21h8M12 17v4M5 3h14v5a7 7 0 0 1-14 0V3z"/><path d="M5 5H2v2a4 4 0 0 0 4 4M19 5h3v2a4 4 0 0 1-4 4"/></svg><b>Customer Trust Award</b><span>Real Estate Forum · 2023</span></div>
-      <div class="award"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 21h8M12 17v4M5 3h14v5a7 7 0 0 1-14 0V3z"/><path d="M5 5H2v2a4 4 0 0 0 4 4M19 5h3v2a4 4 0 0 1-4 4"/></svg><b>Design Excellence</b><span>Urban Lofts · 2022</span></div>
+<!-- ===== Contact ===== -->
+<section class="page two-fold" id="contact">
+  <a class="fold fade" href="#contact" id="contact-fold">
+    <span class="label-sm">+ Contact</span>
+    <div class="media"><img src="assets/img/contact.jpg" alt="Assetz office reception"><span class="plus"><img src="assets/img/Plusicon.svg" alt=""></span></div>
+  </a>
+  <div class="fold fade">
+    <span class="label-sm">&nbsp;</span>
+    <div class="map" id="map">
+      <!--MAP-->
+      <iframe title="Assetz office on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=30%2C+Crescent+Rd%2C+Madhava+Nagar%2C+Seshadripuram%2C+Bengaluru%2C+Karnataka+560001&z=16&output=embed"></iframe>
+      <!--/MAP-->
     </div>
-  </div>
-</section>
-
-<!-- ===== Testimonials ===== -->
-<section class="section band-ink">
-  <div class="wrap testi">
-    <div class="reveal">
-      <span class="eyebrow">Homeowners speak</span>
-      <div id="testi">
-        <div class="testi-slide active">
-          <p class="quote">We booked in 2022 on a promise of December 2024. The keys came in November. In Bengaluru, that alone is a story worth telling.</p>
-          <div class="who"><div class="avatar">RK</div><div><b>Rahul & Kavya Menon</b><span>Urban Lofts, Indiranagar</span></div></div>
-        </div>
-        <div class="testi-slide">
-          <p class="quote">The site team answered every WhatsApp message, even on Sundays. The villa we moved into looks exactly like the render we fell for.</p>
-          <div class="who"><div class="avatar">SP</div><div><b>Shalini Prakash</b><span>Garden Villas, Sarjapur Road</span></div></div>
-        </div>
-        <div class="testi-slide">
-          <p class="quote">We moved our 200-person team into Meridian in one weekend. Power, parking, fibre, everything was simply ready.</p>
-          <div class="who"><div class="avatar">AD</div><div><b>Arjun Desai</b><span>Meridian Business Park, ORR</span></div></div>
-        </div>
-      </div>
-      <div class="testi-nav">
-        <button id="testi-prev" aria-label="Previous testimonial"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
-        <button id="testi-next" aria-label="Next testimonial"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-      </div>
-    </div>
-    <div class="trust reveal">
-      <div class="row"><b>4.8</b><span>Average rating across 1,100+ verified homeowner reviews</span></div>
-      <div class="row"><b>96%</b><span>Projects handed over on or before the committed date</span></div>
-      <div class="row"><b>38%</b><span>Of new bookings come from referrals by existing residents</span></div>
-      <div class="row"><b>24 mo</b><span>Defect-liability cover on every home we hand over</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Blog ===== -->
-<section class="section" id="blog">
-  <div class="wrap">
-    <div class="section-head split reveal">
-      <div><span class="eyebrow">From the blog</span><h2>Insights for buyers and investors</h2></div>
-      <a class="btn-link" href="#blog">All articles <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </div>
-    <div class="posts">
-      <a class="post reveal" href="#blog">
-        <img src="assets/p3-lake-view.jpg" alt="" loading="lazy">
-        <span class="tag">Buying guide</span>
-        <h3>North Bengaluru in 2026: why Hebbal is the corridor to watch</h3>
-        <p>Metro Phase 2B, the airport link and what it means for prices over the next five years.</p>
-        <time datetime="2026-11-04">4 Nov 2026 · 6 min read</time>
-      </a>
-      <a class="post reveal" href="#blog">
-        <img src="assets/p2-garden-villas.jpg" alt="" loading="lazy">
-        <span class="tag">Home finance</span>
-        <h3>Construction-linked plans, explained in plain language</h3>
-        <p>How milestone payments protect buyers, and the questions to ask before you sign.</p>
-        <time datetime="2026-10-21">21 Oct 2026 · 5 min read</time>
-      </a>
-      <a class="post reveal" href="#blog">
-        <img src="assets/p5-business-park.jpg" alt="" loading="lazy">
-        <span class="tag">Inside Scale Acres</span>
-        <h3>How we cut common-area power bills by 40% at Meridian</h3>
-        <p>Solar rooftops, smart lighting and the numbers from the first year of operation.</p>
-        <time datetime="2026-10-02">2 Oct 2026 · 4 min read</time>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Enquiry ===== -->
-<section class="section band-ink" id="enquire">
-  <div class="wrap enquire">
-    <div class="info reveal">
-      <span class="eyebrow">Get in touch</span>
-      <h2>Talk to us about your next address</h2>
-      <p>Share a few details and a relationship manager will call you back within one working day. Site visits run seven days a week.</p>
-      <div class="contact-list">
-        <div><small>Sales enquiries</small><b>+91 80000 00000</b></div>
-        <div><small>Email</small><b>sales@scaleacres.example</b></div>
-        <div><small>Corporate office</small><b>Scale Acres House, 12 Residency Road, Bengaluru 560025</b></div>
-      </div>
-      <p id="faq">Have a question first? Visit our <a href="#faq" style="color:var(--brass-2);text-decoration:underline">FAQ</a> page.</p>
-    </div>
-    <form class="form reveal" id="enquiry-form" novalidate>
-      <div class="row">
-        <label class="field">Full name<input id="e-name" name="name" type="text" required autocomplete="name"></label>
-        <label class="field">Phone<input id="e-phone" name="phone" type="tel" required autocomplete="tel" placeholder="+91"></label>
-      </div>
-      <div class="row">
-        <label class="field">Email<input id="e-email" name="email" type="email" autocomplete="email"></label>
-        <label class="field">Project of interest
-          <select id="e-project" name="project">
-            <option>Not sure yet</option><option>Skyline Residences</option><option>Garden Villas</option><option>Lake View Heights</option><option>Urban Lofts</option><option>Meridian Business Park</option><option>Riverside Enclave</option><option>Meadow Plots</option>
-          </select>
-        </label>
-      </div>
-      <label class="field">Message<textarea id="e-msg" name="message" placeholder="Preferred configuration, budget, or a good time to call"></textarea></label>
-      <label class="consent"><input id="e-consent" type="checkbox" required> I agree to be contacted by Scale Acres about this enquiry. We never share your details.</label>
-      <div><button class="btn btn-primary" type="submit">Request a call back</button></div>
-      <p class="form-note" id="form-note" hidden>Thank you. A relationship manager will call you within one working day.</p>
-    </form>
   </div>
 </section>
 
@@ -361,44 +164,92 @@
 
 <!-- ===== Footer ===== -->
 <footer class="footer">
-  <div class="wrap">
-    <div class="top">
-      <div class="brand">
-        <a class="logo" href="#top"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 28V12l12-8 12 8v16" stroke="#d4b27c" stroke-width="1.6"/><path d="M11 28V18h10v10" stroke="#d4b27c" stroke-width="1.6"/><path d="M16 4v6" stroke="#d4b27c" stroke-width="1.6"/></svg><span>Scale Acres<small>Developers</small></span></a>
-        <p>Premium residential and commercial developments across Bengaluru since 2008.</p>
-        <div class="social">
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h4v12H4zM6 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm5 6h4v2c.6-1.1 2-2.3 4-2.3 4 0 5 2.6 5 6V21h-4v-5.5c0-1.5 0-3.3-2-3.3s-2.3 1.5-2.3 3.2V21h-4z"/></svg></a>
-          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 12s0-4-1-5-9-1-9-1-8 0-9 1-1 5-1 5 0 4 1 5 9 1 9 1 8 0 9-1 1-5 1-5z"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg></a>
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-5 2.2-5 5v2H6v4h3v7h4v-7h3l1-4h-4V9c0-.6.4-1 1-1z"/></svg></a>
-        </div>
-      </div>
-      <div><h4>Company</h4><ul><li><a href="#about">About Us</a></li><li><a href="#about">Leadership</a></li><li><a href="#about">Careers</a></li><li><a href="#blog">Blogs</a></li><li><a href="#faq">FAQ</a></li><li><a href="#enquire">Contact Us</a></li></ul></div>
-      <div><h4>Projects</h4><ul><li><a href="#projects">Skyline Residences</a></li><li><a href="#projects">Garden Villas</a></li><li><a href="#projects">Lake View Heights</a></li><li><a href="#projects">Urban Lofts</a></li><li><a href="#projects">Meridian Business Park</a></li><li><a href="#projects">Riverside Enclave</a></li><li><a href="#projects">Meadow Plots</a></li></ul></div>
-      <div><h4>Buyers</h4><ul><li><a href="#enquire">Book a site visit</a></li><li><a href="#enquire">NRI desk</a></li><li><a href="#enquire">Home loan partners</a></li><li><a href="#enquire">Referral programme</a></li><li><a href="#enquire">Customer portal</a></li></ul></div>
-      <div>
-        <h4>Stay updated</h4>
-        <p style="font-size:.85rem;color:var(--stone)">New launches and price updates, once a month.</p>
-        <form class="newsletter" id="newsletter"><input id="nl-email" type="email" placeholder="Your email" aria-label="Email address"><button type="submit">Join</button></form>
-      </div>
+  <div class="cols">
+    <div>
+      <h4>Assetz</h4>
+      <ul>
+        <li><a href="#about">About</a></li><li><a href="#projects">Projects</a></li><li><a href="#testimony">Our Testimony</a></li><li><a href="#projects">&amp;Homes</a></li><li><a href="#about">Board of Directors</a></li><li><a href="#about">Team</a></li><li><a href="#about">Media</a></li><li><a href="#blog">Blog</a></li><li><a href="#awards">Awards</a></li>
+      </ul>
     </div>
-    <div class="legal">
-      <p>Disclaimer: This website is for informational purposes only and does not constitute an offer or a legally binding agreement. Images, renders and plans are indicative. All projects are registered with Karnataka RERA; registration numbers are listed on each project page. Please verify all details with our sales team before making a purchase decision.</p>
-      <div class="row">
-        <span>© 2026 Scale Acres Developers Pvt. Ltd. All rights reserved.</span>
-        <span><a href="#">Privacy policy</a><a href="#">Terms of use</a><a href="#">RERA disclaimer</a><a href="#">Sitemap</a></span>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#contact">Contact</a></li><li><a href="#contact">Careers</a></li><li><a href="#contact">Channel Partner</a></li><li><a href="#contact">Referral</a></li><li><a href="#contact">Buying Guide</a></li><li><a href="#contact">EMI Calculator</a></li><li><a href="#contact">Compliance</a></li><li><a href="#contact">Investors</a></li><li><a href="#contact">NRIs</a></li><li><a href="#contact">FAQs</a></li>
+      </ul>
+    </div>
+    <div class="brandcol">
+      <img class="logo" src="assets/img/assetzlogofooter.svg" alt="Assetz, Life Reimagined">
+      <div class="social">
+        <a href="https://www.instagram.com/assetzproperty/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/img/instagram.svg" alt=""></a>
+        <a href="https://www.facebook.com/AssetzProperty" target="_blank" rel="noopener" aria-label="Facebook"><img src="assets/img/facebook.svg" alt=""></a>
+        <a href="https://www.linkedin.com/company/assetz-property-group/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/img/linkedin.svg" alt=""></a>
+        <a href="https://www.youtube.com/channel/UCSQGGR-eV1RfrkPuiUtRV8g" target="_blank" rel="noopener" aria-label="YouTube"><img src="assets/img/youtube.svg" alt=""></a>
       </div>
     </div>
   </div>
+  <div class="projects-lists">
+    <details><summary>Residential Completed Projects</summary><ul>
+      <li><a href="#projects">Atmos &amp; Aura</a></li><li><a href="#projects">Marq 3A and Marq 3B</a></li><li><a href="#projects">Sun &amp; Sanctum Phase 1</a></li><li><a href="#projects">Sun &amp; Sanctum Phase 2</a></li><li><a href="#projects">Earth &amp; Essence</a></li><li><a href="#projects">Soul &amp; Soil</a></li><li><a href="#projects">Marq 2A and 2B</a></li><li><a href="#projects">Leaves &amp; Lives Phase 1</a></li><li><a href="#projects">38 &amp; Banyan</a></li><li><a href="#projects">Here &amp; Now</a></li><li><a href="#projects">Marq 1</a></li><li><a href="#projects">East Point</a></li><li><a href="#projects">Stratos</a></li><li><a href="#projects">Lumos</a></li><li><a href="#projects">63 Degree East</a></li><li><a href="#projects">Bloom &amp; Dell</a></li>
+    </ul></details>
+    <details><summary>Residential Ongoing Projects</summary><ul>
+      <li><a href="#projects">Codename Sublime</a></li><li><a href="#projects">Niwa &amp; Neo</a></li><li><a href="#projects">Mizu &amp; Ki</a></li><li><a href="#projects">Miru &amp; Miyo</a></li><li><a href="#projects">Muse &amp; Maison</a></li><li><a href="#projects">Mizumi Reserve</a></li><li><a href="#projects">Melodies of Life Apartments</a></li><li><a href="#projects">Meru &amp; Meadow</a></li><li><a href="#projects">Trees &amp; Tandem</a></li><li><a href="#projects">Ren &amp; Rei</a></li><li><a href="#projects">22 &amp; Crest</a></li><li><a href="#projects">Melodies of Life</a></li><li><a href="#projects">Sora &amp; Saki</a></li><li><a href="#projects">66 &amp; Shibui</a></li><li><a href="#projects">Promise of Spring</a></li><li><a href="#projects">Canvas &amp; Cove</a></li><li><a href="#projects">Soho &amp; Sky</a></li><li><a href="#projects">18 &amp; Oak</a></li>
+    </ul></details>
+    <details><summary>Commercial Projects</summary><ul>
+      <li><a href="#projects">Vrindavan Tech Village</a></li><li><a href="#projects">Assetz House</a></li>
+    </ul></details>
+  </div>
+  <div class="legal">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Use</a>
+    <button type="button" id="disclaimer-open">Disclaimer</button>
+    <span>©2006-2026. All rights reserved.</span>
+  </div>
 </footer>
 
-<!-- Floating actions -->
-<div class="float-cta">
-  <a href="#enquire" aria-label="WhatsApp us" title="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a>
-  <a href="#enquire" aria-label="Call us" title="Call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a>
+<!-- Enquiry tab + popup -->
+<button class="enquire-tab" id="enquire-open">ENQUIRE NOW</button>
+<div class="popup" id="popup" aria-hidden="true">
+  <div class="box" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+    <button class="x" id="popup-close" aria-label="Close">×</button>
+    <div class="types" id="popup-title">
+      <button type="button" class="active" data-type="Enquiry">Enquiry Form</button>
+      <button type="button" data-type="NRI">NRI</button>
+    </div>
+    <form id="enquiry-form" novalidate>
+      <label>Name*<input id="q-name" name="name" type="text" autocomplete="name"></label>
+      <label>Email Id*<input id="q-email" name="email" type="email" autocomplete="email"></label>
+      <label>Contact Number*<input id="q-phone" name="phone" type="tel" autocomplete="tel"></label>
+      <label>Select Project*
+        <select id="q-project" name="project">
+          <option value="">Select Project</option><option>Codename Sublime</option><option>Niwa &amp; Neo</option><option>Mizu &amp; Ki</option><option>City of Palms</option><option>Miru &amp; Miyo</option><option>Muse &amp; Maison</option><option>Mizumi Reserve</option><option>Melodies of Life Apartments</option><option>Zen &amp; Sato</option><option>Trees &amp; Tandem</option><option>Sora &amp; Saki</option>
+        </select>
+      </label>
+      <label class="agree"><input id="q-agree" type="checkbox"> I agree to receive updates on WhatsApp, SMS, RCS, Email &amp; any other channels.</label>
+      <button class="submit" type="submit">Submit</button>
+      <p class="ok" id="q-ok" hidden>Thank you. Our team will get in touch with you shortly.</p>
+    </form>
+  </div>
 </div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<!-- Disclaimer modal -->
+<div class="modal" id="disclaimer" aria-hidden="true">
+  <div class="box" role="dialog" aria-modal="true" aria-labelledby="disc-title">
+    <button class="x" id="disclaimer-close" aria-label="Close">×</button>
+    <h5 id="disc-title">DISCLAIMER</h5>
+    <p>The person logging on to or using the site ("the Visitor") has unconditionally accepted the terms and conditions of use and these constitute a binding and enforceable agreement between the visitor and the Assetz Group of Companies.</p>
+    <p>1. The information on this website is presented as general information and no representation or warranty is expressly or impliedly given as to it accuracy, completeness or correctness.</p>
+    <p>2. The visitor is presumed to have read the terms and conditions of the website and is deemed to have agreed, understood and accepted unconditionally all the terms, conditions, procedure and risks of logging onto the website and cannot claim, at any time, ignorance of any or all of them.</p>
+    <p>3. The Assetz Group uses all diligence, skill and expertise available to provide information on this website but does not accept or undertake any express or implied warranty of any nature whatsoever and the Assetz Group disclaims all or any errors and mistakes to the fullest extent.</p>
+    <p>4. The plans, specifications, images and other details herein are only indicative and the Assetz Group reserves the right to change any or all of these in the interest of the project/development. The Website does not constitute an offer and/or contract of any nature whatsoever. Any purchase/leave and license in any project shall be governed by the terms of the agreement entered into between the parties and no details mentioned on this website shall govern the transaction. The Assetz Group and its respective subsidiaries and affiliates, and their respective officers, directors, partners, employees, agents, managers, trustees, representatives or contractors of any of them, related thereto and any successors or assigns of any of the foregoing shall not be liable for any direct, indirect, actual, punitive, incidental, special, consequential damages or economic loss whatsoever, arising from or related to the use of or reliance on this Web site. The Assetz Group reserves the right to alter, amend and vary the layout, plans, and specifications or feature without prior notice or obligation, but subject to the approval of the competent authorities as applicable.</p>
+    <p>5. The visitor has, by the act of logging onto the website and/or submitting information or giving his name, address, email addresses as identification to the Assetz Group through the website, on phone, fax or e-mail, deemed to have consented and has expressly and irrevocably authorized the Assetz Group to use, reveal, analyze or display and transmit all information and documents as may be required by it. The visitor represents and warrants that he has provided true, accurate, current and complete information about himself and if any information is found to be untrue, inaccurate, not current or incomplete, the Assetz Group has the right to take any action it deems appropriate without any limitation.</p>
+    <p>6. The contents, information and material contain in this website are the exclusive property of the Assetz Group and are protected by copyright and intellectual property laws. No person shall use, copy, reproduce, distribute, initiate, publish, display, modify, create derivative works or database, use, transmit, upload, exploit, sell or distribute the same in whole or in part or any part thereof without prior express written permission from the Assetz Group.</p>
+    <p>7. Any links to off-site pages or other sites may be accepted by the visitor at his/her option and own risk and the Assetz Group assumes no liability for and shall be held harmless from any resulting damages. The Assetz Group strongly recommends that the visitors carefully reads the terms and conditions of such linked site(s).</p>
+    <p>8. The Assetz Group reserves the right to terminate, revoke, modify, alter, add, and delete any one or more of the terms and conditions of the website. The Assetz Group shall be under no obligation to notify the visitor of the amendment to the terms and conditions and the visitor shall be bound by such amended terms and conditions.</p>
+    <p>9. Product cost if any listed on the website is indicative in nature, actual product cost might be different.</p>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="js/main.js"></script>
 </body>
 </html>
