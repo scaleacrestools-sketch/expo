@@ -1,11 +1,11 @@
-# Scale Acres Developers — website (first draft)
+# M3M-style developer website (first draft)
 
 Static site, no build step. Open `index.html` in a browser or serve the folder.
 
-- `index.html` — homepage (video hero, project finder, stats, projects by status, about, why us, awards, testimonials, blog, enquiry form, footer)
+- `index.html` — homepage: film hero with property finder, Shaping Dreams, Live News, counters, Iconic Masterpieces, Verticals accordion, What's Trending, Career/Media/Blog cards, Blog, lead magnet (free investment guide), testimonials, enquiry form, FAQ, footer with enquiry form, floating rail, mega menu, search and enquiry popups, cookie notice
 - `css/style.css` — design tokens and all styles
-- `js/main.js` — filters, counters, testimonial slider, form handling (front-end only)
-- `assets/` — placeholder imagery and `hero.mp4` (replace with real project renders and drone footage)
+- `js/main.js` — header, mega menu, finder dropdowns, counters, sliders, accordion, form validation (front-end only)
+- `assets/` — images and hero videos taken from the reference site for the draft; replace with licensed brand assets before launch
 - `homepage-walkthrough.mp4` — recorded scroll-through of this draft
 
-Planned pages: About Us, Projects (7 detail pages), Blogs, FAQ, Contact Us.
+Planned pages: Our Story, Projects (one per project), Blog, FAQ, Contact Us.
