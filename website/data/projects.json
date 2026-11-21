@@ -1,0 +1,1228 @@
+[
+  {
+    "slug": "assetz-naru-and-nami",
+    "name": "Naru & Nami",
+    "officialName": "Assetz Codename Sublime (developer's current name for this Hoskote project)",
+    "nameNote": "The developer's website currently markets this Hoskote project as 'Codename Sublime' and does not use the name 'Naru & Nami'. The page is published under the name supplied in the brief, with the developer's current name shown here; confirm the final launch name before go-live.",
+    "sourceUrl": "https://www.assetzproperty.com/codenamesublime/",
+    "sourceDate": "2026-11-21",
+    "tagline": "The Measure of Sophistication.",
+    "headline": "A Fresh Perspective on Everyday Living.",
+    "blurb": "A refreshing perspective on contemporary living in Hoskote, where thoughtfully planned homes create room for comfort, balance and connection.",
+    "location": "Hoskote, Bengaluru",
+    "locationShort": "Hoskote",
+    "address": "Hoskote, Bengaluru 562114",
+    "propertyType": "Apartments",
+    "configurations": [
+      "3 BHK"
+    ],
+    "sizes": "1,735 – 1,945 sq. ft. SBUA",
+    "landArea": "~11 acres",
+    "towers": "Not Mentioned",
+    "units": "Not Mentioned",
+    "floors": "Not Mentioned",
+    "status": "Not Mentioned",
+    "statusNote": "The developer's page shows an 'EOI Open' button and lists the project under ongoing residential projects, but does not state a status.",
+    "possession": "Not Mentioned",
+    "startingPrice": "₹1.73 Cr onwards",
+    "priceNote": "As published on the developer's projects listing (21 Nov 2026). The project page itself does not state a price.",
+    "budget": "1-2cr",
+    "rera": [
+      "PRM/KA/RERA/1250/304/PR/081026/009004"
+    ],
+    "reraNote": "The developer's page footer states this number; an FAQ block on the same page quotes a different number (PRM/KA/RERA/1251/310/PR/040226/008450) inside text copied from another project. Verify on the Karnataka RERA portal before relying on either.",
+    "paymentPlan": "Not Mentioned",
+    "brochureUrl": "",
+    "mapEmbed": "https://www.google.com/maps?q=Hoskote%2C+Bengaluru+562114&z=13&output=embed",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Hoskote%2C+Bengaluru+562114",
+    "coordinates": null,
+    "cover": "/assets/img/projects/assetz-naru-and-nami/01-hero-clubhouse-evening-render.jpg",
+    "coverAlt": "Corten-steel clubhouse at dusk, Naru & Nami, Hoskote (developer's render)",
+    "logo": "",
+    "images": [
+      {
+        "src": "/assets/img/projects/assetz-naru-and-nami/01-hero-clubhouse-evening-render.jpg",
+        "alt": "Clubhouse at dusk (developer's render)",
+        "kind": "architecture"
+      },
+      {
+        "src": "/assets/img/projects/assetz-naru-and-nami/02-tower-facade-render.jpg",
+        "alt": "Residential tower façade (developer's render)",
+        "kind": "architecture"
+      },
+      {
+        "src": "/assets/img/projects/assetz-naru-and-nami/04-aerial-township-twin-towers-render.jpg",
+        "alt": "Aerial view of the community (developer's render)",
+        "kind": "landscape"
+      },
+      {
+        "src": "/assets/img/projects/assetz-naru-and-nami/09-the-spine-amphitheatre-landscape-render.jpg",
+        "alt": "The Spine landscape and amphitheatre (developer's render)",
+        "kind": "landscape"
+      },
+      {
+        "src": "/assets/img/projects/assetz-naru-and-nami/05-temperature-controlled-pool-render.jpg",
+        "alt": "Temperature-controlled pool (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-naru-and-nami/03-corten-steel-clubhouse-render.jpg",
+        "alt": "Corten-steel clubhouse (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-naru-and-nami/07-living-room-interior-render.jpg",
+        "alt": "Living room interior (developer's render)",
+        "kind": "interior"
+      },
+      {
+        "src": "/assets/img/projects/assetz-naru-and-nami/06-luxury-terrace-balcony-render.jpg",
+        "alt": "Luxury terrace balcony (developer's render)",
+        "kind": "interior"
+      },
+      {
+        "src": "/assets/img/projects/assetz-naru-and-nami/08-entrance-lobby-render.jpg",
+        "alt": "Entrance lobby (developer's render)",
+        "kind": "interior"
+      },
+      {
+        "src": "/assets/img/projects/assetz-naru-and-nami/10-co-working-space-render.jpg",
+        "alt": "Co-working space (developer's render)",
+        "kind": "amenity"
+      }
+    ],
+    "masterPlan": "/assets/img/projects/assetz-naru-and-nami/11-master-plan.jpg",
+    "floorPlans": [
+      {
+        "label": "3 BHK · Type 7",
+        "size": "1,945 sq. ft. SBUA · 1,358 sq. ft. TCA (RERA + balcony)",
+        "src": "/assets/img/projects/assetz-naru-and-nami/12-floor-plan-3bhk-type7-1945sqft.jpg"
+      },
+      {
+        "label": "3 BHK · Type 8",
+        "size": "1,735 sq. ft. SBUA · 1,219 sq. ft. TCA (RERA + balcony)",
+        "src": "/assets/img/projects/assetz-naru-and-nami/13-floor-plan-3bhk-type8-1735sqft.jpg"
+      },
+      {
+        "label": "Master plan",
+        "size": "~11 acres · ~81% open space",
+        "src": "/assets/img/projects/assetz-naru-and-nami/11-master-plan.jpg"
+      }
+    ],
+    "pricing": [
+      {
+        "type": "3 BHK · Type 7",
+        "size": "1,945 sq. ft. SBUA",
+        "price": "Price on Request"
+      },
+      {
+        "type": "3 BHK · Type 8",
+        "size": "1,735 sq. ft. SBUA",
+        "price": "Price on Request"
+      }
+    ],
+    "overview": [
+      "Set on about eleven acres in Hoskote, this community is planned around a simple idea: give families generous homes, then surround them with open space. Roughly 81 percent of the site is kept open, organised along a central landscaped spine that links the amphitheatre, play areas and sports courts, so the walk from the gate to your door passes through greenery rather than parking.",
+      "The 3 BHK residences come in two layouts of 1,735 and 1,945 square feet of super built-up area, with a carpet-area efficiency the developer puts at about 70 percent including balconies. Terrace balconies of roughly 13 by 10 feet extend the living room outdoors, and the plans separate the living zone from bedrooms so that daily life and quiet time can coexist.",
+      "A corten-steel clad clubhouse of about 62,000 square feet, including under-tower amenities, anchors the social life of the community with a temperature-controlled pool, co-working space, age-designated play areas and a dozen sporting facilities. Around 22,500 square feet of retail is planned at the entrance for everyday convenience.",
+      "Hoskote sits along the highway on Bengaluru's eastern edge, with the developer highlighting direct access toward the airport and the Whitefield employment belt. Sustainability measures published for the project include rainwater harvesting, an organic waste converter, solar power and a higher green cover for a cooler microclimate."
+    ],
+    "highlights": [
+      {
+        "title": "~81% open space",
+        "text": "Low-density planning across about 11 acres, with a landscaped central spine.",
+        "icon": "leaf"
+      },
+      {
+        "title": "~70% carpet efficiency",
+        "text": "RERA carpet area plus balcony as a share of SBUA, as stated by the developer.",
+        "icon": "grid"
+      },
+      {
+        "title": "~62,000 sq. ft. clubhouse",
+        "text": "Corten-steel clad clubhouse including under-tower amenities.",
+        "icon": "home"
+      },
+      {
+        "title": "30+ amenities",
+        "text": "Twelve-plus sporting facilities, temperature-controlled pool and co-working.",
+        "icon": "people"
+      },
+      {
+        "title": "Terrace balconies ~13' x 10'",
+        "text": "Oversized outdoor rooms attached to the living area.",
+        "icon": "sun"
+      },
+      {
+        "title": "Sustainability built in",
+        "text": "Rainwater harvesting, zero waste to landfill, solar power and higher green cover.",
+        "icon": "water"
+      }
+    ],
+    "amenities": [
+      "Temperature-controlled pool",
+      "~62,000 sq. ft. clubhouse",
+      "Co-working space",
+      "Amphitheatre",
+      "The Spine (landscaped walk)",
+      "Pets' park",
+      "Kids' play area",
+      "Toddlers' play area",
+      "Futsal court",
+      "Half-basketball court",
+      "Pickleball court",
+      "Padel tennis court",
+      "Box cricket",
+      "Tennis court",
+      "Outdoor gym",
+      "Seating alcoves",
+      "Central lawn",
+      "~22,500 sq. ft. retail spaces"
+    ],
+    "connectivity": [
+      {
+        "name": "Capstone High CBSE School",
+        "note": "03 min, as stated by the developer"
+      },
+      {
+        "name": "MVJ Hospital",
+        "note": "04 min, as stated by the developer"
+      },
+      {
+        "name": "The Terminal",
+        "note": "05 min, as stated by the developer"
+      },
+      {
+        "name": "Bearys Global Research Triangle",
+        "note": "14 min, as stated by the developer"
+      },
+      {
+        "name": "Orion Uptown Mall · IKEA",
+        "note": "18 min, as stated by the developer"
+      },
+      {
+        "name": "ITPL, Whitefield",
+        "note": "30 min, as stated by the developer"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Where is Naru & Nami located?",
+        "a": "The project is in Hoskote, on the eastern edge of Bengaluru (site address Hoskote, Bengaluru 562114, as published by the developer)."
+      },
+      {
+        "q": "What configurations are offered?",
+        "a": "3 BHK apartments in two layouts: Type 7 of 1,945 sq. ft. and Type 8 of 1,735 sq. ft. super built-up area, with the developer stating around 70 percent carpet-area efficiency including balconies."
+      },
+      {
+        "q": "Is the project RERA registered?",
+        "a": "The developer's page footer publishes RERA number PRM/KA/RERA/1250/304/PR/081026/009004. Verify it on the Karnataka RERA portal before booking."
+      },
+      {
+        "q": "What is the project status and possession date?",
+        "a": "The developer has not published a status or possession date for this project; the page shows an Expression of Interest option. Ask our advisors for the latest update."
+      },
+      {
+        "q": "What is the starting price?",
+        "a": "The developer's projects listing shows ₹1.73 Cr onwards. Final pricing depends on the unit, floor and applicable charges as per the official cost sheet."
+      },
+      {
+        "q": "What amenities are planned?",
+        "a": "A clubhouse of about 62,000 sq. ft. including under-tower amenities, a temperature-controlled pool, co-working space, amphitheatre, sports courts including tennis, padel, pickleball, futsal and box cricket, play areas and a pets' park."
+      },
+      {
+        "q": "Is the name Naru & Nami confirmed?",
+        "a": "The developer currently markets this Hoskote project as 'Codename Sublime'. The final name will be confirmed at launch; our advisors can share the latest."
+      }
+    ],
+    "conflicts": [
+      "The developer's page carries FAQ and SEO text copied from the Mizumi Reserve page (80 acres, Hosa Road, 3 and 4 BHK), contradicting its own Hoskote, ~11-acre, 3 BHK content. This site uses the page's own project content.",
+      "Two different RERA numbers appear on the developer's page; the footer number is shown here and both should be verified on the RERA portal."
+    ]
+  },
+  {
+    "slug": "assetz-mizumi-reserve",
+    "name": "Mizumi Reserve",
+    "officialName": "Assetz Mizumi Reserve",
+    "sourceUrl": "https://www.assetzproperty.com/mizumireserve/",
+    "sourceDate": "2026-11-21",
+    "tagline": "The Have-It-All Habitat.",
+    "headline": "Where Every Day Finds Its Balance.",
+    "blurb": "An expansive residential vision that brings together generous living spaces, landscape and the calming presence of water.",
+    "location": "Off HSR Layout, South Bengaluru",
+    "locationShort": "Off HSR Layout",
+    "address": "Kudlu, Bengaluru, Karnataka 560068",
+    "propertyType": "Apartments",
+    "configurations": [
+      "3 BHK",
+      "4 BHK"
+    ],
+    "sizes": "1,901 – 2,476 sq. ft. SBUA",
+    "landArea": "~80 acres (township)",
+    "landNote": "The project page states ~80 acres for the township and notes future phases depend on approvals; the developer's About page describes Mizumi Reserve as a 25-acre development. Treat the phase size as unconfirmed.",
+    "towers": "Not Mentioned",
+    "units": "Not Mentioned",
+    "floors": "Not Mentioned",
+    "status": "New Launch",
+    "possession": "Not Mentioned",
+    "startingPrice": "₹2.57 Cr onwards",
+    "priceNote": "As published on the developer's projects listing (21 Nov 2026).",
+    "budget": "2-3cr",
+    "rera": [
+      "PRM/KA/RERA/1251/308/PR/130526/008650"
+    ],
+    "reraNote": "Page footer and FAQ agree on this number; the page's structured data quotes a different number. Verify on the Karnataka RERA portal.",
+    "paymentPlan": "Pay just 5% to book, as advertised on the developer's projects listing. Ask an advisor for the current schedule.",
+    "brochureUrl": "",
+    "mapEmbed": "https://www.google.com/maps?q=12.8960,77.6530&z=14&output=embed",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=12.8960,77.6530",
+    "coordinates": {
+      "lat": 12.896,
+      "lng": 77.653
+    },
+    "cover": "/assets/img/projects/assetz-mizumi-reserve/02-township-lakeside-aerial-render.jpg",
+    "coverAlt": "Aerial view of the lakeside township, Mizumi Reserve (developer's render)",
+    "logo": "/assets/img/projects/assetz-mizumi-reserve/logo-mizumi-reserve.png",
+    "images": [
+      {
+        "src": "/assets/img/projects/assetz-mizumi-reserve/02-township-lakeside-aerial-render.jpg",
+        "alt": "Lakeside township aerial (developer's render)",
+        "kind": "architecture"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizumi-reserve/03-towers-boulevard-render.jpg",
+        "alt": "Towers along the boulevard (developer's render)",
+        "kind": "architecture"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizumi-reserve/04-grey-brick-facade-render.jpg",
+        "alt": "Grey-brick façade (developer's render)",
+        "kind": "architecture"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizumi-reserve/10-aerial-sports-courts-render.jpg",
+        "alt": "Sports courts from above (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizumi-reserve/06-pool-deck-cabana-render.jpg",
+        "alt": "Pool deck with cabanas (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizumi-reserve/05-clubhouse-render.jpg",
+        "alt": "Clubhouse (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizumi-reserve/01-hero-clubhouse-arrival-render.jpg",
+        "alt": "Clubhouse arrival court (developer's render)",
+        "kind": "landscape"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizumi-reserve/08-living-room-interior-render.jpg",
+        "alt": "Living room interior (developer's render)",
+        "kind": "interior"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizumi-reserve/07-large-living-balcony-render.jpg",
+        "alt": "Large living balcony (developer's render)",
+        "kind": "interior"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizumi-reserve/09-bedroom-interior-render.jpg",
+        "alt": "Bedroom interior (developer's render)",
+        "kind": "interior"
+      }
+    ],
+    "masterPlan": "/assets/img/projects/assetz-mizumi-reserve/11-master-plan.jpg",
+    "floorPlans": [
+      {
+        "label": "3 BHK · Type 1",
+        "size": "1,901 sq. ft. SBUA · 1,431 sq. ft. TCA (RERA + balcony)",
+        "src": "/assets/img/projects/assetz-mizumi-reserve/12-floor-plan-3bhk-type1-1901sqft.jpg"
+      },
+      {
+        "label": "Master plan",
+        "size": "Township master plan; future phases subject to approvals",
+        "src": "/assets/img/projects/assetz-mizumi-reserve/11-master-plan.jpg"
+      }
+    ],
+    "pricing": [
+      {
+        "type": "3 BHK · Type 1",
+        "size": "1,901 sq. ft. SBUA",
+        "price": "Price on Request"
+      },
+      {
+        "type": "3 BHK · Type 2",
+        "size": "2,165 sq. ft. SBUA",
+        "price": "Price on Request"
+      },
+      {
+        "type": "4 BHK",
+        "size": "Up to 2,476 sq. ft. SBUA (listing)",
+        "price": "Price on Request"
+      }
+    ],
+    "overview": [
+      "Mizumi Reserve is conceived as a self-contained township off HSR Layout, nestled between two lakes in the Harlur Road and Kudlu belt of South Bengaluru. The developer describes about 80 acres for the full township, with roughly 77 percent kept as open space, so that homes look out over water, tree-lined boulevards and sports lawns rather than at each other.",
+      "The current phase offers 3 and 4 BHK homes, with the 3 BHK layouts at 1,901 and 2,165 square feet of super built-up area and living balconies of up to 170 square feet that act as an extra room for most of the year. A distinctive grey-brick façade gives the towers a calm, tactile character that ages well in Bengaluru's climate.",
+      "Each phase is planned with its own clubhouse of more than 63,000 square feet, and the community lists over thirty indoor and outdoor amenities: a swimming pool, gymnasium, yoga and meditation zones, co-working lounges, tennis, padel and pickleball courts, box cricket, a farmers' market zone and an amphitheatre.",
+      "The location puts residents within the developer's stated short drives of schools, hospitals, Sarjapur Road and the Outer Ring Road technology corridor. Published sustainability features include rainwater capture, solar power, an organic waste converter and a higher green cover across the site."
+    ],
+    "highlights": [
+      {
+        "title": "~80-acre township",
+        "text": "A self-sustained community between two lakes, developed in phases.",
+        "icon": "leaf"
+      },
+      {
+        "title": "~77% open space",
+        "text": "Low-density planning with boulevards, lawns and water edges.",
+        "icon": "sun"
+      },
+      {
+        "title": "63,000+ sq. ft. clubhouse per phase",
+        "text": "Each phase gets its own full-scale clubhouse.",
+        "icon": "home"
+      },
+      {
+        "title": "30+ amenities",
+        "text": "Sports, wellness, work and social spaces across the township.",
+        "icon": "people"
+      },
+      {
+        "title": "Balconies up to 170 sq. ft.",
+        "text": "Large living balconies attached to the main living space.",
+        "icon": "grid"
+      },
+      {
+        "title": "Grey-brick façade",
+        "text": "A distinctive, durable architectural skin.",
+        "icon": "star"
+      }
+    ],
+    "amenities": [
+      "Swimming pool",
+      "Fully equipped gymnasium",
+      "Yoga and meditation zones",
+      "Indoor games area",
+      "Multipurpose hall",
+      "Co-working lounges",
+      "Outdoor workstations",
+      "Tennis court",
+      "Padel tennis",
+      "Pickleball courts",
+      "Box cricket",
+      "Multipurpose court",
+      "Jogging tracks",
+      "Cycling paths",
+      "Amphitheatre",
+      "Farmers' market / food-truck zone",
+      "Pets' park",
+      "Kids' play area"
+    ],
+    "connectivity": [
+      {
+        "name": "PNR Felicity Mall",
+        "note": "6 min, as stated by the developer"
+      },
+      {
+        "name": "Vibgyor High School",
+        "note": "7 min, as stated by the developer"
+      },
+      {
+        "name": "Manipal Hospital, Sarjapur",
+        "note": "12 min, as stated by the developer"
+      },
+      {
+        "name": "Infosys · Global Tech Park Phase 3",
+        "note": "14 min, as stated by the developer"
+      },
+      {
+        "name": "Embassy Tech Village · RGA Techpark",
+        "note": "20 min, as stated by the developer"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Where is Mizumi Reserve located?",
+        "a": "Off HSR Layout in South Bengaluru, in the Harlur Road and Kudlu belt (site address Kudlu, Bengaluru 560068, as published by the developer)."
+      },
+      {
+        "q": "Which configurations are available?",
+        "a": "3 and 4 BHK apartments. The published 3 BHK layouts are 1,901 and 2,165 sq. ft. SBUA; the listing shows sizes up to 2,476 sq. ft."
+      },
+      {
+        "q": "What is the project status?",
+        "a": "The developer lists Mizumi Reserve as a New Launch. A possession date has not been published."
+      },
+      {
+        "q": "Is the project RERA registered?",
+        "a": "Yes. The developer publishes RERA number PRM/KA/RERA/1251/308/PR/130526/008650 for the current phase. Verify on the Karnataka RERA portal."
+      },
+      {
+        "q": "What is the starting price and booking amount?",
+        "a": "The developer's listing shows ₹2.57 Cr onwards with a 5 percent booking offer. Ask for the official cost sheet for unit-wise pricing."
+      },
+      {
+        "q": "How large is the clubhouse?",
+        "a": "The developer states a dedicated clubhouse of more than 63,000 sq. ft. in each phase."
+      },
+      {
+        "q": "Is the township really 80 acres?",
+        "a": "The project page says about 80 acres with future phases subject to approvals, while the developer's About page refers to a 25-acre development. Confirm the current phase's area in the RERA documents."
+      }
+    ],
+    "conflicts": [
+      "Location is described in four ways by the developer (Off HSR Layout, Harlur Road Sarjapur, Hosa Road, Kudlu). This site uses 'Off HSR Layout' from the listing and the Kudlu site address.",
+      "Township area: ~80 acres (project page) versus 25 acres (About page milestone).",
+      "RERA: footer and FAQ number shown here; the page's structured data lists a different number."
+    ]
+  },
+  {
+    "slug": "assetz-muse-and-maison",
+    "name": "Muse & Maison",
+    "officialName": "Assetz Muse & Maison",
+    "sourceUrl": "https://www.assetzproperty.com/museandmaison/",
+    "sourceDate": "2026-11-21",
+    "tagline": "The boutique life.",
+    "headline": "A Boutique Expression of Luxury Living.",
+    "blurb": "Boutique living with an individual character, crafted for those who appreciate thoughtful details and an intimate residential experience.",
+    "location": "Gattahalli, Off Hosa Road, South-East Bengaluru",
+    "locationShort": "Off Hosa Road",
+    "address": "Off Hosa Road, Gattahalli, Bengaluru 560099",
+    "propertyType": "Apartments",
+    "configurations": [
+      "3 BHK"
+    ],
+    "sizes": "1,877 – 1,930 sq. ft. SBUA",
+    "landArea": "~2 acres",
+    "towers": "Single tower",
+    "units": "128 units",
+    "floors": "Not Mentioned",
+    "status": "Under Construction",
+    "statusNote": "Status per the developer's structured data; the page also shows 'Pre-book now'.",
+    "possession": "Not Mentioned",
+    "startingPrice": "₹2.06 Cr onwards",
+    "priceNote": "As published on the developer's projects listing (21 Nov 2026).",
+    "budget": "2-3cr",
+    "rera": [
+      "PRM/KA/RERA/1251/310/PR/040526/008618"
+    ],
+    "paymentPlan": "Not Mentioned",
+    "brochureUrl": "/assets/downloads/assetz-muse-and-maison-e-brochure.pdf",
+    "mapEmbed": "https://www.google.com/maps?q=12.8742,77.6777&z=14&output=embed",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=12.8742,77.6777",
+    "coordinates": {
+      "lat": 12.8742,
+      "lng": 77.6777
+    },
+    "cover": "/assets/img/projects/assetz-muse-and-maison/02-clubhouse-early-evening-render.jpg",
+    "coverAlt": "Clubhouse in the early evening, Muse & Maison (developer's render)",
+    "logo": "/assets/img/projects/assetz-muse-and-maison/logo-muse-and-maison.png",
+    "images": [
+      {
+        "src": "/assets/img/projects/assetz-muse-and-maison/02-clubhouse-early-evening-render.jpg",
+        "alt": "Clubhouse in the early evening (developer's render)",
+        "kind": "architecture"
+      },
+      {
+        "src": "/assets/img/projects/assetz-muse-and-maison/01-hero-single-tower-daylight-render.jpg",
+        "alt": "The single boutique tower (developer's render)",
+        "kind": "architecture"
+      },
+      {
+        "src": "/assets/img/projects/assetz-muse-and-maison/04-entrance-lobby-terracotta-render.jpg",
+        "alt": "Entrance lobby with terracotta jaali (developer's render)",
+        "kind": "architecture"
+      },
+      {
+        "src": "/assets/img/projects/assetz-muse-and-maison/05-yoga-deck-terracotta-jaali-render.jpg",
+        "alt": "Yoga deck behind the terracotta screen (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-muse-and-maison/10-temperature-controlled-pool-render.jpg",
+        "alt": "Temperature-controlled pool (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-muse-and-maison/06-gymnasium-render.jpg",
+        "alt": "Gymnasium (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-muse-and-maison/07-living-dining-interior-render.jpg",
+        "alt": "Living and dining interior (developer's render)",
+        "kind": "interior"
+      },
+      {
+        "src": "/assets/img/projects/assetz-muse-and-maison/08-master-bedroom-interior-render.jpg",
+        "alt": "Master bedroom (developer's render)",
+        "kind": "interior"
+      },
+      {
+        "src": "/assets/img/projects/assetz-muse-and-maison/03-grand-entrance-lobby-render.jpg",
+        "alt": "Grand entrance lobby (developer's render)",
+        "kind": "interior"
+      },
+      {
+        "src": "/assets/img/projects/assetz-muse-and-maison/09-bedroom-interior-render.jpg",
+        "alt": "Bedroom interior (developer's render)",
+        "kind": "interior"
+      }
+    ],
+    "masterPlan": "/assets/img/projects/assetz-muse-and-maison/11-master-plan.jpg",
+    "floorPlans": [
+      {
+        "label": "3 BHK · Corner unit",
+        "size": "1,930 sq. ft. SBUA · 1,356 sq. ft. TCA (RERA + balcony)",
+        "src": "/assets/img/projects/assetz-muse-and-maison/12-floor-plan-3bhk-corner-unit-1930sqft.jpg"
+      },
+      {
+        "label": "3 BHK · Middle unit",
+        "size": "1,877 sq. ft. SBUA · 1,313 sq. ft. TCA (RERA + balcony)",
+        "src": "/assets/img/projects/assetz-muse-and-maison/13-floor-plan-3bhk-middle-unit-1877sqft.jpg"
+      },
+      {
+        "label": "Master plan",
+        "size": "~2 acres · 78% open space",
+        "src": "/assets/img/projects/assetz-muse-and-maison/11-master-plan.jpg"
+      }
+    ],
+    "pricing": [
+      {
+        "type": "3 BHK · Corner unit",
+        "size": "1,930 sq. ft. SBUA",
+        "price": "Price on Request"
+      },
+      {
+        "type": "3 BHK · Middle unit",
+        "size": "1,877 sq. ft. SBUA",
+        "price": "Price on Request"
+      }
+    ],
+    "overview": [
+      "Muse & Maison is a single tower of 128 homes on about two acres in Gattahalli, off Hosa Road. It is deliberately small. Where larger townships trade on scale, this address trades on intimacy: one lobby, one community, and 78 percent of the site given over to gardens, a pool and courtyards.",
+      "The architecture is defined by a terracotta skin of jaali screens that filters light into the lobbies, yoga deck and corridors, giving the building a warm, handmade texture. Inside, the 3 BHK residences come as corner units of 1,930 square feet and middle units of 1,877 square feet of super built-up area, with luxury terrace balconies of up to 12 by 8 feet.",
+      "A clubhouse of about 13,000 square feet is sized for the people who live here rather than for show: a temperature-controlled pool, gymnasium, steam rooms, library, multipurpose hall, board-games room and co-working space, with padel and pickleball courts, a sports pavilion and age-specific play areas in the grounds.",
+      "Hosa Road connects the community to Electronic City, HSR Layout and the Sarjapur technology belt, and the developer notes the Hosa Road metro station nearby. Published sustainability measures include rainwater harvesting, solar power, an organic waste converter and increased green cover."
+    ],
+    "highlights": [
+      {
+        "title": "Single tower, 128 homes",
+        "text": "An ultra-low-density boutique address on about two acres.",
+        "icon": "home"
+      },
+      {
+        "title": "78% open space",
+        "text": "Gardens, pool and courtyards around one quiet tower.",
+        "icon": "leaf"
+      },
+      {
+        "title": "Terracotta jaali skin",
+        "text": "A filtered-light façade that gives the building its character.",
+        "icon": "star"
+      },
+      {
+        "title": "~13,000 sq. ft. clubhouse",
+        "text": "Right-sized wellness, social and work spaces.",
+        "icon": "people"
+      },
+      {
+        "title": "Terrace balconies up to 12' x 8'",
+        "text": "Outdoor rooms attached to every residence.",
+        "icon": "sun"
+      },
+      {
+        "title": "20+ amenities",
+        "text": "Pool, gym, courts, library, co-working and play areas.",
+        "icon": "grid"
+      }
+    ],
+    "amenities": [
+      "Temperature-controlled pool",
+      "Kids' pool",
+      "Pool deck",
+      "Gymnasium",
+      "Outdoor gym",
+      "Steam rooms",
+      "Yoga deck",
+      "Library",
+      "Multipurpose hall",
+      "Board games room",
+      "Pool table",
+      "Foosball",
+      "Table tennis",
+      "Co-working space",
+      "Padel tennis court",
+      "Pickleball court",
+      "Sports pavilion",
+      "Kids' play area",
+      "Toddlers' park",
+      "Senior citizens' alcove",
+      "Pets' park",
+      "Visitors' car park"
+    ],
+    "connectivity": [
+      {
+        "name": "Hosa Road Metro",
+        "note": "5 min, as stated by the developer"
+      },
+      {
+        "name": "Tech Mahindra",
+        "note": "10 min, as stated by the developer"
+      },
+      {
+        "name": "NICE Road Junction",
+        "note": "10 min, as stated by the developer"
+      },
+      {
+        "name": "Electronic City",
+        "note": "15 min, as stated by the developer"
+      },
+      {
+        "name": "HSR Layout",
+        "note": "18 min, as stated by the developer"
+      },
+      {
+        "name": "Manipal Hospital, Sarjapur",
+        "note": "20 min, as stated by the developer"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Where is Muse & Maison located?",
+        "a": "In Gattahalli, off Hosa Road in South-East Bengaluru (site address Off Hosa Road, Gattahalli, Bengaluru 560099, as published by the developer)."
+      },
+      {
+        "q": "How many homes are there?",
+        "a": "128 homes in a single tower on about two acres, which the developer describes as an ultra-low-density boutique development."
+      },
+      {
+        "q": "What are the unit sizes?",
+        "a": "3 BHK corner units of 1,930 sq. ft. and middle units of 1,877 sq. ft. super built-up area, with carpet areas (RERA plus balcony) of 1,356 and 1,313 sq. ft. respectively."
+      },
+      {
+        "q": "Is the project RERA registered?",
+        "a": "Yes. The developer publishes RERA number PRM/KA/RERA/1251/310/PR/040526/008618. Verify on the Karnataka RERA portal."
+      },
+      {
+        "q": "What is the project status?",
+        "a": "The developer's structured data marks the project as Under Construction, and pre-booking is open. A possession date has not been published."
+      },
+      {
+        "q": "Can I download the brochure?",
+        "a": "Yes. The developer's e-brochure is available on this page, and our advisors can share floor plans and the cost sheet."
+      },
+      {
+        "q": "What is the starting price?",
+        "a": "The developer's listing shows ₹2.06 Cr onwards. Unit-wise pricing is in the official cost sheet."
+      }
+    ],
+    "conflicts": [
+      "Developer meta description says ~6 acres, 30+ amenities and a ~23,000 sq. ft. clubhouse, while the page body says ~2 acres, 20+ amenities and ~13,000 sq. ft. This site uses the page body.",
+      "Sizes: page 1,877–1,930 sq. ft.; listing 1,877–1,970 sq. ft. This site uses the page's floor-plan figures."
+    ]
+  },
+  {
+    "slug": "assetz-trees-and-tandem",
+    "name": "Trees & Tandem",
+    "officialName": "Assetz Trees & Tandem",
+    "sourceUrl": "https://www.assetzproperty.com/treesandtandem",
+    "sourceDate": "2026-11-21",
+    "tagline": "In Tandem with Nature, in Tune with Yourself.",
+    "headline": "In Harmony with Nature. In Tune with Life.",
+    "blurb": "A residential address inspired by the relationship between nature, lifestyle and everyday comfort.",
+    "location": "Off Sarjapur Road, South-East Bengaluru",
+    "locationShort": "Off Sarjapur Road",
+    "address": "Dommasandra Huskur Road, Chokkasandra, Bengaluru 560099",
+    "propertyType": "Apartments",
+    "configurations": [
+      "3 BHK"
+    ],
+    "sizes": "1,885 – 2,142 sq. ft. SBUA",
+    "landArea": "7 acres",
+    "towers": "Not Mentioned",
+    "units": "364 units",
+    "floors": "Not Mentioned",
+    "status": "Under Construction",
+    "statusNote": "Status per the developer's structured data; the developer's listing badge says 'New Launch'.",
+    "possession": "Not Mentioned",
+    "startingPrice": "₹2.26 Cr onwards",
+    "priceNote": "As published on the developer's projects listing and structured data (21 Nov 2026).",
+    "budget": "2-3cr",
+    "rera": [
+      "PRM/KA/RERA/1251/308/PR/160426/008586"
+    ],
+    "reraNote": "The page footer states this number; the FAQ and structured data quote PRM/KA/RERA/1251/308/PR/280325/007636. Verify on the Karnataka RERA portal.",
+    "paymentPlan": "Pre-EMI holiday for 33 months, as advertised on the developer's projects listing. Ask an advisor for terms and eligibility.",
+    "brochureUrl": "",
+    "mapEmbed": "https://www.google.com/maps?q=12.8708,77.7242&z=14&output=embed",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=12.8708,77.7242",
+    "coordinates": {
+      "lat": 12.8708,
+      "lng": 77.7242
+    },
+    "cover": "/assets/img/projects/assetz-trees-and-tandem/01-hero-tower-sunset-render.jpg",
+    "coverAlt": "Towers at sunset, Trees & Tandem (developer's render)",
+    "logo": "/assets/img/projects/assetz-trees-and-tandem/logo-trees-and-tandem.png",
+    "images": [
+      {
+        "src": "/assets/img/projects/assetz-trees-and-tandem/01-hero-tower-sunset-render.jpg",
+        "alt": "Towers at sunset (developer's render)",
+        "kind": "architecture"
+      },
+      {
+        "src": "/assets/img/projects/assetz-trees-and-tandem/04-tree-lined-boulevard-render.jpg",
+        "alt": "Tree-lined boulevard (developer's render)",
+        "kind": "landscape"
+      },
+      {
+        "src": "/assets/img/projects/assetz-trees-and-tandem/06-yoga-view-deck-aerial-render.jpg",
+        "alt": "Yoga and view deck from above (developer's render)",
+        "kind": "landscape"
+      },
+      {
+        "src": "/assets/img/projects/assetz-trees-and-tandem/02-the-club-clubhouse-render.jpg",
+        "alt": "The Club (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-trees-and-tandem/07-outdoor-sports-amenities-aerial-render.jpg",
+        "alt": "Outdoor sports amenities (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-trees-and-tandem/08-swimming-pool-render.jpg",
+        "alt": "Swimming pool (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-trees-and-tandem/03-entry-experience-gate-render.jpg",
+        "alt": "Entry experience (developer's render)",
+        "kind": "architecture"
+      },
+      {
+        "src": "/assets/img/projects/assetz-trees-and-tandem/05-grand-tower-lobby-render.jpg",
+        "alt": "Grand tower lobby (developer's render)",
+        "kind": "interior"
+      },
+      {
+        "src": "/assets/img/projects/assetz-trees-and-tandem/10-living-room-interior-render.jpg",
+        "alt": "Living room interior (developer's render)",
+        "kind": "interior"
+      },
+      {
+        "src": "/assets/img/projects/assetz-trees-and-tandem/09-tower-lobbies-landscaped-garden-render.jpg",
+        "alt": "Tower lobbies across the landscaped garden (developer's render)",
+        "kind": "landscape"
+      }
+    ],
+    "masterPlan": "/assets/img/projects/assetz-trees-and-tandem/11-master-plan.jpg",
+    "floorPlans": [
+      {
+        "label": "3 BHK · Type A",
+        "size": "2,142 sq. ft. SBUA · 1,647 sq. ft. TCA (RERA + balcony)",
+        "src": "/assets/img/projects/assetz-trees-and-tandem/12-floor-plan-3bhk-type-a-2142sqft.jpg"
+      },
+      {
+        "label": "3 BHK · Type B",
+        "size": "1,885 sq. ft. SBUA · 1,431 sq. ft. TCA (RERA + balcony)",
+        "src": "/assets/img/projects/assetz-trees-and-tandem/13-floor-plan-3bhk-type-b-1885sqft.jpg"
+      },
+      {
+        "label": "Master plan",
+        "size": "7 acres · ~90% open space",
+        "src": "/assets/img/projects/assetz-trees-and-tandem/11-master-plan.jpg"
+      }
+    ],
+    "pricing": [
+      {
+        "type": "3 BHK · Type A",
+        "size": "2,142 sq. ft. SBUA",
+        "price": "Price on Request"
+      },
+      {
+        "type": "3 BHK · Type B",
+        "size": "1,885 sq. ft. SBUA",
+        "price": "Price on Request"
+      }
+    ],
+    "overview": [
+      "Trees & Tandem takes its name seriously. On seven acres off Sarjapur Road, the developer has retained more than a hundred existing trees and kept about 90 percent of the site open, so the towers rise out of a mature landscape rather than a cleared one. Tower lobbies mirror each other across a wide central garden, and a tree-lined boulevard runs from the gate to the clubhouse.",
+      "Only 364 homes share the site, all 3 BHK, in two layouts of 1,885 and 2,142 square feet of super built-up area with a floor-plan efficiency the developer puts at about 76 percent. Large living balconies, tucked-in wardrobes and generous bedrooms are the recurring themes, with contemporary brick-finish exteriors that sit comfortably among the trees.",
+      "The Club, a clubhouse of 16,400 square feet, hosts a temperature-controlled pool, gym, steam room, yoga room, games room, billiards and co-working, while the grounds carry fifteen-plus sports amenities including tennis, badminton, padel, pickleball, box cricket and a skating rink, with a sculpture park, amphitheatre and farmers' market for weekends.",
+      "The address sits near RGA Tech Park and Electronic City Phase 2 and the developer highlights metro access on the Yellow Line. Published sustainability measures, branded Carbon Healing Homes, include rainwater capture, zero waste to landfill with on-site composting, solar power informed by sun-path analysis, and a cooler microclimate from retained green cover."
+    ],
+    "highlights": [
+      {
+        "title": "~90% open space",
+        "text": "Seven acres with 100+ retained trees and a central garden.",
+        "icon": "leaf"
+      },
+      {
+        "title": "Only 364 homes",
+        "text": "Low density across the whole community.",
+        "icon": "home"
+      },
+      {
+        "title": "16,400 sq. ft. clubhouse",
+        "text": "The Club: pool, gym, wellness, games and co-working.",
+        "icon": "people"
+      },
+      {
+        "title": "15+ sports amenities",
+        "text": "Tennis, badminton, padel, pickleball, box cricket and a skating rink.",
+        "icon": "star"
+      },
+      {
+        "title": "~76% floor-plan efficiency",
+        "text": "Carpet-area efficiency as stated by the developer.",
+        "icon": "grid"
+      },
+      {
+        "title": "Carbon Healing Homes",
+        "text": "Rainwater capture, composting, solar power and green cover.",
+        "icon": "water"
+      }
+    ],
+    "amenities": [
+      "Temperature-controlled pool",
+      "Kids' pool",
+      "Indoor gym",
+      "Outdoor gym",
+      "Steam room",
+      "Yoga room",
+      "Yoga / view deck",
+      "Tennis court",
+      "Badminton court",
+      "Padel court",
+      "Pickleball court",
+      "Box cricket",
+      "Multipurpose court",
+      "Skating rink",
+      "Jogging path",
+      "Table tennis",
+      "Billiards",
+      "Games room",
+      "Co-working space",
+      "Party hall",
+      "Amphitheatre",
+      "Sculpture park",
+      "Farmers' market place",
+      "Kids' play area",
+      "Kids' drop-off area",
+      "Pets' park",
+      "Festive gathering space"
+    ],
+    "connectivity": [
+      {
+        "name": "GIG International School · Delhi Public School",
+        "note": "5 min, as stated by the developer"
+      },
+      {
+        "name": "Red Riders Go-Karting",
+        "note": "5 min, as stated by the developer"
+      },
+      {
+        "name": "RGA Tech Park",
+        "note": "12 min, as stated by the developer"
+      },
+      {
+        "name": "Wipro",
+        "note": "15 min, as stated by the developer"
+      },
+      {
+        "name": "Nishka Healthcare Multi Speciality",
+        "note": "15 min, as stated by the developer"
+      },
+      {
+        "name": "Yellow Line Metro",
+        "note": "Direct access to Jayanagar and Electronic City, as stated by the developer"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Where is Trees & Tandem located?",
+        "a": "Off Sarjapur Road in South-East Bengaluru, at Dommasandra Huskur Road, Chokkasandra, Bengaluru 560099, as published by the developer."
+      },
+      {
+        "q": "What configurations and sizes are offered?",
+        "a": "3 BHK apartments in Type A of 2,142 sq. ft. and Type B of 1,885 sq. ft. super built-up area, with carpet areas (RERA plus balcony) of 1,647 and 1,431 sq. ft."
+      },
+      {
+        "q": "How many units are there?",
+        "a": "364 homes on seven acres, with about 90 percent of the site open."
+      },
+      {
+        "q": "Is the project RERA registered?",
+        "a": "The developer's page footer publishes PRM/KA/RERA/1251/308/PR/160426/008586; other sections of the same page quote PRM/KA/RERA/1251/308/PR/280325/007636. Verify both on the Karnataka RERA portal."
+      },
+      {
+        "q": "What is the project status?",
+        "a": "The developer's structured data marks the project as Under Construction; its listing badge reads New Launch. A possession date has not been published."
+      },
+      {
+        "q": "What is the starting price and are there payment offers?",
+        "a": "The developer publishes ₹2.26 Cr onwards and advertises a 33-month pre-EMI holiday on its listing. Ask an advisor for terms and the official cost sheet."
+      },
+      {
+        "q": "What amenities are included?",
+        "a": "The 16,400 sq. ft. clubhouse with pool, gym, steam room, yoga and games rooms, plus 15+ sports amenities and 10+ leisure amenities in the grounds, including a sculpture park, amphitheatre and farmers' market place."
+      }
+    ],
+    "conflicts": [
+      "Two RERA numbers appear on the developer's page (footer versus FAQ and structured data).",
+      "Status: Under Construction (structured data) versus New Launch (listing badge)."
+    ]
+  },
+  {
+    "slug": "assetz-mizu-and-ki",
+    "name": "Mizu & Ki",
+    "officialName": "Assetz Mizu & Ki",
+    "sourceUrl": "https://www.assetzproperty.com/mizuandki/",
+    "sourceDate": "2026-11-21",
+    "tagline": "Where exclusivity is intentional.",
+    "headline": "An Exceptional Sense of Space.",
+    "blurb": "A distinctive villament lifestyle in North Bengaluru, offering generous spaces and an elevated sense of privacy.",
+    "location": "Off Hennur Main Road, North Bengaluru",
+    "locationShort": "Hennur Main Road",
+    "address": "Off Hennur Road, Hennur, Bengaluru 560043",
+    "propertyType": "Villaments",
+    "configurations": [
+      "4 BHK"
+    ],
+    "sizes": "3,070 – 3,538 sq. ft. SBUA",
+    "landArea": "~8 acres",
+    "towers": "Not Mentioned",
+    "units": "188 units",
+    "floors": "Not Mentioned",
+    "status": "New Launch",
+    "statusNote": "Per the developer's listing badge; the project page says 'Launching now'.",
+    "possession": "December 2030, as per the developer's FAQ citing the RERA registration",
+    "startingPrice": "Price on Request",
+    "priceNote": "The developer's listing shows ₹4.25 Cr onwards while its project page FAQ states ₹3.80 Cr onwards for a different size schedule. Because the two official figures conflict, pricing is shown on request.",
+    "budget": "any",
+    "rera": [
+      "PRM/KA/RERA/1251/446/PR/070826/008862"
+    ],
+    "paymentPlan": "Not Mentioned",
+    "brochureUrl": "",
+    "mapEmbed": "https://www.google.com/maps?q=Hennur+Main+Road%2C+Hennur%2C+Bengaluru+560043&z=14&output=embed",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Hennur+Main+Road%2C+Hennur%2C+Bengaluru+560043",
+    "coordinates": null,
+    "cover": "/assets/img/projects/assetz-mizu-and-ki/01-hero-villament-facade-evening-render.jpg",
+    "coverAlt": "Villament façade in the evening, Mizu & Ki (developer's render)",
+    "logo": "/assets/img/projects/assetz-mizu-and-ki/logo-mizu-and-ki.png",
+    "images": [
+      {
+        "src": "/assets/img/projects/assetz-mizu-and-ki/01-hero-villament-facade-evening-render.jpg",
+        "alt": "Villament façade in the evening (developer's render)",
+        "kind": "architecture"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizu-and-ki/10-villament-facade-render.jpg",
+        "alt": "Villament façade (developer's render)",
+        "kind": "architecture"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizu-and-ki/02-aerial-project-overview-render.jpg",
+        "alt": "Aerial project overview (developer's render)",
+        "kind": "landscape"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizu-and-ki/05-courtyard-pool-aerial-render.jpg",
+        "alt": "Courtyard and pool from above (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizu-and-ki/03-clubhouse-aerial-render.jpg",
+        "alt": "Clubhouse from above (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizu-and-ki/06-swimming-pool-top-view-render.jpg",
+        "alt": "Swimming pool (developer's render)",
+        "kind": "amenity"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizu-and-ki/09-living-room-interior-render.jpg",
+        "alt": "Living room interior (developer's render)",
+        "kind": "interior"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizu-and-ki/07-private-use-garden-render.jpg",
+        "alt": "Private-use garden (developer's render)",
+        "kind": "interior"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizu-and-ki/08-luxury-terrace-balcony-render.jpg",
+        "alt": "Luxury terrace balcony (developer's render)",
+        "kind": "interior"
+      },
+      {
+        "src": "/assets/img/projects/assetz-mizu-and-ki/04-arrival-entrance-gate-render.jpg",
+        "alt": "Arrival entrance gate (developer's render)",
+        "kind": "architecture"
+      }
+    ],
+    "masterPlan": "/assets/img/projects/assetz-mizu-and-ki/11-master-plan.jpg",
+    "floorPlans": [
+      {
+        "label": "4 BHK · Type 01 Garden unit",
+        "size": "3,070 sq. ft. SBUA · 2,463 sq. ft. TCA (RERA + balcony) · private-use garden ~1,900 sq. ft.",
+        "src": "/assets/img/projects/assetz-mizu-and-ki/12-floor-plan-4bhk-type01-garden-unit-3070sqft.jpg"
+      },
+      {
+        "label": "4 BHK · Type 02 Open-terrace unit",
+        "size": "3,538 sq. ft. SBUA · 2,809 sq. ft. TCA (RERA + balcony)",
+        "src": "/assets/img/projects/assetz-mizu-and-ki/13-floor-plan-4bhk-type02-open-terrace-unit-3538sqft.jpg"
+      },
+      {
+        "label": "Master plan",
+        "size": "~8 acres · 188 villaments",
+        "src": "/assets/img/projects/assetz-mizu-and-ki/11-master-plan.jpg"
+      }
+    ],
+    "pricing": [
+      {
+        "type": "4 BHK · Type 01 Garden unit",
+        "size": "3,070 sq. ft. SBUA",
+        "price": "Price on Request"
+      },
+      {
+        "type": "4 BHK · Type 02 Open-terrace unit",
+        "size": "3,538 sq. ft. SBUA",
+        "price": "Price on Request"
+      }
+    ],
+    "overview": [
+      "Mizu & Ki brings villa-style living to an apartment setting in Hennur, North Bengaluru. Just 188 villaments share about eight acres, each a 4 BHK home of 3,070 or 3,538 square feet of super built-up area with a carpet-area efficiency the developer puts at around 80 percent including balconies, among the highest in the portfolio.",
+      "Ground-floor Garden units open onto private-use gardens of roughly 1,900 square feet, while Open Terrace units above trade the lawn for a sky terrace. Luxury terrace balconies, double-height arrival gates and a courtyard pool give the community the proportions of a villa estate without the upkeep of one.",
+      "A grand clubhouse of about 18,000 square feet holds the temperature-controlled pool, indoor gym, yoga room, steam and change rooms, party hall, billiards and indoor games, with tennis, padel, pickleball, net cricket, an outdoor gym, maze garden, amphitheatre and party lawn across the grounds, for more than 25 amenities in all.",
+      "Hennur Main Road places the community within the developer's stated drives of Manyata Tech Park, the Outer Ring Road and Kempegowda International Airport. The developer's FAQ states an expected possession of December 2030 as per the RERA registration, and sustainability measures include rainwater capture, solar power, an organic waste converter and additional tree cover."
+    ],
+    "highlights": [
+      {
+        "title": "188 villaments on ~8 acres",
+        "text": "Villa-style privacy in an apartment community.",
+        "icon": "home"
+      },
+      {
+        "title": "~80% carpet efficiency",
+        "text": "RERA carpet area plus balcony as a share of SBUA, as stated by the developer.",
+        "icon": "grid"
+      },
+      {
+        "title": "Private-use gardens ~1,900 sq. ft.",
+        "text": "For ground-floor Garden units; Open Terrace units above.",
+        "icon": "leaf"
+      },
+      {
+        "title": "~18,000 sq. ft. clubhouse",
+        "text": "Pool, gym, wellness, party hall and indoor games.",
+        "icon": "people"
+      },
+      {
+        "title": "25+ amenities",
+        "text": "Tennis, padel, pickleball, net cricket, maze garden and amphitheatre.",
+        "icon": "star"
+      },
+      {
+        "title": "North Bengaluru connectivity",
+        "text": "Manyata Tech Park, ORR and the airport within the developer's stated drives.",
+        "icon": "road"
+      }
+    ],
+    "amenities": [
+      "Temperature-controlled pool",
+      "Kids' pool",
+      "Indoor gym",
+      "Outdoor gym",
+      "Yoga deck",
+      "Yoga room",
+      "Steam rooms",
+      "Tennis court",
+      "Badminton court",
+      "Pickleball court",
+      "Padel court",
+      "Net cricket",
+      "Table tennis",
+      "Billiards room",
+      "Indoor games room",
+      "Party hall and pantry",
+      "Party lawn",
+      "Amphitheatre",
+      "Arrival garden",
+      "Maze garden",
+      "Pergola seating",
+      "Senior citizens' park",
+      "Kids' play area",
+      "Pets' park"
+    ],
+    "connectivity": [
+      {
+        "name": "New Life Speciality Hospital",
+        "note": "6 min, as stated by the developer"
+      },
+      {
+        "name": "Bhartiya Mall of Bengaluru",
+        "note": "14 min, as stated by the developer"
+      },
+      {
+        "name": "Manyata Tech Park",
+        "note": "22 min, as stated by the developer"
+      },
+      {
+        "name": "Yelahanka",
+        "note": "24 min, as stated by the developer"
+      },
+      {
+        "name": "Hebbal",
+        "note": "35 min, as stated by the developer"
+      },
+      {
+        "name": "Kempegowda International Airport",
+        "note": "35 min, as stated by the developer"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Where is Mizu & Ki located?",
+        "a": "Off Hennur Main Road in Hennur, North Bengaluru (site address Off Hennur Road, Hennur, Bengaluru 560043, as published by the developer)."
+      },
+      {
+        "q": "What is a villament?",
+        "a": "A villament combines the generous, multi-level or garden-facing layout of a villa with the convenience and shared amenities of an apartment community. At Mizu & Ki, every home is a 4 BHK villament."
+      },
+      {
+        "q": "What sizes are available?",
+        "a": "Type 01 Garden units of 3,070 sq. ft. and Type 02 Open Terrace units of 3,538 sq. ft. super built-up area, with carpet areas (RERA plus balcony) of 2,463 and 2,809 sq. ft. Ground-floor units include a private-use garden of about 1,900 sq. ft."
+      },
+      {
+        "q": "Is the project RERA registered?",
+        "a": "Yes. The developer publishes RERA number PRM/KA/RERA/1251/446/PR/070826/008862. Verify on the Karnataka RERA portal."
+      },
+      {
+        "q": "When is possession expected?",
+        "a": "The developer's FAQ states an expected possession of December 2030 as per the RERA registration."
+      },
+      {
+        "q": "What is the starting price?",
+        "a": "The developer publishes two different starting figures (₹4.25 Cr on its listing and ₹3.80 Cr in its FAQ), so pricing is shown on request here. Our advisors will share the official cost sheet."
+      },
+      {
+        "q": "How many homes are there?",
+        "a": "Only 188 villaments across about eight acres."
+      }
+    ],
+    "conflicts": [
+      "Starting price: ₹4.25 Cr (listing) versus ₹3.80 Cr (FAQ). Shown as Price on Request.",
+      "Sizes: floor plans 3,070 and 3,538 sq. ft. versus FAQ 3,260 and 3,945 sq. ft. This site uses the floor-plan figures.",
+      "Product type: villaments (page body) versus villas (title and FAQ). This site uses villaments."
+    ]
+  }
+]

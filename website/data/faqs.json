@@ -1,0 +1,97 @@
+[
+  {
+    "category": "About Assetz Projects",
+    "question": "What types of residential properties are included in the selected portfolio?",
+    "answerHtml": "<p>The portfolio featured here comprises premium apartments and luxury villaments across five developments in Bengaluru. Configurations, sizes and formats vary by project, so please refer to the individual project page or speak with an advisor for details of what is available at a particular location.</p>"
+  },
+  {
+    "category": "About Assetz Projects",
+    "question": "Where are these developments located?",
+    "answerHtml": "<p>The featured developments are located in Hoskote, off HSR Layout, off Hosa Road, off Sarjapur Road and on Hennur Main Road. Together they span the eastern, southern and northern growth corridors of Bengaluru. Each project page includes a location overview.</p>"
+  },
+  {
+    "category": "About Assetz Projects",
+    "question": "What is a villament?",
+    "answerHtml": "<p>A villament is a low-rise home that combines the private, house-like character of a villa with the shared amenities and convenience of an apartment community. Villaments are typically arranged as duplex or multi-level units with private gardens or terraces, set within a landscaped development that offers common facilities such as a clubhouse and security. Layouts and features vary by project.</p>"
+  },
+  {
+    "category": "About Assetz Projects",
+    "question": "What does \"new launch\" mean on a project page?",
+    "answerHtml": "<p>A new launch is a project that has recently opened for enquiries and bookings, usually at an early stage of construction. New-launch projects generally offer the widest choice of units and orientations. As with any under-construction purchase, buyers should verify the project's RERA registration and review the approved plans and the agreement for sale before booking.</p>"
+  },
+  {
+    "category": "Buying Process",
+    "question": "What should I review before booking a home?",
+    "answerHtml": "<p>Before booking, review the project's RERA registration on the official Karnataka RERA portal, the sanctioned building plan, the title documents for the land, the itemised cost sheet, the payment schedule and the draft agreement for sale. Visit the site, compare the specification sheet with the show home, and confirm the carpet area of the unit you are considering. We recommend engaging a qualified lawyer for the document review.</p>"
+  },
+  {
+    "category": "Buying Process",
+    "question": "How do payment milestones work in a construction-linked plan?",
+    "answerHtml": "<p>In a construction-linked plan, the total price is divided into instalments that fall due as the project reaches defined stages of construction, such as completion of the foundation, successive floor slabs, brickwork, finishing and handover. The specific milestones and percentages are set out in the payment schedule attached to the agreement for sale. Milestones should be objective and verifiable, and your lender, if you have one, will typically release funds against them.</p>"
+  },
+  {
+    "category": "Buying Process",
+    "question": "How does possession and handover work?",
+    "answerHtml": "<p>Once construction is complete and the occupancy certificate has been obtained from the relevant authority, the developer notifies buyers that the home is ready. Buyers complete any outstanding payments, inspect the home and record any snags for rectification, and then take possession. Registration of the sale deed takes place at the sub-registrar's office, with stamp duty and registration fees paid at the applicable rates. The exact sequence is described in the agreement for sale.</p>"
+  },
+  {
+    "category": "Buying Process",
+    "question": "How do I use the property finder on this website?",
+    "answerHtml": "<p>The property finder lets you filter the portfolio by location, property type and configuration to narrow down the developments that match your needs. From the results you can open a project page for an overview, request a brochure, or schedule a site visit. If you are unsure where to begin, an advisor can help you shortlist.</p>"
+  },
+  {
+    "category": "Site Visits & Brochures",
+    "question": "How do I request a brochure?",
+    "answerHtml": "<p>You can request a brochure from any project page using the brochure request form, or through the general enquiry form. Please share your name, contact details and the project you are interested in, and the brochure will be sent to you by email. An advisor may follow up to answer any questions.</p>"
+  },
+  {
+    "category": "Site Visits & Brochures",
+    "question": "How do I schedule a site visit?",
+    "answerHtml": "<p>Site visits can be scheduled through the site-visit form on each project page or by contacting an advisor directly. Let us know your preferred date and time, and we will confirm the appointment and share directions. Visits usually include a walk through the development, the show home where available, and a discussion of configurations and the buying process.</p>"
+  },
+  {
+    "category": "Site Visits & Brochures",
+    "question": "What should I bring or prepare for a site visit?",
+    "answerHtml": "<p>It helps to bring a short list of your priorities, any questions you have about the project, and a note of the configurations you are interested in. If you would like to compare several developments, mention this when booking so that visits can be arranged together. Photographs are generally permitted in common areas; please check with the on-site team.</p>"
+  },
+  {
+    "category": "Documentation & RERA",
+    "question": "Where can I check the RERA information for a project?",
+    "answerHtml": "<p>RERA registration details for each development are published on its project page. You can independently verify the registration on the official Karnataka Real Estate Regulatory Authority portal, which lists the promoter, the approved plans, the declared completion date and other registered particulars. We encourage every buyer to do this before booking.</p>"
+  },
+  {
+    "category": "Documentation & RERA",
+    "question": "What documents will I receive at the time of booking?",
+    "answerHtml": "<p>At booking you will typically receive a booking or allotment letter confirming the unit, the price and the key terms, along with the cost sheet and payment schedule. The agreement for sale follows within the period set out under RERA and the booking terms. Project documents such as the sanctioned plan, title documents and RERA certificate are available for review on request.</p>"
+  },
+  {
+    "category": "Documentation & RERA",
+    "question": "What is a cost sheet and what does it include?",
+    "answerHtml": "<p>A cost sheet is an itemised statement of the total amount payable for a home. It generally includes the base price, charges for car parking, clubhouse or amenities, utility connections, legal and documentation processing, statutory taxes such as GST where applicable, stamp duty and registration fees, and any maintenance deposit or corpus contribution. Reviewing the cost sheet line by line is the best way to understand the full outlay and to compare projects fairly.</p>"
+  },
+  {
+    "category": "NRI Buyers",
+    "question": "Can NRI buyers enquire about and purchase a home?",
+    "answerHtml": "<p>Yes. Non-resident Indians are welcome to enquire about any development. When you contact us, please include your country code and a preferred time for a call so that an advisor can reach you conveniently. Documentation, payment routing and regulatory requirements for NRI purchases should be reviewed with a qualified legal or financial adviser familiar with the applicable rules.</p>"
+  },
+  {
+    "category": "NRI Buyers",
+    "question": "Can an NRI complete the purchase without travelling to India?",
+    "answerHtml": "<p>Many steps, including enquiries, virtual walkthroughs and document review, can be handled remotely. Certain formalities, such as signing and registering documents, may be completed through a duly executed power of attorney in favour of a trusted representative in India, subject to the applicable legal requirements. Please consult a qualified adviser on the process that suits your circumstances.</p>"
+  },
+  {
+    "category": "Pricing & Payments",
+    "question": "Are prices the same for every configuration?",
+    "answerHtml": "<p>No. Pricing varies by configuration, floor, orientation, view and other factors, as well as by project. An advisor can share a detailed cost sheet for the specific unit you are considering so that you can compare on an all-in basis rather than on a headline figure.</p>"
+  },
+  {
+    "category": "Pricing & Payments",
+    "question": "Should I get a home loan pre-approval before booking?",
+    "answerHtml": "<p>A pre-approval is a sensible early step. It gives you a clear view of your borrowing capacity, shortens the time between shortlisting and booking, and signals to the developer that you are a serious buyer. Lenders assess income, existing obligations and credit history, and will separately evaluate the project's legal and technical standing before disbursing. Terms and eligibility vary by lender.</p>"
+  },
+  {
+    "category": "Pricing & Payments",
+    "question": "What is a maintenance deposit or corpus fund?",
+    "answerHtml": "<p>A maintenance deposit or corpus fund is a one-time contribution collected from each buyer, usually around the time of possession, to establish a reserve for the upkeep of common areas and facilities. It is typically transferred to the owners' association once it is formed. This is separate from the recurring monthly maintenance charge, which covers day-to-day running costs such as security, housekeeping, landscaping and utilities for common areas. The amounts and terms are set out in the cost sheet and the agreement for sale.</p>"
+  }
+]

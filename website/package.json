@@ -1,0 +1,13 @@
+{
+  "name": "assetz-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Assetz Property Group — static luxury real-estate website with a serverless lead API",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js && node server.js",
+    "guide": "node scripts/make-guide.js",
+    "check": "node scripts/check-links.js"
+  },
+  "engines": { "node": ">=18" }
+}

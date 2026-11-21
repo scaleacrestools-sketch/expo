@@ -1,0 +1,6 @@
+dist/
+preview/
+leads/
+node_modules/
+.netlify/
+.vercel/

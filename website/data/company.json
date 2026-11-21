@@ -1,0 +1,36 @@
+{
+  "foundedYear": 2006,
+  "sourceDate": "21 Nov 2026",
+  "sourceUrl": "https://www.assetzproperty.com/ and https://www.assetzproperty.com/about",
+  "profile": "Assetz Property Group is a Bengaluru-based, design-led real estate developer. Since 2006 it has built a portfolio across commercial and residential real estate, and today develops premium residential communities guided by its 'Life Reimagined' philosophy of thoughtful planning, disciplined architecture and sustainable practice.",
+  "statsIntro": "Figures as published by Assetz Property Group on its official website, as of 31 August 2026.",
+  "stats": [
+    { "value": 50, "suffix": "Mn+", "label": "Sq. ft. developed", "note": "Official website counter" },
+    { "value": 50, "suffix": "+", "label": "Projects", "note": "Official website counter" },
+    { "value": 22000, "suffix": "+", "label": "Residential units", "note": "Official website counter" },
+    { "value": 20, "suffix": "yrs", "label": "Building Bengaluru since 2006", "note": "Founded 2006, per About page" }
+  ],
+  "milestones": [
+    { "year": "2006", "text": "Entered commercial real estate in Bengaluru." },
+    { "year": "2013+", "text": "Diversified into residential development." },
+    { "year": "Legacy", "text": "Developed Vrindavan Tech Village on Outer Ring Road, described by the developer as India's first LEED Platinum-certified SEZ (now Embassy TechVillage)." },
+    { "year": "Today", "text": "Described by the developer as ranked among the top five residential developers in Bengaluru by sales value (FY2024 to FY2026)." }
+  ],
+  "awards": [
+    { "year": "2025", "body": "ET Real Estate Conclave & Awards", "title": "Special Jury Mention, Developer of the Year (South)", "project": "Assetz" },
+    { "year": "2025", "body": "ET Real Estate Conclave & Awards", "title": "Plotted Development of the Year (South)", "project": "Earth & Essence" },
+    { "year": "2025", "body": "Global Real Estate Brand Awards", "title": "Developer of the Year", "project": "Luxury Assetz" },
+    { "year": "2025", "body": "Times Business Awards", "title": "Excellence in Architectural Design", "project": "Assetz" },
+    { "year": "2024", "body": "Real Estate & Business Excellence Awards", "title": "Brand of the Year, Real Estate", "project": "Assetz" },
+    { "year": "2024", "body": "GRI Awards", "title": "Sustainable Project of the Year", "project": "63° East" },
+    { "year": "2024", "body": "Real Estate & Business Excellence Awards", "title": "Luxury Project of the Year", "project": "66 & Shibui" },
+    { "year": "2023", "body": "Realty+ Conclave & Excellence Awards", "title": "Design Project of the Year", "project": "38 & Banyan" },
+    { "year": "2023", "body": "International Brand Equity Awards", "title": "Developer of the Year (Sustainable Development)", "project": "Assetz" },
+    { "year": "2023", "body": "Construction Week Awards", "title": "Green Project of the Year", "project": "63° East" },
+    { "year": "2023", "body": "Real Estate & Business Excellence Awards", "title": "Developer of the Year, Luxury", "project": "Assetz" },
+    { "year": "2017", "body": "Realty+ Conclave & Excellence Awards", "title": "Ultra Luxury-Lifestyle Project of the Year", "project": "Stratos" },
+    { "year": "2015", "body": "CREDAI Care Award", "title": "Best Dwelling", "project": "27 Park Avenue" },
+    { "year": "2009", "body": "MIPIM Asia Green Building Award", "title": "Green Building Award", "project": "Vrindavan Tech Village" },
+    { "year": "2009", "body": "Cityscape Awards", "title": "Green Development", "project": "Here & Now" }
+  ]
+}
