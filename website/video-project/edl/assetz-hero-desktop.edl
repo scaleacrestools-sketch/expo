@@ -1,0 +1,51 @@
+TITLE: ASSETZ HERO DESKTOP
+FCM: NON-DROP FRAME
+
+001  HOMEV2   V     C        00:00:29:22 00:00:31:08 01:00:00:00 01:00:01:15
+* FROM CLIP NAME: homepagevideosecond.mp4
+* EFFECT: 0.5s fade from black, 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette
+
+002  HOMEV2   V     C        00:00:36:08 00:00:37:22 01:00:01:15 01:00:03:00
+* FROM CLIP NAME: homepagevideosecond.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette
+
+003  HOMEV2   V     C        00:00:00:02 00:00:01:21 01:00:03:00 01:00:04:20
+* FROM CLIP NAME: homepagevideosecond.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette
+
+004  HOMEV2   V     C        00:00:02:06 00:00:03:27 01:00:04:20 01:00:06:11
+* FROM CLIP NAME: homepagevideosecond.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette
+
+005  HOMEV2   V     C        00:00:06:20 00:00:08:04 01:00:06:11 01:00:07:26
+* FROM CLIP NAME: homepagevideosecond.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette
+
+006  HOMEV2   V     C        00:00:08:20 00:00:10:10 01:00:07:26 01:00:09:16
+* FROM CLIP NAME: homepagevideosecond.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette
+
+007  HOMEV2   V     C        00:00:17:08 00:00:18:22 01:00:09:16 01:00:11:02
+* FROM CLIP NAME: homepagevideosecond.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette
+
+008  HOMEV2   V     C        00:00:38:08 00:00:39:22 01:00:11:02 01:00:12:16
+* FROM CLIP NAME: homepagevideosecond.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette
+
+009  HOMEV2   V     C        00:00:31:22 00:00:33:08 01:00:12:16 01:00:14:02
+* FROM CLIP NAME: homepagevideosecond.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette
+
+010  HOMEV2   V     C        00:00:33:22 00:00:35:21 01:00:14:02 01:00:16:00
+* FROM CLIP NAME: homepagevideosecond.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette
+
+011  HOMEV2   V     C        00:00:40:08 00:00:41:22 01:00:16:00 01:00:17:15
+* FROM CLIP NAME: homepagevideosecond.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette
+
+012  HOMEV2   V     C        00:00:42:08 00:00:44:06 01:00:17:15 01:00:19:14
+* FROM CLIP NAME: homepagevideosecond.mp4
+* EFFECT: 0.5s fade to black; grade sat 1.06 gamma 1.02 contrast 1.03, vignette
+

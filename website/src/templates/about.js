@@ -11,7 +11,7 @@ function render({ about, company, projects }) {
   const stats = company.stats || [];
   return `
 <section class="page-hero has-img">
-  <div class="bg parallax"><img src="${img('assetz-mizu-and-ki', 0).src}" alt="" width="1920" height="1080"></div>
+  <div class="bg parallax"><img fetchpriority="high" src="${img('assetz-mizu-and-ki', 0).src}" alt="" width="1920" height="1080"></div>
   <div class="container"><div class="copy"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>About Us</span></nav><span class="eyebrow" style="color:var(--brand-light)">About Assetz</span><h1>${esc(about.heroHeading)}</h1><p class="lede">Discover the philosophy behind Assetz and its commitment to thoughtful design, better communities and environments built around the way people live.</p></div></div>
 </section>
 
@@ -46,7 +46,7 @@ function render({ about, company, projects }) {
 <section class="band dark">
   <div class="container">
     <div class="section-head reveal"><span class="eyebrow" style="color:var(--brand-light)">Milestones</span><h2>Verified company milestones</h2><p class="lede">${esc(company.statsIntro || '')}</p></div>
-    <div class="stats reveal" style="margin-top:0">${stats.map(s => `<div class="stat"><div class="num" data-count="${s.value}" data-decimals="${s.decimals || 0}">0${s.suffix ? `<sup>${esc(s.suffix)}</sup>` : ''}</div><div class="label">${esc(s.label)}</div><span class="src">${esc(s.note || '')}</span></div>`).join('')}</div>
+    <div class="stats reveal" style="margin-top:0">${stats.map(s => `<div class="stat"><div class="num" data-count="${s.value}" data-decimals="${s.decimals || 0}" data-suffix="${esc(s.suffix || '')}">0${esc(s.suffix || '')}</div><div class="label">${esc(s.label)}</div><span class="src">${esc(s.note || '')}</span></div>`).join('')}</div>
     ${company.milestones && company.milestones.length ? `<div class="timeline reveal" style="margin-top:3rem">${company.milestones.map(m => `<div><b>${esc(m.year)}</b><span>${esc(m.text)}</span></div>`).join('')}</div>` : ''}
   </div>
 </section>

@@ -1,0 +1,47 @@
+TITLE: ASSETZ HERO MOBILE
+FCM: NON-DROP FRAME
+
+001  RESCOM   V     C        00:00:00:02 00:00:01:20 01:00:00:00 01:00:01:18
+* FROM CLIP NAME: residentialandcommercial.mp4
+* EFFECT: 0.5s fade from black, 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette, crop 759x1350 at x=160 then scale 1080x1920
+
+002  RESCOM   V     C        00:00:04:14 00:00:06:03 01:00:01:18 01:00:03:08
+* FROM CLIP NAME: residentialandcommercial.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette, crop 759x1350 at x=160 then scale 1080x1920
+
+003  RESCOM   V     C        00:00:06:20 00:00:08:03 01:00:03:08 01:00:04:21
+* FROM CLIP NAME: residentialandcommercial.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette, crop 759x1350 at x=160 then scale 1080x1920
+
+004  RESCOM   V     C        00:00:08:20 00:00:10:09 01:00:04:21 01:00:06:11
+* FROM CLIP NAME: residentialandcommercial.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette, crop 759x1350 at x=160 then scale 1080x1920
+
+005  RESCOM   V     C        00:00:18:09 00:00:19:22 01:00:06:11 01:00:07:24
+* FROM CLIP NAME: residentialandcommercial.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette, crop 759x1350 at x=160 then scale 1080x1920
+
+006  RESCOM   V     C        00:00:25:08 00:00:27:04 01:00:07:24 01:00:09:21
+* FROM CLIP NAME: residentialandcommercial.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette, crop 759x1350 at x=160 then scale 1080x1920
+
+007  RESCOM   V     C        00:00:27:22 00:00:29:06 01:00:09:21 01:00:11:04
+* FROM CLIP NAME: residentialandcommercial.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette, crop 759x1350 at x=160 then scale 1080x1920
+
+008  RESCOM   V     C        00:00:29:22 00:00:31:06 01:00:11:04 01:00:12:18
+* FROM CLIP NAME: residentialandcommercial.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette, crop 759x1350 at x=160 then scale 1080x1920
+
+009  RESCOM   V     C        00:00:38:08 00:00:39:21 01:00:12:18 01:00:14:01
+* FROM CLIP NAME: residentialandcommercial.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette, crop 759x1350 at x=160 then scale 1080x1920
+
+010  RESCOM   V     C        00:00:10:26 00:00:12:04 01:00:14:01 01:00:15:10
+* FROM CLIP NAME: residentialandcommercial.mp4
+* EFFECT: 0.45s cross dissolve into next shot; grade sat 1.06 gamma 1.02 contrast 1.03, vignette, crop 759x1350 at x=160 then scale 1080x1920
+
+011  RESCOM   V     C        00:00:44:09 00:00:46:15 01:00:15:10 01:00:17:16
+* FROM CLIP NAME: residentialandcommercial.mp4
+* EFFECT: 0.5s fade to black; grade sat 1.06 gamma 1.02 contrast 1.03, vignette, crop 759x1350 at x=160 then scale 1080x1920
+

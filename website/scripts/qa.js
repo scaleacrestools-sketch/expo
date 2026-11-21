@@ -1,12 +1,11 @@
 #!/usr/bin/env node
-/* QA: visits every sitemap route at desktop + phone, collects console errors, failed requests, horizontal overflow and broken internal links. */
+/* QA: visits every route (dist/routes.txt) at desktop + phone, collects console errors, failed requests, horizontal overflow and broken internal links. */
 const { chromium } = require('playwright'); const fs = require('fs'); const path = require('path');
 const BASE = process.env.BASE || 'http://localhost:4173';
 const OUT = process.argv[2] || 'qa-shots';
 (async () => {
-  const xml = await (await fetch(BASE + '/sitemap.xml')).text();
-  const routes = [...xml.matchAll(/<loc>([^<]*)<\/loc>/g)].map(m => new URL(m[1]).pathname);
-  routes.push('/thank-you/', '/404/');
+  const routes = (await (await fetch(BASE + '/routes.txt')).text()).split('\n').filter(Boolean); // written by build.js
+  routes.push('/404/');
   fs.mkdirSync(OUT, { recursive: true });
   const b = await chromium.launch(); const links = new Set(); const report = [];
   for (const [vp, size] of [['desktop', { width: 1440, height: 900 }], ['phone', { width: 390, height: 844 }]]) {

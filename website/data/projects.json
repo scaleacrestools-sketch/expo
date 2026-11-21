@@ -36,77 +36,77 @@
     "mapEmbed": "https://www.google.com/maps?q=Hoskote%2C+Bengaluru+562114&z=13&output=embed",
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Hoskote%2C+Bengaluru+562114",
     "coordinates": null,
-    "cover": "/assets/img/projects/assetz-naru-and-nami/01-hero-clubhouse-evening-render.jpg",
+    "cover": "/assets/img/projects/assetz-naru-and-nami/01-hero-clubhouse-evening-render.webp",
     "coverAlt": "Corten-steel clubhouse at dusk, Naru & Nami, Hoskote (developer's render)",
     "logo": "",
     "images": [
       {
-        "src": "/assets/img/projects/assetz-naru-and-nami/01-hero-clubhouse-evening-render.jpg",
+        "src": "/assets/img/projects/assetz-naru-and-nami/01-hero-clubhouse-evening-render.webp",
         "alt": "Clubhouse at dusk (developer's render)",
         "kind": "architecture"
       },
       {
-        "src": "/assets/img/projects/assetz-naru-and-nami/02-tower-facade-render.jpg",
+        "src": "/assets/img/projects/assetz-naru-and-nami/02-tower-facade-render.webp",
         "alt": "Residential tower façade (developer's render)",
         "kind": "architecture"
       },
       {
-        "src": "/assets/img/projects/assetz-naru-and-nami/04-aerial-township-twin-towers-render.jpg",
+        "src": "/assets/img/projects/assetz-naru-and-nami/04-aerial-township-twin-towers-render.webp",
         "alt": "Aerial view of the community (developer's render)",
         "kind": "landscape"
       },
       {
-        "src": "/assets/img/projects/assetz-naru-and-nami/09-the-spine-amphitheatre-landscape-render.jpg",
+        "src": "/assets/img/projects/assetz-naru-and-nami/09-the-spine-amphitheatre-landscape-render.webp",
         "alt": "The Spine landscape and amphitheatre (developer's render)",
         "kind": "landscape"
       },
       {
-        "src": "/assets/img/projects/assetz-naru-and-nami/05-temperature-controlled-pool-render.jpg",
+        "src": "/assets/img/projects/assetz-naru-and-nami/05-temperature-controlled-pool-render.webp",
         "alt": "Temperature-controlled pool (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-naru-and-nami/03-corten-steel-clubhouse-render.jpg",
+        "src": "/assets/img/projects/assetz-naru-and-nami/03-corten-steel-clubhouse-render.webp",
         "alt": "Corten-steel clubhouse (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-naru-and-nami/07-living-room-interior-render.jpg",
+        "src": "/assets/img/projects/assetz-naru-and-nami/07-living-room-interior-render.webp",
         "alt": "Living room interior (developer's render)",
         "kind": "interior"
       },
       {
-        "src": "/assets/img/projects/assetz-naru-and-nami/06-luxury-terrace-balcony-render.jpg",
+        "src": "/assets/img/projects/assetz-naru-and-nami/06-luxury-terrace-balcony-render.webp",
         "alt": "Luxury terrace balcony (developer's render)",
         "kind": "interior"
       },
       {
-        "src": "/assets/img/projects/assetz-naru-and-nami/08-entrance-lobby-render.jpg",
+        "src": "/assets/img/projects/assetz-naru-and-nami/08-entrance-lobby-render.webp",
         "alt": "Entrance lobby (developer's render)",
         "kind": "interior"
       },
       {
-        "src": "/assets/img/projects/assetz-naru-and-nami/10-co-working-space-render.jpg",
+        "src": "/assets/img/projects/assetz-naru-and-nami/10-co-working-space-render.webp",
         "alt": "Co-working space (developer's render)",
         "kind": "amenity"
       }
     ],
-    "masterPlan": "/assets/img/projects/assetz-naru-and-nami/11-master-plan.jpg",
+    "masterPlan": "/assets/img/projects/assetz-naru-and-nami/11-master-plan.webp",
     "floorPlans": [
       {
         "label": "3 BHK · Type 7",
         "size": "1,945 sq. ft. SBUA · 1,358 sq. ft. TCA (RERA + balcony)",
-        "src": "/assets/img/projects/assetz-naru-and-nami/12-floor-plan-3bhk-type7-1945sqft.jpg"
+        "src": "/assets/img/projects/assetz-naru-and-nami/12-floor-plan-3bhk-type7-1945sqft.webp"
       },
       {
         "label": "3 BHK · Type 8",
         "size": "1,735 sq. ft. SBUA · 1,219 sq. ft. TCA (RERA + balcony)",
-        "src": "/assets/img/projects/assetz-naru-and-nami/13-floor-plan-3bhk-type8-1735sqft.jpg"
+        "src": "/assets/img/projects/assetz-naru-and-nami/13-floor-plan-3bhk-type8-1735sqft.webp"
       },
       {
         "label": "Master plan",
         "size": "~11 acres · ~81% open space",
-        "src": "/assets/img/projects/assetz-naru-and-nami/11-master-plan.jpg"
+        "src": "/assets/img/projects/assetz-naru-and-nami/11-master-plan.webp"
       }
     ],
     "pricing": [
@@ -280,72 +280,72 @@
       "lat": 12.896,
       "lng": 77.653
     },
-    "cover": "/assets/img/projects/assetz-mizumi-reserve/02-township-lakeside-aerial-render.jpg",
+    "cover": "/assets/img/projects/assetz-mizumi-reserve/02-township-lakeside-aerial-render.webp",
     "coverAlt": "Aerial view of the lakeside township, Mizumi Reserve (developer's render)",
     "logo": "/assets/img/projects/assetz-mizumi-reserve/logo-mizumi-reserve.png",
     "images": [
       {
-        "src": "/assets/img/projects/assetz-mizumi-reserve/02-township-lakeside-aerial-render.jpg",
+        "src": "/assets/img/projects/assetz-mizumi-reserve/02-township-lakeside-aerial-render.webp",
         "alt": "Lakeside township aerial (developer's render)",
         "kind": "architecture"
       },
       {
-        "src": "/assets/img/projects/assetz-mizumi-reserve/03-towers-boulevard-render.jpg",
+        "src": "/assets/img/projects/assetz-mizumi-reserve/03-towers-boulevard-render.webp",
         "alt": "Towers along the boulevard (developer's render)",
         "kind": "architecture"
       },
       {
-        "src": "/assets/img/projects/assetz-mizumi-reserve/04-grey-brick-facade-render.jpg",
+        "src": "/assets/img/projects/assetz-mizumi-reserve/04-grey-brick-facade-render.webp",
         "alt": "Grey-brick façade (developer's render)",
         "kind": "architecture"
       },
       {
-        "src": "/assets/img/projects/assetz-mizumi-reserve/10-aerial-sports-courts-render.jpg",
+        "src": "/assets/img/projects/assetz-mizumi-reserve/10-aerial-sports-courts-render.webp",
         "alt": "Sports courts from above (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-mizumi-reserve/06-pool-deck-cabana-render.jpg",
+        "src": "/assets/img/projects/assetz-mizumi-reserve/06-pool-deck-cabana-render.webp",
         "alt": "Pool deck with cabanas (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-mizumi-reserve/05-clubhouse-render.jpg",
+        "src": "/assets/img/projects/assetz-mizumi-reserve/05-clubhouse-render.webp",
         "alt": "Clubhouse (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-mizumi-reserve/01-hero-clubhouse-arrival-render.jpg",
+        "src": "/assets/img/projects/assetz-mizumi-reserve/01-hero-clubhouse-arrival-render.webp",
         "alt": "Clubhouse arrival court (developer's render)",
         "kind": "landscape"
       },
       {
-        "src": "/assets/img/projects/assetz-mizumi-reserve/08-living-room-interior-render.jpg",
+        "src": "/assets/img/projects/assetz-mizumi-reserve/08-living-room-interior-render.webp",
         "alt": "Living room interior (developer's render)",
         "kind": "interior"
       },
       {
-        "src": "/assets/img/projects/assetz-mizumi-reserve/07-large-living-balcony-render.jpg",
+        "src": "/assets/img/projects/assetz-mizumi-reserve/07-large-living-balcony-render.webp",
         "alt": "Large living balcony (developer's render)",
         "kind": "interior"
       },
       {
-        "src": "/assets/img/projects/assetz-mizumi-reserve/09-bedroom-interior-render.jpg",
+        "src": "/assets/img/projects/assetz-mizumi-reserve/09-bedroom-interior-render.webp",
         "alt": "Bedroom interior (developer's render)",
         "kind": "interior"
       }
     ],
-    "masterPlan": "/assets/img/projects/assetz-mizumi-reserve/11-master-plan.jpg",
+    "masterPlan": "/assets/img/projects/assetz-mizumi-reserve/11-master-plan.webp",
     "floorPlans": [
       {
         "label": "3 BHK · Type 1",
         "size": "1,901 sq. ft. SBUA · 1,431 sq. ft. TCA (RERA + balcony)",
-        "src": "/assets/img/projects/assetz-mizumi-reserve/12-floor-plan-3bhk-type1-1901sqft.jpg"
+        "src": "/assets/img/projects/assetz-mizumi-reserve/12-floor-plan-3bhk-type1-1901sqft.webp"
       },
       {
         "label": "Master plan",
         "size": "Township master plan; future phases subject to approvals",
-        "src": "/assets/img/projects/assetz-mizumi-reserve/11-master-plan.jpg"
+        "src": "/assets/img/projects/assetz-mizumi-reserve/11-master-plan.webp"
       }
     ],
     "pricing": [
@@ -519,77 +519,77 @@
       "lat": 12.8742,
       "lng": 77.6777
     },
-    "cover": "/assets/img/projects/assetz-muse-and-maison/02-clubhouse-early-evening-render.jpg",
+    "cover": "/assets/img/projects/assetz-muse-and-maison/02-clubhouse-early-evening-render.webp",
     "coverAlt": "Clubhouse in the early evening, Muse & Maison (developer's render)",
     "logo": "/assets/img/projects/assetz-muse-and-maison/logo-muse-and-maison.png",
     "images": [
       {
-        "src": "/assets/img/projects/assetz-muse-and-maison/02-clubhouse-early-evening-render.jpg",
+        "src": "/assets/img/projects/assetz-muse-and-maison/02-clubhouse-early-evening-render.webp",
         "alt": "Clubhouse in the early evening (developer's render)",
         "kind": "architecture"
       },
       {
-        "src": "/assets/img/projects/assetz-muse-and-maison/01-hero-single-tower-daylight-render.jpg",
+        "src": "/assets/img/projects/assetz-muse-and-maison/01-hero-single-tower-daylight-render.webp",
         "alt": "The single boutique tower (developer's render)",
         "kind": "architecture"
       },
       {
-        "src": "/assets/img/projects/assetz-muse-and-maison/04-entrance-lobby-terracotta-render.jpg",
+        "src": "/assets/img/projects/assetz-muse-and-maison/04-entrance-lobby-terracotta-render.webp",
         "alt": "Entrance lobby with terracotta jaali (developer's render)",
         "kind": "architecture"
       },
       {
-        "src": "/assets/img/projects/assetz-muse-and-maison/05-yoga-deck-terracotta-jaali-render.jpg",
+        "src": "/assets/img/projects/assetz-muse-and-maison/05-yoga-deck-terracotta-jaali-render.webp",
         "alt": "Yoga deck behind the terracotta screen (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-muse-and-maison/10-temperature-controlled-pool-render.jpg",
+        "src": "/assets/img/projects/assetz-muse-and-maison/10-temperature-controlled-pool-render.webp",
         "alt": "Temperature-controlled pool (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-muse-and-maison/06-gymnasium-render.jpg",
+        "src": "/assets/img/projects/assetz-muse-and-maison/06-gymnasium-render.webp",
         "alt": "Gymnasium (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-muse-and-maison/07-living-dining-interior-render.jpg",
+        "src": "/assets/img/projects/assetz-muse-and-maison/07-living-dining-interior-render.webp",
         "alt": "Living and dining interior (developer's render)",
         "kind": "interior"
       },
       {
-        "src": "/assets/img/projects/assetz-muse-and-maison/08-master-bedroom-interior-render.jpg",
+        "src": "/assets/img/projects/assetz-muse-and-maison/08-master-bedroom-interior-render.webp",
         "alt": "Master bedroom (developer's render)",
         "kind": "interior"
       },
       {
-        "src": "/assets/img/projects/assetz-muse-and-maison/03-grand-entrance-lobby-render.jpg",
+        "src": "/assets/img/projects/assetz-muse-and-maison/03-grand-entrance-lobby-render.webp",
         "alt": "Grand entrance lobby (developer's render)",
         "kind": "interior"
       },
       {
-        "src": "/assets/img/projects/assetz-muse-and-maison/09-bedroom-interior-render.jpg",
+        "src": "/assets/img/projects/assetz-muse-and-maison/09-bedroom-interior-render.webp",
         "alt": "Bedroom interior (developer's render)",
         "kind": "interior"
       }
     ],
-    "masterPlan": "/assets/img/projects/assetz-muse-and-maison/11-master-plan.jpg",
+    "masterPlan": "/assets/img/projects/assetz-muse-and-maison/11-master-plan.webp",
     "floorPlans": [
       {
         "label": "3 BHK · Corner unit",
         "size": "1,930 sq. ft. SBUA · 1,356 sq. ft. TCA (RERA + balcony)",
-        "src": "/assets/img/projects/assetz-muse-and-maison/12-floor-plan-3bhk-corner-unit-1930sqft.jpg"
+        "src": "/assets/img/projects/assetz-muse-and-maison/12-floor-plan-3bhk-corner-unit-1930sqft.webp"
       },
       {
         "label": "3 BHK · Middle unit",
         "size": "1,877 sq. ft. SBUA · 1,313 sq. ft. TCA (RERA + balcony)",
-        "src": "/assets/img/projects/assetz-muse-and-maison/13-floor-plan-3bhk-middle-unit-1877sqft.jpg"
+        "src": "/assets/img/projects/assetz-muse-and-maison/13-floor-plan-3bhk-middle-unit-1877sqft.webp"
       },
       {
         "label": "Master plan",
         "size": "~2 acres · 78% open space",
-        "src": "/assets/img/projects/assetz-muse-and-maison/11-master-plan.jpg"
+        "src": "/assets/img/projects/assetz-muse-and-maison/11-master-plan.webp"
       }
     ],
     "pricing": [
@@ -766,77 +766,77 @@
       "lat": 12.8708,
       "lng": 77.7242
     },
-    "cover": "/assets/img/projects/assetz-trees-and-tandem/01-hero-tower-sunset-render.jpg",
+    "cover": "/assets/img/projects/assetz-trees-and-tandem/01-hero-tower-sunset-render.webp",
     "coverAlt": "Towers at sunset, Trees & Tandem (developer's render)",
     "logo": "/assets/img/projects/assetz-trees-and-tandem/logo-trees-and-tandem.png",
     "images": [
       {
-        "src": "/assets/img/projects/assetz-trees-and-tandem/01-hero-tower-sunset-render.jpg",
+        "src": "/assets/img/projects/assetz-trees-and-tandem/01-hero-tower-sunset-render.webp",
         "alt": "Towers at sunset (developer's render)",
         "kind": "architecture"
       },
       {
-        "src": "/assets/img/projects/assetz-trees-and-tandem/04-tree-lined-boulevard-render.jpg",
+        "src": "/assets/img/projects/assetz-trees-and-tandem/04-tree-lined-boulevard-render.webp",
         "alt": "Tree-lined boulevard (developer's render)",
         "kind": "landscape"
       },
       {
-        "src": "/assets/img/projects/assetz-trees-and-tandem/06-yoga-view-deck-aerial-render.jpg",
+        "src": "/assets/img/projects/assetz-trees-and-tandem/06-yoga-view-deck-aerial-render.webp",
         "alt": "Yoga and view deck from above (developer's render)",
         "kind": "landscape"
       },
       {
-        "src": "/assets/img/projects/assetz-trees-and-tandem/02-the-club-clubhouse-render.jpg",
+        "src": "/assets/img/projects/assetz-trees-and-tandem/02-the-club-clubhouse-render.webp",
         "alt": "The Club (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-trees-and-tandem/07-outdoor-sports-amenities-aerial-render.jpg",
+        "src": "/assets/img/projects/assetz-trees-and-tandem/07-outdoor-sports-amenities-aerial-render.webp",
         "alt": "Outdoor sports amenities (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-trees-and-tandem/08-swimming-pool-render.jpg",
+        "src": "/assets/img/projects/assetz-trees-and-tandem/08-swimming-pool-render.webp",
         "alt": "Swimming pool (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-trees-and-tandem/03-entry-experience-gate-render.jpg",
+        "src": "/assets/img/projects/assetz-trees-and-tandem/03-entry-experience-gate-render.webp",
         "alt": "Entry experience (developer's render)",
         "kind": "architecture"
       },
       {
-        "src": "/assets/img/projects/assetz-trees-and-tandem/05-grand-tower-lobby-render.jpg",
+        "src": "/assets/img/projects/assetz-trees-and-tandem/05-grand-tower-lobby-render.webp",
         "alt": "Grand tower lobby (developer's render)",
         "kind": "interior"
       },
       {
-        "src": "/assets/img/projects/assetz-trees-and-tandem/10-living-room-interior-render.jpg",
+        "src": "/assets/img/projects/assetz-trees-and-tandem/10-living-room-interior-render.webp",
         "alt": "Living room interior (developer's render)",
         "kind": "interior"
       },
       {
-        "src": "/assets/img/projects/assetz-trees-and-tandem/09-tower-lobbies-landscaped-garden-render.jpg",
+        "src": "/assets/img/projects/assetz-trees-and-tandem/09-tower-lobbies-landscaped-garden-render.webp",
         "alt": "Tower lobbies across the landscaped garden (developer's render)",
         "kind": "landscape"
       }
     ],
-    "masterPlan": "/assets/img/projects/assetz-trees-and-tandem/11-master-plan.jpg",
+    "masterPlan": "/assets/img/projects/assetz-trees-and-tandem/11-master-plan.webp",
     "floorPlans": [
       {
         "label": "3 BHK · Type A",
         "size": "2,142 sq. ft. SBUA · 1,647 sq. ft. TCA (RERA + balcony)",
-        "src": "/assets/img/projects/assetz-trees-and-tandem/12-floor-plan-3bhk-type-a-2142sqft.jpg"
+        "src": "/assets/img/projects/assetz-trees-and-tandem/12-floor-plan-3bhk-type-a-2142sqft.webp"
       },
       {
         "label": "3 BHK · Type B",
         "size": "1,885 sq. ft. SBUA · 1,431 sq. ft. TCA (RERA + balcony)",
-        "src": "/assets/img/projects/assetz-trees-and-tandem/13-floor-plan-3bhk-type-b-1885sqft.jpg"
+        "src": "/assets/img/projects/assetz-trees-and-tandem/13-floor-plan-3bhk-type-b-1885sqft.webp"
       },
       {
         "label": "Master plan",
         "size": "7 acres · ~90% open space",
-        "src": "/assets/img/projects/assetz-trees-and-tandem/11-master-plan.jpg"
+        "src": "/assets/img/projects/assetz-trees-and-tandem/11-master-plan.webp"
       }
     ],
     "pricing": [
@@ -1014,77 +1014,77 @@
     "mapEmbed": "https://www.google.com/maps?q=Hennur+Main+Road%2C+Hennur%2C+Bengaluru+560043&z=14&output=embed",
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Hennur+Main+Road%2C+Hennur%2C+Bengaluru+560043",
     "coordinates": null,
-    "cover": "/assets/img/projects/assetz-mizu-and-ki/01-hero-villament-facade-evening-render.jpg",
+    "cover": "/assets/img/projects/assetz-mizu-and-ki/01-hero-villament-facade-evening-render.webp",
     "coverAlt": "Villament façade in the evening, Mizu & Ki (developer's render)",
     "logo": "/assets/img/projects/assetz-mizu-and-ki/logo-mizu-and-ki.png",
     "images": [
       {
-        "src": "/assets/img/projects/assetz-mizu-and-ki/01-hero-villament-facade-evening-render.jpg",
+        "src": "/assets/img/projects/assetz-mizu-and-ki/01-hero-villament-facade-evening-render.webp",
         "alt": "Villament façade in the evening (developer's render)",
         "kind": "architecture"
       },
       {
-        "src": "/assets/img/projects/assetz-mizu-and-ki/10-villament-facade-render.jpg",
+        "src": "/assets/img/projects/assetz-mizu-and-ki/10-villament-facade-render.webp",
         "alt": "Villament façade (developer's render)",
         "kind": "architecture"
       },
       {
-        "src": "/assets/img/projects/assetz-mizu-and-ki/02-aerial-project-overview-render.jpg",
+        "src": "/assets/img/projects/assetz-mizu-and-ki/02-aerial-project-overview-render.webp",
         "alt": "Aerial project overview (developer's render)",
         "kind": "landscape"
       },
       {
-        "src": "/assets/img/projects/assetz-mizu-and-ki/05-courtyard-pool-aerial-render.jpg",
+        "src": "/assets/img/projects/assetz-mizu-and-ki/05-courtyard-pool-aerial-render.webp",
         "alt": "Courtyard and pool from above (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-mizu-and-ki/03-clubhouse-aerial-render.jpg",
+        "src": "/assets/img/projects/assetz-mizu-and-ki/03-clubhouse-aerial-render.webp",
         "alt": "Clubhouse from above (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-mizu-and-ki/06-swimming-pool-top-view-render.jpg",
+        "src": "/assets/img/projects/assetz-mizu-and-ki/06-swimming-pool-top-view-render.webp",
         "alt": "Swimming pool (developer's render)",
         "kind": "amenity"
       },
       {
-        "src": "/assets/img/projects/assetz-mizu-and-ki/09-living-room-interior-render.jpg",
+        "src": "/assets/img/projects/assetz-mizu-and-ki/09-living-room-interior-render.webp",
         "alt": "Living room interior (developer's render)",
         "kind": "interior"
       },
       {
-        "src": "/assets/img/projects/assetz-mizu-and-ki/07-private-use-garden-render.jpg",
+        "src": "/assets/img/projects/assetz-mizu-and-ki/07-private-use-garden-render.webp",
         "alt": "Private-use garden (developer's render)",
         "kind": "interior"
       },
       {
-        "src": "/assets/img/projects/assetz-mizu-and-ki/08-luxury-terrace-balcony-render.jpg",
+        "src": "/assets/img/projects/assetz-mizu-and-ki/08-luxury-terrace-balcony-render.webp",
         "alt": "Luxury terrace balcony (developer's render)",
         "kind": "interior"
       },
       {
-        "src": "/assets/img/projects/assetz-mizu-and-ki/04-arrival-entrance-gate-render.jpg",
+        "src": "/assets/img/projects/assetz-mizu-and-ki/04-arrival-entrance-gate-render.webp",
         "alt": "Arrival entrance gate (developer's render)",
         "kind": "architecture"
       }
     ],
-    "masterPlan": "/assets/img/projects/assetz-mizu-and-ki/11-master-plan.jpg",
+    "masterPlan": "/assets/img/projects/assetz-mizu-and-ki/11-master-plan.webp",
     "floorPlans": [
       {
         "label": "4 BHK · Type 01 Garden unit",
         "size": "3,070 sq. ft. SBUA · 2,463 sq. ft. TCA (RERA + balcony) · private-use garden ~1,900 sq. ft.",
-        "src": "/assets/img/projects/assetz-mizu-and-ki/12-floor-plan-4bhk-type01-garden-unit-3070sqft.jpg"
+        "src": "/assets/img/projects/assetz-mizu-and-ki/12-floor-plan-4bhk-type01-garden-unit-3070sqft.webp"
       },
       {
         "label": "4 BHK · Type 02 Open-terrace unit",
         "size": "3,538 sq. ft. SBUA · 2,809 sq. ft. TCA (RERA + balcony)",
-        "src": "/assets/img/projects/assetz-mizu-and-ki/13-floor-plan-4bhk-type02-open-terrace-unit-3538sqft.jpg"
+        "src": "/assets/img/projects/assetz-mizu-and-ki/13-floor-plan-4bhk-type02-open-terrace-unit-3538sqft.webp"
       },
       {
         "label": "Master plan",
         "size": "~8 acres · 188 villaments",
-        "src": "/assets/img/projects/assetz-mizu-and-ki/11-master-plan.jpg"
+        "src": "/assets/img/projects/assetz-mizu-and-ki/11-master-plan.webp"
       }
     ],
     "pricing": [

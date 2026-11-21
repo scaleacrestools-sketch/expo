@@ -6,7 +6,7 @@ const ROOT = path.join(__dirname, '..');
 const g = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/guide.json'), 'utf8'));
 const site = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/site.json'), 'utf8'));
 const b64 = f => 'data:' + (f.endsWith('.svg') ? 'image/svg+xml' : 'image/jpeg') + ';base64,' + fs.readFileSync(path.join(ROOT, f)).toString('base64');
-const cover = b64('assets/img/projects/assetz-trees-and-tandem/04-tree-lined-boulevard-render.jpg');
+const cover = b64('source-assets/original-images/projects/assetz-trees-and-tandem/04-tree-lined-boulevard-render.jpg');
 const logo = b64('assets/img/assetz-logo-white.svg');
 const logoDark = b64('assets/img/assetz-logo.svg');
 const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));

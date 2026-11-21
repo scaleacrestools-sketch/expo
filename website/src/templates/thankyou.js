@@ -14,6 +14,6 @@ function render({ projects, site }) {
     <p style="font-size:.85rem;color:var(--text-3)">Need something sooner? Call <a href="tel:${site.contact.phoneHref}" style="text-decoration:underline">${esc(site.contact.phone)}</a> or <a href="https://wa.me/${site.contact.whatsapp}" target="_blank" rel="noopener" style="text-decoration:underline">message us on WhatsApp</a>.</p>
   </div></div>
 </section>
-<section class="band ivory2"><div class="container"><div class="section-head"><span class="eyebrow">While you wait</span><h2>Explore the collection.</h2></div><div class="related" style="grid-template-columns:repeat(5,1fr)">${projects.map(o => `<a href="/projects/${o.slug}/"><div class="img"><img src="${o.cover}" alt="${esc(o.name)}" loading="lazy" width="800" height="600"></div><b>${esc(o.name)}</b><span>${esc(o.locationShort)}</span></a>`).join('')}</div></div></section>`;
+<section class="band ivory2"><div class="container"><div class="section-head"><span class="eyebrow">While you wait</span><h2>Explore the collection.</h2></div><div class="related thanks-grid">${projects.map(o => `<a href="/projects/${o.slug}/"><div class="img"><img src="${o.cover}" alt="${esc(o.name)}" loading="lazy" width="800" height="600"></div><b>${esc(o.name)}</b><span>${esc(o.locationShort)}</span></a>`).join('')}</div></div></section>`;
 }
 module.exports = { meta, render };

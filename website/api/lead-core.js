@@ -118,13 +118,17 @@ async function handleLead({ body, ip = 'unknown', origin = '', host = '', env = 
   let crm = { delivered: false, reason: 'not attempted' };
   try { crm = await forward(lead, env); } catch (e) { crm = { delivered: false, reason: String(e.message || e) }; }
   lead.crm = crm;
-  if (store) { try { await store(lead); } catch (e) { /* storage failure must not lose the lead silently */ console.error('lead store failed', e); } }
+  let stored = false;
+  if (store) { try { await store(lead); stored = true; } catch (e) { /* storage failure must not lose the lead silently */ console.error('lead store failed', e); } }
   console.log(JSON.stringify({ msg: 'lead', id: lead.id, type: lead.type, project: lead.projectSlug, crm, duplicateOf: lead.duplicateOf || null }));
 
   // If a CRM is configured but delivery failed and there is no persistent store, report failure so the visitor can retry.
   if (env.CRM_WEBHOOK_URL && !crm.delivered && !store) return { status: 502, body: { ok: false, error: 'We could not record your enquiry. Please try again or call us.' } };
 
-  const out = { ok: true, id: lead.id };
+  // recorded = the lead reached a durable destination (CRM webhook or local store).
+  // When false (no CRM configured on the host), the browser also submits the lead to Netlify Forms
+  // and only shows success if that succeeds, so a visitor is never told a lead was saved when it was not.
+  const out = { ok: true, id: lead.id, recorded: !!(crm.delivered || stored), crm: !!crm.delivered };
   if (lead.type === 'Guide') out.download = GUIDE_PATH;
   if (lead.type === 'Brochure' && BROCHURES[lead.projectSlug]) out.download = BROCHURES[lead.projectSlug];
   return { status: 200, body: out };

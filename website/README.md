@@ -14,10 +14,13 @@ Requires Node 18 or newer.
 ## Commands
 
 ```bash
-node build.js              # generate dist/ (22 routes + sitemap.xml + robots.txt + 404)
+npm install                # optional: esbuild for CSS/JS minification
+SITE_URL=https://www.yourdomain.com node build.js   # generate dist/ (22 routes, 404, robots.txt; sitemap + canonicals when SITE_URL is set)
+npm run package            # build + create the delivery ZIPs in ../deliverables/
 node server.js             # preview on http://localhost:4173 with a working /api/lead (stores leads in ./leads/leads.jsonl)
 node scripts/make-guide.js # regenerate the homebuyer's guide PDF from data/guide.json
 node scripts/qa.js out/    # crawl every route at desktop + phone: console errors, overflow, broken links, h1 count
+python3 scripts/make-svg-assets.py   # regenerate editable-svg-assets/
 node scripts/test-leads.js # end-to-end lead tests (API validation + browser form flows); run while server.js is up
 ```
 
@@ -50,6 +53,10 @@ Edit the JSON, run `node build.js`, deploy `dist/`.
 - Fonts: Libre Caslon Display (headings) and Figtree (body) on site pages; Plus Jakarta Sans on project pages.
 - Side-by-side comparison sheets (reference vs this site, desktop and mobile) are in `docs/comparison/`.
 
+## Deployment and deliverables
+
+See **NETLIFY-DEPLOYMENT.md** for deployment (drag-and-drop or Git), forms, environment variables, content updates, replacing the hero video and editing SVGs.
+
 ## Hero video
 
 `assets/video/`:
@@ -60,13 +67,13 @@ Edit the JSON, run `node build.js`, deploy `dist/`.
 | `assetz-hero-mobile.mp4` / `.webm` | 1080×1920, 17.8 s loop |
 | `assetz-hero-poster.webp`, `assetz-hero-mobile-poster.webp` | first-frame fallbacks, preloaded |
 
-Assembled from footage Assetz publishes on assetzproperty.com (its homepage project reel and residential reel): twelve shots following the brief's storyboard (aerial arrival, architecture, gardens, interiors, community, sunset finale), with a warm grade, vignette and crossfades. No text or logos are burned in; one signage shot was removed. AI video generation was not used: the connected Higgsfield account had 0.51 credits and a 5-second 1080p clip costs 80.
+The edit is reproducible: `video-project/build-hero.sh` (FFmpeg) plus CMX3600 EDLs and an edit-decision list; see `video-project/README.md`. Assembled from footage Assetz publishes on assetzproperty.com (its homepage project reel and residential reel): twelve shots following the brief's storyboard (aerial arrival, architecture, gardens, interiors, community, sunset finale), with a warm grade, vignette and crossfades. No text or logos are burned in; one signage shot was removed. AI video generation was not used: the connected Higgsfield account had 0.51 credits and a 5-second 1080p clip costs 80.
 
 Playback: sources are attached by script only after load (poster paints first), muted autoplay, loop, `playsinline`, a pause/play control, and no video at all for `prefers-reduced-motion` or Save-Data users.
 
 ## Lead capture and CRM
 
-Every form posts JSON to `/api/lead`. Forms: homepage consultation, popup (Enquiry / Request Brochure / Book a Site Visit, project preselected), project inline + sidebar, contact (with NRI and enquiry type), blog sidebar, and the lead magnet.
+Every form posts JSON to `/api/lead`; when that function is not deployed (drag-and-drop deploys) or has no CRM configured, the browser stores the lead with Netlify Forms (`dist/forms/lead.html` is the detection form) and shows success only if one of them confirms the lead was recorded. Forms: homepage consultation, popup (Enquiry / Request Brochure / Book a Site Visit, project preselected), project inline + sidebar, contact (with NRI and enquiry type), blog sidebar, and the lead magnet.
 
 Captured: name, mobile with country code, email, project, enquiry type and subtype, purpose, preferred time, message, consent text and timestamp, source page URL, first-touch UTM source/medium/campaign/content/term (persisted for the session), and server receipt time.
 
@@ -128,9 +135,12 @@ The Karnataka RERA portal could not be reached from the build environment, so RE
 
 Brand assets, renders and footage belong to Assetz Property Group. Confirm usage rights with the developer before public launch, and keep the independent-marketing notice in `site.json` unless official authorisation is established.
 
-## Testing summary
+## Testing summary (production package, 21 Nov 2026)
 
-- `scripts/qa.js`: 22 routes × desktop (1440) and phone (390): no console errors, no failed requests, no horizontal overflow, exactly one `h1` per page, no placeholder links; 23 internal link targets, 0 broken.
-- `scripts/test-leads.js`: API returns 422 with field errors for missing consent, invalid phone/email and unknown project; honeypot dropped; guide and brochure downloads returned; NRI (+971) accepted; duplicate flagged; browser flows for homepage enquiry, project brochure popup (project preselected) and guide download all reach `/thank-you/` with the right download; finder → filtered listing → empty state → clear filters.
-- CRM adapter verified against a mock webhook (auth header, idempotency key, mapped payload).
-- Location maps are the developer's published static maps (`assets/img/maps/`), with an "Open in Google Maps" link; no embedded iframes.
+Tested on the unzipped `assetz-netlify-ready` folder served like Netlify static hosting (clean URLs, `_redirects` 404 rule, no serverless function, Netlify Forms on/off):
+
+- **Responsive crawl:** 22 routes × 6 widths (1920, 1440, 1024, 768, 390, 375) = 132 page loads: HTTP 200 on every route (branded 404 with status 404 for unknown URLs), no horizontal overflow, no broken images, no failed requests, no console errors, exactly one `h1` per page.
+- **Functional (38 checks):** desktop and mobile hero video play (mobile file on phones), mega menu and links, deep-link refresh, location map and lightbox, floor-plan carousel, EMI calculator, read-more, gallery, FAQ expand/collapse and search, blog article and share links, collection slider and accordion; validation errors; homepage guide form, project hero form, project contact band, Request Brochure (project preselected, e-brochure download), Book a Site Visit, Contact Us (NRI, +971), blog sidebar, mobile sticky-bar enquiry; all 8 stored by Netlify Forms; **no false success** when no lead destination exists.
+- **Local API:** `scripts/test-leads.js` (validation 422s, honeypot, duplicate flag, downloads, browser flows).
+- **Accessibility (axe-core, WCAG 2 A/AA):** no violations except colour contrast of the approved brand colour `#AA7761` (white text on brand buttons and small brand-coloured eyebrows measure 3.8:1 against the 4.5:1 guideline). This is inherent to the mandated palette from the Hostinger reference and was kept to preserve the approved design; using `#2C191F` for small text, or larger/bolder button labels, would resolve it if required.
+- CRM forwarding verified earlier against a mock webhook (auth header, idempotency key, mapped payload).

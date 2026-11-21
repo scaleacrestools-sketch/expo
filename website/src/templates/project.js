@@ -79,7 +79,7 @@ function render({ site, projects, company }, pr) {
       <div class="clamp" id="ov-text">${pr.overview.map(x => `<p>${esc(x)}</p>`).join('')}</div>
       <button class="read-more" type="button" data-clamp="ov-text">Read more ${icon('right')}</button>
       ${pr.nameNote ? `<p class="fine">${icon('info')}<span>Marketed by the developer as ${esc(pr.officialName.replace(/ \(.*\)$/, ''))}. Final project name to be confirmed at launch.</span></p>` : ''}
-      <button class="btn-pdp enq-open" type="button" data-type="Brochure" data-project="${esc(pr.name)}" data-source="overview">${icon('download')} Download Brochure</button>
+      <div class="ov-ctas"><button class="btn-pdp enq-open" type="button" data-type="Brochure" data-project="${esc(pr.name)}" data-source="overview">${icon('download')} Download Brochure</button><button class="btn-pdp outline enq-open" type="button" data-type="Site Visit" data-project="${esc(pr.name)}" data-source="overview">${icon('pin')} Book a Site Visit</button></div>
     </div>
     <div class="img"><img src="${ovImg.src}" alt="${esc(ovImg.alt)}" loading="lazy" width="1184" height="666"></div>
   </div>
@@ -158,7 +158,7 @@ ${notes.length ? `<!-- Source notes -->
     </div>
     <div class="fp-thumbs">${all.map((f, i) => `<button type="button" data-fp-go="${i}" aria-current="${i === 0}" aria-label="Show ${esc(f.label)}"><img src="${f.src}" alt="" loading="lazy" width="80" height="48"></button>`).join('')}</div>`;
     })() : `<p class="fine">Approved floor plans are shared with the brochure.</p>`}
-    <div class="cta-row"><button class="btn-pdp enq-open" type="button" data-type="Brochure" data-project="${esc(pr.name)}" data-source="floor-plans">${icon('download')} Request Floor Plans</button></div>
+    <div class="cta-row"><button class="btn-pdp enq-open" type="button" data-type="Brochure" data-project="${esc(pr.name)}" data-source="floor-plans">${icon('download')} Request Floor Plans</button><button class="btn-pdp outline enq-open" type="button" data-type="Site Visit" data-project="${esc(pr.name)}" data-source="floor-plans">${icon('pin')} Book a Site Visit</button></div>
   </div>
 </section>
 
@@ -167,7 +167,7 @@ ${notes.length ? `<!-- Source notes -->
   <div class="pdp-wrap">
     <div class="loc-head"><div><span class="pdp-eyebrow">Location</span><h2 class="pdp-h2">${esc(pr.name)} <em>Location</em></h2><div class="pdp-bar"></div><p><b>${esc(pr.address)}</b></p></div>${pr.mapsUrl ? `<a class="btn-pdp" href="${esc(pr.mapsUrl)}" target="_blank" rel="noopener">${icon('pin')} Open in Google Maps</a>` : ''}</div>
     <div class="loc-grid">
-      <button class="loc-map" type="button" data-lightbox-single data-src="/assets/img/maps/${pr.slug}.jpg" data-cap="${esc(pr.name)} location map (developer)"><img src="/assets/img/maps/${pr.slug}.jpg" alt="Location map of ${esc(pr.name)}, published by the developer" loading="lazy" width="1200" height="800"><span class="tag">Location map · developer</span></button>
+      <button class="loc-map" type="button" data-lightbox-single data-src="/assets/img/maps/${pr.slug}.webp" data-cap="${esc(pr.name)} location map (developer)"><img src="/assets/img/maps/${pr.slug}.webp" alt="Location map of ${esc(pr.name)}, published by the developer" loading="lazy" width="1200" height="800"><span class="tag">Location map · developer</span></button>
       <div class="near"><h3>Nearby Essentials</h3><small>Travel times as stated by the developer</small>
         ${pr.connectivity && pr.connectivity.length ? `<ul>${pr.connectivity.map(c => `<li><span class="chk">${icon('pin')}</span><div>${esc(c.name)}<span>${esc(c.note || '')}</span></div></li>`).join('')}</ul>` : `<p class="fine">Distances are not published by the developer.</p>`}
       </div>

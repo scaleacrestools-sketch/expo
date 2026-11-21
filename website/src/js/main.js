@@ -143,7 +143,7 @@
 
   /* Philosophy accordion */
   const accs = $$('.acc');
-  const accSet = p => accs.forEach(x => { const on = x === p; x.classList.toggle('active', on); x.setAttribute('aria-expanded', String(on)); });
+  const accSet = p => accs.forEach(x => x.classList.toggle('active', x === p));
   accs.forEach(p => { p.addEventListener('click', () => accSet(p)); p.addEventListener('focusin', () => accSet(p)); if (window.matchMedia('(hover: hover)').matches) p.addEventListener('mouseenter', () => accSet(p)); });
 
   /* Project hero slides */
@@ -262,6 +262,22 @@
   try { stored = JSON.parse(sessionStorage.getItem('assetz-utm') || '{}'); } catch (e) {}
   if (utmKeys.some(k => qs.get(k))) { stored = {}; utmKeys.forEach(k => { if (qs.get(k)) stored[k] = qs.get(k); }); try { sessionStorage.setItem('assetz-utm', JSON.stringify(stored)); } catch (e) {} }
   const utm = { get: k => stored[k] || '' };
+  // Netlify Forms (works on any Netlify deploy, including drag-and-drop, once form detection is enabled).
+  // The detection page carries a marker: if it comes back, the POST was served as a static file, i.e. NOT stored.
+  const NF_FIELDS = ['type', 'sourcePage', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'name', 'countryCode', 'phone', 'email', 'project', 'purpose', 'preferredTime', 'category', 'message', 'consent', 'submittedAt'];
+  async function netlifyForms(data) {
+    if (location.hostname.indexOf('.') === -1 || /^[\d.]+$/.test(location.hostname) || location.protocol === 'file:') return false; // local preview: no Netlify
+    const body = new URLSearchParams({ 'form-name': 'lead' });
+    NF_FIELDS.forEach(k => { if (data[k] != null && data[k] !== '') body.set(k, k === 'consent' ? 'yes' : String(data[k])); });
+    try {
+      const r = await fetch(ROOT + 'forms/lead.html', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() });
+      if (!r.ok) return false;
+      const t = await r.text();
+      return t.indexOf('assetz-form-detection-page') === -1;
+    } catch (e) { return false; }
+  }
+  const DOWNLOADS = { Guide: '/assets/downloads/bengaluru-premium-homebuyers-guide.pdf', 'Muse & Maison': '/assets/downloads/assetz-muse-and-maison-e-brochure.pdf' };
+  const downloadFor = d => d.type === 'Guide' ? DOWNLOADS.Guide : (d.type === 'Brochure' && DOWNLOADS[d.project]) || '';
   $$('form.form').forEach(form => {
     form.querySelector('[name=sourcePage]') && (form.querySelector('[name=sourcePage]').value = window.location.href);
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(k => { const i = form.querySelector(`[name=${k}]`); if (i && utm.get(k)) i.value = utm.get(k); });
@@ -279,9 +295,25 @@
       if (bad) { status.textContent = 'Please check the highlighted fields.'; status.className = 'status err'; return; }
       status.textContent = ''; btn.disabled = true; btn.classList.add('loading');
       try {
-        const res = await fetch(window.SITE.leadEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign(data, { submittedAt: new Date().toISOString(), userAgent: navigator.userAgent })) });
-        const out = await res.json().catch(() => ({}));
-        if (!res.ok || !out.ok) throw new Error(out.error || 'Submission failed');
+        Object.assign(data, { submittedAt: new Date().toISOString(), userAgent: navigator.userAgent });
+        // 1) Serverless lead API (Netlify Function / Vercel / local server). 2) If it is not deployed, or has no
+        // durable destination (no CRM configured), store the lead with Netlify Forms. Success is shown only when
+        // one of the two confirms the lead was recorded.
+        let out = {}; let res = null;
+        try {
+          res = await fetch(window.SITE.leadEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+          out = await res.json().catch(() => ({}));
+        } catch (e) { res = null; }
+        if (res && res.status === 422 && out.fields) { Object.keys(out.fields).forEach(k => setErr(k, true)); throw new Error(out.error || 'Please check the highlighted fields.'); }
+        if (res && res.status === 429) throw new Error(out.error || 'Too many submissions');
+        if (!(res && res.ok && out.ok && out.recorded)) {
+          if (out.id === 'ignored') { out.recorded = true; } else {
+            const nf = await netlifyForms(data);
+            if (!nf) throw new Error('No lead destination available');
+            out = Object.assign({ ok: true, id: out.id || 'nf-' + Date.now().toString(36) }, out, { recorded: true });
+          }
+        }
+        if (!out.download) out.download = downloadFor(data);
         track('lead_submit', { enquiry_type: data.type, project: data.project || '', lead_id: out.id || '' });
         if (data.type === 'Guide') { track('guide_download', { project: data.project || '' }); }
         if (data.type === 'Brochure') track('brochure_request', { project: data.project || '' });
@@ -291,12 +323,15 @@
         if (out.download) q.set('download', out.download);
         setTimeout(() => { window.location.href = route('thank-you/') + '?' + q.toString(); }, 600);
       } catch (err) {
-        status.textContent = 'We could not send your enquiry right now. Please try again, or call ' + (window.SITE.phone || 'us') + '.'; status.className = 'status err';
+        status.textContent = /^Please check|Too many/.test(err.message) ? (err.message.indexOf('Too many') === 0 ? 'Too many submissions. Please try again in a few minutes, or call ' + (window.SITE.phone || 'us') + '.' : err.message) : 'We could not send your enquiry right now. Please try again, or call ' + (window.SITE.phone || 'us') + '.'; status.className = 'status err';
         btn.disabled = false; btn.classList.remove('loading');
         track('lead_error', { enquiry_type: data.type, message: String(err.message).slice(0, 120) });
       }
     });
   });
+
+  /* Share links always use the live page URL */
+  $$('[data-share]').forEach(a => { a.href = a.dataset.share.replace('{u}', encodeURIComponent(location.href)); });
 
   /* Click tracking: call + WhatsApp */
   $$('a[href^="tel:"]').forEach(a => a.addEventListener('click', () => track('click_to_call', { href: a.getAttribute('href') })));

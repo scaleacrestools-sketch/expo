@@ -12,7 +12,7 @@ function render({ site, projects }) {
   const img = projects.find(p => p.slug === 'assetz-muse-and-maison') || projects[0];
   return `
 <section class="page-hero has-img">
-  <div class="bg parallax"><img src="${img.images[2] ? img.images[2].src : img.cover}" alt="" width="1920" height="1080"></div>
+  <div class="bg parallax"><img fetchpriority="high" src="${img.images[2] ? img.images[2].src : img.cover}" alt="" width="1920" height="1080"></div>
   <div class="container"><div class="copy"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>Contact Us</span></nav><span class="eyebrow" style="color:var(--brand-light)">Contact</span><h1>Every Great Journey Begins with a Conversation.</h1><p class="lede">Whether you are exploring your next home, comparing developments or planning a site visit, connect with our team for more information.</p></div></div>
 </section>
 <section class="band">

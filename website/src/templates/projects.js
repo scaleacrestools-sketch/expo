@@ -14,7 +14,7 @@ function render({ projects }) {
   const hero = p.find(x => x.slug === 'assetz-mizumi-reserve') || p[0];
   return `
 <section class="page-hero has-img">
-  <div class="bg parallax"><img src="${hero.cover}" alt="" width="1920" height="1080"></div>
+  <div class="bg parallax"><img fetchpriority="high" src="${hero.cover}" alt="" width="1920" height="1080"></div>
   <div class="container"><div class="copy"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>Projects</span></nav><span class="eyebrow" style="color:var(--brand-light)">Our Projects</span><h1>Explore Homes Designed for Better Living.</h1><p class="lede">Discover five distinctive Assetz developments across Bengaluru, each created around its own vision of contemporary life.</p></div></div>
 </section>
 <section class="band tight">

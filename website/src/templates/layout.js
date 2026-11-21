@@ -15,23 +15,22 @@ function head({ site, page }) {
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
-<link rel="canonical" href="${esc(url)}">
+${site.baseUrl ? `<link rel="canonical" href="${esc(url)}">` : ''}
 ${page.noindex ? '<meta name="robots" content="noindex,follow">' : '<meta name="robots" content="index,follow">'}
 <meta property="og:type" content="${page.ogType || 'website'}">
 <meta property="og:site_name" content="${esc(site.name)}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
-<meta property="og:url" content="${esc(url)}">
+${site.baseUrl ? `<meta property="og:url" content="${esc(url)}">` : ''}
 <meta property="og:image" content="${esc(image)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#2c191f">
 <link rel="icon" href="/assets/img/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Figtree:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="preload" href="/assets/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/${page.bodyClass === 'pdp' ? 'plus-jakarta-sans' : 'libre-caslon-display'}-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/styles.css?v=${page.buildId}">
 ${page.preload || ''}
-<script>window.dataLayer=window.dataLayer||[];window.SITE=${JSON.stringify({ leadEndpoint: site.leadEndpoint, whatsapp: site.contact.whatsapp, phone: site.contact.phoneHref, ga4: site.tracking.ga4Id || '', pixel: site.tracking.metaPixelId || '' })};</script>
+<script>window.dataLayer=window.dataLayer||[];window.SITE=${JSON.stringify({ leadEndpoint: site.leadEndpoint, whatsapp: site.contact.whatsapp, phone: site.contact.phone, ga4: site.tracking.ga4Id || '', pixel: site.tracking.metaPixelId || '' })};</script>
 ${gtm}
 ${ld}
 </head>
@@ -48,8 +47,8 @@ function siteHeader({ site, page }) {
 <header class="header${page.solidHeader ? ' always-solid' : ''}" id="header">
   <div class="bar">
     <a class="logo" href="/" aria-label="${esc(site.name)} home">
-      <img class="light" src="/assets/img/assetz-logo-white.svg" alt="${esc(site.shortName)}" width="112" height="46">
-      <img class="dark" src="/assets/img/assetz-logo.svg" alt="${esc(site.shortName)}" width="112" height="46">
+      <img class="light" src="/assets/img/assetz-logo-white.svg" alt="${esc(site.shortName)}" width="95" height="46">
+      <img class="dark" src="/assets/img/assetz-logo.svg" alt="${esc(site.shortName)}" width="95" height="46">
     </a>
     <div class="right">
       <nav class="nav" aria-label="Primary">${nav}</nav>
@@ -72,12 +71,12 @@ function projectHeader({ site, page }) {
 <div class="pdp-progress" id="pdp-progress" aria-hidden="true"></div>
 <header class="pdp-header" id="header">
   <div class="bar">
-    <a class="plogo" href="/" aria-label="${esc(site.name)} home"><img src="/assets/img/assetz-logo-white.svg" alt="${esc(site.shortName)}" width="73" height="30"><span class="div"></span><b>${esc(pr.name)}</b></a>
+    <a class="plogo" href="/" aria-label="${esc(site.name)} home"><img src="/assets/img/assetz-logo-white.svg" alt="${esc(site.shortName)}" width="62" height="30"><span class="div"></span><b>${esc(pr.name)}</b></a>
     <nav class="anchors" aria-label="Project sections">${anchors.map(([id, l]) => `<a href="#${id}">${l}</a>`).join('')}</nav>
     <div class="right">
       <button class="pill br enq-open" type="button" data-type="Brochure" data-project="${esc(pr.name)}" data-source="pdp-header">${icon('download')} Brochure</button>
       <a class="pill wa" href="https://wa.me/${site.contact.whatsapp}?text=${encodeURIComponent('Hi, I am interested in ' + pr.name)}" target="_blank" rel="noopener">${icon('whatsapp')} WhatsApp</a>
-      <a class="phone" href="tel:${site.contact.phoneHref}">${icon('phone')}<span>${esc(site.contact.phone.replace('+91 ', ''))}</span></a>
+      <a class="phone" href="tel:${site.contact.phoneHref}" aria-label="Call ${esc(site.contact.phone)}">${icon('phone')}<span>${esc(site.contact.phone.replace('+91 ', ''))}</span></a>
       <button class="burger" id="mega-open" type="button" aria-label="Open site menu" aria-expanded="false" aria-controls="mega"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -111,12 +110,12 @@ function header({ site, page, projects }) {
 function siteFooter({ site, projects }) {
   const soc = site.social;
   return `
-<div class="container disclaimer"><b>DISCLAIMER:</b> ${esc(site.partnerNotice)} Project details, images, plans and specifications are indicative, sourced from the developer's published material and subject to change as per approvals. Images are artist's impressions unless stated otherwise. RERA registration details are published on each project page and should be verified on the Karnataka RERA portal. <a href="/disclaimer/" style="color:var(--brand)">Read More</a></div>
+<div class="container disclaimer"><b>DISCLAIMER:</b> ${esc(site.partnerNotice)} Project details, images, plans and specifications are indicative, sourced from the developer's published material and subject to change as per approvals. Images are artist's impressions unless stated otherwise. RERA registration details are published on each project page and should be verified on the Karnataka RERA portal. <a href="/disclaimer/" style="color:var(--brand-dark);text-decoration:underline">Read More</a></div>
 <footer class="footer">
   <div class="container">
     <div class="cols">
       <div class="col brand">
-        <img src="/assets/img/assetz-logo.svg" alt="${esc(site.name)}" width="180" height="74">
+        <img src="/assets/img/assetz-logo.svg" alt="${esc(site.name)}" width="153" height="74">
         <p>Assetz is a Bengaluru-based developer of residential and commercial spaces, designing homes around the way people live since 2006.</p>
         <div class="social">
           <a href="${soc.instagram}" target="_blank" rel="noopener" aria-label="Instagram">${icon('instagram')}</a>
@@ -141,7 +140,7 @@ function siteFooter({ site, projects }) {
       </div>
     </div>
   </div>
-  <div class="bottom"><div class="container"><span>${esc(site.copyright)}</span><nav aria-label="Legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/terms-and-conditions/">Terms and Conditions</a><a href="/disclaimer/">Disclaimer</a><a href="/sitemap.xml">Sitemap</a></nav></div></div>
+  <div class="bottom"><div class="container"><span>${esc(site.copyright)}</span><nav aria-label="Legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/terms-and-conditions/">Terms and Conditions</a><a href="/disclaimer/">Disclaimer</a>${site.baseUrl ? '<a href="/sitemap.xml">Sitemap</a>' : ''}</nav></div></div>
 </footer>`;
 }
 

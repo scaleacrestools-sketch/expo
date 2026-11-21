@@ -8,7 +8,7 @@ const meta = ({ site, company }) => ({
   description: 'Thoughtfully designed homes across Bengaluru. Explore Naru & Nami, Mizumi Reserve, Muse & Maison, Trees & Tandem and Mizu & Ki by Assetz.',
   preload: '<link rel="preload" as="image" href="/assets/video/assetz-hero-poster.webp" media="(min-width: 768px)"><link rel="preload" as="image" href="/assets/video/assetz-hero-mobile-poster.webp" media="(max-width: 767px)">',
   jsonLd: [{
-    '@context': 'https://schema.org', '@type': 'RealEstateAgent', name: site.name, url: site.baseUrl, telephone: site.contact.phoneHref, email: site.contact.email,
+    '@context': 'https://schema.org', '@type': 'RealEstateAgent', name: site.name, url: site.baseUrl || '/', telephone: site.contact.phoneHref, email: site.contact.email,
     address: { '@type': 'PostalAddress', streetAddress: '30, Crescent Road, Madhava Nagar, Seshadripuram', addressLocality: 'Bengaluru', addressRegion: 'Karnataka', postalCode: '560001', addressCountry: 'IN' },
     foundingDate: String(company.foundedYear || 2006), sameAs: Object.values(site.social),
   }],
@@ -107,7 +107,7 @@ function render({ site, projects, company, blogs, faqs }) {
 <section class="band alt" id="philosophy" style="padding-bottom:0">
   <div class="container"><div class="iconic-head reveal"><div><h2 class="heading-lg">The Art of Better Living</h2><p class="lede" style="margin-top:10px">Four commitments shape every Assetz community.</p></div></div></div>
   <div class="accordion">
-    ${pillars.map((x, i) => `<div class="acc${i === 0 ? ' active' : ''}" tabindex="0" role="button" aria-expanded="${i === 0}" aria-label="${esc(x.t)}"><img src="${x.im.src}" alt="" loading="lazy"><span class="top-heading">${esc(x.t)}</span><div class="bottom"><p>${esc(x.d)}</p><a class="btn btn-outline" href="/about-us/" style="color:var(--white);border-color:var(--white)">Know More</a></div></div>`).join('')}
+    ${pillars.map((x, i) => `<div class="acc${i === 0 ? ' active' : ''}"><img src="${x.im.src}" alt="" loading="lazy"><h3 class="top-heading">${esc(x.t)}</h3><div class="bottom"><p>${esc(x.d)}</p><a class="btn btn-outline" href="/about-us/" style="color:var(--white);border-color:var(--white)" aria-label="Know more about ${esc(x.t)}">Know More</a></div></div>`).join('')}
   </div>
 </section>
 

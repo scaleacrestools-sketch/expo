@@ -1,13 +1,19 @@
 {
   "name": "assetz-website",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "Assetz Property Group — static luxury real-estate website with a serverless lead API",
+  "description": "Assetz Property Group — static real-estate website with a serverless lead API (Netlify-ready)",
   "scripts": {
     "build": "node build.js",
     "dev": "node build.js && node server.js",
+    "start": "node server.js",
     "guide": "node scripts/make-guide.js",
-    "check": "node scripts/check-links.js"
+    "qa": "node scripts/qa.js",
+    "test:leads": "node scripts/test-leads.js",
+    "package": "node build.js && python3 scripts/package.py"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.0"
   },
   "engines": { "node": ">=18" }
 }

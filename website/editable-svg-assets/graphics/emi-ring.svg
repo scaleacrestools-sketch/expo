@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><title>EMI principal / interest ring (48% principal shown)</title>
+<circle cx="80" cy="80" r="70" fill="none" stroke="#D4A48C" stroke-width="20"/>
+<circle cx="80" cy="80" r="70" fill="none" stroke="#2C191F" stroke-width="20" stroke-dasharray="211.1 439.8" transform="rotate(-90 80 80)"/>
+<text x="80" y="76" text-anchor="middle" fill="#2C191F" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="10">Total payable</text>
+<text x="80" y="96" text-anchor="middle" fill="#2C191F" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="16" font-weight="700">₹3,12,41,636</text></svg>
