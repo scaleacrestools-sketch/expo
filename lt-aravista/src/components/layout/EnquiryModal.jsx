@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { HERO_SLIDES } from '../../config/images';
+import { IMAGES } from '../../config/images';
+import Img from '../ui/Img';
 import { SITE } from '../../config/site';
 import { goToThankYou, submitLead } from '../../lib/leads';
 import { sanitizeName, sanitizePhone, validateEmail, validateName, validatePhone } from '../../lib/validation';
@@ -16,6 +17,7 @@ const POPUP_STATS = [
 
 export default function EnquiryModal({ isOpen, onClose, title = 'Register Your Interest' }) {
   const [submitting, setSubmitting] = useState(false);
+  const busy = useRef(false);
   const [values, setValues] = useState({ name: '', email: '', phone: '' });
   const [errors, setErrors] = useState({ name: '', email: '', phone: '' });
   const [submitError, setSubmitError] = useState('');
@@ -46,6 +48,8 @@ export default function EnquiryModal({ isOpen, onClose, title = 'Register Your I
     setErrors(next);
     setSubmitError('');
     if (Object.values(next).some(Boolean)) return;
+    if (busy.current) return;
+    busy.current = true;
     setSubmitting(true);
     try {
       await submitLead({
@@ -58,9 +62,9 @@ export default function EnquiryModal({ isOpen, onClose, title = 'Register Your I
       close();
     } catch (err) {
       console.error('Lead submit failed:', err);
-      setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
-    } finally {
+      busy.current = false;
       setSubmitting(false);
+      setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     }
   };
 
@@ -72,7 +76,7 @@ export default function EnquiryModal({ isOpen, onClose, title = 'Register Your I
       aria-label={title}
     >
       <button type="button" aria-label="Close popup" onClick={close} className="absolute inset-0 cursor-default" />
-      <div className="relative z-10 my-auto w-full max-w-4xl animate-popup-panel overflow-hidden rounded-[1.75rem] bg-[#f8f1ea] shadow-[0_30px_80px_rgba(0,0,0,0.5)] ring-1 ring-brand/10">
+      <div className="relative z-10 my-auto w-full max-w-4xl animate-popup-panel overflow-hidden rounded-[1.75rem] bg-cream shadow-[0_30px_80px_rgba(0,0,0,0.5)] ring-1 ring-brand/10">
         <button
           type="button"
           aria-label="Close"
@@ -83,9 +87,10 @@ export default function EnquiryModal({ isOpen, onClose, title = 'Register Your I
         </button>
         <div className="grid grid-cols-1 md:grid-cols-[1.05fr_1fr]">
           <div className="relative hidden overflow-hidden md:block md:h-auto md:min-h-auto">
-            <img
-              src={HERO_SLIDES[0].src}
-              alt={`${SITE.name} at ${SITE.location}`}
+            <Img
+              image={IMAGES.CentralClub}
+              sizes="460px"
+              alt={`The Central Social Club at ${SITE.name}, ${SITE.location} (artistic impression)`}
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/55 to-black/10" />
@@ -112,7 +117,7 @@ export default function EnquiryModal({ isOpen, onClose, title = 'Register Your I
               </div>
             </div>
           </div>
-          <form onSubmit={handleSubmit} className="px-5 py-6 sm:px-8 sm:py-8">
+          <form onSubmit={handleSubmit} noValidate className="px-5 py-6 sm:px-8 sm:py-8">
             <div className="h-px w-12 bg-brand/40" />
             <h3 className="mt-4 pr-8 font-serif text-3xl font-semibold text-ink sm:text-4xl">{title}</h3>
             <p className="mt-2 font-sans text-xs leading-5 text-bronze">
@@ -122,6 +127,7 @@ export default function EnquiryModal({ isOpen, onClose, title = 'Register Your I
               <FormField
                 id="popup-name"
                 name="name"
+                autoComplete="name"
                 type="text"
                 label="Full Name"
                 required
@@ -137,6 +143,8 @@ export default function EnquiryModal({ isOpen, onClose, title = 'Register Your I
               <FormField
                 id="popup-email"
                 name="email"
+                autoComplete="email"
+                inputMode="email"
                 type="email"
                 label="Email"
                 required
@@ -151,6 +159,7 @@ export default function EnquiryModal({ isOpen, onClose, title = 'Register Your I
               <FormField
                 id="popup-phone"
                 name="phone"
+                autoComplete="tel-national"
                 phone
                 label="Mobile"
                 required
@@ -173,10 +182,10 @@ export default function EnquiryModal({ isOpen, onClose, title = 'Register Your I
               showArrow
               className="mt-5 bg-brand! text-white! hover:bg-brand/80! hover:text-white!"
             >
-              {submitting ? 'Submitting...' : 'Submit Enquiry'}
+              {submitting ? 'Submitting…' : 'Submit Enquiry'}
             </Button>
-            <p className="mt-3 text-center font-sans text-[10px] tracking-wide text-bronze">
-              Your details stay private. No spam.
+            <p className="mt-3 text-center font-sans text-[11px] leading-4 text-umber">
+              By submitting, you agree to be contacted about this project by call, SMS, email or WhatsApp. Your details stay private.
             </p>
           </form>
         </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Button from '../components/ui/Button';
 import FormField from '../components/ui/FormField';
 import { IconLocation, IconPhone, IconWhatsAppSolid } from '../components/ui/Icons';
@@ -8,6 +8,7 @@ import { sanitizeName, sanitizePhone, validateEmail, validateName, validatePhone
 
 export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
+  const busy = useRef(false);
   const [submitError, setSubmitError] = useState('');
   const [consent, setConsent] = useState(true);
   const [values, setValues] = useState({ name: '', email: '', phone: '', message: '' });
@@ -24,6 +25,8 @@ export default function Contact() {
     setErrors(next);
     setSubmitError('');
     if (Object.values(next).some(Boolean)) return;
+    if (busy.current) return;
+    busy.current = true;
     setSubmitting(true);
     try {
       await submitLead({
@@ -36,9 +39,9 @@ export default function Contact() {
       goToThankYou();
     } catch (err) {
       console.error('Lead submit failed:', err);
-      setSubmitError('Something went wrong. Please try again.');
-    } finally {
+      busy.current = false;
       setSubmitting(false);
+      setSubmitError('Something went wrong. Please try again.');
     }
   };
 
@@ -88,7 +91,7 @@ export default function Contact() {
               </p>
             </div>
           </div>
-          <form onSubmit={handleSubmit} className="bg-sand p-6 sm:p-10">
+          <form onSubmit={handleSubmit} noValidate className="bg-sand p-6 sm:p-10">
             <p className="font-serif text-3xl font-semibold text-ink md:text-4xl">Register Your Interest</p>
             <p className="mt-2 font-body text-sm text-brand">We will get back to you shortly.</p>
             <div className="mt-5 space-y-2.5">
@@ -96,6 +99,7 @@ export default function Contact() {
                 <FormField
                   id="contact-name"
                   name="name"
+                  autoComplete="name"
                   label="Full name"
                   placeholder="Enter your name"
                   value={values.name}
@@ -108,6 +112,7 @@ export default function Contact() {
                 <FormField
                   id="contact-phone"
                   name="phone"
+                  autoComplete="tel-national"
                   phone
                   label="Mobile number"
                   placeholder="Enter your number"
@@ -122,6 +127,8 @@ export default function Contact() {
               <FormField
                 id="contact-email"
                 name="email"
+                autoComplete="email"
+                inputMode="email"
                 type="email"
                 label="Email"
                 placeholder="Enter your email"
@@ -139,7 +146,7 @@ export default function Contact() {
                 onChange={(e) => setValues((s) => ({ ...s, message: e.target.value }))}
               />
             </div>
-            <label className="mt-2 flex items-start gap-2 font-sans text-[11px] leading-5 text-bronze">
+            <label className="mt-2 flex items-start gap-2 font-sans text-[11px] leading-5 text-umber">
               <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-1 accent-brand" />
               I authorize company representatives to call, SMS, email or WhatsApp me about this project and its offers. This
               consent overrides any registration for DNC/NDNC.
@@ -147,7 +154,7 @@ export default function Contact() {
             {errors.consent ? <p className="mt-1 font-sans text-[10px] text-red-500">{errors.consent}</p> : null}
             {submitError ? <p className="mt-2 font-sans text-[10px] text-red-500">{submitError}</p> : null}
             <Button type="submit" disabled={submitting} className="mt-5">
-              {submitting ? 'Submitting...' : 'Submit Now'}
+              {submitting ? 'Submitting…' : 'Submit Now'}
             </Button>
           </form>
         </div>

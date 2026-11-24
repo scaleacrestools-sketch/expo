@@ -1,30 +1,22 @@
 import { SITE } from '../../config/site';
 import { useEnquiry } from '../../context/useEnquiry';
-import { IconWhatsApp } from '../ui/Icons';
+import { IconPhone, IconWhatsApp } from '../ui/Icons';
 
 export function MobileActionBar() {
   const { openEnquiry } = useEnquiry();
+  const item = 'flex min-h-[52px] items-center justify-center gap-1.5 font-sans text-[12px] font-medium tracking-[0.08em] uppercase';
   return (
-    <div className="fixed inset-x-0 bottom-0 z-80 grid grid-cols-3 border-t border-champagne/20 bg-brand md:hidden">
-      <button
-        type="button"
-        onClick={() => openEnquiry('Enquire Now')}
-        className="bg-champagne py-3.5 font-sans text-[11px] font-medium tracking-[0.14em] text-brand uppercase"
-      >
+    <nav aria-label="Quick contact" className="pb-safe fixed inset-x-0 bottom-0 z-80 grid grid-cols-3 border-t border-champagne/25 bg-brand md:hidden">
+      <a href={SITE.phoneTel} className={`${item} border-r border-white/10 text-ivory`}>
+        <IconPhone className="text-sm" aria-hidden="true" /> Call
+      </a>
+      <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${item} border-r border-white/10 text-ivory`}>
+        <IconWhatsApp className="text-base" aria-hidden="true" /> WhatsApp
+      </a>
+      <button type="button" onClick={() => openEnquiry('Enquire Now')} className={`${item} bg-champagne text-ink`}>
         Enquire Now
       </button>
-      <a
-        href={SITE.whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="border-r border-white/10 py-3.5 text-center font-sans text-[11px] font-medium tracking-wide text-white uppercase"
-      >
-        WhatsApp
-      </a>
-      <a href={SITE.phoneTel} className="py-3.5 text-center font-sans text-[11px] font-medium tracking-wide text-white uppercase">
-        Call Now
-      </a>
-    </div>
+    </nav>
   );
 }
 
@@ -35,11 +27,11 @@ export function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="whatsapp-float fixed right-3 bottom-16 z-90 flex h-11 w-11 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_6px_18px_rgba(37,211,102,0.4)] transition-transform duration-300 hover:scale-105 sm:right-8 sm:bottom-8 sm:h-14 sm:w-14"
+      className="whatsapp-float fixed right-3 bottom-[calc(4.25rem+env(safe-area-inset-bottom))] z-90 hidden h-12 w-12 md:flex items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_6px_18px_rgba(37,211,102,0.4)] transition-transform duration-300 hover:scale-105 md:right-8 md:bottom-8 md:h-14 md:w-14"
     >
       <span className="whatsapp-float-ping" aria-hidden="true" />
       <span className="whatsapp-float-ping whatsapp-float-ping-delay" aria-hidden="true" />
-      <IconWhatsApp className="relative z-10 text-[1.35rem] sm:text-3xl" />
+      <IconWhatsApp className="relative z-10 text-[1.45rem] md:text-3xl" />
     </a>
   );
 }

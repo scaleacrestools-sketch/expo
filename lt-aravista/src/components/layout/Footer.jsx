@@ -13,7 +13,7 @@ export default function Footer() {
   const [expanded, setExpanded] = useState(false);
   return (
     <footer className="bg-luxury-dark relative overflow-hidden text-white">
-      <div className="container mx-auto space-y-5 px-6 py-12 pb-24 text-center font-sans md:px-10 md:pb-12">
+      <div className="container mx-auto space-y-5 px-6 pt-12 pb-[calc(52px+2.5rem+env(safe-area-inset-bottom))] text-center font-sans md:px-10 md:pb-12">
         <p className="flex items-center justify-center gap-2 font-serif text-xl text-white md:text-2xl">
           <IconLocationOutline className="shrink-0 text-lg text-champagne" />
           {SITE.name}, {SITE.location}
@@ -30,7 +30,7 @@ export default function Footer() {
           <button
             type="button"
             onClick={() => setExpanded((v) => !v)}
-            className="cursor-pointer text-champagne underline underline-offset-2 transition-colors hover:text-white"
+            className="inline-block cursor-pointer py-1.5 text-champagne underline underline-offset-2 transition-colors hover:text-white"
           >
             {expanded ? 'Read Less' : 'Read More'}
           </button>
@@ -41,15 +41,15 @@ export default function Footer() {
           </p>
         ) : null}
         <p className="font-body text-xs text-white/60">
-          <Link to={ROUTES.privacyPolicy} className="transition-colors hover:text-champagne">
+          <Link to={ROUTES.privacyPolicy} className="inline-block py-2.5 transition-colors hover:text-champagne">
             Privacy Policy
           </Link>
           <span className="mx-2 text-white/30">|</span>
-          <Link to={ROUTES.disclaimer} className="transition-colors hover:text-champagne">
+          <Link to={ROUTES.disclaimer} className="inline-block py-2.5 transition-colors hover:text-champagne">
             Disclaimer
           </Link>
           <span className="mx-2 text-white/30">|</span>
-          <a href={SITE.reraWebsite} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-champagne">
+          <a href={SITE.reraWebsite} target="_blank" rel="noopener noreferrer" className="inline-block py-2.5 transition-colors hover:text-champagne">
             haryanarera.gov.in
           </a>
         </p>

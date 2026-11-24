@@ -1,5 +1,6 @@
 import ArtisticLabel from '../components/ui/ArtisticLabel';
 import EnquiryButton from '../components/ui/EnquiryButton';
+import Img from '../components/ui/Img';
 import Reveal from '../components/ui/Reveal';
 import SectionHeading from '../components/ui/SectionHeading';
 import { IMAGES } from '../config/images';
@@ -39,18 +40,17 @@ export default function Specifications() {
         <div className="mt-12 grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-7" variant="fade-right">
             <div className="shadow-luxury relative aspect-16/9 overflow-hidden rounded-3xl">
-              <img
-                src={IMAGES.LivingRoom}
+              <Img
+                image={IMAGES.LivingRoom}
+                sizes="(min-width: 1024px) 56vw, 92vw"
                 alt="Living room with floor-to-ceiling glazing opening onto a lavish sundeck at L&T Realty Aravista"
-                loading="lazy"
-                decoding="async"
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
               />
               <ArtisticLabel className="top-3 right-3" />
             </div>
           </Reveal>
           <Reveal className="lg:col-span-5" variant="fade-left" delay={100}>
-            <h3 className="font-serif text-3xl leading-tight font-semibold text-brand sm:text-4xl">Your canvas of grandeur</h3>
+            <h3 className="font-serif text-3xl leading-tight font-semibold text-cocoa sm:text-4xl">Your canvas of grandeur</h3>
             <p className="mt-4 font-body text-base leading-8 text-brand">
               Palatial 3 and 4 BHK homes open onto lavish sundecks, with an 11.4 ft floor-to-floor height that fills every
               room with light and volume.
@@ -71,16 +71,14 @@ export default function Specifications() {
             <Reveal key={s.title} delay={(i % 3) * 80}>
               <figure className="hover-lift group h-full overflow-hidden rounded-xl bg-cream ring-1 ring-brand/10">
                 <div className="aspect-[3/4] overflow-hidden">
-                  <img
-                    src={s.image}
+                  <Img
+                    image={{ src: s.image, width: 594, height: 882 }}
                     alt={`${s.title} at L&T Realty Aravista`}
-                    loading="lazy"
-                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 <figcaption className="px-3 py-4 text-center">
-                  <p className="font-serif text-lg leading-tight font-semibold text-brand">{s.title}</p>
+                  <p className="font-serif text-lg leading-tight font-semibold text-cocoa">{s.title}</p>
                   <p className="mt-1 font-body text-xs leading-5 text-bronze">{s.note}</p>
                 </figcaption>
               </figure>
@@ -93,7 +91,7 @@ export default function Specifications() {
             <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="font-sans text-[11px] font-medium tracking-[0.3em] text-bronze uppercase">Sustainability</p>
-                <h3 className="mt-2 font-serif text-3xl font-semibold text-brand">Green by design</h3>
+                <h3 className="mt-2 font-serif text-3xl font-semibold text-cocoa">Green by design</h3>
               </div>
               <p className="max-w-md font-body text-sm leading-6 text-brand md:text-right">
                 Rooftop solar, rainwater harvesting and 100% wastewater recycling through an advanced MBR sewage treatment
@@ -103,7 +101,7 @@ export default function Specifications() {
             <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
               {SUSTAINABILITY.map((s) => (
                 <div key={s.label} className="rounded-xl bg-sand px-4 py-5 text-center">
-                  <p className="font-serif text-3xl font-semibold text-brand">{s.value}</p>
+                  <p className="font-serif text-3xl font-semibold text-cocoa">{s.value}</p>
                   <p className="mt-1 font-body text-xs leading-5 text-bronze">{s.label}</p>
                 </div>
               ))}

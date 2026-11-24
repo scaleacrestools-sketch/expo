@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import EnquiryButton from '../components/ui/EnquiryButton';
+import Img from '../components/ui/Img';
 import Lightbox from '../components/ui/Lightbox';
 import { IconPlus } from '../components/ui/Icons';
 import SectionHeading from '../components/ui/SectionHeading';
@@ -40,7 +41,7 @@ export default function FloorPlans() {
       <div className="container mx-auto px-4 md:px-8">
         <SectionHeading
           eyebrow="Master Plan & Floor Plans"
-          title="Your Canvas of Grandeur"
+          title="The Blueprint of Majestic Living"
           subtitle="Explore the master layout and unit plans of L&T Realty Aravista. Towers 1 and 2 offer 3 BHK residences and Tower 3 offers 4 BHK residences."
         />
         <div className="mx-auto mt-10 max-w-3xl overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -66,18 +67,15 @@ export default function FloorPlans() {
             <button
               type="button"
               disabled={gated}
-              onClick={() => setLightbox({ src: tab.image, alt: tab.alt, title: tab.label })}
+              onClick={() => setLightbox({ src: tab.image.full, alt: tab.alt, title: tab.label })}
               aria-label={`Enlarge ${tab.label}`}
               className="group block w-full cursor-zoom-in overflow-hidden rounded-2xl bg-white disabled:cursor-default"
             >
-              <img
+              <Img
                 key={tab.id}
-                src={tab.image}
+                image={tab.image}
+                sizes="(min-width: 1024px) 990px, 100vw"
                 alt={tab.alt}
-                width={tab.id === 'master' ? 2208 : 2880}
-                height={tab.id === 'master' ? 1800 : 1620}
-                loading="lazy"
-                decoding="async"
                 className={`eloria-fade mx-auto h-auto w-full object-contain ${tab.id === 'master' ? 'max-h-[640px]' : 'max-h-120'} ${gated ? 'scale-105 blur-xs' : ''}`}
               />
             </button>
@@ -109,7 +107,7 @@ export default function FloorPlans() {
               ].map(([label, value]) => (
                 <div key={label} className="border-r border-brand/10 px-2 py-4 last:border-r-0">
                   <dt className="font-sans text-[10px] tracking-[0.2em] text-bronze uppercase">{label}</dt>
-                  <dd className="mt-1 font-serif text-2xl font-semibold text-brand sm:text-3xl">{value}</dd>
+                  <dd className="mt-1 font-serif text-2xl font-semibold text-cocoa sm:text-3xl">{value}</dd>
                   <dd className="font-body text-[11px] text-bronze">Sq. Ft. approx.</dd>
                 </div>
               ))}
@@ -134,7 +132,7 @@ export default function FloorPlans() {
               ['3.6 Lakh Sq. Ft.', 'Amenity space'],
             ].map(([v, l]) => (
               <div key={l} className="rounded-xl bg-sand px-3 py-4 text-center ring-1 ring-brand/10">
-                <p className="font-serif text-2xl font-semibold text-brand">{v}</p>
+                <p className="font-serif text-2xl font-semibold text-cocoa">{v}</p>
                 <p className="mt-1 font-sans text-[10px] tracking-[0.2em] text-bronze uppercase">{l}</p>
               </div>
             ))}

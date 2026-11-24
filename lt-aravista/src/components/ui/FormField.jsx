@@ -2,13 +2,13 @@ import { sanitizePhone } from '../../lib/validation';
 
 const PHONE_WRAP = {
   default:
-    'rounded-xl border-brand/20 bg-[#f8f1ea] text-brand placeholder:text-[13px] placeholder:text-bronze focus-within:border-bronze focus-within:bg-white focus-within:ring-4 focus-within:ring-bronze/10',
+    'rounded-xl border-brand/20 bg-cream text-brand placeholder:text-[13px] placeholder:text-umber/70 focus-within:border-bronze focus-within:bg-white focus-within:ring-4 focus-within:ring-bronze/10',
   overlay:
     'rounded-xl border-white/20 bg-white/8 text-white placeholder:text-[13px] placeholder:text-white/75 focus-within:border-champagne/80 focus-within:bg-white/12',
 };
 const INPUT = {
   default:
-    'rounded-xl border-brand/20 bg-[#f8f1ea] text-brand placeholder:text-[13px] placeholder:text-bronze focus:border-bronze focus:bg-white focus:ring-4 focus:ring-bronze/10',
+    'rounded-xl border-brand/20 bg-cream text-brand placeholder:text-[13px] placeholder:text-umber/70 focus:border-bronze focus:bg-white focus:ring-4 focus:ring-bronze/10',
   overlay:
     'rounded-xl border-white/20 bg-white/8 text-white placeholder:text-[13px] placeholder:text-white/75 focus:border-champagne/80 focus:bg-white/12',
 };
@@ -86,7 +86,6 @@ export default function FormField({
             {...rest}
             type="tel"
             inputMode="numeric"
-            maxLength={10}
             value={value}
             aria-invalid={!!error}
             onChange={handleChange}

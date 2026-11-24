@@ -1,16 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import EnquiryButton from '../components/ui/EnquiryButton';
 import { IconArrowLeft, IconArrowRight } from '../components/ui/Icons';
+import Img from '../components/ui/Img';
 import Reveal from '../components/ui/Reveal';
 import { IMAGES } from '../config/images';
 
 const SLIDES = [
-  {
-    title: 'Outdoor Swimming Pool',
-    description: "A resort-style pool beside the clubhouse, with a kids' pool and water splash, kids' play area, pet corner and skating park nearby.",
-    image: IMAGES.OutdoorPool,
-    alt: 'Outdoor swimming pool with loungers in front of the clubhouse at L&T Realty Aravista',
-  },
   {
     title: 'The Central Social Club',
     description: 'Three levels of leisure, wellness and celebration, from a banquet hall and library to a restaurant, gym and spa.',
@@ -30,22 +25,16 @@ const SLIDES = [
     alt: 'Temperature-controlled indoor swimming pool at L&T Realty Aravista',
   },
   {
-    title: 'Wellness Garden',
-    description: 'Shaded walks through the wellness garden, alongside the central water spine, cascading water features and amphilawn.',
-    image: IMAGES.WellnessGarden,
-    alt: 'Wellness garden walkway with lush planting at L&T Realty Aravista',
-  },
-  {
-    title: 'The Central Landscape',
-    description: 'A 5-acre central green with a discovery garden, nature trail, central living canopy and cascading water features.',
-    image: IMAGES.CentralLandscape,
-    alt: 'Aerial view of the discovery garden and central living canopy at L&T Realty Aravista',
-  },
-  {
     title: 'The Arena Sports Club',
     description: 'A dedicated sports club for an active lifestyle, complemented by courts, a cricket net, climbing wall and roller-skating loop.',
     image: IMAGES.ArenaSports,
     alt: 'Indoor court at The Arena sports club, L&T Realty Aravista',
+  },
+  {
+    title: 'Outdoor Swimming Pool',
+    description: "A resort-style pool beside the clubhouse, with a kids' pool and water splash, kids' play area, pet corner and skating park nearby.",
+    image: IMAGES.OutdoorPool,
+    alt: 'Outdoor swimming pool with loungers in front of the clubhouse at L&T Realty Aravista',
   },
 ];
 
@@ -91,7 +80,7 @@ const LOOP = [...SLIDES, ...SLIDES, ...SLIDES];
 function ListCard({ title, items, columns = false, children }) {
   return (
     <article className="hover-lift h-full rounded-xl bg-sand p-6 ring-1 ring-brand/10 sm:p-7">
-      <h3 className="font-serif text-2xl leading-tight font-semibold text-brand sm:text-[1.7rem]">{title}</h3>
+      <h3 className="font-serif text-2xl leading-tight font-semibold text-cocoa sm:text-[1.7rem]">{title}</h3>
       <span className="mt-3 block h-px w-10 bg-brand/30" aria-hidden="true" />
       {children}
       <ul className={`mt-4 grid gap-x-6 gap-y-2.5 ${columns ? 'sm:grid-cols-2' : ''}`}>
@@ -145,20 +134,20 @@ export default function Amenities() {
     <section id="amenities" className="overflow-hidden bg-cream py-16 sm:py-20 md:py-24">
       <div className="container mx-auto flex flex-col gap-6 px-4 md:flex-row md:items-end md:justify-between md:px-10 xl:px-14">
         <Reveal>
-          <p className="font-body text-xs tracking-[0.3em] text-[#443e36]/60 uppercase">Amenities &amp; Clubhouses</p>
-          <h2 className="mt-3 font-display text-4xl leading-[1.05] text-[#443e36] sm:text-5xl md:text-6xl">
+          <p className="font-body text-xs tracking-[0.3em] text-brand/60 uppercase">Amenities &amp; Clubhouses</p>
+          <h2 className="mt-3 font-display text-4xl leading-[1.05] text-cocoa sm:text-5xl md:text-6xl">
             3.6 Lakh Sq. Ft. of Extraordinary Living
           </h2>
         </Reveal>
         <div className="flex items-center gap-4">
-          <p className="font-body text-sm text-[#443e36]/60 tabular-nums">
-            <span className="text-[#443e36]">{String(current + 1).padStart(2, '0')}</span> / {String(COUNT).padStart(2, '0')}
+          <p className="font-body text-sm text-umber tabular-nums">
+            <span className="text-brand">{String(current + 1).padStart(2, '0')}</span> / {String(COUNT).padStart(2, '0')}
           </p>
           <button
             type="button"
             onClick={() => step(-1)}
             aria-label="Previous amenity"
-            className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#443e36]/30 text-[#443e36] transition-colors hover:bg-[#443e36] hover:text-[#f1eae3]"
+            className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-brand/30 text-brand transition-colors hover:bg-brand hover:text-ivory"
           >
             <IconArrowLeft />
           </button>
@@ -166,7 +155,7 @@ export default function Amenities() {
             type="button"
             onClick={() => step(1)}
             aria-label="Next amenity"
-            className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-[#443e36] text-[#f1eae3] transition-colors hover:bg-[#2f2a24]"
+            className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-brand text-ivory transition-colors hover:bg-ink"
           >
             <IconArrowRight />
           </button>
@@ -201,16 +190,14 @@ export default function Amenities() {
               <article key={`${i}-${slide.title}`} className="w-(--w) shrink-0" aria-hidden={!isActive}>
                 <button
                   type="button"
-                  tabIndex={isActive ? -1 : 0}
                   onClick={() => goTo(i)}
-                  aria-label={`Show ${slide.title}`}
+                  tabIndex={-1}
                   className={`group relative block aspect-4/5 w-full overflow-hidden text-left sm:aspect-16/9 md:aspect-[2.2/1] ${isActive ? 'cursor-default' : 'cursor-pointer'}`}
                 >
-                  <img
-                    src={slide.image}
+                  <Img
+                    image={slide.image}
+                    sizes="(min-width: 768px) 52vw, 82vw"
                     alt={slide.alt}
-                    loading="lazy"
-                    decoding="async"
                     className={`h-full w-full object-cover transition-transform duration-[1200ms] ${noAnim} ${isActive ? 'scale-100' : 'scale-110'}`}
                   />
                   <span className="absolute inset-0 bg-linear-to-t from-black/85 via-black/25 to-transparent" aria-hidden="true" />
@@ -218,7 +205,7 @@ export default function Amenities() {
                     className={`absolute inset-0 bg-black transition-opacity duration-700 ${noAnim} ${isActive ? 'opacity-0' : 'opacity-25 group-hover:opacity-10'}`}
                     aria-hidden="true"
                   />
-                  <span className="absolute top-3 right-3 rounded-full bg-black/35 px-2.5 py-1 font-sans text-[9px] tracking-[0.18em] text-white/85 uppercase backdrop-blur-sm">
+                  <span className="absolute top-3 right-3 rounded-full bg-black/35 px-2.5 py-1 font-sans text-[10px] tracking-[0.16em] text-white/85 uppercase backdrop-blur-sm">
                     Artistic impression
                   </span>
                   <span

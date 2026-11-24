@@ -20,13 +20,13 @@ export default function Pricing() {
                 <span className="btn-luxury absolute -top-4 left-1/2 -translate-x-1/2 rounded-full px-5 py-2 font-sans text-[10px] font-medium tracking-[0.24em] whitespace-nowrap text-white uppercase">
                   {r.bhk} · {r.towers}
                 </span>
-                <h3 className="font-serif text-5xl font-medium text-brand">{r.name}</h3>
+                <h3 className="font-serif text-5xl font-medium text-cocoa">{r.name}</h3>
                 <p className="mx-auto mt-5 inline-flex rounded-full bg-sand px-4 py-2 font-body text-sm text-brand">
                   Carpet Area: Approx. {r.carpet} Sq. Ft.
                 </p>
                 <div className="mx-auto my-7 h-px w-full max-w-xs bg-brand/15" />
                 <p className="font-sans text-[10px] tracking-[0.28em] text-bronze uppercase">Starting price</p>
-                <p className="mt-2 font-serif text-5xl font-medium text-brand">
+                <p className="mt-2 font-serif text-5xl font-medium text-cocoa">
                   {r.price}
                   <span className="ml-2 align-middle font-body text-base font-normal text-bronze">onwards</span>
                 </p>
@@ -41,7 +41,7 @@ export default function Pricing() {
           <div className="flex flex-col items-center justify-between gap-5 rounded-xl bg-cream px-6 py-6 text-center ring-1 ring-brand/10 sm:px-10 md:flex-row md:text-left">
             <div>
               <p className="font-sans text-[10px] tracking-[0.28em] text-bronze uppercase">Payment Plan</p>
-              <p className="mt-1.5 font-serif text-3xl font-semibold text-brand">{SITE.paymentPlan}</p>
+              <p className="mt-1.5 font-serif text-3xl font-semibold text-cocoa">{SITE.paymentPlan}</p>
             </div>
             <EnquiryButton title="Get Detailed Cost Sheet">Get Detailed Cost Sheet</EnquiryButton>
           </div>

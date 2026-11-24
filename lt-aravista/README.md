@@ -13,9 +13,19 @@ the existing site. Content has been updated to the latest Aravista brochure.
 npm install
 npm run dev      # local dev server; /save.php is answered by a dev-only stub
 npm run lint
-npm run build    # outputs dist/
+npm run build    # client build, server build, then prerenders the home page into dist/index.html
 npm run preview  # serves dist/ locally (no /save.php stub)
 ```
+
+## How the build works
+
+`npm run build` runs three steps:
+
+1. `vite build` creates the client bundle in `dist/`.
+2. `vite build --ssr src/entry-server.jsx` creates a temporary server bundle.
+3. `scripts/prerender.js` renders the home page to HTML, inserts it into `dist/index.html`
+   and inlines the stylesheet. The hero, headline, price and buttons therefore paint before
+   JavaScript loads. React then hydrates the page. Other routes render normally.
 
 ## Deploying
 
@@ -38,6 +48,19 @@ Nothing in this project deploys automatically.
 - Phone, WhatsApp number and agent RERA number of the channel partner.
 - Domain, canonical URL, routes, `robots.txt`, `sitemap.xml` and favicon.
 
+## Brand colours
+
+All colours come from the official brochure and live as tokens in `src/index.css`:
+ivory `#f4f2ed`, beige `#ebe2d8`, sand `#e4dcd2`, champagne `#d8d0c3`, taupe `#bcafa1`,
+gold `#c7a785`, bronze `#8f4c06`, umber `#6d5035`, cocoa `#603913`, mocha `#5b4945`,
+espresso `#4a3b37`.
+
+## Videos
+
+`public/videos/` holds the web versions. The hero loop plays only on screens of 1024 px or wider,
+after the page has loaded, and never when reduced motion or data saver is on. The project film
+loads only when a visitor presses play; phones get the vertical cut.
+
 ## Where to edit content
 
 | What | File |
@@ -46,7 +69,8 @@ Nothing in this project deploys automatically.
 | Residence collections, areas, prices, plan images | `src/config/residences.js` |
 | Image registry and hero slides | `src/config/images.js` |
 | Navigation links | `src/config/routes.js` |
-| SEO meta, Open Graph, structured data | `index.html` |
+| SEO meta, Open Graph, structured data, preloads | `index.html` |
+| Hero images | `public/images/hero/` |
 
 Unit floor plans are shown openly with zoom. To return to the old blurred,
 enquiry-gated plans, set `GATE_UNIT_PLANS = true` in `src/sections/FloorPlans.jsx`.

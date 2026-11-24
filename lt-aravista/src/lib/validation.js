@@ -18,4 +18,10 @@ export function validatePhone(value) {
 }
 
 export const sanitizeName = (v) => v.replace(/[0-9]/g, '');
-export const sanitizePhone = (v) => v.replace(/\D/g, '').slice(0, 10);
+/** Keeps 10 digits; a pasted "+91 98765 43210" or "098765 43210" becomes "9876543210". */
+export const sanitizePhone = (v) => {
+  let d = v.replace(/\D/g, '');
+  if (d.length > 10 && d.startsWith('91')) d = d.slice(2);
+  if (d.length > 10 && d.startsWith('0')) d = d.slice(1);
+  return d.slice(0, 10);
+};

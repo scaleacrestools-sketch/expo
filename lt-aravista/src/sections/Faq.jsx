@@ -48,7 +48,7 @@ export default function Faq() {
                   onClick={() => setOpen(isOpen ? -1 : i)}
                   className="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-5 text-left sm:px-8"
                 >
-                  <span className="font-serif text-xl leading-snug font-semibold text-brand sm:text-2xl">{f.q}</span>
+                  <span className="font-serif text-xl leading-snug font-semibold text-cocoa sm:text-2xl">{f.q}</span>
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-brand/30 text-brand">
                     {isOpen ? <IconMinus /> : <IconPlus />}
                   </span>

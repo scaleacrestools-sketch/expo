@@ -1,4 +1,4 @@
-import { useInView } from 'react-intersection-observer';
+import { useInView } from '../../hooks/useInView';
 
 export default function Reveal({
   children,
@@ -8,7 +8,7 @@ export default function Reveal({
   duration = 700,
   staggerChildren = false,
 }) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.12, rootMargin: '-40px 0px' });
+  const { ref, inView } = useInView();
   const cls = ['reveal', `reveal-${variant}`, staggerChildren ? 'reveal-stagger' : '', inView ? 'reveal-visible' : '']
     .filter(Boolean)
     .join(' ');

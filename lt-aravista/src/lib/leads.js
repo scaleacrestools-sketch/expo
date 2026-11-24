@@ -3,7 +3,6 @@
  * Ported unchanged from the existing production site: same /save.php
  * endpoint, same storage keys, same payload fields and same thank-you flow.
  */
-import axios from 'axios';
 import { ROUTES } from '../config/routes';
 
 const SAVE_ENDPOINT = '/save.php';
@@ -155,11 +154,18 @@ function nowInIndia(d = new Date()) {
   };
 }
 
+function getJson(url, timeout) {
+  const ctrl = new AbortController();
+  const timer = window.setTimeout(() => ctrl.abort(), timeout);
+  return fetch(url, { signal: ctrl.signal, cache: 'no-store' })
+    .then((r) => r.json())
+    .finally(() => window.clearTimeout(timer));
+}
+
 async function getIpAddress() {
   const timeout = 1200;
-  const primary = axios
-    .get('https://api.ipify.org?format=json', { timeout })
-    .then((r) => r.data.ip?.trim() || '')
+  const primary = getJson('https://api.ipify.org?format=json', timeout)
+    .then((d) => d.ip?.trim() || '')
     .catch(() => '');
   const ip = await Promise.race([
     primary,
@@ -167,7 +173,7 @@ async function getIpAddress() {
   ]);
   if (ip) return ip;
   try {
-    const { data } = await axios.get('https://api64.ipify.org?format=json', { timeout });
+    const data = await getJson('https://api64.ipify.org?format=json', timeout);
     return data.ip?.trim() || '';
   } catch {
     return '';
@@ -199,19 +205,29 @@ function parseResponse(data) {
 }
 
 async function postToSave(payload) {
-  const res = await axios.post(SAVE_ENDPOINT, toFormBody(payload), {
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-    timeout: 20000,
-    responseType: 'text',
-    validateStatus: () => true,
-  });
-  const body = parseResponse(res.data);
-  if (res.status >= 400 || body.success === false) {
+  const ctrl = new AbortController();
+  const timer = window.setTimeout(() => ctrl.abort(), 20000);
+  let status = 0;
+  let text = '';
+  try {
+    const res = await fetch(SAVE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: toFormBody(payload),
+      signal: ctrl.signal,
+    });
+    status = res.status;
+    text = await res.text();
+  } finally {
+    window.clearTimeout(timer);
+  }
+  const body = parseResponse(text);
+  if (status >= 400 || body.success === false) {
     throw Error(
       body.message ||
-        (res.status === 404
+        (status === 404
           ? 'Form server not found. Upload save.php or run npm run dev.'
-          : res.status >= 500
+          : status >= 500
             ? 'Server error while saving. Check save.php on the host.'
             : 'Unable to save your enquiry. Please try again.'),
     );

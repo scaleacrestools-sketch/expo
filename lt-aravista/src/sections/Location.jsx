@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import EnquiryButton from '../components/ui/EnquiryButton';
+import Img from '../components/ui/Img';
 import Lightbox from '../components/ui/Lightbox';
 import { IconExternal, IconLocation, IconPlus } from '../components/ui/Icons';
 import Reveal from '../components/ui/Reveal';
@@ -55,6 +56,7 @@ const MAP_LINK = 'https://www.google.com/maps/search/?api=1&query=Sector+86+Guru
 export default function Location() {
   const [active, setActive] = useState(0);
   const [lightbox, setLightbox] = useState(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
   const cat = CATEGORIES[active];
 
   return (
@@ -65,7 +67,7 @@ export default function Location() {
             <p className="font-sans text-[11px] font-medium tracking-[0.3em] text-bronze uppercase sm:text-xs">
               Location &amp; Connectivity
             </p>
-            <h2 className="mt-3 font-serif text-[2rem] leading-[1.1] font-semibold text-brand sm:text-[2.5rem] md:text-5xl">
+            <h2 className="mt-3 font-serif text-[2rem] leading-[1.1] font-semibold text-cocoa sm:text-[2.5rem] md:text-5xl">
               Seamlessly Connected to Everything That Matters
             </h2>
           </div>
@@ -95,7 +97,7 @@ export default function Location() {
                     aria-controls={`location-panel-${i}`}
                     id={`location-tab-${i}`}
                     onClick={() => setActive(i)}
-                    className={`group flex shrink-0 cursor-pointer items-center gap-3 rounded-full px-4 py-2 text-left transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-brand/40 lg:rounded-none lg:border-b lg:border-brand/10 lg:px-0 lg:py-3 ${isActive ? 'bg-brand text-cream lg:bg-transparent lg:text-brand' : 'bg-sand text-brand lg:bg-transparent lg:text-brand/55 lg:hover:text-brand'}`}
+                    className={`group flex shrink-0 cursor-pointer items-center gap-3 rounded-full px-4 py-2.5 text-left transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-brand/40 lg:rounded-none lg:border-b lg:border-brand/10 lg:px-0 lg:py-3 ${isActive ? 'bg-brand text-cream lg:bg-transparent lg:text-brand' : 'bg-sand text-brand lg:bg-transparent lg:text-brand/55 lg:hover:text-brand'}`}
                   >
                     <span className={`hidden h-px bg-brand transition-all duration-500 lg:block ${isActive ? 'w-8' : 'w-0'}`} aria-hidden="true" />
                     <span className="font-sans text-xs font-medium whitespace-nowrap lg:hidden">{c.tabLabel}</span>
@@ -107,18 +109,15 @@ export default function Location() {
             <button
               type="button"
               onClick={() =>
-                setLightbox({ src: IMAGES.LocationMap, alt: 'L&T Realty Aravista location map, Sector 86 Gurugram', title: 'Location Map' })
+                setLightbox({ src: IMAGES.LocationMap.full, alt: 'L&T Realty Aravista location map, Sector 86 Gurugram', title: 'Location Map' })
               }
               className="group relative mt-8 block w-full cursor-zoom-in overflow-hidden rounded-xl bg-sand ring-1 ring-brand/10"
               aria-label="Enlarge location map"
             >
-              <img
-                src={IMAGES.LocationMap}
+              <Img
+                image={IMAGES.LocationMap}
+                sizes="(min-width: 1024px) 380px, 92vw"
                 alt="L&T Realty Aravista location map showing nearby schools, retail and hospitals"
-                width={2880}
-                height={1620}
-                loading="lazy"
-                decoding="async"
                 className="aspect-16/9 w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <span className="absolute right-3 bottom-3 flex items-center gap-1.5 rounded-full bg-brand px-3 py-1.5 font-sans text-[10px] tracking-[0.18em] text-white uppercase">
@@ -130,7 +129,7 @@ export default function Location() {
           <Reveal className="min-w-0 lg:col-span-8" delay={80}>
             <div key={active} id={`location-panel-${active}`} role="tabpanel" aria-labelledby={`location-tab-${active}`} className="eloria-fade">
               <div className="flex items-baseline justify-between gap-4 border-b border-brand/15 pb-4">
-                <h3 className="font-serif text-3xl font-semibold text-brand sm:text-4xl">{cat.title}</h3>
+                <h3 className="font-serif text-3xl font-semibold text-cocoa sm:text-4xl">{cat.title}</h3>
                 <span className="shrink-0 font-sans text-xs font-medium text-bronze tabular-nums">
                   {String(active + 1).padStart(2, '0')} / {String(CATEGORIES.length).padStart(2, '0')}
                 </span>
@@ -143,7 +142,7 @@ export default function Location() {
                       {p.label}
                     </span>
                     {p.distance ? (
-                      <span className="shrink-0 font-serif text-lg font-semibold text-brand sm:text-xl">{p.distance}</span>
+                      <span className="shrink-0 font-serif text-lg font-semibold text-cocoa sm:text-xl">{p.distance}</span>
                     ) : null}
                     {p.tag ? (
                       <span className="shrink-0 rounded-full bg-sand px-3 py-1 font-sans text-[10px] font-medium tracking-[0.16em] text-bronze uppercase">
@@ -162,19 +161,33 @@ export default function Location() {
               </EnquiryButton>
             </div>
             <div className="relative mt-10 h-72 overflow-hidden rounded-xl bg-sand sm:h-96">
-              <iframe
-                title={`${SITE.name} location, ${SITE.location}`}
-                src={MAP_EMBED}
-                className="absolute inset-0 h-full w-full border-0 grayscale-[35%] sepia-[15%]"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              {mapLoaded ? (
+                <iframe
+                  title={`${SITE.name} location, ${SITE.location}`}
+                  src={MAP_EMBED}
+                  className="absolute inset-0 h-full w-full border-0 grayscale-[35%] sepia-[15%]"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setMapLoaded(true)}
+                  className="group absolute inset-0 flex cursor-pointer flex-col items-center justify-center gap-3 bg-[radial-gradient(circle_at_50%_40%,#f4f2ed_0%,#ebe2d8_60%,#e4dcd2_100%)] pb-16 text-center"
+                >
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand text-ivory shadow-luxury transition-transform duration-300 group-hover:scale-105">
+                    <IconLocation className="text-2xl" />
+                  </span>
+                  <span className="font-serif text-2xl font-semibold text-cocoa">View interactive map</span>
+                  <span className="font-body text-xs text-umber">Loads Google Maps</span>
+                </button>
+              )}
               <div className="absolute bottom-4 left-4 flex items-center gap-3 rounded-xl bg-cream/95 py-2.5 pr-2.5 pl-4 shadow-luxury backdrop-blur-sm sm:bottom-6 sm:left-6">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-cream">
                   <IconLocation />
                 </span>
                 <span>
-                  <span className="block font-serif text-lg leading-tight font-semibold text-brand">{SITE.name}</span>
+                  <span className="block font-serif text-lg leading-tight font-semibold text-cocoa">{SITE.name}</span>
                   <span className="block font-body text-xs font-medium text-brand">{SITE.location}</span>
                 </span>
                 <a
@@ -182,7 +195,7 @@ export default function Location() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Open in Google Maps"
-                  className="ml-2 flex h-9 w-9 items-center justify-center rounded-lg bg-sand text-brand transition-colors hover:bg-brand hover:text-cream"
+                  className="ml-2 flex h-10 w-10 items-center justify-center rounded-lg bg-sand text-brand transition-colors hover:bg-brand hover:text-cream"
                 >
                   <IconExternal />
                 </a>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Button from '../components/ui/Button';
 import FormField from '../components/ui/FormField';
 import { goToThankYou, submitLead } from '../lib/leads';
@@ -8,6 +8,7 @@ const EMPTY = { name: '', email: '', phone: '' };
 
 export default function HeroEnquiryForm() {
   const [submitting, setSubmitting] = useState(false);
+  const busy = useRef(false);
   const [submitError, setSubmitError] = useState('');
   const [values, setValues] = useState(EMPTY);
   const [errors, setErrors] = useState(EMPTY);
@@ -18,6 +19,8 @@ export default function HeroEnquiryForm() {
     setErrors(next);
     setSubmitError('');
     if (Object.values(next).some(Boolean)) return;
+    if (busy.current) return;
+    busy.current = true;
     setSubmitting(true);
     try {
       await submitLead({
@@ -29,9 +32,9 @@ export default function HeroEnquiryForm() {
       goToThankYou();
     } catch (err) {
       console.error('Lead submit failed:', err);
-      setSubmitError('Something went wrong. Please try again.');
-    } finally {
+      busy.current = false;
       setSubmitting(false);
+      setSubmitError('Something went wrong. Please try again.');
     }
   };
 
@@ -53,10 +56,10 @@ export default function HeroEnquiryForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="eloria-fade w-full rounded-2xl border border-white/10 bg-brand p-6 shadow-[0_24px_50px_rgba(47,42,36,0.25)] sm:p-7 md:border-white/20 md:bg-black/35 md:shadow-[0_30px_70px_rgba(0,0,0,0.35)] md:backdrop-blur-xl"
-      style={{ animationDelay: '1200ms' }}
+      noValidate
+      className="w-full rounded-2xl border border-white/10 bg-brand p-6 shadow-[0_24px_50px_rgba(74,59,55,0.25)] sm:p-7 md:border-white/20 md:bg-ink/55 md:shadow-[0_30px_70px_rgba(40,30,26,0.35)] md:backdrop-blur-xl"
     >
-      <h3 className="font-serif text-3xl leading-tight font-medium text-white sm:text-[2.1rem]">Get the Price List</h3>
+      <h2 className="font-serif text-3xl leading-tight font-medium text-white sm:text-[2.1rem]">Get the Price List</h2>
       <p className="mt-1.5 font-sans text-xs leading-5 text-white/90">
         Share your details to receive the Aravista price list, floor plans and brochure.
       </p>
@@ -64,6 +67,7 @@ export default function HeroEnquiryForm() {
         <FormField
           id="hero-name"
           name="name"
+          autoComplete="name"
           type="text"
           label="Full Name"
           required
@@ -77,6 +81,8 @@ export default function HeroEnquiryForm() {
         <FormField
           id="hero-email"
           name="email"
+          autoComplete="email"
+          inputMode="email"
           type="email"
           label="Email"
           required
@@ -90,6 +96,7 @@ export default function HeroEnquiryForm() {
         <FormField
           id="hero-phone"
           name="phone"
+          autoComplete="tel-national"
           phone
           label="Mobile"
           required
@@ -103,9 +110,9 @@ export default function HeroEnquiryForm() {
       </div>
       {submitError && <p className="mt-3 font-sans text-[10px] text-red-200">{submitError}</p>}
       <Button type="submit" disabled={submitting} fullWidth showArrow className="mt-5">
-        {submitting ? 'Submitting...' : 'Submit Enquiry'}
+        {submitting ? 'Submitting…' : 'Submit Enquiry'}
       </Button>
-      <p className="mt-3 text-center font-sans text-[10px] tracking-wide text-white/80">Your details stay private. No spam.</p>
+      <p className="mt-3 text-center font-sans text-[11px] leading-4 text-white/80">By submitting, you agree to be contacted about this project by call, SMS, email or WhatsApp. Your details stay private.</p>
     </form>
   );
 }

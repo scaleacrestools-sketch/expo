@@ -1,5 +1,6 @@
 import ArtisticLabel from '../components/ui/ArtisticLabel';
 import EnquiryButton from '../components/ui/EnquiryButton';
+import Img from '../components/ui/Img';
 import { IconDownload } from '../components/ui/Icons';
 import Reveal from '../components/ui/Reveal';
 import SectionHeading from '../components/ui/SectionHeading';
@@ -28,21 +29,18 @@ export default function Overview() {
           <Reveal className="order-2 lg:order-1 lg:col-span-6" variant="fade-right">
             <div className="relative mx-auto max-w-xl pb-8 lg:max-w-none">
               <div className="shadow-luxury hover-lift relative aspect-4/3 overflow-hidden rounded-3xl">
-                <img
-                  src={IMAGES.CentralLandscape}
+                <Img
+                  image={IMAGES.CentralLandscape}
+                  sizes="(min-width: 1024px) 46vw, (min-width: 640px) 576px, 92vw"
                   alt="Central landscape with discovery garden, water features and towers at L&T Realty Aravista"
-                  loading="lazy"
-                  decoding="async"
                   className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                 />
                 <ArtisticLabel className="top-3 right-3" />
               </div>
               <div className="absolute -bottom-2 -left-3 w-[46%] overflow-hidden rounded-2xl border-4 border-white shadow-luxury sm:-left-8">
-                <img
-                  src={IMAGES.LivingRoom}
-                  alt="Luxury living room opening onto a sundeck at L&T Realty Aravista"
-                  loading="lazy"
-                  decoding="async"
+                <Img
+                  image={IMAGES.OasisOfCalm}
+                  alt="Landscaped deck and lawn, Your Oasis of Calm at L&T Realty Aravista (artistic impression)"
                   className="aspect-4/3 h-full w-full object-cover"
                 />
               </div>

@@ -65,17 +65,17 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${solid ? 'bg-brand/90 shadow-[0_10px_30px_rgba(47,42,36,0.2)] backdrop-blur-xl' : 'bg-transparent'} ${isHome ? 'eloria-header-in' : ''}`}
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${solid ? 'bg-brand/90 shadow-[0_10px_30px_rgba(74,59,55,0.2)] backdrop-blur-xl' : 'bg-transparent'}`}
       >
         <div
-          className={`relative container mx-auto grid grid-cols-[1fr_auto_1fr] items-center gap-4 px-4 transition-all duration-500 md:px-10 xl:px-14 ${solid ? 'py-2.5' : 'py-4 md:py-7'}`}
+          className={`relative container mx-auto grid grid-cols-[1fr_auto_1fr] items-center gap-4 px-4 transition-all duration-500 md:px-10 xl:px-14 ${solid ? 'py-2' : 'py-3 md:py-6'}`}
         >
           <button
             type="button"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="group flex w-fit cursor-pointer items-center gap-3 text-white"
+            className="group -ml-2 flex h-11 w-fit min-w-11 cursor-pointer items-center gap-3 px-2 text-white"
           >
             <span className="flex w-6 flex-col gap-[5px]" aria-hidden="true">
               <span className="h-[1.5px] w-full bg-white transition-all duration-300 group-hover:w-4/5" />
@@ -87,7 +87,7 @@ export default function Header() {
           <div className="justify-self-center">
             <Logo
               variant="light"
-              className={`w-auto object-contain transition-all duration-500 ${solid ? 'h-9 sm:h-10' : 'h-10 sm:h-12'}`}
+              className={`w-auto object-contain transition-all duration-500 ${solid ? 'h-10 sm:h-11' : 'h-11 sm:h-12 md:h-14'}`}
             />
           </div>
           <div className="flex items-center gap-1.5 justify-self-end">
@@ -124,6 +124,7 @@ export default function Header() {
       />
       <aside
         aria-hidden={!open}
+        inert={!open}
         className={`fixed top-0 left-0 z-70 flex h-full w-[320px] max-w-[85vw] flex-col overflow-hidden bg-ink px-7 pt-6 pb-16 transition-transform md:pb-6 duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:w-[380px] ${open ? 'translate-x-0' : '-translate-x-full'}`}
       >
         <div className="flex shrink-0 items-center justify-between gap-3">

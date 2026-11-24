@@ -25,7 +25,7 @@ export default function Layout() {
   return (
     <EnquiryProvider>
       <Header />
-      <main className="pb-14 md:pb-0">
+      <main className="pb-[calc(52px+env(safe-area-inset-bottom))] md:pb-0">
         <Outlet />
       </main>
       {pathname === ROUTES.home && <Footer />}

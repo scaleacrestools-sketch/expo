@@ -25,13 +25,13 @@ export default function Disclaimer() {
           <p className="font-medium text-neutral-900">Contact &amp; RERA</p>
           <p className="mt-2">
             Contact:{' '}
-            <a href={SITE.phoneTel} className="text-[#443e36] hover:underline">
+            <a href={SITE.phoneTel} className="text-brand hover:underline">
               {SITE.phoneDisplay}
             </a>
           </p>
           <p>
             WhatsApp:{' '}
-            <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-[#443e36] hover:underline">
+            <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-brand hover:underline">
               {SITE.whatsappDisplay}
             </a>
           </p>
@@ -40,7 +40,7 @@ export default function Disclaimer() {
           <p>Project RERA Number: {SITE.projectRera}</p>
           <p>
             HRERA website:{' '}
-            <a href={SITE.reraWebsite} target="_blank" rel="noopener noreferrer" className="text-[#443e36] hover:underline">
+            <a href={SITE.reraWebsite} target="_blank" rel="noopener noreferrer" className="text-brand hover:underline">
               haryanarera.gov.in
             </a>
           </p>

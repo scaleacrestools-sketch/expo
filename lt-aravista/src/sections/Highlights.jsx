@@ -27,11 +27,11 @@ export default function Highlights() {
           title="Project Highlights"
           subtitle="Everything that makes L&T Realty Aravista in Sector 86, Gurugram an address of extraordinary living."
         />
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {HIGHLIGHTS.map((text, i) => (
             <Reveal key={text} delay={(i % 6) * 50}>
-              <article className="hover-lift group flex h-full items-center gap-5 rounded-xl bg-stone p-6">
-                <span className="font-serif text-4xl leading-none text-brand">{String(i + 1).padStart(2, '0')}</span>
+              <article className="hover-lift group flex h-full items-center gap-4 rounded-xl bg-sand px-5 py-4 sm:gap-5 sm:p-6">
+                <span className="w-10 shrink-0 font-serif text-3xl leading-none text-bronze sm:text-4xl">{String(i + 1).padStart(2, '0')}</span>
                 <p className="font-body text-base leading-7 text-brand">{text}</p>
               </article>
             </Reveal>
