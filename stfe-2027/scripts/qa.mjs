@@ -47,10 +47,10 @@ check('Programme has 3 days × 5 items', (await page.locator('.day li').count())
 check('Exactly 4 key attractions', (await page.locator('.attraction').count()) === 4);
 check('12 FAQ entries', (await page.locator('.faq details').count()) === 12);
 check('No "GST extra" wording', !/plus GST|\+ ?GST|GST extra/i.test(text));
-check('Preview build shows the three brochure marks with a pending-authorisation badge', (await page.locator('#inst-strip img').count()) === 3 && (await page.locator('.inst-strip__preview').isVisible()));
+check('Preview build shows the three brochure marks with a pending-authorisation badge', (await page.locator('#inst-strip img').count()) === 3 && (await page.locator('.inst__preview').isVisible()));
 const prodHtml = readFileSync('dist/index.html', 'utf8');
 check('Production build withholds the marks until authorised', !prodHtml.includes('assets/institutional/'));
-check('Approved logo used in header (image, not text)', await page.locator('.site-header img.brand__logo').evaluate((i) => i.complete && i.naturalWidth >= 200 && i.currentSrc.includes('stfe-2027-logo') && i.getBoundingClientRect().height >= 60));
+check('Approved logo used in header (image, not text)', await page.locator('.brandbar img.brand__logo').evaluate((i) => i.complete && i.naturalWidth >= 200 && i.currentSrc.includes('stfe-2027-logo') && i.getBoundingClientRect().height >= 60));
 check('Tagline from brochure present', text.includes("India's Innovation, Global Impact"));
 check('No engineering notes in hero', !(await page.locator('.hero').innerText()).includes('brochure figure'));
 check('No endorsement wording', !/government approved|official sponsor|government partner/i.test(text));
@@ -176,7 +176,7 @@ await fp.keyboard.press('Escape');
 check('Enlarged view closes with Escape', (await fp.locator('#plan-viewer.is-fullscreen').count()) === 0);
 const tap = await fp.evaluate(() => [...document.querySelectorAll('.btn, .viewer__btn, .viewer__tab, .nav__toggle')].filter((el) => el.offsetParent).map((el) => el.getBoundingClientRect().height).filter((h) => h < 40).length);
 check('Tap targets ≥ 40px tall on mobile', tap === 0, `${tap} smaller`);
-check('Mobile header shows the approved logo', await fp.locator('.site-header img.brand__logo').evaluate((i) => i.naturalWidth >= 200 && i.currentSrc.includes('stfe-2027-logo') && i.getBoundingClientRect().height >= 50));
+check('Mobile header shows the approved logo', await fp.locator('.brandbar img.brand__logo').evaluate((i) => i.naturalWidth >= 200 && i.currentSrc.includes('stfe-2027-logo') && i.getBoundingClientRect().height >= 50));
 await browser.close();
 
 const passed = results.filter((r) => r.ok).length;

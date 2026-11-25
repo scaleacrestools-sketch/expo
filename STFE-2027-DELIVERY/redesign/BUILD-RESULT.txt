@@ -1,0 +1,37 @@
+
+> stfe-2027-website@1.0.0 build
+> node scripts/build-pricing-guide.mjs && vite build && node scripts/postbuild-check.mjs
+
+[pricing-guide] written /home/user/expo/stfe-2027/public/downloads/STFE-2027-Stall-Pricing-Guide.pdf
+vite v6.4.6 building for production...
+transforming...
+✓ 7 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/privacy.html                                                           2.66 kB │ gzip:  1.24 kB
+dist/terms.html                                                             2.68 kB │ gzip:  1.25 kB
+dist/assets/ibm-plex-sans-latin-ext-400-normal-RBey6euL.woff               14.36 kB
+dist/assets/ibm-plex-sans-latin-ext-700-normal-DZH6Xh-4.woff               14.42 kB
+dist/assets/ibm-plex-sans-latin-ext-500-normal-D0aIdm-b.woff               14.74 kB
+dist/assets/ibm-plex-sans-latin-ext-600-normal-DIrixKbi.woff               14.77 kB
+dist/assets/ibm-plex-sans-latin-ext-400-normal-C5H60-Va.woff2              15.98 kB
+dist/assets/ibm-plex-sans-latin-ext-700-normal-aMgXseD4.woff2              16.19 kB
+dist/assets/ibm-plex-sans-latin-ext-600-normal-DOrvGEcy.woff2              16.45 kB
+dist/assets/ibm-plex-sans-latin-ext-500-normal-DakdToA3.woff2              16.46 kB
+dist/assets/ibm-plex-sans-latin-400-normal-CYLoc0-x.woff                   22.10 kB
+dist/assets/ibm-plex-sans-latin-700-normal-Bth3BMcD.woff                   22.28 kB
+dist/assets/ibm-plex-sans-latin-400-normal-CDDApCn2.woff2                  22.59 kB
+dist/assets/ibm-plex-sans-latin-700-normal-Bxkt5Cjx.woff2                  22.83 kB
+dist/assets/ibm-plex-sans-latin-600-normal-Cu4Hd6ag.woff                   23.88 kB
+dist/assets/ibm-plex-sans-latin-500-normal-BgVn5rGT.woff                   23.92 kB
+dist/assets/ibm-plex-sans-latin-500-normal-6ng42L7E.woff2                  24.18 kB
+dist/assets/ibm-plex-sans-latin-600-normal-CuJfVYMP.woff2                  24.25 kB
+dist/index.html                                                            65.07 kB │ gzip: 14.65 kB
+dist/assets/ibm-plex-sans-devanagari-devanagari-400-normal-Bzh6N6Lp.woff   68.84 kB
+dist/assets/ibm-plex-sans-devanagari-devanagari-600-normal-CEZsoJju.woff   72.90 kB
+dist/assets/ibm-plex-sans-devanagari-devanagari-400-normal-Col_Varp.woff2  77.45 kB
+dist/assets/ibm-plex-sans-devanagari-devanagari-600-normal-zRLekuwH.woff2  79.18 kB
+dist/assets/styles-RvnGSydk.css                                            47.32 kB │ gzip: 10.03 kB
+dist/assets/main-CMXSAx1A.js                                               10.25 kB │ gzip:  4.37 kB
+✓ built in 298ms
+[postbuild-check] OK (production — institutional marks withheld until authorised) · 34 local references verified

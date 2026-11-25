@@ -11,4 +11,5 @@
 | Pricing guide PDF, OG image | Generated from the brochure facts, logo and venue photo | Organiser-owned |
 | IBM Plex Sans / IBM Plex Sans Devanagari | `@fontsource/*`, `@ibm/plex-sans` | SIL Open Font License 1.1 |
 | Supporting partner logos | Not supplied | Partners shown by name until approved logos arrive |
-| Exhibition photography (halls, B2B, seminars, panels, awards) | **Not sourced** | None used. No stock, AI-generated or scraped images are on the site |
+| Trade-exhibition images `u-hero`, `u-about`, `u-why`, `u-hall`, `u-b2b`, `u-workshop`, `u-experts`, `u-awards` | Taken at the organiser's request from their earlier STFE page (gleeful-caramel-7c566c.netlify.app/images/) | **Provenance and licence unknown: no credits or metadata. Organiser to confirm usage rights before publishing.** Some may be stock or AI-generated. Labelled "Illustrative image" on the site |
+| Wikimedia Commons photographs (if present in `public/assets/photos/credits.json`) | Wikimedia Commons | CC BY / CC BY-SA as listed per file; attribution shown in the site footer |

@@ -36,6 +36,6 @@ node scripts/make-comparison.cjs "$OUT" qa-output/shots
 echo "== zip"
 cp README.md ASSET-LICENCES.md QA-SUMMARY.md "$OUT/" 2>/dev/null || true
 ( cd .. && rm -f "$OUT/STFE-2027-REDESIGNED-FINAL.zip" && zip -qr "$OUT/STFE-2027-REDESIGNED-FINAL.zip" stfe-2027 \
-    -x "stfe-2027/node_modules/*" "stfe-2027/qa-output/*" "stfe-2027/source-assets/extracted/*" "stfe-2027/source-assets/*.zip" "stfe-2027/source-assets/review/*" )
-( cd "$OUT" && zip -q STFE-2027-REDESIGNED-FINAL.zip QA-RESULTS.json BUILD-RESULT.txt STFE-2027-IMAGE-CONTACT-SHEET.pdf STFE-2027-REFERENCE-COMPARISON.pdf )
+    -x "stfe-2027/node_modules/*" "stfe-2027/qa-output/*" "stfe-2027/source-assets/extracted/*" "stfe-2027/source-assets/*.zip" "stfe-2027/source-assets/review/*" "stfe-2027/dist-preview/downloads/STFE-2027-Brochure.pdf" "stfe-2027/source-assets/reference/upits-desktop-full.png" "stfe-2027/source-assets/user-site/page-desktop-full.png" )
+( cd "$OUT" && zip -q STFE-2027-REDESIGNED-FINAL.zip QA-RESULTS.json BUILD-RESULT.txt STFE-2027-IMAGE-CONTACT-SHEET.pdf )
 ls -la "$OUT"

@@ -37,7 +37,8 @@ npm run ingest         # re-extract assets from source-assets/ (needs Python 3 +
 ```bash
 QA_DIST=dist-preview node scripts/qa-server.mjs &               # serves the build, saves form POSTs to qa-output/leads.jsonl
 QA_DIST=dist-preview QA_FAIL=1 PORT=4322 node scripts/qa-server.mjs &   # simulated backend outage
-npm run qa                                                      # 67 automated checks
+npm run qa                                                      # automated checks
+bash scripts/finalize.sh ../STFE-2027-DELIVERY/redesign          # build, QA, screenshots, videos, contact sheet, comparison, ZIP
 node scripts/record-walkthroughs.cjs                            # desktop + mobile recordings
 ```
 
@@ -55,11 +56,10 @@ To publish them, first obtain written confirmation of authorised use and the exa
 
 ## Photography
 
-Only the Soor Sadan Auditorium photograph from the brochure is used.
-No licensed exhibition photography (exhibition halls, B2B meetings, seminars, panels, awards) could be sourced.
-This session's network policy blocked every photo library, and the bundle contained none.
-No stock, scraped or AI-generated images are used, and no layout shows an empty image frame.
-To add photography, place licensed files in `public/assets/photos/`, add them to the relevant sections and record each one in `ASSET-LICENCES.md`.
+- `public/assets/photos/u-*.webp` are the eight images the organiser asked to be taken from their earlier STFE page (gleeful-caramel-7c566c.netlify.app). Originals are in `source-assets/user-site/originals/`. They carry no credit or metadata, so their usage rights must be confirmed by the organiser. They are labelled "Illustrative image" on the site and are never described as photographs of a previous STFE edition. Most are about 1,000 px wide, so the hero is soft on large screens; supply higher-resolution originals if available.
+- `public/assets/photos/credits-user.json` (and `credits.json` for any Wikimedia Commons photos) drive the footer credit list and the contact sheet.
+- Photo slots are written as `<!--PHOTO:slug-->…<!--/PHOTO-->`. The build keeps a slot only if `slug.webp` and `slug-1200.webp` exist, so a missing photo never leaves an empty frame. The Gallery section and its menu link appear only when `gallery-1…6` photos exist.
+- The venue photograph and floor plans come from the official brochure.
 
 ## Deploying to Netlify (not deployed — requires your approval)
 
