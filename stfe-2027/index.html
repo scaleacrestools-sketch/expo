@@ -27,33 +27,43 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!--INSTITUTIONAL-START-->
-<!-- Level 1 · Institutional identity strip — the marks shown at the top of page 1 of the STFE 2027 brochure.
-     Preview builds only until the organiser confirms authorised use and relationship wording. -->
-<div class="inst-strip" id="inst-strip">
-  <div class="container container--wide inst-strip__inner">
-    <ul class="inst-strip__marks" aria-label="Identity marks shown in the STFE 2027 brochure">
-      <li><img src="/assets/institutional/msme-ministry-of-msme.png" alt="Ministry of Micro, Small &amp; Medium Enterprises, Government of India" width="221" height="101" /></li>
-      <li><img class="mii" src="/assets/institutional/make-in-india.png" alt="Make in India" width="292" height="135" /></li>
-      <li><img src="/assets/institutional/digital-india.png" alt="Digital India" width="175" height="95" /></li>
-    </ul>
-    <!--PREVIEW-BADGE--><span class="inst-strip__preview" title="Shown for design review. Publication requires the organiser's confirmed authorisation and relationship wording.">Preview · marks pending authorisation</span><!--/PREVIEW-BADGE-->
-    <div class="inst-strip__meta">
-      <span class="inst-strip__org">Organised by <b>Smart Vision Event &amp; Promotions</b></span>
-      <a href="tel:+919634126260">+91 96341 26260</a>
-    </div>
+<!-- Tier 1 · utility bar -->
+<div class="utility">
+  <div class="container container--wide utility__inner">
+    <div class="utility__left"><a href="mailto:svepindia@gmail.com">✉ svepindia@gmail.com</a><a href="tel:+919634126260">☏ +91 96341 26260</a></div>
+    <div class="utility__right"><span>Organised by <b>Smart Vision Event &amp; Promotions</b></span><a class="utility__wa" href="#" data-whatsapp target="_blank" rel="noopener">WhatsApp the Organiser</a></div>
   </div>
 </div>
-<!--INSTITUTIONAL-END-->
 
-<header class="site-header" id="top">
-  <nav class="container container--wide nav__inner" aria-label="Primary">
+<!-- Tier 2 · white brand strip: approved STFE logo + edition badge + brochure institutional marks -->
+<div class="brandbar">
+  <div class="container container--wide brandbar__inner">
     <a class="brand" href="#top" aria-label="STFE 2027 — Smart Trade Fair &amp; Expo, back to top">
       <picture>
-        <source type="image/webp" srcset="/assets/brand/stfe-2027-logo-640.webp 640w, /assets/brand/stfe-2027-logo-1280.webp 1280w" sizes="240px" />
+        <source type="image/webp" srcset="/assets/brand/stfe-2027-logo-640.webp 640w, /assets/brand/stfe-2027-logo-1280.webp 1280w" sizes="260px" />
         <img class="brand__logo" src="/assets/brand/stfe-2027-logo.png" alt="STFE 2027 — Smart Trade Fair &amp; Expo" width="1379" height="649" fetchpriority="high" />
       </picture>
     </a>
+    <div class="edition" aria-label="15 to 17 January 2027, Soor Sadan Auditorium, Agra">
+      <b>15<sup>th</sup>–17<sup>th</sup></b><span>January 2027</span><small>Soor Sadan Auditorium · Agra</small>
+    </div>
+    <!--INSTITUTIONAL-START-->
+    <div class="inst" id="inst-strip">
+      <ul class="inst__marks" aria-label="Identity marks shown in the STFE 2027 brochure">
+        <li><img src="/assets/institutional/msme-ministry-of-msme.png" alt="Ministry of Micro, Small &amp; Medium Enterprises, Government of India" width="221" height="101" /></li>
+        <li><img class="mii" src="/assets/institutional/make-in-india.png" alt="Make in India" width="292" height="135" /></li>
+        <li><img src="/assets/institutional/digital-india.png" alt="Digital India" width="175" height="95" /></li>
+      </ul>
+      <!--PREVIEW-BADGE--><span class="inst__preview" title="Shown for design review. Publication requires the organiser's confirmed authorisation and relationship wording.">Preview · marks pending authorisation</span><!--/PREVIEW-BADGE-->
+    </div>
+    <!--INSTITUTIONAL-END-->
+  </div>
+</div>
+
+<!-- Tier 3 · sticky navigation band -->
+<header class="site-header" id="top">
+  <nav class="container container--wide nav__inner" aria-label="Primary">
+    <a class="nav__mini" href="#top" aria-label="Back to top"><img src="/assets/brand/stfe-2027-logo-640.webp" alt="" width="640" height="301" /></a>
     <div class="nav__links" id="nav-links">
       <a href="#about">About</a>
       <a href="#why-exhibit">Why Exhibit</a>
@@ -65,7 +75,7 @@
       <a href="#venue">Venue</a>
     </div>
     <div class="nav__actions">
-      <a class="btn btn--outline btn--sm" href="#visitor-registration">Visitor Registration</a>
+      <a class="btn btn--ghost-light btn--sm" href="#visitor-registration">Visitor Registration</a>
       <a class="btn btn--primary btn--sm" href="#enquire">Enquire for a Stall</a>
     </div>
     <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
@@ -73,7 +83,9 @@
       <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
       <span>Menu</span>
     </button>
+    <a class="btn btn--primary btn--sm nav__cta-m" href="#enquire">Enquire for a Stall</a>
   </nav>
+
   <div class="mobile-menu" id="mobile-menu">
     <div class="mobile-menu__links">
       <a href="#about">About STFE 2027 <span aria-hidden="true">→</span></a>
@@ -130,13 +142,13 @@
 
 <!-- ============ EVENT OVERVIEW ============ -->
 <section class="overview" aria-label="Event at a glance">
-  <div class="container container--wide overview__grid">
+  <div class="container container--wide"><div class="overview__grid">
     <div class="ov"><b>50<sup>+</sup></b><span>Exhibitors</span></div>
     <div class="ov"><b>4,000</b><span>Expected visitors</span></div>
     <div class="ov"><b>3</b><span>Days of business</span></div>
     <div class="ov"><b>17</b><span>Exhibitor categories</span></div>
     <div class="ov ov--cta"><span>Free entry · registration mandatory</span><a class="btn btn--light btn--sm" href="#visitor-registration">Register Free</a></div>
-  </div>
+  </div></div>
   <p class="container container--wide overview__note">Exhibitor and visitor figures are the organiser's planning figures for STFE 2027, as published in the official brochure.</p>
 </section>
 
@@ -149,7 +161,7 @@
     </div>
     <div class="about__copy">
       <p class="eyebrow">About the Expo · Empowering Entrepreneurs</p>
-      <h2 class="h2" id="about-title">A premium platform for entrepreneurs, startups and MSMEs.</h2>
+      <h2 class="h2" id="about-title">A premium platform for <span class="accent">entrepreneurs, startups and MSMEs.</span></h2>
       <p class="lede mt-3">STFE — Smart Trade Fair &amp; Expo — is a three-day exhibition in Agra where businesses showcase their brands, meet the right people and grow with insight into market trends and government policy.</p>
       <p class="mt-2">STFE opens new doors and builds a stronger ecosystem for business leaders. Exhibitors present products and services across 17 categories to a B2B and B2C audience, alongside business sessions, workshops, B2B meetings and an awards ceremony.</p>
       <ul class="triad">
@@ -159,6 +171,23 @@
       </ul>
       <div class="cta-row mt-4"><a class="btn btn--primary" href="#enquire">Enquire for a Stall</a><a class="btn btn--link" href="#why-exhibit">Why exhibit →</a></div>
     </div>
+  </div>
+</section>
+
+
+<!-- ============ EXHIBITORS / VISITORS PATHS ============ -->
+<section class="paths" aria-label="Exhibitor and visitor information">
+  <div class="path path--ex">
+    <small>For exhibitors</small>
+    <h2>Book your stall at STFE 2027</h2>
+    <ul><li>₹69,030 incl. GST · 9 sq. m</li><li>3 × 3 m or 2 × 4.5 m</li><li>Octonorm stall &amp; fascia</li><li>Table, 2 chairs, lights, power</li><li>Lunch &amp; tea arranged</li><li>B2B &amp; B2C audience</li></ul>
+    <div class="cta-row"><a class="btn btn--primary" href="#enquire">Enquire for a Stall</a><a class="btn btn--ghost-light" href="#floor-plans">Explore Floor Plans</a></div>
+  </div>
+  <div class="path path--vi">
+    <small>For visitors</small>
+    <h2>Visit free — registration mandatory</h2>
+    <ul><li>15–17 January 2027</li><li>Soor Sadan Auditorium, Agra</li><li>17 exhibitor categories</li><li>Workshops &amp; seminars</li><li>Industry expert sessions</li><li>Awards ceremony</li></ul>
+    <div class="cta-row"><a class="btn btn--primary" href="#visitor-registration">Free Visitor Registration</a><a class="btn btn--ghost-light" href="/stfe-2027.ics" download>Add to Calendar</a></div>
   </div>
 </section>
 
@@ -202,7 +231,7 @@
     </div>
     <div>
       <p class="eyebrow">Why Participate</p>
-      <h2 class="h2" id="why-title">Six reasons to put your brand on the STFE floor.</h2>
+      <h2 class="h2" id="why-title">Six reasons to put your brand <span class="accent">on the STFE floor.</span></h2>
       <p class="lede mt-2">What the three days are built to give exhibitors — stated plainly, without promises of leads, sales or revenue.</p>
       <ol class="reasons">
         <li><span>01</span><div><b>Brand Visibility</b><em>Showcase in a premium setting</em><p>A branded Octonorm stall with fascia branding in front of trade visitors and the public for three days.</p></div></li>
@@ -253,7 +282,7 @@
 <section class="section experience" id="experience" aria-labelledby="exp-title">
   <div class="container">
     <div class="section-head section-head--split">
-      <div><p class="eyebrow">The Exhibition Experience</p><h2 class="h2" id="exp-title">What three days on a trade-fair floor look like.</h2></div>
+      <div><p class="eyebrow">The Exhibition Experience</p><h2 class="h2" id="exp-title">What three days on a <span class="accent">trade-fair floor</span> look like.</h2></div>
       <p class="lede">Branded stalls, product demonstrations, buyer conversations and business sessions — the professional atmosphere STFE 2027 is built to deliver.</p>
     </div>
     <div class="mosaic">
@@ -409,7 +438,7 @@
 <section class="section gallery" id="gallery" aria-labelledby="gallery-title">
   <div class="container">
     <div class="section-head section-head--split">
-      <div><p class="eyebrow">Event Atmosphere</p><h2 class="h2" id="gallery-title">The trade-fair atmosphere STFE brings to Agra.</h2></div>
+      <div><p class="eyebrow">Event Atmosphere</p><h2 class="h2" id="gallery-title">The trade-fair atmosphere <span class="accent">STFE brings to Agra.</span></h2></div>
       <p class="lede">Representative photographs of professional trade exhibitions. They are not photographs of a previous STFE edition.</p>
     </div>
     <div class="gallery__grid">
@@ -427,7 +456,7 @@
 <!-- ============ ORGANISER & SUPPORTING PARTNERS ============ -->
 <section class="section partners-sec" id="partners" aria-labelledby="partners-title">
   <div class="container">
-    <div class="section-head section-head--center"><p class="eyebrow">Organiser &amp; Supporting Partners</p><h2 class="h2" id="partners-title">The organisations behind STFE 2027.</h2></div>
+    <div class="section-head section-head--center"><p class="eyebrow">Organiser &amp; Supporting Partners</p><h2 class="h2" id="partners-title">The organisations <span class="accent">behind STFE 2027.</span></h2></div>
     <div class="roles">
       <div class="role role--organiser"><small>Organiser</small><b>Smart Vision Event &amp; Promotions</b><span>www.svepindia.com</span></div>
     </div>
@@ -448,7 +477,7 @@
 <section class="section downloads" id="downloads" aria-labelledby="downloads-title">
   <div class="container">
     <div class="section-head section-head--split">
-      <div><p class="eyebrow">Exhibitor Information</p><h2 class="h2" id="downloads-title">Everything you need to decide.</h2></div>
+      <div><p class="eyebrow">Exhibitor Information</p><h2 class="h2" id="downloads-title">Everything you need <span class="accent">to decide.</span></h2></div>
       <p class="lede">The official brochure, a one-page pricing guide and the layout plans — open, no form required.</p>
     </div>
     <div class="resources">
