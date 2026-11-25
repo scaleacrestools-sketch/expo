@@ -5,7 +5,12 @@ const path = require('path');
 const out = path.resolve(process.argv[2] || 'qa-output');
 const root = path.resolve(__dirname, '..');
 const read = (p) => { try { return JSON.parse(fs.readFileSync(path.join(root, p), 'utf8')); } catch { return []; } };
-const credits = read('public/assets/photos/credits.json').filter((c) => fs.existsSync(path.join(root, 'public/assets/photos', c.file)));
+const built = fs.readFileSync(path.join(root, fs.existsSync(path.join(root, 'dist-preview/index.html')) ? 'dist-preview/index.html' : 'dist/index.html'), 'utf8');
+const used = (c) => new RegExp(`/assets/photos/${c.file.replace(/\.webp$/, '')}(-1200)?\\.`).test(built);
+const all = [...read('public/assets/photos/credits.json'), ...read('public/assets/photos/credits-user.json')];
+const credits = all.filter((c) => fs.existsSync(path.join(root, 'public/assets/photos', c.file)) && used(c));
+const rejected = read('public/assets/photos/credits-user.json').filter((c) => !fs.existsSync(path.join(root, 'public/assets/photos', c.file)))
+  .map((c) => ({ ...c, img: path.join(root, 'source-assets/user-site/originals', c.source_url.split('/').pop()) })).filter((c) => fs.existsSync(c.img));
 const video = read('public/assets/video/credits.json');
 const uri = (p, t) => `data:${t};base64,${fs.readFileSync(p).toString('base64')}`;
 const esc = (s = '') => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
@@ -18,9 +23,10 @@ const card = (src, c) => `<div class="c"><img src="${src}"><div class="m"><b>${e
 const html = `<style>body{font-family:Arial,sans-serif;margin:24px;color:#1d2131}h1{color:#1b2656;margin:0 0 4px}p{margin:0 0 16px;color:#555;font-size:13px}
 .g{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.c{border:1px solid #ddd;border-radius:8px;overflow:hidden;break-inside:avoid}.c img{width:100%;height:170px;object-fit:cover;display:block;background:#f3ece2}
 .m{padding:8px 10px;font-size:11px;display:grid;gap:3px}.m b{color:#1b2656;font-size:12px}.p{color:#c9481a;font-weight:bold}.u{color:#127c84;word-break:break-all}h2{color:#1b2656;margin:24px 0 10px;font-size:16px}</style>
-<h1>STFE 2027 — Image contact sheet</h1><p>Every photograph used on the website, where it appears, and its source and licence. Trade-exhibition photographs are representative images, not photographs of a previous STFE edition.</p>
-<h2>Licensed exhibition photography (${credits.length})</h2><div class="g">${credits.map((c) => card(uri(path.join(root, 'public/assets/photos', c.file.replace('.webp', '-1200.webp')), 'image/webp'), c)).join('')}</div>
+<h1>STFE 2027 — Image contact sheet</h1><p>Every photograph used on the website, where it appears, and its source and licence. Trade-exhibition photographs are representative images, not photographs of a previous STFE edition. Images marked “supplied by the organiser” came from the earlier STFE page and their usage rights are unconfirmed. No AI-generated images were added.</p>
+<h2>Photographs used on the website (${credits.length})</h2><div class="g">${credits.map((c) => card(uri(path.join(root, 'public/assets/photos', (fs.existsSync(path.join(root, 'public/assets/photos', c.file.replace('.webp', '-1200.webp'))) ? c.file.replace('.webp', '-1200.webp') : c.file)), 'image/webp'), c)).join('')}</div>
 ${video.length ? `<h2>Showreel footage (${video.length} clips)</h2><div class="g">${video.map((c) => card(fs.existsSync(path.join(root, 'public/assets/video/showreel-poster.webp')) ? uri(path.join(root, 'public/assets/video/showreel-poster.webp'), 'image/webp') : '', c)).join('')}</div>` : ''}
+${rejected.length ? `<h2>Organiser-supplied images reviewed and NOT used (${rejected.length})</h2><div class="g">${rejected.map((c) => card(uri(c.img, 'image/jpeg'), { ...c, placement: c.notes.split('.')[0] })).join('')}</div>` : ''}
 <h2>Organiser assets from the official brochure</h2><div class="g">${brochure.map((b) => card(uri(path.join(root, b.img), 'image/webp'), b)).join('')}</div>`;
 (async () => {
   fs.mkdirSync(out, { recursive: true });

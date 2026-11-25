@@ -28,7 +28,7 @@ function stfeHtml() {
         /\/assets\/photos\//.test(inner) ? inner : '');
 
       const credits = [...readJson('assets/photos/credits-user.json'), ...readJson('assets/photos/credits.json'), ...readJson('assets/video/credits.json')]
-        .filter((c) => c.file && html.includes(c.file.replace(/\.(webp|mp4)$/, '')));
+        .filter((c) => c.file && new RegExp(`/assets/(photos|video)/${c.file.replace(/\.(webp|mp4)$/, '')}(-1200)?\\.`).test(html));
       const list = credits.length
         ? `<p>Illustrative and representative trade-exhibition images — not photographs of a previous STFE edition. Venue photograph and floor plans from the official STFE 2027 brochure.</p><ul>${credits.map((c) =>
           `<li>${esc(c.placement || c.file)}: “${esc(c.title || c.file)}” by ${esc(c.author || 'unknown')} — <a href="${esc(c.source_url)}" target="_blank" rel="noopener">${esc(c.source)}</a>, ${c.license_url ? `<a href="${esc(c.license_url)}" target="_blank" rel="noopener">${esc(c.license)}</a>` : esc(c.license)}</li>`).join('')}</ul>`

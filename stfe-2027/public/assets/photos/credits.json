@@ -1,7 +1,7 @@
 [
   {
     "file": "hero-exhibition-hall.webp",
-    "placement": "Home hero background",
+    "placement": "Gallery",
     "title": "Zoom Digital Press Stall - Photo Video Expo - Image Craft - Netaji Indoor Stadium - Kolkata 2014-08-25 7538",
     "author": "Biswarup Ganguly",
     "source": "Wikimedia Commons",
@@ -15,7 +15,7 @@
   },
   {
     "file": "hero-alt.webp",
-    "placement": "Alternate hero",
+    "placement": "Hero background",
     "title": "Pragatimaidanhall6",
     "author": "Raulcaeser",
     "source": "Wikimedia Commons",
@@ -29,7 +29,7 @@
   },
   {
     "file": "about-exhibitors-visitors.webp",
-    "placement": "About section",
+    "placement": "About STFE",
     "title": "Monotech Systems Stall - Photo Video Expo - Image Craft - Netaji Indoor Stadium - Kolkata 2014-08-25 7508",
     "author": "Biswarup Ganguly",
     "source": "Wikimedia Commons",
@@ -43,7 +43,7 @@
   },
   {
     "file": "why-booth-conversation.webp",
-    "placement": "Why exhibit section",
+    "placement": "Why Exhibit",
     "title": "Canon Stall - Photo Video Expo - Image Craft - Netaji Indoor Stadium - Kolkata 2014-08-25 7587",
     "author": "Biswarup Ganguly",
     "source": "Wikimedia Commons",
@@ -57,7 +57,7 @@
   },
   {
     "file": "experience-stands-1.webp",
-    "placement": "Experience: stands",
+    "placement": "Exhibition experience — branded stall",
     "title": "Photoquip India Stall - Photo Video Expo - Image Craft - Netaji Indoor Stadium - Kolkata 2014-08-25 7427",
     "author": "Biswarup Ganguly",
     "source": "Wikimedia Commons",
@@ -71,7 +71,7 @@
   },
   {
     "file": "experience-stands-2.webp",
-    "placement": "Experience: stands",
+    "placement": "Exhibition experience — footfall",
     "title": "Interactive Science Exhibition - NCSM Stall - Infocom 2014 - Kolkata 2014-12-06 1007",
     "author": "Biswarup Ganguly",
     "source": "Wikimedia Commons",
@@ -85,7 +85,7 @@
   },
   {
     "file": "experience-products.webp",
-    "placement": "Experience: products",
+    "placement": "Exhibition experience — product showcase",
     "title": "Tamron Stall - Photo Video Expo - Image Craft - Netaji Indoor Stadium - Kolkata 2014-08-25 7428",
     "author": "Biswarup Ganguly",
     "source": "Wikimedia Commons",
@@ -99,7 +99,7 @@
   },
   {
     "file": "networking.webp",
-    "placement": "Networking section",
+    "placement": "Not used",
     "title": "USDA at 2026 World Pork Expo (20260604-USDA-RD-IA-CRL-0020)",
     "author": "U.S. Department of Agriculture (USDAgov)",
     "source": "Wikimedia Commons",
@@ -113,7 +113,7 @@
   },
   {
     "file": "workshop-seminar.webp",
-    "placement": "Workshop / seminar section",
+    "placement": "Not used (alternative seminar image)",
     "title": "Panel Discussion - Wikiconference India 2023 - Hyderabad 01",
     "author": "Tarunsamanta",
     "source": "Wikimedia Commons",
@@ -127,7 +127,7 @@
   },
   {
     "file": "experts-panel.webp",
-    "placement": "Experts / panel section",
+    "placement": "Key attraction 03 — Industry Experts",
     "title": "Panel Discussion On Wikimedia Vibrance - Wikiconference India 2023 - Hyderabad 2023-04-29 8543",
     "author": "Biswarup Ganguly",
     "source": "Wikimedia Commons",
@@ -169,7 +169,7 @@
   },
   {
     "file": "gallery-3.webp",
-    "placement": "Gallery",
+    "placement": "Exhibition experience — buyer conversations",
     "title": "Tamron Stall - Photo Video Expo - Image Craft - Netaji Indoor Stadium - Kolkata 2014-08-25 7509",
     "author": "Biswarup Ganguly",
     "source": "Wikimedia Commons",
@@ -197,7 +197,7 @@
   },
   {
     "file": "gallery-5.webp",
-    "placement": "Gallery",
+    "placement": "Final call-to-action background",
     "title": "USDA at 2026 World Pork Expo (20260603-USDA-RD-IA-CRL-0007)",
     "author": "U.S. Department of Agriculture (USDAgov)",
     "source": "Wikimedia Commons",

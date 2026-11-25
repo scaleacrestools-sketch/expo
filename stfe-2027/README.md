@@ -55,11 +55,15 @@ To publish them, first obtain written confirmation of authorised use and the exa
 
 ## Photography
 
-Only the Soor Sadan Auditorium photograph from the brochure is used.
-No licensed exhibition photography (exhibition halls, B2B meetings, seminars, panels, awards) could be sourced.
-This session's network policy blocked every photo library, and the bundle contained none.
-No stock, scraped or AI-generated images are used, and no layout shows an empty image frame.
-To add photography, place licensed files in `public/assets/photos/`, add them to the relevant sections and record each one in `ASSET-LICENCES.md`.
+The site uses 18 photographs: 14 licensed real photos from Wikimedia Commons and 4 images from the organiser's earlier STFE page. Every one is listed, with source and licence, in `public/assets/photos/credits.json` (Commons) and `credits-user.json` (organiser page). Both lists are rendered automatically in the footer "Image credits".
+
+- **Wikimedia Commons (14).** CC BY 3.0, CC BY 4.0, CC BY-SA 3.0/4.0 or public domain. Attribution is required for every CC file and is printed in the footer. They are representative trade-fair photographs, not past STFE events. The site labels them that way.
+- **Organiser's earlier page (4: B2B, workshop, awards, hall).** These came from gleeful-caramel-7c566c.netlify.app. They carry no credit or metadata, so their **usage rights are unconfirmed**. Confirm them before going live, or replace them.
+- **Rejected organiser images (4: hero, networking, aisle, experts).** Three look AI-generated, and the fourth (experts) is too weak a subject. The audit notes are in `credits-user.json`. Their originals remain in `source-assets/user-site/originals/` but are not deployed.
+- **Venue.** Only the Soor Sadan photograph from the official brochure is used.
+- **AI-generated images: none.** Generation was attempted via the connected Higgsfield image tool. The account has 0.51 credits on the free plan, and the cheapest image costs 0.75, so nothing was generated. No awards-ceremony photo was found on Wikimedia Commons either, so the awards card uses the organiser-supplied image.
+
+To add or replace a photo: put a `<slug>.webp` (≤2400 px) and a `<slug>-1200.webp` in `public/assets/photos/`, reference it inside `<!--PHOTO:slug-->…<!--/PHOTO-->`, and add a credits entry.
 
 ## Deploying to Netlify (not deployed — requires your approval)
 
