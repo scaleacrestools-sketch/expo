@@ -21,8 +21,8 @@ const { execFileSync } = require('child_process');
   await cap(390, 844, 1, false, path.join(shots, 'stfe-mobile-first-screen.png'));
   await cap(1440, 900, 1, true, path.join(shots, 'stfe-desktop-full.png'));
   await cap(768, 1024, 1, true, path.join(shots, 'stfe-tablet-full.png'));
-  await cap(1440, 900, 1, true, path.join(out, 'STFE-2027-LANDING-SLIDESHOW-DESKTOP.png'));
-  await cap(390, 844, 2, true, path.join(out, 'STFE-2027-LANDING-SLIDESHOW-MOBILE.png'));
+  await cap(1440, 900, 1, true, path.join(out, 'STFE-2027-FINAL-DESKTOP.png'));
+  await cap(390, 844, 2, true, path.join(out, 'STFE-2027-FINAL-MOBILE.png'));
   {
     const p = await b.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
     await p.goto(url, { waitUntil: 'networkidle' });

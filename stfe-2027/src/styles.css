@@ -625,3 +625,11 @@ body:not(:has(#main)) .brand__logo { height: 60px; }
   .footer__bottom nav { justify-content: center; }
   .opp .cats { margin-top: .25rem; }
 }
+
+/* Supplied portrait image in About: keep people and product uncropped */
+.about__media:has(.photo--portrait) { max-width: 470px; margin-inline: auto; padding-bottom: 0; padding-right: 13%; }
+.photo--portrait { aspect-ratio: 1122 / 1402 !important; }
+.photo--portrait img { object-position: 50% 40%; }
+.about__media:has(.photo--portrait) .photo--inset { width: 52%; right: 0; bottom: -4%; }
+.collage__a img { object-position: 50% 55%; }
+.attraction img { object-position: 50% 40%; }

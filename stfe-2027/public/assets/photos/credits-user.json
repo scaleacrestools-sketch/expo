@@ -86,5 +86,60 @@
     "license": "Unknown — rights to be confirmed by the organiser",
     "license_url": "",
     "notes": "Kept as the only awards image available (no licensed awards photo found on Wikimedia Commons). Appears to be a genuine photograph; cartoon-star stage backdrop; 1069x713, soft when enlarged. 1069x713px original, unmodified apart from WebP conversion. No embedded credit or metadata."
+  },
+  {
+    "file": "s-about-product-demo.webp",
+    "placement": "About STFE",
+    "title": "Exhibitor demonstrating a machined metal component to business visitors",
+    "author": "Supplied by the organiser",
+    "source": "Organiser-supplied illustrative image",
+    "source_url": "/assets/photos/s-about-product-demo.webp",
+    "license": "Supplied by the organiser for STFE 2027 — illustrative image",
+    "license_url": "",
+    "notes": "1122x1402px original (01-about-product-demonstration.png), converted to WebP. Illustrative imagery — not a photograph of a previous STFE event."
+  },
+  {
+    "file": "s-exhibition-hall.webp",
+    "placement": "Exhibition experience — lead image",
+    "title": "Modern exhibition hall with modular stalls, product displays and business visitors",
+    "author": "Supplied by the organiser",
+    "source": "Organiser-supplied illustrative image",
+    "source_url": "/assets/photos/s-exhibition-hall.webp",
+    "license": "Supplied by the organiser for STFE 2027 — illustrative image",
+    "license_url": "",
+    "notes": "1672x941px original (02-exhibition-gallery-wide.png), converted to WebP. Illustrative imagery — not a photograph of a previous STFE event."
+  },
+  {
+    "file": "s-workshop-seminar.webp",
+    "placement": "Key attraction — Workshops & Seminars",
+    "title": "Speaker addressing a business seminar audience",
+    "author": "Supplied by the organiser",
+    "source": "Organiser-supplied illustrative image",
+    "source_url": "/assets/photos/s-workshop-seminar.webp",
+    "license": "Supplied by the organiser for STFE 2027 — illustrative image",
+    "license_url": "",
+    "notes": "1448x1086px original (03-workshops-seminars.png), converted to WebP. Illustrative imagery — not a photograph of a previous STFE event."
+  },
+  {
+    "file": "s-experts-panel.webp",
+    "placement": "Key attraction — Industry Experts",
+    "title": "Panel discussion with industry professionals on stage",
+    "author": "Supplied by the organiser",
+    "source": "Organiser-supplied illustrative image",
+    "source_url": "/assets/photos/s-experts-panel.webp",
+    "license": "Supplied by the organiser for STFE 2027 — illustrative image",
+    "license_url": "",
+    "notes": "1448x1086px original (04-industry-experts-panel.png), converted to WebP. Illustrative imagery — not a photograph of a previous STFE event."
+  },
+  {
+    "file": "s-awards-ceremony.webp",
+    "placement": "Key attraction — Awards Ceremony",
+    "title": "Business award presentation on stage",
+    "author": "Supplied by the organiser",
+    "source": "Organiser-supplied illustrative image",
+    "source_url": "/assets/photos/s-awards-ceremony.webp",
+    "license": "Supplied by the organiser for STFE 2027 — illustrative image",
+    "license_url": "",
+    "notes": "1448x1086px original (05-awards-ceremony.png), converted to WebP. Illustrative imagery — not a photograph of a previous STFE event."
   }
 ]
