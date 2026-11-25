@@ -52,6 +52,7 @@ export default defineConfig({
         privacy: resolve(root, 'privacy.html'),
         terms: resolve(root, 'terms.html'),
         credits: resolve(root, 'credits.html'),
+        heroOption: resolve(root, 'hero-option.html'),
       },
     },
   },

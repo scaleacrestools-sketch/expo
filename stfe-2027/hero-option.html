@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hero option (slideshow) — STFE 2027 — Smart Trade Fair &amp; Expo | 15–17 January 2027 | Soor Sadan Auditorium, Agra</title>
+  <meta name="description" content="STFE 2027 — Smart Trade Fair &amp; Expo, 15–17 January 2027 at Soor Sadan Auditorium, Agra. Exhibition stalls ₹69,030 including GST across 17 categories. Free visitor entry, registration mandatory. Organised by Smart Vision Event &amp; Promotions." />
+  <meta name="theme-color" content="#8f1d6d" />
+  <link rel="canonical" href="https://stfe2027.netlify.app/" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="STFE 2027 — Smart Trade Fair &amp; Expo · Agra · 15–17 January 2027" />
+  <meta property="og:description" content="India's Innovation, Global Impact. Showcase your brand to buyers and partners. Stalls ₹69,030 including GST. Free visitor entry with registration." />
+  <meta property="og:image" content="/og-image.png" />
+  <meta property="og:locale" content="en_IN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BusinessEvent","name":"STFE 2027 — Smart Trade Fair & Expo","description":"A business exhibition for entrepreneurs, startups and MSMEs to showcase brands, meet the right people and learn about market trends and government policy.","startDate":"2027-01-15","endDate":"2027-01-17","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","image":"/assets/brand/stfe-2027-logo.png",
+   "location":{"@type":"Place","name":"Soor Sadan Auditorium","address":{"@type":"PostalAddress","streetAddress":"Near Nagar Nigam Office, M.G. Road, Sanjay Place","addressLocality":"Agra","addressRegion":"Uttar Pradesh","addressCountry":"IN"}},
+   "organizer":{"@type":"Organization","name":"Smart Vision Event & Promotions","url":"https://www.svepindia.com","email":"svepindia@gmail.com","telephone":"+919634126260"},
+   "offers":[{"@type":"Offer","name":"Exhibition stall, 9 sq. m (3 × 3 m or 2 × 4.5 m)","price":"69030","priceCurrency":"INR","description":"₹7,670 per sq. m including GST. Allocation subject to organiser confirmation."},{"@type":"Offer","name":"Visitor entry","price":"0","priceCurrency":"INR","description":"Free entry, registration mandatory."}]}
+  </script>
+  <link rel="stylesheet" href="/src/styles.css" />
+<style>
+/* Hero slideshow option: crossfade every 10 s with a slow zoom in / zoom out (Ken Burns) */
+.hero__slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.6s ease; will-change: opacity, transform; }
+.hero__slide.is-active { opacity: 1; }
+.hero__slide.zoom-in { animation: hero-zoom-in 11.6s linear both; }
+.hero__slide.zoom-out { animation: hero-zoom-out 11.6s linear both; }
+@keyframes hero-zoom-in { from { transform: scale(1); } to { transform: scale(1.12); } }
+@keyframes hero-zoom-out { from { transform: scale(1.12); } to { transform: scale(1); } }
+.hero__dots { position: absolute; left: 50%; bottom: 1.1rem; transform: translateX(-50%); display: flex; gap: .5rem; z-index: 2; }
+.hero__dots button { width: 34px; height: 4px; border: 0; border-radius: 2px; background: rgba(255,255,255,.45); cursor: pointer; padding: 0; position: relative; overflow: hidden; }
+.hero__dots button::after { content: ''; position: absolute; inset: 0; background: var(--orange); transform: scaleX(0); transform-origin: left; }
+.hero__dots button[aria-selected="true"]::after { animation: dot-fill 10s linear forwards; }
+@keyframes dot-fill { to { transform: scaleX(1); } }
+@media (max-width: 1023px) { .hero__dots { bottom: auto; top: 1rem; } }
+@media (prefers-reduced-motion: reduce) { .hero__slide { transition: none; animation: none !important; } .hero__dots button::after { animation: none !important; transform: scaleX(1); } }
+.option-note { background: #fff6dc; color: #6b4d00; font-size: .875rem; text-align: center; padding: .6rem 1rem; border-top: 1px solid #f1d58a; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Top information bar (plum → indigo, sampled from the reference) -->
+<div class="topbar">
+  <div class="container topbar__inner">
+    <div class="topbar__left">
+      <a class="topbar__pill" href="mailto:svepindia@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg>svepindia@gmail.com</a>
+      <a href="tel:+919634126260"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>+91 96341 26260</a>
+    </div>
+    <p class="topbar__event"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16v14H4zM8 3v5m8-5v5M4 10h16"/></svg>15–17 January 2027 · Soor Sadan Auditorium, Agra</p>
+    <div class="topbar__right">
+      <a class="topbar__link" href="#visitor-registration">Free Visitor Registration</a>
+      <a class="btn btn--grad btn--xs" href="#enquire">Enquire for a Stall</a>
+    </div>
+  </div>
+</div>
+
+<!-- White brand strip: final STFE logo + edition badge + brochure identity marks -->
+<div class="brandbar">
+  <div class="container brandbar__inner">
+    <a class="brand" href="#top" aria-label="STFE 2027 — Smart Trade Fair &amp; Expo, back to top">
+      <picture>
+        <source type="image/webp" srcset="/assets/brand/stfe-2027-logo-640.webp 640w, /assets/brand/stfe-2027-logo-1280.webp 1280w" sizes="240px" />
+        <img class="brand__logo" src="/assets/brand/stfe-2027-logo.png" alt="STFE 2027 — Smart Trade Fair &amp; Expo" width="1379" height="649" fetchpriority="high" />
+      </picture>
+    </a>
+    <div class="edition" aria-label="15 to 17 January 2027, Soor Sadan Auditorium, Agra">
+      <b>15<sup>th</sup>–17<sup>th</sup></b>
+      <span><em>January 2027</em><small>Soor Sadan Auditorium · Agra</small></span>
+    </div>
+    <!--INSTITUTIONAL-START-->
+    <div class="inst" id="inst-strip">
+      <ul class="inst__marks" aria-label="Identity marks shown in the STFE 2027 brochure">
+        <li><img src="/assets/institutional/msme-ministry-of-msme.png" alt="Ministry of Micro, Small &amp; Medium Enterprises, Government of India" width="221" height="101" /></li>
+        <li><img class="mii" src="/assets/institutional/make-in-india.png" alt="Make in India" width="292" height="135" /></li>
+        <li><img src="/assets/institutional/digital-india.png" alt="Digital India" width="175" height="95" /></li>
+      </ul>
+    </div>
+    <!--INSTITUTIONAL-END-->
+  </div>
+</div>
+
+<!-- Sticky navigation band -->
+<header class="site-header" id="top">
+  <nav class="container nav__inner" aria-label="Primary">
+    <a class="nav__mini" href="#top" aria-label="Back to top"><img src="/assets/brand/stfe-2027-logo-640.webp" alt="" width="640" height="301" /></a>
+    <a class="nav__home" href="#top" aria-label="Home"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 2 11h3v9h5v-6h4v6h5v-9h3z"/></svg></a>
+    <div class="nav__links" id="nav-links">
+      <a href="#about">About</a>
+      <a href="#why-exhibit">Why Exhibit</a>
+      <a href="#pricing">Stall Pricing</a>
+      <a href="#floor-plans">Floor Plans</a>
+      <a href="#programme">Programme</a>
+      <a href="#venue">Venue</a>
+    </div>
+    <a class="btn btn--grad btn--sm nav__cta" href="#enquire">Enquire for a Stall</a>
+    <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+      <svg class="ico-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      <span>Menu</span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu__links">
+      <a href="#about">About STFE 2027</a>
+      <a href="#why-exhibit">Why Exhibit</a>
+      <a href="#categories">Exhibitor Categories</a>
+      <a href="#pricing">Stall Pricing</a>
+      <a href="#floor-plans">Floor Plans</a>
+      <a href="#programme">Programme</a>
+      <a href="#downloads">Brochure &amp; Downloads</a>
+      <a href="#venue">Venue &amp; Contact</a>
+    </div>
+    <div class="mobile-menu__ctas">
+      <a class="btn btn--grad btn--block" href="#enquire">Enquire for a Stall</a>
+      <a class="btn btn--outline btn--block" href="#visitor-registration">Free Visitor Registration</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__media" aria-hidden="true">
+    <img class="hero__slide is-active" src="/assets/photos/experts-panel-1200.webp" srcset="/assets/photos/experts-panel-1200.webp 1200w, /assets/photos/experts-panel.webp 2400w" sizes="100vw" alt="" width="2400" height="1600" style="object-position:55% 45%" fetchpriority="high" />
+    <img class="hero__slide" src="/assets/photos/u-workshop.webp" alt="" width="1069" height="713" style="object-position:50% 40%" loading="eager" />
+    <img class="hero__slide" src="/assets/photos/why-booth-conversation-1200.webp" srcset="/assets/photos/why-booth-conversation-1200.webp 1200w, /assets/photos/why-booth-conversation.webp 2400w" sizes="100vw" alt="" width="2400" height="1596" style="object-position:60% 40%" loading="eager" />
+    <img class="hero__slide" src="/assets/photos/gallery-1-1200.webp" srcset="/assets/photos/gallery-1-1200.webp 1200w, /assets/photos/gallery-1.webp 2400w" sizes="100vw" alt="" width="2400" height="1796" style="object-position:50% 60%" loading="eager" />
+  </div>
+  <div class="hero__shade" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <p class="hero__eyebrow"><img src="/assets/brand/stfe-globe.png" alt="" width="26" height="26" />Smart Trade Fair &amp; Expo 2027</p>
+      <h1 id="hero-title">Showcase Your Brand. <span>Connect With Business Opportunities.</span></h1>
+      <p class="hero__tagline">India's Innovation, Global Impact.</p>
+      <ul class="hero__facts">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16v14H4zM8 3v5m8-5v5M4 10h16"/></svg><span><small>Dates</small><b>15–17 January 2027</b></span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><small>Venue</small><b>Soor Sadan Auditorium, Agra</b></span></li>
+      </ul>
+      <p class="hero__price"><span>Exhibition stalls from</span> <b>₹69,030</b> <em>including GST</em></p>
+      <div class="cta-row">
+        <a class="btn btn--grad btn--lg" href="#enquire">Enquire for a Stall</a>
+        <a class="btn btn--glass btn--lg" href="/downloads/STFE-2027-Brochure.pdf" download data-track="brochure-hero"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14"/></svg>Download Exhibitor Brochure</a>
+      </div>
+    </div>
+    <form class="quick-form" id="stall-details-form" name="stall-details" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate aria-labelledby="qf-title">
+      <input type="hidden" name="form-name" value="stall-details" />
+      <input type="hidden" name="enquiry_type" value="Stall Details Request (hero)" />
+      <input type="hidden" name="utm_source" /><input type="hidden" name="utm_medium" /><input type="hidden" name="utm_campaign" /><input type="hidden" name="utm_content" /><input type="hidden" name="utm_term" />
+      <input type="hidden" name="landing_page" /><input type="hidden" name="page_url" /><input type="hidden" name="referrer" /><input type="hidden" name="submitted_at" />
+      <p class="visually-hidden"><label>Leave this field empty: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+      <h2 class="quick-form__title" id="qf-title">Get Stall Details</h2>
+      <p class="quick-form__sub">Share your details and the organising team can contact you about participation.</p>
+      <div class="field"><label for="qf-name">Full Name *</label><input id="qf-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80" /><p class="field__error">Please enter your name.</p></div>
+      <div class="field"><label for="qf-mobile">Mobile Number *</label><input id="qf-mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="10-digit mobile" required /><p class="field__error">Enter a valid 10-digit Indian mobile.</p></div>
+      <div class="field"><label for="qf-company">Company / Brand <span class="opt">(optional)</span></label><input id="qf-company" name="company" type="text" autocomplete="organization" maxlength="120" /></div>
+      <div class="field field--consent"><input id="qf-consent" name="consent" type="checkbox" value="yes" required /><label for="qf-consent">I agree to be contacted about STFE 2027 (<a href="/privacy.html" target="_blank" rel="noopener">privacy notice</a>). *</label></div>
+      <button class="btn btn--grad btn--block" type="submit"><span class="spinner" aria-hidden="true"></span><span class="label">Get Stall Details</span></button>
+      <div class="form-status" role="status" aria-live="polite" tabindex="-1"></div>
+    </form>
+    <p class="hero__visitor">Visiting? <a href="#visitor-registration">Free Visitor Registration →</a></p>
+  </div>
+  <div class="hero__dots" role="tablist" aria-label="Hero images"><button type="button" role="tab" aria-label="Show image 1" aria-selected="true" data-slide="0"></button><button type="button" role="tab" aria-label="Show image 2" aria-selected="false" data-slide="1"></button><button type="button" role="tab" aria-label="Show image 3" aria-selected="false" data-slide="2"></button><button type="button" role="tab" aria-label="Show image 4" aria-selected="false" data-slide="3"></button></div>
+  <p class="hero__credit">Representative trade-fair photograph, not an STFE event · <a href="/credits.html">credits</a></p>
+</section>
+<p class="option-note">Hero option for review: 4 images, crossfade every 10 seconds, alternating slow zoom in / zoom out. Placeholder photos stand in for your four images until the files are added. The form on this preview page does not submit.</p>
+</main>
+<script>
+(() => {
+  const slides = [...document.querySelectorAll('.hero__slide')];
+  const dots = [...document.querySelectorAll('.hero__dots button')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i = 0, timer;
+  const show = (n) => {
+    slides[i].classList.remove('is-active');
+    i = (n + slides.length) % slides.length;
+    const s = slides[i];
+    s.classList.remove('zoom-in', 'zoom-out'); void s.offsetWidth;   // restart the zoom animation
+    if (!reduce) s.classList.add(i % 2 ? 'zoom-out' : 'zoom-in');     // alternate zoom in / zoom out
+    s.classList.add('is-active');
+    dots.forEach((d, k) => { d.setAttribute('aria-selected', String(k === i)); });
+    dots[i].replaceWith(dots[i] = dots[i].cloneNode(true)); bind(dots[i], i);   // restart progress bar
+  };
+  const bind = (d, k) => d.addEventListener('click', () => { show(k); restart(); });
+  const restart = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => show(i + 1), 10000); };
+  dots.forEach(bind);
+  if (!reduce) slides[0].classList.add('zoom-in');
+  restart();
+  document.addEventListener('visibilitychange', () => { if (document.hidden) clearInterval(timer); else restart(); });
+})();
+</script>
+</body>
+</html>
