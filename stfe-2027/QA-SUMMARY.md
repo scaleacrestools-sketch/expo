@@ -1,6 +1,6 @@
 # STFE 2027 — QA summary
 
-**67 of 67 automated checks passed.** They ran in Chromium against the preview build.
+**82 of 82 automated checks passed.** They ran in Chromium against the preview build.
 The production-build gate was also checked. Raw results are in `QA-RESULTS.json`.
 
 - **Layout.** No horizontal overflow and no JS errors at 375, 390, 430, 768, 1024 or 1440px. Tap targets are 40px or larger on mobile.
@@ -17,3 +17,5 @@ As a result, a successfully saved enquiry showed "could not be sent". The code n
 
 **Limits.** Saving was proven against a local server that mimics Netlify Forms. Live capture can be confirmed only after deployment.
 The Google Maps embed is blocked in the sandbox, but the directions link is correct.
+
+**UPITS landing-page redesign checks (added).** These cover the navigation gradient (plum/indigo, no navy), the orange-gradient primary CTA, and a footer under 320 px. The hero form saves a lead with UTMs, and the callback modal opens and saves. The mobile sticky bar is hidden on the first screen, shows Enquire, WhatsApp and Call after the hero, and hides while the enquiry form or the footer is on screen. Image credits are listed on `/credits.html`.

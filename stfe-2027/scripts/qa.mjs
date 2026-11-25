@@ -101,7 +101,14 @@ const photoImgs = await page.evaluate(async () => { const imgs = [...document.qu
 check('Licensed photographs render on the page', photoImgs.length >= 8 && photoImgs.every((i) => i.ok), `${photoImgs.length} photo elements`);
 check('Every photo used has a credits entry with source and licence', photoImgs.every((i) => credits.some((c) => i.src.includes(c.file.replace('.webp', '')) && c.source_url && c.license)));
 check('Hero uses an exhibition photograph', await page.locator('.hero__img').count() === 1);
-check('Image credits listed in footer', (await page.locator('#image-credits li').count()) >= 8);
+const creditsHtml = await (await page.request.get(BASE + '/credits.html')).text();
+check('Image credits page lists every photo used', (creditsHtml.match(/<li>/g) || []).length >= photoImgs.length - 2 && (await page.locator('footer a[href="/credits.html"]').count()) === 1, `${(creditsHtml.match(/<li>/g) || []).length} credit lines`);
+const navBg = await page.locator('.site-header').evaluate((e) => getComputedStyle(e).backgroundImage);
+check('Navigation uses the reference plum/indigo gradient (no navy theme)', navBg.includes('143, 29, 109') && navBg.includes('54, 49, 95'), navBg.slice(0, 80));
+const ctaBg = await page.locator('.nav__cta').evaluate((e) => getComputedStyle(e).backgroundImage);
+check('Primary CTA uses the reference orange gradient', ctaBg.includes('240, 122, 63'));
+const footerH = await page.locator('footer').evaluate((e) => e.getBoundingClientRect().height);
+check('Footer is compact (< 320px tall at 1440px)', footerH < 320, `${Math.round(footerH)}px`);
 
 // 5. Exhibitor form: validation
 await page.locator('#enquire').scrollIntoViewIfNeeded();
@@ -138,10 +145,17 @@ check('Success message shown only after save', (await page.locator('#exhibitor-f
 check('No error state after a confirmed save', (await page.locator('#exhibitor-form .form-status.is-error').count()) === 0);
 
 // 6. Callback + visitor forms
+await page.click('[data-open-callback]');
+check('Callback modal opens', await page.locator('#callback-dialog').isVisible());
 await page.fill('#cb-name', 'QA Caller'); await page.fill('#cb-company', 'QA Co'); await page.fill('#cb-mobile', '9123456789'); await page.check('#cb-consent');
 await page.click('#callback-form button[type="submit"]');
 await page.waitForSelector('#callback-form .form-status.is-success');
 check('Callback request saved', leads().some((l) => l['form-name'] === 'callback-request' && l.mobile === '9123456789'));
+await page.click('[data-close-callback]');
+await page.fill('#qf-name', 'QA Hero'); await page.fill('#qf-mobile', '9988776655'); await page.check('#qf-consent');
+await page.click('#stall-details-form button[type="submit"]');
+await page.waitForSelector('#stall-details-form .form-status.is-success');
+check('Hero stall-details form saves a lead', leads().some((l) => l['form-name'] === 'stall-details' && l.mobile === '9988776655' && l.utm_source === 'meta'));
 await page.fill('#vr-name', 'QA Visitor'); await page.fill('#vr-mobile', '8123456789'); await page.check('#vr-consent');
 await page.click('#visitor-form button[type="submit"]');
 await page.waitForSelector('#visitor-form .form-status.is-success');
@@ -176,6 +190,15 @@ await fp.keyboard.press('Escape');
 check('Enlarged view closes with Escape', (await fp.locator('#plan-viewer.is-fullscreen').count()) === 0);
 const tap = await fp.evaluate(() => [...document.querySelectorAll('.btn, .viewer__btn, .viewer__tab, .nav__toggle')].filter((el) => el.offsetParent).map((el) => el.getBoundingClientRect().height).filter((h) => h < 40).length);
 check('Tap targets ≥ 40px tall on mobile', tap === 0, `${tap} smaller`);
+await fp.goto(FAIL_BASE + '/', { waitUntil: 'networkidle' });
+check('Mobile bar hidden on first screen', !(await fp.locator('#mobile-bar').evaluate((e) => e.classList.contains('is-visible'))));
+await fp.locator('#categories').scrollIntoViewIfNeeded(); await fp.waitForTimeout(400);
+const bar = await fp.locator('#mobile-bar').evaluate((e) => ({ vis: e.classList.contains('is-visible'), links: [...e.querySelectorAll('a')].map((a) => a.textContent.trim() || a.getAttribute('aria-label')) }));
+check('Mobile sticky bar appears after the hero with Enquire + WhatsApp + Call', bar.vis && bar.links[0] === 'Enquire for Stall' && bar.links[1].includes('WhatsApp'), bar.links.join(' | '));
+await fp.locator('#exhibitor-form').scrollIntoViewIfNeeded(); await fp.waitForTimeout(400);
+check('Mobile bar hides while the enquiry form is on screen', !(await fp.locator('#mobile-bar').evaluate((e) => e.classList.contains('is-visible'))));
+await fp.evaluate(() => scrollTo(0, document.body.scrollHeight)); await fp.waitForTimeout(400);
+check('Mobile bar hides at the footer', !(await fp.locator('#mobile-bar').evaluate((e) => e.classList.contains('is-visible'))));
 check('Mobile header shows the approved logo', await fp.locator('.brandbar img.brand__logo').evaluate((i) => i.naturalWidth >= 200 && i.currentSrc.includes('stfe-2027-logo') && i.getBoundingClientRect().height >= 50));
 await browser.close();
 

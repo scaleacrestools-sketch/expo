@@ -28,19 +28,32 @@ window.matchMedia('(min-width: 1280px)').addEventListener('change', (e) => { if 
 
 const mobileBar = $('#mobile-bar');
 const hero = $('.hero');
+const footer = $('.footer');
 let formInView = false;
 const onScroll = () => {
   header.classList.toggle('is-scrolled', header.getBoundingClientRect().top <= 0 && window.scrollY > 40);
-  mobileBar.classList.toggle('is-visible', hero.getBoundingClientRect().bottom < 0 && !formInView);
+  // Mobile conversion bar: after the hero, hidden while a form or the footer is on screen
+  const footerVisible = footer.getBoundingClientRect().top < window.innerHeight - 10;
+  const show = hero.getBoundingClientRect().bottom < 0 && !formInView && !footerVisible;
+  mobileBar.classList.toggle('is-visible', show);
+  document.body.classList.toggle('has-bar', show);
 };
 window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', onScroll, { passive: true });
 onScroll();
+const watchedForms = $$('.split form[data-netlify], .quick-form');
 const formObserver = new IntersectionObserver((entries) => {
   entries.forEach((e) => { e.target.dataset.inView = e.isIntersecting ? '1' : ''; });
-  formInView = $$('form[data-netlify]').some((f) => f.dataset.inView === '1');
+  formInView = watchedForms.some((f) => f.dataset.inView === '1');
   onScroll();
 }, { threshold: 0.05 });
-$$('form[data-netlify]').forEach((f) => formObserver.observe(f));
+watchedForms.forEach((f) => formObserver.observe(f));
+
+/* Callback modal */
+const cbDialog = $('#callback-dialog');
+$$('[data-open-callback]').forEach((b) => b.addEventListener('click', () => { cbDialog.showModal(); setTimeout(() => $('#cb-name').focus(), 30); }));
+$$('[data-close-callback]').forEach((b) => b.addEventListener('click', () => cbDialog.close()));
+cbDialog.addEventListener('click', (e) => { if (e.target === cbDialog) cbDialog.close(); });
 
 const navLinks = $$('#nav-links a');
 const io = new IntersectionObserver((entries) => entries.forEach((en) => {
@@ -155,6 +168,7 @@ const validate = (el, form) => {
   return ok;
 };
 const SUCCESS = {
+  'stall-details': ['Thank you — your request has been received.', "The organiser's team will call you with stall availability and details. A stall is confirmed only after written confirmation from the organiser."],
   'exhibitor-enquiry': ['Thank you — your exhibitor enquiry has been received.', "The organiser's team will contact you about stall availability and next steps. A stall is confirmed only after written confirmation from the organiser."],
   'callback-request': ['Thank you — your callback request has been received.', "The organiser's team will call you on the number provided."],
   'visitor-registration': ['Thank you — your free visitor registration has been received.', 'See you at Soor Sadan Auditorium, Agra, 15–17 January 2027.'],
@@ -221,7 +235,7 @@ $$('form[data-netlify]').forEach((form) => {
 
 /* Subtle reveal */
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
-  const t = $$('.section-head, .benefit, .cat, .day, .attraction, .res, .cred, .stall-row');
+  const t = $$('.head-center, .cat, .day, .attraction, .res, .stall-row, .reasons li');
   t.forEach((el) => el.classList.add('reveal'));
   const ro = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('is-in'); ro.unobserve(en.target); } }), { rootMargin: '0px 0px -6% 0px' });
   t.forEach((el) => ro.observe(el));

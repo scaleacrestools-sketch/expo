@@ -42,27 +42,30 @@ async function record(name, viewport, script) {
 
 (async () => {
   await record('desktop', { width: 1440, height: 900 }, async (p) => {
+    await p.waitForTimeout(1200);
     await p.hover('#nav-links a[href="#pricing"]'); await p.waitForTimeout(500);
-    await p.hover('.nav__actions .btn--primary'); await p.waitForTimeout(1200);
-    await glide(p, '.overview', -120, 1200); await p.waitForTimeout(1200);
+    // hero quick lead form
+    await type(p, '#qf-name', 'Neha Agarwal'); await type(p, '#qf-mobile', '9811100022'); await type(p, '#qf-company', 'Agarwal Crafts');
+    await p.check('#qf-consent'); await p.click('#stall-details-form button[type="submit"]');
+    await p.waitForSelector('#stall-details-form .form-status.is-success'); await p.waitForTimeout(2000);
+    await glide(p, '.stats', -60, 1100); await p.waitForTimeout(1400);
     await glide(p, '#about', 0, 1300); await p.waitForTimeout(2200);
-    await glide(p, '#organiser', 0, 1300); await p.waitForTimeout(2000);
-    await glide(p, '#why-exhibit', 0, 1300); await p.waitForTimeout(1800);
-    await glide(p, '.reasons', -40, 1000); await p.waitForTimeout(1800);
-    await glide(p, '#categories', 0, 1300); await p.waitForTimeout(2200);
-    if (await p.locator('#experience').count()) { await glide(p, '#experience', 0, 1300); await p.waitForTimeout(1200); await glide(p, '.mosaic', -40, 800); await p.waitForTimeout(2400); }
-    await glide(p, '#pricing', 0, 1300); await p.waitForTimeout(1000);
-    await glide(p, '.pricing__grid', -40, 800); await p.waitForTimeout(2200);
+    await glide(p, '#why-exhibit', 0, 1300); await p.waitForTimeout(2200);
+    await glide(p, '#categories', 0, 1300); await p.waitForTimeout(2000);
+    await glide(p, '#pricing', 0, 1300); await p.waitForTimeout(2600);
     await glide(p, '#floor-plans', 0, 1300); await p.waitForTimeout(800);
     await p.click('#tab-first'); await p.waitForTimeout(1200);
-    await p.click('#tab-ground'); await p.waitForTimeout(700);
+    await p.click('#tab-ground'); await p.waitForTimeout(600);
     await p.click('#zoom-in'); await p.waitForTimeout(400); await p.click('#zoom-in'); await p.waitForTimeout(900); await p.click('#zoom-reset'); await p.waitForTimeout(500);
     await p.click('#fullscreen'); await p.waitForTimeout(1300); await p.click('#fullscreen'); await p.waitForTimeout(500);
-    await glide(p, '#programme', 0, 1300); await p.waitForTimeout(2200);
-    await glide(p, '.days', -60, 1000); await p.waitForTimeout(1800);
-    if (await p.locator('#gallery').count()) { await glide(p, '#gallery', 0, 1300); await p.waitForTimeout(2400); }
-    await glide(p, '#partners', 0, 1200); await p.waitForTimeout(1600);
-    await glide(p, '#downloads', 0, 1200); await p.waitForTimeout(2200);
+    await glide(p, '#programme', 0, 1300); await p.waitForTimeout(2000);
+    await glide(p, '#attractions-title', -20, 1100); await p.waitForTimeout(2600);
+    await glide(p, '#downloads', 0, 1200); await p.waitForTimeout(1800);
+    await p.click('[data-open-callback]'); await p.waitForTimeout(800);
+    await type(p, '#cb-name', 'Vikas Jain'); await type(p, '#cb-mobile', '9876500011'); await p.check('#cb-consent');
+    await p.click('#callback-form button[type="submit"]');
+    await p.waitForSelector('#callback-form .form-status.is-success'); await p.waitForTimeout(1600);
+    await p.click('[data-close-callback]'); await p.waitForTimeout(500);
     await glide(p, '#enquire', 0, 1300); await p.waitForTimeout(600);
     await p.click('#exhibitor-form button[type="submit"]'); await p.waitForTimeout(1200);
     await p.click('label[for="st-3x3"]');
@@ -75,34 +78,31 @@ async function record(name, viewport, script) {
     await p.check('#ex-consent'); await p.waitForTimeout(300);
     await glide(p, '#exhibitor-form .form-actions', -420, 600);
     await p.click('#exhibitor-form button[type="submit"]');
-    await p.waitForSelector('#exhibitor-form .form-status.is-success'); await p.waitForTimeout(2400);
-    await glide(p, '#visitor-registration', 0, 1200); await p.waitForTimeout(1500);
-    await glide(p, '#faq', 0, 1200); await p.click('.faq details:nth-child(5) summary'); await p.waitForTimeout(1300);
-    await glide(p, '#venue', 0, 1300); await p.waitForTimeout(2200);
+    await p.waitForSelector('#exhibitor-form .form-status.is-success'); await p.waitForTimeout(2200);
+    await glide(p, '#venue', 0, 1300); await p.waitForTimeout(2000);
+    await glide(p, '#faq', 0, 1200); await p.click('.faq details:nth-child(4) summary'); await p.waitForTimeout(1300);
     await glide(p, 99999, 0, 1500); await p.waitForTimeout(2200);
   });
 
   await record('mobile', { width: 390, height: 844 }, async (p) => {
     await p.waitForTimeout(600);
-    await glide(p, '.hero__ticket', -40, 1200); await p.waitForTimeout(1600);
+    await glide(p, '.quick-form', -60, 1200); await p.waitForTimeout(1400);
     await glide(p, 0, 0, 700);
     await p.tap('#nav-toggle'); await p.waitForTimeout(1500);
     await p.tap('#mobile-menu a[href="#about"]'); await p.waitForTimeout(1600);
-    await glide(p, '#why-exhibit', 0, 1400); await p.waitForTimeout(1600);
+    await glide(p, '#why-exhibit', 0, 1400); await p.waitForTimeout(1800);
     await glide(p, '#categories', 0, 1400); await p.waitForTimeout(1400);
-    if (await p.locator('#experience').count()) { await glide(p, '.mosaic', -20, 1400); await p.waitForTimeout(1600); }
-    await glide(p, '#pricing', 0, 1400); await p.waitForTimeout(1000);
-    await glide(p, '.rate-card', -20, 800); await p.waitForTimeout(1500);
-    await glide(p, '.stall-table', -20, 900); await p.waitForTimeout(1500);
+    await glide(p, '#pricing', 0, 1400); await p.waitForTimeout(1200);
+    await glide(p, '.price__options', -20, 900); await p.waitForTimeout(1800);
     await glide(p, '#plan-viewer', -20, 1400); await p.waitForTimeout(600);
     await p.tap('#tab-first'); await p.waitForTimeout(900);
     await p.tap('#fullscreen'); await p.waitForTimeout(1300); await p.tap('#fullscreen'); await p.waitForTimeout(500);
     await glide(p, '#attractions', -20, 1600); await p.waitForTimeout(1600);
-    if (await p.locator('#gallery').count()) { await glide(p, '#gallery', 0, 1600); await p.waitForTimeout(1600); }
-    await glide(p, '#downloads', 0, 1400); await p.waitForTimeout(1200);
-    await glide(p, '#enquire', 0, 1400); await p.waitForTimeout(600);
+    await glide(p, '#downloads', 0, 1400); await p.waitForTimeout(1400);
+    // sticky conversion bar → enquiry form
+    await p.tap('#mobile-bar a[href="#enquire"]'); await p.waitForTimeout(1600);
     await glide(p, '#exhibitor-form', -10, 600);
-    await p.tap('label[for="st-guide"]');
+    await p.tap('label[for="st-2x45"]');
     await type(p, '#ex-name', 'Rohit Gupta');
     await type(p, '#ex-company', 'Gupta Organic Foods');
     await type(p, '#ex-mobile', '98');

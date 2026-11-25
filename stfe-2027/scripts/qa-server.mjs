@@ -9,7 +9,7 @@ const dist = resolve(process.cwd(), process.env.QA_DIST || 'dist');
 const outDir = resolve(process.cwd(), 'qa-output');
 await mkdir(outDir, { recursive: true });
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.woff2': 'font/woff2', '.woff': 'font/woff', '.pdf': 'application/pdf', '.txt': 'text/plain' };
-const FORMS = new Set(['exhibitor-enquiry', 'callback-request', 'visitor-registration']);
+const FORMS = new Set(['stall-details', 'exhibitor-enquiry', 'callback-request', 'visitor-registration']);
 const port = Number(process.env.PORT || 4321);
 
 createServer(async (req, res) => {

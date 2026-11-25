@@ -20,7 +20,7 @@ for (const u of refs) {
 }
 ['downloads/STFE-2027-Brochure.pdf', 'downloads/STFE-2027-Stall-Pricing-Guide.pdf', 'assets/floor-plans/ground-floor.png', 'assets/floor-plans/first-floor.png', 'assets/brand/stfe-2027-logo.png', 'privacy.html']
   .forEach((p) => { if (!existsSync(resolve(dist, p))) errors.push(`required file missing: ${p}`); });
-['exhibitor-enquiry', 'callback-request', 'visitor-registration'].forEach((n) => { if (!html.includes(`name="${n}"`)) errors.push(`form ${n} missing`); });
+['exhibitor-enquiry', 'callback-request', 'visitor-registration', 'stall-details'].forEach((n) => { if (!html.includes(`name="${n}"`)) errors.push(`form ${n} missing`); });
 const hasMarks = html.includes('assets/institutional/');
 if (!SITE.institutionalMarksApproved && !preview && (hasMarks || existsSync(resolve(dist, 'assets/institutional')))) errors.push('institutional marks present in a production build without approval');
 if (preview && !hasMarks) errors.push('preview build should show the institutional strip');

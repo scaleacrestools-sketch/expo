@@ -1,5 +1,7 @@
 # STFE 2027 — Smart Trade Fair & Expo website
 
+**Single-page exhibitor lead-generation landing page.** The visual system follows the UP International Trade Show reference, with colours sampled from its live computed styles: a plum `#8f1d6d` → indigo `#36315f` gradient top bar and navigation, orange `#f07a3f` → lilac `#9c6bb3` CTAs, two-tone uppercase headings, and white / pale-plum `#f6edf3` section rhythm. Fonts are Outfit for headings and Manrope for body text. No UPITS images, logos or code are used.
+
 Exhibitor-first website for **STFE 2027**, 15–17 January 2027, Soor Sadan Auditorium, Agra.
 Organised by **Smart Vision Event & Promotions**.
 It is a static site built with Vite 6, using plain HTML, CSS and one ES module. Forms use Netlify Forms.
@@ -55,9 +57,9 @@ To publish them, first obtain written confirmation of authorised use and the exa
 
 ## Photography
 
-The site uses 18 photographs: 14 licensed real photos from Wikimedia Commons and 4 images from the organiser's earlier STFE page. Every one is listed, with source and licence, in `public/assets/photos/credits.json` (Commons) and `credits-user.json` (organiser page). Both lists are rendered automatically in the footer "Image credits".
+The site uses 12 photographs: 8 licensed real photos from Wikimedia Commons and 4 images from the organiser's earlier STFE page. Every one is listed, with source and licence, in `public/assets/photos/credits.json` (Commons) and `credits-user.json` (organiser page). Both lists are rendered automatically on `/credits.html`, which is linked from the footer and the photo captions. `IMAGE-CREDITS.md` gives the same list in Markdown.
 
-- **Wikimedia Commons (14).** CC BY 3.0, CC BY 4.0, CC BY-SA 3.0/4.0 or public domain. Attribution is required for every CC file and is printed in the footer. They are representative trade-fair photographs, not past STFE events. The site labels them that way.
+- **Wikimedia Commons (8).** CC BY 3.0, CC BY 4.0, CC BY-SA 3.0/4.0 or public domain. Attribution is required for every CC file and is printed in the footer. They are representative trade-fair photographs, not past STFE events. The site labels them that way.
 - **Organiser's earlier page (4: B2B, workshop, awards, hall).** These came from gleeful-caramel-7c566c.netlify.app. They carry no credit or metadata, so their **usage rights are unconfirmed**. Confirm them before going live, or replace them.
 - **Rejected organiser images (4: hero, networking, aisle, experts).** Three look AI-generated, and the fourth (experts) is too weak a subject. The audit notes are in `credits-user.json`. Their originals remain in `source-assets/user-site/originals/` but are not deployed.
 - **Venue.** Only the Soor Sadan photograph from the official brochure is used.
