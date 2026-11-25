@@ -5,7 +5,7 @@ import { createServer } from 'node:http';
 import { readFile, appendFile, mkdir } from 'node:fs/promises';
 import { extname, resolve, normalize } from 'node:path';
 
-const dist = resolve(process.cwd(), 'dist');
+const dist = resolve(process.cwd(), process.env.QA_DIST || 'dist');
 const outDir = resolve(process.cwd(), 'qa-output');
 await mkdir(outDir, { recursive: true });
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.woff2': 'font/woff2', '.woff': 'font/woff', '.pdf': 'application/pdf', '.txt': 'text/plain' };

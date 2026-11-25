@@ -1,0 +1,2 @@
+The original brochure is shipped unmodified as public/downloads/STFE-2027-Brochure.pdf (byte-identical).
+The previous walkthrough video is not included in this package.

@@ -13,7 +13,7 @@ mkdirSync(dirname(out), { recursive: true });
 const F = (name) => resolve(root, `node_modules/@ibm/plex-sans/fonts/complete/woff/IBMPlexSans-${name}.woff`);
 const logo = resolve(root, 'public/assets/brand/stfe-2027-logo.png');
 
-const NAVY = '#0b2545', ORANGE = '#e8701a', INK = '#1f232a', INK3 = '#5c636e', LINE = '#d9d4ca', IVORY = '#f7f5f0', TEAL = '#167280';
+const NAVY = '#1b2656', ORANGE = '#ec5d24', INK = '#1d2131', INK3 = '#626879', LINE = '#e4ddd2', IVORY = '#fbf7f1', TEAL = '#127c84'; // sampled from the approved logo
 
 const doc = new PDFDocument({
   bufferPages: true,
@@ -42,7 +42,7 @@ const W = doc.page.width, M = 48, CW = W - M * 2;
 doc.rect(0, 0, W, 6).fill(ORANGE);
 let y = 40;
 if (existsSync(logo)) {
-  doc.image(logo, M, y, { height: 54 });
+  doc.image(logo, M, y - 8, { height: 64 });
 } else {
   doc.font('B').fontSize(22).fillColor(NAVY).text('STFE 2027', M, y);
   doc.font('SB').fontSize(8).fillColor(INK3).text('SMART TRADE FAIR & EXPO', M, y + 28, { characterSpacing: 1.5 });

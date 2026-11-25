@@ -1,37 +1,30 @@
-// Fails the build if the page advertises a file that does not exist in dist,
-// or if a feature flag is on without its asset. Prevents broken downloads shipping.
-import { existsSync, readFileSync, statSync } from 'node:fs';
+// Fails the build if a promised file is missing/empty, a form is absent, or the institutional gate is wrong.
+import { existsSync, readFileSync, statSync, rmSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SITE } from '../site.config.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const dist = resolve(root, 'dist');
+const preview = process.env.STFE_PREVIEW === '1';
+const dist = resolve(root, preview ? 'dist-preview' : 'dist');
 const errors = [];
-const warn = [];
-const must = (p, why) => {
-  const f = resolve(dist, p.replace(/^\//, ''));
-  if (!existsSync(f) || statSync(f).size === 0) errors.push(`${why}: missing or empty ${p}`);
-};
-
-must('/downloads/STFE-2027-Stall-Pricing-Guide.pdf', 'Pricing guide');
-must('/privacy.html', 'Privacy page');
-if (SITE.brochureAvailable) must('/downloads/STFE-2027-Brochure.pdf', 'brochureAvailable=true');
-else warn.push('Brochure PDF not supplied: brochure buttons fall back to "Request Exhibitor Brochure" via WhatsApp.');
-if (SITE.floorPlansAvailable) { must('/assets/floor-plans/ground-floor.png', 'floorPlansAvailable=true'); must('/assets/floor-plans/first-floor.png', 'floorPlansAvailable=true'); }
-else warn.push('Floor plans not supplied: viewer shows "Floor plan to be published".');
-if (!existsSync(resolve(dist, 'assets/brand/stfe-2027-logo.png'))) warn.push('Approved logo not supplied at public/assets/brand/stfe-2027-logo.png: header shows a plain text name.');
-if (SITE.institutionalMarksApproved) {
-  if (!Array.isArray(SITE.institutionalMarks) || !SITE.institutionalMarks.length) errors.push('institutionalMarksApproved=true but SITE.institutionalMarks is empty');
-  else SITE.institutionalMarks.forEach((m) => must(m.src, 'institutional mark'));
-} else warn.push('Institutional (government) marks are NOT published (authorisation not confirmed).');
-
 const html = readFileSync(resolve(dist, 'index.html'), 'utf8');
-['exhibitor-enquiry', 'callback-request', 'visitor-registration'].forEach((n) => {
-  if (!html.includes(`name="${n}"`) || !html.includes('data-netlify="true"')) errors.push(`Netlify form "${n}" not found in built HTML`);
-});
-if (/GST\s*extra|\+\s*GST|plus GST/i.test(html)) errors.push('Found wording that implies GST is added on top');
+// Production builds must not ship the government mark files until authorised (they are unreferenced there).
+if (!preview && !SITE.institutionalMarksApproved) rmSync(resolve(dist, 'assets/institutional'), { recursive: true, force: true });
 
-warn.forEach((w) => console.log('  ! ' + w));
+// every local asset referenced by the page must exist and be non-empty
+const refs = new Set([...html.matchAll(/(?:src|href|srcset)="([^"]+)"/g)].flatMap((m) => m[1].split(',').map((s) => s.trim().split(' ')[0])).filter((u) => u.startsWith('/') && !u.startsWith('//')));
+for (const u of refs) {
+  const f = resolve(dist, u.split('#')[0].split('?')[0].replace(/^\//, '') || 'index.html');
+  if (!existsSync(f) || statSync(f).size === 0) errors.push(`missing or empty: ${u}`);
+}
+['downloads/STFE-2027-Brochure.pdf', 'downloads/STFE-2027-Stall-Pricing-Guide.pdf', 'assets/floor-plans/ground-floor.png', 'assets/floor-plans/first-floor.png', 'assets/brand/stfe-2027-logo.png', 'privacy.html']
+  .forEach((p) => { if (!existsSync(resolve(dist, p))) errors.push(`required file missing: ${p}`); });
+['exhibitor-enquiry', 'callback-request', 'visitor-registration'].forEach((n) => { if (!html.includes(`name="${n}"`)) errors.push(`form ${n} missing`); });
+const hasMarks = html.includes('assets/institutional/');
+if (!SITE.institutionalMarksApproved && !preview && (hasMarks || existsSync(resolve(dist, 'assets/institutional')))) errors.push('institutional marks present in a production build without approval');
+if (preview && !hasMarks) errors.push('preview build should show the institutional strip');
+if (/plus GST|\+\s?GST|GST extra|government approved|official sponsor/i.test(html)) errors.push('prohibited wording found');
+
 if (errors.length) { errors.forEach((e) => console.error('  ✗ ' + e)); process.exit(1); }
-console.log('[postbuild-check] OK');
+console.log(`[postbuild-check] OK (${preview ? 'preview — institutional marks shown, pending authorisation' : SITE.institutionalMarksApproved ? 'production — marks approved' : 'production — institutional marks withheld until authorised'}) · ${refs.size} local references verified`);

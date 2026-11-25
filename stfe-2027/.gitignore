@@ -5,3 +5,7 @@ qa-output/
 .netlify/
 .env
 .env.*
+dist-preview/
+source-assets/extracted/
+source-assets/*.zip
+source-assets/review/

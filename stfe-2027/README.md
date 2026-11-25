@@ -1,97 +1,73 @@
 # STFE 2027 — Smart Trade Fair & Expo website
 
-Exhibitor-first landing page for **STFE 2027**, 15–17 January 2027, Soor Sadan Auditorium, Agra.
+Exhibitor-first website for **STFE 2027**, 15–17 January 2027, Soor Sadan Auditorium, Agra.
 Organised by **Smart Vision Event & Promotions**.
+It is a static site built with Vite 6, using plain HTML, CSS and one ES module. Forms use Netlify Forms.
 
-- Static site built with **Vite 6** (plain HTML, CSS and one ES module, no framework).
-- Forms use **Netlify Forms** (exhibitor enquiry, callback request, visitor registration).
-- Fonts are self-hosted: IBM Plex Sans and IBM Plex Sans Devanagari (SIL Open Font License).
+## Source assets
+
+The organiser's bundle is in `source-assets/`. It contains the approved logo, the original brochure and the previous walkthrough.
+`npm run ingest`, which runs `scripts/ingest_assets.py`, turns it into web assets. It only extracts, trims and resizes. Artwork is never redrawn or recoloured.
+
+| Output | From |
+|---|---|
+| `public/assets/brand/stfe-2027-logo*.png/.webp` | Approved logo, with white margins trimmed only |
+| `src/brand-tokens.css` | Colours sampled from the logo: navy `#1b2656`, orange `#ec5d24`, teal `#27bdc5`, blue `#1262ae`, crimson `#c81f3f` and yellow `#fdce18` |
+| `public/assets/brand/stfe-globe.png`, favicons | STFE globe image layer, brochure page 1 |
+| `public/assets/institutional/*.png` | MSME, Make in India and Digital India image layers, brochure page 1 |
+| `public/assets/venue/soor-sadan-auditorium-cutout.webp` | Venue photograph layer, brochure page 1 |
+| `public/assets/floor-plans/ground-floor.png`, `first-floor.png` | Vector plans from brochure page 3, background art removed, rendered at 400 dpi |
+| `public/assets/brochure/brochure-page-*.webp` | Page previews |
+| `public/downloads/STFE-2027-Brochure.pdf` | The original PDF, byte-identical |
 
 ## Commands
 
 ```bash
 npm install
-npm run dev        # local development server
-npm run build      # pricing-guide PDF → Vite build → postbuild checks
-npm run preview    # serve dist/ (note: Netlify Forms only work on Netlify)
+npm run dev            # dev server (shows institutional strip, as a preview)
+npm run build          # PRODUCTION build → dist/  (institutional marks withheld until authorised)
+npm run build:preview  # REVIEW build → dist-preview/ (marks shown with "pending authorisation" badge)
+npm run ingest         # re-extract assets from source-assets/ (needs Python 3 + PyMuPDF + Pillow + numpy)
 ```
 
-`npm run build` fails if a promised file is missing, if a feature flag is on without its asset,
-if any Netlify form is absent from the built HTML, or if wording implies GST is added on top.
+`npm run build` regenerates the pricing-guide PDF. It then verifies that every local file the page references exists, that all three forms are present and that no prohibited wording appears. It also checks that the marks are absent from production.
 
-### Local functional QA
+### Local QA
 
 ```bash
-node scripts/qa-server.mjs &                    # serves dist/, saves form POSTs to qa-output/leads.jsonl
-QA_FAIL=1 PORT=4322 node scripts/qa-server.mjs & # simulated backend outage
-npm run qa                                      # 56 automated checks
-node scripts/record-walkthroughs.cjs            # desktop + mobile walkthrough recordings (WebM)
+QA_DIST=dist-preview node scripts/qa-server.mjs &               # serves the build, saves form POSTs to qa-output/leads.jsonl
+QA_DIST=dist-preview QA_FAIL=1 PORT=4322 node scripts/qa-server.mjs &   # simulated backend outage
+npm run qa                                                      # 67 automated checks
+node scripts/record-walkthroughs.cjs                            # desktop + mobile recordings
 ```
 
-## Assets the organiser must supply (and how to switch them on)
+## Government / institutional marks — action required before going live
 
-All gated in `site.config.js`. Nothing below is faked while it is missing.
+The MSME / Government of India, Make in India and Digital India marks appear on page 1 of the brochure.
+Their presence there does not establish sponsorship or endorsement.
+The marks are therefore shown only in the preview build, labelled "Preview · marks pending authorisation".
+The production `dist/` build leaves them out.
 
-| Asset | Put it at | Then set |
-|---|---|---|
-| Approved STFE 2027 logo (original file, unmodified) | `public/assets/brand/stfe-2027-logo.png` | nothing; it is used automatically. A plain text name shows until then. |
-| Original 3-page brochure PDF | `public/downloads/STFE-2027-Brochure.pdf` | `brochureAvailable: true` |
-| Original ground and first floor schematics | `public/assets/floor-plans/ground-floor.png`, `first-floor.png` | `floorPlansAvailable: true` |
-| Approved partner logos | `public/assets/partners/<slug>.png` (slugs listed in `index.html`) | `partnerLogosAvailable: true` |
-| Licensed or organiser-owned photography | `public/assets/photos/attraction-b2b.jpg`, `attraction-workshops.jpg`, `attraction-experts.jpg`, `attraction-awards.jpg` (1600×1200) | `photographyAvailable: true`, and record the licence in `ASSET-LICENCES.md` |
-| Government identity marks (MSME, Make in India, Digital India) | `public/assets/institutional/` | see below |
+To publish them, first obtain written confirmation of authorised use and the exact relationship wording. Then:
+1. Set `institutionalMarksApproved: true` in `site.config.js`.
+2. If the authority approved a relationship line, add it to the strip in `index.html`. Never write "Government Approved", "Official Sponsor" or similar unless that is the approved wording.
+3. Run `npm run build` and redeploy.
 
-Until the brochure is supplied, every "Download Exhibitor Brochure" button becomes **"Request Exhibitor Brochure"**.
-That button opens WhatsApp to the organiser. It is never a broken link.
-The pricing guide is regenerated on each build, and uses the logo automatically once it is present.
+## Photography
 
-### Government / institutional marks — authorisation required
-
-The brochure shows MSME / Government of India, Make in India and Digital India marks. Their presence
-does not prove an authorised relationship, so **they are not published**. The header already contains the
-institutional strip (Level 1). To enable it, only after written confirmation of the relationship and
-permission to use the marks, add to `site.config.js`:
-
-```js
-institutionalMarksApproved: true,
-institutionalMarks: [
-  { src: '/assets/institutional/msme.png', alt: 'Ministry of Micro, Small & Medium Enterprises, Government of India' },
-  { src: '/assets/institutional/make-in-india.png', alt: 'Make in India' },
-  { src: '/assets/institutional/digital-india.png', alt: 'Digital India' },
-],
-institutionalLabel: '', // use only the exact relationship wording the authority has approved
-```
+Only the Soor Sadan Auditorium photograph from the brochure is used.
+No licensed exhibition photography (exhibition halls, B2B meetings, seminars, panels, awards) could be sourced.
+This session's network policy blocked every photo library, and the bundle contained none.
+No stock, scraped or AI-generated images are used, and no layout shows an empty image frame.
+To add photography, place licensed files in `public/assets/photos/`, add them to the relevant sections and record each one in `ASSET-LICENCES.md`.
 
 ## Deploying to Netlify (not deployed — requires your approval)
 
-1. Push this folder to a Git repository, or use the ZIP contents.
-2. In Netlify, choose **Add new site → Import an existing project**, and select the repo.
-   If the site lives in a sub-folder, set **Base directory** to `stfe-2027`.
-3. The build settings come from `netlify.toml` (`npm run build`, publish `dist`, Node 22).
-4. Deploy, then open **Site configuration → Forms** and confirm three forms were detected:
-   `exhibitor-enquiry`, `callback-request` and `visitor-registration`.
-   Enable form detection if prompted, then redeploy.
-5. Under **Forms → Form notifications**, add email notifications to the organiser's inbox.
-   Optionally add an outgoing webhook to a CRM such as TeleCRM, Pabbly or Zapier.
-6. Submit one test enquiry on the live URL and confirm it appears under **Forms**.
-7. Update `<link rel="canonical">` in `index.html` to the final domain.
+1. Import the repository in Netlify. Set **Base directory** to `stfe-2027`. The build settings come from `netlify.toml`.
+2. After the first deploy, open **Forms**. Confirm that `exhibitor-enquiry`, `callback-request` and `visitor-registration` were detected, enabling form detection if prompted.
+3. Add form notifications to the organiser's inbox, and optionally a webhook to a CRM.
+4. Submit one test enquiry on the live URL and confirm it appears under **Forms**.
+5. Update `<link rel="canonical">` to the final domain.
 
-### Lead data captured with every submission
-
-`form-name`, `enquiry_type`, the form fields, `consent`, `utm_source`, `utm_medium`, `utm_campaign`,
-`utm_content`, `utm_term`, `landing_page`, `page_url`, `referrer` and `submitted_at` (ISO time).
-UTMs persist for the browsing session. Mobile numbers are normalised, for example `+919876543210`.
-A `dataLayer` event `lead_submitted` fires only after a successful save. It is ready for GTM, Meta Pixel or a CAPI bridge.
-No credentials are in the frontend.
-
-## Structure
-
-```
-index.html            landing page (all sections)
-privacy.html          privacy notice linked from every form
-site.config.js        organiser details + asset/authorisation flags
-src/styles.css        design system
-src/main.js           behaviour: gating, nav, floor-plan viewer, forms, attribution
-public/               static assets copied as-is (downloads, brand, plans, og-image)
-scripts/              PDF guide, build checks, QA server, QA suite, recordings, OG image
-```
+Each submission carries the form fields, `consent`, `enquiry_type`, UTM source, medium, campaign, content and term, `landing_page`, `page_url`, `referrer` and `submitted_at`.
+A `lead_submitted` dataLayer event fires only after the backend confirms the save.

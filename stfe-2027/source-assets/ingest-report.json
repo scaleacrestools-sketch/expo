@@ -1,0 +1,72 @@
+{
+  "logo": {
+    "source_size": [
+      1527,
+      750
+    ],
+    "trim_box": [
+      "109",
+      "52",
+      "1488",
+      "701"
+    ],
+    "trimmed_size": [
+      1379,
+      649
+    ]
+  },
+  "palette": {
+    "navy": {
+      "hex": "#1b2656",
+      "samples": 46414
+    },
+    "orange": {
+      "hex": "#ec5d24",
+      "samples": 32911
+    },
+    "teal": {
+      "hex": "#27bdc5",
+      "samples": 22868
+    },
+    "blue": {
+      "hex": "#1262ae",
+      "samples": 12344
+    },
+    "crimson": {
+      "hex": "#c81f3f",
+      "samples": 14607
+    },
+    "yellow": {
+      "hex": "#fdce18",
+      "samples": 7025
+    }
+  },
+  "institutional": {
+    "msme-ministry-of-msme": [
+      221,
+      101
+    ],
+    "digital-india": [
+      175,
+      95
+    ],
+    "make-in-india": [
+      292,
+      135
+    ]
+  },
+  "venue": [
+    1197,
+    805
+  ],
+  "floor_plans": {
+    "ground-floor": [
+      1468,
+      884
+    ],
+    "first-floor": [
+      1468,
+      832
+    ]
+  }
+}

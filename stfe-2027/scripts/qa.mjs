@@ -40,14 +40,19 @@ await page.goto(BASE + '/?utm_source=meta&utm_medium=paid_social&utm_campaign=st
 const text = await page.evaluate(() => document.body.innerText);
 check('Price ₹69,030 shown', text.includes('₹69,030'));
 check('Rate ₹7,670 per sq. metre shown', text.includes('₹7,670'));
-check('All 17 categories present', (await page.locator('.directory__item').count()) === 17);
+check('All 17 categories present', (await page.locator('li.cat').count()) === 17);
 check('All 6 benefits present', (await page.locator('.benefit').count()) === 6);
-check('All 6 inclusions present', (await page.locator('.inclusions li').count()) === 6);
-check('Programme has 3 days × 5 items', (await page.locator('.day__list li').count()) === 15);
+check('All 6 inclusions present', (await page.locator('.rate-card__incl li').count()) === 6);
+check('Programme has 3 days × 5 items', (await page.locator('.day li').count()) === 15);
 check('Exactly 4 key attractions', (await page.locator('.attraction').count()) === 4);
 check('12 FAQ entries', (await page.locator('.faq details').count()) === 12);
 check('No "GST extra" wording', !/plus GST|\+ ?GST|GST extra/i.test(text));
-check('No government marks published (authorisation unconfirmed)', await page.locator('#inst-strip').isHidden());
+check('Preview build shows the three brochure marks with a pending-authorisation badge', (await page.locator('#inst-strip img').count()) === 3 && (await page.locator('.inst-strip__preview').isVisible()));
+const prodHtml = readFileSync('dist/index.html', 'utf8');
+check('Production build withholds the marks until authorised', !prodHtml.includes('assets/institutional/'));
+check('Approved logo used in header (image, not text)', await page.locator('.site-header img.brand__logo').evaluate((i) => i.complete && i.naturalWidth >= 200 && i.currentSrc.includes('stfe-2027-logo') && i.getBoundingClientRect().height >= 60));
+check('Tagline from brochure present', text.includes("India's Innovation, Global Impact"));
+check('No engineering notes in hero', !(await page.locator('.hero').innerText()).includes('brochure figure'));
 check('No endorsement wording', !/government approved|official sponsor|government partner/i.test(text));
 
 // 3. Links
@@ -69,10 +74,23 @@ const dl = page.waitForEvent('download');
 await page.locator('a[href="/downloads/STFE-2027-Stall-Pricing-Guide.pdf"]').first().click();
 const d = await dl;
 check('Pricing guide button triggers a real browser download', !!d && d.suggestedFilename().endsWith('.pdf'), d.suggestedFilename());
-const broch = await page.locator('[data-brochure]').first();
-const bHref = await broch.getAttribute('href');
 const brochureFile = await page.request.get(BASE + '/downloads/STFE-2027-Brochure.pdf');
-check('Brochure button is never a broken download', (brochureFile.ok() && bHref.endsWith('.pdf')) || bHref.startsWith('https://wa.me/'), bHref.slice(0, 70));
+const bb = await brochureFile.body();
+check('Original brochure PDF downloads (unmodified, 3 pages)', brochureFile.ok() && bb.slice(0, 5).toString() === '%PDF-' && bb.length === 13339333, `${bb.length} bytes`);
+const dl2 = page.waitForEvent('download');
+await page.locator('.hero a[href="/downloads/STFE-2027-Brochure.pdf"]').click();
+check('Hero brochure button triggers a real download', (await dl2).suggestedFilename() === 'STFE-2027-Brochure.pdf');
+// floor plans
+await page.locator('#floor-plans').scrollIntoViewIfNeeded();
+const g = await page.locator('#plan-img').evaluate((i) => ({ src: i.currentSrc, w: i.naturalWidth, h: i.naturalHeight }));
+await page.click('#tab-first'); await page.waitForTimeout(400);
+const f = await page.locator('#plan-img').evaluate((i) => ({ src: i.currentSrc, w: i.naturalWidth, h: i.naturalHeight }));
+check('Ground floor plan image loads', g.w > 1000 && g.src.includes('ground-floor'), `${g.w}×${g.h}`);
+check('First floor plan image loads and differs', f.w > 1000 && f.src.includes('first-floor') && f.h !== g.h, `${f.w}×${f.h}`);
+await page.click('#zoom-in');
+check('Zoom in scales the plan', (await page.locator('#plan-img').evaluate((i) => i.style.transform)).includes('scale(1.4)'));
+await page.click('#zoom-reset');
+check('Reset returns to 100%', (await page.locator('#zoom-reset').innerText()) === '100%');
 check('Privacy page loads', (await page.request.get(BASE + '/privacy.html')).ok());
 
 // 5. Exhibitor form: validation
@@ -84,7 +102,7 @@ await page.fill('#ex-name', 'QA Tester');
 await page.fill('#ex-company', 'QA Industries');
 await page.fill('#ex-mobile', '12345');
 await page.fill('#ex-email', 'not-an-email');
-await page.selectOption('#ex-stall', '3 × 3 metres');
+await page.check('#st-3x3', { force: true });
 await page.check('#ex-consent');
 await page.click('#exhibitor-form button[type="submit"]');
 check('Invalid Indian mobile rejected', await page.locator('#ex-mobile').evaluate((el) => el.closest('.field').classList.contains('is-invalid')));
@@ -106,7 +124,8 @@ check('Lead has UTM source/medium/campaign/content', L.utm_source === 'meta' && 
 check('Lead has landing page + enquiry type', L.landing_page?.startsWith('/?utm_source') && L.enquiry_type === 'Exhibitor Enquiry');
 check('Lead mobile normalised', L.mobile === '+919876543210', L.mobile);
 check('Lead has stall configuration + consent', L.stall_configuration === '3 × 3 metres' && L.consent === 'yes');
-check('Success message shown only after save', (await page.locator('#exhibitor-form .form-status').innerText()).includes('received'));
+check('Success message shown only after save', (await page.locator('#exhibitor-form .form-status').innerText()).includes('exhibitor enquiry has been received'));
+check('No error state after a confirmed save', (await page.locator('#exhibitor-form .form-status.is-error').count()) === 0);
 
 // 6. Callback + visitor forms
 await page.fill('#cb-name', 'QA Caller'); await page.fill('#cb-company', 'QA Co'); await page.fill('#cb-mobile', '9123456789'); await page.check('#cb-consent');
@@ -118,10 +137,10 @@ await page.click('#visitor-form button[type="submit"]');
 await page.waitForSelector('#visitor-form .form-status.is-success');
 check('Visitor registration saved separately', leads().some((l) => l['form-name'] === 'visitor-registration' && l.enquiry_type === 'Visitor Registration'));
 
-// 7. Pricing CTA preselects configuration
+// 7. FAQ accordion
 await page.goto(BASE + '/', { waitUntil: 'networkidle' });
-await page.click('a[data-stall="2 × 4.5 metres"]');
-check('Pricing CTA preselects stall configuration', (await page.inputValue('#ex-stall')) === '2 × 4.5 metres');
+await page.locator('.faq details').nth(3).locator('summary').click();
+check('FAQ accordion opens', await page.locator('.faq details').nth(3).evaluate((d) => d.open));
 await page.close();
 
 // 8. Backend failure → error state, no false success
@@ -147,6 +166,7 @@ await fp.keyboard.press('Escape');
 check('Enlarged view closes with Escape', (await fp.locator('#plan-viewer.is-fullscreen').count()) === 0);
 const tap = await fp.evaluate(() => [...document.querySelectorAll('.btn, .viewer__btn, .viewer__tab, .nav__toggle')].filter((el) => el.offsetParent).map((el) => el.getBoundingClientRect().height).filter((h) => h < 40).length);
 check('Tap targets ≥ 40px tall on mobile', tap === 0, `${tap} smaller`);
+check('Mobile header shows the approved logo', await fp.locator('.site-header img.brand__logo').evaluate((i) => i.naturalWidth >= 200 && i.currentSrc.includes('stfe-2027-logo') && i.getBoundingClientRect().height >= 50));
 await browser.close();
 
 const passed = results.filter((r) => r.ok).length;
