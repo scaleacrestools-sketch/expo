@@ -1,0 +1,20 @@
+{
+  "name": "stfe-2027-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "STFE 2027 - Smart Trade Fair & Expo | Official exhibitor and visitor website",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/build-pricing-guide.mjs && vite build && node scripts/postbuild-check.mjs",
+    "preview": "vite preview --port 4173",
+    "qa": "node scripts/qa.mjs"
+  },
+  "devDependencies": {
+    "@fontsource/ibm-plex-sans": "^5.1.0",
+    "@fontsource/ibm-plex-sans-devanagari": "^5.1.0",
+    "@ibm/plex-sans": "^2.0.0",
+    "pdfkit": "^0.15.0",
+    "vite": "^6.0.0"
+  }
+}

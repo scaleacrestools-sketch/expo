@@ -1,0 +1,7 @@
+node_modules/
+dist/
+qa-output/
+*.log
+.netlify/
+.env
+.env.*
