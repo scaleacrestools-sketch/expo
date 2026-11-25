@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Smart Vision Event & Promotions//STFE 2027//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:stfe-2027-agra@svepindia.com
+DTSTAMP:20261125T000000Z
+DTSTART;VALUE=DATE:20270115
+DTEND;VALUE=DATE:20270118
+SUMMARY:STFE 2027 — Smart Trade Fair & Expo
+LOCATION:Soor Sadan Auditorium\, Near Nagar Nigam Office\, M.G. Road\, Sanjay Place\, Agra\, Uttar Pradesh
+DESCRIPTION:Smart Trade Fair & Expo 2027. Free visitor entry\, registration mandatory. Exhibition stalls ₹69\,030 incl. GST. Organiser: Smart Vision Event & Promotions\, +91 96341 26260\, svepindia@gmail.com. Session timings to be announced by the organiser.
+URL:https://www.svepindia.com
+END:VEVENT
+END:VCALENDAR

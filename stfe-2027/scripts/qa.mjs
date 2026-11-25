@@ -41,7 +41,7 @@ const text = await page.evaluate(() => document.body.innerText);
 check('Price ₹69,030 shown', text.includes('₹69,030'));
 check('Rate ₹7,670 per sq. metre shown', text.includes('₹7,670'));
 check('All 17 categories present', (await page.locator('li.cat').count()) === 17);
-check('All 6 benefits present', (await page.locator('.benefit').count()) === 6);
+check('All 6 benefits present', (await page.locator('.reasons li').count()) === 6);
 check('All 6 inclusions present', (await page.locator('.rate-card__incl li').count()) === 6);
 check('Programme has 3 days × 5 items', (await page.locator('.day li').count()) === 15);
 check('Exactly 4 key attractions', (await page.locator('.attraction').count()) === 4);
@@ -92,6 +92,16 @@ check('Zoom in scales the plan', (await page.locator('#plan-img').evaluate((i) =
 await page.click('#zoom-reset');
 check('Reset returns to 100%', (await page.locator('#zoom-reset').innerText()) === '100%');
 check('Privacy page loads', (await page.request.get(BASE + '/privacy.html')).ok());
+check('Terms page loads', (await page.request.get(BASE + '/terms.html')).ok());
+const ics = await (await page.request.get(BASE + '/stfe-2027.ics')).text();
+check('Calendar file has correct dates and venue', ics.includes('DTSTART;VALUE=DATE:20270115') && ics.includes('DTEND;VALUE=DATE:20270118') && ics.includes('Soor Sadan'));
+// photography
+const credits = JSON.parse(readFileSync('public/assets/photos/credits.json', 'utf8'));
+const photoImgs = await page.evaluate(async () => { const imgs = [...document.querySelectorAll('img[src*="/assets/photos/"]')]; imgs.forEach((i) => { i.loading = 'eager'; }); await Promise.all(imgs.map((i) => i.complete ? 0 : new Promise((r) => { i.onload = i.onerror = r; }))); return imgs.map((i) => ({ src: i.getAttribute('src'), ok: i.naturalWidth > 0 })); });
+check('Licensed photographs render on the page', photoImgs.length >= 8 && photoImgs.every((i) => i.ok), `${photoImgs.length} photo elements`);
+check('Every photo used has a credits entry with source and licence', photoImgs.every((i) => credits.some((c) => i.src.includes(c.file.replace('.webp', '')) && c.source_url && c.license)));
+check('Hero uses an exhibition photograph', await page.locator('.hero__img').count() === 1);
+check('Image credits listed in footer', (await page.locator('#image-credits li').count()) >= credits.length);
 
 // 5. Exhibitor form: validation
 await page.locator('#enquire').scrollIntoViewIfNeeded();
