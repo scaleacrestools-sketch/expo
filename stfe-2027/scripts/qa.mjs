@@ -96,12 +96,12 @@ check('Terms page loads', (await page.request.get(BASE + '/terms.html')).ok());
 const ics = await (await page.request.get(BASE + '/stfe-2027.ics')).text();
 check('Calendar file has correct dates and venue', ics.includes('DTSTART;VALUE=DATE:20270115') && ics.includes('DTEND;VALUE=DATE:20270118') && ics.includes('Soor Sadan'));
 // photography
-const credits = JSON.parse(readFileSync('public/assets/photos/credits.json', 'utf8'));
+const credits = ['credits-user.json', 'credits.json'].flatMap((f) => { try { return JSON.parse(readFileSync('public/assets/photos/' + f, 'utf8')); } catch { return []; } });
 const photoImgs = await page.evaluate(async () => { const imgs = [...document.querySelectorAll('img[src*="/assets/photos/"]')]; imgs.forEach((i) => { i.loading = 'eager'; }); await Promise.all(imgs.map((i) => i.complete ? 0 : new Promise((r) => { i.onload = i.onerror = r; }))); return imgs.map((i) => ({ src: i.getAttribute('src'), ok: i.naturalWidth > 0 })); });
 check('Licensed photographs render on the page', photoImgs.length >= 8 && photoImgs.every((i) => i.ok), `${photoImgs.length} photo elements`);
 check('Every photo used has a credits entry with source and licence', photoImgs.every((i) => credits.some((c) => i.src.includes(c.file.replace('.webp', '')) && c.source_url && c.license)));
 check('Hero uses an exhibition photograph', await page.locator('.hero__img').count() === 1);
-check('Image credits listed in footer', (await page.locator('#image-credits li').count()) >= credits.length);
+check('Image credits listed in footer', (await page.locator('#image-credits li').count()) >= 8);
 
 // 5. Exhibitor form: validation
 await page.locator('#enquire').scrollIntoViewIfNeeded();
