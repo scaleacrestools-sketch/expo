@@ -53,6 +53,7 @@ async function record(name, viewport, script) {
     await glide(p, '#why-exhibit', 0, 1300); await p.waitForTimeout(2200);
     await glide(p, '#categories', 0, 1300); await p.waitForTimeout(2000);
     await glide(p, '#pricing', 0, 1300); await p.waitForTimeout(2600);
+    await p.hover('.wa-float'); await p.waitForTimeout(1200); await p.mouse.move(700, 450);
     await glide(p, '#floor-plans', 0, 1300); await p.waitForTimeout(800);
     await p.click('#tab-first'); await p.waitForTimeout(1200);
     await p.click('#tab-ground'); await p.waitForTimeout(600);
@@ -81,7 +82,9 @@ async function record(name, viewport, script) {
     await p.waitForSelector('#exhibitor-form .form-status.is-success'); await p.waitForTimeout(2200);
     await glide(p, '#venue', 0, 1300); await p.waitForTimeout(2000);
     await glide(p, '#faq', 0, 1200); await p.click('.faq details:nth-child(4) summary'); await p.waitForTimeout(1300);
-    await glide(p, 99999, 0, 1500); await p.waitForTimeout(2200);
+    await glide(p, '.footer', 0, 1500); await p.waitForTimeout(2200);
+    await p.hover('.fcol a[href="#pricing"]'); await p.waitForTimeout(600);
+    await glide(p, 99999, 0, 1200); await p.waitForTimeout(2400);
   });
 
   await record('mobile', { width: 390, height: 844 }, async (p) => {

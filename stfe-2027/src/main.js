@@ -29,6 +29,7 @@ window.matchMedia('(min-width: 1280px)').addEventListener('change', (e) => { if 
 const mobileBar = $('#mobile-bar');
 const hero = $('.hero');
 const footer = $('.footer');
+const waFloat = $('.wa-float');
 let formInView = false;
 const onScroll = () => {
   header.classList.toggle('is-scrolled', header.getBoundingClientRect().top <= 0 && window.scrollY > 40);
@@ -37,6 +38,8 @@ const onScroll = () => {
   const show = hero.getBoundingClientRect().bottom < 0 && !formInView && !footerVisible;
   mobileBar.classList.toggle('is-visible', show);
   document.body.classList.toggle('has-bar', show);
+  // Floating WhatsApp control: shown after the hero, tucked away over the footer and the forms
+  waFloat?.classList.toggle('is-hidden', hero.getBoundingClientRect().bottom > 0 || footerVisible || formInView);
 };
 window.addEventListener('scroll', onScroll, { passive: true });
 window.addEventListener('resize', onScroll, { passive: true });

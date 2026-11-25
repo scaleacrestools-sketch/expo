@@ -24,7 +24,7 @@ for (const w of [375, 390, 430, 768, 1024, 1440]) {
   const r = await p.evaluate(() => {
     const over = [...document.querySelectorAll('body *')].filter((el) => {
       const b = el.getBoundingClientRect();
-      return b.width && b.right > document.documentElement.clientWidth + 1 && getComputedStyle(el).position !== 'fixed' && !el.closest('.mobile-menu') && !el.closest('.visually-hidden');
+      return b.width && b.right > document.documentElement.clientWidth + 1 && getComputedStyle(el).position !== 'fixed' && !el.closest('.mobile-menu') && !el.closest('.visually-hidden') && !el.closest('.skyline');
     }).map((el) => el.className || el.tagName).slice(0, 3);
     return { sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, over };
   });
@@ -47,7 +47,7 @@ check('Programme has 3 days × 5 items', (await page.locator('.day li').count())
 check('Exactly 4 key attractions', (await page.locator('.attraction').count()) === 4);
 check('12 FAQ entries', (await page.locator('.faq details').count()) === 12);
 check('No "GST extra" wording', !/plus GST|\+ ?GST|GST extra/i.test(text));
-check('Preview build shows the three brochure marks with a pending-authorisation badge', (await page.locator('#inst-strip img').count()) === 3 && (await page.locator('.inst__preview').isVisible()));
+check('Preview build shows the three brochure marks, with no public-facing warning badge', (await page.locator('#inst-strip img').count()) === 3 && (await page.locator('.inst__preview').count()) === 0);
 const prodHtml = readFileSync('dist/index.html', 'utf8');
 check('Production build withholds the marks until authorised', !prodHtml.includes('assets/institutional/'));
 check('Approved logo used in header (image, not text)', await page.locator('.brandbar img.brand__logo').evaluate((i) => i.complete && i.naturalWidth >= 200 && i.currentSrc.includes('stfe-2027-logo') && i.getBoundingClientRect().height >= 60));
@@ -105,10 +105,23 @@ const creditsHtml = await (await page.request.get(BASE + '/credits.html')).text(
 check('Image credits page lists every photo used', (creditsHtml.match(/<li>/g) || []).length >= photoImgs.length - 2 && (await page.locator('footer a[href="/credits.html"]').count()) === 1, `${(creditsHtml.match(/<li>/g) || []).length} credit lines`);
 const navBg = await page.locator('.site-header').evaluate((e) => getComputedStyle(e).backgroundImage);
 check('Navigation uses the reference plum/indigo gradient (no navy theme)', navBg.includes('143, 29, 109') && navBg.includes('54, 49, 95'), navBg.slice(0, 80));
-const ctaBg = await page.locator('.nav__cta').evaluate((e) => getComputedStyle(e).backgroundImage);
-check('Primary CTA uses the reference orange gradient', ctaBg.includes('240, 122, 63'));
-const footerH = await page.locator('footer').evaluate((e) => e.getBoundingClientRect().height);
-check('Footer is compact (< 320px tall at 1440px)', footerH < 320, `${Math.round(footerH)}px`);
+const ctaBg = await page.locator('.nav__cta').evaluate((e) => getComputedStyle(e).backgroundColor);
+check('Primary CTA uses the reference warm orange', ctaBg === 'rgb(240, 122, 63)', ctaBg);
+const fonts = await page.evaluate(() => ({ h1: getComputedStyle(document.querySelector('h1')).fontFamily, h2: getComputedStyle(document.querySelector('.title')).fontFamily, nav: getComputedStyle(document.querySelector('.nav__links a')).fontFamily, body: getComputedStyle(document.querySelector('.lede')).fontFamily, raj: document.fonts.check('700 40px Rajdhani'), man: document.fonts.check('400 16px Manrope') }));
+check('Headings and navigation use Rajdhani; body uses Manrope', fonts.h1.startsWith('Rajdhani') && fonts.h2.startsWith('Rajdhani') && fonts.nav.startsWith('Rajdhani') && fonts.body.startsWith('Manrope') && fonts.raj && fonts.man, JSON.stringify(fonts).slice(0, 120));
+const heroLayout = await page.evaluate(() => { const c = document.querySelector('.hero__copy').getBoundingClientRect(); const f = document.querySelector('#stall-details-form').getBoundingClientRect(); return { right: f.left > c.right, w: Math.round(f.width), inHero: f.bottom <= document.querySelector('.hero').getBoundingClientRect().bottom }; });
+check('Hero quick form is a compact right-side card (330–380px) inside the hero', heroLayout.right && heroLayout.w >= 330 && heroLayout.w <= 380 && heroLayout.inHero, JSON.stringify(heroLayout));
+const ft = await page.evaluate(() => ({ panels: document.querySelectorAll('footer .fpanel').length, cols: document.querySelectorAll('footer .fcol').length, ornament: !!document.querySelector('footer .ornament'), skyline: !!document.querySelector('footer .skyline svg path'), bar: !!document.querySelector('.footer__bottom nav a[href="/privacy.html"]') && !!document.querySelector('.footer__bottom nav a[href="/terms.html"]') }));
+check('Footer: ornament strip, 2 contact panels, 5 columns, original skyline, copyright bar with Privacy/Terms', ft.panels === 2 && ft.cols === 5 && ft.ornament && ft.skyline && ft.bar, JSON.stringify(ft));
+check('Patterned and photo-overlay sections present', (await page.locator('.bg-geo').count()) >= 3 && (await page.locator('.opp__left .opp__bg, .opp__right .opp__bg').count()) === 2);
+await page.evaluate(() => scrollTo(0, 0)); await page.waitForTimeout(300);
+const wa0 = await page.locator('.wa-float').evaluate((e) => e.classList.contains('is-hidden'));
+await page.locator('#pricing').scrollIntoViewIfNeeded(); await page.waitForTimeout(300);
+const wa1 = await page.locator('.wa-float').evaluate((e) => ({ hidden: e.classList.contains('is-hidden'), href: e.href }));
+await page.evaluate(() => scrollTo(0, document.body.scrollHeight)); await page.waitForTimeout(300);
+const wa2 = await page.locator('.wa-float').evaluate((e) => e.classList.contains('is-hidden'));
+check('Floating WhatsApp button: hidden on hero, shown mid-page with wa.me link, hidden at footer', wa0 && !wa1.hidden && wa1.href.startsWith('https://wa.me/919634126260') && wa2);
+await page.evaluate(() => scrollTo(0, 0));
 
 // 5. Exhibitor form: validation
 await page.locator('#enquire').scrollIntoViewIfNeeded();
@@ -194,7 +207,7 @@ await fp.goto(FAIL_BASE + '/', { waitUntil: 'networkidle' });
 check('Mobile bar hidden on first screen', !(await fp.locator('#mobile-bar').evaluate((e) => e.classList.contains('is-visible'))));
 await fp.locator('#categories').scrollIntoViewIfNeeded(); await fp.waitForTimeout(400);
 const bar = await fp.locator('#mobile-bar').evaluate((e) => ({ vis: e.classList.contains('is-visible'), links: [...e.querySelectorAll('a')].map((a) => a.textContent.trim() || a.getAttribute('aria-label')) }));
-check('Mobile sticky bar appears after the hero with Enquire + WhatsApp + Call', bar.vis && bar.links[0] === 'Enquire for Stall' && bar.links[1].includes('WhatsApp'), bar.links.join(' | '));
+check('Mobile sticky bar appears after the hero with Enquire + WhatsApp + Call', bar.vis && bar.links[0] === 'Enquire for a Stall' && bar.links[1].includes('WhatsApp'), bar.links.join(' | '));
 await fp.locator('#exhibitor-form').scrollIntoViewIfNeeded(); await fp.waitForTimeout(400);
 check('Mobile bar hides while the enquiry form is on screen', !(await fp.locator('#mobile-bar').evaluate((e) => e.classList.contains('is-visible'))));
 await fp.evaluate(() => scrollTo(0, document.body.scrollHeight)); await fp.waitForTimeout(400);

@@ -21,8 +21,16 @@ const { execFileSync } = require('child_process');
   await cap(390, 844, 1, false, path.join(shots, 'stfe-mobile-first-screen.png'));
   await cap(1440, 900, 1, true, path.join(shots, 'stfe-desktop-full.png'));
   await cap(768, 1024, 1, true, path.join(shots, 'stfe-tablet-full.png'));
-  await cap(1440, 900, 1, true, path.join(out, 'STFE-2027-UPITS-LANDING-DESKTOP.png'));
-  await cap(390, 844, 2, true, path.join(out, 'STFE-2027-UPITS-LANDING-MOBILE.png'));
+  await cap(1440, 900, 1, true, path.join(out, 'STFE-2027-RAJDHANI-DESKTOP.png'));
+  await cap(390, 844, 2, true, path.join(out, 'STFE-2027-RAJDHANI-MOBILE.png'));
+  {
+    const p = await b.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
+    await p.goto(url, { waitUntil: 'networkidle' });
+    await p.locator('footer').scrollIntoViewIfNeeded(); await p.waitForTimeout(500);
+    await p.addStyleTag({ content: '.wa-float{display:none!important}' });
+    await p.locator('footer').screenshot({ path: path.join(out, 'STFE-2027-FOOTER-CLOSEUP.png') });
+    await p.close();
+  }
   await b.close();
   // crops for the comparison board
   const py = `

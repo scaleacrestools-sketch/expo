@@ -24,6 +24,8 @@ function stfeHtml() {
         existsSync(pub(`assets/photos/${slug}.webp`)) && existsSync(pub(`assets/photos/${slug}-1200.webp`)) ? inner : '');
       html = html.replace(/<!--VIDEO:([\w-]+)-->([\s\S]*?)<!--\/VIDEO-->/g, (_, slug, inner) =>
         existsSync(pub(`assets/video/${slug}.mp4`)) && existsSync(pub(`assets/video/${slug}-poster.webp`)) ? inner : '');
+      // Footer skyline: the original STFE SVG, unless the organiser supplies a LICENSED replacement file.
+      if (existsSync(pub('assets/brand/footer-skyline-licensed.webp'))) html = html.replace(/<!--SKYLINE-->[\s\S]*?<!--\/SKYLINE-->/, '<div class="skyline skyline--img" aria-hidden="true"><img src="/assets/brand/footer-skyline-licensed.webp" alt="" loading="lazy" /></div>');
       html = html.replace(/<!--SECTION:([\w-]+)-->([\s\S]*?)<!--\/SECTION:\1-->/g, (_, __, inner) =>
         /\/assets\/photos\//.test(inner) ? inner : '');
 
