@@ -243,3 +243,28 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObse
   const ro = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('is-in'); ro.unobserve(en.target); } }), { rootMargin: '0px 0px -6% 0px' });
   t.forEach((el) => ro.observe(el));
 }
+
+/* Hero slideshow: image changes every 2 s with an alternating gentle zoom in / zoom out */
+(() => {
+  const slides = $$('.hero__slide');
+  let dots = $$('.hero__dots button');
+  if (slides.length < 2) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i = 0, timer;
+  const show = (n) => {
+    slides[i].classList.remove('is-active');
+    i = (n + slides.length) % slides.length;
+    const s = slides[i];
+    s.classList.remove('zoom-in', 'zoom-out'); void s.offsetWidth;
+    if (!reduce) s.classList.add(i % 2 ? 'zoom-out' : 'zoom-in');
+    s.classList.add('is-active');
+    dots.forEach((d, k) => d.setAttribute('aria-selected', String(k === i)));
+    const fresh = dots[i].cloneNode(true); dots[i].replaceWith(fresh); dots[i] = fresh; bind(fresh, i);
+  };
+  const restart = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => show(i + 1), 2000); };
+  const bind = (d, k) => d.addEventListener('click', () => { show(k); restart(); });
+  dots.forEach(bind);
+  if (!reduce) slides[0].classList.add('zoom-in');
+  restart();
+  document.addEventListener('visibilitychange', () => { if (document.hidden) clearInterval(timer); else restart(); });
+})();

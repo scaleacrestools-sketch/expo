@@ -1,0 +1,443 @@
+{
+  "base": "http://localhost:4321",
+  "ran_at": "2026-11-25T11:31:16.234Z",
+  "passed": 87,
+  "total": 87,
+  "results": [
+    {
+      "name": "No horizontal overflow at 375px",
+      "ok": true,
+      "detail": "scrollWidth 375 / 375"
+    },
+    {
+      "name": "No JS errors at 375px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow at 390px",
+      "ok": true,
+      "detail": "scrollWidth 390 / 390"
+    },
+    {
+      "name": "No JS errors at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow at 430px",
+      "ok": true,
+      "detail": "scrollWidth 430 / 430"
+    },
+    {
+      "name": "No JS errors at 430px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow at 768px",
+      "ok": true,
+      "detail": "scrollWidth 768 / 768"
+    },
+    {
+      "name": "No JS errors at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow at 1024px",
+      "ok": true,
+      "detail": "scrollWidth 1024 / 1024"
+    },
+    {
+      "name": "No JS errors at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No horizontal overflow at 1440px",
+      "ok": true,
+      "detail": "scrollWidth 1440 / 1440"
+    },
+    {
+      "name": "No JS errors at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Price ₹69,030 shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Rate ₹7,670 per sq. metre shown",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "All 17 categories present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "All 6 benefits present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "All 6 inclusions present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Programme has 3 days × 5 items",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Exactly 4 key attractions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "12 FAQ entries",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No \"GST extra\" wording",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview build shows the three brochure marks, with no public-facing warning badge",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Production build withholds the marks until authorised",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Approved logo used in header (image, not text)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Tagline from brochure present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No engineering notes in hero",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No endorsement wording",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "WhatsApp link uses organiser number + prefilled message",
+      "ok": true,
+      "detail": "https://wa.me/919634126260?text=Hello%2C%20I%20am%20interest…"
+    },
+    {
+      "name": "tel: link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mailto: link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Organiser website link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Google Maps directions link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "All in-page anchors resolve",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Pricing guide PDF downloads",
+      "ok": true,
+      "detail": "626646 bytes"
+    },
+    {
+      "name": "Pricing guide button triggers a real browser download",
+      "ok": true,
+      "detail": "STFE-2027-Stall-Pricing-Guide.pdf"
+    },
+    {
+      "name": "Original brochure PDF downloads (unmodified, 3 pages)",
+      "ok": true,
+      "detail": "13339333 bytes"
+    },
+    {
+      "name": "Hero brochure button triggers a real download",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Ground floor plan image loads",
+      "ok": true,
+      "detail": "1468×884"
+    },
+    {
+      "name": "First floor plan image loads and differs",
+      "ok": true,
+      "detail": "1468×832"
+    },
+    {
+      "name": "Zoom in scales the plan",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Reset returns to 100%",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Privacy page loads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Terms page loads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Calendar file has correct dates and venue",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Licensed photographs render on the page",
+      "ok": true,
+      "detail": "17 photo elements"
+    },
+    {
+      "name": "Every photo used has a credits entry with source and licence",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Hero slideshow has 4 images and 4 indicators",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Hero image changes every 2 seconds",
+      "ok": true,
+      "detail": "1,1,2,2,3"
+    },
+    {
+      "name": "Image credits page lists every photo used",
+      "ok": true,
+      "detail": "13 credit lines"
+    },
+    {
+      "name": "Navigation uses the reference plum/indigo gradient (no navy theme)",
+      "ok": true,
+      "detail": "linear-gradient(100deg, rgb(143, 29, 109) 10%, rgb(54, 49, 95) 100%)"
+    },
+    {
+      "name": "Primary CTA uses the reference warm orange",
+      "ok": true,
+      "detail": "rgb(240, 122, 63)"
+    },
+    {
+      "name": "Headings and navigation use Rajdhani; body uses Manrope",
+      "ok": true,
+      "detail": "{\"h1\":\"Rajdhani, \\\"Segoe UI\\\", system-ui, sans-serif\",\"h2\":\"Rajdhani, \\\"Segoe UI\\\", system-ui, sans-serif\",\"nav\":\"Rajdha"
+    },
+    {
+      "name": "Hero quick form is a compact right-side card (330–380px) inside the hero",
+      "ok": true,
+      "detail": "{\"right\":true,\"w\":360,\"inHero\":true}"
+    },
+    {
+      "name": "Footer: ornament strip, 2 contact panels, 5 columns, original skyline, copyright bar with Privacy/Terms",
+      "ok": true,
+      "detail": "{\"panels\":2,\"cols\":5,\"ornament\":true,\"skyline\":true,\"bar\":true}"
+    },
+    {
+      "name": "Patterned and photo-overlay sections present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Floating WhatsApp button: hidden on hero, shown mid-page with wa.me link, hidden at footer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Empty submit shows field errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Empty submit does not save a lead",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Invalid Indian mobile rejected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Invalid email rejected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Invalid data does not save a lead",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Valid exhibitor enquiry saved by backend",
+      "ok": true,
+      "detail": "1 record(s)"
+    },
+    {
+      "name": "Double-click produced exactly one lead",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lead has UTM source/medium/campaign/content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lead has landing page + enquiry type",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Lead mobile normalised",
+      "ok": true,
+      "detail": "+919876543210"
+    },
+    {
+      "name": "Lead has stall configuration + consent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Success message shown only after save",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No error state after a confirmed save",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Callback modal opens",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Callback request saved",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Hero stall-details form saves a lead",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Visitor registration saved separately",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "FAQ accordion opens",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Backend failure shows error, not success",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Button re-enabled after failure",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Mobile menu opens",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Mobile menu closes after navigation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Floor plan tabs switch",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Enlarged view opens",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Enlarged view closes with Escape",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Tap targets ≥ 40px tall on mobile",
+      "ok": true,
+      "detail": "0 smaller"
+    },
+    {
+      "name": "Mobile bar hidden on first screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Mobile sticky bar appears after the hero with Enquire + WhatsApp + Call",
+      "ok": true,
+      "detail": "Enquire for a Stall | WhatsApp | Call the organiser"
+    },
+    {
+      "name": "Mobile bar hides while the enquiry form is on screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Mobile bar hides at the footer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Mobile header shows the approved logo",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

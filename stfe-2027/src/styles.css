@@ -207,6 +207,21 @@ body.menu-open { overflow: hidden; }
 .hero__visitor a { color: #fff; font-weight: 700; }
 .hero__credit { position: absolute; right: .75rem; bottom: .4rem; font-size: .6875rem; color: rgba(255,255,255,.75); }
 .hero__credit a { color: inherit; }
+/* Hero slideshow option: crossfade every 10 s with a slow zoom in / zoom out (Ken Burns) */
+.hero__slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .7s ease; will-change: opacity, transform; }
+.hero__slide.is-active { opacity: 1; }
+.hero__slide.zoom-in { animation: hero-zoom-in 2.7s ease-out both; }
+.hero__slide.zoom-out { animation: hero-zoom-out 2.7s ease-out both; }
+@keyframes hero-zoom-in { from { transform: scale(1); } to { transform: scale(1.06); } }
+@keyframes hero-zoom-out { from { transform: scale(1.06); } to { transform: scale(1); } }
+.hero__dots { position: absolute; left: 50%; bottom: 1.1rem; transform: translateX(-50%); display: flex; gap: .5rem; z-index: 2; }
+.hero__dots button { width: 34px; height: 4px; border: 0; border-radius: 2px; background: rgba(255,255,255,.45); cursor: pointer; padding: 0; position: relative; overflow: hidden; }
+.hero__dots button::after { content: ''; position: absolute; inset: 0; background: var(--orange); transform: scaleX(0); transform-origin: left; }
+.hero__dots button[aria-selected="true"]::after { animation: dot-fill 2s linear forwards; }
+@keyframes dot-fill { to { transform: scaleX(1); } }
+@media (max-width: 1023px) { .hero__dots { bottom: auto; top: 1rem; } }
+@media (prefers-reduced-motion: reduce) { .hero__slide { transition: none; animation: none !important; } .hero__dots button::after { animation: none !important; transform: scaleX(1); } }
+
 /* compact right-side form card */
 .quick-form { background: #fff; color: var(--ink); border-radius: 10px; padding: 1.25rem 1.25rem 1.1rem; box-shadow: 0 18px 40px -22px rgba(0,0,0,.55); border-top: 4px solid var(--orange); width: 100%; max-width: 380px; display: grid; gap: .65rem; }
 .quick-form__title { font-size: 1.75rem; font-weight: 700; color: var(--indigo); line-height: 1; }

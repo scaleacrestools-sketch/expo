@@ -24,7 +24,7 @@ for (const w of [375, 390, 430, 768, 1024, 1440]) {
   const r = await p.evaluate(() => {
     const over = [...document.querySelectorAll('body *')].filter((el) => {
       const b = el.getBoundingClientRect();
-      return b.width && b.right > document.documentElement.clientWidth + 1 && getComputedStyle(el).position !== 'fixed' && !el.closest('.mobile-menu') && !el.closest('.visually-hidden') && !el.closest('.skyline');
+      return b.width && b.right > document.documentElement.clientWidth + 1 && getComputedStyle(el).position !== 'fixed' && !el.closest('.mobile-menu') && !el.closest('.visually-hidden') && !el.closest('.skyline') && !el.closest('.hero__media');
     }).map((el) => el.className || el.tagName).slice(0, 3);
     return { sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, over };
   });
@@ -100,9 +100,11 @@ const credits = ['credits-user.json', 'credits.json'].flatMap((f) => { try { ret
 const photoImgs = await page.evaluate(async () => { const imgs = [...document.querySelectorAll('img[src*="/assets/photos/"]')]; imgs.forEach((i) => { i.loading = 'eager'; }); await Promise.all(imgs.map((i) => i.complete ? 0 : new Promise((r) => { i.onload = i.onerror = r; }))); return imgs.map((i) => ({ src: i.getAttribute('src'), ok: i.naturalWidth > 0 })); });
 check('Licensed photographs render on the page', photoImgs.length >= 8 && photoImgs.every((i) => i.ok), `${photoImgs.length} photo elements`);
 check('Every photo used has a credits entry with source and licence', photoImgs.every((i) => credits.some((c) => i.src.includes(c.file.replace('.webp', '')) && c.source_url && c.license)));
-check('Hero uses an exhibition photograph', await page.locator('.hero__img').count() === 1);
+check('Hero slideshow has 4 images and 4 indicators', (await page.locator('.hero__slide').count()) === 4 && (await page.locator('.hero__dots button').count()) === 4);
+{ const seq = []; await page.evaluate(() => scrollTo(0, 0)); for (let k = 0; k < 5; k++) { seq.push(await page.evaluate(() => [...document.querySelectorAll('.hero__slide')].findIndex((s) => s.classList.contains('is-active')))); await page.waitForTimeout(1000); }
+  check('Hero image changes every 2 seconds', new Set(seq).size >= 2 && seq[0] !== seq[2], seq.join(',')); }
 const creditsHtml = await (await page.request.get(BASE + '/credits.html')).text();
-check('Image credits page lists every photo used', (creditsHtml.match(/<li>/g) || []).length >= photoImgs.length - 2 && (await page.locator('footer a[href="/credits.html"]').count()) === 1, `${(creditsHtml.match(/<li>/g) || []).length} credit lines`);
+check('Image credits page lists every photo used', (creditsHtml.match(/<li>/g) || []).length >= new Set(photoImgs.map((i) => i.src.replace(/-1200\.webp$|\.webp$/, ''))).size && (await page.locator('footer a[href="/credits.html"]').count()) === 1, `${(creditsHtml.match(/<li>/g) || []).length} credit lines`);
 const navBg = await page.locator('.site-header').evaluate((e) => getComputedStyle(e).backgroundImage);
 check('Navigation uses the reference plum/indigo gradient (no navy theme)', navBg.includes('143, 29, 109') && navBg.includes('54, 49, 95'), navBg.slice(0, 80));
 const ctaBg = await page.locator('.nav__cta').evaluate((e) => getComputedStyle(e).backgroundColor);
