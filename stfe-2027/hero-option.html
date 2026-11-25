@@ -25,16 +25,16 @@
   <link rel="stylesheet" href="/src/styles.css" />
 <style>
 /* Hero slideshow option: crossfade every 10 s with a slow zoom in / zoom out (Ken Burns) */
-.hero__slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.6s ease; will-change: opacity, transform; }
+.hero__slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .7s ease; will-change: opacity, transform; }
 .hero__slide.is-active { opacity: 1; }
-.hero__slide.zoom-in { animation: hero-zoom-in 11.6s linear both; }
-.hero__slide.zoom-out { animation: hero-zoom-out 11.6s linear both; }
-@keyframes hero-zoom-in { from { transform: scale(1); } to { transform: scale(1.12); } }
-@keyframes hero-zoom-out { from { transform: scale(1.12); } to { transform: scale(1); } }
+.hero__slide.zoom-in { animation: hero-zoom-in 2.7s ease-out both; }
+.hero__slide.zoom-out { animation: hero-zoom-out 2.7s ease-out both; }
+@keyframes hero-zoom-in { from { transform: scale(1); } to { transform: scale(1.06); } }
+@keyframes hero-zoom-out { from { transform: scale(1.06); } to { transform: scale(1); } }
 .hero__dots { position: absolute; left: 50%; bottom: 1.1rem; transform: translateX(-50%); display: flex; gap: .5rem; z-index: 2; }
 .hero__dots button { width: 34px; height: 4px; border: 0; border-radius: 2px; background: rgba(255,255,255,.45); cursor: pointer; padding: 0; position: relative; overflow: hidden; }
 .hero__dots button::after { content: ''; position: absolute; inset: 0; background: var(--orange); transform: scaleX(0); transform-origin: left; }
-.hero__dots button[aria-selected="true"]::after { animation: dot-fill 10s linear forwards; }
+.hero__dots button[aria-selected="true"]::after { animation: dot-fill 2s linear forwards; }
 @keyframes dot-fill { to { transform: scaleX(1); } }
 @media (max-width: 1023px) { .hero__dots { bottom: auto; top: 1rem; } }
 @media (prefers-reduced-motion: reduce) { .hero__slide { transition: none; animation: none !important; } .hero__dots button::after { animation: none !important; transform: scaleX(1); } }
@@ -166,7 +166,7 @@
   <div class="hero__dots" role="tablist" aria-label="Hero images"><button type="button" role="tab" aria-label="Show image 1" aria-selected="true" data-slide="0"></button><button type="button" role="tab" aria-label="Show image 2" aria-selected="false" data-slide="1"></button><button type="button" role="tab" aria-label="Show image 3" aria-selected="false" data-slide="2"></button><button type="button" role="tab" aria-label="Show image 4" aria-selected="false" data-slide="3"></button></div>
   <p class="hero__credit">Representative trade-fair photograph, not an STFE event · <a href="/credits.html">credits</a></p>
 </section>
-<p class="option-note">Hero option for review: 4 images, crossfade every 10 seconds, alternating slow zoom in / zoom out. Placeholder photos stand in for your four images until the files are added. The form on this preview page does not submit.</p>
+<p class="option-note">Hero option for review: 4 images, crossfade every 2 seconds, alternating slow zoom in / zoom out. Placeholder photos stand in for your four images until the files are added. The form on this preview page does not submit.</p>
 </main>
 <script>
 (() => {
@@ -185,7 +185,7 @@
     dots[i].replaceWith(dots[i] = dots[i].cloneNode(true)); bind(dots[i], i);   // restart progress bar
   };
   const bind = (d, k) => d.addEventListener('click', () => { show(k); restart(); });
-  const restart = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => show(i + 1), 10000); };
+  const restart = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => show(i + 1), 2000); };
   dots.forEach(bind);
   if (!reduce) slides[0].classList.add('zoom-in');
   restart();
