@@ -1,0 +1,126 @@
+{
+  "notes": "Site: 'STFE 2027 – Smart Trade Fair & Expo, Agra | 15–17 Jan 2027' (gleeful-caramel-7c566c.netlify.app), the user's own earlier STFE 2027 landing page: a 3-day trade fair for entrepreneurs, startups and MSMEs at Soor Sadan Auditorium, Agra (free visitor registration, stall enquiries at ₹69,030 incl. GST). Provenance: all 11 images are self-hosted under /images/ on the Netlify site, with no images.unsplash.com / images.pexels.com / CDN host URLs. None has EXIF, XMP, IPTC or embedded credit metadata. No photo credits or watermarks are visible on the page. The hero carries an on-page caption 'Illustrative image'. Licence source is therefore UNKNOWN and needs confirming with the user. Several shots (hero.jpg, networking.jpg, b2b.jpg, awards.jpg, workshop.jpg, experts.jpg, aisle.jpg) have a polished, uniform look and could be AI-generated or stock. Do not present them as real STFE event photos without confirmation. hall.jpg resembles the Pragati Maidan (New Delhi) hall interior. venue.jpg shows the Soor Sadan auditorium facade, Agra. floorplan.png and stfe-logo.png are the user's own graphics. Files are originals, downloaded unmodified at 1440x900 render, largest srcset candidate. Only two same-site links were found: /privacy (no images) and a brochure PDF (/downloads/STFE-2027-Brochure.pdf), which was not downloaded. No video, poster or CSS background images were found. stfe-logo.png (168 px) was kept despite being under 200 px because it is a logo.",
+  "files": [
+    {
+      "file": "stfe-logo.png",
+      "url": "https://gleeful-caramel-7c566c.netlify.app/images/stfe-logo.png",
+      "width": 168,
+      "height": 182,
+      "bytes": 47667,
+      "alt": "",
+      "section": "#hdr",
+      "kind": "img",
+      "page": "https://gleeful-caramel-7c566c.netlify.app/"
+    },
+    {
+      "file": "hero.jpg",
+      "url": "https://gleeful-caramel-7c566c.netlify.app/images/hero.jpg",
+      "width": 1003,
+      "height": 615,
+      "bytes": 123684,
+      "alt": "",
+      "section": "#top STFE 2 27 2027 – Smart Trade Fair & Expo, Agra",
+      "kind": "img",
+      "page": "https://gleeful-caramel-7c566c.netlify.app/"
+    },
+    {
+      "file": "venue.jpg",
+      "url": "https://gleeful-caramel-7c566c.netlify.app/images/venue.jpg",
+      "width": 983,
+      "height": 641,
+      "bytes": 141727,
+      "alt": "Front of Soor Sadan Auditorium, Agra",
+      "section": "#top STFE 2 27 2027 – Smart Trade Fair & Expo, Agra",
+      "kind": "img",
+      "page": "https://gleeful-caramel-7c566c.netlify.app/"
+    },
+    {
+      "file": "aisle.jpg",
+      "url": "https://gleeful-caramel-7c566c.netlify.app/images/aisle.jpg",
+      "width": 531,
+      "height": 789,
+      "bytes": 106823,
+      "alt": "Visitors walking between stalls from different sectors at an Indian trade exhibition",
+      "section": "#about Where innovation meets opportunity",
+      "kind": "img",
+      "page": "https://gleeful-caramel-7c566c.netlify.app/"
+    },
+    {
+      "file": "networking.jpg",
+      "url": "https://gleeful-caramel-7c566c.netlify.app/images/networking.jpg",
+      "width": 691,
+      "height": 701,
+      "bytes": 97442,
+      "alt": "Indian business professionals exchanging a card over tea at a trade exhibition",
+      "section": "#why Six reasons to take a stall",
+      "kind": "img",
+      "page": "https://gleeful-caramel-7c566c.netlify.app/"
+    },
+    {
+      "file": "hall.jpg",
+      "url": "https://gleeful-caramel-7c566c.netlify.app/images/hall.jpg",
+      "width": 1008,
+      "height": 757,
+      "bytes": 209761,
+      "alt": "Exhibitor stalls seen from above inside a hall at Pragati Maidan, New Delhi",
+      "section": "#categories 17 categories, one expo",
+      "kind": "img",
+      "page": "https://gleeful-caramel-7c566c.netlify.app/"
+    },
+    {
+      "file": "floorplan.png",
+      "url": "https://gleeful-caramel-7c566c.netlify.app/images/floorplan.png",
+      "width": 1231,
+      "height": 789,
+      "bytes": 571154,
+      "alt": "Ground floor layout (schematic): 2 × 4.5 m stalls along both sides inside Soor Sadan Auditorium, 3 × 3 m stalls inside and in rows outside, Gates 01 and 02 towards Sanjay Place",
+      "section": "#fpi",
+      "kind": "img",
+      "page": "https://gleeful-caramel-7c566c.netlify.app/"
+    },
+    {
+      "file": "b2b.jpg",
+      "url": "https://gleeful-caramel-7c566c.netlify.app/images/b2b.jpg",
+      "width": 1069,
+      "height": 713,
+      "bytes": 164556,
+      "alt": "Delegates talking over tea around a table at a conference",
+      "section": "#attractions Four highlights across three days",
+      "kind": "img",
+      "page": "https://gleeful-caramel-7c566c.netlify.app/"
+    },
+    {
+      "file": "workshop.jpg",
+      "url": "https://gleeful-caramel-7c566c.netlify.app/images/workshop.jpg",
+      "width": 1069,
+      "height": 713,
+      "bytes": 228804,
+      "alt": "A seated audience listening to a session at a conference",
+      "section": "#attractions Four highlights across three days",
+      "kind": "img",
+      "page": "https://gleeful-caramel-7c566c.netlify.app/"
+    },
+    {
+      "file": "experts.jpg",
+      "url": "https://gleeful-caramel-7c566c.netlify.app/images/experts.jpg",
+      "width": 832,
+      "height": 520,
+      "bytes": 53447,
+      "alt": "Two panellists speaking from a table at a business session",
+      "section": "#attractions Four highlights across three days",
+      "kind": "img",
+      "page": "https://gleeful-caramel-7c566c.netlify.app/"
+    },
+    {
+      "file": "awards.jpg",
+      "url": "https://gleeful-caramel-7c566c.netlify.app/images/awards.jpg",
+      "width": 1069,
+      "height": 713,
+      "bytes": 162640,
+      "alt": "A felicitation being handed over on stage at a conference",
+      "section": "#attractions Four highlights across three days",
+      "kind": "img",
+      "page": "https://gleeful-caramel-7c566c.netlify.app/"
+    }
+  ]
+}
