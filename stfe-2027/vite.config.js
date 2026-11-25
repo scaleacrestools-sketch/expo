@@ -27,10 +27,10 @@ function stfeHtml() {
       html = html.replace(/<!--SECTION:([\w-]+)-->([\s\S]*?)<!--\/SECTION:\1-->/g, (_, __, inner) =>
         /\/assets\/photos\//.test(inner) ? inner : '');
 
-      const credits = [...readJson('assets/photos/credits.json'), ...readJson('assets/video/credits.json')]
-        .filter((c) => c.file && (existsSync(pub(`assets/photos/${c.file}`)) || existsSync(pub(`assets/video/${c.file}`))));
+      const credits = [...readJson('assets/photos/credits-user.json'), ...readJson('assets/photos/credits.json'), ...readJson('assets/video/credits.json')]
+        .filter((c) => c.file && html.includes(c.file.replace(/\.(webp|mp4)$/, '')));
       const list = credits.length
-        ? `<p>Representative photographs and footage of professional trade exhibitions — not from a previous STFE edition. Venue photograph and floor plans from the official STFE 2027 brochure.</p><ul>${credits.map((c) =>
+        ? `<p>Illustrative and representative trade-exhibition images — not photographs of a previous STFE edition. Venue photograph and floor plans from the official STFE 2027 brochure.</p><ul>${credits.map((c) =>
           `<li>${esc(c.placement || c.file)}: “${esc(c.title || c.file)}” by ${esc(c.author || 'unknown')} — <a href="${esc(c.source_url)}" target="_blank" rel="noopener">${esc(c.source)}</a>, ${c.license_url ? `<a href="${esc(c.license_url)}" target="_blank" rel="noopener">${esc(c.license)}</a>` : esc(c.license)}</li>`).join('')}</ul>`
         : '<p>Venue photograph and floor plans from the official STFE 2027 brochure.</p>';
       return html.replace('<!--PHOTO-CREDITS-->', list);
