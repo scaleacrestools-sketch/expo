@@ -115,7 +115,7 @@ const heroLayout = await page.evaluate(() => { const c = document.querySelector(
 check('Hero quick form is a compact right-side card (330–380px) inside the hero', heroLayout.right && heroLayout.w >= 330 && heroLayout.w <= 380 && heroLayout.inHero, JSON.stringify(heroLayout));
 const ft = await page.evaluate(() => ({ panels: document.querySelectorAll('footer .fpanel').length, cols: document.querySelectorAll('footer .fcol').length, ornament: !!document.querySelector('footer .ornament'), skyline: !!document.querySelector('footer .skyline svg path'), bar: !!document.querySelector('.footer__bottom nav a[href="/privacy.html"]') && !!document.querySelector('.footer__bottom nav a[href="/terms.html"]') }));
 check('Footer: ornament strip, 2 contact panels, 5 columns, original skyline, copyright bar with Privacy/Terms', ft.panels === 2 && ft.cols === 5 && ft.ornament && ft.skyline && ft.bar, JSON.stringify(ft));
-check('Patterned and photo-overlay sections present', (await page.locator('.bg-geo').count()) >= 3 && (await page.locator('.opp__left .opp__bg, .opp__right .opp__bg').count()) === 2);
+check('Patterned and photo-overlay sections present', (await page.locator('.bg-geo').count()) >= 2 && (await page.locator('.opp__left .opp__bg, .opp__right .opp__bg').count()) === 2);
 await page.evaluate(() => scrollTo(0, 0)); await page.waitForTimeout(300);
 const wa0 = await page.locator('.wa-float').evaluate((e) => e.classList.contains('is-hidden'));
 await page.locator('#pricing').scrollIntoViewIfNeeded(); await page.waitForTimeout(300);
