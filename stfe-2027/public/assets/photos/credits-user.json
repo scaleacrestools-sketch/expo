@@ -100,7 +100,7 @@
   },
   {
     "file": "s-exhibition-hall.webp",
-    "placement": "Exhibition experience — lead image",
+    "placement": "Hero slide 1; Exhibition experience — lead image",
     "title": "Modern exhibition hall with modular stalls, product displays and business visitors",
     "author": "Supplied by the organiser",
     "source": "Organiser-supplied illustrative image",
@@ -111,7 +111,7 @@
   },
   {
     "file": "s-workshop-seminar.webp",
-    "placement": "Key attraction — Workshops & Seminars",
+    "placement": "Hero slide 3; Key attraction — Workshops & Seminars",
     "title": "Speaker addressing a business seminar audience",
     "author": "Supplied by the organiser",
     "source": "Organiser-supplied illustrative image",
@@ -141,5 +141,38 @@
     "license": "Supplied by the organiser for STFE 2027 — illustrative image",
     "license_url": "",
     "notes": "1448x1086px original (05-awards-ceremony.png), converted to WebP. Illustrative imagery — not a photograph of a previous STFE event."
+  },
+  {
+    "file": "s-hero-demo.webp",
+    "placement": "Hero slide 2",
+    "title": "Exhibitor demonstrating a machined component to business visitors (landscape crop)",
+    "author": "Supplied by the organiser",
+    "source": "Organiser-supplied illustrative image",
+    "source_url": "/assets/photos/s-hero-demo.webp",
+    "license": "Supplied by the organiser for STFE 2027 — illustrative image",
+    "license_url": "",
+    "notes": "Crop of 01-about-product-demonstration.png. Illustrative imagery — not a photograph of a previous STFE event."
+  },
+  {
+    "file": "s-why-counter.webp",
+    "placement": "Why Exhibit",
+    "title": "Exhibitor in conversation with buyers at a product counter (crop)",
+    "author": "Supplied by the organiser",
+    "source": "Organiser-supplied illustrative image",
+    "source_url": "/assets/photos/s-why-counter.webp",
+    "license": "Supplied by the organiser for STFE 2027 — illustrative image",
+    "license_url": "",
+    "notes": "Crop of 02-exhibition-gallery-wide.png. Illustrative imagery — not a photograph of a previous STFE event."
+  },
+  {
+    "file": "s-hall-detail.webp",
+    "placement": "Exhibition experience — detail",
+    "title": "Business visitors at a machinery stand (crop)",
+    "author": "Supplied by the organiser",
+    "source": "Organiser-supplied illustrative image",
+    "source_url": "/assets/photos/s-hall-detail.webp",
+    "license": "Supplied by the organiser for STFE 2027 — illustrative image",
+    "license_url": "",
+    "notes": "Crop of 02-exhibition-gallery-wide.png. Illustrative imagery — not a photograph of a previous STFE event."
   }
 ]

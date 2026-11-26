@@ -100,7 +100,7 @@ const credits = ['credits-user.json', 'credits.json'].flatMap((f) => { try { ret
 const photoImgs = await page.evaluate(async () => { const imgs = [...document.querySelectorAll('img[src*="/assets/photos/"]')]; imgs.forEach((i) => { i.loading = 'eager'; }); await Promise.all(imgs.map((i) => i.complete ? 0 : new Promise((r) => { i.onload = i.onerror = r; }))); return imgs.map((i) => ({ src: i.getAttribute('src'), ok: i.naturalWidth > 0 })); });
 check('Licensed photographs render on the page', photoImgs.length >= 8 && photoImgs.every((i) => i.ok), `${photoImgs.length} photo elements`);
 check('Every photo used has a credits entry with source and licence', photoImgs.every((i) => credits.some((c) => i.src.includes(c.file.replace('.webp', '')) && c.source_url && c.license)));
-check('Hero slideshow has 4 images and 4 indicators', (await page.locator('.hero__slide').count()) === 4 && (await page.locator('.hero__dots button').count()) === 4);
+check('Hero slideshow has 3 curated images and 3 indicators', (await page.locator('.hero__slide').count()) === 3 && (await page.locator('.hero__dots button').count()) === 3);
 { const seq = []; await page.evaluate(() => scrollTo(0, 0)); for (let k = 0; k < 5; k++) { seq.push(await page.evaluate(() => [...document.querySelectorAll('.hero__slide')].findIndex((s) => s.classList.contains('is-active')))); await page.waitForTimeout(1000); }
   check('Hero image changes every 2 seconds', new Set(seq).size >= 2 && seq[0] !== seq[2], seq.join(',')); }
 const creditsHtml = await (await page.request.get(BASE + '/credits.html')).text();
