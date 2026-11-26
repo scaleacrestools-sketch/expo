@@ -27,11 +27,11 @@ dist/assets/manrope-latin-400-normal-8tf8FM3T.woff                         18.29
 dist/assets/manrope-latin-600-normal-BqgrALkZ.woff                         18.38 kB
 dist/assets/manrope-latin-700-normal-DGRFkw-m.woff                         18.41 kB
 dist/assets/rajdhani-devanagari-600-normal-BtY48IV_.woff                   56.44 kB
-dist/index.html                                                            64.58 kB │ gzip: 14.71 kB
+dist/index.html                                                            63.78 kB │ gzip: 14.55 kB
 dist/assets/ibm-plex-sans-devanagari-devanagari-400-normal-Bzh6N6Lp.woff   68.84 kB
 dist/assets/ibm-plex-sans-devanagari-devanagari-400-normal-Col_Varp.woff2  77.45 kB
 dist/assets/rajdhani-devanagari-600-normal-DhS7ScYx.woff2                  79.34 kB
-dist/assets/styles-ClLW5fLx.css                                            49.81 kB │ gzip: 11.12 kB
-dist/assets/main-Dc3zw7Ei.js                                               11.78 kB │ gzip:  4.84 kB
-✓ built in 328ms
+dist/assets/styles-1oUMq3zQ.css                                            50.24 kB │ gzip: 11.21 kB
+dist/assets/main-Dya9Uugx.js                                               11.78 kB │ gzip:  4.84 kB
+✓ built in 345ms
 [postbuild-check] OK (production — institutional marks withheld until authorised) · 40 local references verified

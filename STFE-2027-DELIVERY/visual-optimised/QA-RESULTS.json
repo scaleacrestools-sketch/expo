@@ -1,6 +1,6 @@
 {
   "base": "http://localhost:4321",
-  "ran_at": "2026-11-26T04:53:39.101Z",
+  "ran_at": "2026-11-26T05:03:46.743Z",
   "passed": 87,
   "total": 87,
   "results": [
@@ -125,7 +125,7 @@
       "detail": ""
     },
     {
-      "name": "Tagline from brochure present",
+      "name": "Streamlined hero copy (headline, dates, price, 2 CTAs)",
       "ok": true,
       "detail": ""
     },

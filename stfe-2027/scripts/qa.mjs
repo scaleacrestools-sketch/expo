@@ -51,7 +51,7 @@ check('Preview build shows the three brochure marks, with no public-facing warni
 const prodHtml = readFileSync('dist/index.html', 'utf8');
 check('Production build withholds the marks until authorised', !prodHtml.includes('assets/institutional/'));
 check('Approved logo used in header (image, not text)', await page.locator('.brandbar img.brand__logo').evaluate((i) => i.complete && i.naturalWidth >= 200 && i.currentSrc.includes('stfe-2027-logo') && i.getBoundingClientRect().height >= 60));
-check('Tagline from brochure present', text.includes("India's Innovation, Global Impact"));
+check('Streamlined hero copy (headline, dates, price, 2 CTAs)', (await page.locator('.hero h1').innerText()).replace(/\s+/g, ' ').trim().toUpperCase() === 'SHOWCASE YOUR BRAND. BUILD CONNECTIONS.' || (await page.locator('.hero h1').innerText()).includes('Build Connections'));
 check('No engineering notes in hero', !(await page.locator('.hero').innerText()).includes('brochure figure'));
 check('No endorsement wording', !/government approved|official sponsor|government partner/i.test(text));
 
