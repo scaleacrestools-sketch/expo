@@ -2,7 +2,7 @@
 
 A static, Netlify-ready marketing site for an AI-powered real estate sales operating system: AI voice agents, lead qualification, site visit booking, database reactivation, omnichannel follow-up and CRM sync.
 
-Built with React 18, TypeScript, Vite 6, Tailwind CSS 3, Motion for React, Lucide icons and hand-built SVG charts. No database, paid API, auth or telephony is required. All product data on the page is demonstration data and is labelled as such.
+Built with React 18, TypeScript, Vite 6, Tailwind CSS 3, Motion for React, Lucide icons and hand-built SVG charts. V2 design is based on measured styles from the Agenly and HUVO references (see `DESIGN-NOTES.md`, `V2-AUDIT.md`). No database, paid API, auth or telephony is required. All product data on the page is demonstration data and is labelled as such.
 
 ## Quick start
 
@@ -12,6 +12,7 @@ npm run dev        # http://localhost:5173
 npm run build      # type-check + production build into dist/
 npm run preview    # serve dist/ on http://localhost:4173
 npm test           # Playwright functional + responsive tests (uses the preview server)
+BASE_URL=https://your-site.netlify.app npm test   # same suite against a deployed site (form POST is intercepted)
 ```
 
 Node 22 is recommended (Netlify is pinned to 22 in `netlify.toml`).
@@ -44,7 +45,7 @@ Then rebuild. The HTML head is rendered from the same config by a small Vite plu
 - Social preview image: `public/assets/images/og-image.png` (1200 × 630).
 
 ### Colours
-Design tokens are CSS variables at the top of `src/styles/globals.css` (`--brand-primary`, `--dark-*`, `--light-*` …). If you change `--brand-primary`/`--brand-secondary`, also update the matching `--brand-primary-rgb` / `--brand-secondary-rgb` channel values (used for translucent tints) and `brand.colors` in `brand.ts`.
+Design tokens are CSS variables at the top of `src/styles/globals.css`; motion timings are in `src/config/motion.ts`; the shared demo story (buyer, project, figures) is in `src/data/story.ts` (`--brand-primary`, `--dark-*`, `--light-*` …). If you change `--brand-primary`/`--brand-secondary`, also update the matching `--brand-primary-rgb` / `--brand-secondary-rgb` channel values (used for translucent tints) and `brand.colors` in `brand.ts`.
 
 ## Editing content
 - Copy for every section: `src/data/content.ts`
@@ -57,19 +58,32 @@ Sections live in `src/sections/` (one file per section, in page order in `src/Ap
 
 ## Media
 
-| Asset | Location | Regenerate |
-|---|---|---|
-| Sample call audio (8 files, EN + Hinglish) | `public/assets/audio/` | `npm run media:audio` (needs `ffmpeg` with libflite and `espeak-ng`) |
-| Walkthrough video (30 s, 1080p, MP4 + WebM, captions VTT, poster) | `public/assets/videos/` | `npm run build && npm run preview`, then `npm run media:video` |
-| Hero animation (14 s, MP4 + WebM) | `public/assets/videos/` | same as above |
-| GIF demos | `public/assets/gifs/` | after `media:video`, run `npm run media:gifs` |
-| Section screenshots | `preview/screenshots/` | `npm run media:screenshots` |
+| Asset | Location | Shipped with the site? | Regenerate |
+|---|---|---|---|
+| Sample calls: 4 scenarios × English, Hinglish, Hindi (12 MP3, ~860 KB) | `public/assets/audio/` | Yes, loaded only when a visitor presses play | `npm run media:audio` |
+| Source voice clips (45, ElevenLabs) | `media-src/voice/` | No | Generated with ElevenLabs; see below |
+| Walkthrough video, silent + voice-over (MP4 + WebM), captions, poster | `public/assets/videos/` | Yes, loaded only when the video modal opens | `npm run build && npm run preview`, then `npm run media:video` |
+| Narration clips (9, ElevenLabs) | `media-src/narration/` | No | — |
+| Hero animation video (11.8 s) | `media/videos/` | No (the live hero is HTML/SVG) | `npm run media:video` |
+| GIF demos (7) | `media/gifs/` | No | `npm run media:gifs` |
+| Scroll previews, screenshots | `preview/` | No | `npm run media:gifs`, `npm run media:screenshots` |
+| Fonts (Inter text + display subsets, 54 KB) | `public/assets/fonts/` | Yes | `scripts/build-fonts/build-fonts.sh` |
 
-The video is rendered deterministically: `/?render=walkthrough` and `/?render=hero` show a time-driven composition built from the real product components, and the script sets the time for each frame before capturing it. To replace with a professionally produced video, overwrite the files with the same names.
+Review media lives outside `public/` on purpose so it never increases the deploy or the page weight.
 
-**Better voices:** the bundled audio uses open-source TTS (Flite for English, eSpeak NG for Hindi) and sounds synthetic. For production, regenerate the eight clips with a licensed neural TTS voice and keep the file names; then update the timings in `src/data/audio-timings.json` (start/end of each line in seconds).
+### Voices
+Sample calls and the walkthrough narration were generated with ElevenLabs (`eleven_v4`) under the account owner's licence:
+- AI agent: "Palak M – Clear & Active Customer Care" (female, Indian customer-care)
+- Buyer: "Neeraj – Warm & Friendly Hindi" (male, Hindi/Hinglish)
+- Narrator: "Amit Gupta – Confident Sales Advisor" (male, Indian English)
+
+To change a line: edit `src/data/voice-conversations.json`, generate a new clip with the same file name in `media-src/voice/` (`<scenario>-<en|hinglish|hi>-<line>.mp3`), then run `npm run media:audio`. Line timings and waveform peaks are recomputed automatically.
+
+The video is rendered deterministically from `/?render=walkthrough` (and `/?render=hero`), built from the real product components. `scripts/render-video/narration.mjs` derives scene lengths from the narration so captions, voice-over and visuals stay aligned.
 
 ## Forms
+**Action required on Netlify:** on the current site, Forms is *not enabled* (checked Nov 2026). Open *Project configuration → Forms*, click **Enable form detection**, then redeploy. Until then the form shows an error instead of submitting.
+
 The demo form posts to Netlify Forms (`demo-request`). A hidden static copy of the form in `index.html` lets Netlify detect it at deploy time. Spam protection: Netlify honeypot field plus a minimum fill-time check.
 
 When the site runs on `localhost`, submissions are **not** sent and the form says so ("Local preview: enquiry not sent"). On a deployed site, success is shown only after Netlify answers with HTTP 2xx; otherwise an error is shown.
