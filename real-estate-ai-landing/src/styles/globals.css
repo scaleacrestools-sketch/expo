@@ -299,3 +299,4 @@ html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after 
 input[type='range'].range { -webkit-appearance: none; appearance: none; height: 4px; border-radius: 99px; background: transparent; cursor: pointer; }
 input[type='range'].range::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(128, 87, 255, 0.45); }
 input[type='range'].range::-moz-range-thumb { width: 14px; height: 14px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(128, 87, 255, 0.45); }
+@keyframes flow-down { 0% { transform: translate(-50%, 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate(-50%, 52px); opacity: 0; } }

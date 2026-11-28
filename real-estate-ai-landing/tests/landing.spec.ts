@@ -206,8 +206,11 @@ test('features, calendar demo, integrations, comparison and mobile CRM', async (
   await expect(page.getByTestId('features-grid').locator('article')).toHaveCount(10);
   const cards = page.locator('[data-testid="integration-card"]:visible');
   await expect(cards).toHaveCount(12);
-  await cards.first().hover();
-  await expect(page.getByRole('tooltip').filter({ hasText: 'lead-form' })).toBeVisible();
+  await cards.nth(3).hover();
+  await expect(page.getByTestId('integration-engine').first()).toContainText('Hover a tool');
+  await expect(cards.nth(3)).toHaveClass(/border-brand/);
+  await expect(page.getByTestId('integrations-disclosure')).toContainText('planned');
+  await expect(page.locator('#integrations').getByText('PLANNED', { exact: true })).toHaveCount(0);
   await expect(page.getByTestId('comparison-table').locator('tbody tr')).toHaveCount(9);
   await page.locator('#mobile').scrollIntoViewIfNeeded();
   await page.getByTestId('mobile-tab-1').click();
