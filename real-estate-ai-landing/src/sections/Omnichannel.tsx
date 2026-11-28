@@ -100,7 +100,7 @@ export function Omnichannel() {
                     <span className={`product flex items-center gap-2.5 rounded-xl border bg-white py-2 pl-2 pr-3.5 transition-[transform,box-shadow,border-color] duration-300 ${on ? 'scale-105 border-white shadow-[0_0_0_3px_var(--g2),0_14px_40px_-8px_var(--g)]' : 'border-white/70 shadow-[0_10px_26px_-14px_rgba(0,0,0,.9)]'}`} style={{ ['--g' as string]: n.color, ['--g2' as string]: `${n.color}55` }}>
                       <span className="grid h-8 w-8 place-items-center rounded-lg" style={{ background: `${n.color}1f`, color: n.color }}><I size={16} /></span>
                       <span className="whitespace-nowrap text-[13px] font-semibold text-[var(--p-text)]">{n.label}</span>
-                      {on ? <span className="live-dot ml-0.5 h-1.5 w-1.5 rounded-full" style={{ background: n.color }} /> : done.has(i) ? <span className="ml-0.5 text-[11px] font-bold text-[var(--p-success)]" aria-hidden="true">✓</span> : null}
+                      {on ? <span className="live-dot ml-0.5 h-1.5 w-1.5 rounded-full" style={{ background: n.color }} /> : done.has(i) ? <span className="ml-0.5 text-[11px] font-bold text-[#15803d]" aria-hidden="true">✓</span> : null}
                     </span>
                     {hover === i && <span role="tooltip" className="absolute left-1/2 top-[calc(100%+8px)] z-10 w-[200px] -translate-x-1/2 rounded-lg border border-[#e5e7eb] bg-white px-3 py-2 text-left text-[12px] text-[#475467] shadow-xl">{n.desc}</span>}
                   </button>

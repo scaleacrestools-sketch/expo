@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { ArrowRight, CalendarCheck2, CheckCircle2, MessageCircle, Phone, PhoneCall, Play, UserPlus } from 'lucide-react';
 import { hero } from '../data/content';
@@ -16,6 +17,12 @@ export function Hero() {
   const reduce = useReducedMotion();
   const { ref, inView } = useInView<HTMLDivElement>();
   const [phase] = useLoop(HERO_STEPS.length, loops.hero, inView);
+  // Render only the composition this screen uses (the other one was pure main-thread cost).
+  const [wide, setWide] = useState(() => typeof window === 'undefined' || window.matchMedia('(min-width: 640px)').matches);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 640px)'); const on = () => setWide(mq.matches);
+    mq.addEventListener('change', on); return () => mq.removeEventListener('change', on);
+  }, []);
   // Text renders immediately (LCP); only a short rise is animated.
   const rise = (d: number) => (reduce ? {} : { initial: { y: 12 }, animate: { y: 0 }, transition: { duration: 0.5, delay: d, ease } });
   const fade = (d: number) => (reduce ? {} : { initial: { opacity: 0, y: 12 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.5, delay: d, ease } });
@@ -52,10 +59,11 @@ export function Hero() {
         <motion.div ref={ref} initial={reduce ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2, ease }}
           className="relative mx-auto mt-8 max-w-[1080px] pb-12 sm:pb-16" data-testid="hero-dashboard" data-phase={phase}>
           <div aria-hidden="true" className="pointer-events-none absolute -inset-x-10 -top-8 bottom-10 rounded-[40px] bg-[radial-gradient(60%_60%_at_50%_30%,rgba(128,87,255,.35),transparent_70%)] blur-2xl" />
-          <div className="relative sm:hidden"><HeroMobile phase={phase} /></div>
-          <div className="relative hidden rounded-[22px] border border-white/15 bg-white/[0.06] p-1.5 backdrop-blur-sm sm:block">
-            <DashboardShell path="overview"><CommandCenter phase={phase} /></DashboardShell>
-          </div>
+          {wide ? (
+            <div className="relative rounded-[22px] border border-white/15 bg-white/[0.06] p-1.5">
+              <DashboardShell path="overview"><CommandCenter phase={phase} /></DashboardShell>
+            </div>
+          ) : <div className="relative"><HeroMobile phase={phase} /></div>}
 
           {/* Floating product notifications (desktop). They sit outside the dashboard edge and never cover its data. */}
           <Float className="float-a left-[-84px] top-[54%] xl:block min-[1440px]:left-[-170px] min-[1440px]:top-[18%]" show>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useDeferredValue, useState } from 'react';
 import { CalendarDays, ChevronDown, Download } from 'lucide-react';
 import { performanceCopy } from '../data/content';
 import { callVolume, campaigns, outcomeDistribution, performanceMetrics, qualificationBars } from '../data/demo-data';
@@ -24,7 +24,9 @@ function fmt(v: number, f: string) {
 export function Performance() {
   const { ref, inView, seen } = useInView<HTMLDivElement>({ threshold: 0.15 });
   const [range, setRange] = useState<'7d' | '30d'>('7d');
-  const scale = range === '7d' ? 1 : 4.1;
+  // The pressed state updates at once; the heavier metric and chart re-render follows as a deferred update (keeps taps responsive).
+  const shown = useDeferredValue(range);
+  const scale = shown === '7d' ? 1 : 4.1;
   const feed = [
     `${story.buyer.short} qualified · score ${story.score} · ${story.project.name}`,
     'Ananya S. connected · Premium Apartments',
@@ -63,12 +65,12 @@ export function Performance() {
                 </div>
 
                 <div className="mt-4 grid grid-cols-2 gap-2.5 md:grid-cols-3">
-                  {performanceMetrics.map((m) => <MetricCount key={m.label + range} label={m.label} target={m.format === 'int' ? m.value * scale : m.value} format={m.format} delta={m.delta} run={seen} />)}
+                  {performanceMetrics.map((m) => <MetricCount key={m.label + shown} label={m.label} target={m.format === 'int' ? m.value * scale : m.value} format={m.format} delta={m.delta} run={seen} />)}
                 </div>
 
                 <div className="mt-2.5 grid gap-2.5 lg:grid-cols-12">
                   <Panel className="lg:col-span-7" title="Call volume" right={<span className="flex items-center gap-3 text-[11px] text-[var(--c-muted)]"><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#6a3ff0]" />Calls</span><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#3b82f6]" />Connected</span></span>}>
-                    <LineChart key={range} animate={seen} ariaLabel="Demo call volume chart, calls and connected calls per day" labels={callVolume.map((d) => d.day)}
+                    <LineChart key={shown} animate={seen} ariaLabel="Demo call volume chart, calls and connected calls per day" labels={callVolume.map((d) => d.day)}
                       series={[{ key: 'c', label: 'Calls', color: '#6a3ff0', values: callVolume.map((d) => Math.round(d.calls * scale)) }, { key: 'k', label: 'Connected', color: '#3b82f6', values: callVolume.map((d) => Math.round(d.connected * scale)) }]} height={300} fixedHeight={250} />
                   </Panel>
                   <Panel className="lg:col-span-5" title="Lead qualification · fields captured" right={<DemoTag />}>
@@ -140,7 +142,7 @@ function MetricCount({ label, target, format, delta, run }: { label: string; tar
     <div className="ui-surface p-3 transition-[border-color,box-shadow] duration-200 hover:border-[var(--p-accent-line)] hover:shadow-[var(--p-shadow-md)]">
       <p className="truncate text-[11.5px] font-medium text-[var(--c-muted)]">{label}</p>
       <p className="mt-1 text-[22px] font-semibold tabular-nums tracking-[-0.03em] text-[var(--c-head)]">{fmt(v, format)}</p>
-      <p className="mt-0.5 text-[11px] font-semibold text-[var(--p-success)]">{delta} <span className="font-normal text-[var(--c-muted)]">vs previous period</span></p>
+      <p className="mt-0.5 text-[11px] font-semibold text-[#15803d]">{delta} <span className="font-normal text-[var(--c-muted)]">vs previous period</span></p>
     </div>
   );
 }

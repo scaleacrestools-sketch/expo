@@ -103,7 +103,7 @@ export function CallCentreDash() {
               <AgentOrb size={20} live={!!live} />
               <span className="w-[46px] text-[11px] text-[var(--c-muted)]">{l as string}</span>
               <span className="flex-1 truncate text-[11.5px] text-[var(--c-head)]">{s as string}</span>
-              {live ? <Waveform bars={8} height={14} seed={i + 1} /> : <span className="text-[10.5px] font-semibold text-[var(--p-success)]">Done</span>}
+              {live ? <Waveform bars={8} height={14} seed={i + 1} /> : <span className="text-[10.5px] font-semibold text-[#15803d]">Done</span>}
             </li>
           ))}
         </ul>

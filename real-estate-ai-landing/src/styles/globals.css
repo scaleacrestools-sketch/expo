@@ -345,7 +345,7 @@ section[data-theme] { overflow-x: clip; }
   --p-accent: #6a3ff0;        /* approved brand violet, AA on white */
   --p-accent-soft: #f3efff;
   --p-accent-line: #d9cdff;
-  --p-success: #16a34a; --p-success-soft: #dcfce7;
+  --p-success: #16a34a; --p-success-soft: #dcfce7; /* fills/icons; text uses #15803d for AA contrast */
   --p-warning: #d97706; --p-warning-soft: #fef3c7;
   --p-error: #dc2626;   --p-error-soft: #fee2e2;
   --p-info: #0369a1;    --p-info-soft: #e0f2fe;

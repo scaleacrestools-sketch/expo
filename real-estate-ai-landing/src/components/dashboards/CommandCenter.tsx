@@ -49,8 +49,8 @@ export function CommandCenter({ phase }: { phase: number }) {
     <div className="relative flex min-h-[560px]">
       <DashboardSidebar footer={
         <div className={`rounded-xl border p-2.5 transition-colors duration-500 ${onCall ? 'border-[var(--p-accent-line)] bg-[var(--p-accent-soft)]' : 'border-[var(--p-line)] bg-[var(--p-bg)]'}`}>
-          <div className="flex items-center gap-2"><AgentOrb size={26} live={onCall} /><div className="min-w-0"><p className="text-[11.5px] font-semibold text-[var(--p-text)]">{story.agent.name}</p><p className="truncate text-[10px] text-[var(--p-muted)]">AI voice agent</p></div></div>
-          <p className="mt-2 flex items-center gap-1.5 text-[10.5px] font-medium text-[#15803d]"><span className="p-live h-1.5 w-1.5 rounded-full bg-[var(--p-success)]" />{onCall ? `On a call · ${story.buyer.short}` : 'Ready for calls'}</p>
+          <div className="flex items-center gap-2"><AgentOrb size={26} live={onCall} /><div className="min-w-0"><p className="text-[11.5px] font-semibold text-[var(--p-text)]">{story.agent.name}</p><p className="truncate text-[10px] text-[var(--p-body)]">AI voice agent</p></div></div>
+          <p className="mt-2 flex items-center gap-1.5 text-[10.5px] font-medium text-[#166534]"><span className="p-live h-1.5 w-1.5 rounded-full bg-[var(--p-success)]" />{onCall ? `On a call · ${story.buyer.short}` : 'Ready for calls'}</p>
         </div>
       } />
 
@@ -66,7 +66,7 @@ export function CommandCenter({ phase }: { phase: number }) {
           {heroMetrics.map((m, i) => {
             const bump = updated && i !== 1; const v = m.value + (bump ? 1 : 0);
             return <MetricCard key={m.label} label={m.label} icon={metricMeta[i].icon} tone={metricMeta[i].tone} delta={metricMeta[i].delta} flash={bump}
-              value={<span key={v} style={bump ? { animation: 'pop .45s var(--ease-out) both', display: 'inline-block' } : undefined}>{v.toLocaleString('en-IN')}{m.suffix}{bump && <span className="ml-1.5 align-middle text-[10.5px] font-semibold text-[var(--p-success)]">+1</span>}</span>} />;
+              value={<span key={v} style={bump ? { animation: 'pop .45s var(--ease-out) both', display: 'inline-block' } : undefined}>{v.toLocaleString('en-IN')}{m.suffix}{bump && <span className="ml-1.5 align-middle text-[10.5px] font-semibold text-[#15803d]">+1</span>}</span>} />;
           })}
         </div>
 

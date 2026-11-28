@@ -20,7 +20,7 @@ export function HeroMobile({ phase }: { phase: number }) {
     : phase <= 6 ? { icon: CheckCircle2, tone: 'success', title: `Buyer qualified · score ${story.score}`, body: `${story.requirement.configuration} · ${story.requirement.budgetShort} · ${story.requirement.purpose} · ${story.requirement.timeline}` }
     : phase === 7 ? { icon: CalendarCheck2, tone: 'warning', title: 'Site visit requested', body: `${story.visit.label} · ${story.visit.time} · ${story.project.name}` }
     : { icon: MessageCircle, tone: 'whatsapp', title: 'WhatsApp follow-up sent', body: `Brochure and visit details shared · assigned to ${story.executive.name}` };
-  const chip = { accent: 'bg-[var(--p-accent-soft)] text-[var(--p-accent)]', success: 'bg-[var(--p-success-soft)] text-[var(--p-success)]', warning: 'bg-[var(--p-warning-soft)] text-[var(--p-warning)]', info: 'bg-[var(--p-info-soft)] text-[var(--p-info)]', whatsapp: 'bg-[#dcfce7] text-[#128c7e]' }[note.tone];
+  const chip = { accent: 'bg-[var(--p-accent-soft)] text-[var(--p-accent)]', success: 'bg-[var(--p-success-soft)] text-[#15803d]', warning: 'bg-[var(--p-warning-soft)] text-[var(--p-warning)]', info: 'bg-[var(--p-info-soft)] text-[var(--p-info)]', whatsapp: 'bg-[#dcfce7] text-[#128c7e]' }[note.tone];
   return (
     <DashboardShell chrome={false} className="!rounded-[20px]">
       <div className="p-3" data-testid="hero-mobile">
@@ -34,7 +34,7 @@ export function HeroMobile({ phase }: { phase: number }) {
           {heroMetrics.map((m, i) => {
             const bump = updated && i !== 1; const v = m.value + (bump ? 1 : 0);
             return <MetricCard key={m.label} label={m.label} icon={icons[i]} tone={tones[i]} flash={bump} className="!p-2.5"
-              value={<span key={v} className="text-[19px]" style={bump ? { animation: 'pop .45s var(--ease-out) both', display: 'inline-block' } : undefined}>{v.toLocaleString('en-IN')}{m.suffix}{bump && <span className="ml-1 align-middle text-[10.5px] font-semibold text-[var(--p-success)]">+1</span>}</span>} />;
+              value={<span key={v} className="text-[19px]" style={bump ? { animation: 'pop .45s var(--ease-out) both', display: 'inline-block' } : undefined}>{v.toLocaleString('en-IN')}{m.suffix}{bump && <span className="ml-1 align-middle text-[10.5px] font-semibold text-[#15803d]">+1</span>}</span>} />;
           })}
         </div>
 

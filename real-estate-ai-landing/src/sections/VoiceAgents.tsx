@@ -164,7 +164,7 @@ export function VoiceAgents() {
                 <motion.div key={conv.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}
                   className={`mt-4 grid gap-3 rounded-xl border p-4 transition-colors duration-300 sm:grid-cols-[1fr_auto] ${ended ? 'border-[#86efac] bg-[#f0fdf4]' : 'border-[var(--p-line)] bg-white'}`} data-testid="voice-outcome">
                   <div>
-                    <p className="flex items-center gap-2 text-[11.5px] font-medium uppercase tracking-[0.1em] text-[var(--c-muted)]"><CheckCircle2 size={14} className={ended ? 'text-[var(--p-success)]' : ''} />Call outcome</p>
+                    <p className="flex items-center gap-2 text-[11.5px] font-medium uppercase tracking-[0.1em] text-[var(--c-muted)]"><CheckCircle2 size={14} className={ended ? 'text-[#15803d]' : ''} />Call outcome</p>
                     <p className="mt-1.5 text-[14.5px] font-medium text-[var(--p-text)]">{conv.outcome}</p>
                   </div>
                   <div className="sm:text-right" data-testid="voice-result">

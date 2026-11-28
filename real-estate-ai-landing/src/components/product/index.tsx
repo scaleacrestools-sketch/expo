@@ -90,7 +90,7 @@ export function Panel({ title, right, children, className = '', pad = true }: { 
 }
 
 type MetricProps = { label: string; value: ReactNode; delta?: string; down?: boolean; icon?: LucideIcon; tone?: 'accent' | 'success' | 'warning' | 'info'; className?: string; flash?: boolean; note?: string };
-const toneChip = { accent: 'bg-[var(--p-accent-soft)] text-[var(--p-accent)]', success: 'bg-[var(--p-success-soft)] text-[var(--p-success)]', warning: 'bg-[var(--p-warning-soft)] text-[var(--p-warning)]', info: 'bg-[var(--p-info-soft)] text-[var(--p-info)]' };
+const toneChip = { accent: 'bg-[var(--p-accent-soft)] text-[var(--p-accent)]', success: 'bg-[var(--p-success-soft)] text-[#15803d]', warning: 'bg-[var(--p-warning-soft)] text-[var(--p-warning)]', info: 'bg-[var(--p-info-soft)] text-[var(--p-info)]' };
 export function MetricCard({ label, value, delta, down = false, icon: I, tone = 'accent', className = '', flash = false, note = 'vs last week' }: MetricProps) {
   return (
     <div className={`ui-surface p-3 transition-[border-color,box-shadow] duration-500 ${flash ? '!border-[var(--p-accent-line)] shadow-[0_0_0_3px_var(--p-accent-soft)]' : ''} ${className}`}>
@@ -99,7 +99,7 @@ export function MetricCard({ label, value, delta, down = false, icon: I, tone = 
         {I && <span className={`grid h-6 w-6 flex-none place-items-center rounded-md ${toneChip[tone]}`}><I size={12} /></span>}
       </div>
       <p className="mt-1 text-[20px] font-semibold leading-tight tabular-nums tracking-[-0.03em] text-[var(--c-head)]">{value}</p>
-      {delta && <p className="mt-0.5 truncate text-[10.5px] text-[var(--c-muted)]"><span className={`font-semibold ${down ? 'text-[var(--p-error)]' : 'text-[var(--p-success)]'}`}>{delta}</span> {note}</p>}
+      {delta && <p className="mt-0.5 truncate text-[10.5px] text-[var(--c-muted)]"><span className={`font-semibold ${down ? 'text-[var(--p-error)]' : 'text-[#15803d]'}`}>{delta}</span> {note}</p>}
     </div>
   );
 }
@@ -110,7 +110,7 @@ export function Metric({ label, value, delta, className = '' }: { label: string;
       <p className="truncate text-[11px] font-medium text-[var(--c-muted)]">{label}</p>
       <div className="mt-1 flex items-baseline gap-2">
         <p className="text-[20px] font-semibold tabular-nums tracking-[-0.03em] text-[var(--c-head)]">{value}</p>
-        {delta && <span className="text-[10.5px] font-semibold text-[#16a34a]">{delta}</span>}
+        {delta && <span className="text-[10.5px] font-semibold text-[#15803d]">{delta}</span>}
       </div>
     </div>
   );
