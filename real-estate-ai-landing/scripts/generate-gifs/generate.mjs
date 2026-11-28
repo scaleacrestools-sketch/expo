@@ -2,7 +2,7 @@
 /**
  * Generates optimized GIF demos.
  *  - From rendered video frames (.cache/frames, created by scripts/render-video): hero, calling, qualification, site visit.
- *  - Captured live from the running site: omnichannel workflow, database reactivation, full landing-page scroll preview.
+ *  - Captured live from the running site: omnichannel workflow, database reactivation.
  * Usage: node scripts/generate-gifs/generate.mjs [baseUrl]
  */
 import { chromium } from 'playwright';
@@ -35,12 +35,12 @@ if (existsSync(join(cache, 'frames/walkthrough'))) {
   const clip = (start, dur) => ['-framerate', '30', '-start_number', String(Math.round(start * 30)), '-t', String(dur), '-i', frames('walkthrough')];
   const sc = JSON.parse(readFileSync(join(root, 'src/render/scene-timings.json'), 'utf8')).scenes;
   const span = (a, b) => [sc[a].start, +(sc[b].start + sc[b].len - sc[a].start).toFixed(2)];
-  toGif(clip(...span(1, 2)), join(out, 'ai-calling.gif'), { width: 800, fps: 10 });          // AI calling + buyer conversation
-  toGif(clip(...span(2, 3)), join(out, 'lead-qualification.gif'), { width: 800, fps: 10 });  // conversation → CRM record
-  toGif(clip(...span(5, 6)), join(out, 'site-visit-booking.gif'), { width: 800, fps: 10 });  // visit booking + handover
+  toGif(clip(...span(2, 3)), join(out, 'ai-calling.gif'), { width: 800, fps: 10 });          // AI calling + buyer conversation
+  toGif(clip(...span(3, 4)), join(out, 'lead-qualification.gif'), { width: 800, fps: 10 });  // conversation → CRM record
+  toGif(clip(...span(6, 7)), join(out, 'site-visit-booking.gif'), { width: 800, fps: 10 });  // visit booking + handover
 }
 if (existsSync(join(cache, 'frames/hero'))) {
-  toGif(['-framerate', '30', '-i', frames('hero')], join(out, 'hero-dashboard.gif'), { width: 800, speed: 1.3, fps: 10 });
+  toGif(['-framerate', '30', '-i', frames('hero')], join(out, 'hero-dashboard.gif'), { width: 800, fps: 10 });
 }
 
 // 2) Live captures
@@ -70,24 +70,5 @@ async function captureElement(selector, seconds, file, { width = 1440, height = 
 await captureElement('[data-testid="omnichannel"]', 12, 'omnichannel-workflow.gif');
 await captureElement('#problem article:nth-of-type(1) >> nth=2', 7, 'database-reactivation.gif', { gifWidth: 520 });
 
-// 3) Landing page scroll preview (GIF + MP4) from the actual rendered site.
-{
-  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
-  await page.goto(base, { waitUntil: 'networkidle' });
-  await page.waitForTimeout(1500);
-  const H = await page.evaluate(() => document.body.scrollHeight - window.innerHeight);
-  const dir = join(cache, 'live', 'scroll'); rmSync(dir, { recursive: true, force: true }); mkdirSync(dir, { recursive: true });
-  const step = 36; let i = 0;
-  for (let y = 0; y <= H; y += step) {
-    await page.evaluate((y) => window.scrollTo({ top: y, behavior: 'instant' }), y);
-    await page.waitForTimeout(y === 0 ? 1200 : 60);
-    await page.screenshot({ path: join(dir, `f${String(i++).padStart(4, '0')}.jpg`), type: 'jpeg', quality: 85 });
-  }
-  for (let k = 0; k < 20; k++) await page.screenshot({ path: join(dir, `f${String(i++).padStart(4, '0')}.jpg`), type: 'jpeg', quality: 85 });
-  await page.close();
-  const seq = ['-framerate', '30', '-i', join(dir, 'f%04d.jpg')];
-  ff([...seq, '-vf', 'scale=1440:-2', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '24', '-movflags', '+faststart', join(previewDir, 'landing-page-preview-v2.mp4')]);
-  toGif(seq, join(previewDir, 'landing-page-preview-v2.gif'), { width: 640, fps: 10, speed: 1.2 });
-  console.log('scroll preview frames', i);
-}
+// 3) (V3+) The landing-page review recordings are made in real time by scripts/record-preview/record.mjs.
 await browser.close();

@@ -78,7 +78,7 @@ await cdp.send('Page.startScreencast', { format: 'jpeg', quality: 90, maxWidth: 
 const t0 = Date.now();
 
 if (!mobile) {
-  await wait(7000);                                         // hero cycle
+  await wait(17500);                                        // full hero story (17 s cycle)
   await hover('[data-testid="hero-demo"]', 1200);
   await click('[data-testid="hero-video"]', 1800);          // demo modal
   await click('[data-testid="video-play-overlay"]', 6000);
@@ -113,7 +113,7 @@ if (!mobile) {
   await wait(5000);
   await click('[data-testid="mobile-menu-button"]', 2500);  // nav open
   await click('[data-testid="mobile-menu-button"]', 1500);  // nav close
-  await wait(6000);                                         // hero story
+  await wait(9000);                                         // hero story
   await visit('#top', 2500, { step: 4000 });
   await visit('#trusted', 3000, { walk: false });
   await visit('#problem', 3000);
