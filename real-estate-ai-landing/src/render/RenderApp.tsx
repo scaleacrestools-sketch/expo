@@ -1,13 +1,16 @@
 import { MotionConfig } from 'motion/react';
 import { useEffect, useState } from 'react';
-import { CalendarCheck2, Check, CheckCheck, CheckCircle2, FileText, Globe, Phone, Sparkles, UserPlus } from 'lucide-react';
+import { CalendarCheck2, Check, CheckCheck, CheckCircle2, FileText, Globe, Sparkles, UserPlus } from 'lucide-react';
 import { brand } from '../config/brand';
 import { LogoMark } from '../components/ui/Logo';
 import { AgentOrb, AppWindow, Avatar, MiniCalendar, Panel, Status } from '../components/dashboards/primitives';
 import { CommandCenter } from '../components/dashboards/CommandCenter';
 import { LineChart } from '../components/charts/LineChart';
 import { callVolume, campaigns } from '../data/demo-data';
-import { HERO_LEN, SCENE_LEN, walkthroughScenes } from './scenes';
+import { HERO_LEN, HERO_STEP, walkthrough } from './scenes';
+import { story } from '../data/story';
+import { HERO_STEPS } from '../components/dashboards/CommandCenter';
+import { ArrowRight } from 'lucide-react';
 
 /**
  * Deterministic render surface for video capture. Visit /?render=walkthrough or /?render=hero.
@@ -30,20 +33,16 @@ function TWave({ t, bars = 48, height = 44, active = true, color = '#a78bfa' }: 
   );
 }
 
-function Shell({ children, t, total, sceneIndex }: { children: React.ReactNode; t: number; total: number; sceneIndex?: number }) {
+function Shell({ children, t, total }: { children: React.ReactNode; t: number; total: number }) {
   return (
-    <div className="theme-dark relative h-[1080px] w-[1920px] overflow-hidden" style={{ fontFamily: 'Inter Variable, Inter, sans-serif' }}>
+    <div className="theme-dark relative h-[1080px] w-[1920px] overflow-hidden" style={{ fontFamily: "'Inter V2', Inter, sans-serif" }}>
       <div className="grid-bg absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_30%,transparent_75%)]" />
-      <div className="absolute left-1/2 top-[-380px] h-[900px] w-[1500px] rounded-full bg-[radial-gradient(closest-side,rgba(139,92,246,0.42),rgba(109,40,217,0.14)_55%,transparent)]" style={{ transform: `translateX(-50%) scale(${1 + 0.04 * Math.sin(t * 0.6)})` }} />
-      <div className="absolute left-[96px] top-[64px] flex items-center gap-3"><LogoMark size={40} /><span className="text-[26px] font-semibold tracking-[-0.03em] text-white">{brand.productName}</span></div>
-      {sceneIndex !== undefined && (
-        <div className="absolute right-[96px] top-[74px] flex gap-2">
-          {walkthroughScenes.map((_, i) => <span key={i} className="h-[6px] rounded-full" style={{ width: i === sceneIndex ? 48 : 18, background: i <= sceneIndex ? '#a78bfa' : 'rgba(255,255,255,.15)' }} />)}
-        </div>
-      )}
+      <div className="absolute left-1/2 top-[-420px] h-[900px] w-[1600px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(128,87,255,0.40),rgba(72,38,179,0.12)_55%,transparent)]" />
+      <div className="absolute inset-x-0 bottom-0 h-[420px] bg-[radial-gradient(55%_100%_at_50%_100%,rgba(24,86,255,0.18),transparent_70%)]" />
+      <div className="absolute left-[80px] top-[52px] flex items-center gap-3"><LogoMark size={40} /><span className="text-[26px] font-semibold tracking-[-0.03em] text-white">{brand.productName}</span></div>
       {children}
-      <div className="absolute bottom-0 left-0 h-[4px] bg-[var(--brand-primary)]" style={{ width: `${(t / total) * 100}%` }} />
-      <span className="demo-tag absolute bottom-[28px] right-[96px] !text-[13px]">Demo · sample data</span>
+      <div className="absolute bottom-0 left-0 h-[4px] bg-gradient-to-r from-[#6a3ff0] to-[#cbbdff]" style={{ width: `${(t / total) * 100}%` }} />
+      <span className="demo-tag absolute right-[80px] top-[62px] !text-[13px]">Demo · sample data</span>
     </div>
   );
 }
@@ -58,7 +57,7 @@ function S1({ p }: { p: number }) {
         <p className="mt-2 text-[24px] font-semibold tracking-[-0.02em]">Skyline Residences</p>
         <div className="mt-5 space-y-3">
           {fields.map(([k, v], i) => (
-            <div key={k} className="rounded-xl border border-[#e7e7ec] px-4 py-2.5"><p className="text-[12px] text-[#6b6b75]">{k}</p><p className="text-[17px] font-medium">{v.slice(0, Math.round(v.length * seg(p, 0.05 + i * 0.12, 0.2 + i * 0.12)))}</p></div>
+            <div key={k} className="rounded-xl border border-[#e7e7ec] px-4 py-2.5"><p className="text-[12px] text-[#6b6b75]">{k}</p><p className="text-[17px] font-medium">{i === 0 ? v : v.slice(0, Math.round(v.length * seg(p, i * 0.12 - 0.04, 0.1 + i * 0.12)))}</p></div>
           ))}
         </div>
         <div className="mt-5 rounded-xl py-3 text-center text-[16px] font-semibold text-white" style={{ background: p > 0.68 ? '#22c55e' : '#3b82f6' }}>{p > 0.68 ? 'Submitted ✓' : 'Submit'}</div>
@@ -70,19 +69,15 @@ function S1({ p }: { p: number }) {
     </div>
   );
 }
-function S2({ p, t }: { p: number; t: number }) {
+function S2({ p }: { p: number; t?: number }) {
   return (
     <div className="w-[1000px] origin-top-left" style={{ transform: 'scale(1.0)' }}>
-      <AppWindow path="campaigns/skyline-launch"><CommandCenter phase={p < 0.35 ? 1 : 2} /></AppWindow>
-      <div className="absolute -right-6 top-24 w-[300px] rounded-2xl border border-white/10 bg-[rgba(16,16,22,.92)] p-5 shadow-2xl">
-        <p className="flex items-center gap-2 text-[16px] font-semibold text-white"><Phone size={16} className="text-emerald-400" />{p < 0.35 ? 'Dialling Rohan…' : 'Call connected'}</p>
-        <div className="mt-3"><TWave t={t} bars={30} height={36} active={p >= 0.35} /></div>
-      </div>
+      <AppWindow path="campaigns/skyline-launch"><CommandCenter phase={p < 0.3 ? 1 : p < 0.6 ? 2 : 3} /></AppWindow>
     </div>
   );
 }
 function S3({ p, t }: { p: number; t: number }) {
-  const lines: [string, string][] = [['ai', 'Which configuration and location are you looking for?'], ['b', 'A 3 BHK near the north corridor.'], ['ai', 'What budget range are you considering?'], ['b', 'Around ₹2 crore, buying in about six months.']];
+  const lines: [string, string][] = [['ai', 'Which configuration and location are you looking for?'], ['b', 'A 3 BHK in Whitefield, close to my office.'], ['ai', 'What budget range are you considering?'], ['b', 'Around ₹2 crore, buying in about six months.']];
   return (
     <div className="w-[900px] rounded-[28px] border border-white/10 bg-[#101016] p-8 shadow-2xl">
       <div className="flex items-center gap-4"><AgentOrb size={56} /><div className="flex-1"><p className="text-[22px] font-semibold text-white">Aria · AI sales agent</p><p className="text-[16px] text-white/50">Live call · 00:{String(14 + Math.floor(p * 30)).padStart(2, '0')}</p></div><Status tone="ok">Connected</Status></div>
@@ -97,7 +92,7 @@ function S3({ p, t }: { p: number; t: number }) {
   );
 }
 function S4({ p }: { p: number }) {
-  const f = [['Configuration', '3 BHK'], ['Budget', '₹2 Crore'], ['Location', 'North corridor'], ['Purpose', 'Self-use'], ['Timeline', '6 months'], ['Site visit', 'Interested']];
+  const f = [['Configuration', '3 BHK'], ['Budget', '₹2 Crore'], ['Location', 'Whitefield'], ['Purpose', 'Self-use'], ['Timeline', '6 months'], ['Site visit', 'Interested']];
   const n = Math.round(seg(p, 0.05, 0.75) * f.length);
   const score = Math.round(30 + (n / f.length) * 56);
   return (
@@ -183,47 +178,73 @@ function S8({ p }: { p: number }) {
     </div>
   );
 }
-const sceneComps = [S1, S2, S3, S4, S5, S6, S7, S8];
+function CTA({ p }: { p: number }) {
+  return (
+    <div className="flex w-[1200px] flex-col items-center text-center" style={{ opacity: seg(p, 0, 0.2) }}>
+      <LogoMark size={88} />
+      <h2 className="display mt-10 text-[76px] font-medium leading-[1.04] tracking-[-0.05em] text-white">Transform your real estate<br />sales workflow with AI.</h2>
+      <p className="mt-6 text-[28px] text-[var(--dark-text)]">AI calling, qualification and site visit booking for real estate teams.</p>
+      <span className="mt-12 inline-flex items-center gap-3 rounded-full bg-gradient-to-b from-[#8f6bff] to-[#6a3ff0] px-12 py-6 text-[30px] font-medium text-white shadow-[0_20px_50px_rgba(106,63,240,.45),inset_0_2px_2px_rgba(255,255,255,.3)]" style={{ transform: `scale(${0.96 + 0.04 * seg(p, 0.15, 0.4)})` }}>Book a Demo <ArrowRight size={30} /></span>
+    </div>
+  );
+}
+const sceneComps = [S1, S2, S3, S4, S5, S6, S7, S8, CTA];
+const XFADE = 0.4;
+const SCALE = [1.35, 1.12, 1.28, 1.28, 1.28, 1.28, 1.28, 1.14, 1];
+
+function SceneLayer({ i, t, opacity }: { i: number; t: number; opacity: number }) {
+  const sc = walkthrough.scenes[i]; const C = sceneComps[i];
+  const p = Math.max(0, Math.min(1, (t - sc.start) / sc.len));
+  const isCta = i === walkthrough.scenes.length - 1;
+  return (
+    <div className="absolute inset-0" style={{ opacity }}>
+      {!isCta && (
+        <div className="absolute left-1/2 top-[48px] flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/10 bg-white/[0.05] px-5 py-2.5 text-[22px] text-white">
+          <span className="tabular-nums text-[var(--brand-accent)]">{String(i + 1).padStart(2, '0')} / {String(walkthrough.scenes.length - 1).padStart(2, '0')}</span><span className="h-5 w-px bg-white/20" /><span className="font-medium">{sc.title}</span>
+        </div>
+      )}
+      <div className="absolute inset-x-0 top-[130px] bottom-[170px] flex items-center justify-center">
+        <div className="relative" style={{ transform: `scale(${SCALE[i]})` }}><C p={p} t={t} /></div>
+      </div>
+      {!isCta && (
+        <div className="absolute bottom-[60px] left-1/2 max-w-[1500px] -translate-x-1/2 rounded-2xl border border-white/10 bg-[rgba(8,5,21,0.82)] px-8 py-4 text-center text-[34px] font-medium leading-tight tracking-[-0.01em] text-white shadow-[0_20px_60px_-20px_rgba(0,0,0,.8)]">{sc.caption}</div>
+      )}
+    </div>
+  );
+}
 
 function Walkthrough({ t }: { t: number }) {
-  const i = Math.min(walkthroughScenes.length - 1, Math.floor(t / SCENE_LEN));
-  const p = (t - i * SCENE_LEN) / SCENE_LEN;
-  const fadeIn = seg(p, 0, 0.1), fadeOut = 1 - seg(p, 0.92, 1);
-  const o = i === walkthroughScenes.length - 1 ? fadeIn : Math.min(fadeIn, fadeOut);
-  const s = walkthroughScenes[i]; const C = sceneComps[i];
+  const scenes = walkthrough.scenes;
+  let i = scenes.findIndex((s) => t < s.start + s.len); if (i < 0) i = scenes.length - 1;
+  const into = t - scenes[i].start;
+  // Scene 1 is fully visible on the first frame; later scenes cross-fade from the previous one.
+  const k = i === 0 ? 1 : ease(into / XFADE);
   return (
-    <Shell t={t} total={walkthroughScenes.length * SCENE_LEN} sceneIndex={i}>
-      <div className="absolute left-[96px] top-[300px] w-[560px]" style={{ opacity: o, transform: `translateY(${(1 - fadeIn) * 16}px)` }}>
-        <p className="text-[20px] font-medium tabular-nums text-[var(--brand-accent)]">{String(i + 1).padStart(2, '0')} / 08</p>
-        <h1 className="mt-3 text-[68px] font-semibold leading-[1.02] tracking-[-0.045em] text-white">{s.title}</h1>
-        <p className="mt-6 text-[26px] leading-[1.45] text-white/65">{s.caption}</p>
-      </div>
-      <div className="absolute left-[760px] right-[80px] top-[170px] bottom-[150px] flex items-center justify-center" style={{ opacity: o, transform: `scale(${0.97 + 0.03 * fadeIn})` }}>
-        <div className="relative"><C p={p} t={t} /></div>
-      </div>
-      <div className="absolute bottom-[70px] left-1/2 -translate-x-1/2 rounded-xl bg-black/70 px-6 py-3 text-[24px] text-white" style={{ opacity: o }}>{s.caption}</div>
+    <Shell t={t} total={walkthrough.total}>
+      {i > 0 && k < 1 && <SceneLayer i={i - 1} t={t} opacity={1 - k} />}
+      <SceneLayer i={i} t={t} opacity={k} />
     </Shell>
   );
 }
 
 function HeroAnim({ t }: { t: number }) {
-  const phase = Math.min(6, Math.floor(t / 2));
+  const phase = Math.min(HERO_STEPS.length - 1, Math.floor(t / HERO_STEP));
   const fl = (k: number) => `translateY(${Math.sin(t * 1.1 + k) * 8}px)`;
   return (
     <Shell t={t} total={HERO_LEN}>
-      <div className="absolute left-1/2 top-[150px] w-[1240px] -translate-x-1/2 rounded-[26px] border border-white/10 bg-white/[0.03] p-2.5">
+      <div className="absolute left-1/2 top-[130px] w-[1260px] -translate-x-1/2 rounded-[26px] border border-white/10 bg-white/[0.03] p-2.5" style={{ transform: 'translateX(-50%) scale(1.05)', transformOrigin: 'top center' }}>
         <AppWindow path="campaigns/skyline-launch"><CommandCenter phase={phase} /></AppWindow>
       </div>
-      <Float x={110} y={330} show={phase >= 0} title="Incoming Lead" c="#38bdf8" tr={fl(0)}><R k="Source" v="Meta Ads" /><R k="Configuration" v="3 BHK" /><R k="Budget" v="₹2 Crore" /></Float>
-      <Float x={1560} y={260} show={phase >= 1} title="AI Call in Progress" c="#a78bfa" tr={fl(2)}><p className="text-[15px] text-white/70">{phase >= 2 && phase <= 4 ? 'Conversation active' : phase >= 5 ? 'Call ended' : 'Connecting…'}</p><div className="mt-2"><TWave t={t} bars={28} height={34} active={phase >= 2 && phase <= 4} /></div></Float>
-      <Float x={1580} y={720} show={phase >= 4} title="Lead Qualified" c="#22c55e" tr={fl(4)}>{['Budget captured', 'Configuration captured', 'Site visit requested'].map((x, i) => <p key={x} className="flex items-center gap-2 text-[15px]" style={{ color: phase >= 4 + (i === 2 ? 1 : 0) ? 'rgba(255,255,255,.85)' : 'rgba(255,255,255,.25)' }}><CheckCircle2 size={15} className="text-emerald-400" />{x}</p>)}</Float>
-      <div className="absolute bottom-[60px] left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/10 bg-black/50 px-6 py-3 text-[20px] text-white/85"><Sparkles size={20} className="text-[var(--brand-accent)]" />{['New Meta Ads lead arrives', 'AI agent initiates the call', 'Voice conversation in progress', 'Buyer requirements captured', 'Lead qualified', 'Site visit requested', 'CRM dashboard updated'][phase]}</div>
+      <Float x={60} y={420} show title="Incoming Lead" c="#38bdf8" tr={fl(0)}><R k="Source" v={story.buyer.source} /><R k="Configuration" v={story.requirement.configuration} /><R k="Budget" v={story.requirement.budget} /></Float>
+      <Float x={1600} y={300} show={phase >= 1} title="AI Call in Progress" c="#a48bff" tr={fl(2)}><p className="text-[15px] text-white/70">{phase >= 3 && phase <= 5 ? 'Conversation active' : phase >= 6 ? 'Call ended · 1m 12s' : 'Connecting…'}</p><div className="mt-2"><TWave t={t} bars={26} height={34} active={phase >= 3 && phase <= 5} /></div></Float>
+      <Float x={1600} y={640} show={phase >= 4} title="Lead Qualified" c="#12b881" tr={fl(4)}>{['Budget captured', 'Configuration captured', 'Site visit requested'].map((x, i) => <p key={x} className="flex items-center gap-2 text-[15px]" style={{ color: phase >= [4, 4, 7][i] ? 'rgba(255,255,255,.85)' : 'rgba(255,255,255,.25)' }}><CheckCircle2 size={15} className="text-emerald-400" />{x}</p>)}</Float>
+      <div className="absolute bottom-[56px] left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/10 bg-[rgba(8,5,21,.8)] px-7 py-3.5 text-[24px] text-white"><Sparkles size={22} className="text-[var(--brand-accent)]" /><span className="tabular-nums text-[var(--brand-accent)]">{String(phase + 1).padStart(2, '0')}</span>{HERO_STEPS[phase]}</div>
     </Shell>
   );
 }
 function Float({ x, y, show, title, c, children, tr }: { x: number; y: number; show: boolean; title: string; c: string; children: React.ReactNode; tr: string }) {
   return (
-    <div className="absolute w-[270px] rounded-2xl border border-white/10 bg-[rgba(16,16,22,.9)] p-5 shadow-2xl backdrop-blur" style={{ left: x, top: y, opacity: show ? 1 : 0, transform: tr }}>
+    <div className="absolute w-[270px] rounded-2xl border border-white/10 bg-[rgba(17,18,37,.9)] p-5 shadow-2xl backdrop-blur" style={{ left: x, top: y, opacity: show ? 1 : 0, transform: tr }}>
       <p className="mb-3 flex items-center gap-2 text-[17px] font-semibold text-white"><span className="h-2.5 w-2.5 rounded-full" style={{ background: c, boxShadow: `0 0 10px ${c}` }} />{title}</p>
       <div className="space-y-1.5">{children}</div>
     </div>
@@ -235,7 +256,7 @@ export default function RenderApp({ mode }: { mode: string }) {
   const [t, setT] = useState(0);
   useEffect(() => {
     window.__setTime = (v) => setT(v);
-    window.__duration = mode === 'hero' ? HERO_LEN : walkthroughScenes.length * SCENE_LEN;
+    window.__duration = mode === 'hero' ? HERO_LEN : walkthrough.total;
     window.__renderReady = true;
     document.documentElement.classList.add('reduce-motion');
     document.body.style.margin = '0';

@@ -1,0 +1,77 @@
+{
+  "total": 33.95,
+  "scenes": [
+    {
+      "title": "Incoming Lead",
+      "caption": "A buyer enquires about Skyline Residences through a Meta Ads form.",
+      "start": 0,
+      "len": 4.23,
+      "speechStart": 0.2,
+      "speechEnd": 3.91
+    },
+    {
+      "title": "AI Calling",
+      "caption": "Within seconds, Aria, your AI voice agent, calls them back.",
+      "start": 4.23,
+      "len": 4.39,
+      "speechStart": 4.43,
+      "speechEnd": 8.3
+    },
+    {
+      "title": "Buyer Conversation",
+      "caption": "Aria asks about configuration, budget, location and timeline.",
+      "start": 8.62,
+      "len": 4.57,
+      "speechStart": 8.82,
+      "speechEnd": 12.87
+    },
+    {
+      "title": "Lead Qualification",
+      "caption": "Every answer becomes a structured CRM record with a lead score.",
+      "start": 13.19,
+      "len": 4.21,
+      "speechStart": 13.39,
+      "speechEnd": 17.08
+    },
+    {
+      "title": "WhatsApp Follow-up",
+      "caption": "The project brochure follows on WhatsApp, automatically.",
+      "start": 17.4,
+      "len": 3.48,
+      "speechStart": 17.6,
+      "speechEnd": 20.56
+    },
+    {
+      "title": "Site Visit Booking",
+      "caption": "Rohan picks an available site visit slot for Saturday.",
+      "start": 20.88,
+      "len": 3.26,
+      "speechStart": 21.08,
+      "speechEnd": 23.82
+    },
+    {
+      "title": "Sales Team Handover",
+      "caption": "The qualified buyer is handed over to your sales team.",
+      "start": 24.14,
+      "len": 3.33,
+      "speechStart": 24.34,
+      "speechEnd": 27.15
+    },
+    {
+      "title": "Performance Dashboard",
+      "caption": "And every outcome appears in your performance dashboard.",
+      "start": 27.47,
+      "len": 3.28,
+      "speechStart": 27.67,
+      "speechEnd": 30.43
+    },
+    {
+      "title": "Book a Demo",
+      "caption": "Book a demo to see it working on your own leads.",
+      "start": 30.75,
+      "len": 3.2,
+      "speechStart": 30.95,
+      "speechEnd": 33.28
+    }
+  ]
+}

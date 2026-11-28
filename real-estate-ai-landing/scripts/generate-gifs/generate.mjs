@@ -7,13 +7,13 @@
  */
 import { chromium } from 'playwright';
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const base = process.argv[2] || 'http://localhost:4173/';
-const out = join(root, 'public/assets/gifs');
+const out = join(root, 'media/gifs');   // review/stakeholder media, not shipped with the site
 const previewDir = join(root, 'preview');
 const cache = join(root, '.cache');
 mkdirSync(out, { recursive: true }); mkdirSync(previewDir, { recursive: true });
@@ -33,12 +33,14 @@ const frames = (m) => join(cache, 'frames', m, 'f%05d.jpg');
 if (existsSync(join(cache, 'frames/walkthrough'))) {
   // -t must precede -i so it limits this input (not the palette input added later).
   const clip = (start, dur) => ['-framerate', '30', '-start_number', String(Math.round(start * 30)), '-t', String(dur), '-i', frames('walkthrough')];
-  toGif(clip(3.75, 7.5), join(out, 'ai-calling.gif'), { width: 800, fps: 10 });
-  toGif(clip(7.5, 7.5), join(out, 'lead-qualification.gif'), { width: 800, fps: 10 });
-  toGif(clip(18.75, 7.5), join(out, 'site-visit-booking.gif'), { width: 800, fps: 10 });
+  const sc = JSON.parse(readFileSync(join(root, 'src/render/scene-timings.json'), 'utf8')).scenes;
+  const span = (a, b) => [sc[a].start, +(sc[b].start + sc[b].len - sc[a].start).toFixed(2)];
+  toGif(clip(...span(1, 2)), join(out, 'ai-calling.gif'), { width: 800, fps: 10 });          // AI calling + buyer conversation
+  toGif(clip(...span(2, 3)), join(out, 'lead-qualification.gif'), { width: 800, fps: 10 });  // conversation → CRM record
+  toGif(clip(...span(5, 6)), join(out, 'site-visit-booking.gif'), { width: 800, fps: 10 });  // visit booking + handover
 }
 if (existsSync(join(cache, 'frames/hero'))) {
-  toGif(['-framerate', '30', '-i', frames('hero')], join(out, 'hero-dashboard.gif'), { width: 800, speed: 1.5, fps: 10 });
+  toGif(['-framerate', '30', '-i', frames('hero')], join(out, 'hero-dashboard.gif'), { width: 800, speed: 1.3, fps: 10 });
 }
 
 // 2) Live captures
@@ -84,9 +86,8 @@ await captureElement('#problem article:nth-of-type(1) >> nth=2', 7, 'database-re
   for (let k = 0; k < 20; k++) await page.screenshot({ path: join(dir, `f${String(i++).padStart(4, '0')}.jpg`), type: 'jpeg', quality: 85 });
   await page.close();
   const seq = ['-framerate', '30', '-i', join(dir, 'f%04d.jpg')];
-  ff([...seq, '-vf', 'scale=1440:-2', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '24', '-movflags', '+faststart', join(previewDir, 'landing-page-preview.mp4')]);
-  toGif(seq, join(previewDir, 'landing-page-preview.gif'), { width: 640, fps: 10, speed: 1.2 });
-  execFileSync('cp', [join(previewDir, 'landing-page-preview.gif'), join(out, 'landing-page-preview.gif')]);
+  ff([...seq, '-vf', 'scale=1440:-2', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '24', '-movflags', '+faststart', join(previewDir, 'landing-page-preview-v2.mp4')]);
+  toGif(seq, join(previewDir, 'landing-page-preview-v2.gif'), { width: 640, fps: 10, speed: 1.2 });
   console.log('scroll preview frames', i);
 }
 await browser.close();

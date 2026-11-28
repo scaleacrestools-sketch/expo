@@ -16,8 +16,9 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const base = process.argv[2] || 'http://localhost:4173/';
 const fps = +(process.argv[3] || 30);
 const only = process.argv[4];
-const outDir = join(root, 'public/assets/videos');
-mkdirSync(outDir, { recursive: true });
+const siteDir = join(root, 'public/assets/videos');     // walkthrough: used by the site
+const mediaDir = join(root, 'media/videos');           // hero animation: media package only
+mkdirSync(siteDir, { recursive: true }); mkdirSync(mediaDir, { recursive: true });
 export const framesRoot = join(root, '.cache/frames');
 
 const browser = await chromium.launch();
@@ -38,22 +39,24 @@ for (const mode of ['walkthrough', 'hero']) {
   }
   await page.close();
   const name = mode === 'hero' ? 'hero-animation' : 'product-walkthrough';
+  const outDir = mode === 'hero' ? mediaDir : siteDir;
   const input = ['-y', '-v', 'error', '-framerate', String(fps), '-i', join(dir, 'f%05d.jpg')];
-  execFileSync('ffmpeg', [...input, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '22', '-preset', 'slow', '-movflags', '+faststart', '-an', join(outDir, `${name}.mp4`)]);
-  execFileSync('ffmpeg', [...input, '-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', '36', '-row-mt', '1', '-deadline', 'good', '-cpu-used', '4', '-an', join(outDir, `${name}.webm`)]);
+  const vmp4 = ['-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '23', '-preset', 'slow', '-movflags', '+faststart'];
+  const vwebm = ['-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', '38', '-row-mt', '1', '-deadline', 'good', '-cpu-used', '4'];
+  // Silent versions (default on the site).
+  execFileSync('ffmpeg', [...input, ...vmp4, '-an', join(outDir, `${name}.mp4`)]);
+  execFileSync('ffmpeg', [...input, ...vwebm, '-an', join(outDir, `${name}.webm`)]);
   console.log('encoded', name);
   if (mode === 'walkthrough') {
-    // Poster from the dashboard scene.
-    execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', join(dir, `f${String(Math.round(29 * fps)).padStart(5, '0')}.jpg`), '-vf', 'scale=1280:-1', '-quality', '82', join(outDir, 'video-poster.webp')]);
+    // Voice-over versions: narration track built by narration.mjs (ElevenLabs, licensed).
+    const narration = join(root, '.cache/narration.wav');
+    execFileSync('ffmpeg', [...input, '-i', narration, ...vmp4, '-c:a', 'aac', '-b:a', '96k', '-shortest', join(outDir, `${name}-voiceover.mp4`)]);
+    execFileSync('ffmpeg', [...input, '-i', narration, ...vwebm, '-c:a', 'libopus', '-b:a', '64k', '-shortest', join(outDir, `${name}-voiceover.webm`)]);
+    console.log('encoded voice-over versions');
+    // Branded poster: the live dashboard scene, which is meaningful at a glance.
+    execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', join(dir, `f${String(Math.round(6.2 * fps)).padStart(5, '0')}.jpg`), '-vf', 'scale=1280:-1', '-quality', '80', join(outDir, 'video-poster.webp')]);
   }
 }
 await browser.close();
 
-// WebVTT captions generated from the scene list.
-const { walkthroughScenes, SCENE_LEN } = await import(join(root, '.cache/scenes.mjs')).catch(() => ({}));
-if (walkthroughScenes) {
-  const ts = (s) => `00:00:${String(Math.floor(s)).padStart(2, '0')}.${String(Math.round((s % 1) * 1000)).padStart(3, '0')}`;
-  const vtt = ['WEBVTT', '', ...walkthroughScenes.flatMap((s, i) => [`${i + 1}`, `${ts(i * SCENE_LEN)} --> ${ts((i + 1) * SCENE_LEN - 0.05)}`, `${s.title}: ${s.caption}`, ''])].join('\n');
-  writeFileSync(join(outDir, 'product-walkthrough.vtt'), vtt);
-  console.log('wrote captions');
-}
+// Captions (product-walkthrough.vtt) are written by narration.mjs from the same scene timings.

@@ -29,7 +29,7 @@ export function DonutChart({ data, run, ariaLabel }: Props) {
           <div><p className="text-[20px] font-semibold tabular-nums text-[var(--c-head)]">{data[active].value}%</p><p className="text-[10px] text-[var(--c-muted)]">{data[active].label}</p></div>
         </div>
       </div>
-      <ul className="grid flex-1 gap-1.5">
+      <ul className="grid flex-1 gap-1.5" data-testid="outcome-legend">
         {data.map((d, i) => (
           <li key={d.label} className={`flex items-center justify-between gap-2 rounded-md px-1.5 py-0.5 text-[11.5px] transition ${hover === i ? 'bg-[var(--c-chip)]' : ''}`} onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)}>
             <span className="flex items-center gap-2 text-[var(--c-text)]"><span className="h-2 w-2 rounded-sm" style={{ background: d.color }} />{d.label}</span>

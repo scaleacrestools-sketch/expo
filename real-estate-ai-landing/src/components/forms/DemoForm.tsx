@@ -126,7 +126,7 @@ export function DemoForm() {
       </div>
 
       <label className="mt-5 flex cursor-pointer items-start gap-3 text-[13.5px] leading-relaxed text-[var(--c-text)]">
-        <input {...aria('consent')} type="checkbox" checked={v.consent} onChange={set('consent')} className="mt-0.5 h-5 w-5 flex-none accent-[var(--brand-primary)]" />
+        <input {...aria('consent')} type="checkbox" checked={v.consent} onChange={set('consent')} className="mt-0.5 h-5 w-5 flex-none accent-[#6a3ff0]" />
         <span>I agree to be contacted about this demo request. My details are used only to respond to this enquiry and are not sold or shared for marketing. *</span>
       </label>
       <Err k="consent" />

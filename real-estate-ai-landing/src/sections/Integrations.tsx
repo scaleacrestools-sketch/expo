@@ -20,7 +20,7 @@ export function Integrations() {
   const pathR = (i: number) => `M560 300 C 620 300, 620 ${rowY(i)}, 738 ${rowY(i)}`;
 
   return (
-    <Section id="integrations" theme="dark" label="Integrations" className="overflow-hidden">
+    <Section id="integrations" theme="dark" sheet horizon label="Integrations" className="overflow-hidden">
       <div className="container-x section-y">
         <SectionHeader eyebrow={integrationsCopy.eyebrow} title={integrationsCopy.title} description={integrationsCopy.description} />
         <Reveal className="mt-14">

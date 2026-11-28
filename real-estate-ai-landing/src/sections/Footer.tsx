@@ -17,7 +17,8 @@ export function Footer({ onLegal }: { onLegal: (k: 'privacy' | 'terms') => void 
   };
 
   return (
-    <footer className="theme-dark relative border-t border-white/[0.07]" data-testid="footer">
+    <footer className="theme-dark relative" data-testid="footer">
+      <div className="container-x"><div className="divider-orb" aria-hidden="true" /></div>
       <div className="container-x grid grid-cols-2 gap-10 py-16 md:grid-cols-4 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1fr]">
         <div className="col-span-2 md:col-span-4 lg:col-span-1">
           <Logo />

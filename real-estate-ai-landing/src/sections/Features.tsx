@@ -1,33 +1,42 @@
+import { Bot, CalendarCheck2, Clock3, Database, Gauge, Languages, ListChecks, MessageCircle, RefreshCw, ScrollText, type LucideIcon } from 'lucide-react';
 import { features } from '../data/content';
 import { Section } from '../components/ui/Section';
 import { SectionHeader } from '../components/ui/SectionHeader';
 import { Reveal } from '../components/ui/Reveal';
 import { CalendarVisual, CallingVisual, ChecklistVisual, ClockVisual, CrmSyncVisual, IntelligenceVisual, LanguageVisual, ReactivationVisual, ScoringVisual, WhatsAppVisual } from '../components/illustrations/FeatureVisuals';
 
-const visuals = [CallingVisual, ChecklistVisual, WhatsAppVisual, LanguageVisual, CalendarVisual, ReactivationVisual, ClockVisual, CrmSyncVisual, ScoringVisual, IntelligenceVisual];
-// Asymmetric bento placement on a 12-column grid (lg). Order matches features.items.
-const layout = [
-  'lg:col-span-7', 'lg:col-span-5',
-  'lg:col-span-4 lg:row-span-2', 'lg:col-span-4', 'lg:col-span-4 lg:row-span-2', 'lg:col-span-4',
-  'lg:col-span-5', 'lg:col-span-7',
-  'lg:col-span-6', 'lg:col-span-6',
-];
+/** Index into features.items → visual, icon and bento placement. Priority features get the large tiles. */
+const cfg: Record<number, { V: () => JSX.Element; icon: LucideIcon; cls: string; primary?: boolean; wide?: boolean }> = {
+  0: { V: CallingVisual, icon: Bot, cls: 'lg:col-span-7', primary: true },
+  1: { V: ChecklistVisual, icon: ListChecks, cls: 'lg:col-span-5', primary: true },
+  2: { V: WhatsAppVisual, icon: MessageCircle, cls: 'lg:col-span-5', primary: true },
+  4: { V: CalendarVisual, icon: CalendarCheck2, cls: 'lg:col-span-7', primary: true },
+  3: { V: LanguageVisual, icon: Languages, cls: 'lg:col-span-4' },
+  5: { V: ReactivationVisual, icon: RefreshCw, cls: 'lg:col-span-4' },
+  6: { V: ClockVisual, icon: Clock3, cls: 'lg:col-span-4' },
+  7: { V: CrmSyncVisual, icon: Database, cls: 'lg:col-span-6' },
+  8: { V: ScoringVisual, icon: Gauge, cls: 'lg:col-span-6' },
+  9: { V: IntelligenceVisual, icon: ScrollText, cls: 'lg:col-span-12', wide: true },
+};
+const order = [0, 1, 2, 4, 3, 5, 6, 7, 8, 9];
 
 export function Features() {
   return (
-    <Section id="features" theme="light" alt label="Platform features">
+    <Section id="features" theme="light" alt sheet label="Platform features">
       <div className="container-x section-y">
         <SectionHeader eyebrow={features.eyebrow} title={features.title} />
-        <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-12" data-testid="features-grid">
-          {features.items.map((f, i) => {
-            const V = visuals[i];
+        <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-12" data-testid="features-grid">
+          {order.map((idx, k) => {
+            const f = features.items[idx]; const c = cfg[idx]; const I = c.icon;
             return (
-              <Reveal key={f.title} delay={(i % 3) * 0.06} className={`${layout[i]} ${i === 0 || i === 7 ? 'md:col-span-2' : ''}`}>
-                <article className="card card-hover flex h-full flex-col overflow-hidden">
-                  <div className="flex flex-1 flex-col justify-center border-b border-[var(--c-line)] bg-[radial-gradient(120%_80%_at_50%_0%,#f3efff_0%,#f7f7f9_60%)]"><V /></div>
-                  <div className="p-5 sm:p-6">
-                    <p className="text-[12px] font-medium tabular-nums text-[var(--c-accent-text)]">{String(i + 1).padStart(2, '0')}</p>
-                    <h3 className="h-card mt-1">{f.title}</h3>
+              <Reveal key={f.title} delay={(k % 3) * 0.06} className={`${c.cls} ${idx === 0 || c.wide ? 'md:col-span-2' : ''}`}>
+                <article className={`card card-hover flex h-full overflow-hidden ${c.wide ? 'flex-col lg:flex-row-reverse' : 'flex-col'} ${c.primary ? 'ring-1 ring-brand/15' : ''}`} data-feature={f.title}>
+                  <div className={`relative flex flex-col justify-center border-[var(--c-line)] bg-[radial-gradient(120%_90%_at_50%_0%,#efeaff_0%,#f6f7fb_62%)] ${c.wide ? 'border-b lg:w-[60%] lg:border-b-0 lg:border-l' : 'flex-1 border-b'}`}>
+                    <c.V />
+                  </div>
+                  <div className={`p-5 sm:p-6 ${c.wide ? 'flex flex-col justify-center lg:w-[40%] lg:p-10' : ''}`}>
+                    <p className="flex items-center gap-2 text-[12px] font-medium text-[var(--c-accent-text)]"><span className="grid h-6 w-6 place-items-center rounded-md bg-[#efeaff]"><I size={13} /></span>{c.primary ? 'Core capability' : 'Platform'}</p>
+                    <h3 className={`h-card mt-2.5 ${c.primary || c.wide ? 'lg:text-[24px]' : ''}`}>{f.title}</h3>
                     <p className="mt-1.5 text-[15px] leading-relaxed">{f.body}</p>
                   </div>
                 </article>

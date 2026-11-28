@@ -126,15 +126,22 @@ test('voice agent: tabs, playback, progress and restart', async ({ page }) => {
   await expect(page.getByTestId('voice-tab-2')).toHaveAttribute('aria-selected', 'true');
   await page.getByTestId('voice-tab-0').click();
   await expect(panel.getByTestId('voice-transcript')).toContainText('Which property configuration are you looking for?');
-  await page.getByTestId('voice-lang').selectOption('hi');
+  await page.getByTestId('voice-lang-hinglish').click();
   await expect(panel.getByTestId('voice-transcript')).toContainText('Aap kaunsi property configuration');
-  await page.getByTestId('voice-lang').selectOption('en');
+  await page.getByTestId('voice-lang-hi').click();
+  await expect(panel.getByTestId('voice-transcript')).toContainText('आप कितने बेडरूम वाला घर देख रहे हैं?');
+  await expect(page.getByTestId('voice-lang-hi')).toHaveAttribute('aria-checked', 'true');
+  await page.getByTestId('voice-lang-en').click();
   const audio = page.getByTestId('voice-audio');
-  await expect.poll(() => audio.evaluate((a: HTMLAudioElement) => a.readyState)).toBeGreaterThan(0);
+  // Audio is not fetched until the visitor presses play.
+  expect(await audio.getAttribute('preload')).toBe('none');
+  await expect(page.getByTestId('voice-duration')).not.toHaveText('0:00');
   await page.getByTestId('voice-play').click();
   await expect.poll(() => audio.evaluate((a: HTMLAudioElement) => a.currentTime), { timeout: 8000 }).toBeGreaterThan(0.8);
   await expect(page.getByTestId('voice-time')).not.toHaveText('0:00');
   await expect(panel.locator('li[aria-current="true"]')).toHaveCount(1);
+  await expect(page.getByTestId('voice-speaker')).toContainText('speaking');
+  await expect(page.getByTestId('voice-result')).toBeVisible();
   await page.getByTestId('voice-play').click(); // pause
   const paused = await audio.evaluate((a: HTMLAudioElement) => a.paused);
   expect(paused).toBe(true);
@@ -144,7 +151,7 @@ test('voice agent: tabs, playback, progress and restart', async ({ page }) => {
   await expect.poll(() => audio.evaluate((a: HTMLAudioElement) => a.currentTime)).toBeLessThan(3);
 });
 
-test('hero "Hear a Sample Call" jumps to voice section', async ({ page }) => {
+test('hero \"Hear a Sample Call\" jumps to voice section', async ({ page }) => {
   await page.goto('/');
   await page.getByTestId('hero-sample').click();
   await expect.poll(() => page.evaluate(() => (document.querySelector('#voice-agents') ? Math.abs(document.querySelector('#voice-agents')!.getBoundingClientRect().top) : 99999))).toBeLessThan(150);
@@ -158,6 +165,10 @@ test('how it works: steps are selectable', async ({ page }) => {
   }
   await page.keyboard.press('ArrowUp');
   await expect(page.getByTestId('step-3')).toHaveAttribute('aria-selected', 'true');
+  // Manual selection pauses the tour; the control resumes it.
+  await expect(page.getByTestId('hiw-autoplay')).toContainText('Play tour');
+  await page.getByTestId('hiw-autoplay').click();
+  await expect(page.getByTestId('hiw-autoplay')).toContainText('Pause tour');
 });
 
 test('use-case tabs: click, keyboard and footer deep links', async ({ page }) => {
@@ -222,16 +233,31 @@ test('FAQ accordion works with mouse and keyboard', async ({ page }) => {
   await expect(page.locator('#faq-a-6')).toContainText('closing');
 });
 
-test('video modal plays the walkthrough with captions', async ({ page }) => {
+test('video modal: poster, no autoplay, plays on demand, switches audio, stops on close', async ({ page }) => {
   await page.goto('/');
-  await page.getByTestId('open-video').click();
+  await page.getByTestId('hero-video').click();
   const video = page.getByTestId('walkthrough-video');
   await expect(video).toBeVisible();
+  expect(await video.getAttribute('preload')).toBe('none');
+  expect(await video.getAttribute('poster')).toContain('video-poster.webp');
+  await page.waitForTimeout(600);
+  expect(await video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(true); // no autoplay
+  await page.getByTestId('video-play-overlay').click();
   await expect.poll(() => video.evaluate((v: HTMLVideoElement) => v.currentTime), { timeout: 10000 }).toBeGreaterThan(0.5);
   expect(await video.evaluate((v: HTMLVideoElement) => v.duration)).toBeGreaterThan(25);
   expect(await video.evaluate((v: HTMLVideoElement) => v.textTracks.length)).toBe(1);
+  expect(await video.evaluate((v: HTMLVideoElement) => (v as HTMLVideoElement & { mozHasAudio?: boolean }).currentSrc)).toContain('voiceover');
+  await page.getByTestId('video-version-silent').click();
+  await expect(page.getByTestId('walkthrough-video')).toHaveAttribute('data-version', 'silent');
   await page.keyboard.press('Escape');
   await expect(page.getByTestId('video-modal')).toBeHidden();
+  expect(await page.locator('video').count()).toBe(0); // unmounted, so playback stopped
+});
+
+test('How It Works video preview opens the same walkthrough', async ({ page }) => {
+  await page.goto('/#how-it-works');
+  await page.getByTestId('hiw-video').click();
+  await expect(page.getByTestId('walkthrough-video')).toBeVisible();
 });
 
 test('legal links open dialogs', async ({ page }) => {
@@ -246,9 +272,49 @@ test('reduced motion: page renders final states without errors', async ({ browse
   const page = await ctx.newPage();
   const errors = trackErrors(page);
   await page.goto('/');
-  await expect(page.getByTestId('hero-dashboard')).toHaveAttribute('data-phase', '6');
+  await expect(page.getByTestId('hero-dashboard')).toHaveAttribute('data-phase', '8');
   const running = await page.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running' && (a.effect as KeyframeEffect)?.getComputedTiming().iterations === Infinity).length);
   expect(running).toBe(0);
   expect(errors).toEqual([]);
+  await ctx.close();
+});
+
+test('navigation marks the active section', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('#integrations').scrollIntoViewIfNeeded();
+  await page.evaluate(() => document.querySelector('#integrations')!.scrollIntoView({ block: 'start' }));
+  await expect(page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Integrations' })).toHaveAttribute('aria-current', 'location');
+});
+
+test('qualification demo reaches the full ten answers and score 86', async ({ page }) => {
+  await page.goto('/#qualification');
+  await expect(page.getByTestId('qualification-demo')).toHaveAttribute('data-step', '10', { timeout: 15000 });
+  await expect(page.getByTestId('qual-score')).toContainText('86');
+});
+
+test('demo data is internally consistent', async ({ page }) => {
+  await page.goto('/#performance');
+  await expect(page.getByTestId('outcome-legend').locator('li')).toHaveCount(4);
+  const shares = await page.getByTestId('outcome-legend').locator('li').allTextContents();
+  const nums = shares.map((t) => parseInt(t.replace(/[^0-9]/g, ''), 10));
+  expect(nums.reduce((a, b) => a + b, 0)).toBe(100);
+  expect(nums[3]).toBe(32); // no answer = 100% − 68% connect rate
+  await expect(page.locator('#top')).toContainText('68%');
+});
+
+test('page still works on a slow 3G-like network', async ({ browser }) => {
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const page = await ctx.newPage();
+  const cdp = await ctx.newCDPSession(page);
+  await cdp.send('Network.emulateNetworkConditions', { offline: false, latency: 400, downloadThroughput: (500 * 1024) / 8, uploadThroughput: (500 * 1024) / 8 });
+  const t0 = Date.now();
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('h1')).toBeVisible({ timeout: 20000 });
+  const h1Ms = Date.now() - t0;
+  await expect(page.getByTestId('footer')).toBeAttached({ timeout: 30000 });
+  expect(h1Ms).toBeLessThan(20000);
+  // Media must not load on page load.
+  const media = await page.evaluate(() => performance.getEntriesByType('resource').map((r) => r.name).filter((n) => /\.(mp3|mp4|webm|gif)(\?|$)/.test(n)));
+  expect(media).toEqual([]);
   await ctx.close();
 });

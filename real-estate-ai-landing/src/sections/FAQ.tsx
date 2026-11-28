@@ -11,7 +11,7 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   const { openDemo } = useApp();
   return (
-    <Section id="faq" theme="dark" label="Frequently asked questions">
+    <Section id="faq" theme="dark" sheet label="Frequently asked questions">
       <div className="container-x section-y">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.5fr]">
           <div>

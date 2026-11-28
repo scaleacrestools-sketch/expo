@@ -12,6 +12,8 @@ import { DonutChart } from '../components/charts/DonutChart';
 import { DemoTag } from '../components/ui/DemoTag';
 import { useInView } from '../hooks/useInView';
 import { useCountUp } from '../hooks/useCountUp';
+import { useLoop } from '../hooks/useLoop';
+import { story } from '../data/story';
 
 function fmt(v: number, f: string) {
   if (f === 'sec') return `${Math.round(v)}s`;
@@ -23,8 +25,16 @@ export function Performance() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.15 });
   const [range, setRange] = useState<'7d' | '30d'>('7d');
   const scale = range === '7d' ? 1 : 4.1;
+  const feed = [
+    `${story.buyer.short} qualified · score ${story.score} · ${story.project.name}`,
+    'Ananya S. connected · Premium Apartments',
+    `Site visit booked · ${story.visit.short}`,
+    'Vikram K. callback set · Residential Plots',
+    'Priya D. assigned to sales · Luxury Residences',
+  ];
+  const [fi] = useLoop(feed.length, 2600, inView, 0);
   return (
-    <Section id="performance" theme="dark" label="Performance and results" className="overflow-hidden">
+    <Section id="performance" theme="dark" sheet horizon label="Performance and results" className="overflow-hidden">
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[900px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(139,92,246,0.18),transparent)]" />
       <div className="container-x section-y relative">
         <SectionHeader eyebrow={performanceCopy.eyebrow} title={performanceCopy.title} description={performanceCopy.description} />
@@ -35,7 +45,7 @@ export function Performance() {
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <p className="text-[15px] font-semibold tracking-[-0.02em] text-[var(--c-head)]">Sales performance</p>
-                    <p className="text-[12px] text-[var(--c-muted)]">All campaigns · sample workspace</p>
+                    <p className="mt-0.5 flex items-center gap-2 text-[12px] text-[var(--c-muted)]" aria-live="off" data-testid="perf-live"><span className="live-dot h-1.5 w-1.5 flex-none rounded-full bg-[#12b881]" /><span key={fi} className="truncate" style={{ animation: 'rise .35s var(--ease-out) both' }}>Live · {feed[fi]}</span></p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
                     <div role="group" aria-label="Date range" className="flex rounded-lg border border-[var(--c-line)] bg-[var(--c-card-2)] p-0.5 text-[12px]">
@@ -55,9 +65,9 @@ export function Performance() {
                 </div>
 
                 <div className="mt-2.5 grid gap-2.5 lg:grid-cols-12">
-                  <Panel className="lg:col-span-7" title="Call volume" right={<span className="flex items-center gap-3 text-[11px] text-[var(--c-muted)]"><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#a78bfa]" />Calls</span><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#38bdf8]" />Connected</span></span>}>
+                  <Panel className="lg:col-span-7" title="Call volume" right={<span className="flex items-center gap-3 text-[11px] text-[var(--c-muted)]"><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#a48bff]" />Calls</span><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#4f7dff]" />Connected</span></span>}>
                     <LineChart key={range} animate={inView} ariaLabel="Demo call volume chart, calls and connected calls per day" labels={callVolume.map((d) => d.day)}
-                      series={[{ key: 'c', label: 'Calls', color: '#a78bfa', values: callVolume.map((d) => Math.round(d.calls * scale)) }, { key: 'k', label: 'Connected', color: '#38bdf8', values: callVolume.map((d) => Math.round(d.connected * scale)) }]} height={300} />
+                      series={[{ key: 'c', label: 'Calls', color: '#a48bff', values: callVolume.map((d) => Math.round(d.calls * scale)) }, { key: 'k', label: 'Connected', color: '#4f7dff', values: callVolume.map((d) => Math.round(d.connected * scale)) }]} height={300} />
                   </Panel>
                   <Panel className="lg:col-span-5" title="Lead qualification · fields captured" right={<DemoTag />}>
                     <BarChart ariaLabel="Demo share of calls where each qualification field was captured" data={qualificationBars} run={inView} />
@@ -67,7 +77,7 @@ export function Performance() {
                   </Panel>
                 </div>
 
-                <Panel className="mt-2.5" pad={false} title="Campaign performance" right={<DemoTag />}>
+                <Panel className="mt-2.5" pad={false} title="Top campaigns this week" right={<DemoTag />}>
                   <div className="thin-scroll overflow-x-auto" tabIndex={0} aria-label="Campaign performance table, scroll horizontally on small screens">
                     <table className="w-full min-w-[640px] text-[13px]" data-testid="campaign-table">
                       <caption className="sr-only">Campaign performance (demonstration data)</caption>
@@ -82,8 +92,8 @@ export function Performance() {
                         </tr>
                       </thead>
                       <tbody>
-                        {campaigns.map((c) => (
-                          <tr key={c.name} className="border-b border-[var(--c-line)] transition-colors last:border-0 hover:bg-white/[0.035]">
+                        {campaigns.map((c, ri) => (
+                          <tr key={c.name} className="border-b border-[var(--c-line)] transition-[background-color,opacity,transform] duration-500 last:border-0 hover:bg-white/[0.035]" style={{ opacity: inView ? 1 : 0, transform: inView ? 'none' : 'translateY(8px)', transitionDelay: `${300 + ri * 80}ms` }}>
                             <th scope="row" className="px-4 py-3 text-left font-medium text-[var(--c-head)]">
                               <span className="flex items-center gap-2.5"><span className="h-7 w-1 rounded-full bg-gradient-to-b from-[#c4b5fd] to-[#6d28d9]" />{c.name}</span>
                             </th>
@@ -102,7 +112,7 @@ export function Performance() {
             </AppWindow>
           </div>
         </Reveal>
-        <p className="mt-4 text-center text-[12.5px] text-[var(--c-muted)]">All figures shown are sample demonstration data, not product results.</p>
+        <p className="mt-4 text-center text-[12.5px] text-[var(--c-muted)]">All figures are sample demonstration data, not product results. Outcome shares are of all 2,480 calls; the 68% connect rate equals qualified + callback + not interested.</p>
       </div>
     </Section>
   );
@@ -114,7 +124,7 @@ function MetricCount({ label, target, format, delta, run }: { label: string; tar
     <div className="ui-surface p-3.5 transition hover:border-[var(--c-line-strong)]">
       <p className="truncate text-[11.5px] text-[var(--c-muted)]">{label}</p>
       <p className="mt-1 text-[22px] font-semibold tabular-nums tracking-[-0.03em] text-[var(--c-head)]">{fmt(v, format)}</p>
-      <p className="mt-0.5 text-[11px] font-medium text-emerald-400">{delta} <span className="font-normal text-[var(--c-muted)]">vs prev.</span></p>
+      <p className="mt-0.5 text-[11px] font-medium text-[#7de3bd]">{delta} <span className="font-normal text-[var(--c-muted)]">vs prev.</span></p>
     </div>
   );
 }

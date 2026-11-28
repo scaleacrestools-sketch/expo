@@ -3,7 +3,7 @@ export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
-      fontFamily: { sans: ['"Inter Variable"', 'Inter', 'system-ui', 'sans-serif'] },
+      fontFamily: { sans: ['"Inter V2"', 'Inter', 'system-ui', 'sans-serif'], display: ['"Inter Display V2"', '"Inter V2"', 'system-ui', 'sans-serif'] },
       colors: {
         brand: { DEFAULT: 'rgb(var(--brand-primary-rgb) / <alpha-value>)', 2: 'rgb(var(--brand-secondary-rgb) / <alpha-value>)', accent: 'var(--brand-accent)' },
         ink: { bg: 'var(--dark-background)', surface: 'var(--dark-surface)', raised: 'var(--dark-surface-2)', border: 'var(--dark-border)', head: 'var(--dark-heading)', text: 'var(--dark-text)', muted: 'var(--dark-muted)' },

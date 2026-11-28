@@ -1,70 +1,57 @@
-# Design Notes
+# Design Notes (V2)
 
-## Reference analysis and its limits
+V1 was designed without access to the references. For V2 both were opened in a browser and their computed styles read directly (see `V2-AUDIT.md` §1). This file records what was taken from each and why.
 
-**Important limitation:** the build environment's network allowlist blocked both reference sites (`agenly.framer.ai` and `huvo.ai` returned a proxy 403 / DNS failure). Computed styles could not be extracted in this session. The palette, type and layout below are a documented approximation of the Agenly visual language, which is a dark, near-black Framer template with white display type, a violet accent, glassy bordered cards, bento grids and integration "hub" graphics. HUVO informed the product scope and content hierarchy through the approved copy in the brief.
+## Sources
+- **Agenly** (`agenly.framer.ai`) — primary visual reference: backgrounds, surfaces, card glow, type weight and tracking, button structure, horizon glows, divider orbs, integration hub.
+- **HUVO** (`huvo.ai`) — product positioning, real estate workflow, white-section ink/slate palette and spacing.
+- **Brand** — the approved purple direction is kept. Agenly itself ships a violet token (`#8057FF`), which is now the primary.
 
-To verify against the live reference, open `https://agenly.framer.ai/` in Chrome DevTools, read the `--token-*` custom properties on `:root`, and update the variables at the top of `src/styles/globals.css`. Every component reads from those tokens.
-
-## Colour tokens (approximated)
-
-| Token | Value | Role |
+## Colour tokens (`src/styles/globals.css`)
+| Token | V2 value | Source |
 |---|---|---|
-| `--dark-background` | `#07070A` | Page / dark section background |
-| `--dark-surface` | `#101016` | Cards on dark |
-| `--dark-surface-2` | `#16161E` | Inner panels |
-| `--dark-border` | `rgba(255,255,255,.08)` | Hairline borders |
-| `--dark-heading` | `#FAFAFA` | Headings on dark |
-| `--dark-text` | `#A1A1AA` | Body on dark |
-| `--brand-primary` | `#8B5CF6` | Accent, primary button, active states |
-| `--brand-secondary` | `#A78BFA` | Lines, waveforms, highlights |
-| `--brand-accent` | `#C4B5FD` | Accent text on dark, gradient end |
-| `--brand-deep` | `#6D28D9` | Accent text on white (contrast), gradient start |
-| `--light-background` | `#FFFFFF` / `#F7F7F9` | White and off-white sections |
-| `--light-heading` | `#0F0F14` | Headings on white (same hue family as dark bg) |
-| `--light-text` | `#52525B` | Body on white |
-| `--light-border` | `#E7E7EC` | Card borders on white |
+| `--dark-background` | `#080515` | Agenly page background (measured) |
+| `--dark-surface` / `-2` | `#0D0D1C` / `#111225` | Agenly cards (measured) |
+| `--dark-text` | `#B1B1C1` | Agenly token |
+| `--dark-muted` | `#8A8A99` | Between Agenly `#86868E` and V1, AA on navy |
+| `--brand-primary` | `#8057FF` | Agenly violet token |
+| `--brand-deep` | `#4826B3` | Agenly deep violet token |
+| `--brand-solid` | `#6A3FF0` | Solid fill behind small white text (≥4.5:1) |
+| `--brand-blue` | `#1856FF` | Agenly primary blue; used only as a secondary data/glow accent |
+| `--light-heading` | `#0D1424` | HUVO ink (measured) |
+| `--light-text` | `#4F5D73` | HUVO slate (measured, darkened for AA) |
+| `--light-border` | `#E6EBF2` | HUVO hairline |
+| `--success` / `--warning` / `--danger` | `#12B881` / `#FEBC2E` / `#FF4A4D` | Agenly status tokens |
 
-Status colours (success `#22C55E`, warning `#F59E0B`, danger `#EF4444`, info `#38BDF8`) are used only inside product UI badges, always paired with text labels.
-
-Primary buttons use a violet vertical gradient (`#9B70FF → #7C3AED`) with an inner highlight and soft glow, which is the main "premium" signature shared by dark and white sections.
+## Surfaces and depth
+- Dark cards use Agenly's inset glow: `inset 0 -16px 64px rgba(116,176,253,.06), inset 0 3px 12px rgba(212,232,255,.04)` over `#0D0D1C`, with an 8% white hairline.
+- White cards use a HUVO-style hairline plus a soft, cool drop shadow; hover adds a faint violet lift.
+- Primary buttons copy Agenly's structure (vertical gradient, `0 10px 25px` glow, `1.5px` inset highlight, pill radius) in brand violet.
 
 ## Typography
-- **Inter Variable** (SIL Open Font License), self-hosted via `@fontsource-variable/inter` so it works offline and in screenshots. It is the closest freely licensed match to the geometric grotesk used on the reference.
-- Display H1 `clamp(40px, 6.4vw, 78px)`, weight 600, tracking −0.045em, line-height 1.02.
-- Section H2 `clamp(32px, 4.4vw, 54px)`, weight 600, tracking −0.04em.
-- Card titles 18–22px / 600. Body 16–18px. Dashboard text 10.5–13px with tabular numerals.
-- Hero heading uses a subtle white-to-lavender text gradient; white-section headings stay solid ink for clarity.
+- **Inter** for text and **Inter Display** (Inter's 32 pt optical size) for headings, self-hosted as two subset WOFF2 files: 27.5 KB + 26 KB, Latin + ₹ + typographic punctuation (V1 loaded 133 KB).
+- Headings use weight 500 with −0.045 to −0.05 em tracking. Agenly uses 400 at 80 px; 500 keeps the same airy display look while staying readable at smaller sizes and on white.
+- Devanagari transcripts fall back to the system font (`Noto Sans Devanagari` where available).
 
-## Dark / light allocation
-Ten dark blocks (navigation, hero, trusted by, performance, voice, omnichannel, use cases, integrations, FAQ, final CTA, footer) and seven white or off-white sections (problem, funnel, how it works, features, qualification, mobile, comparison) give roughly 60/40.
+## Section transitions
+- Wherever the theme changes, the incoming section rises over the previous one as a **sheet** with 24–40 px rounded top corners. Dark sheets carry a 1 px violet hairline; white sheets cast a soft violet shadow upward.
+- Same-theme neighbours (Voice → Omnichannel, Final CTA → Footer) are separated by Agenly's **divider orb**.
+- Dark sections that end before a white one carry a static violet **horizon glow** at their foot. Nothing large and blurred is animated.
+- Section padding reduced to `clamp(56px, 7.5vw, 104px)`.
 
-Rules that keep both themes one brand:
-- One `Section` component sets semantic variables (`--c-head`, `--c-text`, `--c-card`, `--c-line` …) for its theme; every component reads only those.
-- Same eyebrow pill, heading scale, radius (20px cards, 14px panels), button system and icon set in both.
-- Adjacent white sections alternate `#FFFFFF` and `#F7F7F9` so they read as connected but distinct.
-- Product UI keeps its own look in both themes: on white sections the dashboards appear as white cards; key "live" moments (calls) stay dark to match the hero product.
+## Motion system (`src/config/motion.ts` + CSS variables)
+| Use | Duration | Easing |
+|---|---|---|
+| Hover / press | 120–200 ms (`--dur-fast` 160 ms) | `cubic-bezier(.22,1,.36,1)` |
+| Card transitions | 200–300 ms (`--dur-card` 260 ms) | same |
+| Section entrance | 480 ms, 16 px rise | same |
+| Stagger | 60 ms | — |
+| Product loops | Hero 9 × 1.15 s ≈ 10 s; omnichannel 7 × 1.5 s; qualification ≈ 12 s; How It Works step every 8 s | linear stepping |
 
-## Layout
-- Container 1240px max, 20–32px gutters. Section padding `clamp(56px, 9vw, 120px)`.
-- Centered headers for most sections; left-aligned headers where content sits beside a visual (mobile CRM, FAQ).
-- Features use an asymmetric 12-column bento (7/5, 4·4·4 with two tall cards, 5/7, 6/6) so no two rows look alike.
-- Mobile layouts are composed intentionally: hero floating cards become a story strip, How It Works becomes an accordion with visuals, the omnichannel ring becomes a hub + grid, integrations stack sources → hub → destinations, phones crossfade.
+Rules: animate transform and opacity; loops run only while visible (IntersectionObserver); continuous CSS animations pause off-screen; `prefers-reduced-motion` (or `?reduced-motion=1`) shows every demo in its finished state; text renders immediately so a JS failure never hides content above the fold.
 
-## Animation system
-- **Reveal:** fade + 18px rise on scroll, once, 0.7s `cubic-bezier(.22,1,.36,1)`.
-- **Story loops:** small `useLoop` hook advances demo states (hero call flow 7×2s, qualification, omnichannel, step visuals). Loops only run while their section is on screen.
-- **Continuous CSS motion** (waveforms, marquee, flow dashes, particles) is paused off-screen through `data-inview="false"`.
-- **Reduced motion:** all loops jump to their completed state, CSS animations are neutralised, SVG particles are not rendered, auto-advance stops. `?reduced-motion=1` forces this mode for testing.
-- No scroll-jacking or parallax.
+## Product storytelling
+One fictional story (`src/data/story.ts`) runs through the hero, How It Works, Voice AI, Omnichannel, Qualification, Features, Mobile CRM and the walkthrough video: **Rohan Mehta** enquires via Meta Ads about **Skyline Residences, Whitefield**; wants a **3 BHK**, **₹2 Crore**, **self-use**, **6 months**; **Aria** calls; score **86**; visit **Sat 15 Nov, 11 AM**; assigned to **Kavya Rao**. Dashboard totals (2,480 calls, 68% connect, 846 qualified, 124 visits) are identical in the hero, analytics and video.
 
-## Product illustration system
-All product imagery is live React/HTML/SVG, built from one primitive set in `src/components/dashboards/primitives.tsx`: `AppWindow` (browser chrome + "Demo data" tag), `Panel`, `Metric`, `Status` badges, `Avatar`, `AgentOrb` (the AI agent's consistent visual), `MiniCalendar`, and the `Waveform`. The same campaign ("Skyline Residences"), agent ("Aria"), buyer ("Rohan Mehta") and sales executive ("Kavya Rao") recur across sections so the page tells one coherent product story. All names and numbers are fictional sample data.
-
-Charts are lightweight custom SVG (line/area with hover tooltip, bar, donut) rather than a chart library, which keeps the bundle small and lets them share tokens.
-
-## Brand and legal guardrails
-- Original logo: a waveform inside a rounded violet tile. Replaceable in one place.
-- No HUVO or Agenly branding, assets, recordings, logos, testimonials or metrics are used.
-- Third-party integrations are shown as neutral monogram tiles (not official logos), all marked **Planned**, with a no-partnership disclaimer.
-- Every chart, table and KPI carries a "Demo data" / "Illustrative data" label.
+## Voice
+Sample calls are licensed ElevenLabs `eleven_v4` recordings: agent "Palak M" (female, Indian customer-care), buyer "Neeraj" (male, Delhi Hindi/Hinglish). Each line is a separate clip, so the transcript is time-aligned exactly. The player's waveform is computed from the real audio (RMS peaks). The walkthrough narrator is "Amit Gupta – Confident Sales Advisor". No voices were cloned.

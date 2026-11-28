@@ -97,7 +97,7 @@ export function ConversationViz({ t }: { t: number }) {
 }
 
 export function ScoreViz({ t }: { t: number }) {
-  const items = ['Budget · ₹2 Cr', 'Location · North corridor', 'Configuration · 3 BHK', 'Timeline · 6 months', 'Intent · Self-use', 'Objection · Possession date', 'Callback · Weekends', 'Site visit · Interested'];
+  const items = ['Budget · ₹2 Cr', 'Location · Whitefield', 'Configuration · 3 BHK', 'Timeline · 6 months', 'Intent · Self-use', 'Objection · Possession date', 'Callback · Weekends', 'Site visit · Interested'];
   const done = Math.min(items.length, t + 1);
   const score = Math.round(40 + (done / items.length) * 46);
   const C = 2 * Math.PI * 34;

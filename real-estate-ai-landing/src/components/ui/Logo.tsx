@@ -7,7 +7,7 @@ export function LogoMark({ size = 28, className = '' }: { size?: number; classNa
       <defs>
         <linearGradient id="lm-g" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
           <stop stopColor="#B69CFF" />
-          <stop offset="1" stopColor="#6D28D9" />
+          <stop offset="1" stopColor="#5B32E0" />
         </linearGradient>
       </defs>
       <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lm-g)" />

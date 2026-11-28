@@ -3,10 +3,10 @@ import conversations from './voice-conversations.json';
 
 export const nav = {
   links: [
-    { label: 'Solutions', href: '#features', dropdown: true },
-    { label: 'How It Works', href: '#how-it-works' },
-    { label: 'Integrations', href: '#integrations' },
-    { label: 'For Teams', href: '#use-cases' },
+    { label: 'Solutions', href: '#features', dropdown: true, sections: ['voice-agents', 'omnichannel', 'features', 'qualification'] },
+    { label: 'How It Works', href: '#how-it-works', sections: ['how-it-works'] },
+    { label: 'Integrations', href: '#integrations', sections: ['integrations'] },
+    { label: 'For Teams', href: '#use-cases', sections: ['use-cases'] },
   ],
   solutions: [
     { label: 'AI Voice Agents', desc: 'Natural property conversations', href: '#voice-agents', icon: 'Mic' },
@@ -23,6 +23,7 @@ export const hero = {
   title: 'From property enquiries to qualified buyers.',
   description: 'Automate sales calls, understand buyer intent and schedule property visits with intelligent AI agents.',
   primaryCta: 'Book a Demo',
+  videoCta: 'Watch Product Demo',
   secondaryCta: 'Hear a Sample Call',
   features: ['Lead Qualification', 'Site Visit Booking', 'Database Reactivation', 'Instant Follow-up'],
 };
@@ -75,14 +76,14 @@ export const howItWorks = {
   ],
 };
 
-export type Line = { speaker: 'ai' | 'buyer'; en: string; enTts: string; hi: string; hiTts: string };
-export type Conversation = { id: string; tab: string; lines: Line[]; outcome: { en: string; hi: string } };
+export type Line = { speaker: 'ai' | 'buyer'; en: string; hinglish: string; hinglishTts: string; hi: string };
+export type Conversation = { id: string; tab: string; lines: Line[]; outcome: string; result: { label: string; value: string; tone: string } };
 
 export const voice = {
   eyebrow: 'Voice AI',
   title: 'AI conversations built around real property buyers.',
   description: 'Create intelligent voice agents that understand property requirements, handle buyer objections and communicate using a configurable brand tone.',
-  conversations: conversations as Conversation[],
+  conversations: conversations as unknown as Conversation[],
 };
 
 export const omnichannel = {

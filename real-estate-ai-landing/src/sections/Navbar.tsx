@@ -6,6 +6,9 @@ import { nav } from '../data/content';
 import { Logo } from '../components/ui/Logo';
 import { Icon } from '../components/ui/Icon';
 import { useApp } from '../components/ui/AppContext';
+import { useActiveSection } from '../hooks/useActiveSection';
+
+const TRACKED = nav.links.flatMap((l) => l.sections);
 
 export function Navbar() {
   const { openDemo } = useApp();
@@ -14,6 +17,8 @@ export function Navbar() {
   const [dd, setDd] = useState(false);
   const ddRef = useRef<HTMLLIElement>(null);
   const closeTimer = useRef<number>();
+  const activeId = useActiveSection(TRACKED);
+  const isActive = (l: (typeof nav.links)[number]) => !!activeId && l.sections.includes(activeId);
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 12);
@@ -33,7 +38,7 @@ export function Navbar() {
   return (
     <header className="theme-dark fixed inset-x-0 top-0 z-50 !bg-transparent" data-testid="navbar">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-3 focus:py-2 focus:text-black">Skip to content</a>
-      <div className={`transition-all duration-500 ${scrolled || menu ? 'border-b border-white/[0.07] bg-[rgba(7,7,10,0.78)] backdrop-blur-xl' : 'border-b border-transparent'}`}>
+      <div className={`transition-[background-color,border-color,backdrop-filter] duration-300 ${scrolled || menu ? 'border-b border-white/[0.08] bg-[rgba(8,5,21,0.82)] backdrop-blur-xl' : 'border-b border-transparent'}`}>
         <nav className="container-x flex h-[68px] items-center justify-between gap-6" aria-label="Primary">
           <a href="#top" aria-label={`${brand.productName} home`} className="flex-none"><Logo /></a>
 
@@ -43,14 +48,15 @@ export function Navbar() {
                 onMouseEnter={() => { window.clearTimeout(closeTimer.current); setDd(true); }}
                 onMouseLeave={() => { closeTimer.current = window.setTimeout(() => setDd(false), 160); }}>
                 <button type="button" aria-expanded={dd} aria-haspopup="true" aria-controls="solutions-menu" onClick={() => setDd((v) => !v)}
-                  className="flex items-center gap-1 rounded-full px-3.5 py-2 text-[14.5px] text-white/75 transition hover:text-white" data-testid="solutions-trigger">
+                  className={`relative flex items-center gap-1 rounded-full px-3.5 py-2 text-[14.5px] transition-colors duration-150 hover:text-white ${isActive(l) ? 'text-white' : 'text-white/70'}`} aria-current={isActive(l) ? 'true' : undefined} data-testid="solutions-trigger">
+                  {isActive(l) && <motion.span layoutId="nav-active" className="absolute inset-x-3 -bottom-0.5 h-px bg-gradient-to-r from-transparent via-[#cbbdff] to-transparent" />}
                   {l.label} <ChevronDown size={15} className={`transition-transform ${dd ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence>
                   {dd && (
                     <motion.div id="solutions-menu" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }} transition={{ duration: 0.2 }}
                       className="absolute left-1/2 top-full w-[560px] -translate-x-1/2 pt-3" data-testid="solutions-menu">
-                      <div className="grid grid-cols-2 gap-1 rounded-2xl border border-white/10 bg-[#0e0e14]/95 p-2 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)] backdrop-blur-xl">
+                      <div className="grid grid-cols-2 gap-1 rounded-2xl border border-white/10 bg-[#0d0d1c]/95 p-2 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)] backdrop-blur-xl">
                         {nav.solutions.map((s) => (
                           <a key={s.label} href={s.href} onClick={() => setDd(false)} className="group flex items-start gap-3 rounded-xl p-3 transition hover:bg-white/[0.05]">
                             <span className="grid h-9 w-9 flex-none place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-[var(--brand-accent)] transition group-hover:border-brand/50"><Icon name={s.icon} size={17} /></span>
@@ -63,7 +69,7 @@ export function Navbar() {
                 </AnimatePresence>
               </li>
             ) : (
-              <li key={l.label}><a href={l.href} className="rounded-full px-3.5 py-2 text-[14.5px] text-white/75 transition hover:text-white">{l.label}</a></li>
+              <li key={l.label}><a href={l.href} aria-current={isActive(l) ? 'location' : undefined} data-active={isActive(l) ? 'true' : undefined} className={`relative rounded-full px-3.5 py-2 text-[14.5px] transition-colors duration-150 hover:text-white ${isActive(l) ? 'text-white' : 'text-white/70'}`}>{l.label}{isActive(l) && <motion.span layoutId="nav-active" className="absolute inset-x-3 -bottom-0.5 h-px bg-gradient-to-r from-transparent via-[#cbbdff] to-transparent" />}</a></li>
             ))}
           </ul>
 
@@ -81,7 +87,7 @@ export function Navbar() {
       <AnimatePresence>
         {menu && (
           <motion.div id="mobile-menu" data-testid="mobile-menu" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'calc(100dvh - 68px)' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-y-auto bg-[rgba(7,7,10,0.97)] backdrop-blur-xl lg:hidden">
+            className="overflow-y-auto bg-[rgba(8,5,21,0.97)] backdrop-blur-xl lg:hidden">
             <div className="container-x flex flex-col gap-1 py-6">
               <p className="px-1 pb-2 text-[12px] font-medium uppercase tracking-[0.12em] text-white/55">Solutions</p>
               <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">

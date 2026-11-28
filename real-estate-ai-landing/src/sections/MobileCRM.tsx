@@ -8,6 +8,7 @@ import { Reveal } from '../components/ui/Reveal';
 import { DashboardScreen, PhoneFrame, ProfileScreen } from '../components/dashboards/PhoneScreens';
 import { useInView } from '../hooks/useInView';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
+import { useLoop } from '../hooks/useLoop';
 
 const screens = [
   { label: 'Dashboard', icon: LayoutDashboard, C: DashboardScreen, alt: 'Mobile CRM dashboard preview showing new leads, qualified buyers, call history and recent activity' },
@@ -19,14 +20,15 @@ export function MobileCRM() {
   const [touched, setTouched] = useState(false);
   const { ref, inView } = useInView<HTMLDivElement>();
   const reduced = usePrefersReducedMotion();
+  const [tick] = useLoop(6, 2400, inView, 1);
   useEffect(() => {
     if (!inView || touched || reduced) return;
-    const t = window.setInterval(() => setS((v) => (v + 1) % 2), 4200);
+    const t = window.setInterval(() => setS((v) => (v + 1) % 2), 7200);
     return () => window.clearInterval(t);
   }, [inView, touched, reduced]);
 
   return (
-    <Section id="mobile" theme="light" alt label="Mobile CRM" className="overflow-hidden">
+    <Section id="mobile" theme="light" alt sheet label="Mobile CRM" className="overflow-hidden">
       <div className="container-x section-y">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.05fr]">
           <div>
@@ -56,7 +58,7 @@ export function MobileCRM() {
                 return (
                   <motion.div key={x.label} className="absolute hidden sm:block" animate={{ x: i === 0 ? -120 : 120, y: front ? 0 : 26, scale: front ? 1 : 0.9, rotate: i === 0 ? -4 : 4, zIndex: front ? 2 : 1, opacity: front ? 1 : 0.85, filter: front ? 'blur(0px)' : 'blur(0.4px)' }}
                     transition={{ duration: reduced ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}>
-                    <PhoneFrame label={x.alt}><x.C /></PhoneFrame>
+                    <PhoneFrame label={x.alt}><x.C t={tick} /></PhoneFrame>
                   </motion.div>
                 );
               })}
@@ -64,7 +66,7 @@ export function MobileCRM() {
               <div className="sm:hidden">
                 <AnimatePresence mode="wait">
                   <motion.div key={s} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.4 }}>
-                    <PhoneFrame label={screens[s].alt}>{s === 0 ? <DashboardScreen /> : <ProfileScreen />}</PhoneFrame>
+                    <PhoneFrame label={screens[s].alt}>{s === 0 ? <DashboardScreen t={tick} /> : <ProfileScreen t={tick} />}</PhoneFrame>
                   </motion.div>
                 </AnimatePresence>
               </div>

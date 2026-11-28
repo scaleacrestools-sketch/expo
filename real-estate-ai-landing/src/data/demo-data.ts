@@ -10,7 +10,7 @@ export const heroMetrics = [
 ];
 
 export const heroLeads = [
-  { name: 'Rohan M.', source: 'Meta Ads', need: '3 BHK · ₹2 Cr', status: 'Qualified', tone: 'ok' },
+  { name: 'Rohan M.', source: 'Meta Ads', need: '3 BHK · ₹2 Cr', status: 'New', tone: 'cold' },
   { name: 'Ananya S.', source: 'Website', need: '2 BHK · ₹1.2 Cr', status: 'Calling', tone: 'brand' },
   { name: 'Vikram K.', source: '99acres', need: 'Plot · ₹85 L', status: 'Warm', tone: 'warm' },
   { name: 'Priya D.', source: 'Google Ads', need: '4 BHK · ₹3.5 Cr', status: 'Visit booked', tone: 'ok' },
@@ -47,10 +47,11 @@ export const qualificationBars = [
 ];
 
 export const outcomeDistribution = [
-  { label: 'Qualified', value: 34, color: '#8B5CF6' },
-  { label: 'Callback', value: 22, color: '#38BDF8' },
-  { label: 'Not interested', value: 18, color: '#52525B' },
-  { label: 'No answer', value: 26, color: '#F59E0B' },
+  // Share of all 2,480 calls. Connected (qualified + callback + not interested) = 68%, matching the connect rate.
+  { label: 'Qualified', value: 34, color: '#8057FF' },
+  { label: 'Callback', value: 18, color: '#38BDF8' },
+  { label: 'Not interested', value: 16, color: '#5B5B72' },
+  { label: 'No answer', value: 32, color: '#FEBC2E' },
 ];
 
 export const campaigns = [

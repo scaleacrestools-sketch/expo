@@ -8,7 +8,7 @@ import { useLoop } from '../hooks/useLoop';
 
 export function Problem() {
   return (
-    <Section id="problem" theme="light" label="The problem">
+    <Section id="problem" theme="light" sheet label="The problem">
       <div className="container-x section-y">
         <SectionHeader eyebrow={problem.eyebrow} title={problem.title} description={problem.description} />
         <div className="mt-14 grid gap-5 md:grid-cols-3">
