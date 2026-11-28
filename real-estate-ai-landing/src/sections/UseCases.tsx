@@ -54,8 +54,8 @@ export function UseCases() {
                     {t.items.map((it) => <li key={it} className="flex items-start gap-2.5 text-[14.5px] text-white/85"><span className="mt-0.5 grid h-5 w-5 flex-none place-items-center rounded-full bg-brand/20 text-[var(--brand-accent)]"><Check size={12} strokeWidth={3} /></span>{it}</li>)}
                   </ul>
                 </div>
-                <div className="bg-[radial-gradient(80%_80%_at_70%_0%,rgba(128,87,255,0.16),transparent)] p-4 sm:p-8">
-                  <AppWindow path={paths[tab]} compact><D /></AppWindow>
+                <div className="flex items-center bg-[radial-gradient(80%_80%_at_70%_0%,rgba(128,87,255,0.22),transparent)] p-4 sm:p-8">
+                  <AppWindow path={paths[tab]} compact className="w-full"><D /></AppWindow>
                 </div>
               </motion.div>
             </AnimatePresence>

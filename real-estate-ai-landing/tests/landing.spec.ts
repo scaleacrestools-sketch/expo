@@ -208,7 +208,7 @@ test('features, calendar demo, integrations, comparison and mobile CRM', async (
   await expect(cards).toHaveCount(12);
   await cards.nth(3).hover();
   await expect(page.getByTestId('integration-engine').first()).toContainText('Tracing Housing.com');
-  await expect(cards.nth(3)).toHaveClass(/border-brand/);
+  await expect(cards.nth(3)).toHaveAttribute('data-active', 'true');
   await expect(page.getByTestId('integrations-disclosure')).toContainText('planned');
   await expect(page.locator('#integrations').getByText('PLANNED', { exact: true })).toHaveCount(0);
   await expect(page.getByTestId('comparison-table').locator('tbody tr')).toHaveCount(9);

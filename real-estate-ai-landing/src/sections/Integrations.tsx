@@ -7,7 +7,7 @@ import { Section } from '../components/ui/Section';
 import { SectionHeader } from '../components/ui/SectionHeader';
 import { Reveal } from '../components/ui/Reveal';
 import { LogoMark } from '../components/ui/Logo';
-import { IntegrationIcon } from '../components/ui/IntegrationIcon';
+import { IntegrationCard } from '../components/product';
 import { useInView } from '../hooks/useInView';
 import { useLoop } from '../hooks/useLoop';
 import { useElementSize } from '../hooks/useElementSize';
@@ -79,14 +79,9 @@ function Column({ title, items, active, side, onHover }: { title: string; items:
           const on = i === active;
           return (
             <li key={it.name} style={{ height: ROW }}>
-              <div tabIndex={0} role="group" aria-label={`${it.name}: ${it.detail} (planned)`} data-testid="integration-card"
-                onMouseEnter={() => onHover({ side, i })} onMouseLeave={() => onHover(null)} onFocus={() => onHover({ side, i })} onBlur={() => onHover(null)}
-                className={`flex h-full items-center gap-3 rounded-2xl border px-3 transition-[border-color,background-color,box-shadow,transform] duration-200 ${side === 'r' ? 'flex-row-reverse text-right' : ''} ${on ? 'border-brand/60 bg-brand/[0.12] shadow-[0_0_0_1px_rgba(128,87,255,.25),0_14px_40px_-16px_rgba(128,87,255,.8)]' : 'border-white/10 bg-white/[0.03] hover:border-white/20'}`}>
-                <IntegrationIcon it={it} />
-                <span className="min-w-0">
-                  <span className="block truncate text-[14px] font-medium text-white">{it.name}</span>
-                  <span className="block truncate text-[11.5px] text-[var(--c-muted)]">{it.detail}</span>
-                </span>
+              <div tabIndex={0} role="group" aria-label={`${it.name}: ${it.detail} (planned)`} data-testid="integration-card" data-active={on} className="h-full rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-secondary)]"
+                onMouseEnter={() => onHover({ side, i })} onMouseLeave={() => onHover(null)} onFocus={() => onHover({ side, i })} onBlur={() => onHover(null)}>
+                <IntegrationCard it={it} active={on} reverse={side === 'r'} className="hover:-translate-y-0.5" />
               </div>
             </li>
           );
@@ -155,12 +150,7 @@ function Beams({ activeL, activeR, step, hover, animate, label }: { activeL: num
 }
 
 function Tile({ it, on }: { it: Integration; on: boolean }) {
-  return (
-    <li data-testid="integration-tile" className={`flex min-h-[52px] items-center gap-2.5 rounded-xl border px-2.5 py-2 transition-[border-color,background-color] duration-200 ${on ? 'border-brand/60 bg-brand/[0.14]' : 'border-white/10 bg-white/[0.03]'}`}>
-      <IntegrationIcon it={it} size={30} />
-      <span className="min-w-0 text-[13px] font-medium leading-tight text-white">{it.name}</span>
-    </li>
-  );
+  return <li data-testid="integration-tile" className="min-h-[52px]"><IntegrationCard it={it} active={on} compact className="py-2" /></li>;
 }
 
 function Flow({ animate, k, delay = false }: { animate: boolean; k: string; delay?: boolean }) {

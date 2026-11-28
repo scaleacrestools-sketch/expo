@@ -48,10 +48,10 @@ export const qualificationBars = [
 
 export const outcomeDistribution = [
   // Share of all 2,480 calls. Connected (qualified + callback + not interested) = 68%, matching the connect rate.
-  { label: 'Qualified', value: 34, color: '#8057FF' },
+  { label: 'Qualified', value: 34, color: '#6A3FF0' },
   { label: 'Callback', value: 18, color: '#38BDF8' },
-  { label: 'Not interested', value: 16, color: '#5B5B72' },
-  { label: 'No answer', value: 32, color: '#FEBC2E' },
+  { label: 'Not interested', value: 16, color: '#98A2B3' },
+  { label: 'No answer', value: 32, color: '#F59E0B' },
 ];
 
 export const campaigns = [

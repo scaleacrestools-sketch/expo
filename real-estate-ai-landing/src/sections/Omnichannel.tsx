@@ -16,7 +16,7 @@ type Node = { label: string; icon: LucideIcon; color: string; desc: string; x: n
 const W = 1000, H = 560, CX = 500, CY = 280;
 const angles = [-90, -38, 14, 66, 114, 166, 218];
 const icons: LucideIcon[] = [PhoneCall, MessageCircle, Mail, MessageSquareText, Database, CalendarDays, Users];
-const colors = ['#a78bfa', '#22c55e', '#f59e0b', '#38bdf8', '#c084fc', '#f472b6', '#34d399'];
+const colors = ['#6a3ff0', '#16a34a', '#d97706', '#0284c7', '#7c3aed', '#db2777', '#059669'];
 const descs = [
   'Natural outbound and inbound property calls.', 'Brochures, confirmations and follow-ups.', 'Visit confirmations and summaries.',
   'Short reminders within permitted hours.', 'Leads, outcomes and scores kept in sync.', 'Available slots and visit reminders.', 'Qualified buyers routed to the right executive.',
@@ -69,9 +69,9 @@ export function Omnichannel() {
                 <circle cx={CX} cy={CY} r="170" fill="url(#oc-c)" />
                 {nodes.map((n, i) => (
                   <g key={n.label}>
-                    <path id={`oc-p-${i}`} d={path(n)} fill="none" stroke={isLit(i) ? n.color : 'rgba(255,255,255,.12)'} strokeWidth={isLit(i) ? 2 : 1.2} className={isLit(i) ? 'flow-dash' : ''} style={{ transition: 'stroke .4s' }} />
+                    <path id={`oc-p-${i}`} d={path(n)} fill="none" stroke={isLit(i) ? '#cbbdff' : 'rgba(255,255,255,.14)'} strokeWidth={isLit(i) ? 2 : 1.2} className={isLit(i) ? 'flow-dash' : ''} style={{ transition: 'stroke .4s' }} />
                     {!reduced && inView && (
-                      <circle r={isLit(i) ? 4 : 2.5} fill={n.color} opacity={isLit(i) ? 1 : 0.45}>
+                      <circle r={isLit(i) ? 4.5 : 2.5} fill={isLit(i) ? '#ffffff' : '#a48bff'} opacity={isLit(i) ? 1 : 0.5}>
                         <animateMotion dur={`${2.4 + (i % 3) * 0.6}s`} repeatCount="indefinite" keyPoints={isLit(i) ? '0;1' : i % 2 ? '1;0' : '0;1'} keyTimes="0;1" calcMode="linear">
                           <mpath href={`#oc-p-${i}`} />
                         </animateMotion>
@@ -82,13 +82,13 @@ export function Omnichannel() {
               </svg>
 
               {/* Center: the same demo lead travels through every channel */}
-              <div className="absolute left-1/2 top-1/2 w-[236px] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-brand/40 bg-[rgba(13,13,28,.92)] p-4 text-left shadow-[0_0_60px_-10px_rgba(128,87,255,.55),inset_0_-16px_64px_rgba(116,176,253,.06)] backdrop-blur" data-testid="oc-center">
-                <div className="flex items-center gap-2.5"><AgentOrb size={34} /><div><p className="text-[13px] font-semibold text-white">{brand.productName} AI Agent</p><p className="text-[11px] text-[var(--c-muted)]">{story.project.name}</p></div></div>
-                <div className="mt-3 rounded-xl border border-white/10 bg-white/[0.03] p-2.5">
-                  <div className="flex items-center gap-2"><Avatar name={story.buyer.name} size={22} /><p className="text-[12px] font-medium text-white">{story.buyer.name}</p><span className="ml-auto text-[10.5px] tabular-nums text-[var(--c-muted)]">{step + 1}/{omnichannel.sequence.length}</span></div>
-                  <p key={step} className="mt-2 text-[12.5px] font-medium text-[var(--brand-accent)]" style={{ animation: 'rise .3s var(--ease-out) both' }} aria-live="polite">{omnichannel.sequence[step]}</p>
+              <div className="product absolute left-1/2 top-1/2 w-[248px] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/80 bg-white p-3.5 text-left shadow-[0_0_0_4px_rgba(128,87,255,.25),0_0_70px_-6px_rgba(128,87,255,.75)]" data-testid="oc-center">
+                <div className="flex items-center gap-2.5"><AgentOrb size={34} /><div><p className="text-[13px] font-semibold text-[var(--p-text)]">{brand.productName} AI Agent</p><p className="text-[11px] text-[var(--p-muted)]">{story.project.name}</p></div></div>
+                <div className="mt-3 rounded-xl border border-[var(--p-line)] bg-[var(--p-bg)] p-2.5">
+                  <div className="flex items-center gap-2"><Avatar name={story.buyer.name} size={22} /><p className="text-[12px] font-semibold text-[var(--p-text)]">{story.buyer.name}</p><span className="ml-auto text-[10.5px] tabular-nums text-[var(--c-muted)]">{step + 1}/{omnichannel.sequence.length}</span></div>
+                  <p key={step} className="mt-2 text-[12.5px] font-semibold text-[#5b34d6]" style={{ animation: 'rise .3s var(--ease-out) both' }} aria-live="polite">{omnichannel.sequence[step]}</p>
                   <p key={`d${step}`} className="text-[11.5px] text-[var(--c-text)]" style={{ animation: 'rise .3s var(--ease-out) both' }}>{seqDetail[step]}</p>
-                  <div className="mt-2 h-1 overflow-hidden rounded-full bg-white/[0.07]"><div className="h-full origin-left rounded-full bg-gradient-to-r from-[#6a3ff0] to-[#cbbdff] transition-transform duration-500" style={{ transform: `scaleX(${(step + 1) / omnichannel.sequence.length})` }} /></div>
+                  <div className="mt-2 h-1 overflow-hidden rounded-full bg-[#e5e7eb]"><div className="h-full origin-left rounded-full bg-gradient-to-r from-[#6a3ff0] to-[#a48bff] transition-transform duration-500" style={{ transform: `scaleX(${(step + 1) / omnichannel.sequence.length})` }} /></div>
                 </div>
               </div>
 
@@ -97,12 +97,12 @@ export function Omnichannel() {
                 return (
                   <button key={n.label} type="button" onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)} onFocus={() => setHover(i)} onBlur={() => setHover(null)}
                     className="group absolute -translate-x-1/2 -translate-y-1/2" style={{ left: `${(n.x / W) * 100}%`, top: `${(n.y / H) * 100}%` }} aria-label={`${n.label}: ${n.desc}`} data-testid={`oc-node-${i}`}>
-                    <span className={`flex items-center gap-2.5 rounded-xl border bg-[rgba(16,16,22,.92)] py-2 pl-2 pr-3.5 backdrop-blur transition-all duration-300 ${on ? 'scale-105 border-white/25 shadow-[0_10px_40px_-10px_var(--g)]' : 'border-white/10'}`} style={{ ['--g' as string]: n.color }}>
-                      <span className="grid h-8 w-8 place-items-center rounded-lg" style={{ background: `${n.color}22`, color: n.color }}><I size={16} /></span>
-                      <span className="whitespace-nowrap text-[13px] font-medium text-white">{n.label}</span>
-                      {on ? <span className="live-dot ml-0.5 h-1.5 w-1.5 rounded-full" style={{ background: n.color }} /> : done.has(i) ? <span className="ml-0.5 text-[11px] text-[#7de3bd]" aria-hidden="true">✓</span> : null}
+                    <span className={`product flex items-center gap-2.5 rounded-xl border bg-white py-2 pl-2 pr-3.5 transition-[transform,box-shadow,border-color] duration-300 ${on ? 'scale-105 border-white shadow-[0_0_0_3px_var(--g2),0_14px_40px_-8px_var(--g)]' : 'border-white/70 shadow-[0_10px_26px_-14px_rgba(0,0,0,.9)]'}`} style={{ ['--g' as string]: n.color, ['--g2' as string]: `${n.color}55` }}>
+                      <span className="grid h-8 w-8 place-items-center rounded-lg" style={{ background: `${n.color}1f`, color: n.color }}><I size={16} /></span>
+                      <span className="whitespace-nowrap text-[13px] font-semibold text-[var(--p-text)]">{n.label}</span>
+                      {on ? <span className="live-dot ml-0.5 h-1.5 w-1.5 rounded-full" style={{ background: n.color }} /> : done.has(i) ? <span className="ml-0.5 text-[11px] font-bold text-[var(--p-success)]" aria-hidden="true">✓</span> : null}
                     </span>
-                    {hover === i && <span role="tooltip" className="absolute left-1/2 top-[calc(100%+8px)] z-10 w-[200px] -translate-x-1/2 rounded-lg border border-white/10 bg-[#16161e] px-3 py-2 text-left text-[12px] text-white/75 shadow-xl">{n.desc}</span>}
+                    {hover === i && <span role="tooltip" className="absolute left-1/2 top-[calc(100%+8px)] z-10 w-[200px] -translate-x-1/2 rounded-lg border border-[#e5e7eb] bg-white px-3 py-2 text-left text-[12px] text-[#475467] shadow-xl">{n.desc}</span>}
                   </button>
                 );
               })}
@@ -110,9 +110,9 @@ export function Omnichannel() {
 
             {/* Mobile: one lead travelling down a vertical channel timeline */}
             <div className="relative md:hidden" data-testid="oc-mobile">
-              <div className="flex items-center gap-3 rounded-2xl border border-brand/40 bg-[rgba(13,13,28,.92)] p-3 shadow-[0_0_50px_-12px_rgba(139,92,246,.6)]">
-                <AgentOrb size={36} /><div className="min-w-0"><p className="text-[13.5px] font-semibold text-white">{brand.productName} AI Agent</p><p className="truncate text-[11.5px] text-[var(--c-muted)]">{story.buyer.name} · {story.project.name}</p></div>
-                <span className="ml-auto text-[11px] tabular-nums text-[var(--c-muted)]">{step + 1}/{omnichannel.sequence.length}</span>
+              <div className="product flex items-center gap-3 rounded-2xl border border-white/80 bg-white p-3 shadow-[0_0_0_3px_rgba(128,87,255,.25),0_0_50px_-10px_rgba(139,92,246,.7)]">
+                <AgentOrb size={36} /><div className="min-w-0"><p className="text-[13.5px] font-semibold text-[var(--p-text)]">{brand.productName} AI Agent</p><p className="truncate text-[11.5px] text-[var(--p-muted)]">{story.buyer.name} · {story.project.name}</p></div>
+                <span className="ml-auto text-[11px] font-medium tabular-nums text-[var(--p-muted)]">{step + 1}/{omnichannel.sequence.length}</span>
               </div>
               <ol className="relative mt-4 pl-1" aria-label="Automation sequence">
                 <span aria-hidden="true" className="absolute bottom-5 left-[21px] top-5 w-px bg-white/10" />
@@ -121,10 +121,10 @@ export function Omnichannel() {
                   const n = nodes[seqNode[i]]; const I = n.icon; const on = i === step;
                   return (
                     <li key={st} className="relative flex gap-3 py-1.5">
-                      <span className={`relative z-[1] grid h-10 w-10 flex-none place-items-center rounded-xl border transition-all duration-300 ${on ? 'scale-105 border-white/30' : i < step ? 'border-white/15' : 'border-white/[0.07] opacity-60'}`} style={{ background: on ? `${n.color}33` : '#111225', color: n.color, boxShadow: on ? `0 0 24px -4px ${n.color}` : undefined }}><I size={16} /></span>
-                      <div className={`min-w-0 flex-1 rounded-xl border px-3 py-2 transition-colors duration-300 ${on ? 'border-brand/50 bg-brand/[0.12]' : 'border-transparent'}`}>
-                        <p className={`text-[13px] font-medium ${on ? 'text-white' : i < step ? 'text-white/75' : 'text-white/50'}`}>{st}{i < step && <span className="ml-1.5 text-[11px] text-[#7de3bd]">✓</span>}</p>
-                        <p className={`text-[11.5px] ${on ? 'text-[var(--c-text)]' : 'text-white/35'}`}>{n.label}{on && <> · <span key={step} style={{ animation: 'rise .3s var(--ease-out) both' }}>{seqDetail[i]}</span></>}</p>
+                      <span className={`relative z-[1] grid h-10 w-10 flex-none place-items-center rounded-xl border border-white/80 bg-white transition-all duration-300 ${on ? 'scale-105' : i < step ? '' : 'opacity-55'}`} style={{ color: n.color, boxShadow: on ? `0 0 0 3px ${n.color}55, 0 0 24px -2px ${n.color}` : undefined }}><I size={16} /></span>
+                      <div className={`product min-w-0 flex-1 rounded-xl border px-3 py-2 transition-[background-color,border-color,box-shadow] duration-300 ${on ? 'border-white bg-white shadow-[0_10px_30px_-12px_rgba(128,87,255,.8)]' : 'border-transparent bg-transparent'}`}>
+                        <p className={`text-[13px] font-semibold ${on ? 'text-[#171923]' : i < step ? 'text-white/80' : 'text-white/50'}`}>{st}{i < step && <span className="ml-1.5 text-[11px] text-[#7de3bd]">✓</span>}</p>
+                        <p className={`text-[11.5px] ${on ? 'text-[#475467]' : 'text-white/40'}`}>{n.label}{on && <> · <span key={step} style={{ animation: 'rise .3s var(--ease-out) both' }}>{seqDetail[i]}</span></>}</p>
                       </div>
                     </li>
                   );

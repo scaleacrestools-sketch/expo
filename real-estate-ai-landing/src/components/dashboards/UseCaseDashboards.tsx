@@ -1,6 +1,5 @@
 import { ArrowRightLeft, Building, Headphones, PhoneForwarded, PhoneOutgoing } from 'lucide-react';
-import { AgentOrb, Avatar, Metric, Panel, Status } from './primitives';
-import { Waveform } from '../animations/Waveform';
+import { AgentOrb, Avatar, Metric, Panel, Status, VoiceWaveform as Waveform } from '../product';
 
 /** Four audience-specific dashboards, built from the shared product primitives. All data is demo data. */
 
@@ -13,10 +12,10 @@ export function DeveloperDash() {
         <div className="grid gap-1" style={{ gridTemplateColumns: `repeat(${units}, 1fr)` }} aria-hidden="true">
           {Array.from({ length: floors * units }).map((_, i) => {
             const s = state(Math.floor(i / units), i % units);
-            return <span key={i} className={`h-4 rounded-[4px] ${s === 'sold' ? 'bg-[var(--brand-primary)]' : s === 'hold' ? 'bg-amber-400/70' : 'bg-white/10'}`} />;
+            return <span key={i} className={`h-4 rounded-[4px] ${s === 'sold' ? 'bg-[#6a3ff0]' : s === 'hold' ? 'bg-[#f59e0b]' : 'bg-[#e5e7eb]'}`} />;
           })}
         </div>
-        <div className="mt-2.5 flex gap-3 text-[10.5px] text-[var(--c-muted)]"><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm bg-[var(--brand-primary)]" />Booked</span><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm bg-amber-400/70" />On hold</span><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm bg-white/20" />Unsold</span></div>
+        <div className="mt-2.5 flex gap-3 text-[10.5px] text-[var(--c-muted)]"><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm bg-[#6a3ff0]" />Booked</span><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm bg-[#f59e0b]" />On hold</span><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm bg-[#e5e7eb]" />Unsold</span></div>
       </Panel>
       <div className="grid gap-2.5">
         <div className="grid grid-cols-2 gap-2.5"><Metric label="Launch enquiries" value="1,240" /><Metric label="Visits booked" value="96" /></div>
@@ -33,13 +32,13 @@ export function DeveloperDash() {
 export function PartnerDash() {
   const cols = [
     { t: 'New', c: '#38bdf8', items: [['Aditi S.', 'Skyline · 2 BHK'], ['Farhan K.', 'Green Acres · Plot']] },
-    { t: 'Qualified', c: '#a78bfa', items: [['Rohan M.', 'Skyline · 3 BHK'], ['Isha P.', 'Lakeview · 3 BHK']] },
+    { t: 'Qualified', c: '#6a3ff0', items: [['Rohan M.', 'Skyline · 3 BHK'], ['Isha P.', 'Lakeview · 3 BHK']] },
     { t: 'Visit set', c: '#f59e0b', items: [['Priya D.', 'Sat · 11 AM']] },
-    { t: 'Callback', c: '#22c55e', items: [['Arjun T.', 'Tomorrow · 6 PM']] },
+    { t: 'Callback', c: '#16a34a', items: [['Arjun T.', 'Tomorrow · 6 PM']] },
   ];
   return (
     <div className="p-3 sm:p-4">
-      <div className="mb-2.5 flex flex-wrap gap-1.5">{['All projects', 'Skyline Residences', 'Green Acres', 'Lakeview'].map((p, i) => <span key={p} className={`rounded-full border px-2.5 py-1 text-[11px] ${i === 0 ? 'border-[var(--brand-primary)] bg-brand/20 text-white' : 'border-[var(--c-line)] text-[var(--c-text)]'}`}>{p}</span>)}</div>
+      <div className="mb-2.5 flex flex-wrap gap-1.5">{['All projects', 'Skyline Residences', 'Green Acres', 'Lakeview'].map((p, i) => <span key={p} className={`rounded-full border px-2.5 py-1 text-[11px] ${i === 0 ? 'border-[var(--p-accent)] bg-[var(--p-accent-soft)] font-semibold text-[#4c2bc0]' : 'border-[var(--p-line)] bg-white text-[var(--p-body)]'}`}>{p}</span>)}</div>
       <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
         {cols.map((c) => (
           <div key={c.t} className="ui-surface p-2">
@@ -69,12 +68,12 @@ export function AgencyDash() {
         <div className="thin-scroll overflow-x-auto">
           <table className="w-full min-w-[420px] text-[11.5px]">
             <caption className="sr-only">Demo client lead quality</caption>
-            <thead><tr className="text-left text-[10.5px] text-[var(--c-muted)]"><th className="pb-1.5 font-normal">Client</th><th className="pb-1.5 font-normal">Source</th><th className="pb-1.5 text-right font-normal">Leads</th><th className="w-[34%] pb-1.5 pl-3 font-normal">Qualified share</th></tr></thead>
+            <thead><tr className="text-left"><th className="p-label pb-1.5 font-medium">Client</th><th className="p-label pb-1.5 font-medium">Source</th><th className="p-label pb-1.5 text-right font-medium">Leads</th><th className="p-label w-[34%] pb-1.5 pl-3 font-medium">Qualified share</th></tr></thead>
             <tbody>
               {rows.map((r) => (
                 <tr key={r.c} className="border-t border-[var(--c-line)]">
                   <td className="py-2 text-[var(--c-head)]">{r.c}</td><td className="py-2 text-[var(--c-text)]">{r.src}</td><td className="py-2 text-right tabular-nums text-[var(--c-text)]">{r.leads}</td>
-                  <td className="py-2 pl-3"><div className="flex items-center gap-2"><div className="h-1.5 flex-1 rounded-full bg-white/10"><div className="h-full rounded-full bg-gradient-to-r from-[#6d28d9] to-[#c4b5fd]" style={{ width: `${r.q * 2}%` }} /></div><span className="tabular-nums text-[var(--c-head)]">{r.q}%</span></div></td>
+                  <td className="py-2 pl-3"><div className="flex items-center gap-2"><div className="h-1.5 flex-1 rounded-full bg-[#e5e7eb]"><div className="h-full rounded-full bg-gradient-to-r from-[#6a3ff0] to-[#a48bff]" style={{ width: `${r.q * 2}%` }} /></div><span className="tabular-nums text-[var(--c-head)]">{r.q}%</span></div></td>
                 </tr>
               ))}
             </tbody>
@@ -95,7 +94,7 @@ export function CallCentreDash() {
             return <div key={l as string} className="rounded-lg border border-[var(--c-line)] bg-[var(--c-card)] p-2"><p className="flex items-center gap-1 text-[10.5px] text-[var(--c-muted)]"><Ic size={11} />{l as string}</p><p className="text-[16px] font-semibold tabular-nums text-[var(--c-head)]">{v as string}</p></div>;
           })}
         </div>
-        <div className="mt-2.5 flex flex-wrap gap-1">{['EN', 'HI', 'Hinglish', 'MR', 'TA'].map((l) => <span key={l} className="rounded-md bg-white/[0.06] px-1.5 py-0.5 text-[10.5px] text-[var(--c-text)]">{l}</span>)}</div>
+        <div className="mt-2.5 flex flex-wrap gap-1">{['EN', 'HI', 'Hinglish', 'MR', 'TA'].map((l) => <span key={l} className="rounded-md bg-[#f2f4f7] px-1.5 py-0.5 text-[10.5px] font-medium text-[var(--c-text)]">{l}</span>)}</div>
       </Panel>
       <Panel title="Live lines & human handoff">
         <ul className="space-y-1.5">
@@ -104,7 +103,7 @@ export function CallCentreDash() {
               <AgentOrb size={20} live={!!live} />
               <span className="w-[46px] text-[11px] text-[var(--c-muted)]">{l as string}</span>
               <span className="flex-1 truncate text-[11.5px] text-[var(--c-head)]">{s as string}</span>
-              {live ? <Waveform bars={8} height={14} seed={i + 1} /> : <span className="text-[10.5px] text-emerald-400">Done</span>}
+              {live ? <Waveform bars={8} height={14} seed={i + 1} /> : <span className="text-[10.5px] font-semibold text-[var(--p-success)]">Done</span>}
             </li>
           ))}
         </ul>
