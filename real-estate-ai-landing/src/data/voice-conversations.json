@@ -6,35 +6,37 @@
       {
         "speaker": "ai",
         "en": "Which property configuration are you looking for?",
-        "hi": "Aap kaunsi property configuration dekh rahe hain?",
-        "hiTts": "आप कौन सी प्रॉपर्टी कॉन्फ़िगरेशन देख रहे हैं?",
-        "enTts": "Which property configuration are you looking for?"
+        "hinglish": "Aap kaunsi property configuration dekh rahe hain?",
+        "hinglishTts": "आप कौन सी property configuration देख रहे हैं?",
+        "hi": "आप कितने बेडरूम वाला घर देख रहे हैं?"
       },
       {
         "speaker": "buyer",
         "en": "I am looking for a 3 BHK apartment.",
-        "hi": "Main 3 BHK apartment dhoondh raha hoon.",
-        "hiTts": "मैं थ्री बी एच के अपार्टमेंट ढूंढ रहा हूँ।",
-        "enTts": "I am looking for a three B H K apartment."
+        "hinglish": "Main 3 BHK apartment dhoondh raha hoon.",
+        "hinglishTts": "मैं 3 BHK apartment ढूंढ रहा हूँ।",
+        "hi": "मैं तीन बेडरूम वाला फ़्लैट ढूंढ रहा हूँ।"
       },
       {
         "speaker": "ai",
         "en": "What is your preferred budget range?",
-        "hi": "Aapka preferred budget range kya hai?",
-        "hiTts": "आपका प्रेफ़र्ड बजट रेंज क्या है?",
-        "enTts": "What is your preferred budget range?"
+        "hinglish": "Aapka preferred budget range kya hai?",
+        "hinglishTts": "आपका preferred budget range क्या है?",
+        "hi": "आपका बजट लगभग कितना है?"
       },
       {
         "speaker": "buyer",
         "en": "Around ₹2 crore.",
-        "hi": "Lagbhag ₹2 crore.",
-        "hiTts": "लगभग दो करोड़।",
-        "enTts": "Around two crore rupees."
+        "hinglish": "Lagbhag ₹2 crore.",
+        "hinglishTts": "लगभग 2 करोड़।",
+        "hi": "लगभग दो करोड़ रुपये।"
       }
     ],
-    "outcome": {
-      "en": "Budget captured. Configuration captured. Buyer qualification initiated.",
-      "hi": "Budget captured. Configuration captured. Buyer qualification initiated."
+    "outcome": "Budget captured. Configuration captured. Buyer qualification initiated.",
+    "result": {
+      "label": "Qualification",
+      "value": "In progress · 2 of 10 answers",
+      "tone": "warm"
     }
   },
   {
@@ -44,35 +46,37 @@
       {
         "speaker": "ai",
         "en": "Would you like to schedule a property visit?",
-        "hi": "Kya aap property visit schedule karna chahenge?",
-        "hiTts": "क्या आप प्रॉपर्टी विज़िट शेड्यूल करना चाहेंगे?",
-        "enTts": "Would you like to schedule a property visit?"
+        "hinglish": "Kya aap property visit schedule karna chahenge?",
+        "hinglishTts": "क्या आप property visit schedule करना चाहेंगे?",
+        "hi": "क्या आप प्रॉपर्टी देखने आना चाहेंगे?"
       },
       {
         "speaker": "buyer",
         "en": "Yes, this Saturday.",
-        "hi": "Haan, is Saturday.",
-        "hiTts": "हाँ, इस सैटरडे।",
-        "enTts": "Yes, this Saturday."
+        "hinglish": "Haan, is Saturday.",
+        "hinglishTts": "हाँ, इस Saturday.",
+        "hi": "हाँ, इस शनिवार।"
       },
       {
         "speaker": "ai",
         "en": "Would 11 AM work for you?",
-        "hi": "Kya subah 11 baje aapke liye theek rahega?",
-        "hiTts": "क्या सुबह ग्यारह बजे आपके लिए ठीक रहेगा?",
-        "enTts": "Would eleven A M work for you?"
+        "hinglish": "Kya subah 11 baje aapke liye theek rahega?",
+        "hinglishTts": "क्या सुबह 11 बजे आपके लिए ठीक रहेगा?",
+        "hi": "क्या सुबह ग्यारह बजे का समय ठीक रहेगा?"
       },
       {
         "speaker": "buyer",
         "en": "Yes, that works.",
-        "hi": "Haan, chalega.",
-        "hiTts": "हाँ, चलेगा।",
-        "enTts": "Yes, that works."
+        "hinglish": "Haan, chalega.",
+        "hinglishTts": "हाँ, चलेगा।",
+        "hi": "हाँ, बिल्कुल ठीक है।"
       }
     ],
-    "outcome": {
-      "en": "Site visit requested for Saturday at 11 AM.",
-      "hi": "Site visit requested for Saturday at 11 AM."
+    "outcome": "Site visit requested for Saturday at 11 AM.",
+    "result": {
+      "label": "Qualification",
+      "value": "Visit requested · Hot lead",
+      "tone": "hot"
     }
   },
   {
@@ -82,35 +86,37 @@
       {
         "speaker": "ai",
         "en": "Are you still exploring property options?",
-        "hi": "Kya aap abhi bhi property options explore kar rahe hain?",
-        "hiTts": "क्या आप अभी भी प्रॉपर्टी ऑप्शंस एक्सप्लोर कर रहे हैं?",
-        "enTts": "Are you still exploring property options?"
+        "hinglish": "Kya aap abhi bhi property options explore kar rahe hain?",
+        "hinglishTts": "क्या आप अभी भी property options explore कर रहे हैं?",
+        "hi": "क्या आप अभी भी घर खरीदने के बारे में सोच रहे हैं?"
       },
       {
         "speaker": "buyer",
         "en": "Yes, please share the project details.",
-        "hi": "Haan, please project details share kijiye.",
-        "hiTts": "हाँ, प्लीज़ प्रोजेक्ट डिटेल्स शेयर कीजिए।",
-        "enTts": "Yes, please share the project details."
+        "hinglish": "Haan, please project details share kijiye.",
+        "hinglishTts": "हाँ, please project details share कीजिए।",
+        "hi": "हाँ, कृपया प्रोजेक्ट की जानकारी भेज दीजिए।"
       },
       {
         "speaker": "ai",
         "en": "I can arrange to send the brochure on WhatsApp.",
-        "hi": "Main brochure WhatsApp par bhejne ka arrangement kar sakti hoon.",
-        "hiTts": "मैं ब्रोशर व्हाट्सऐप पर भेजने का अरेंजमेंट कर सकती हूँ।",
-        "enTts": "I can arrange to send the brochure on WhatsApp."
+        "hinglish": "Main brochure WhatsApp par bhejne ka arrangement kar sakti hoon.",
+        "hinglishTts": "मैं brochure WhatsApp पर भेजने का arrangement कर सकती हूँ।",
+        "hi": "मैं ब्रोशर आपको व्हाट्सऐप पर भिजवा देती हूँ।"
       },
       {
         "speaker": "buyer",
         "en": "Sure, thank you.",
-        "hi": "Zaroor, dhanyavaad.",
-        "hiTts": "ज़रूर, धन्यवाद।",
-        "enTts": "Sure, thank you."
+        "hinglish": "Zaroor, dhanyavaad.",
+        "hinglishTts": "ज़रूर, धन्यवाद।",
+        "hi": "ज़रूर, धन्यवाद।"
       }
     ],
-    "outcome": {
-      "en": "Buyer re-engaged and brochure follow-up requested.",
-      "hi": "Buyer re-engaged and brochure follow-up requested."
+    "outcome": "Buyer re-engaged and brochure follow-up requested.",
+    "result": {
+      "label": "Qualification",
+      "value": "Re-engaged · Warm lead",
+      "tone": "warm"
     }
   },
   {
@@ -120,28 +126,30 @@
       {
         "speaker": "ai",
         "en": "I am contacting you regarding your recent property enquiry. Is now a convenient time to speak?",
-        "hi": "Main aapki recent property enquiry ke baare mein call kar rahi hoon. Kya abhi baat karna convenient hai?",
-        "hiTts": "मैं आपकी रीसेंट प्रॉपर्टी इन्क्वायरी के बारे में कॉल कर रही हूँ। क्या अभी बात करना कन्वीनियंट है?",
-        "enTts": "I am contacting you regarding your recent property enquiry. Is now a convenient time to speak?"
+        "hinglish": "Main aapki recent property enquiry ke baare mein call kar rahi hoon. Kya abhi baat karna convenient hai?",
+        "hinglishTts": "मैं आपकी recent property enquiry के बारे में call कर रही हूँ। क्या अभी बात करना convenient है?",
+        "hi": "मैं आपकी हाल की प्रॉपर्टी पूछताछ के बारे में बात करना चाहती हूँ। क्या अभी बात करने का सही समय है?"
       },
       {
         "speaker": "buyer",
         "en": "Yes, I would like to know the starting price.",
-        "hi": "Haan, mujhe starting price jaanna hai.",
-        "hiTts": "हाँ, मुझे स्टार्टिंग प्राइस जानना है।",
-        "enTts": "Yes, I would like to know the starting price."
+        "hinglish": "Haan, mujhe starting price jaanna hai.",
+        "hinglishTts": "हाँ, मुझे starting price जानना है।",
+        "hi": "हाँ, मुझे शुरुआती कीमत जाननी है।"
       },
       {
         "speaker": "ai",
         "en": "I can check the approved project details and arrange further information.",
-        "hi": "Main approved project details check karke aage ki jaankari arrange kar sakti hoon.",
-        "hiTts": "मैं अप्रूव्ड प्रोजेक्ट डिटेल्स चेक करके आगे की जानकारी अरेंज कर सकती हूँ।",
-        "enTts": "I can check the approved project details and arrange further information."
+        "hinglish": "Main approved project details check karke aage ki jaankari arrange kar sakti hoon.",
+        "hinglishTts": "मैं approved project details check करके आगे की जानकारी arrange कर सकती हूँ।",
+        "hi": "मैं स्वीकृत प्रोजेक्ट विवरण देखकर आपको आगे की जानकारी भिजवा दूँगी।"
       }
     ],
-    "outcome": {
-      "en": "New enquiry contacted and property information requested.",
-      "hi": "New enquiry contacted and property information requested."
+    "outcome": "New enquiry contacted and property information requested.",
+    "result": {
+      "label": "Qualification",
+      "value": "Contacted · Pricing requested",
+      "tone": "cold"
     }
   }
 ]

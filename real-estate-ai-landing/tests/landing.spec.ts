@@ -95,9 +95,23 @@ test('demo modal: validation, local-preview submission and Escape', async ({ pag
   await form.getByLabel('Monthly Lead Volume *').selectOption('1,000–5,000');
   await form.getByRole('checkbox').check();
   await page.waitForTimeout(2600); // spam time-trap
+  const remote = !/localhost|127\.0\.0\.1/.test(page.url());
+  let posted = '';
+  if (remote) {
+    // Never create a real enquiry from tests: capture the Netlify Forms POST and answer it locally.
+    await page.route('**/', async (route) => {
+      if (route.request().method() === 'POST') { posted = route.request().postData() || ''; await route.fulfill({ status: 200, body: 'ok' }); } else await route.continue();
+    });
+  }
   await form.getByRole('button', { name: 'Request my demo' }).click();
-  await expect(page.getByTestId('form-local')).toBeVisible();
-  await expect(page.getByTestId('form-local')).toContainText('enquiry not sent');
+  if (remote) {
+    await expect(page.getByTestId('form-success')).toBeVisible();
+    expect(posted).toContain('form-name=demo-request');
+    expect(posted).toContain('email=test%40example.com');
+  } else {
+    await expect(page.getByTestId('form-local')).toBeVisible();
+    await expect(page.getByTestId('form-local')).toContainText('enquiry not sent');
+  }
 });
 
 test('voice agent: tabs, playback, progress and restart', async ({ page }) => {
