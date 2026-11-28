@@ -5,8 +5,8 @@ import { useApp } from './AppContext';
 
 type Version = 'voiceover' | 'silent';
 const SRC: Record<Version, { webm: string; mp4: string }> = {
-  voiceover: { webm: '/assets/videos/product-walkthrough-v3.webm', mp4: '/assets/videos/product-walkthrough-v3.mp4' },
-  silent: { webm: '/assets/videos/product-walkthrough-v3-silent.webm', mp4: '/assets/videos/product-walkthrough-v3-silent.mp4' },
+  voiceover: { webm: '/assets/videos/product-walkthrough-v4.webm', mp4: '/assets/videos/product-walkthrough-v4.mp4' },
+  silent: { webm: '/assets/videos/product-walkthrough-v4-silent.webm', mp4: '/assets/videos/product-walkthrough-v4-silent.mp4' },
 };
 
 /**
@@ -39,7 +39,7 @@ export function VideoModal() {
               className="h-full w-full" data-testid="walkthrough-video" data-version={version} onError={() => setFailed(true)} onPlay={() => setStarted(true)}>
               <source src={SRC[version].webm} type="video/webm" />
               <source src={SRC[version].mp4} type="video/mp4" />
-              <track kind="captions" src="/assets/videos/product-walkthrough-v3.vtt" srcLang="en" label="English" />
+              <track kind="captions" src="/assets/videos/product-walkthrough-v4.vtt" srcLang="en" label="English" />
             </video>
           ) : (
             <div className="grid h-full place-items-center p-6 text-center text-[14px] text-white/70">The walkthrough video could not be loaded. Please try again later.</div>

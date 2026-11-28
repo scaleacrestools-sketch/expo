@@ -5,7 +5,7 @@
  * FFmpeg rebuilds a constant 30 fps video with each frame held for exactly as long as it was on screen.
  * Nothing is sped up. A visible cursor (desktop) / tap ripple (mobile) is injected only during recording.
  * Usage: node scripts/record-preview/record.mjs desktop|mobile [baseUrl]
- * Output: preview/landing-page-desktop-preview-v3.mp4 · preview/landing-page-mobile-preview-v3.mp4
+ * Output: preview/landing-page-desktop-preview-v4.mp4 · preview/landing-page-mobile-preview-v4.mp4
  */
 import { chromium, devices } from 'playwright';
 import { execFileSync } from 'node:child_process';
@@ -154,7 +154,7 @@ await browser.close();
 const list = frames.map((f, i) => `file '${f.file}'\nduration ${Math.max(0.001, ((frames[i + 1]?.t ?? f.t + 1) - f.t)).toFixed(4)}`).join('\n') + `\nfile '${frames.at(-1).file}'\n`;
 writeFileSync(join(frameDir, 'list.txt'), list);
 mkdirSync(join(root, 'preview'), { recursive: true });
-const out = join(root, `preview/landing-page-${mode}-preview-v3.mp4`);
+const out = join(root, `preview/landing-page-${mode}-preview-v4.mp4`);
 const scale = mobile ? 'scale=780:1688:flags=lanczos' : 'scale=1920:1080:flags=lanczos';
 execFileSync('ffmpeg', ['-y', '-v', 'error', '-f', 'concat', '-safe', '0', '-i', join(frameDir, 'list.txt'), '-vf', `${scale},fps=30,format=yuv420p`, '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-movflags', '+faststart', '-r', '30', out]);
 console.log(mode, 'frames', frames.length, 'wall-clock', realSecs.toFixed(1), 's →', out);

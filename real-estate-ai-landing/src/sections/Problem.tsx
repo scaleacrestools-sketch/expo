@@ -77,7 +77,7 @@ function Timeline() {
   return (
     <div ref={ref} className="absolute inset-0 flex flex-col p-5" aria-hidden="true">
       <div className="ui-surface flex-1 p-4">
-        <div className="flex items-center gap-2.5"><Avatar name="Vikram K" size={30} hue={250} /><div className="min-w-0 flex-1"><p className="text-[13px] font-semibold text-[var(--p-text)]">Vikram K. · lead timeline</p><p className="text-[11.5px] text-[var(--p-muted)]">Plot · ₹85 L</p></div><span key={String(s >= 4)} style={{ animation: 'pop .3s var(--ease-out) both' }}><StatusBadge tone={s >= 4 ? 'brand' : s >= 2 ? 'hot' : 'cold'}>{s >= 4 ? 'Re-engaged' : s >= 2 ? 'Going cold' : 'New'}</StatusBadge></span></div>
+        <div className="flex items-center gap-2.5"><Avatar name="Vikram K" size={30} hue={250} /><div className="min-w-0 flex-1"><p className="text-[13px] font-semibold text-[var(--p-text)]">Vikram K.</p><p className="text-[11.5px] text-[var(--p-muted)]">Lead timeline · Plot · ₹85 L</p></div><span key={String(s >= 4)} style={{ animation: 'pop .3s var(--ease-out) both' }}><StatusBadge tone={s >= 4 ? 'brand' : s >= 2 ? 'hot' : 'cold'}>{s >= 4 ? 'Re-engaged' : s >= 2 ? 'Going cold' : 'New'}</StatusBadge></span></div>
         <div className="relative mt-4 space-y-3 pl-6">
           <span className="absolute bottom-2 left-[7px] top-2 w-px bg-[var(--p-line)]" />
           {items.map((it, i) => {

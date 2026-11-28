@@ -37,6 +37,6 @@ test('omnichannel timeline, campaign cards and compact features', async ({ page 
   await page.goto('/#performance');
   await expect(page.getByTestId('campaign-cards').locator('li')).toHaveCount(3);
   await page.goto('/#features');
-  const h = await page.locator('#features').evaluate((e) => e.getBoundingClientRect().height);
-  expect(h).toBeLessThan(4000); // V2 was 4,767 px at 390 px wide
+  // V4: every feature keeps its product illustration on mobile.
+  await expect(page.getByTestId('features-grid').locator('article .product')).toHaveCount(10);
 });

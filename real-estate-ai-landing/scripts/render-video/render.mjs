@@ -38,7 +38,7 @@ for (const mode of ['walkthrough', 'hero']) {
     if (f % 60 === 0) console.log(mode, f, '/', total);
   }
   await page.close();
-  const name = mode === 'hero' ? 'hero-animation' : 'product-walkthrough-v3';
+  const name = mode === 'hero' ? 'hero-animation' : 'product-walkthrough-v4';
   const outDir = mode === 'hero' ? mediaDir : siteDir;
   const input = ['-y', '-v', 'error', '-framerate', String(fps), '-i', join(dir, 'f%05d.jpg')];
   const vmp4 = ['-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '23', '-preset', 'slow', '-movflags', '+faststart'];
@@ -55,9 +55,9 @@ for (const mode of ['walkthrough', 'hero']) {
     execFileSync('ffmpeg', [...input, '-i', narration, ...vwebm, '-c:a', 'libopus', '-b:a', '64k', '-shortest', join(outDir, `${name}.webm`)]);
     console.log('encoded voice-over versions');
     // Branded poster: the live dashboard scene, which is meaningful at a glance.
-    execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', join(dir, `f${String(Math.round(4.4 * fps)).padStart(5, '0')}.jpg`), '-vf', 'scale=1280:-1', '-quality', '80', join(outDir, 'product-walkthrough-poster.webp')]);
+    execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', join(dir, `f${String(Math.round(22 * fps)).padStart(5, '0')}.jpg`), '-vf', 'scale=1280:-1', '-quality', '80', join(outDir, 'product-walkthrough-poster.webp')]);
   }
 }
 await browser.close();
 
-// Captions (product-walkthrough-v3.vtt) are written by narration.mjs from the same scene timings.
+// Captions (product-walkthrough-v4.vtt) are written by narration.mjs from the same scene timings.

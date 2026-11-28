@@ -31,14 +31,13 @@ export function Features() {
             return (
               <Reveal key={f.title} variant={c.primary ? 'scale' : 'up'} delay={(k % 3) * 0.07} className={`${c.cls} ${idx === 0 || c.wide ? 'md:col-span-2' : ''}`}>
                 <article className={`card card-hover flex h-full overflow-hidden ${c.wide ? 'flex-col lg:flex-row-reverse' : 'flex-col'} ${c.primary ? 'ring-1 ring-brand/15' : ''}`} data-feature={f.title}>
-                  <div className={`product relative flex flex-col justify-center border-[var(--c-line)] bg-[radial-gradient(120%_90%_at_50%_0%,#efeaff_0%,#f6f7fb_62%)] ${c.wide ? 'border-b lg:w-[60%] lg:border-b-0 lg:border-l' : 'flex-1 border-b'} ${c.primary ? '' : 'max-sm:hidden'}`}>
+                  <div className={`product relative flex flex-col justify-center border-[var(--c-line)] bg-[radial-gradient(120%_90%_at_50%_0%,#efeaff_0%,#f6f7fb_62%)] ${c.wide ? 'border-b lg:w-[60%] lg:border-b-0 lg:border-l' : 'flex-1 border-b'}`}>
                     <c.V />
                   </div>
-                  <div className={`p-5 sm:p-6 ${c.primary ? '' : 'max-sm:flex max-sm:gap-3 max-sm:p-4'} ${c.wide ? 'flex justify-center max-sm:flex-row sm:flex-col lg:w-[40%] lg:p-10' : ''}`}>
-                    {!c.primary && <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-[#efeaff] text-[var(--c-accent-text)] sm:hidden" aria-hidden="true"><I size={18} /></span>}
-                    <div>
-                    <p className={`flex items-center gap-2 text-[12px] font-medium text-[var(--c-accent-text)] ${c.primary ? '' : 'max-sm:hidden'}`}><span className="grid h-6 w-6 place-items-center rounded-md bg-[#efeaff]"><I size={13} /></span>{c.primary ? 'Core capability' : 'Platform'}</p>
-                    <h3 className={`h-card mt-2.5 ${c.primary ? '' : 'max-sm:mt-0'} ${c.primary || c.wide ? 'lg:text-[24px]' : ''}`}>{f.title}</h3>
+                  <div className={`p-5 sm:p-6 ${c.wide ? 'flex flex-col justify-center lg:w-[40%] lg:p-10' : ''}`}>
+                                        <div>
+                    <p className={`flex items-center gap-2 text-[12px] font-medium text-[var(--c-accent-text)]`}><span className="grid h-6 w-6 place-items-center rounded-md bg-[#efeaff]"><I size={13} /></span>{c.primary ? 'Core capability' : 'Platform'}</p>
+                    <h3 className={`h-card mt-2.5 ${c.primary || c.wide ? 'lg:text-[24px]' : ''}`}>{f.title}</h3>
                     <p className="mt-1.5 text-[15px] leading-relaxed max-sm:text-[14px]">{f.body}</p>
                     </div>
                   </div>

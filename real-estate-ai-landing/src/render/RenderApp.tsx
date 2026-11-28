@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { CalendarCheck2, Check, CheckCheck, CheckCircle2, FileText, Globe, Sparkles, UserPlus } from 'lucide-react';
 import { brand } from '../config/brand';
 import { LogoMark } from '../components/ui/Logo';
-import { AgentOrb, AppWindow, Avatar, MiniCalendar, Panel, Status } from '../components/dashboards/primitives';
+import { AgentOrb, AppWindow, Avatar, MiniCalendar, Panel } from '../components/dashboards/primitives';
 import { CommandCenter } from '../components/dashboards/CommandCenter';
 import { LineChart } from '../components/charts/LineChart';
 import { callVolume, campaigns } from '../data/demo-data';
@@ -83,30 +83,32 @@ function S1({ p }: { p: number }) {
         </div>
         <div className="mt-5 rounded-xl py-3 text-center text-[16px] font-semibold text-white" style={{ background: p > 0.68 ? '#22c55e' : '#3b82f6' }}>{p > 0.68 ? 'Submitted ✓' : 'Submit'}</div>
       </div>
-      <div className="w-[380px] rounded-[24px] border border-white/10 bg-[rgba(18,18,25,.95)] p-6" style={{ opacity: seg(p, 0.7, 0.85), transform: `translateX(${(1 - seg(p, 0.7, 0.85)) * 40}px)` }}>
-        <p className="flex items-center gap-2 text-[18px] font-semibold text-white"><span className="h-3 w-3 rounded-full bg-sky-400" />New lead received</p>
-        <p className="mt-3 text-[16px] text-white/70">Rohan Mehta · Meta Ads</p><p className="text-[16px] text-white/50">3 BHK · ₹2 Crore</p>
+      <div className="product p-float w-[380px] p-6" style={{ opacity: seg(p, 0.7, 0.85), transform: `translateX(${(1 - seg(p, 0.7, 0.85)) * 40}px)` }}>
+        <p className="flex items-center gap-3 text-[19px] font-semibold text-[#171923]"><span className="grid h-10 w-10 place-items-center rounded-xl bg-[#e0f2fe] text-[#0369a1]"><UserPlus size={20} /></span>New lead received</p>
+        <p className="mt-4 text-[17px] font-medium text-[#171923]">Rohan Mehta · Meta Ads</p><p className="text-[16px] text-[#667085]">3 BHK · ₹2 Crore · Skyline Residences</p>
+        <p className="mt-4 flex items-center gap-2 text-[15px] font-medium text-[#5b34d6]"><span className="h-2 w-2 rounded-full bg-[#6a3ff0]" />Queued for an instant AI call</p>
       </div>
     </div>
   );
 }
 function S2({ p }: { p: number; t?: number }) {
   return (
-    <div className="w-[1000px] origin-top-left" style={{ transform: 'scale(1.0)' }}>
-      <AppWindow path="campaigns/skyline-launch"><CommandCenter phase={p < 0.25 ? 0 : p < 0.5 ? 1 : p < 0.75 ? 2 : 3} /></AppWindow>
+    <div className="w-[1120px]">
+      <AppWindow path="overview"><CommandCenter phase={p < 0.25 ? 0 : p < 0.5 ? 1 : p < 0.75 ? 2 : 3} /></AppWindow>
     </div>
   );
 }
 function S3({ p, t }: { p: number; t: number }) {
   const lines: [string, string][] = [['ai', 'Which configuration and location are you looking for?'], ['b', 'A 3 BHK in Whitefield, close to my office.'], ['ai', 'What budget range are you considering?'], ['b', 'Around ₹2 crore, buying in about six months.']];
   return (
-    <div className="w-[900px] rounded-[28px] border border-white/10 bg-[#101016] p-8 shadow-2xl">
-      <div className="flex items-center gap-4"><AgentOrb size={56} /><div className="flex-1"><p className="text-[22px] font-semibold text-white">Aria · AI sales agent</p><p className="text-[16px] text-white/50">Live call · 00:{String(14 + Math.floor(p * 30)).padStart(2, '0')}</p></div><Status tone="ok">Connected</Status></div>
-      <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4"><TWave t={t} bars={80} height={56} /></div>
-      <div className="mt-6 space-y-3">
-        {lines.map(([s, l], i) => {
-          const o = seg(p, i * 0.2, i * 0.2 + 0.12);
-          return <div key={i} className={`flex ${s === 'ai' ? '' : 'justify-end'}`} style={{ opacity: o, transform: `translateY(${(1 - o) * 12}px)` }}><p className={`max-w-[75%] rounded-2xl px-5 py-3 text-[20px] ${s === 'ai' ? 'bg-brand/25 text-white' : 'bg-white/10 text-white/90'}`}>{l}</p></div>;
+    <div className="product p-shell w-[920px] !bg-white p-8">
+      <div className="flex items-center gap-4"><AgentOrb size={56} /><div className="flex-1"><p className="text-[22px] font-semibold text-[#171923]">Aria → Rohan Mehta</p><p className="text-[16px] text-[#667085]">Outbound call · Skyline Residences · 00:{String(14 + Math.floor(p * 30)).padStart(2, '0')}</p></div><span className="badge badge-ok !px-3 !py-1 !text-[15px]"><span className="h-2 w-2 rounded-full bg-current" />Live</span></div>
+      <div className="mt-6 rounded-2xl border border-[#e5e7eb] bg-[#f7f8fc] px-5 py-4"><TWave t={t} bars={84} height={56} color="#6a3ff0" /></div>
+      <p className="mt-5 text-[13px] font-medium uppercase tracking-[0.08em] text-[#667085]">Live transcript</p>
+      <div className="mt-3 space-y-3">
+        {lines.map(([sp, l], i) => {
+          const o = seg(p, 0.04 + i * 0.2, 0.16 + i * 0.2);
+          return <div key={i} className={`flex ${sp === 'ai' ? '' : 'justify-end'}`} style={{ opacity: o, transform: `translateY(${(1 - o) * 12}px)` }}><p className={`max-w-[75%] rounded-2xl px-5 py-3 text-[20px] ${sp === 'ai' ? 'rounded-tl-md bg-[#f3efff] text-[#2d1a78]' : 'rounded-tr-md border border-[#e5e7eb] bg-white text-[#171923]'}`}>{l}</p></div>;
         })}
       </div>
     </div>
@@ -114,21 +116,24 @@ function S3({ p, t }: { p: number; t: number }) {
 }
 function S4({ p }: { p: number }) {
   const f = [['Configuration', '3 BHK'], ['Budget', '₹2 Crore'], ['Location', 'Whitefield'], ['Purpose', 'Self-use'], ['Timeline', '6 months'], ['Site visit', 'Interested']];
-  const n = Math.round(seg(p, 0.05, 0.75) * f.length);
+  const n = Math.round(seg(p, 0.05, 0.7) * f.length);
   const score = Math.round(30 + (n / f.length) * 56);
+  const col = score >= 75 ? '#16a34a' : '#d97706';
   return (
-    <div className="flex w-[1000px] gap-6">
-      <div className="flex-1 rounded-[28px] border border-white/10 bg-[#101016] p-7">
-        <div className="flex items-center gap-4"><Avatar name="Rohan Mehta" size={56} /><div className="flex-1"><p className="text-[22px] font-semibold text-white">Rohan Mehta</p><p className="text-[16px] text-white/50">CRM record · auto-filled</p></div><Status tone={n === 6 ? 'ok' : 'warm'}>{n === 6 ? 'Qualified' : 'In progress'}</Status></div>
+    <div className="product p-shell flex w-[1020px] gap-5 p-6">
+      <div className="ui-surface flex-1 !rounded-[20px] p-6">
+        <div className="flex items-center gap-4"><Avatar name="Rohan Mehta" size={56} hue={200} /><div className="flex-1"><p className="text-[22px] font-semibold text-[#171923]">Rohan Mehta</p><p className="text-[16px] text-[#667085]">CRM record · filled from the call</p></div><span className={`badge !px-3 !py-1 !text-[15px] ${n === 6 ? 'badge-ok' : 'badge-warm'}`}><span className="h-2 w-2 rounded-full bg-current" />{n === 6 ? 'Qualified' : 'In progress'}</span></div>
         <div className="mt-6 grid grid-cols-2 gap-3">
-          {f.map(([k, v], i) => <div key={k} className="rounded-2xl border p-4" style={{ borderColor: i < n ? 'rgba(139,92,246,.5)' : 'rgba(255,255,255,.08)', background: i < n ? 'rgba(139,92,246,.1)' : 'transparent' }}><p className="flex items-center justify-between text-[14px] text-white/50">{k}{i < n && <Check size={16} className="text-emerald-400" />}</p><p className="mt-1 text-[20px] font-semibold text-white" style={{ opacity: i < n ? 1 : 0 }}>{v}</p></div>)}
+          {f.map(([k, v], i) => <div key={k} className="rounded-2xl border p-4" style={{ borderColor: i < n ? '#d9cdff' : '#e5e7eb', background: i < n ? '#f8f5ff' : '#fff' }}><p className="flex items-center justify-between text-[13px] font-medium uppercase tracking-[0.06em] text-[#667085]">{k}{i < n && <span className="grid h-5 w-5 place-items-center rounded-full bg-[#16a34a] text-white"><Check size={13} strokeWidth={3} /></span>}</p><p className="mt-1.5 h-[28px] text-[21px] font-semibold text-[#171923]">{i < n ? v : <span className="mt-2.5 block h-2.5 w-24 rounded-full bg-[#eaecf0]" />}</p></div>)}
         </div>
       </div>
-      <div className="flex w-[280px] flex-col items-center justify-center rounded-[28px] border border-white/10 bg-[#101016] p-6">
-        <svg viewBox="0 0 80 80" className="h-[180px] w-[180px] -rotate-90"><circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,.08)" strokeWidth="8" /><circle cx="40" cy="40" r="34" fill="none" stroke="#a78bfa" strokeWidth="8" strokeLinecap="round" strokeDasharray={`${(score / 100) * 213.6} 213.6`} /></svg>
-        <p className="-mt-[118px] text-[44px] font-semibold tabular-nums text-white">{score}</p>
-        <p className="mt-[64px] text-[16px] text-white/50">Lead score</p>
-        <span className={`badge mt-3 !text-[14px] ${score >= 75 ? 'badge-hot' : 'badge-warm'}`}>{score >= 75 ? 'Hot lead' : 'Warm'}</span>
+      <div className="ui-surface flex w-[270px] flex-col items-center justify-center !rounded-[20px] p-6">
+        <div className="relative h-[180px] w-[180px]">
+          <svg viewBox="0 0 80 80" className="h-full w-full -rotate-90"><circle cx="40" cy="40" r="34" fill="none" stroke="#eaecf0" strokeWidth="8" /><circle cx="40" cy="40" r="34" fill="none" stroke={col} strokeWidth="8" strokeLinecap="round" strokeDasharray={`${(score / 100) * 213.6} 213.6`} /></svg>
+          <p className="absolute inset-0 grid place-items-center text-[48px] font-semibold tabular-nums text-[#171923]">{score}</p>
+        </div>
+        <p className="mt-4 text-[16px] text-[#667085]">Lead score</p>
+        <span className={`badge mt-3 !px-3 !py-1 !text-[15px] ${score >= 75 ? 'badge-hot' : 'badge-warm'}`}>{score >= 75 ? 'Hot lead' : 'Warming up'}</span>
       </div>
     </div>
   );
@@ -151,14 +156,15 @@ function S6({ p }: { p: number }) {
   const slots = ['10:00 AM', '11:00 AM', '2:30 PM', '4:00 PM'];
   return (
     <div className="flex w-[960px] gap-6">
-      <div className="theme-light w-[520px] rounded-[28px] p-7 shadow-2xl">
+      <div className="product p-shell w-[520px] !bg-white p-7">
         <p className="mb-4 flex items-center gap-2 text-[20px] font-semibold text-[#0f0f14]"><CalendarCheck2 size={22} className="text-[var(--brand-deep)]" />Choose a visit date</p>
-        <div className="origin-top-left scale-[1.0] [&_*]:!text-[16px]"><MiniCalendar highlight={p > 0.25 ? 15 : -1} booked={[6, 8, 13, 20]} /></div>
-        <div className="mt-5 grid grid-cols-2 gap-3">{slots.map((s) => <span key={s} className="rounded-xl border py-3 text-center text-[17px]" style={{ background: p > 0.5 && s === '11:00 AM' ? '#8b5cf6' : 'white', color: p > 0.5 && s === '11:00 AM' ? 'white' : '#52525b', borderColor: '#e7e7ec' }}>{s}</span>)}</div>
+        <div className="[&_*]:!text-[16px]"><MiniCalendar highlight={p > 0.25 ? 15 : -1} booked={[6, 8, 13, 20]} /></div>
+        <div className="mt-5 grid grid-cols-2 gap-3">{slots.map((s) => <span key={s} className="rounded-xl border py-3 text-center text-[17px]" style={{ background: p > 0.5 && s === '11:00 AM' ? '#6a3ff0' : 'white', color: p > 0.5 && s === '11:00 AM' ? 'white' : '#475467', borderColor: '#e5e7eb' }}>{s}</span>)}</div>
       </div>
-      <div className="flex-1 self-center rounded-[24px] border border-emerald-400/40 bg-emerald-500/10 p-6" style={{ opacity: seg(p, 0.65, 0.8) }}>
-        <p className="flex items-center gap-2 text-[20px] font-semibold text-white"><CheckCircle2 className="text-emerald-400" />Site visit confirmed</p>
-        <p className="mt-2 text-[18px] text-white/75">Sat, 15 Nov · 11:00 AM</p><p className="text-[16px] text-white/50">Skyline Residences sales gallery</p>
+      <div className="product p-float flex-1 self-center p-6" style={{ opacity: seg(p, 0.62, 0.78), transform: `translateY(${(1 - seg(p, 0.62, 0.78)) * 16}px)` }}>
+        <p className="flex items-center gap-3 text-[20px] font-semibold text-[#171923]"><span className="grid h-10 w-10 place-items-center rounded-xl bg-[#dcfce7] text-[#16a34a]"><CheckCircle2 size={22} /></span>Site visit confirmed</p>
+        <p className="mt-4 text-[19px] font-medium text-[#171923]">Sat, 15 Nov · 11:00 AM</p><p className="text-[16px] text-[#667085]">Skyline Residences sales gallery</p>
+        <p className="mt-4 text-[15px] font-medium text-[#128c7e]">WhatsApp and email confirmations sent ✓</p>
       </div>
     </div>
   );
@@ -166,21 +172,22 @@ function S6({ p }: { p: number }) {
 function S7({ p }: { p: number }) {
   const team = [['Kavya Rao', 'Senior sales executive', 150], ['Arjun Shah', 'Sales executive', 30], ['Meera Iyer', 'Sales executive', 320]] as const;
   return (
-    <div className="flex w-[960px] items-center gap-8">
-      <div className="w-[420px] rounded-[28px] border border-white/10 bg-[#101016] p-7">
-        <div className="flex items-center gap-4"><Avatar name="Rohan Mehta" size={52} /><div><p className="text-[21px] font-semibold text-white">Rohan Mehta</p><p className="text-[15px] text-white/50">Qualified · Score 86 · Visit Sat 11 AM</p></div></div>
-        <div className="mt-5 flex flex-wrap gap-2">{['3 BHK', '₹2 Cr', 'Self-use', '6 months'].map((x) => <span key={x} className="rounded-lg bg-brand/20 px-3 py-1 text-[15px] text-white">{x}</span>)}</div>
-        <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4" style={{ opacity: seg(p, 0.55, 0.7) }}>
-          <p className="flex items-center gap-2 text-[15px] font-semibold text-white"><Sparkles size={16} className="text-[var(--brand-accent)]" />AI conversation summary</p>
-          <p className="mt-2 text-[15px] leading-snug text-white/70">Wants a ready-to-move 3 BHK in Whitefield near his office, ~₹2 Cr, buying within 6 months. Visit booked Sat 15 Nov, 11 AM.</p>
+    <div className="product p-shell flex w-[1000px] items-center gap-7 p-7">
+      <div className="ui-surface w-[440px] !rounded-[20px] p-6">
+        <div className="flex items-center gap-4"><Avatar name="Rohan Mehta" size={52} hue={200} /><div><p className="text-[21px] font-semibold text-[#171923]">Rohan Mehta</p><p className="text-[15px] text-[#667085]">Qualified · Score 86 · Visit Sat 11 AM</p></div></div>
+        <div className="mt-5 flex flex-wrap gap-2">{['3 BHK', '₹2 Cr', 'Self-use', '6 months'].map((x) => <span key={x} className="rounded-lg bg-[#f3efff] px-3 py-1 text-[15px] font-medium text-[#4c2bc0]">{x}</span>)}</div>
+        <div className="mt-5 rounded-2xl border border-[#e5e7eb] bg-[#f7f8fc] p-4" style={{ opacity: seg(p, 0.5, 0.65) }}>
+          <p className="flex items-center gap-2 text-[15px] font-semibold text-[#171923]"><Sparkles size={16} className="text-[#6a3ff0]" />AI conversation summary</p>
+          <p className="mt-2 text-[15px] leading-snug text-[#475467]">Wants a ready-to-move 3 BHK in Whitefield near his office, ~₹2 Cr, buying within 6 months. Visit booked Sat 15 Nov, 11 AM.</p>
         </div>
       </div>
-      <svg width="90" height="20"><path d="M0 10 H90" stroke="#8b5cf6" strokeWidth="3" strokeDasharray="6 8" strokeDashoffset={-p * 200} /></svg>
+      <svg width="70" height="20"><path d="M0 10 H70" stroke="#6a3ff0" strokeWidth="3" strokeDasharray="6 8" strokeDashoffset={-p * 200} /></svg>
       <div className="flex-1 space-y-3">
-        {team.map(([n, r, h], i) => { const on = i === 0 && p > 0.45; return (
-          <div key={n} className="flex items-center gap-4 rounded-2xl border p-4" style={{ borderColor: on ? '#22c55e' : 'rgba(255,255,255,.1)', background: on ? 'rgba(34,197,94,.1)' : 'rgba(255,255,255,.02)' }}>
-            <Avatar name={n} size={44} hue={h} /><div className="flex-1"><p className="text-[19px] font-medium text-white">{n}</p><p className="text-[14px] text-white/50">{r}</p></div>
-            {on && <span className="flex items-center gap-1.5 text-[16px] text-emerald-300"><UserPlus size={18} />Assigned</span>}
+        <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-[#667085]">Assign to</p>
+        {team.map(([n, r, h], i) => { const on = i === 0 && p > 0.4; return (
+          <div key={n} className="flex items-center gap-4 rounded-2xl border bg-white p-4" style={{ borderColor: on ? '#86efac' : '#e5e7eb', background: on ? '#f0fdf4' : '#fff', boxShadow: on ? '0 0 0 3px #dcfce7' : '0 1px 2px rgba(16,24,40,.05)' }}>
+            <Avatar name={n} size={44} hue={h} /><div className="flex-1"><p className="text-[19px] font-semibold text-[#171923]">{n}</p><p className="text-[14px] text-[#667085]">{r}</p></div>
+            {on && <span className="flex items-center gap-1.5 text-[16px] font-semibold text-[#15803d]"><UserPlus size={18} />Assigned</span>}
           </div>); })}
       </div>
     </div>
@@ -188,15 +195,15 @@ function S7({ p }: { p: number }) {
 }
 function S8({ p }: { p: number }) {
   return (
-    <div className="w-[1040px]">
+    <div className="w-[1060px]">
       <AppWindow path="analytics">
         <div className="grid grid-cols-[1.3fr_1fr] gap-3 p-5">
-          <Panel title="Call volume · this week"><LineChart animate={false} ariaLabel="Demo call volume" labels={callVolume.map((d) => d.day)} series={[{ key: 'c', label: 'Calls', color: '#a78bfa', values: callVolume.map((d) => Math.round(d.calls * (0.4 + 0.6 * seg(p, 0, 0.6)))) }]} height={240} /></Panel>
+          <Panel title="Call volume · this week"><LineChart animate={false} ariaLabel="Demo call volume" labels={callVolume.map((d) => d.day)} fixedHeight={250} series={[{ key: 'c', label: 'Calls', color: '#6a3ff0', values: callVolume.map((d) => Math.round(d.calls * (0.4 + 0.6 * seg(p, 0, 0.6)))) }]} height={240} /></Panel>
           <div className="grid grid-cols-2 gap-3">
-            {[['Qualified Leads', 846 + (p > 0.5 ? 1 : 0)], ['Site Visits', 124 + (p > 0.5 ? 1 : 0)], ['Total Calls', 2481], ['Connect Rate', '68%']].map(([k, v]) => <div key={k as string} className="ui-surface p-4"><p className="text-[14px] text-[var(--c-muted)]">{k}</p><p className="mt-1 text-[30px] font-semibold tabular-nums text-white">{typeof v === 'number' ? v.toLocaleString('en-IN') : v}</p></div>)}
+            {[['Qualified Leads', 846 + (p > 0.5 ? 1 : 0)], ['Site Visits', 124 + (p > 0.5 ? 1 : 0)], ['Total Calls', 2481], ['Connect Rate', '68%']].map(([k, v], i) => <div key={k as string} className="ui-surface p-4" style={p > 0.5 && i < 2 ? { borderColor: '#d9cdff', boxShadow: '0 0 0 3px #f3efff' } : undefined}><p className="text-[14px] font-medium text-[#667085]">{k}</p><p className="mt-1 text-[32px] font-semibold tabular-nums text-[#171923]">{typeof v === 'number' ? v.toLocaleString('en-IN') : v}{p > 0.5 && i < 2 && <span className="ml-2 text-[15px] font-semibold text-[#16a34a]">+1</span>}</p></div>)}
           </div>
-          <Panel className="col-span-2" title="Campaign performance">
-            <table className="w-full text-[16px]"><tbody>{campaigns.map((c) => <tr key={c.name} className="border-t border-[var(--c-line)]"><td className="py-2.5 text-white">{c.name}</td><td className="text-right tabular-nums text-white/70">{c.leads} leads</td><td className="text-right tabular-nums text-white/70">{c.qualified} qualified</td><td className="text-right tabular-nums text-white">{c.visits} visits</td></tr>)}</tbody></table>
+          <Panel className="col-span-2" title="Top campaigns this week">
+            <table className="w-full text-[16px]"><tbody>{campaigns.map((c) => <tr key={c.name} className="border-t border-[#e5e7eb]"><td className="py-2.5 font-medium text-[#171923]">{c.name}</td><td className="text-right tabular-nums text-[#475467]">{c.leads} leads</td><td className="text-right tabular-nums text-[#475467]">{c.qualified} qualified</td><td className="text-right font-semibold tabular-nums text-[#171923]">{c.visits} visits</td></tr>)}</tbody></table>
           </Panel>
         </div>
       </AppWindow>
@@ -215,7 +222,7 @@ function CTA({ p }: { p: number }) {
 }
 const sceneComps = [Intro, S1, S2, S3, S4, S5, S6, S7, S8, CTA];
 const XFADE = 0.4;
-const SCALE = [1, 1.35, 1.3, 1.28, 1.28, 1.28, 1.28, 1.28, 1.14, 1];
+const SCALE = [1, 1.35, 1.02, 1.28, 1.28, 1.28, 1.28, 1.28, 1.14, 1];
 
 function SceneLayer({ i, t, opacity }: { i: number; t: number; opacity: number }) {
   const sc = walkthrough.scenes[i]; const C = sceneComps[i];
@@ -257,25 +264,25 @@ function HeroAnim({ t }: { t: number }) {
   const fl = (k: number) => `translateY(${Math.sin(t * 1.1 + k) * 8}px)`;
   return (
     <Shell t={t} total={HERO_LEN}>
-      <div className="absolute left-1/2 top-[130px] w-[1260px] -translate-x-1/2 rounded-[26px] border border-white/10 bg-white/[0.03] p-2.5" style={{ transform: 'translateX(-50%) scale(1.05)', transformOrigin: 'top center' }}>
+      <div className="absolute left-1/2 top-[130px] w-[1260px] -translate-x-1/2 rounded-[26px] border border-white/15 bg-white/[0.06] p-2.5" style={{ transform: 'translateX(-50%) scale(1.05)', transformOrigin: 'top center' }}>
         <AppWindow path="campaigns/skyline-launch"><CommandCenter phase={phase} /></AppWindow>
       </div>
       <Float x={60} y={420} show title="Incoming Lead" c="#38bdf8" tr={fl(0)}><R k="Source" v={story.buyer.source} /><R k="Configuration" v={story.requirement.configuration} /><R k="Budget" v={story.requirement.budget} /></Float>
-      <Float x={1600} y={300} show={phase >= 1} title="AI Call in Progress" c="#a48bff" tr={fl(2)}><p className="text-[15px] text-white/70">{phase >= 3 && phase <= 5 ? 'Conversation active' : phase >= 6 ? 'Call ended · 1m 12s' : 'Connecting…'}</p><div className="mt-2"><TWave t={t} bars={26} height={34} active={phase >= 3 && phase <= 5} /></div></Float>
-      <Float x={1600} y={640} show={phase >= 4} title="Lead Qualified" c="#12b881" tr={fl(4)}>{['Budget captured', 'Configuration captured', 'Site visit requested'].map((x, i) => <p key={x} className="flex items-center gap-2 text-[15px]" style={{ color: phase >= [4, 4, 7][i] ? 'rgba(255,255,255,.85)' : 'rgba(255,255,255,.25)' }}><CheckCircle2 size={15} className="text-emerald-400" />{x}</p>)}</Float>
+      <Float x={1600} y={300} show={phase >= 1} title="AI Call in Progress" c="#6a3ff0" tr={fl(2)}><p className="text-[15px]">{phase >= 3 && phase <= 5 ? 'Conversation active' : phase >= 6 ? 'Call ended · 1m 12s' : 'Connecting…'}</p><div className="mt-2"><TWave t={t} bars={26} height={34} active={phase >= 3 && phase <= 5} color="#6a3ff0" /></div></Float>
+      <Float x={1600} y={640} show={phase >= 4} title="Lead Qualified" c="#16a34a" tr={fl(4)}>{['Budget captured', 'Configuration captured', 'Site visit requested'].map((x, i) => <p key={x} className="flex items-center gap-2 text-[15px]" style={{ color: phase >= [4, 4, 7][i] ? '#171923' : '#d0d5dd' }}><CheckCircle2 size={15} className="text-[#16a34a]" />{x}</p>)}</Float>
       <div className="absolute bottom-[56px] left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/10 bg-[rgba(8,5,21,.8)] px-7 py-3.5 text-[24px] text-white"><Sparkles size={22} className="text-[var(--brand-accent)]" /><span className="tabular-nums text-[var(--brand-accent)]">{String(phase + 1).padStart(2, '0')}</span>{HERO_STEPS[phase]}</div>
     </Shell>
   );
 }
 function Float({ x, y, show, title, c, children, tr }: { x: number; y: number; show: boolean; title: string; c: string; children: React.ReactNode; tr: string }) {
   return (
-    <div className="absolute w-[270px] rounded-2xl border border-white/10 bg-[rgba(17,18,37,.9)] p-5 shadow-2xl backdrop-blur" style={{ left: x, top: y, opacity: show ? 1 : 0, transform: tr }}>
-      <p className="mb-3 flex items-center gap-2 text-[17px] font-semibold text-white"><span className="h-2.5 w-2.5 rounded-full" style={{ background: c, boxShadow: `0 0 10px ${c}` }} />{title}</p>
-      <div className="space-y-1.5">{children}</div>
+    <div className="product p-float absolute w-[270px] p-5" style={{ left: x, top: y, opacity: show ? 1 : 0, transform: tr }}>
+      <p className="mb-3 flex items-center gap-2 text-[17px] font-semibold text-[#171923]"><span className="h-2.5 w-2.5 rounded-full" style={{ background: c }} />{title}</p>
+      <div className="space-y-1.5 text-[#475467]">{children}</div>
     </div>
   );
 }
-function R({ k, v }: { k: string; v: string }) { return <p className="flex justify-between text-[15px]"><span className="text-white/50">{k}</span><span className="font-medium text-white/90">{v}</span></p>; }
+function R({ k, v }: { k: string; v: string }) { return <p className="flex justify-between text-[15px]"><span className="text-[#667085]">{k}</span><span className="font-semibold text-[#171923]">{v}</span></p>; }
 
 export default function RenderApp({ mode }: { mode: string }) {
   const [t, setT] = useState(0);

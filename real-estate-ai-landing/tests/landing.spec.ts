@@ -249,7 +249,7 @@ test('video modal: poster, no autoplay, plays on demand, switches audio, stops o
   await expect.poll(() => video.evaluate((v: HTMLVideoElement) => v.currentTime), { timeout: 10000 }).toBeGreaterThan(0.5);
   expect(await video.evaluate((v: HTMLVideoElement) => v.duration)).toBeGreaterThan(60); // V3 walkthrough is 60–90 s
   expect(await video.evaluate((v: HTMLVideoElement) => v.textTracks.length)).toBe(1);
-  expect(await video.evaluate((v: HTMLVideoElement) => (v as HTMLVideoElement & { mozHasAudio?: boolean }).currentSrc)).toMatch(/product-walkthrough-v3\.(webm|mp4)$/); // voice-over version is the default
+  expect(await video.evaluate((v: HTMLVideoElement) => (v as HTMLVideoElement & { mozHasAudio?: boolean }).currentSrc)).toMatch(/product-walkthrough-v4\.(webm|mp4)$/); // voice-over version is the default
   await page.getByTestId('video-version-silent').click();
   await expect(page.getByTestId('walkthrough-video')).toHaveAttribute('data-version', 'silent');
   await expect.poll(() => page.getByTestId('walkthrough-video').evaluate((v: HTMLVideoElement) => v.currentSrc || v.querySelector('source')!.src)).toContain('-silent');

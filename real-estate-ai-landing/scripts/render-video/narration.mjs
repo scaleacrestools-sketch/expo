@@ -2,7 +2,7 @@
 /**
  * Builds the walkthrough narration track and the scene timings that the video render uses.
  * Source clips: media-src/narration-v3/scene-<1..10>.mp3 (ElevenLabs eleven_v4, voice "Amit Gupta – Confident Sales Advisor").
- * Output: src/render/scene-timings.json, .cache/narration.wav, public/assets/videos/product-walkthrough-v3.vtt
+ * Output: src/render/scene-timings.json, .cache/narration.wav, public/assets/videos/product-walkthrough-v4.vtt
  */
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -47,6 +47,6 @@ const mix = parts.map((_, i) => `[a${i}]`).join('') + `amix=inputs=${parts.lengt
 run([...inputs, '-filter_complex', `${filters};${mix}`, '-t', String(total), '-ar', '48000', join(cache, 'narration.wav')]);
 writeFileSync(join(root, 'src/render/scene-timings.json'), JSON.stringify({ total, scenes: timings }, null, 2));
 const ts = (s) => { const m = Math.floor(s / 60); const sec = s - m * 60; return `00:${String(m).padStart(2, '0')}:${sec.toFixed(3).padStart(6, '0')}`; };
-writeFileSync(join(root, 'public/assets/videos/product-walkthrough-v3.vtt'),
+writeFileSync(join(root, 'public/assets/videos/product-walkthrough-v4.vtt'),
   ['WEBVTT', '', ...timings.flatMap((s, i) => [`${i + 1}`, `${ts(s.start)} --> ${ts(s.start + s.len - 0.05)}`, s.caption, ''])].join('\n'));
 console.log('total', total, 's;', timings.map((s) => s.len).join(' '));
