@@ -283,14 +283,19 @@ img, svg, video { max-width: 100%; }
   html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
   }
   .wave-bar { transform: scaleY(0.6); }
 }
 html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after {
-  animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important;
+  animation-duration: 0.001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; transition-delay: 0s !important;
 }
+/* Reduced motion shows final states immediately, so nothing may stay frozen at its first keyframe off-screen. */
+@media (prefers-reduced-motion: reduce) { [data-inview='false'] *, [data-inview='false'] *::before, [data-inview='false'] *::after { animation-play-state: running !important; } }
+html.reduce-motion [data-inview='false'] *, html.reduce-motion [data-inview='false'] *::before, html.reduce-motion [data-inview='false'] *::after { animation-play-state: running !important; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }

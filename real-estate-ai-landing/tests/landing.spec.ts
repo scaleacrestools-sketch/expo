@@ -207,7 +207,7 @@ test('features, calendar demo, integrations, comparison and mobile CRM', async (
   const cards = page.locator('[data-testid="integration-card"]:visible');
   await expect(cards).toHaveCount(12);
   await cards.nth(3).hover();
-  await expect(page.getByTestId('integration-engine').first()).toContainText('Hover a tool');
+  await expect(page.getByTestId('integration-engine').first()).toContainText('Tracing Housing.com');
   await expect(cards.nth(3)).toHaveClass(/border-brand/);
   await expect(page.getByTestId('integrations-disclosure')).toContainText('planned');
   await expect(page.locator('#integrations').getByText('PLANNED', { exact: true })).toHaveCount(0);
@@ -247,11 +247,12 @@ test('video modal: poster, no autoplay, plays on demand, switches audio, stops o
   expect(await video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(true); // no autoplay
   await page.getByTestId('video-play-overlay').click();
   await expect.poll(() => video.evaluate((v: HTMLVideoElement) => v.currentTime), { timeout: 10000 }).toBeGreaterThan(0.5);
-  expect(await video.evaluate((v: HTMLVideoElement) => v.duration)).toBeGreaterThan(25);
+  expect(await video.evaluate((v: HTMLVideoElement) => v.duration)).toBeGreaterThan(60); // V3 walkthrough is 60–90 s
   expect(await video.evaluate((v: HTMLVideoElement) => v.textTracks.length)).toBe(1);
-  expect(await video.evaluate((v: HTMLVideoElement) => (v as HTMLVideoElement & { mozHasAudio?: boolean }).currentSrc)).toContain('voiceover');
+  expect(await video.evaluate((v: HTMLVideoElement) => (v as HTMLVideoElement & { mozHasAudio?: boolean }).currentSrc)).toMatch(/product-walkthrough-v3\.(webm|mp4)$/); // voice-over version is the default
   await page.getByTestId('video-version-silent').click();
   await expect(page.getByTestId('walkthrough-video')).toHaveAttribute('data-version', 'silent');
+  await expect.poll(() => page.getByTestId('walkthrough-video').evaluate((v: HTMLVideoElement) => v.currentSrc || v.querySelector('source')!.src)).toContain('-silent');
   await page.keyboard.press('Escape');
   await expect(page.getByTestId('video-modal')).toBeHidden();
   expect(await page.locator('video').count()).toBe(0); // unmounted, so playback stopped
@@ -320,4 +321,30 @@ test('page still works on a slow 3G-like network', async ({ browser }) => {
   const media = await page.evaluate(() => performance.getEntriesByType('resource').map((r) => r.name).filter((n) => /\.(mp3|mp4|webm|gif)(\?|$)/.test(n)));
   expect(media).toEqual([]);
   await ctx.close();
+});
+
+test('voice: only one recording plays, and switching scenario or language stops it', async ({ page }) => {
+  await page.goto('/#voice-agents');
+  const audio = page.getByTestId('voice-audio');
+  await page.getByTestId('voice-play').click();
+  await expect.poll(() => audio.evaluate((a: HTMLAudioElement) => a.currentTime), { timeout: 8000 }).toBeGreaterThan(0.3);
+  await page.getByTestId('voice-tab-2').click();
+  await expect.poll(() => page.evaluate(() => [...document.querySelectorAll('audio')].filter((a) => !a.paused).length)).toBe(0);
+  await page.getByTestId('voice-play').click();
+  await expect.poll(() => audio.evaluate((a: HTMLAudioElement) => !a.paused)).toBe(true);
+  await page.getByTestId('voice-lang-hi').click();
+  await expect.poll(() => page.evaluate(() => [...document.querySelectorAll('audio')].filter((a) => !a.paused).length)).toBe(0);
+  expect(await page.locator('audio').count()).toBe(1);
+  expect(await audio.getAttribute('autoplay')).toBeNull();
+});
+
+test('integrations hub: sequential pairs, hover trace, no per-card badges', async ({ page }) => {
+  await page.goto('/#integrations');
+  const hub = page.getByTestId('integrations');
+  const s0 = await hub.getAttribute('data-step');
+  await expect.poll(() => hub.getAttribute('data-step'), { timeout: 4000 }).not.toBe(s0);
+  await expect(page.getByTestId('integration-card')).toHaveCount(12);
+  await expect(hub.locator('svg path[d]').first()).toBeAttached();
+  await page.getByTestId('integration-card').nth(0).hover();
+  await expect(page.getByTestId('integration-engine').first()).toContainText('Tracing Meta Ads');
 });

@@ -44,7 +44,7 @@ export function Integrations() {
             {/* Desktop hub */}
             <div className="relative hidden lg:grid lg:grid-cols-[236px_1fr_236px] lg:items-start">
               <Column title="Lead sources" items={leadSources} active={activeL} side="l" onHover={setHover} />
-              <Beams activeL={activeL} activeR={activeR} step={step} hover={!!hover} animate={inView && !reduced} label={hover ? '' : pairLabel} />
+              <Beams activeL={activeL} activeR={activeR} step={step} hover={!!hover} animate={inView && !reduced} label={hover ? `Tracing ${(hover.side === 'l' ? leadSources : destinations)[hover.i].name}` : pairLabel} />
               <Column title="Outcome destinations" items={destinations} active={activeR} side="r" onHover={setHover} />
             </div>
 
@@ -105,7 +105,7 @@ function Engine({ label, compact = false }: { label: string; compact?: boolean }
         <LogoMark size={compact ? 44 : 60} />
       </div>
       <p className="mt-4 text-[15px] font-semibold text-white">{brand.productName} AI engine</p>
-      <p className="mt-1 flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11.5px] text-[var(--c-text)]"><span className="live-dot h-1.5 w-1.5 rounded-full bg-[#12b881]" />{label ? <span key={label} style={{ animation: 'rise .3s var(--ease-out) both' }}>{label}</span> : 'Hover a tool to trace it'}</p>
+      <p className="mt-1 flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11.5px] text-[var(--c-text)]"><span className="live-dot h-1.5 w-1.5 rounded-full bg-[#12b881]" /><span key={label} style={{ animation: 'rise .3s var(--ease-out) both' }}>{label}</span></p>
     </div>
   );
 }

@@ -76,7 +76,7 @@ export function HowItWorks() {
                 <img src="/assets/videos/product-walkthrough-poster.webp" alt="" loading="lazy" decoding="async" width="296" height="166" className="h-full w-full object-cover opacity-90 transition-transform duration-300 group-hover:scale-[1.03]" />
                 <span className="absolute inset-0 grid place-items-center"><span className="grid h-9 w-9 place-items-center rounded-full bg-white/95 text-[#0d1424] shadow-lg"><Play size={14} fill="currentColor" className="translate-x-[1px]" /></span></span>
               </span>
-              <span><span className="block text-[14.5px] font-semibold text-[var(--c-head)]">See all five steps in 30 seconds</span><span className="mt-0.5 block text-[13px] text-[var(--c-text)]">Watch the product walkthrough</span></span>
+              <span><span className="block text-[14.5px] font-semibold text-[var(--c-head)]">See the full journey in 78 seconds</span><span className="mt-0.5 block text-[13px] text-[var(--c-text)]">Watch the product walkthrough</span></span>
             </button>
           </div>
 

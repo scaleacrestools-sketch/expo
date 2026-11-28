@@ -62,11 +62,12 @@ Sections live in `src/sections/` (one file per section, in page order in `src/Ap
 |---|---|---|---|
 | Sample calls: 4 scenarios × English, Hinglish, Hindi (12 MP3, ~860 KB) | `public/assets/audio/` | Yes, loaded only when a visitor presses play | `npm run media:audio` |
 | Source voice clips (45, ElevenLabs) | `media-src/voice/` | No | Generated with ElevenLabs; see below |
-| Walkthrough video, silent + voice-over (MP4 + WebM), captions, poster | `public/assets/videos/` | Yes, loaded only when the video modal opens | `npm run build && npm run preview`, then `npm run media:video` |
-| Narration clips (9, ElevenLabs) | `media-src/narration/` | No | — |
-| Hero animation video (11.8 s) | `media/videos/` | No (the live hero is HTML/SVG) | `npm run media:video` |
+| Walkthrough video V3 (77.5 s, 10 scenes): `product-walkthrough-v3.*` with voice-over, `-silent.*`, captions, `product-walkthrough-poster.webp` | `public/assets/videos/` | Yes, loaded only when the video modal opens | `npm run build && npm run preview`, then `npm run media:video` |
+| Narration clips (10, ElevenLabs, V3) | `media-src/narration-v3/` (V2 clips kept in `media-src/narration/`) | No | — |
+| Hero animation video (15.8 s) | `media/videos/` | No (the live hero is HTML/SVG) | `npm run media:video` |
 | GIF demos (7) | `media/gifs/` | No | `npm run media:gifs` |
-| Scroll previews, screenshots | `preview/` | No | `npm run media:gifs`, `npm run media:screenshots` |
+| Real-time review recordings (desktop 1920×1080, mobile 390×844 @2×) | `preview/landing-page-*-preview-v3.mp4` | No | `npm run build && npm run preview`, then `npm run media:record` |
+| Section screenshots (18 × desktop + mobile), responsive captures | `preview/v3/` | No | `npm run media:screenshots -- http://localhost:4173/ preview/v3/screenshots -v3`, `npm run media:responsive` |
 | Fonts (Inter text + display subsets, 54 KB) | `public/assets/fonts/` | Yes | `scripts/build-fonts/build-fonts.sh` |
 
 Review media lives outside `public/` on purpose so it never increases the deploy or the page weight.

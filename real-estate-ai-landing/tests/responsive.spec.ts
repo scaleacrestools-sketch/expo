@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const widths = [1920, 1440, 1280, 1024, 768, 430, 390, 375, 320];
+const widths = [1920, 1440, 1280, 1024, 768, 430, 390, 375, 360, 320];
 
 for (const w of widths) {
   test(`no horizontal overflow at ${w}px`, async ({ browser }) => {

@@ -12,7 +12,9 @@
     "media:video": "node scripts/render-video/narration.mjs && node scripts/render-video/render.mjs",
     "media:gifs": "node scripts/generate-gifs/generate.mjs",
     "media:screenshots": "node scripts/capture-screenshots/capture.mjs",
-    "media:audio": "node scripts/generate-audio/build-audio.mjs"
+    "media:audio": "node scripts/generate-audio/build-audio.mjs",
+    "media:record": "node scripts/record-preview/record.mjs desktop && node scripts/record-preview/record.mjs mobile",
+    "media:responsive": "node scripts/capture-screenshots/responsive.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",

@@ -53,7 +53,7 @@ async function visit(sel, holdMs = 4000, opts = {}) {
 }
 async function point(loc) {
   await loc.scrollIntoViewIfNeeded().catch(() => {});
-  const b = await loc.boundingBox(); if (!b) return null;
+  if (!(await loc.count())) return null; const b = await loc.boundingBox({ timeout: 4000 }).catch(() => null); if (!b) return null;
   const x = b.x + b.width / 2, y = b.y + b.height / 2;
   if (!mobile) { await page.evaluate(([x, y]) => { document.getElementById('rec-cursor').style.transform = `translate(${x - 4}px,${y - 2}px)`; }, [x, y]); await wait(750); await page.mouse.move(x, y); }
   return { x, y };
@@ -102,7 +102,7 @@ if (!mobile) {
   await visit('#integrations', 4500, { walk: false });
   await hover('[data-testid="integration-card"] >> nth=8', 3000); await hover('[data-testid="integration-engine"]', 3500);
   await visit('#mobile', 2500, { walk: false });
-  await click('[data-testid="mobile-tab-1"]', 3000); await click('[data-testid="mobile-tab-2"]', 3000);
+  await click('[data-testid="mobile-tab-1"]', 3000); await click('[data-testid="mobile-tab-0"]', 3000);
   await visit('#compare', 3000);
   await visit('#faq', 2000, { walk: false });
   await click('[data-testid="faq-q-1"]', 3000); await click('[data-testid="faq-q-3"]', 3000);
