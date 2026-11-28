@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { CheckCircle2, Languages, Pause, Play, RotateCcw, Sparkles } from 'lucide-react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { voice } from '../data/content';
 import { story } from '../data/story';
 import timings from '../data/audio-timings.json';
@@ -38,7 +38,8 @@ export function VoiceAgents() {
   // Smooth time updates while playing (timeupdate fires only ~4×/s).
   useEffect(() => {
     if (!playing) return;
-    const tick = () => { if (audio.current) setTime(audio.current.currentTime); raf.current = requestAnimationFrame(tick); };
+    let last = -1;
+    const tick = () => { const a = audio.current; if (a && Math.abs(a.currentTime - last) >= 0.04) { last = a.currentTime; setTime(last); } raf.current = requestAnimationFrame(tick); };
     raf.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf.current);
   }, [playing]);
@@ -78,12 +79,11 @@ export function VoiceAgents() {
         <SectionHeader eyebrow={voice.eyebrow} title={voice.title} description={voice.description} />
 
         <Reveal className="mt-10">
-          <div role="tablist" aria-label="Sample call scenarios" onKeyDown={onTabKey} className="no-scrollbar mx-auto flex max-w-full gap-1 overflow-x-auto rounded-full border border-[var(--c-line)] bg-white/[0.03] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,.04)] sm:w-max">
+          <div role="tablist" aria-label="Sample call scenarios" onKeyDown={onTabKey} className="mx-auto grid max-w-full grid-cols-2 gap-1 rounded-[22px] border border-[var(--c-line)] bg-white/[0.03] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,.04)] sm:flex sm:w-max sm:rounded-full">
             {voice.conversations.map((c, i) => (
               <button key={c.id} id={`voice-tab-${i}`} role="tab" aria-selected={tab === i} aria-controls="voice-panel" tabIndex={tab === i ? 0 : -1} onClick={() => setTab(i)} data-testid={`voice-tab-${i}`}
-                className={`relative min-h-[42px] flex-none whitespace-nowrap rounded-full px-4 text-[14px] font-medium transition-colors duration-150 ${tab === i ? 'text-white' : 'text-[var(--c-text)] hover:text-white'}`}>
-                {tab === i && <motion.span layoutId="voice-pill" className="absolute inset-0 rounded-full bg-gradient-to-b from-[#8f6bff] to-[#6a3ff0] shadow-[0_8px_22px_-8px_rgba(106,63,240,.9),inset_0_1px_1px_rgba(255,255,255,.3)]" transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }} />}
-                <span className="relative">{c.tab}</span>
+                className={`relative min-h-[44px] flex-none rounded-full px-3 text-[13px] font-medium leading-tight sm:whitespace-nowrap sm:px-4 sm:text-[14px] transition-[color,background-color,box-shadow] duration-150 ${tab === i ? 'bg-gradient-to-b from-[#8f6bff] to-[#6a3ff0] text-white shadow-[0_8px_22px_-8px_rgba(106,63,240,.9),inset_0_1px_1px_rgba(255,255,255,.3)]' : 'text-[var(--c-text)] hover:text-white'}`}>
+                {c.tab}
               </button>
             ))}
           </div>
@@ -107,13 +107,7 @@ export function VoiceAgents() {
 
               {/* Waveform from the real audio (RMS peaks), coloured up to the playhead */}
               <div className="relative mt-7 h-[88px]" data-testid="voice-waveform">
-                <div className="flex h-full items-center gap-[2px]" aria-hidden="true">
-                  {peaks.map((h, i) => {
-                    const at = i / peaks.length;
-                    const done = at <= progress;
-                    return <span key={`${conv.id}-${lang}-${i}`} style={{ flex: 1, height: `${Math.max(5, h * 100)}%`, borderRadius: 2, background: done ? 'linear-gradient(180deg,#cbbdff,#6a3ff0)' : 'rgba(255,255,255,0.13)', transition: 'background .12s' }} />;
-                  })}
-                </div>
+                <Wave peaks={peaks} progress={progress} id={`${conv.id}-${lang}`} />
                 <input type="range" min={0} max={duration || 1} step={0.05} value={time} aria-label="Seek within the sample call" aria-valuetext={`${fmt(time)} of ${fmt(duration)}`} data-testid="voice-progress"
                   onChange={(e) => seek(+e.target.value)} className="range absolute inset-0 h-full w-full cursor-pointer opacity-0" />
                 <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 w-px bg-white/70 transition-opacity" style={{ left: `${progress * 100}%`, opacity: time > 0 ? 1 : 0 }} />
@@ -184,5 +178,25 @@ export function VoiceAgents() {
         </Reveal>
       </div>
     </Section>
+  );
+}
+
+/** Real-audio waveform as one SVG path; playback only moves a clip rectangle, so updates stay cheap. */
+const WavePath = memo(function WavePath({ peaks, fill }: { peaks: number[]; fill: string }) {
+  const n = peaks.length || 1; const w = 1000 / n; const gap = w * 0.28;
+  const d = peaks.map((h, i) => { const bh = Math.max(5, h * 100); const y = (100 - bh) / 2; return `M${(i * w + gap / 2).toFixed(1)} ${y.toFixed(1)}h${(w - gap).toFixed(1)}v${bh.toFixed(1)}h-${(w - gap).toFixed(1)}z`; }).join('');
+  return <path d={d} fill={fill} />;
+});
+function Wave({ peaks, progress, id }: { peaks: number[]; progress: number; id: string }) {
+  const clip = `wave-clip-${id}`;
+  return (
+    <svg viewBox="0 0 1000 100" preserveAspectRatio="none" className="h-full w-full" aria-hidden="true">
+      <defs>
+        <linearGradient id="wave-fill" x1="0" y1="0" x2="0" y2="1"><stop stopColor="#cbbdff" /><stop offset="1" stopColor="#6a3ff0" /></linearGradient>
+        <clipPath id={clip}><rect x="0" y="0" height="100" width={1000 * progress} /></clipPath>
+      </defs>
+      <WavePath peaks={peaks} fill="rgba(255,255,255,0.13)" />
+      <g clipPath={`url(#${clip})`}><WavePath peaks={peaks} fill="url(#wave-fill)" /></g>
+    </svg>
   );
 }

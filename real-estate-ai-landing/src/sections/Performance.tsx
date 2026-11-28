@@ -22,7 +22,7 @@ function fmt(v: number, f: string) {
 }
 
 export function Performance() {
-  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.15 });
+  const { ref, inView, seen } = useInView<HTMLDivElement>({ threshold: 0.15 });
   const [range, setRange] = useState<'7d' | '30d'>('7d');
   const scale = range === '7d' ? 1 : 4.1;
   const feed = [
@@ -61,19 +61,19 @@ export function Performance() {
                 </div>
 
                 <div className="mt-4 grid grid-cols-2 gap-2.5 md:grid-cols-3 xl:grid-cols-6">
-                  {performanceMetrics.map((m) => <MetricCount key={m.label + range} label={m.label} target={m.format === 'int' ? m.value * scale : m.value} format={m.format} delta={m.delta} run={inView} />)}
+                  {performanceMetrics.map((m) => <MetricCount key={m.label + range} label={m.label} target={m.format === 'int' ? m.value * scale : m.value} format={m.format} delta={m.delta} run={seen} />)}
                 </div>
 
                 <div className="mt-2.5 grid gap-2.5 lg:grid-cols-12">
                   <Panel className="lg:col-span-7" title="Call volume" right={<span className="flex items-center gap-3 text-[11px] text-[var(--c-muted)]"><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#a48bff]" />Calls</span><span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#4f7dff]" />Connected</span></span>}>
-                    <LineChart key={range} animate={inView} ariaLabel="Demo call volume chart, calls and connected calls per day" labels={callVolume.map((d) => d.day)}
+                    <LineChart key={range} animate={seen} ariaLabel="Demo call volume chart, calls and connected calls per day" labels={callVolume.map((d) => d.day)}
                       series={[{ key: 'c', label: 'Calls', color: '#a48bff', values: callVolume.map((d) => Math.round(d.calls * scale)) }, { key: 'k', label: 'Connected', color: '#4f7dff', values: callVolume.map((d) => Math.round(d.connected * scale)) }]} height={300} />
                   </Panel>
                   <Panel className="lg:col-span-5" title="Lead qualification · fields captured" right={<DemoTag />}>
-                    <BarChart ariaLabel="Demo share of calls where each qualification field was captured" data={qualificationBars} run={inView} />
+                    <BarChart ariaLabel="Demo share of calls where each qualification field was captured" data={qualificationBars} run={seen} />
                     <div className="my-3 h-px bg-[var(--c-line)]" />
                     <p className="mb-2 text-[12px] font-medium text-[var(--c-head)]">Lead outcome distribution</p>
-                    <DonutChart ariaLabel="Demo distribution of lead outcomes" data={outcomeDistribution} run={inView} />
+                    <DonutChart ariaLabel="Demo distribution of lead outcomes" data={outcomeDistribution} run={seen} />
                   </Panel>
                 </div>
 
@@ -93,7 +93,7 @@ export function Performance() {
                       </thead>
                       <tbody>
                         {campaigns.map((c, ri) => (
-                          <tr key={c.name} className="border-b border-[var(--c-line)] transition-[background-color,opacity,transform] duration-500 last:border-0 hover:bg-white/[0.035]" style={{ opacity: inView ? 1 : 0, transform: inView ? 'none' : 'translateY(8px)', transitionDelay: `${300 + ri * 80}ms` }}>
+                          <tr key={c.name} className="border-b border-[var(--c-line)] transition-[background-color,opacity,transform] duration-500 last:border-0 hover:bg-white/[0.035]" style={seen ? { animation: `rise .45s ${300 + ri * 80}ms var(--ease-out) both` } : undefined}>
                             <th scope="row" className="px-4 py-3 text-left font-medium text-[var(--c-head)]">
                               <span className="flex items-center gap-2.5"><span className="h-7 w-1 rounded-full bg-gradient-to-b from-[#c4b5fd] to-[#6d28d9]" />{c.name}</span>
                             </th>

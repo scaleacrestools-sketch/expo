@@ -52,7 +52,7 @@ for (const [w, tag, scale] of [[1440, 'desktop', 1], [390, 'mobile', 1]]) {
   await page.goto(base, { waitUntil: 'networkidle' });
   await settle(page);
   if (!only) {
-    await page.screenshot({ path: join(out, `homepage-${tag}.png`), fullPage: true });
+    await page.screenshot({ path: join(out, `homepage-${tag}${process.env.SUFFIX || ''}.png`), fullPage: true });
     console.log('full', tag);
   }
   if (tag === 'desktop') {

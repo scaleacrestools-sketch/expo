@@ -1,111 +1,99 @@
-# QA Report
+# QA Report — V2
 
-Date: 28 Nov 2026 · Build: `npm run build` (Vite 6, production) served by `vite preview` · Browser: Playwright Chromium 1.63 (headless).
+Date: 28 Nov 2026. V2 tested as a production build (`vite build` + `vite preview`) in Playwright Chromium 1.63. V1 tested on the live Netlify site. Baseline details are in `V2-AUDIT.md`.
 
 ## Summary
 
-| Check | Result |
-|---|---|
-| TypeScript (`tsc -b`) | Pass, 0 errors |
-| Production build | Pass |
-| Playwright tests (39) | **39 passed, 0 failed**, three consecutive runs |
-| Console / JS / network errors during full scroll | None |
-| Horizontal overflow at 1920, 1440, 1280, 1024, 768, 430, 390, 375, 320 px | None |
-| Lighthouse mobile | Performance 95 · Accessibility 100 · Best Practices 100 · SEO 100 |
-| Lighthouse desktop | Performance 100 · Accessibility 100 · Best Practices 100 · SEO 100 |
+| Check | V1 (deployed) | V2 (production build, local) |
+|---|---|---|
+| Playwright tests | 39 / 39 pass | **44 / 44 pass** (two consecutive runs) |
+| Lighthouse mobile (perf / a11y / BP / SEO) | 96 / 100 / 100 / 100 | **96–97 / 100 / 100 / 100** |
+| Lighthouse desktop | 100 / 100 / 100 / 100 | **100 / 100 / 100 / 100** |
+| Mobile LCP | 1.6–1.9 s | 2.1 s |
+| CLS | 0 | 0 (mobile), 0.001 (desktop) |
+| Mobile TBT | 170–180 ms | 160 ms |
+| Page weight on load | 279 KB | **220 KB** |
+| Font download | 133 KB (2 files) | **54 KB** (2 subset files) |
+| Deploy size (`dist/`) | ~20 MB | **8.8 MB** (review GIFs/videos moved out) |
+| Hero dashboard visible at 1440 × 900 | 231 px | **346 px** |
+| Console / JS / network errors | none | none |
+| Horizontal overflow (9 widths) | none | none |
 
-Full test log: `preview/test-results.txt`. Screenshots: `preview/screenshots/`.
+**Lab vs field.** All figures are lab measurements (Lighthouse simulated throttling, Playwright). There is no real-user data yet. V1 numbers come from Netlify (real network); V2 numbers come from `localhost`, so V2 has no network latency advantage or penalty applied by a CDN. Re-measure V2 after deploying.
 
-## Important limitation: reference sites
+### Interaction latency (INP proxy, lab)
+Worst interaction per run across 9–13 real taps (menu, voice tabs and language, play, use-case tab, FAQ, funnel toggle, phone screens, date range, demo modal) on an emulated Pixel 7:
 
-Both reference sites (`agenly.framer.ai`, `huvo.ai`) were **unreachable** from the build environment (network policy refused the connection). Section-by-section comparison against the live references was therefore not possible. Design decisions follow an approximation of the Agenly style documented in `DESIGN-NOTES.md`. A side-by-side check against the live sites is recommended, and the colour tokens should be confirmed with DevTools.
+| | Run 1 | 2 | 3 | 4 | 5 | Median |
+|---|---|---|---|---|---|---|
+| V1, 4× CPU throttle | 216 | 264 | 248 | 200 | 208 | **216 ms** |
+| V2, 4× CPU throttle | 224 | 280 | 160 | 256 | 208 | **224 ms** |
+| V2, no throttle | 104 | 112 | 112 | — | — | **112 ms** |
 
-## Section-by-section visual review (1440 px and 390 px)
+Under heavy 4× throttling both versions sit slightly above the 200 ms target, with large run-to-run noise on this shared machine. V2 changes made to keep it level with V1 despite richer content: voice waveform rendered as one SVG path with a moving clip (instead of 96 elements), playback updates throttled to ~25/s, tab pills without layout animations, modal content mounted one frame after the dialog paints. True INP needs field data from real visitors.
 
-Each section was rendered, screenshotted and inspected. Issues found are listed with the fix applied.
+## Section-by-section (V1 → V2)
 
-| # | Section | Theme | Result | Issues found and fixed |
+| # | Section | Theme | V2 result | What changed / verified |
 |---|---|---|---|---|
-| 01 | Navigation | Dark | Pass | Sticky, blurs on scroll, dropdown and mobile menu verified. |
-| 02 | Hero | Dark | Pass | Floating cards covered sidebar items: moved outward. Video button overlapped the mobile story strip: now in normal flow on mobile. Dimmed activity rows failed contrast: now skeleton bars. |
-| 03 | Trusted By | Dark | Pass | Marquee pauses on hover, static wrap under reduced motion. |
-| 04 | The Problem | White | Pass | Illustrations overflowed their 230 px frame: frame raised to 252 px, rows tightened. |
-| 05 | Lead Funnel | White | Pass | Stage labels sat inside narrow bars and became unreadable on mobile: labels moved above bars. |
-| 06 | Performance | Dark | Pass | Line chart left half the panel empty: chart height increased. |
-| 07 | How It Works | White | Pass | Closed-accordion state on mobile could break desktop index: guarded. |
-| 08 | AI Voice Agents | Dark | Pass | Native range slider looked heavy: custom styled. Arrow keys moved from the selected tab, not the focused one: fixed. |
-| 09 | Omnichannel | Dark | Pass | Ring diagram replaced by hub + grid on mobile. |
-| 10 | Product Features | White | Pass | Tall bento cards showed empty space: visuals now vertically centred. |
-| 11 | Use Cases | Dark | Pass | Same keyboard fix as voice tabs. |
-| 12 | Qualification | White | Pass | — |
-| 13 | Integrations | Dark | Pass | All items marked Planned with disclaimer. |
-| 14 | Mobile CRM | White | Pass | Dashboard screen content ran under the tab bar; profile name wrapped: content trimmed. |
-| 15 | Comparison | White | Pass | Sticky feature column and horizontal scroll verified at 390 px. |
-| 16 | FAQ | Dark | Pass | — |
-| 17 | Final CTA | Dark | Pass | — |
-| 18 | Footer | Dark | Pass | Single long column on mobile: now two columns. |
+| 01 | Navigation | Dark | Pass | Agenly glass bar on `#080515`; active-section underline (`aria-current`) driven by one IntersectionObserver; dropdown, mobile menu, 44 px targets verified; anchor offset fixed (V2 bug found by tests: double 168 px offset). |
+| 02 | Hero | Dark | Pass | Spacing tightened; dashboard 346 px above the fold; Book a Demo · Watch Product Demo · Hear a Sample Call; 9-step story with call/qualified/visit notifications, qualification progress, status changes, dashboard +1 update; floating cards moved fully outside the dashboard; step caption. |
+| 03 | Trusted By | Dark | Pass | Heading raised to display size; marquee slowed to 48 s, wider edge fade, pause on hover; categories only (no client logos). |
+| 04 | The Problem | White | Pass | Three distinct animated illustrations kept; sheet transition from dark. |
+| 05 | Lead Funnel | White | Pass | Particles flow between stages; labels above bars (readable on mobile); tooltips; "Illustrative data" tag. |
+| 06 | Performance | Dark | Pass | Live status feed, row entrance, chart draw, count-ups, donut animation; outcome shares corrected to match the 68% connect rate; table retitled "Top campaigns this week". Reveal state now latches (V2 bug found in QA: content re-hid when scrolled away). |
+| 07 | How It Works | White | Pass | Pause/Play tour control, auto-advance pauses on hover/focus and after manual selection; animated rail with moving data dot; walkthrough preview card opens the same video. |
+| 08 | AI Voice Agents | Dark | Pass | ElevenLabs recordings in English, Hinglish and Hindi; waveform from real audio peaks; seek, restart, duration, speaker identification, synced transcript, outcome + qualification result; audio `preload="none"`. Mobile tabs changed to a 2×2 grid (V2 QA finding: tabs were clipped). |
+| 09 | Omnichannel | Dark | Pass | Centre card follows Rohan Mehta through all 7 stages with stage detail and progress; lit and completed nodes; email + SMS light for visit reminders; particles reverse toward the active channel. |
+| 10 | Features | White | Pass | Asymmetric bento with AI Calling, Lead Qualification, WhatsApp and Site Visit as large "Core capability" cards; new demos for scoring, 24/7 permitted hours, reactivation scheduling, WhatsApp typing and delivery ticks; calendar demo re-laid out (V2 QA finding: oversized cells). |
+| 11 | Use Cases | Dark | Pass | Icon tabs, four distinct dashboards, arrow/Home/End keys. |
+| 12 | Qualification | White | Pass | Ten-question sequence: question → answer → CRM field → progress → score (example rules sum to 86). |
+| 13 | Integrations | Dark | Pass | Unchanged structure; all items labelled Planned with no-partnership note; horizon glow. |
+| 14 | Mobile CRM | White | Pass | Live notifications and status changes on both screens; "Product Preview · Coming Soon" kept. |
+| 15 | Comparison | White | Pass | Unchanged rows; sticky feature column and horizontal scroll verified at 390 px. |
+| 16 | FAQ | Dark | Pass | Sheet transition; keyboard accordion verified. |
+| 17 | Final CTA | Dark | Pass | Agenly-style card glow; divider orb joins it to the footer. |
+| 18 | Footer | Dark | Pass | Two-column mobile layout kept; connected to CTA. |
 
-### Cross-cutting bug found and fixed
-Tailwind does not generate opacity variants for colours written as `var(...)` (for example `bg-[var(--brand-primary)]/20`). Every translucent brand tint and border on the page was silently missing. Brand colours are now exposed as RGB channels (`bg-brand/20`), and every usage was converted.
+## Comparison with the references
 
-## Functional tests (Playwright)
+| Aspect | Agenly | V2 |
+|---|---|---|
+| Background / surfaces | `#080515`, `#0D0D1C`, `#111225` | Same values |
+| Card depth | Inset blue glow + hairline | Same treatment |
+| Headline type | Inter 400, −5 px, display sizes | Inter Display 500, −0.05 em (slightly heavier for legibility on white) |
+| Buttons | Pill, gradient, 10/25 glow, inset highlight | Same structure in brand violet |
+| Section rhythm | Horizon glows, orb dividers | Horizon glows, orb dividers, plus rounded sheet transitions for dark/white changes |
+| Accent | Blue `#1856FF` | Violet `#8057FF` (Agenly's own violet token); blue used only for data accents |
 
-All of these were executed and passed:
+| Aspect | HUVO | V2 |
+|---|---|---|
+| White sections | Ink `#0D1424`, slate text, `#EAF0F6` hairlines | Same palette (slate darkened for AA) |
+| Product story | Live dashboard in hero, sticky How It Works, problem cards, mobile app | All present, with interactive demos instead of static mockups |
+| Voice | Real calls (proprietary) | Original ElevenLabs recordings, clearly labelled as simulated |
 
-- SEO basics: title, description, canonical, OG image, exactly one H1.
-- All 18 sections present, in order, with the specified dark/white theme; dark share above 50%.
-- Every in-page anchor resolves to an element; nav links scroll to their sections.
-- Solutions dropdown: opens, lists 6 items, closes on Escape.
-- Mobile menu: opens, navigates, closes.
-- Demo modal opens from nav, hero and final CTA; Escape closes; required-field, email and phone validation; consent required; spam time-trap; local-preview state shown on localhost.
-- Voice agents: 4 tabs by click and keyboard, language switch to Hinglish transcript, audio loads and plays, time display advances, active transcript line highlights, pause, seek with progress bar, restart.
-- "Hear a Sample Call" scrolls to the voice section.
-- How It Works: all 5 steps selectable, arrow-key navigation.
-- Use-case tabs: click, arrow keys, footer deep links select the right tab.
-- Funnel workflow toggle and stage tooltip; analytics date-range toggle; chart hover tooltip; campaign table rows.
-- Feature calendar demo picks a date; 10 feature cards; 12 integration cards with hover tooltip; 9 comparison rows; mobile screen switch; "Coming Soon" label.
-- Omnichannel node tooltip.
-- FAQ accordion by mouse and keyboard.
-- Video modal: walkthrough plays, duration over 25 s, caption track present, Escape closes.
-- Privacy dialog opens from footer.
-- Reduced motion: hero shows the completed state and no infinite animations run.
-- No horizontal overflow at all nine widths; hero CTAs fully on screen; mobile touch targets at least 40 px.
+Visual comparison images: `preview/compare-fold-v1-v2.png` (first viewport) and `preview/compare-fullpage-v1-v2.png`.
 
-### Bugs found by tests and fixed
-- Early clicks on "Hear a Sample Call" or nav anchors before the deferred sections mounted did nothing. Both now mount the sections and scroll once they exist.
-
-## Performance
-
-Measured with Lighthouse 12 against the production build on localhost (simulated throttling for mobile).
-
-| | Perf | A11y | Best practices | SEO | FCP | LCP | TBT | CLS |
-|---|---|---|---|---|---|---|---|---|
-| Mobile (before optimisation) | 82 | 97 | 100 | 100 | 2.6 s | 2.8 s | 410 ms | 0 |
-| Mobile (final) | 95 | 100 | 100 | 100 | 2.3 s | 2.4 s | 0 ms | 0 |
-| Desktop (final) | 100 | 100 | 100 | 100 | 0.5 s | 0.5 s | 0 ms | 0 |
-
-Optimisations applied: below-the-fold sections split into a separate chunk rendered on idle; hero heading no longer fades from transparent (it was delaying LCP); render surface for video capture is code-split and never loads for visitors; off-screen loops paused.
-
-Localhost scores exclude real network latency and CDN behaviour; re-measure on the deployed Netlify URL.
+## Functional tests (all executed, all passing)
+SEO basics · 18 sections in order with correct themes · every anchor resolves · nav anchors scroll correctly · active nav indicator · Solutions dropdown · mobile menu · demo modal from three CTAs, validation, spam time-trap, local-preview message · **form POST against the live site** (intercepted, verifies `form-name=demo-request` and fields) · voice tabs (click and keys), Hinglish and Hindi transcripts, no audio preload, playback, speaker label, seek, pause, restart, result card · sample-call CTA scrolls to voice · How It Works steps, keys, pause/play tour · video preview card · video modal: poster, no autoplay, plays on demand, >25 s, caption track, voice-over default, switch to silent, Escape closes and unmounts · use-case tabs and footer deep links · funnel toggle and tooltip · chart tooltip and range toggle · campaign rows · feature calendar · 12 visible integration cards and tooltip · comparison rows · mobile CRM screen switch · omnichannel tooltip · FAQ by mouse and keyboard · legal dialog · qualification reaches 10/10 and score 86 · outcome shares sum to 100 and "no answer" = 32% · reduced motion (final states, no infinite animations) · **slow network** (400 ms latency, 500 kbps: H1 renders, page completes, no audio/video/GIF requested) · no horizontal overflow at 1920–320 px · touch targets ≥ 40 px.
 
 ## Media verification
-
-| Asset | Verified |
+| Asset | Result |
 |---|---|
-| `product-walkthrough.mp4` / `.webm` | 1920×1080, 30.0 s, H.264 / VP9, silent, burned-in captions + `product-walkthrough.vtt` |
-| `hero-animation.mp4` / `.webm` | 1920×1080, 14.0 s |
-| `video-poster.webp` | 1280 px |
-| GIFs (7) | 7–12 s each, 0.3–1.7 MB (scroll preview 5.7 MB), loop |
-| `preview/landing-page-preview.mp4` | 1440×900, 17 s scroll through the real site |
-| Sample audio (8 MP3) | 10–18 s each, English + Hinglish |
-| SVG library (16 + favicon) | All parse as valid XML |
+| `product-walkthrough(-voiceover).mp4/.webm` | 1920×1080, 33.9 s; voice-over versions have AAC/Opus audio, −16.6 dB mean, −1.0 dB peak; silent versions have no audio track |
+| Opening frame | Shows the Meta Ads form with the buyer's name already filled (V1 opened on an empty frame) |
+| Ending | 3.2 s call-to-action card with "Book a Demo" |
+| Captions | `product-walkthrough.vtt`, generated from the same timings as the narration |
+| Sample calls | 12 MP3 (4 scenarios × 3 languages), 10–17 s each, 860 KB total, waveform peaks precomputed |
+| GIFs | 6 in `media/gifs/`, 0.3–1.2 MB, 6.6–12 s |
+| Previews | `preview/landing-page-preview-v2.mp4` (16.6 s, 1440×900), `.gif` (13.8 s), `homepage-desktop-v2.png`, `homepage-mobile-v2.png` |
 
 ## Remaining limitations
-
-1. **Reference sites not inspected** (network blocked). Colours and typography are approximations; see `DESIGN-NOTES.md`.
-2. **Voice quality:** sample audio uses open-source TTS (Flite, eSpeak NG). It is intelligible but clearly synthetic, and the Hindi voice is robotic. Replace with a licensed neural TTS before showing customers.
-3. **Netlify Forms not tested end to end**: submission to a live Netlify site cannot be exercised locally. The local-preview path and validation are tested; confirm on the first deploy that the `demo-request` form is detected and a test enquiry arrives.
-4. **Placeholders:** product name, company name, site URL, contact details and social links are placeholders in `src/config/brand.ts`. Privacy and Terms are short placeholder dialogs, not legal documents.
-5. **Integration logos:** shown as neutral monograms, not official marks. All marked Planned.
-6. **Browsers:** automated testing covered Chromium only. Safari and Firefox were not tested in this environment.
-7. GIFs live in `public/assets/gifs` as requested, so they ship with the deploy (about 13 MB) even though the page itself does not load them.
+1. **Netlify Forms is disabled on the live project.** Enable form detection in Netlify and redeploy; until then real enquiries fail (the form says so).
+2. **V2 is not deployed.** Lighthouse and interaction numbers for V2 are from `localhost`. Re-run on the deployed URL (`BASE_URL=… npm test` works against any URL).
+3. **Audio quality was checked technically, not by ear.** Durations, levels and line timing were verified; I cannot listen to playback in this environment. Please review the 12 calls and the narration before publishing.
+4. **ElevenLabs credits were used**: 45 call lines + 9 narration lines (each generated with ElevenLabs' default two takes; the first take was used).
+5. **INP** is a lab proxy, slightly above 200 ms only under 4× CPU throttling (V1 is the same); no field data exists.
+6. **Mobile Features** is long (4,767 px at 390 px) because every feature keeps its own demo; consider collapsing secondary feature demos on phones if the page feels long.
+7. Only Chromium was automated; Safari and Firefox were not tested.
+8. Placeholders remain for product name, company, domain, contact details and legal pages.

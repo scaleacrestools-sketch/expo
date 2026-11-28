@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { X } from 'lucide-react';
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 type Props = { open: boolean; onClose: () => void; title: string; children: ReactNode; wide?: boolean; theme?: 'dark' | 'light'; testId?: string };
 
@@ -8,6 +8,13 @@ type Props = { open: boolean; onClose: () => void; title: string; children: Reac
 export function Modal({ open, onClose, title, children, wide, theme = 'dark', testId }: Props) {
   const panel = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
+  // Paint the dialog shell on the click frame and mount heavier content one frame later (keeps INP low).
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    if (!open) { setReady(false); return; }
+    const id = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(id);
+  }, [open]);
   useEffect(() => {
     if (!open) return;
     const prev = document.activeElement as HTMLElement | null;
@@ -16,7 +23,7 @@ export function Modal({ open, onClose, title, children, wide, theme = 'dark', te
     const t = window.setTimeout(() => {
       const first = panel.current?.querySelector<HTMLElement>('[data-autofocus], input, button, video, [tabindex]:not([tabindex="-1"])');
       first?.focus();
-    }, 30);
+    }, 80);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') { e.stopPropagation(); onClose(); }
       if (e.key === 'Tab' && panel.current) {
@@ -49,7 +56,7 @@ export function Modal({ open, onClose, title, children, wide, theme = 'dark', te
             <button type="button" onClick={onClose} aria-label="Close dialog" className="absolute right-3 top-3 z-10 grid h-10 w-10 place-items-center rounded-full border border-[var(--c-line)] bg-[var(--c-card)] text-[var(--c-head)] transition hover:border-[var(--brand-secondary)]">
               <X size={18} />
             </button>
-            {children}
+            {ready ? children : <div className="min-h-[360px]" aria-hidden="true" />}
           </motion.div>
         </motion.div>
       )}

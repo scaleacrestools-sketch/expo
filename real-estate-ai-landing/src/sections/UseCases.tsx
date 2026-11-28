@@ -39,7 +39,7 @@ export function UseCases() {
                 className={`relative flex min-h-[56px] items-center gap-3 rounded-2xl border px-4 py-3 text-left text-[14px] font-medium transition-colors duration-200 ${tab === i ? 'border-brand/50 bg-brand/[0.12] text-white shadow-[inset_0_-16px_64px_rgba(116,176,253,.06)]' : 'border-[var(--c-line)] text-[var(--c-text)] hover:border-white/20 hover:text-white'}`}>
                 {(() => { const I = tabIcons[i]; return <span className={`grid h-8 w-8 flex-none place-items-center rounded-lg ${tab === i ? 'bg-[var(--brand-solid)] text-white' : 'bg-white/[0.05] text-[var(--brand-accent)]'}`}><I size={16} /></span>; })()}
                 <span>{x.label}</span>
-                {tab === i && <motion.span layoutId="uc-bar" className="absolute inset-x-6 -bottom-px h-px bg-gradient-to-r from-transparent via-[#cbbdff] to-transparent" />}
+                {tab === i && <span className="absolute inset-x-6 -bottom-px h-px bg-gradient-to-r from-transparent via-[#cbbdff] to-transparent" />}
               </button>
             ))}
           </div>

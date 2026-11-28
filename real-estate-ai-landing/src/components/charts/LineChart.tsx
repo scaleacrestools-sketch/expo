@@ -46,7 +46,7 @@ export function LineChart({ labels, series, height = 180, animate = true, showAx
           <g key={s.key}>
             <path d={`${path(s.values)} L${x(s.values.length - 1)},${H - padB} L${x(0)},${H - padB} Z`} fill={`url(#${id}-${s.key})`} opacity={si === 0 ? 1 : 0.6} />
             <path d={path(s.values)} fill="none" stroke={s.color} strokeWidth={2.2} strokeLinecap="round" vectorEffect="non-scaling-stroke"
-              pathLength={1} style={animate ? { strokeDasharray: 1, strokeDashoffset: 0, animation: 'chart-draw 1.6s cubic-bezier(.22,1,.36,1) both' } : { strokeDasharray: 1, strokeDashoffset: 1 }} />
+              pathLength={1} style={animate ? { strokeDasharray: 1, strokeDashoffset: 0, animation: 'chart-draw 1.6s cubic-bezier(.22,1,.36,1) both' } : undefined} />
           </g>
         ))}
         {hover !== null && (

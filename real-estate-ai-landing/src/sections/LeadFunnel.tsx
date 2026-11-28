@@ -14,7 +14,7 @@ type Mode = 'ai' | 'manual';
 export function LeadFunnel() {
   const [mode, setMode] = useState<Mode>('ai');
   const [hover, setHover] = useState<number | null>(null);
-  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.25 });
+  const { ref, inView: live, seen: inView } = useInView<HTMLDivElement>({ threshold: 0.25 });
   const vals = funnel[mode];
   const other = funnel[mode === 'ai' ? 'manual' : 'ai'];
 
@@ -52,7 +52,7 @@ export function LeadFunnel() {
                     <div key={stage}>
                       {i > 0 && (
                         <div className="flex h-8 items-center justify-center gap-2 text-[11.5px] text-[var(--c-muted)]">
-                          <svg width="10" height="32" viewBox="0 0 10 32" aria-hidden="true"><line x1="5" x2="5" y1="0" y2="32" stroke="var(--brand-secondary)" strokeWidth="2" className="flow-dash" />{inView && <circle cx="5" r="3" fill="#6a3ff0"><animate attributeName="cy" from="0" to="32" dur="1.2s" begin={`${i * 0.3}s`} repeatCount="indefinite" /><animate attributeName="opacity" values="0;1;0" dur="1.2s" begin={`${i * 0.3}s`} repeatCount="indefinite" /></circle>}</svg>
+                          <svg width="10" height="32" viewBox="0 0 10 32" aria-hidden="true"><line x1="5" x2="5" y1="0" y2="32" stroke="var(--brand-secondary)" strokeWidth="2" className="flow-dash" />{live && <circle cx="5" r="3" fill="#6a3ff0"><animate attributeName="cy" from="0" to="32" dur="1.2s" begin={`${i * 0.3}s`} repeatCount="indefinite" /><animate attributeName="opacity" values="0;1;0" dur="1.2s" begin={`${i * 0.3}s`} repeatCount="indefinite" /></circle>}</svg>
                           <span className="rounded-full bg-[var(--light-background-secondary)] px-2 py-0.5 tabular-nums"><ArrowDown size={10} className="mr-0.5 inline" />{conv}% move forward</span>
                         </div>
                       )}

@@ -141,7 +141,7 @@ function WorkflowRail({ active }: { active: number }) {
           <circle r={i === active ? 9 : 6} fill={i <= active ? '#6a3ff0' : '#fff'} stroke={i <= active ? '#6a3ff0' : '#cfd6e2'} strokeWidth="2" style={{ transition: 'all .3s' }} />
           {i < active && <path d="M-3 0 l2 2 l4 -4" stroke="#fff" strokeWidth="1.8" fill="none" strokeLinecap="round" />}
           {i === active && <text y="3.5" textAnchor="middle" fontSize="9" fontWeight="700" fill="#fff">{i + 1}</text>}
-          <text y="28" textAnchor="middle" fontSize="10.5" fill={i === active ? '#0d1424' : '#66748a'} fontWeight={i === active ? 600 : 400}>{l}</text>
+          <text y="28" textAnchor="middle" fontSize="10.5" fill={i === active ? '#0d1424' : '#5b687e'} fontWeight={i === active ? 600 : 400}>{l}</text>
         </g>
       ))}
     </svg>
