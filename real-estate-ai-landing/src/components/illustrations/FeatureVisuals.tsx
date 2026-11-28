@@ -1,6 +1,6 @@
 import { ArrowLeftRight, Check, CheckCheck, Clock, Database, Phone, PhoneIncoming, RefreshCw, Sparkles } from 'lucide-react';
 import { useState } from 'react';
-import { Waveform } from '../animations/Waveform';
+import { VoiceWaveform as Waveform } from '../product';
 import { AgentOrb, Avatar, MiniCalendar } from '../dashboards/primitives';
 import { useInView } from '../../hooks/useInView';
 import { useLoop } from '../../hooks/useLoop';
@@ -21,9 +21,10 @@ export function CallingVisual() {
         <p className="text-[11.5px] text-[var(--c-muted)]">3 BHK · ₹2 Cr · Received just now</p>
       </div>
       <svg width="60" height="20" viewBox="0 0 60 20" className="mx-auto rotate-90 sm:rotate-0"><path d="M0 10 H60" stroke="#8b5cf6" strokeWidth="2" className="flow-dash" /></svg>
-      <div className="flex-[1.3] rounded-2xl bg-[#0f0f14] p-4 text-white shadow-[0_24px_50px_-24px_rgba(36,21,82,.7)]">
-        <div className="flex items-center gap-2.5"><AgentOrb size={32} live={t >= 1} /><div className="flex-1"><p className="text-[13px] font-medium">{t >= 2 ? 'Connected' : 'Calling Rohan…'}</p><p className="text-[11px] text-white/50">Auto-dialled within permitted hours</p></div><span className={`grid h-8 w-8 place-items-center rounded-full ${t >= 2 ? 'bg-emerald-500' : 'bg-white/10'}`}><Phone size={14} /></span></div>
-        <div className="mt-3"><Waveform bars={34} active={t >= 2} height={26} /></div>
+      <div className={`flex-[1.3] rounded-2xl border bg-white p-4 transition-[border-color,box-shadow] duration-500 ${t >= 2 ? 'border-[#d9cdff] shadow-[0_0_0_3px_#f3efff,0_18px_40px_-18px_rgba(72,38,179,.45)]' : 'border-[var(--c-line)] shadow-[var(--c-shadow)]'}`}>
+        <div className="flex items-center gap-2.5"><AgentOrb size={34} live={t >= 1} /><div className="min-w-0 flex-1"><p className="text-[13.5px] font-semibold text-[var(--c-head)]">{t >= 2 ? 'Aria · connected' : 'Aria · calling Rohan…'}</p><p className="truncate text-[11.5px] text-[var(--c-muted)]">Auto-dialled within permitted hours</p></div><span className={`grid h-9 w-9 flex-none place-items-center rounded-full text-white transition-colors duration-300 ${t >= 2 ? 'bg-[#16a34a]' : 'bg-[#6a3ff0]'}`}><Phone size={15} /></span></div>
+        <div className="mt-3 rounded-xl border border-[var(--c-line)] bg-[#f7f8fc] px-3 py-2"><Waveform bars={34} active={t >= 2} height={26} /></div>
+        <p className="mt-2 flex items-center justify-between text-[11px] text-[var(--c-muted)]"><span>{t >= 2 ? 'Live · 00:0' + (t + 3) : 'Ringing…'}</span><span className="font-semibold text-[#15803d]">{t >= 3 ? 'Qualifying buyer' : ''}</span></p>
       </div>
     </div>
   );
@@ -97,9 +98,10 @@ export function LanguageVisual() {
       <div className="flex flex-wrap gap-1.5" role="group" aria-label="Preview language">
         {langs.map((x, i) => <button key={x.l} type="button" aria-pressed={a === i} onClick={() => setPick(i)} className={`min-h-[34px] rounded-full border px-3 text-[12px] font-medium transition ${a === i ? 'border-[var(--brand-primary)] bg-[var(--brand-solid)] text-white' : 'border-[var(--c-line)] bg-white text-[var(--c-text)] hover:border-[var(--brand-secondary)]'}`}>{x.l}</button>)}
       </div>
-      <div className="mt-3 flex items-start gap-2.5 rounded-xl border border-[var(--c-line)] bg-white p-3 shadow-sm">
-        <AgentOrb size={26} live={false} />
-        <p key={a} className="text-[13px] leading-snug text-[var(--c-head)]" style={{ animation: 'float-y .001s' }}>{langs[a].s}</p>
+      <div className="mt-3 rounded-xl border border-[var(--c-line)] bg-white p-3.5 shadow-[var(--c-shadow)]">
+        <div className="flex items-center gap-2.5"><AgentOrb size={28} live={false} /><div className="min-w-0 flex-1"><p className="text-[12px] font-semibold text-[var(--c-head)]">Aria · {langs[a].l}</p><p className="text-[10.5px] text-[var(--c-muted)]">Same script, spoken in the buyer's language</p></div></div>
+        <p key={a} className="mt-2.5 min-h-[40px] text-[14px] font-medium leading-snug text-[var(--c-head)]" style={{ animation: 'rise .35s var(--ease-out) both' }}>“{langs[a].s}”</p>
+        <div className="mt-2 rounded-lg border border-[var(--c-line)] bg-[#f7f8fc] px-2.5 py-1.5"><Waveform bars={26} height={18} seed={a + 1} /></div>
       </div>
     </div>
   );
@@ -238,10 +240,10 @@ export function IntelligenceVisual() {
   const { ref, t } = useTick(4, 1800);
   return (
     <div ref={ref} className="grid gap-2.5 p-5 sm:grid-cols-2 sm:p-6" aria-hidden="true">
-      <div className="rounded-2xl bg-[#0f0f14] p-3.5 text-white">
-        <p className="text-[11px] text-white/50">Call · 03:42</p>
-        <Waveform bars={30} height={28} className="mt-2" active={t < 3} />
-        <p className="mt-2 text-[11.5px] text-white/75"><b className="text-[var(--brand-accent)]">Buyer:</b> Possession timeline matters, we move in June.</p>
+      <div className="rounded-2xl border border-[var(--c-line)] bg-white p-3.5 shadow-[var(--c-shadow)]">
+        <p className="flex items-center justify-between text-[11.5px] font-semibold text-[var(--c-head)]">Call recording<span className="font-normal tabular-nums text-[var(--c-muted)]">03:42</span></p>
+        <div className="mt-2 rounded-lg border border-[var(--c-line)] bg-[#f7f8fc] px-2.5 py-1.5"><Waveform bars={30} height={24} active={t < 3} /></div>
+        <p className="mt-2 text-[11.5px] leading-snug text-[var(--c-text)]"><b className="font-semibold text-[#5b34d6]">Rohan:</b> Possession timeline matters, we move in June.</p>
       </div>
       <div className="rounded-2xl border border-[var(--c-line)] bg-white p-3.5 shadow-[var(--c-shadow)]">
         <p className="flex items-center gap-1.5 text-[11.5px] font-semibold text-[var(--c-head)]"><Sparkles size={13} className="text-[var(--brand-deep)]" />AI summary</p>

@@ -1,5 +1,5 @@
 import { CalendarCheck2, Check, CheckCircle2, Database, FileSpreadsheet, Globe, Keyboard, Link2, MessageCircle, Send, UserPlus, Webhook } from 'lucide-react';
-import { Waveform } from '../animations/Waveform';
+import { VoiceWaveform as Waveform } from '../product';
 import { AgentOrb, Avatar, MiniCalendar, Status } from '../dashboards/primitives';
 
 /** Per-step product demonstrations for "How It Works". `t` is a 0..n tick that drives the micro-animation. */
@@ -81,17 +81,17 @@ export function ConversationViz({ t }: { t: number }) {
   ];
   return (
     <div className="h-full p-5 sm:p-7" aria-hidden="true">
-      <div className="rounded-2xl border border-white/10 bg-[#0f0f14] p-4 text-white shadow-[0_30px_60px_-30px_rgba(36,21,82,0.6)]">
-        <div className="flex items-center gap-3"><AgentOrb size={34} /><div className="flex-1"><p className="text-[13px] font-medium">Aria is on a call</p><p className="text-[11px] text-white/50">Outbound · Skyline Residences</p></div><span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] text-emerald-300">00:{String(12 + t * 4).padStart(2, '0')}</span></div>
-        <div className="mt-3 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2"><Waveform bars={44} height={30} /></div>
+      <div className="rounded-2xl border border-[var(--c-line)] bg-white p-4 shadow-[var(--c-shadow)]">
+        <div className="flex items-center gap-3"><AgentOrb size={34} /><div className="min-w-0 flex-1"><p className="text-[13.5px] font-semibold text-[var(--c-head)]">Aria → Rohan Mehta</p><p className="text-[11.5px] text-[var(--c-muted)]">Outbound · Skyline Residences</p></div><Status tone="ok">Live · 00:{String(12 + t * 4).padStart(2, '0')}</Status></div>
+        <div className="mt-3 rounded-xl border border-[var(--c-line)] bg-[#f7f8fc] px-3 py-2"><Waveform bars={44} height={30} /></div>
         <div className="mt-3 space-y-2">
           {lines.map(([s, l], i) => (
             <div key={i} className={`flex ${s === 'ai' ? '' : 'justify-end'} transition-all duration-500 ${t >= i ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'}`}>
-              <p className={`max-w-[85%] rounded-xl px-3 py-1.5 text-[12px] ${s === 'ai' ? 'rounded-tl-sm bg-brand/20 text-white' : 'rounded-tr-sm bg-white/[0.07] text-white/85'}`}>{l}</p>
+              <p className={`max-w-[85%] rounded-xl px-3 py-1.5 text-[12px] ${s === 'ai' ? 'rounded-tl-sm bg-[#f3efff] text-[#2d1a78]' : 'rounded-tr-sm bg-[#f2f4f7] text-[var(--c-head)]'}`}>{l}</p>
             </div>
           ))}
         </div>
-        <p className="mt-3 flex items-center gap-1.5 text-[11px] text-white/55"><span className="blink h-1.5 w-1.5 rounded-full bg-[var(--brand-secondary)]" />Live transcript · sample conversation</p>
+        <p className="mt-3 flex items-center gap-1.5 text-[11px] text-[var(--c-muted)]"><span className="blink h-1.5 w-1.5 rounded-full bg-[#6a3ff0]" />Live transcript · sample conversation</p>
       </div>
     </div>
   );

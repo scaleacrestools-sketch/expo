@@ -45,13 +45,13 @@ export function Qualification() {
               <span className="badge badge-neutral">Question {shown} of 10</span>
             </div>
             <div className="mt-4 flex min-h-[360px] flex-1 flex-col justify-end gap-3 overflow-hidden" aria-live="off">
-              {exchanges.slice(Math.max(0, shown - 3), shown).map((e, k, arr) => {
+              {exchanges.slice(Math.max(0, shown - 4), shown).map((e, k, arr) => {
                 const qi = exchanges.indexOf(e);
                 const newest = k === arr.length - 1;
                 return (
                   <div key={qi} className={`space-y-1.5 transition-opacity duration-300 ${newest ? 'opacity-100' : 'opacity-70'}`} style={newest ? { animation: 'rise .4s var(--ease-out) both' } : undefined}>
-                    <p className="max-w-[88%] rounded-2xl rounded-tl-sm bg-[#f1edff] px-3.5 py-2 text-[13.5px] text-[var(--c-head)]"><span className="mr-1.5 text-[11px] font-semibold text-[var(--brand-deep)]">Q{qi + 1}</span>{qualification.questions[qi]}</p>
-                    <p className="ml-auto max-w-[80%] rounded-2xl rounded-tr-sm bg-[#0d1424] px-3.5 py-2 text-[13.5px] text-white" style={newest ? { animation: 'rise .4s .25s var(--ease-out) both' } : undefined}>{e.b}</p>
+                    <p className="max-w-[88%] rounded-2xl rounded-tl-sm bg-[#f3efff] px-3.5 py-2 text-[13.5px] text-[#2d1a78]"><span className="mr-1.5 text-[11px] font-semibold text-[var(--brand-deep)]">Q{qi + 1}</span>{qualification.questions[qi]}</p>
+                    <p className="ml-auto max-w-[80%] rounded-2xl rounded-tr-sm border border-[#e5e7eb] bg-white px-3.5 py-2 text-[13.5px] font-medium text-[#171923] shadow-[0_1px_2px_rgba(16,24,40,.05)]" style={newest ? { animation: 'rise .4s .25s var(--ease-out) both' } : undefined}>{e.b}</p>
                   </div>
                 );
               })}

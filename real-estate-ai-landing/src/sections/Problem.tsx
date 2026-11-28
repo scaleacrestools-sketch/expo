@@ -1,4 +1,5 @@
-import { CalendarClock, Clock3, Database, PhoneMissed, RefreshCw } from 'lucide-react';
+import { Check, Database, MessageCircle, Moon, PhoneCall, PhoneMissed, RefreshCw, UserPlus } from 'lucide-react';
+import { Avatar, NotificationCard, StatusBadge } from '../components/product';
 import { problem } from '../data/content';
 import { Section } from '../components/ui/Section';
 import { SectionHeader } from '../components/ui/SectionHeader';
@@ -11,11 +12,11 @@ export function Problem() {
     <Section id="problem" theme="light" sheet label="The problem">
       <div className="container-x section-y">
         <SectionHeader eyebrow={problem.eyebrow} title={problem.title} description={problem.description} />
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
+        <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {problem.cards.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.1} variant="tilt">
               <article className="card card-hover flex h-full flex-col overflow-hidden">
-                <div className="relative h-[252px] border-b border-[var(--c-line)] bg-[var(--light-background-secondary)]">
+                <div className="product relative h-[326px] border-b border-[var(--c-line)] bg-[radial-gradient(120%_90%_at_50%_0%,#efeaff_0%,#f7f8fc_62%)]">
                   {i === 0 ? <LateNight /> : i === 1 ? <Timeline /> : <DatabaseViz />}
                 </div>
                 <div className="p-6">
@@ -38,24 +39,26 @@ function useStep(n: number, ms: number) {
 }
 
 function LateNight() {
-  const { ref, s } = useStep(4, 1800);
+  const { ref, s } = useStep(4, 2400);
+  const rows = [
+    { t: 'AI call scheduled', d: '10:00 AM · permitted hours', on: s >= 2, i: PhoneCall, c: 'bg-[#f3efff] text-[#6a3ff0]' },
+    { t: 'WhatsApp acknowledgement', d: 'Sent · delivered', on: s >= 3, i: MessageCircle, c: 'bg-[#dcfce7] text-[#128c7e]' },
+  ];
   return (
-    <div ref={ref} className="absolute inset-0 p-5" aria-hidden="true">
+    <div ref={ref} className="absolute inset-0 flex flex-col p-5" aria-hidden="true">
       <div className="flex items-center justify-between">
-        <span className="flex items-center gap-2 rounded-full bg-[#0f0f14] px-3 py-1.5 text-[12px] font-medium text-white"><Clock3 size={13} className="text-[var(--brand-secondary)]" /> 11:42 PM</span>
-        <span className="text-[11px] text-[var(--c-muted)]">Office closed</span>
+        <span className="flex items-center gap-2 rounded-full border border-[var(--p-line)] bg-white px-3 py-1.5 text-[13px] font-semibold text-[var(--p-text)] shadow-[var(--p-shadow-sm)]"><Moon size={14} className="text-[#6a3ff0]" />11:42 PM</span>
+        <StatusBadge tone="neutral">Office closed</StatusBadge>
       </div>
-      <div className={`mt-4 rounded-xl border border-[var(--c-line)] bg-white p-3 shadow-sm transition-all duration-500 ${s >= 1 ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'}`}>
-        <p className="flex items-center gap-2 text-[12.5px] font-medium text-[var(--c-head)]"><span className="h-2 w-2 rounded-full bg-sky-500" />New enquiry · Website form</p>
-        <p className="mt-1 text-[11.5px] text-[var(--c-muted)]">2 BHK · Wants a callback</p>
+      <div className={`mt-4 transition-[opacity,transform] duration-500 ${s >= 1 ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'}`}>
+        <NotificationCard icon={UserPlus} tone="info" title="New enquiry · Website form" time="now">Ananya S. · 2 BHK · ₹1.2 Cr · asked for a callback</NotificationCard>
       </div>
-      <div className="mt-3 space-y-1.5">
-        {[
-          { t: 'Follow-up scheduled', d: '9:05 AM', on: s >= 2, i: CalendarClock },
-          { t: 'WhatsApp reply', d: 'Queued', on: s >= 3, i: CalendarClock },
-        ].map((r) => (
-          <div key={r.t} className={`flex items-center justify-between rounded-lg border px-3 py-2 text-[11.5px] transition-all duration-500 ${r.on ? 'border-brand/30 bg-[#f5f1ff] opacity-100' : 'border-transparent opacity-30'}`}>
-            <span className="flex items-center gap-2 font-medium text-[var(--c-head)]"><r.i size={13} className="text-[var(--brand-deep)]" />{r.t}</span><span className="text-[var(--c-muted)]">{r.d}</span>
+      <div className="mt-3 space-y-2">
+        {rows.map((r) => (
+          <div key={r.t} className={`flex items-center gap-3 rounded-xl border bg-white px-3 py-2.5 transition-[opacity,border-color,box-shadow] duration-500 ${r.on ? 'border-[var(--p-accent-line)] opacity-100 shadow-[var(--p-shadow-sm)]' : 'border-[var(--p-line)] opacity-45'}`}>
+            <span className={`grid h-8 w-8 flex-none place-items-center rounded-lg ${r.c}`}><r.i size={15} /></span>
+            <span className="min-w-0 flex-1"><span className="block text-[13px] font-semibold text-[var(--p-text)]">{r.t}</span><span className="block truncate text-[11.5px] text-[var(--p-muted)]">{r.d}</span></span>
+            <span className={`grid h-5 w-5 flex-none place-items-center rounded-full transition-colors duration-300 ${r.on ? 'bg-[var(--p-success)] text-white' : 'bg-[#eaecf0] text-transparent'}`}><Check size={11} strokeWidth={3} /></span>
           </div>
         ))}
       </div>
@@ -64,52 +67,57 @@ function LateNight() {
 }
 
 function Timeline() {
-  const { ref, s } = useStep(5, 1500);
+  const { ref, s } = useStep(5, 2200);
   const items = [
-    { t: 'Enquiry received', d: 'Day 0', kind: 'done' },
+    { t: 'Enquiry received', d: 'Day 0 · 99acres', kind: 'done' },
     { t: 'First call missed', d: 'Day 2', kind: 'miss' },
-    { t: 'No follow-up', d: 'Day 5', kind: 'miss' },
-    { t: 'Scheduled follow-up', d: 'Auto · Day 0', kind: 'fix' },
+    { t: 'No follow-up logged', d: 'Day 5', kind: 'miss' },
+    { t: 'AI follow-up call', d: 'Automated', kind: 'fix' },
   ];
   return (
-    <div ref={ref} className="absolute inset-0 px-6 py-5" aria-hidden="true">
-      <div className="relative ml-2 border-l border-dashed border-[var(--c-line-strong)] pl-5">
-        {items.map((it, i) => {
-          const on = s > i;
-          const color = it.kind === 'miss' ? 'bg-red-500' : it.kind === 'fix' ? 'bg-[var(--brand-primary)]' : 'bg-emerald-500';
-          return (
-            <div key={it.t} className={`relative mb-3.5 transition-all duration-500 ${on ? 'opacity-100' : 'opacity-25'}`}>
-              <span className={`absolute -left-[27px] top-1 grid h-3.5 w-3.5 place-items-center rounded-full ring-4 ring-[var(--light-background-secondary)] ${color}`}>
-                {it.kind === 'miss' && <PhoneMissed size={8} className="text-white" />}
-              </span>
-              <div className={`flex items-center justify-between gap-3 rounded-lg px-2.5 py-1.5 ${it.kind === 'fix' && on ? 'bg-[#f5f1ff] ring-1 ring-brand/30' : ''}`}>
-                <p className={`text-[12.5px] font-medium ${it.kind === 'miss' ? 'text-red-600' : 'text-[var(--c-head)]'}`}>{it.t}</p>
-                <span className="text-[11px] text-[var(--c-muted)]">{it.d}</span>
+    <div ref={ref} className="absolute inset-0 flex flex-col p-5" aria-hidden="true">
+      <div className="ui-surface flex-1 p-4">
+        <div className="flex items-center gap-2.5"><Avatar name="Vikram K" size={30} hue={250} /><div className="min-w-0 flex-1"><p className="text-[13px] font-semibold text-[var(--p-text)]">Vikram K. · lead timeline</p><p className="text-[11.5px] text-[var(--p-muted)]">Plot · ₹85 L</p></div><span key={String(s >= 4)} style={{ animation: 'pop .3s var(--ease-out) both' }}><StatusBadge tone={s >= 4 ? 'brand' : s >= 2 ? 'hot' : 'cold'}>{s >= 4 ? 'Re-engaged' : s >= 2 ? 'Going cold' : 'New'}</StatusBadge></span></div>
+        <div className="relative mt-4 space-y-3 pl-6">
+          <span className="absolute bottom-2 left-[7px] top-2 w-px bg-[var(--p-line)]" />
+          {items.map((it, i) => {
+            const on = s > i;
+            const dot = it.kind === 'miss' ? 'bg-[var(--p-error)]' : it.kind === 'fix' ? 'bg-[#6a3ff0]' : 'bg-[var(--p-success)]';
+            return (
+              <div key={it.t} className={`relative transition-opacity duration-500 ${on ? 'opacity-100' : 'opacity-30'}`}>
+                <span className={`absolute -left-6 top-1 grid h-[15px] w-[15px] place-items-center rounded-full text-white ring-4 ring-white ${dot}`}>{it.kind === 'miss' ? <PhoneMissed size={8} /> : <Check size={9} strokeWidth={3} />}</span>
+                <div className={`flex items-center justify-between gap-3 rounded-lg px-2.5 py-1.5 ${it.kind === 'fix' && on ? 'bg-[#f3efff] ring-1 ring-[#d9cdff]' : ''}`}>
+                  <p className={`text-[13px] font-semibold ${it.kind === 'miss' ? 'text-[#b91c1c]' : 'text-[var(--p-text)]'}`}>{it.t}</p>
+                  <span className="flex-none text-[11.5px] text-[var(--p-muted)]">{it.d}</span>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
 }
 
 function DatabaseViz() {
-  const { ref, s } = useStep(6, 1100);
-  const rows = ['Neha G.', 'Karan P.', 'Sana R.', 'Dev A.', 'Meera J.'];
+  const { ref, s } = useStep(6, 1800);
+  const rows = [['Neha G.', '9 mo'], ['Karan P.', '7 mo'], ['Sana R.', '11 mo'], ['Dev A.', '6 mo'], ['Meera J.', '8 mo']];
+  const n = Math.min(s, 5);
   return (
-    <div ref={ref} className="absolute inset-0 p-5" aria-hidden="true">
-      <div className="flex items-center justify-between text-[11.5px]">
-        <span className="flex items-center gap-1.5 font-medium text-[var(--c-head)]"><Database size={13} /> leads_2024.csv</span>
-        <span className="text-[var(--c-muted)]">{Math.min(s, 5)} / 5 re-engaging</span>
-      </div>
-      <div className="mt-2.5 overflow-hidden rounded-xl border border-[var(--c-line)] bg-white">
-        {rows.map((r, i) => {
+    <div ref={ref} className="absolute inset-0 flex flex-col p-5" aria-hidden="true">
+      <div className="ui-surface flex-1 overflow-hidden">
+        <div className="flex items-center justify-between border-b border-[var(--p-line)] px-3.5 py-2.5">
+          <span className="flex items-center gap-2 text-[13px] font-semibold text-[var(--p-text)]"><Database size={14} className="text-[#6a3ff0]" />leads_2024.csv</span>
+          <span className="text-[11.5px] font-medium tabular-nums text-[var(--p-muted)]"><b className="font-semibold text-[#5b34d6]">{n}</b> / 5 re-engaging</span>
+        </div>
+        <div className="grid grid-cols-[1fr_auto_auto] items-center gap-x-3 px-3.5 py-1.5"><span className="p-label">Lead</span><span className="p-label">Last contact</span><span className="p-label w-[112px] text-right">Status</span></div>
+        {rows.map(([r, age], i) => {
           const on = s > i;
           return (
-            <div key={r} className="flex items-center justify-between border-b border-[var(--c-line)] px-3 py-[6px] text-[11.5px] last:border-0">
-              <span className={`transition-colors duration-500 ${on ? 'text-[var(--c-head)]' : 'text-[var(--c-muted)]'}`}>{r}</span>
-              <span className={`badge transition-all duration-500 ${on ? 'badge-brand' : 'badge-neutral'}`}>{on ? <><RefreshCw size={10} />Re-engage scheduled</> : 'Inactive · 9 mo'}</span>
+            <div key={r} className={`grid grid-cols-[1fr_auto_auto] items-center gap-x-3 border-t border-[var(--p-line)] px-3.5 py-[7px] text-[12.5px] ${on ? 'p-flash' : ''}`}>
+              <span className="flex items-center gap-2 font-medium text-[var(--p-text)]"><Avatar name={r} size={20} hue={190 + i * 35} />{r}</span>
+              <span className="text-[11.5px] tabular-nums text-[var(--p-muted)]">{age} ago</span>
+              <span className="flex w-[112px] justify-end"><StatusBadge tone={on ? 'brand' : 'neutral'} dot={!on}>{on ? <><RefreshCw size={10} />Call scheduled</> : 'Inactive'}</StatusBadge></span>
             </div>
           );
         })}

@@ -47,7 +47,7 @@ export function DashboardScreen({ t = 3 }: { t?: number }) {
       </div>
       <p className="mt-4 text-[12px] font-semibold">Qualified buyers</p>
       <div className="mt-1.5 space-y-1.5">
-        {[[story.buyer.name, `${story.requirement.configuration} · ${story.requirement.budgetShort}`, rohan[0], rohan[1]], ['Priya Desai', '4 BHK · ₹3.5 Cr', 'hot', 'Hot'], ['Vikram K.', 'Plot · ₹85 L', 'warm', 'Warm']].map(([nm, d, tone, st], i) => (
+        {[[story.buyer.short, `${story.requirement.configuration} · ${story.requirement.budgetShort}`, rohan[0], rohan[1]], ['Priya D.', '4 BHK · ₹3.5 Cr', 'hot', 'Hot'], ['Vikram K.', 'Plot · ₹85 L', 'warm', 'Warm']].map(([nm, d, tone, st], i) => (
           <div key={nm} className="flex items-center gap-2.5 rounded-xl bg-white p-2.5 shadow-sm"><Avatar name={nm} size={28} hue={210 + i * 40} /><div className="min-w-0 flex-1"><p className="truncate text-[12px] font-medium">{nm}</p><p className="text-[10.5px] text-[var(--c-muted)]">{d}</p></div><span key={st} style={{ animation: 'pop .3s var(--ease-out) both' }}><Status tone={tone}>{st}</Status></span></div>
         ))}
       </div>
@@ -78,7 +78,7 @@ export function ProfileScreen({ t = 3 }: { t?: number }) {
         <MiniCalendar highlight={booked ? story.visit.day : -1} booked={[8, 19]} />
       </div>
       <div className={`mt-2 flex items-center gap-2 rounded-xl px-2.5 py-2 text-[11px] shadow-sm transition-colors duration-300 ${booked ? 'bg-[#f1edff]' : 'bg-white'}`}><ListChecks size={13} className="text-[var(--brand-deep)]" />Follow-up reminder · Fri 6 PM{booked && <span className="ml-auto text-[10px] font-medium text-[var(--brand-deep)]">Set</span>}</div>
-      <div className="mt-2 flex items-center gap-2 rounded-xl bg-[#0f0f14] px-3 py-2.5 text-white"><UserPlus size={14} /><span className="flex-1 text-[11.5px] font-medium">{booked ? `Assigned to ${story.executive.name}` : 'Assign to sales executive'}</span><AgentOrb size={18} live={false} /></div>
+      <div className="mt-2 flex items-center gap-2 rounded-xl bg-[#6a3ff0] px-3 py-2.5 text-white shadow-[0_8px_18px_-8px_rgba(106,63,240,.8)]"><UserPlus size={14} /><span className="flex-1 text-[11.5px] font-medium">{booked ? `Assigned to ${story.executive.name}` : 'Assign to sales executive'}</span><AgentOrb size={18} live={false} /></div>
     </div>
   );
 }

@@ -80,7 +80,7 @@ export function HowItWorks() {
             </button>
           </div>
 
-          <div id="hiw-panel" role="tabpanel" aria-labelledby={`hiw-tab-${d}`} className="card relative min-h-[470px] overflow-hidden !bg-[var(--light-background-secondary)]">
+          <div id="hiw-panel" role="tabpanel" aria-labelledby={`hiw-tab-${d}`} className="card product relative min-h-[470px] overflow-hidden !bg-[#f7f8fc]">
             <WorkflowRail active={d} />
             <AnimatePresence mode="wait">
               <motion.div key={d} className="absolute inset-0 top-[64px]" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }}>
