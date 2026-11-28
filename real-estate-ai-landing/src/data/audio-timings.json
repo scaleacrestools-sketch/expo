@@ -1,0 +1,170 @@
+{
+  "qualification-en": {
+    "src": "/assets/audio/qualification-en.mp3",
+    "duration": 12.86,
+    "segments": [
+      {
+        "start": 0.3,
+        "end": 3.59
+      },
+      {
+        "start": 4.04,
+        "end": 7.25
+      },
+      {
+        "start": 7.7,
+        "end": 10.03
+      },
+      {
+        "start": 10.48,
+        "end": 12.36
+      }
+    ]
+  },
+  "qualification-hi": {
+    "src": "/assets/audio/qualification-hi.mp3",
+    "duration": 13.3,
+    "segments": [
+      {
+        "start": 0.3,
+        "end": 3.81
+      },
+      {
+        "start": 4.26,
+        "end": 7.42
+      },
+      {
+        "start": 7.87,
+        "end": 10.74
+      },
+      {
+        "start": 11.19,
+        "end": 12.78
+      }
+    ]
+  },
+  "site-visit-en": {
+    "src": "/assets/audio/site-visit-en.mp3",
+    "duration": 10.27,
+    "segments": [
+      {
+        "start": 0.3,
+        "end": 2.9
+      },
+      {
+        "start": 3.35,
+        "end": 5.3
+      },
+      {
+        "start": 5.75,
+        "end": 7.76
+      },
+      {
+        "start": 8.21,
+        "end": 9.76
+      }
+    ]
+  },
+  "site-visit-hi": {
+    "src": "/assets/audio/site-visit-hi.mp3",
+    "duration": 12.38,
+    "segments": [
+      {
+        "start": 0.3,
+        "end": 3.91
+      },
+      {
+        "start": 4.36,
+        "end": 6.05
+      },
+      {
+        "start": 6.5,
+        "end": 9.98
+      },
+      {
+        "start": 10.43,
+        "end": 11.87
+      }
+    ]
+  },
+  "reactivation-en": {
+    "src": "/assets/audio/reactivation-en.mp3",
+    "duration": 12.77,
+    "segments": [
+      {
+        "start": 0.3,
+        "end": 3.3
+      },
+      {
+        "start": 3.75,
+        "end": 6.66
+      },
+      {
+        "start": 7.11,
+        "end": 10.23
+      },
+      {
+        "start": 10.68,
+        "end": 12.26
+      }
+    ]
+  },
+  "reactivation-hi": {
+    "src": "/assets/audio/reactivation-hi.mp3",
+    "duration": 15.79,
+    "segments": [
+      {
+        "start": 0.3,
+        "end": 4.36
+      },
+      {
+        "start": 4.81,
+        "end": 8.13
+      },
+      {
+        "start": 8.58,
+        "end": 13.09
+      },
+      {
+        "start": 13.54,
+        "end": 15.28
+      }
+    ]
+  },
+  "follow-up-en": {
+    "src": "/assets/audio/follow-up-en.mp3",
+    "duration": 15.29,
+    "segments": [
+      {
+        "start": 0.3,
+        "end": 6.31
+      },
+      {
+        "start": 6.76,
+        "end": 10.06
+      },
+      {
+        "start": 10.51,
+        "end": 14.77
+      }
+    ]
+  },
+  "follow-up-hi": {
+    "src": "/assets/audio/follow-up-hi.mp3",
+    "duration": 17.74,
+    "segments": [
+      {
+        "start": 0.3,
+        "end": 7.76
+      },
+      {
+        "start": 8.21,
+        "end": 11.21
+      },
+      {
+        "start": 11.66,
+        "end": 17.22
+      }
+    ]
+  }
+}

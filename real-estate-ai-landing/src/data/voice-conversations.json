@@ -1,0 +1,147 @@
+[
+  {
+    "id": "qualification",
+    "tab": "Lead Qualification",
+    "lines": [
+      {
+        "speaker": "ai",
+        "en": "Which property configuration are you looking for?",
+        "hi": "Aap kaunsi property configuration dekh rahe hain?",
+        "hiTts": "आप कौन सी प्रॉपर्टी कॉन्फ़िगरेशन देख रहे हैं?",
+        "enTts": "Which property configuration are you looking for?"
+      },
+      {
+        "speaker": "buyer",
+        "en": "I am looking for a 3 BHK apartment.",
+        "hi": "Main 3 BHK apartment dhoondh raha hoon.",
+        "hiTts": "मैं थ्री बी एच के अपार्टमेंट ढूंढ रहा हूँ।",
+        "enTts": "I am looking for a three B H K apartment."
+      },
+      {
+        "speaker": "ai",
+        "en": "What is your preferred budget range?",
+        "hi": "Aapka preferred budget range kya hai?",
+        "hiTts": "आपका प्रेफ़र्ड बजट रेंज क्या है?",
+        "enTts": "What is your preferred budget range?"
+      },
+      {
+        "speaker": "buyer",
+        "en": "Around ₹2 crore.",
+        "hi": "Lagbhag ₹2 crore.",
+        "hiTts": "लगभग दो करोड़।",
+        "enTts": "Around two crore rupees."
+      }
+    ],
+    "outcome": {
+      "en": "Budget captured. Configuration captured. Buyer qualification initiated.",
+      "hi": "Budget captured. Configuration captured. Buyer qualification initiated."
+    }
+  },
+  {
+    "id": "site-visit",
+    "tab": "Site Visit Booking",
+    "lines": [
+      {
+        "speaker": "ai",
+        "en": "Would you like to schedule a property visit?",
+        "hi": "Kya aap property visit schedule karna chahenge?",
+        "hiTts": "क्या आप प्रॉपर्टी विज़िट शेड्यूल करना चाहेंगे?",
+        "enTts": "Would you like to schedule a property visit?"
+      },
+      {
+        "speaker": "buyer",
+        "en": "Yes, this Saturday.",
+        "hi": "Haan, is Saturday.",
+        "hiTts": "हाँ, इस सैटरडे।",
+        "enTts": "Yes, this Saturday."
+      },
+      {
+        "speaker": "ai",
+        "en": "Would 11 AM work for you?",
+        "hi": "Kya subah 11 baje aapke liye theek rahega?",
+        "hiTts": "क्या सुबह ग्यारह बजे आपके लिए ठीक रहेगा?",
+        "enTts": "Would eleven A M work for you?"
+      },
+      {
+        "speaker": "buyer",
+        "en": "Yes, that works.",
+        "hi": "Haan, chalega.",
+        "hiTts": "हाँ, चलेगा।",
+        "enTts": "Yes, that works."
+      }
+    ],
+    "outcome": {
+      "en": "Site visit requested for Saturday at 11 AM.",
+      "hi": "Site visit requested for Saturday at 11 AM."
+    }
+  },
+  {
+    "id": "reactivation",
+    "tab": "Database Reactivation",
+    "lines": [
+      {
+        "speaker": "ai",
+        "en": "Are you still exploring property options?",
+        "hi": "Kya aap abhi bhi property options explore kar rahe hain?",
+        "hiTts": "क्या आप अभी भी प्रॉपर्टी ऑप्शंस एक्सप्लोर कर रहे हैं?",
+        "enTts": "Are you still exploring property options?"
+      },
+      {
+        "speaker": "buyer",
+        "en": "Yes, please share the project details.",
+        "hi": "Haan, please project details share kijiye.",
+        "hiTts": "हाँ, प्लीज़ प्रोजेक्ट डिटेल्स शेयर कीजिए।",
+        "enTts": "Yes, please share the project details."
+      },
+      {
+        "speaker": "ai",
+        "en": "I can arrange to send the brochure on WhatsApp.",
+        "hi": "Main brochure WhatsApp par bhejne ka arrangement kar sakti hoon.",
+        "hiTts": "मैं ब्रोशर व्हाट्सऐप पर भेजने का अरेंजमेंट कर सकती हूँ।",
+        "enTts": "I can arrange to send the brochure on WhatsApp."
+      },
+      {
+        "speaker": "buyer",
+        "en": "Sure, thank you.",
+        "hi": "Zaroor, dhanyavaad.",
+        "hiTts": "ज़रूर, धन्यवाद।",
+        "enTts": "Sure, thank you."
+      }
+    ],
+    "outcome": {
+      "en": "Buyer re-engaged and brochure follow-up requested.",
+      "hi": "Buyer re-engaged and brochure follow-up requested."
+    }
+  },
+  {
+    "id": "follow-up",
+    "tab": "Instant Follow-up",
+    "lines": [
+      {
+        "speaker": "ai",
+        "en": "I am contacting you regarding your recent property enquiry. Is now a convenient time to speak?",
+        "hi": "Main aapki recent property enquiry ke baare mein call kar rahi hoon. Kya abhi baat karna convenient hai?",
+        "hiTts": "मैं आपकी रीसेंट प्रॉपर्टी इन्क्वायरी के बारे में कॉल कर रही हूँ। क्या अभी बात करना कन्वीनियंट है?",
+        "enTts": "I am contacting you regarding your recent property enquiry. Is now a convenient time to speak?"
+      },
+      {
+        "speaker": "buyer",
+        "en": "Yes, I would like to know the starting price.",
+        "hi": "Haan, mujhe starting price jaanna hai.",
+        "hiTts": "हाँ, मुझे स्टार्टिंग प्राइस जानना है।",
+        "enTts": "Yes, I would like to know the starting price."
+      },
+      {
+        "speaker": "ai",
+        "en": "I can check the approved project details and arrange further information.",
+        "hi": "Main approved project details check karke aage ki jaankari arrange kar sakti hoon.",
+        "hiTts": "मैं अप्रूव्ड प्रोजेक्ट डिटेल्स चेक करके आगे की जानकारी अरेंज कर सकती हूँ।",
+        "enTts": "I can check the approved project details and arrange further information."
+      }
+    ],
+    "outcome": {
+      "en": "New enquiry contacted and property information requested.",
+      "hi": "New enquiry contacted and property information requested."
+    }
+  }
+]

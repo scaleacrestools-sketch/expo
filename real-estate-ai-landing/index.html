@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>%PRODUCT_NAME% | AI Voice Agents &amp; Real Estate Sales Automation</title>
+    <meta name="description" content="Automate real estate lead qualification, AI calling, property follow-ups, CRM workflows and site visit scheduling with intelligent sales automation." />
+    <link rel="canonical" href="%SITE_URL%/" />
+    <meta name="theme-color" content="#07070A" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="%PRODUCT_NAME% | AI Voice Agents &amp; Real Estate Sales Automation" />
+    <meta property="og:description" content="Automate real estate lead qualification, AI calling, property follow-ups, CRM workflows and site visit scheduling with intelligent sales automation." />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:image" content="%SITE_URL%/assets/images/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="%PRODUCT_NAME% | AI Voice Agents &amp; Real Estate Sales Automation" />
+    <meta name="twitter:description" content="Automate real estate lead qualification, AI calling, property follow-ups, CRM workflows and site visit scheduling." />
+    <meta name="twitter:image" content="%SITE_URL%/assets/images/og-image.png" />
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"SoftwareApplication","name":"%PRODUCT_NAME%","applicationCategory":"BusinessApplication","description":"%TAGLINE%","url":"%SITE_URL%/"}
+    </script>
+  </head>
+  <body>
+    <!-- Static form definition so Netlify detects the form at deploy time. The React modal posts the same fields. -->
+    <form name="demo-request" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="bot-field" />
+      <input type="text" name="fullName" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="company" />
+      <select name="businessType"><option>Other</option></select>
+      <select name="leadVolume"><option>Below 500</option></select>
+      <input type="text" name="preferredTime" />
+      <textarea name="requirements"></textarea>
+      <input type="checkbox" name="consent" />
+    </form>
+    <noscript>This website needs JavaScript to show the interactive product preview.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
