@@ -1,5 +1,5 @@
-import { CalendarCheck2, Check, CheckCircle2, Database, FileSpreadsheet, Globe, Keyboard, Link2, MessageCircle, Send, UserPlus, Webhook } from 'lucide-react';
-import { VoiceWaveform as Waveform } from '../product';
+import { CalendarCheck2, CheckCircle2, Database, FileSpreadsheet, Globe, Keyboard, Link2, MessageCircle, Send, UserPlus, Webhook } from 'lucide-react';
+import { QualificationChecklist, VoiceWaveform as Waveform } from '../product';
 import { AgentOrb, Avatar, MiniCalendar, Status } from '../dashboards/primitives';
 
 /** Per-step product demonstrations for "How It Works". `t` is a 0..n tick that drives the micro-animation. */
@@ -106,13 +106,7 @@ export function ScoreViz({ t }: { t: number }) {
     <div className="grid h-full gap-3 p-5 sm:grid-cols-[1fr_150px] sm:p-7" aria-hidden="true">
       <div className="rounded-2xl border border-[var(--c-line)] bg-white p-4 shadow-[var(--c-shadow)]">
         <div className="flex items-center gap-3"><Avatar name="Rohan Mehta" size={34} /><div><p className="text-[13px] font-semibold text-[var(--c-head)]">Rohan Mehta</p><p className="text-[11px] text-[var(--c-muted)]">Meta Ads · Skyline Residences</p></div></div>
-        <ul className="mt-3 grid gap-1">
-          {items.map((it, i) => (
-            <li key={it} className={`flex items-center gap-2 text-[12px] transition-all duration-500 ${i < done ? 'text-[var(--c-head)]' : 'text-[var(--c-muted)] opacity-50'}`}>
-              <span className={`grid h-4 w-4 place-items-center rounded-full transition-colors ${i < done ? 'bg-emerald-500 text-white' : 'border border-[#d4d4d8]'}`}>{i < done && <Check size={10} strokeWidth={3} />}</span>{it}
-            </li>
-          ))}
-        </ul>
+        <QualificationChecklist className="mt-3 [&_li]:text-[12.5px]" items={items} done={done} />
       </div>
       <div className="flex flex-col items-center justify-center rounded-2xl border border-[var(--c-line)] bg-white p-4 shadow-[var(--c-shadow)]">
         <svg viewBox="0 0 80 80" className="h-[110px] w-[110px] -rotate-90">

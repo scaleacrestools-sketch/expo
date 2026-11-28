@@ -56,18 +56,22 @@ Design tokens are CSS variables at the top of `src/styles/globals.css`; motion t
 
 Sections live in `src/sections/` (one file per section, in page order in `src/App.tsx`).
 
+## Product UI design system (V4)
+
+The marketing site is dark; every software preview is a white CRM. All previews are built from `src/components/product/index.tsx` and sit inside a `.product` scope whose tokens (`--p-bg`, `--p-surface`, `--p-text`, `--p-line`, `--p-accent`, `--p-success`, `--p-warning`, `--p-error`) are defined at the end of `src/styles/globals.css`. To restyle the product everywhere, change those tokens. Components: DashboardShell, DashboardSidebar, DashboardHeader, MetricCard, LeadTable, StatusBadge, CallCard, VoiceWaveform, BuyerProfile, QualificationChecklist, AppointmentCalendar, ActivityTimeline, NotificationCard, CampaignChart, IntegrationCard, MobileDashboard.
+
 ## Media
 
 | Asset | Location | Shipped with the site? | Regenerate |
 |---|---|---|---|
 | Sample calls: 4 scenarios × English, Hinglish, Hindi (12 MP3, ~860 KB) | `public/assets/audio/` | Yes, loaded only when a visitor presses play | `npm run media:audio` |
 | Source voice clips (45, ElevenLabs) | `media-src/voice/` | No | Generated with ElevenLabs; see below |
-| Walkthrough video V3 (77.5 s, 10 scenes): `product-walkthrough-v3.*` with voice-over, `-silent.*`, captions, `product-walkthrough-poster.webp` | `public/assets/videos/` | Yes, loaded only when the video modal opens | `npm run build && npm run preview`, then `npm run media:video` |
+| Walkthrough video V4 (77.5 s, 10 scenes, white product UI): `product-walkthrough-v4.*` with voice-over, `-silent.*`, captions, `product-walkthrough-poster.webp` | `public/assets/videos/` | Yes, loaded only when the video modal opens | `npm run build && npm run preview`, then `npm run media:video` |
 | Narration clips (10, ElevenLabs, V3) | `media-src/narration-v3/` (V2 clips kept in `media-src/narration/`) | No | — |
-| Hero animation video (15.8 s) | `media/videos/` | No (the live hero is HTML/SVG) | `npm run media:video` |
+| Hero animation video (17.6 s) | `media/videos/` | No (the live hero is HTML/SVG) | `npm run media:video` |
 | GIF demos (7) | `media/gifs/` | No | `npm run media:gifs` |
-| Real-time review recordings (desktop 1920×1080, mobile 390×844 @2×) | `preview/landing-page-*-preview-v3.mp4` | No | `npm run build && npm run preview`, then `npm run media:record` |
-| Section screenshots (18 × desktop + mobile), responsive captures | `preview/v3/` | No | `npm run media:screenshots -- http://localhost:4173/ preview/v3/screenshots -v3`, `npm run media:responsive` |
+| Real-time review recordings (desktop 1920×1080, mobile 390×844 @2×) | `preview/landing-page-*-preview-v4.mp4` | No | `npm run build && npm run preview`, then `npm run media:record` |
+| Section screenshots (18 × desktop + mobile), responsive captures | `preview/v4/` | No | `npm run media:screenshots -- http://localhost:4173/ preview/v4/screenshots -v4`, `npm run media:responsive` |
 | Fonts (Inter text + display subsets, 54 KB) | `public/assets/fonts/` | Yes | `scripts/build-fonts/build-fonts.sh` |
 
 Review media lives outside `public/` on purpose so it never increases the deploy or the page weight.

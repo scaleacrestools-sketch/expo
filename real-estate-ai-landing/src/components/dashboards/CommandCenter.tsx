@@ -1,7 +1,7 @@
 import { CalendarCheck2, CalendarDays, PhoneCall, Target, UserCheck } from 'lucide-react';
 import { heroLeads, heroMetrics, heroTrend } from '../../data/demo-data';
 import { story } from '../../data/story';
-import { ActivityTimeline, AgentOrb, AppointmentCalendar, BuyerProfile, CallCard, CampaignChart, DashboardHeader, DashboardSidebar, LeadTable, MetricCard, Panel, QualificationChecklist, ScoreBar, SelectPill, StatusBadge, productColors, type LeadRow } from '../product';
+import { ActivityTimeline, AgentOrb, AppointmentCalendar, BuyerProfile, CallCard, CampaignChart, DashboardHeader, DashboardSidebar, LeadTable, MetricCard, Panel, ScoreBar, SelectPill, StatusBadge, productColors, type LeadRow } from '../product';
 
 /**
  * AI Sales Command Center (white CRM). `phase` (0–8) drives the hero story:
@@ -31,13 +31,12 @@ export function heroState(phase: number) {
   const call = phase === 0 ? { s: 'Queued', t: 'neutral' } : phase === 1 ? { s: 'Dialling', t: 'brand' } : phase === 2 ? { s: 'Ringing', t: 'brand' } : phase <= 5 ? { s: `Live · 00:${String(14 + phase * 9).padStart(2, '0')}`, t: 'ok' } : { s: 'Completed · 1m 12s', t: 'neutral' };
   const lead = phase >= 7 ? { s: 'Visit requested', t: 'ok' } : phase >= 5 ? { s: 'Qualified · Hot', t: 'hot' } : phase >= 1 ? { s: 'AI calling', t: 'brand' } : { s: 'New', t: 'cold' };
   const score = phase < 4 ? 0 : phase === 4 ? 48 : story.score;
-  const done = phase < 4 ? 0 : phase === 4 ? 2 : phase < 7 ? 4 : 5;
   const updated = phase >= 8;
-  return { live, onCall, call, lead, score, done, updated };
+  return { live, onCall, call, lead, score, updated };
 }
 
 export function CommandCenter({ phase }: { phase: number }) {
-  const { live, onCall, call, lead, score, done, updated } = heroState(phase);
+  const { live, onCall, call, lead, score, updated } = heroState(phase);
   const rows: LeadRow[] = heroLeads.map((l, i) => i === 0 ? { ...l, status: lead.s, tone: lead.t, flash: true, isNew: phase === 0 } : { ...l });
   const profile = [
     { k: 'Config.', v: story.requirement.configuration, filled: phase >= 4 },
@@ -99,7 +98,6 @@ export function CommandCenter({ phase }: { phase: number }) {
           <Panel className="hidden sm:block" title="Qualification" right={<span key={score} style={{ animation: 'pop .3s var(--ease-out) both' }}><StatusBadge tone={score >= 75 ? 'hot' : score > 0 ? 'warm' : 'neutral'} dot={false}>{score >= 75 ? 'Hot lead' : score > 0 ? 'In progress' : 'Pending'}</StatusBadge></span>}>
             <ScoreBar value={score} />
             <BuyerProfile className="mt-2.5" fields={profile} />
-            <QualificationChecklist className="mt-2.5 hidden" items={['Budget', 'Configuration', 'Purpose', 'Timeline', 'Site visit']} done={done} />
           </Panel>
 
           {/* Site visit calendar */}
