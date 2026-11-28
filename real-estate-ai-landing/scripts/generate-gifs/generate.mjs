@@ -31,13 +31,14 @@ function toGif(inputArgs, file, { width = 960, fps = 12, speed = 1 } = {}) {
 // 1) From rendered frames
 const frames = (m) => join(cache, 'frames', m, 'f%05d.jpg');
 if (existsSync(join(cache, 'frames/walkthrough'))) {
-  const clip = (start, dur) => ['-framerate', '30', '-start_number', String(Math.round(start * 30)), '-i', frames('walkthrough'), '-t', String(dur)];
-  toGif(clip(3.75, 7.5), join(out, 'ai-calling.gif'));
-  toGif(clip(7.5, 7.5), join(out, 'lead-qualification.gif'));
-  toGif(clip(18.75, 7.5), join(out, 'site-visit-booking.gif'));
+  // -t must precede -i so it limits this input (not the palette input added later).
+  const clip = (start, dur) => ['-framerate', '30', '-start_number', String(Math.round(start * 30)), '-t', String(dur), '-i', frames('walkthrough')];
+  toGif(clip(3.75, 7.5), join(out, 'ai-calling.gif'), { width: 800, fps: 10 });
+  toGif(clip(7.5, 7.5), join(out, 'lead-qualification.gif'), { width: 800, fps: 10 });
+  toGif(clip(18.75, 7.5), join(out, 'site-visit-booking.gif'), { width: 800, fps: 10 });
 }
 if (existsSync(join(cache, 'frames/hero'))) {
-  toGif(['-framerate', '30', '-i', frames('hero')], join(out, 'hero-dashboard.gif'), { speed: 1.5, fps: 10 });
+  toGif(['-framerate', '30', '-i', frames('hero')], join(out, 'hero-dashboard.gif'), { width: 800, speed: 1.5, fps: 10 });
 }
 
 // 2) Live captures
@@ -74,7 +75,7 @@ await captureElement('#problem article:nth-of-type(1) >> nth=2', 7, 'database-re
   await page.waitForTimeout(1500);
   const H = await page.evaluate(() => document.body.scrollHeight - window.innerHeight);
   const dir = join(cache, 'live', 'scroll'); rmSync(dir, { recursive: true, force: true }); mkdirSync(dir, { recursive: true });
-  const step = 75; let i = 0;
+  const step = 36; let i = 0;
   for (let y = 0; y <= H; y += step) {
     await page.evaluate((y) => window.scrollTo({ top: y, behavior: 'instant' }), y);
     await page.waitForTimeout(y === 0 ? 1200 : 60);
@@ -84,7 +85,7 @@ await captureElement('#problem article:nth-of-type(1) >> nth=2', 7, 'database-re
   await page.close();
   const seq = ['-framerate', '30', '-i', join(dir, 'f%04d.jpg')];
   ff([...seq, '-vf', 'scale=1440:-2', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '24', '-movflags', '+faststart', join(previewDir, 'landing-page-preview.mp4')]);
-  toGif(seq, join(previewDir, 'landing-page-preview.gif'), { width: 640, fps: 12, speed: 1.6 });
+  toGif(seq, join(previewDir, 'landing-page-preview.gif'), { width: 640, fps: 10, speed: 1.2 });
   execFileSync('cp', [join(previewDir, 'landing-page-preview.gif'), join(out, 'landing-page-preview.gif')]);
   console.log('scroll preview frames', i);
 }
