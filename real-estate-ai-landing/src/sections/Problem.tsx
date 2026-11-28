@@ -14,9 +14,9 @@ export function Problem() {
         <SectionHeader eyebrow={problem.eyebrow} title={problem.title} description={problem.description} />
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {problem.cards.map((c, i) => (
-            <Reveal key={c.title} delay={i * 0.1} variant="tilt">
-              <article className="card card-hover flex h-full flex-col overflow-hidden">
-                <div className="product relative h-[326px] border-b border-[var(--c-line)] bg-[radial-gradient(120%_90%_at_50%_0%,#efeaff_0%,#f7f8fc_62%)]">
+            <Reveal key={c.title} delay={i * 0.1} variant="tilt" className="min-w-0">
+              <article className="card card-hover flex h-full min-w-0 flex-col overflow-hidden">
+                <div className="product relative min-h-[326px] border-b border-[var(--c-line)] bg-[radial-gradient(120%_90%_at_50%_0%,#efeaff_0%,#f7f8fc_62%)]">
                   {i === 0 ? <LateNight /> : i === 1 ? <Timeline /> : <DatabaseViz />}
                 </div>
                 <div className="p-6">
@@ -45,7 +45,7 @@ function LateNight() {
     { t: 'WhatsApp acknowledgement', d: 'Sent · delivered', on: s >= 3, i: MessageCircle, c: 'bg-[#dcfce7] text-[#128c7e]' },
   ];
   return (
-    <div ref={ref} className="absolute inset-0 flex flex-col p-5" aria-hidden="true">
+    <div ref={ref} className="relative flex min-h-[326px] flex-col p-4 sm:p-5" aria-hidden="true">
       <div className="flex items-center justify-between">
         <span className="flex items-center gap-2 rounded-full border border-[var(--p-line)] bg-white px-3 py-1.5 text-[13px] font-semibold text-[var(--p-text)] shadow-[var(--p-shadow-sm)]"><Moon size={14} className="text-[#6a3ff0]" />11:42 PM</span>
         <StatusBadge tone="neutral">Office closed</StatusBadge>
@@ -75,9 +75,9 @@ function Timeline() {
     { t: 'AI follow-up call', d: 'Automated', kind: 'fix' },
   ];
   return (
-    <div ref={ref} className="absolute inset-0 flex flex-col p-5" aria-hidden="true">
+    <div ref={ref} className="relative flex min-h-[326px] flex-col p-4 sm:p-5" aria-hidden="true">
       <div className="ui-surface flex-1 p-4">
-        <div className="flex items-center gap-2.5"><Avatar name="Vikram K" size={30} hue={250} /><div className="min-w-0 flex-1"><p className="text-[13px] font-semibold text-[var(--p-text)]">Vikram K.</p><p className="text-[11.5px] text-[var(--p-muted)]">Lead timeline · Plot · ₹85 L</p></div><span key={String(s >= 4)} style={{ animation: 'pop .3s var(--ease-out) both' }}><StatusBadge tone={s >= 4 ? 'brand' : s >= 2 ? 'hot' : 'cold'}>{s >= 4 ? 'Re-engaged' : s >= 2 ? 'Going cold' : 'New'}</StatusBadge></span></div>
+        <div className="flex items-center gap-2.5"><Avatar name="Vikram K" size={30} hue={250} /><div className="min-w-0 flex-1"><p className="text-[13px] font-semibold text-[var(--p-text)]">Vikram K.</p><p className="truncate text-[11.5px] text-[var(--p-muted)]">Lead timeline · Plot · ₹85 L</p></div><span key={String(s >= 4)} style={{ animation: 'pop .3s var(--ease-out) both' }}><StatusBadge tone={s >= 4 ? 'brand' : s >= 2 ? 'hot' : 'cold'}>{s >= 4 ? 'Re-engaged' : s >= 2 ? 'Going cold' : 'New'}</StatusBadge></span></div>
         <div className="relative mt-4 space-y-3 pl-6">
           <span className="absolute bottom-2 left-[7px] top-2 w-px bg-[var(--p-line)]" />
           {items.map((it, i) => {
@@ -88,7 +88,7 @@ function Timeline() {
                 <span className={`absolute -left-6 top-1 grid h-[15px] w-[15px] place-items-center rounded-full text-white ring-4 ring-white ${dot}`}>{it.kind === 'miss' ? <PhoneMissed size={8} /> : <Check size={9} strokeWidth={3} />}</span>
                 <div className={`flex items-center justify-between gap-3 rounded-lg px-2.5 py-1.5 ${it.kind === 'fix' && on ? 'bg-[#f3efff] ring-1 ring-[#d9cdff]' : ''}`}>
                   <p className={`text-[13px] font-semibold ${it.kind === 'miss' ? 'text-[#b91c1c]' : 'text-[var(--p-text)]'}`}>{it.t}</p>
-                  <span className="flex-none text-[11.5px] text-[var(--p-muted)]">{it.d}</span>
+                  <span className="flex-none text-[11.5px] text-[var(--p-muted)] max-[360px]:hidden">{it.d}</span>
                 </div>
               </div>
             );
@@ -104,20 +104,20 @@ function DatabaseViz() {
   const rows = [['Neha G.', '9 mo'], ['Karan P.', '7 mo'], ['Sana R.', '11 mo'], ['Dev A.', '6 mo'], ['Meera J.', '8 mo']];
   const n = Math.min(s, 5);
   return (
-    <div ref={ref} className="absolute inset-0 flex flex-col p-5" aria-hidden="true">
+    <div ref={ref} className="relative flex min-h-[326px] flex-col p-4 sm:p-5" aria-hidden="true">
       <div className="ui-surface flex-1 overflow-hidden">
         <div className="flex items-center justify-between border-b border-[var(--p-line)] px-3.5 py-2.5">
           <span className="flex items-center gap-2 text-[13px] font-semibold text-[var(--p-text)]"><Database size={14} className="text-[#6a3ff0]" />leads_2024.csv</span>
-          <span className="text-[11.5px] font-medium tabular-nums text-[var(--p-muted)]"><b className="font-semibold text-[#5b34d6]">{n}</b> / 5 re-engaging</span>
+          <span className="text-[11.5px] font-medium tabular-nums text-[var(--p-muted)]"><b className="font-semibold text-[#5b34d6]">{n}</b> / 5<span className="max-[360px]:hidden"> re-engaging</span></span>
         </div>
-        <div className="grid grid-cols-[1fr_auto_auto] items-center gap-x-3 px-3.5 py-1.5"><span className="p-label">Lead</span><span className="p-label">Last contact</span><span className="p-label w-[112px] text-right">Status</span></div>
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 px-3.5 py-1.5 min-[380px]:grid-cols-[minmax(0,1fr)_auto_auto]"><span className="p-label">Lead</span><span className="p-label max-[379px]:hidden">Last contact</span><span className="p-label text-right">Status</span></div>
         {rows.map(([r, age], i) => {
           const on = s > i;
           return (
-            <div key={r} className={`grid grid-cols-[1fr_auto_auto] items-center gap-x-3 border-t border-[var(--p-line)] px-3.5 py-[7px] text-[12.5px] ${on ? 'p-flash' : ''}`}>
+            <div key={r} className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 min-[380px]:grid-cols-[minmax(0,1fr)_auto_auto] border-t border-[var(--p-line)] px-3.5 py-[7px] text-[12.5px] ${on ? 'p-flash' : ''}`}>
               <span className="flex items-center gap-2 font-medium text-[var(--p-text)]"><Avatar name={r} size={20} hue={190 + i * 35} />{r}</span>
-              <span className="text-[11.5px] tabular-nums text-[var(--p-muted)]">{age} ago</span>
-              <span className="flex w-[112px] justify-end"><StatusBadge tone={on ? 'brand' : 'neutral'} dot={!on}>{on ? <><RefreshCw size={10} />Call scheduled</> : 'Inactive'}</StatusBadge></span>
+              <span className="text-[11.5px] tabular-nums text-[var(--p-muted)] max-[379px]:hidden">{age} ago</span>
+              <span className="flex justify-end"><StatusBadge tone={on ? 'brand' : 'neutral'} dot={!on}>{on ? <><RefreshCw size={10} /><span className="max-[340px]:hidden">Call </span>scheduled</> : 'Inactive'}</StatusBadge></span>
             </div>
           );
         })}

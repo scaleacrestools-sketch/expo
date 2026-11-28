@@ -27,7 +27,7 @@ export function Comparison() {
     <Section id="compare" theme="light" label="Feature comparison">
       <div className="container-x section-y">
         <SectionHeader eyebrow={comparison.eyebrow} title={comparison.title} description={comparison.description} />
-        <Reveal className="mt-12 md:hidden" variant="up">
+        <Reveal className="mx-auto mt-12 max-w-[640px] lg:hidden" variant="up">
           {/* Mobile: our platform vs one alternative at a time — no clipped horizontal table */}
           <div className="mx-auto flex w-full max-w-[360px] rounded-full border border-[var(--c-line)] bg-white p-1 shadow-[0_6px_20px_-12px_rgba(13,20,36,.25)]" role="tablist" aria-label="Compare with">
             {comparison.columns.slice(1).map((c, i) => (
@@ -53,7 +53,7 @@ export function Comparison() {
             </ul>
           </div>
         </Reveal>
-        <Reveal className="mt-14 hidden md:block" variant="tilt">
+        <Reveal className="mt-14 hidden lg:block" variant="tilt">
           <div className="card relative overflow-hidden">
             <div className="thin-scroll overflow-x-auto" tabIndex={0} role="region" aria-label="Comparison table, scroll horizontally on small screens">
               <table className="w-full min-w-[760px] border-separate border-spacing-0 text-left" data-testid="comparison-table">

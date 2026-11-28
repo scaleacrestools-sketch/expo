@@ -29,7 +29,7 @@ export function Features() {
           {order.map((idx, k) => {
             const f = features.items[idx]; const c = cfg[idx]; const I = c.icon;
             return (
-              <Reveal key={f.title} variant={c.primary ? 'scale' : 'up'} delay={(k % 3) * 0.07} className={`${c.cls} ${idx === 0 || c.wide ? 'md:col-span-2' : ''}`}>
+              <Reveal key={f.title} variant={c.primary ? 'scale' : 'up'} delay={(k % 3) * 0.07} className={`${c.cls} ${idx === 0 || idx === 4 || idx === 6 || c.wide ? 'md:col-span-2' : ''}`}>
                 <article className={`card card-hover flex h-full overflow-hidden ${c.wide ? 'flex-col lg:flex-row-reverse' : 'flex-col'} ${c.primary ? 'ring-1 ring-brand/15' : ''}`} data-feature={f.title}>
                   <div className={`product relative flex flex-col justify-center border-[var(--c-line)] bg-[radial-gradient(120%_90%_at_50%_0%,#efeaff_0%,#f6f7fb_62%)] ${c.wide ? 'border-b lg:w-[60%] lg:border-b-0 lg:border-l' : 'flex-1 border-b'}`}>
                     <c.V />

@@ -83,7 +83,7 @@ export function CommandCenter({ phase }: { phase: number }) {
           </Panel>
 
         </div>
-        <div className="mt-2 grid gap-2 lg:grid-cols-[1.3fr_1fr_0.95fr_1.05fr]">
+        <div className="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_0.95fr_1.05fr]">
           {/* AI call activity */}
           <Panel title="AI call activity" right={<span key={call.s} style={{ animation: 'pop .3s var(--ease-out) both' }}><StatusBadge tone={call.t}>{call.s}</StatusBadge></span>}>
             <CallCard agent={story.agent.name} buyer={story.buyer.name} meta={`${story.buyer.phone} · ${story.buyer.source}`} live={live}>
@@ -104,7 +104,7 @@ export function CommandCenter({ phase }: { phase: number }) {
 
           {/* Site visit calendar */}
           <Panel className="hidden sm:block" title="Site visits" right={<span className="text-[10.5px] text-[var(--p-muted)]">Nov</span>}>
-            <AppointmentCalendar highlight={phase >= 7 ? story.visit.day : -1} booked={[3, 8, 10, 17, 19]} />
+            <AppointmentCalendar className="mx-auto max-w-[220px]" highlight={phase >= 7 ? story.visit.day : -1} booked={[3, 8, 10, 17, 19]} />
             <p key={String(phase >= 7)} className={`mt-1.5 truncate text-[10.5px] ${phase >= 7 ? 'font-semibold text-[#5b34d6]' : 'text-[var(--p-muted)]'}`} style={phase >= 7 ? { animation: 'rise .4s var(--ease-out) both' } : undefined}>{phase >= 7 ? story.visit.short : '5 booked'}</p>
           </Panel>
 

@@ -42,12 +42,12 @@ export function Performance() {
           <div ref={ref}>
             <DashboardShell path="analytics">
               <div className="flex">
-              <DashboardSidebar active="Analytics" className="lg:!flex md:!hidden" />
+              <DashboardSidebar active="Analytics" />
               <div className="min-w-0 flex-1 p-3 sm:p-4" data-testid="performance-dashboard">
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div>
+                  <div className="min-w-0 max-w-full">
                     <p className="text-[16px] font-semibold tracking-[-0.02em] text-[var(--c-head)]">Sales performance</p>
-                    <p className="mt-0.5 flex items-center gap-2 text-[12px] text-[var(--c-muted)]" aria-live="off" data-testid="perf-live"><span className="p-live h-1.5 w-1.5 flex-none rounded-full bg-[var(--p-success)]" /><span key={fi} className="truncate" style={{ animation: 'rise .35s var(--ease-out) both' }}>Live · {feed[fi]}</span></p>
+                    <p className="mt-0.5 flex min-w-0 items-center gap-2 text-[12px] text-[var(--c-muted)]" aria-live="off" data-testid="perf-live"><span className="p-live h-1.5 w-1.5 flex-none rounded-full bg-[var(--p-success)]" /><span key={fi} className="min-w-0 truncate" style={{ animation: 'rise .35s var(--ease-out) both' }}>Live · {feed[fi]}</span></p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
                     <div role="group" aria-label="Date range" className="flex rounded-lg border border-[var(--p-line)] bg-[#f2f4f7] p-0.5 text-[12px]">
@@ -114,7 +114,7 @@ export function Performance() {
                     {campaigns.map((c) => (
                       <li key={c.name} className="px-4 py-3">
                         <div className="flex items-center justify-between gap-2"><p className="flex items-center gap-2 text-[13.5px] font-medium text-[var(--c-head)]"><span className="h-5 w-1 rounded-full bg-gradient-to-b from-[#a48bff] to-[#6a3ff0]" />{c.name}</p><Status tone={c.status === 'Active' ? 'ok' : 'cold'}>{c.status}</Status></div>
-                        <dl className="mt-2 grid grid-cols-4 gap-1 text-[11px]">
+                        <dl className="mt-2 grid grid-cols-4 gap-2 text-[11px] max-[360px]:text-[9.5px]">
                           {([['Leads', c.leads], ['Connected', c.connected], ['Qualified', c.qualified], ['Visits', c.visits]] as const).map(([k, v]) => (
                             <div key={k}><dt className="text-[var(--c-muted)]">{k}</dt><dd className="text-[14px] font-semibold tabular-nums text-[var(--c-head)]">{v}</dd></div>
                           ))}

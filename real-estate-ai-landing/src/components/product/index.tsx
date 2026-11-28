@@ -42,7 +42,7 @@ const navItems: { icon: LucideIcon; label: string; count?: string }[] = [
 ];
 export function DashboardSidebar({ active = 'Overview', footer, className = '' }: { active?: string; footer?: ReactNode; className?: string }) {
   return (
-    <aside className={`hidden w-[168px] flex-none flex-col border-r border-[var(--p-line)] bg-white p-2.5 md:flex ${className}`}>
+    <aside className={`hidden w-[168px] flex-none flex-col border-r border-[var(--p-line)] bg-white p-2.5 lg:flex ${className}`}>
       <div className="flex items-center gap-2 px-2 pb-3 pt-1.5"><LogoMark size={20} /><span className="truncate text-[12.5px] font-semibold tracking-[-0.01em] text-[var(--p-text)]">{brand.productName}</span></div>
       <p className="p-label px-2.5 pb-1.5">Workspace</p>
       <nav className="flex flex-col gap-0.5" aria-hidden="true">
@@ -286,10 +286,10 @@ export function CallCard({ agent, buyer, meta, state, tone = 'neutral', live, ch
 /** White integration row/tile with a real brand mark (or a neutral icon where no licensed mark exists). */
 export function IntegrationCard({ it, active = false, reverse = false, compact = false, className = '' }: { it: Integration; active?: boolean; reverse?: boolean; compact?: boolean; className?: string }) {
   return (
-    <div className={`product flex h-full items-center gap-2.5 rounded-xl border bg-white px-2.5 transition-[border-color,box-shadow,transform] duration-200 ${reverse ? 'flex-row-reverse text-right' : ''} ${active ? 'border-[#b9a5ff] shadow-[0_0_0_3px_rgba(128,87,255,.28),0_14px_34px_-12px_rgba(128,87,255,.75)]' : 'border-white/70 shadow-[0_8px_24px_-14px_rgba(8,5,21,.8)]'} ${className}`}>
+    <div className={`product flex h-full items-center gap-2.5 rounded-xl border bg-white px-2.5 max-[350px]:gap-1.5 max-[350px]:px-1.5 transition-[border-color,box-shadow,transform] duration-200 ${reverse ? 'flex-row-reverse text-right' : ''} ${active ? 'border-[#b9a5ff] shadow-[0_0_0_3px_rgba(128,87,255,.28),0_14px_34px_-12px_rgba(128,87,255,.75)]' : 'border-white/70 shadow-[0_8px_24px_-14px_rgba(8,5,21,.8)]'} ${className}`}>
       <IntegrationIcon it={it} size={compact ? 30 : 34} />
       <span className="min-w-0">
-        <span className={`block font-semibold leading-tight text-[var(--p-text)] ${compact ? 'text-[12.5px]' : 'truncate text-[13.5px]'}`}>{it.name}</span>
+        <span className={`block font-semibold leading-tight text-[var(--p-text)] ${compact ? 'text-[12.5px] max-[350px]:text-[11px]' : 'truncate text-[13.5px]'}`}>{it.name}</span>
         {!compact && <span className="block truncate text-[11px] text-[var(--p-muted)]">{it.detail}</span>}
       </span>
     </div>

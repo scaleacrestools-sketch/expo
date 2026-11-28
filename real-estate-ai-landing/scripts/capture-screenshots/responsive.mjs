@@ -17,7 +17,11 @@ for (const [w, h] of sizes) {
   await p.waitForTimeout(600);
   const m = await p.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, h: document.body.scrollHeight,
     small: [...document.querySelectorAll('button, a, [role=tab], [role=radio]')].filter((e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && (r.height < 32 && r.width < 32); }).length }));
-  await p.screenshot({ path: join(out, `fullpage-${w}x${h}.jpg`), fullPage: true, type: "jpeg", quality: 85 });
+  // Very tall full-page captures occasionally stall in headless Chromium: time out and retry rather than hang.
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try { await p.screenshot({ path: join(out, `fullpage-${w}x${h}.jpg`), fullPage: true, type: 'jpeg', quality: 85, timeout: 25000 }); break; }
+    catch (e) { if (attempt === 2) console.warn(`${w}x${h} screenshot failed: ${e.message.split('\n')[0]}`); }
+  }
   console.log(`${w}x${h}`, JSON.stringify({ overflow: m.sw > m.cw, pageHeight: m.h, tinyTargets: m.small, errors: errors.length }));
   await ctx.close();
 }

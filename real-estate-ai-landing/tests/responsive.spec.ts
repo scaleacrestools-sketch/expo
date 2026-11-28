@@ -36,3 +36,25 @@ test('mobile touch targets on primary controls are at least 40px', async ({ page
     expect(b.height, id).toBeGreaterThanOrEqual(40);
   }
 });
+
+// V4: overflow-x clipping hides content that is wider than the screen from the scrollWidth check above,
+// so also assert that no text element extends past the viewport edge.
+for (const w of [320, 360, 390, 768]) {
+  test(`no content clipped past the viewport at ${w}px`, async ({ browser }) => {
+    const ctx = await browser.newContext({ viewport: { width: w, height: 800 }, reducedMotion: 'reduce' }) /* final layout, not mid-entrance */;
+    const page = await ctx.newPage();
+    await page.goto('/');
+    await page.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 600) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 40)); } await new Promise((r) => setTimeout(r, 1500)); });
+    const clipped = await page.evaluate((vw) => {
+      const out: string[] = [];
+      for (const e of Array.from(document.querySelectorAll('section h2, section h3, section p, section li, section td, section th, section dd, section button, section a'))) {
+        if (e.closest('[data-testid="marquee"], .thin-scroll, [aria-hidden="true"]')) continue;
+        const r = e.getBoundingClientRect(); if (r.width === 0 || r.height === 0) continue;
+        if (r.right > vw + 1 || r.left < -1) out.push(`${e.closest('section')?.id}: "${(e.textContent || '').trim().slice(0, 30)}" right=${Math.round(r.right)}`);
+      }
+      return out.slice(0, 5);
+    }, w);
+    expect(clipped).toEqual([]);
+    await ctx.close();
+  });
+}
