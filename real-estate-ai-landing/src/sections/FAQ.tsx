@@ -22,7 +22,7 @@ export function FAQ() {
               <button onClick={openDemo} className="btn btn-secondary mt-4">Book a Demo</button>
             </Reveal>
           </div>
-          <Reveal>
+          <Reveal variant="right">
             <ul className="divide-y divide-white/[0.08] border-y border-white/[0.08]" data-testid="faq">
               {faq.items.map((f, i) => {
                 const on = open === i;

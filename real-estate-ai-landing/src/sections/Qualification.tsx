@@ -39,7 +39,7 @@ export function Qualification() {
         <SectionHeader eyebrow={qualification.eyebrow} title={qualification.title} description={qualification.description} />
         <div ref={ref} className="mt-12 grid items-stretch gap-4 lg:grid-cols-[1.1fr_auto_1fr]" data-testid="qualification-demo" data-step={shown}>
           {/* Conversation */}
-          <Reveal className="card flex flex-col p-5 sm:p-6">
+          <Reveal variant="left" className="card flex flex-col p-5 sm:p-6">
             <div className="flex items-center justify-between">
               <p className="flex items-center gap-2 text-[14px] font-semibold text-[var(--c-head)]"><AgentOrb size={26} live={!complete} />Buyer conversation</p>
               <span className="badge badge-neutral">Question {shown} of 10</span>
@@ -68,7 +68,7 @@ export function Qualification() {
           </div>
 
           {/* Structured CRM profile */}
-          <Reveal delay={0.08} className="card p-5 sm:p-6">
+          <Reveal variant="right" delay={0.08} className="card p-5 sm:p-6">
             <div className="flex items-center gap-3">
               <Avatar name={story.buyer.name} size={40} />
               <div className="flex-1"><p className="text-[15px] font-semibold text-[var(--c-head)]">{story.buyer.name}</p><p className="text-[12.5px] text-[var(--c-muted)]">CRM record · {story.project.name}</p></div>

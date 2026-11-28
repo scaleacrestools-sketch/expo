@@ -23,7 +23,7 @@ export function LeadFunnel() {
       <div className="container-x section-y">
         <SectionHeader eyebrow={funnelCopy.eyebrow} title={funnelCopy.title} description={funnelCopy.description} />
 
-        <Reveal className="mt-14">
+        <Reveal className="mt-14" variant="tilt">
           <div ref={ref} className="card overflow-hidden p-5 sm:p-8" data-testid="funnel">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div role="tablist" aria-label="Workflow comparison" className="inline-flex rounded-full border border-[var(--c-line)] bg-[var(--light-background-secondary)] p-1">

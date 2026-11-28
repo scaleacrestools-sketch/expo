@@ -13,15 +13,16 @@ const sources = [
 
 export function ImportViz({ t }: { t: number }) {
   return (
-    <div className="grid h-full grid-cols-[1fr_auto_1fr] items-center gap-2 p-5 sm:p-7" aria-hidden="true">
-      <ul className="space-y-1.5">
+    <div className="grid h-full items-center gap-2 p-4 sm:grid-cols-[1fr_auto_1fr] sm:p-7" aria-hidden="true">
+      <ul className="grid grid-cols-2 gap-1.5 sm:block sm:space-y-1.5">
         {sources.map((s, i) => (
           <li key={s.l} className={`flex items-center gap-2 rounded-lg border bg-white px-2.5 py-1.5 text-[12px] font-medium text-[var(--c-head)] shadow-sm transition-all duration-500 ${t % 8 === i ? 'border-brand/60 ring-2 ring-brand/15' : 'border-[var(--c-line)]'}`}>
             <s.i size={13} style={{ color: s.c }} /><span className="truncate">{s.l}</span>
           </li>
         ))}
       </ul>
-      <svg width="70" height="300" viewBox="0 0 70 300" className="h-full max-h-[320px] w-[50px] sm:w-[70px]">
+      <div className="relative mx-auto h-8 w-px bg-gradient-to-b from-[#d9d9e0] to-[var(--brand-primary)] sm:hidden"><span className="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-b border-r border-[var(--brand-primary)]" /></div>
+      <svg width="70" height="300" viewBox="0 0 70 300" className="hidden h-full max-h-[320px] w-[70px] sm:block">
         {sources.map((_, i) => {
           const y = 18 + i * 37.5;
           return <path key={i} d={`M0 ${y} C 40 ${y}, 30 150, 70 150`} fill="none" stroke={t % 8 === i ? 'var(--brand-primary)' : '#d9d9e0'} strokeWidth={t % 8 === i ? 2 : 1} className={t % 8 === i ? 'flow-dash' : ''} />;

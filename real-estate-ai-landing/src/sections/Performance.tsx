@@ -38,7 +38,7 @@ export function Performance() {
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[900px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(139,92,246,0.18),transparent)]" />
       <div className="container-x section-y relative">
         <SectionHeader eyebrow={performanceCopy.eyebrow} title={performanceCopy.title} description={performanceCopy.description} />
-        <Reveal className="mt-14">
+        <Reveal className="mt-14" variant="blur">
           <div ref={ref}>
             <AppWindow path="analytics">
               <div className="p-3 sm:p-5" data-testid="performance-dashboard">

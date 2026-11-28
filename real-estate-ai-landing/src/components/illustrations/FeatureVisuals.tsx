@@ -17,12 +17,12 @@ export function CallingVisual() {
     <div ref={ref} className="flex h-full flex-col justify-center gap-3 p-5 sm:flex-row sm:items-center sm:p-7" aria-hidden="true">
       <div className={`flex-1 rounded-2xl border border-[var(--c-line)] bg-white p-3.5 shadow-[var(--c-shadow)] transition-all duration-500 ${t >= 0 ? 'opacity-100' : 'opacity-0'}`}>
         <p className="flex items-center gap-2 text-[12.5px] font-semibold text-[var(--c-head)]"><span className="grid h-7 w-7 place-items-center rounded-lg bg-sky-100 text-sky-600"><PhoneIncoming size={14} /></span>New enquiry</p>
-        <p className="mt-2 text-[12px] text-[var(--c-text)]">Neha Gupta · Google Ads</p>
-        <p className="text-[11.5px] text-[var(--c-muted)]">2 BHK · Received just now</p>
+        <p className="mt-2 text-[12px] text-[var(--c-text)]">Rohan Mehta · Meta Ads</p>
+        <p className="text-[11.5px] text-[var(--c-muted)]">3 BHK · ₹2 Cr · Received just now</p>
       </div>
       <svg width="60" height="20" viewBox="0 0 60 20" className="mx-auto rotate-90 sm:rotate-0"><path d="M0 10 H60" stroke="#8b5cf6" strokeWidth="2" className="flow-dash" /></svg>
       <div className="flex-[1.3] rounded-2xl bg-[#0f0f14] p-4 text-white shadow-[0_24px_50px_-24px_rgba(36,21,82,.7)]">
-        <div className="flex items-center gap-2.5"><AgentOrb size={32} live={t >= 1} /><div className="flex-1"><p className="text-[13px] font-medium">{t >= 2 ? 'Connected' : 'Calling Neha…'}</p><p className="text-[11px] text-white/50">Auto-dialled within permitted hours</p></div><span className={`grid h-8 w-8 place-items-center rounded-full ${t >= 2 ? 'bg-emerald-500' : 'bg-white/10'}`}><Phone size={14} /></span></div>
+        <div className="flex items-center gap-2.5"><AgentOrb size={32} live={t >= 1} /><div className="flex-1"><p className="text-[13px] font-medium">{t >= 2 ? 'Connected' : 'Calling Rohan…'}</p><p className="text-[11px] text-white/50">Auto-dialled within permitted hours</p></div><span className={`grid h-8 w-8 place-items-center rounded-full ${t >= 2 ? 'bg-emerald-500' : 'bg-white/10'}`}><Phone size={14} /></span></div>
         <div className="mt-3"><Waveform bars={34} active={t >= 2} height={26} /></div>
       </div>
     </div>

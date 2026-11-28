@@ -13,7 +13,7 @@ export function Problem() {
         <SectionHeader eyebrow={problem.eyebrow} title={problem.title} description={problem.description} />
         <div className="mt-14 grid gap-5 md:grid-cols-3">
           {problem.cards.map((c, i) => (
-            <Reveal key={c.title} delay={i * 0.08}>
+            <Reveal key={c.title} delay={i * 0.1} variant="tilt">
               <article className="card card-hover flex h-full flex-col overflow-hidden">
                 <div className="relative h-[252px] border-b border-[var(--c-line)] bg-[var(--light-background-secondary)]">
                   {i === 0 ? <LateNight /> : i === 1 ? <Timeline /> : <DatabaseViz />}

@@ -49,7 +49,7 @@ export function MobileCRM() {
             </div>
           </div>
 
-          <Reveal>
+          <Reveal variant="right">
             <div ref={ref} className="relative mx-auto flex h-[620px] max-w-[560px] items-center justify-center" data-testid="mobile-phones" data-screen={s}>
               <div aria-hidden="true" className="absolute inset-10 rounded-full bg-[radial-gradient(closest-side,rgba(139,92,246,.22),transparent)]" />
               {/* Desktop: two phones that swap depth */}

@@ -10,7 +10,7 @@ export function FinalCTA() {
   return (
     <Section id="cta" theme="dark" label="Get started" className="overflow-hidden">
       <div className="container-x pb-16 pt-4 sm:pb-20">
-        <Reveal>
+        <Reveal variant="scale">
           <div className="relative overflow-hidden rounded-[32px] border border-white/10 px-6 py-16 text-center sm:px-12 sm:py-24" style={{ background: 'radial-gradient(90% 120% at 50% 0%, rgba(128,87,255,0.42) 0%, rgba(72,38,179,0.22) 38%, rgba(13,13,28,1) 72%), #0d0d1c', boxShadow: 'inset 0 -16px 64px rgba(116,176,253,.06), 0 40px 120px -60px rgba(128,87,255,.6)' }}>
             <div aria-hidden="true" className="grid-bg absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_top,#000_10%,transparent_65%)]" />
             <svg aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[160px] w-full opacity-60" viewBox="0 0 1200 160" preserveAspectRatio="none">

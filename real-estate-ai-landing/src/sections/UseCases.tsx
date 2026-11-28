@@ -32,7 +32,7 @@ export function UseCases() {
     <Section id="use-cases" theme="dark" sheet label="Use cases">
       <div className="container-x section-y">
         <SectionHeader eyebrow={useCases.eyebrow} title={useCases.title} />
-        <Reveal className="mt-12">
+        <Reveal className="mt-12" variant="blur">
           <div role="tablist" aria-label="Audiences" onKeyDown={onKey} className="grid grid-cols-2 gap-2 md:grid-cols-4">
             {useCases.tabs.map((x, i) => (
               <button key={x.id} id={`uc-tab-${i}`} role="tab" aria-selected={tab === i} aria-controls="uc-panel" tabIndex={tab === i ? 0 : -1} onClick={() => setTab(i)} data-testid={`uc-tab-${i}`}

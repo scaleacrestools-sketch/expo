@@ -54,7 +54,7 @@ export function Omnichannel() {
       <div className="container-x section-y">
         <SectionHeader eyebrow={omnichannel.eyebrow} title={omnichannel.title} description={omnichannel.description} />
 
-        <Reveal className="mt-14">
+        <Reveal className="mt-14" variant="scale">
           <div ref={ref} className="card relative overflow-hidden p-4 sm:p-6" data-testid="omnichannel">
             <div aria-hidden="true" className="grid-bg absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,#000_20%,transparent_70%)]" />
 

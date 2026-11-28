@@ -78,7 +78,7 @@ export function VoiceAgents() {
       <div className="container-x section-y relative">
         <SectionHeader eyebrow={voice.eyebrow} title={voice.title} description={voice.description} />
 
-        <Reveal className="mt-10">
+        <Reveal className="mt-10" variant="scale">
           <div role="tablist" aria-label="Sample call scenarios" onKeyDown={onTabKey} className="mx-auto grid max-w-full grid-cols-2 gap-1 rounded-[22px] border border-[var(--c-line)] bg-white/[0.03] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,.04)] sm:flex sm:w-max sm:rounded-full">
             {voice.conversations.map((c, i) => (
               <button key={c.id} id={`voice-tab-${i}`} role="tab" aria-selected={tab === i} aria-controls="voice-panel" tabIndex={tab === i ? 0 : -1} onClick={() => setTab(i)} data-testid={`voice-tab-${i}`}
