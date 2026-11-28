@@ -17,7 +17,7 @@ export function ImportViz({ t }: { t: number }) {
       <ul className="grid grid-cols-2 gap-1.5 sm:block sm:space-y-1.5">
         {sources.map((s, i) => (
           <li key={s.l} className={`flex items-center gap-2 rounded-lg border bg-white px-2.5 py-1.5 text-[12px] font-medium text-[var(--c-head)] shadow-sm transition-all duration-500 ${t % 8 === i ? 'border-brand/60 ring-2 ring-brand/15' : 'border-[var(--c-line)]'}`}>
-            <s.i size={13} style={{ color: s.c }} /><span className="truncate">{s.l}</span>
+            <s.i size={13} className="flex-none" style={{ color: s.c }} /><span className="leading-tight sm:truncate">{s.l}</span>
           </li>
         ))}
       </ul>

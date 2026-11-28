@@ -1,3 +1,44 @@
+# Content Changes — V3
+
+V3 changes no approved copy. Headings, descriptions, feature names, FAQ, comparison rows, use cases and qualification questions are as approved. The changes below are visual, connect the story, or make claims more accurate.
+
+## Content audit method
+Every section was checked for four things:
+1. Is the copy the approved text?
+2. Is any illustrative number presented as a result?
+3. Does every demo screen tell the same buyer story? That story is Rohan Mehta → Skyline Residences, Whitefield → 3 BHK, ₹2 Cr → score 86 → site visit Sat 15 Nov 11 AM → handed to Kavya Rao.
+4. Is any integration or feature presented as live?
+
+| # | Location | Before (V2) | After (V3) | Reason |
+|---|---|---|---|---|
+| V3-1 | Integrations, every card | A yellow "PLANNED" badge on each of 12 cards | One section-level disclosure: "All integrations shown are planned and illustrate intended compatibility; none are live in this preview. Brand names and logos belong to their owners; no partnership or endorsement is implied." Card aria-labels still end in "(planned)". | Brief §5: remove repetitive labels and keep one clear disclosure. The section still never implies a live integration. |
+| V3-2 | Integrations, card copy | Long description paragraphs | One-line details, e.g. "Lead-form enquiries", "Portal enquiries", "Native pipeline sync" | Narrower, scannable cards, as in the HUVO reference. |
+| V3-3 | Integrations, logos | Letter monograms | Simple Icons brand marks (CC0) for Meta, Google Ads, WhatsApp, HubSpot and Gmail. Neutral Lucide icons for 99acres, Housing.com, Magicbricks, Website Forms, Salesforce, Webhooks & API and ScaleTrack CRM. | No licensed SVG exists for those names, so no logo was drawn or imitated ("Do not invent a fake brand logo"). Salesforce was removed from Simple Icons at the owner's request, so it is not used. |
+| V3-4 | Integrations, engine | Small centre mark | "[Product Name] AI engine", with a live caption naming the pair being traced (e.g. "99acres → HubSpot") and "Hover a tool to trace it" | Makes the data flow explicit. |
+| V3-5 | Hero dashboard | "Activity" list | "Buyer profile" panel (Configuration, Budget, Purpose, Timeline, Intent score, Next step) that fills in during the call; owner shown as Kavya at the end | Brief §6 asks for buyer profile updates. Uses the shared story. |
+| V3-6 | Hero chart | "▲ 846 total" | Changes to "▲ 847 total · +1 now" when the dashboard updates | The chart update is now visible. 846 matches the Performance section. |
+| V3-7 | Hero, mobile | Squeezed desktop CRM plus three story cards | One lead card for Rohan that moves through the same 9 stages, with a buyer profile that fills in and a 01–09 progress bar | Mobile-specific composition; same story and numbers. |
+| V3-8 | Features, Instant AI Calling visual | "Neha Gupta · Google Ads · 2 BHK" | "Rohan Mehta · Meta Ads · 3 BHK · ₹2 Cr" | Keeps one connected story across sections. |
+| V3-9 | Funnel toggle (mobile only) | "AI-assisted workflow" / "Manual workflow" | "AI-assisted" / "Manual" | Prevents two-line wrapping at 390 px. Desktop labels unchanged. |
+| V3-10 | Comparison (mobile only) | 3-column scrolling table | "vs Manual Sales Team" / "vs Basic IVR" toggle; each row compares our planned platform with one alternative | Same rows and values; no clipping. Desktop table unchanged. |
+| V3-11 | Omnichannel (mobile only) | 2-column chip grid | Vertical timeline of the 7 approved steps; each step shows its channel and, when active, the same detail text as desktop | Mobile-specific flow. |
+| V3-12 | Walkthrough modal | "34-second walkthrough with captions" | "78-second walkthrough with captions" | New 10-scene video. |
+| V3-13 | Walkthrough video | 9 scenes, 34 s | 10 scenes, 78 s: Introduction, Incoming Enquiry, AI Calling, Buyer Conversation, Lead Qualification, WhatsApp Follow-up, Site Visit Booking, CRM Handover, Performance Dashboard, Book a Demo. New narration (ElevenLabs, licensed stock voice). The handover scene adds an "AI conversation summary". | Brief §11. Every scene uses the shared story; "Demo · sample data" is shown throughout. |
+
+## Walkthrough narration (V3, exact text)
+1. Every property enquiry is a buyer waiting for an answer. Here is how one lead becomes a booked site visit, automatically.
+2. Rohan Mehta fills in a Meta Ads form for Skyline Residences. He is looking for a three BHK, at around two crore.
+3. Within seconds, Aria, your AI voice agent, calls him back, inside your permitted calling hours.
+4. Aria holds a natural conversation, in English or Hindi, asking about configuration, location, budget and timeline.
+5. Every answer is written to the CRM as a structured record, and Rohan is scored eighty-six. A hot lead.
+6. The project brochure follows on WhatsApp, so the conversation keeps moving without anyone lifting a finger.
+7. Rohan picks Saturday at eleven for a site visit, and the confirmation goes out instantly.
+8. The qualified buyer is handed over to Kavya, your senior sales executive, with the full conversation summary.
+9. And every call, outcome and site visit flows into one performance dashboard, so you always know what is working.
+10. Bring AI calling, qualification and site visit booking to your sales team. Book a demo today.
+
+---
+
 # Content Changes — V2
 
 All approved headings, descriptions, feature names, FAQ questions and answers, comparison rows, use cases and qualification questions are unchanged. The table lists every meaningful text change, why it was made, and where.

@@ -5,8 +5,8 @@ import { useApp } from './AppContext';
 
 type Version = 'voiceover' | 'silent';
 const SRC: Record<Version, { webm: string; mp4: string }> = {
-  voiceover: { webm: '/assets/videos/product-walkthrough-voiceover.webm', mp4: '/assets/videos/product-walkthrough-voiceover.mp4' },
-  silent: { webm: '/assets/videos/product-walkthrough.webm', mp4: '/assets/videos/product-walkthrough.mp4' },
+  voiceover: { webm: '/assets/videos/product-walkthrough-v3.webm', mp4: '/assets/videos/product-walkthrough-v3.mp4' },
+  silent: { webm: '/assets/videos/product-walkthrough-v3-silent.webm', mp4: '/assets/videos/product-walkthrough-v3-silent.mp4' },
 };
 
 /**
@@ -35,11 +35,11 @@ export function VideoModal() {
       <div className="p-3 sm:p-4">
         <div className="relative aspect-video overflow-hidden rounded-2xl bg-[#080515]">
           {!failed ? (
-            <video key={version} ref={ref} controls={started} playsInline preload="none" poster="/assets/videos/video-poster.webp"
+            <video key={version} ref={ref} controls={started} playsInline preload="none" poster="/assets/videos/product-walkthrough-poster.webp"
               className="h-full w-full" data-testid="walkthrough-video" data-version={version} onError={() => setFailed(true)} onPlay={() => setStarted(true)}>
               <source src={SRC[version].webm} type="video/webm" />
               <source src={SRC[version].mp4} type="video/mp4" />
-              <track kind="captions" src="/assets/videos/product-walkthrough.vtt" srcLang="en" label="English" />
+              <track kind="captions" src="/assets/videos/product-walkthrough-v3.vtt" srcLang="en" label="English" />
             </video>
           ) : (
             <div className="grid h-full place-items-center p-6 text-center text-[14px] text-white/70">The walkthrough video could not be loaded. Please try again later.</div>
@@ -53,7 +53,7 @@ export function VideoModal() {
           )}
         </div>
         <div className="flex flex-wrap items-center justify-between gap-3 px-1 pb-1 pt-3">
-          <p className="text-[12.5px] text-[var(--c-muted)]">34-second walkthrough with captions. Interface and data are demonstrations.</p>
+          <p className="text-[12.5px] text-[var(--c-muted)]">78-second walkthrough with captions. Interface and data are demonstrations.</p>
           <div role="radiogroup" aria-label="Audio" className="flex rounded-full border border-[var(--c-line)] bg-white/[0.03] p-1 text-[12.5px]">
             {([['voiceover', 'Voice-over', Volume2], ['silent', 'Silent', VolumeX]] as const).map(([v, l, I]) => (
               <button key={v} type="button" role="radio" aria-checked={version === v} onClick={() => switchVersion(v)} data-testid={`video-version-${v}`}

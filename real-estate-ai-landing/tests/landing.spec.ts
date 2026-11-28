@@ -242,7 +242,7 @@ test('video modal: poster, no autoplay, plays on demand, switches audio, stops o
   const video = page.getByTestId('walkthrough-video');
   await expect(video).toBeVisible();
   expect(await video.getAttribute('preload')).toBe('none');
-  expect(await video.getAttribute('poster')).toContain('video-poster.webp');
+  expect(await video.getAttribute('poster')).toContain('product-walkthrough-poster.webp');
   await page.waitForTimeout(600);
   expect(await video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(true); // no autoplay
   await page.getByTestId('video-play-overlay').click();

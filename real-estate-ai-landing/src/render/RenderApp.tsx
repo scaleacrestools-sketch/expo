@@ -47,6 +47,27 @@ function Shell({ children, t, total }: { children: React.ReactNode; t: number; t
   );
 }
 
+function Intro({ p }: { p: number }) {
+  const steps = ['Enquiry', 'AI call', 'Qualification', 'Follow-up', 'Site visit', 'Handover', 'Analytics'];
+  const lit = Math.floor(seg(p, 0.25, 0.9) * steps.length);
+  return (
+    <div className="flex w-[1300px] flex-col items-center text-center">
+      <div style={{ opacity: seg(p, 0, 0.12), transform: `translateY(${(1 - seg(p, 0, 0.15)) * 16}px)` }}>
+        <span className="eyebrow !text-[18px]">AI voice agents for real estate</span>
+        <h1 className="mt-8 text-[84px] font-medium leading-[1.02] tracking-[-0.05em] text-white">From property enquiry<br />to booked site visit.</h1>
+        <p className="mt-6 text-[26px] text-[var(--dark-text)]">One buyer. One connected journey. No manual follow-up.</p>
+      </div>
+      <div className="mt-14 flex items-center gap-3">
+        {steps.map((st, i) => (
+          <div key={st} className="flex items-center gap-3">
+            <span className="rounded-full border px-5 py-2.5 text-[19px] font-medium transition-none" style={{ borderColor: i < lit ? 'rgba(164,139,255,.7)' : 'rgba(255,255,255,.12)', background: i < lit ? 'rgba(128,87,255,.22)' : 'rgba(255,255,255,.03)', color: i < lit ? '#fff' : 'rgba(255,255,255,.45)', boxShadow: i === lit - 1 ? '0 0 30px -4px rgba(128,87,255,.9)' : 'none' }}>{st}</span>
+            {i < steps.length - 1 && <ArrowRight size={18} className="text-white/30" />}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 /* ---------- Walkthrough scene visuals (p = 0..1 progress within the scene) ---------- */
 function S1({ p }: { p: number }) {
   const fields = [['Full name', 'Rohan Mehta'], ['Phone', '+91 98••• ••210'], ['Looking for', '3 BHK apartment'], ['Budget', '₹2 Crore']];
@@ -72,7 +93,7 @@ function S1({ p }: { p: number }) {
 function S2({ p }: { p: number; t?: number }) {
   return (
     <div className="w-[1000px] origin-top-left" style={{ transform: 'scale(1.0)' }}>
-      <AppWindow path="campaigns/skyline-launch"><CommandCenter phase={p < 0.3 ? 1 : p < 0.6 ? 2 : 3} /></AppWindow>
+      <AppWindow path="campaigns/skyline-launch"><CommandCenter phase={p < 0.25 ? 0 : p < 0.5 ? 1 : p < 0.75 ? 2 : 3} /></AppWindow>
     </div>
   );
 }
@@ -118,7 +139,7 @@ function S5({ p }: { p: number }) {
     <div className="w-[520px] overflow-hidden rounded-[36px] border-[10px] border-[#1d1d24] bg-[#efeae2] shadow-2xl">
       <div className="flex items-center gap-3 bg-[#0b5c4f] px-5 py-4 text-white"><Avatar name="Rohan M" size={40} hue={190} /><div><p className="text-[18px] font-medium">Rohan Mehta</p><p className="text-[13px] text-white/70">online</p></div></div>
       <div className="min-h-[420px] space-y-3 p-5">
-        {msgs.map((m, i) => { const o = seg(p, 0.1 + i * 0.22, 0.25 + i * 0.22); return (
+        {msgs.map((m, i) => { const o = seg(p, 0.03 + i * 0.2, 0.15 + i * 0.2); return (
           <div key={i} className={`flex ${m.me ? 'justify-end' : ''}`} style={{ opacity: o, transform: `translateY(${(1 - o) * 10}px)` }}>
             <p className={`max-w-[85%] rounded-xl px-4 py-2.5 text-[18px] leading-snug text-[#111b21] shadow-sm ${m.me ? 'bg-[#d9fdd3]' : 'bg-white'}`}>{m.doc ? <span className="flex items-center gap-2"><FileText size={22} className="text-red-500" />{m.t}</span> : m.t}{m.me && <CheckCheck size={16} className="ml-1 inline text-sky-500" />}</p>
           </div>); })}
@@ -149,6 +170,10 @@ function S7({ p }: { p: number }) {
       <div className="w-[420px] rounded-[28px] border border-white/10 bg-[#101016] p-7">
         <div className="flex items-center gap-4"><Avatar name="Rohan Mehta" size={52} /><div><p className="text-[21px] font-semibold text-white">Rohan Mehta</p><p className="text-[15px] text-white/50">Qualified · Score 86 · Visit Sat 11 AM</p></div></div>
         <div className="mt-5 flex flex-wrap gap-2">{['3 BHK', '₹2 Cr', 'Self-use', '6 months'].map((x) => <span key={x} className="rounded-lg bg-brand/20 px-3 py-1 text-[15px] text-white">{x}</span>)}</div>
+        <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4" style={{ opacity: seg(p, 0.55, 0.7) }}>
+          <p className="flex items-center gap-2 text-[15px] font-semibold text-white"><Sparkles size={16} className="text-[var(--brand-accent)]" />AI conversation summary</p>
+          <p className="mt-2 text-[15px] leading-snug text-white/70">Wants a ready-to-move 3 BHK in Whitefield near his office, ~₹2 Cr, buying within 6 months. Visit booked Sat 15 Nov, 11 AM.</p>
+        </div>
       </div>
       <svg width="90" height="20"><path d="M0 10 H90" stroke="#8b5cf6" strokeWidth="3" strokeDasharray="6 8" strokeDashoffset={-p * 200} /></svg>
       <div className="flex-1 space-y-3">
@@ -188,19 +213,19 @@ function CTA({ p }: { p: number }) {
     </div>
   );
 }
-const sceneComps = [S1, S2, S3, S4, S5, S6, S7, S8, CTA];
+const sceneComps = [Intro, S1, S2, S3, S4, S5, S6, S7, S8, CTA];
 const XFADE = 0.4;
-const SCALE = [1.35, 1.12, 1.28, 1.28, 1.28, 1.28, 1.28, 1.14, 1];
+const SCALE = [1, 1.35, 1.3, 1.28, 1.28, 1.28, 1.28, 1.28, 1.14, 1];
 
 function SceneLayer({ i, t, opacity }: { i: number; t: number; opacity: number }) {
   const sc = walkthrough.scenes[i]; const C = sceneComps[i];
   const p = Math.max(0, Math.min(1, (t - sc.start) / sc.len));
-  const isCta = i === walkthrough.scenes.length - 1;
+  const isCta = i === walkthrough.scenes.length - 1; const isIntro = i === 0;
   return (
     <div className="absolute inset-0" style={{ opacity }}>
-      {!isCta && (
+      {!isCta && !isIntro && (
         <div className="absolute left-1/2 top-[48px] flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/10 bg-white/[0.05] px-5 py-2.5 text-[22px] text-white">
-          <span className="tabular-nums text-[var(--brand-accent)]">{String(i + 1).padStart(2, '0')} / {String(walkthrough.scenes.length - 1).padStart(2, '0')}</span><span className="h-5 w-px bg-white/20" /><span className="font-medium">{sc.title}</span>
+          <span className="tabular-nums text-[var(--brand-accent)]">{String(i).padStart(2, '0')} / {String(walkthrough.scenes.length - 2).padStart(2, '0')}</span><span className="h-5 w-px bg-white/20" /><span className="font-medium">{sc.title}</span>
         </div>
       )}
       <div className="absolute inset-x-0 top-[130px] bottom-[170px] flex items-center justify-center">

@@ -29,7 +29,7 @@ export function LeadFunnel() {
               <div role="tablist" aria-label="Workflow comparison" className="inline-flex rounded-full border border-[var(--c-line)] bg-[var(--light-background-secondary)] p-1">
                 {([['ai', 'AI-assisted workflow', Bot], ['manual', 'Manual workflow', User]] as const).map(([k, l, I]) => (
                   <button key={k} role="tab" aria-selected={mode === k} onClick={() => setMode(k)} data-testid={`funnel-${k}`}
-                    className={`flex min-h-[40px] items-center gap-2 rounded-full px-4 text-[14px] font-medium transition ${mode === k ? 'bg-[#0f0f14] text-white shadow' : 'text-[var(--c-text)] hover:text-[var(--c-head)]'}`}>
+                    className={`flex min-h-[40px] items-center gap-2 whitespace-nowrap rounded-full px-3 text-[14px] font-medium transition sm:px-4 ${mode === k ? 'bg-[#0f0f14] text-white shadow' : 'text-[var(--c-text)] hover:text-[var(--c-head)]'}`}>
                     <I size={15} /><span className="hidden sm:inline">{l}</span><span className="sm:hidden">{l.replace(' workflow', '')}</span>
                   </button>
                 ))}

@@ -1,77 +1,85 @@
 {
-  "total": 33.95,
+  "total": 77.61,
   "scenes": [
     {
-      "title": "Incoming Lead",
-      "caption": "A buyer enquires about Skyline Residences through a Meta Ads form.",
+      "title": "Introduction",
+      "caption": "Every property enquiry is a buyer waiting for an answer.",
       "start": 0,
-      "len": 4.23,
-      "speechStart": 0.2,
-      "speechEnd": 3.91
+      "len": 8.73,
+      "speechStart": 0.45,
+      "speechEnd": 7.83
+    },
+    {
+      "title": "Incoming Enquiry",
+      "caption": "Rohan Mehta enquires about Skyline Residences through a Meta Ads form.",
+      "start": 8.73,
+      "len": 8.49,
+      "speechStart": 9.18,
+      "speechEnd": 16.32
     },
     {
       "title": "AI Calling",
-      "caption": "Within seconds, Aria, your AI voice agent, calls them back.",
-      "start": 4.23,
-      "len": 4.39,
-      "speechStart": 4.43,
-      "speechEnd": 8.3
+      "caption": "Within seconds, Aria, your AI voice agent, calls him back.",
+      "start": 17.22,
+      "len": 7.47,
+      "speechStart": 17.67,
+      "speechEnd": 23.79
     },
     {
       "title": "Buyer Conversation",
-      "caption": "Aria asks about configuration, budget, location and timeline.",
-      "start": 8.62,
-      "len": 4.57,
-      "speechStart": 8.82,
-      "speechEnd": 12.87
+      "caption": "A natural conversation in English or Hindi about his requirements.",
+      "start": 24.69,
+      "len": 8.73,
+      "speechStart": 25.14,
+      "speechEnd": 32.52
     },
     {
       "title": "Lead Qualification",
-      "caption": "Every answer becomes a structured CRM record with a lead score.",
-      "start": 13.19,
-      "len": 4.21,
-      "speechStart": 13.39,
-      "speechEnd": 17.08
+      "caption": "Every answer becomes a structured CRM record. Score 86: a hot lead.",
+      "start": 33.42,
+      "len": 8.27,
+      "speechStart": 33.87,
+      "speechEnd": 40.79
     },
     {
       "title": "WhatsApp Follow-up",
       "caption": "The project brochure follows on WhatsApp, automatically.",
-      "start": 17.4,
-      "len": 3.48,
-      "speechStart": 17.6,
-      "speechEnd": 20.56
+      "start": 41.69,
+      "len": 7,
+      "speechStart": 42.14,
+      "speechEnd": 47.79
     },
     {
       "title": "Site Visit Booking",
-      "caption": "Rohan picks an available site visit slot for Saturday.",
-      "start": 20.88,
-      "len": 3.26,
-      "speechStart": 21.08,
-      "speechEnd": 23.82
+      "caption": "Rohan picks Saturday at 11 AM and the confirmation goes out instantly.",
+      "start": 48.69,
+      "len": 6.5,
+      "speechStart": 49.14,
+      "speechEnd": 54.05
     },
     {
-      "title": "Sales Team Handover",
-      "caption": "The qualified buyer is handed over to your sales team.",
-      "start": 24.14,
-      "len": 3.33,
-      "speechStart": 24.34,
-      "speechEnd": 27.15
+      "title": "CRM Handover",
+      "caption": "The qualified buyer is handed to Kavya with the full conversation summary.",
+      "start": 55.19,
+      "len": 7.13,
+      "speechStart": 55.64,
+      "speechEnd": 61.42
     },
     {
       "title": "Performance Dashboard",
-      "caption": "And every outcome appears in your performance dashboard.",
-      "start": 27.47,
-      "len": 3.28,
-      "speechStart": 27.67,
-      "speechEnd": 30.43
+      "caption": "Every call, outcome and visit flows into one performance dashboard.",
+      "start": 62.32,
+      "len": 8.2,
+      "speechStart": 62.77,
+      "speechEnd": 69.62
     },
     {
       "title": "Book a Demo",
       "caption": "Book a demo to see it working on your own leads.",
-      "start": 30.75,
-      "len": 3.2,
-      "speechStart": 30.95,
-      "speechEnd": 33.28
+      "start": 70.52,
+      "len": 7.09,
+      "speechStart": 70.97,
+      "speechEnd": 76.71
     }
   ]
 }

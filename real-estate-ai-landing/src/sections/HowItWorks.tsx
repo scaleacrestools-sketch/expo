@@ -73,7 +73,7 @@ export function HowItWorks() {
             </div>
             <button type="button" onClick={openVideo} className="group mt-5 flex w-full items-center gap-4 rounded-2xl border border-[var(--c-line)] bg-white p-2.5 text-left shadow-[var(--c-shadow)] transition hover:border-brand/40" data-testid="hiw-video">
               <span className="relative block aspect-video w-[148px] flex-none overflow-hidden rounded-xl bg-[#080515]">
-                <img src="/assets/videos/video-poster.webp" alt="" loading="lazy" decoding="async" width="296" height="166" className="h-full w-full object-cover opacity-90 transition-transform duration-300 group-hover:scale-[1.03]" />
+                <img src="/assets/videos/product-walkthrough-poster.webp" alt="" loading="lazy" decoding="async" width="296" height="166" className="h-full w-full object-cover opacity-90 transition-transform duration-300 group-hover:scale-[1.03]" />
                 <span className="absolute inset-0 grid place-items-center"><span className="grid h-9 w-9 place-items-center rounded-full bg-white/95 text-[#0d1424] shadow-lg"><Play size={14} fill="currentColor" className="translate-x-[1px]" /></span></span>
               </span>
               <span><span className="block text-[14.5px] font-semibold text-[var(--c-head)]">See all five steps in 30 seconds</span><span className="mt-0.5 block text-[13px] text-[var(--c-text)]">Watch the product walkthrough</span></span>

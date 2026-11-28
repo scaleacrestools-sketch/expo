@@ -78,7 +78,7 @@ export function Performance() {
                 </div>
 
                 <Panel className="mt-2.5" pad={false} title="Top campaigns this week" right={<DemoTag />}>
-                  <div className="thin-scroll overflow-x-auto" tabIndex={0} aria-label="Campaign performance table, scroll horizontally on small screens">
+                  <div className="thin-scroll hidden overflow-x-auto sm:block" tabIndex={0} aria-label="Campaign performance table, scroll horizontally on small screens">
                     <table className="w-full min-w-[640px] text-[13px]" data-testid="campaign-table">
                       <caption className="sr-only">Campaign performance (demonstration data)</caption>
                       <thead>
@@ -107,6 +107,19 @@ export function Performance() {
                       </tbody>
                     </table>
                   </div>
+                  {/* Mobile: one card per campaign instead of a sideways-scrolling table */}
+                  <ul className="divide-y divide-[var(--c-line)] sm:hidden" data-testid="campaign-cards">
+                    {campaigns.map((c) => (
+                      <li key={c.name} className="px-4 py-3">
+                        <div className="flex items-center justify-between gap-2"><p className="flex items-center gap-2 text-[13.5px] font-medium text-[var(--c-head)]"><span className="h-5 w-1 rounded-full bg-gradient-to-b from-[#c4b5fd] to-[#6d28d9]" />{c.name}</p><Status tone={c.status === 'Active' ? 'ok' : 'cold'}>{c.status}</Status></div>
+                        <dl className="mt-2 grid grid-cols-4 gap-1 text-[11px]">
+                          {([['Leads', c.leads], ['Connected', c.connected], ['Qualified', c.qualified], ['Visits', c.visits]] as const).map(([k, v]) => (
+                            <div key={k}><dt className="text-[var(--c-muted)]">{k}</dt><dd className="text-[14px] font-semibold tabular-nums text-[var(--c-head)]">{v}</dd></div>
+                          ))}
+                        </dl>
+                      </li>
+                    ))}
+                  </ul>
                 </Panel>
               </div>
             </AppWindow>

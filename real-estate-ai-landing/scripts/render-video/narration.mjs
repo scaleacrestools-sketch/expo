@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * Builds the walkthrough narration track and the scene timings that the video render uses.
- * Source clips: media-src/narration/scene-<1..9>.mp3 (ElevenLabs eleven_v4, voice "Amit Gupta – Confident Sales Advisor").
- * Output: src/render/scene-timings.json, .cache/narration.wav, public/assets/videos/product-walkthrough.vtt
+ * Source clips: media-src/narration-v3/scene-<1..10>.mp3 (ElevenLabs eleven_v4, voice "Amit Gupta – Confident Sales Advisor").
+ * Output: src/render/scene-timings.json, .cache/narration.wav, public/assets/videos/product-walkthrough-v3.vtt
  */
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -15,21 +15,22 @@ const dur = (f) => parseFloat(execFileSync('ffprobe', ['-v', 'error', '-show_ent
 const cache = join(root, '.cache'); mkdirSync(cache, { recursive: true });
 
 export const scenes = [
-  { title: 'Incoming Lead', caption: 'A buyer enquires about Skyline Residences through a Meta Ads form.' },
-  { title: 'AI Calling', caption: 'Within seconds, Aria, your AI voice agent, calls them back.' },
-  { title: 'Buyer Conversation', caption: 'Aria asks about configuration, budget, location and timeline.' },
-  { title: 'Lead Qualification', caption: 'Every answer becomes a structured CRM record with a lead score.' },
+  { title: 'Introduction', caption: 'Every property enquiry is a buyer waiting for an answer.' },
+  { title: 'Incoming Enquiry', caption: 'Rohan Mehta enquires about Skyline Residences through a Meta Ads form.' },
+  { title: 'AI Calling', caption: 'Within seconds, Aria, your AI voice agent, calls him back.' },
+  { title: 'Buyer Conversation', caption: 'A natural conversation in English or Hindi about his requirements.' },
+  { title: 'Lead Qualification', caption: 'Every answer becomes a structured CRM record. Score 86: a hot lead.' },
   { title: 'WhatsApp Follow-up', caption: 'The project brochure follows on WhatsApp, automatically.' },
-  { title: 'Site Visit Booking', caption: 'Rohan picks an available site visit slot for Saturday.' },
-  { title: 'Sales Team Handover', caption: 'The qualified buyer is handed over to your sales team.' },
-  { title: 'Performance Dashboard', caption: 'And every outcome appears in your performance dashboard.' },
+  { title: 'Site Visit Booking', caption: 'Rohan picks Saturday at 11 AM and the confirmation goes out instantly.' },
+  { title: 'CRM Handover', caption: 'The qualified buyer is handed to Kavya with the full conversation summary.' },
+  { title: 'Performance Dashboard', caption: 'Every call, outcome and visit flows into one performance dashboard.' },
   { title: 'Book a Demo', caption: 'Book a demo to see it working on your own leads.' },
 ];
-const TEMPO = 1.06, LEAD = 0.2, TAIL = 0.32, MIN = 3.2;
+const TEMPO = 1.0, LEAD = 0.45, TAIL = 0.9, MIN = 6.5;
 
 let t = 0; const timings = []; const parts = [];
 scenes.forEach((s, i) => {
-  const src = join(root, `media-src/narration/scene-${i + 1}.mp3`);
+  const src = join(root, `media-src/narration-v3/scene-${i + 1}.mp3`);
   const out = join(cache, `narr-${i + 1}.wav`);
   run(['-i', src, '-af', `silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,atempo=${TEMPO}`, '-ar', '48000', '-ac', '1', out]);
   const d = dur(out);
@@ -46,6 +47,6 @@ const mix = parts.map((_, i) => `[a${i}]`).join('') + `amix=inputs=${parts.lengt
 run([...inputs, '-filter_complex', `${filters};${mix}`, '-t', String(total), '-ar', '48000', join(cache, 'narration.wav')]);
 writeFileSync(join(root, 'src/render/scene-timings.json'), JSON.stringify({ total, scenes: timings }, null, 2));
 const ts = (s) => { const m = Math.floor(s / 60); const sec = s - m * 60; return `00:${String(m).padStart(2, '0')}:${sec.toFixed(3).padStart(6, '0')}`; };
-writeFileSync(join(root, 'public/assets/videos/product-walkthrough.vtt'),
+writeFileSync(join(root, 'public/assets/videos/product-walkthrough-v3.vtt'),
   ['WEBVTT', '', ...timings.flatMap((s, i) => [`${i + 1}`, `${ts(s.start)} --> ${ts(s.start + s.len - 0.05)}`, s.caption, ''])].join('\n'));
 console.log('total', total, 's;', timings.map((s) => s.len).join(' '));
