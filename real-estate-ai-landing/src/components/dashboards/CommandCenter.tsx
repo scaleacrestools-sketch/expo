@@ -137,8 +137,10 @@ export function CommandCenter({ phase }: { phase: number }) {
                 { t: 'Site visit requested · Sat 11 AM', s: phase >= 5, c: '#f59e0b' },
                 { t: 'CRM record updated', s: phase >= 6, c: '#22c55e' },
               ].map((a) => (
-                <li key={a.t} className={`flex items-center gap-2 transition-all duration-500 ${a.s ? 'opacity-100' : 'translate-x-1 opacity-25'}`}>
-                  <span className="h-1.5 w-1.5 flex-none rounded-full" style={{ background: a.c }} /><span className="truncate text-[var(--c-text)]">{a.t}</span>
+                <li key={a.t} className="flex h-[16px] items-center gap-2">
+                  <span className="h-1.5 w-1.5 flex-none rounded-full transition-opacity duration-500" style={{ background: a.c, opacity: a.s ? 1 : 0.3 }} />
+                  {a.s ? <span className="truncate text-[var(--c-text)]" style={{ animation: 'rise .5s cubic-bezier(.22,1,.36,1) both' }}>{a.t}</span>
+                    : <span className="h-1.5 w-3/4 rounded-full bg-white/[0.06]" aria-hidden="true" />}
                 </li>
               ))}
             </ul>

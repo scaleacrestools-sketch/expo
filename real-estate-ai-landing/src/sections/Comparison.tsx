@@ -11,7 +11,7 @@ function cell(v: string, ours: boolean) {
   const config = ['Configurable', 'Infrastructure dependent', 'Possible'].includes(v);
   const human = ['Staff dependent', 'Human conversations', 'Manual'].includes(v);
   const Icon = supported ? Check : config ? Settings2 : human ? User : v === 'Limited' ? Minus : Wrench;
-  const tone = supported && ours ? 'bg-[var(--brand-primary)] text-white' : supported ? 'bg-emerald-100 text-emerald-700' : config ? 'bg-sky-100 text-sky-700' : human ? 'bg-zinc-100 text-zinc-600' : 'bg-amber-50 text-amber-700';
+  const tone = supported && ours ? 'bg-[var(--brand-solid)] text-white' : supported ? 'bg-emerald-100 text-emerald-700' : config ? 'bg-sky-100 text-sky-700' : human ? 'bg-zinc-100 text-zinc-600' : 'bg-amber-50 text-amber-700';
   return (
     <span className="flex items-center gap-2.5">
       <span className={`grid h-6 w-6 flex-none place-items-center rounded-full ${tone}`} aria-hidden="true"><Icon size={13} strokeWidth={2.6} /></span>

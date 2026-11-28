@@ -68,7 +68,7 @@ export function Integrations() {
               <ul className="grid grid-cols-2 gap-2">{destinations.map((s) => <li key={s.name}><Card it={s} hover={hover} setHover={setHover} static /></li>)}</ul>
             </div>
 
-            <p className="relative mt-6 border-t border-white/[0.07] pt-5 text-center text-[12.5px] leading-relaxed text-white/45">
+            <p className="relative mt-6 border-t border-white/[0.07] pt-5 text-center text-[12.5px] leading-relaxed text-white/55">
               All integrations shown are <b className="font-medium text-white/70">planned</b> and not yet available. Product names and trademarks belong to their respective owners and are used only to describe compatibility goals. No partnership, endorsement or certification is implied.
             </p>
           </div>

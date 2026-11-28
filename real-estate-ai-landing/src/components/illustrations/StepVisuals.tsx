@@ -28,7 +28,7 @@ export function ImportViz({ t }: { t: number }) {
         })}
       </svg>
       <div className="rounded-2xl border border-[var(--c-line)] bg-white p-4 shadow-[var(--c-shadow)]">
-        <span className="grid h-10 w-10 place-items-center rounded-xl bg-[var(--brand-primary)] text-white"><Database size={18} /></span>
+        <span className="grid h-10 w-10 place-items-center rounded-xl bg-[var(--brand-solid)] text-white"><Database size={18} /></span>
         <p className="mt-3 text-[13px] font-semibold text-[var(--c-head)]">Unified lead database</p>
         <p className="mt-1 text-[26px] font-semibold tabular-nums tracking-[-0.03em] text-[var(--c-head)]">{(4218 + t * 7).toLocaleString('en-IN')}</p>
         <p className="text-[11.5px] text-[var(--c-muted)]">leads · deduplicated</p>
@@ -90,7 +90,7 @@ export function ConversationViz({ t }: { t: number }) {
             </div>
           ))}
         </div>
-        <p className="mt-3 flex items-center gap-1.5 text-[11px] text-white/45"><span className="blink h-1.5 w-1.5 rounded-full bg-[var(--brand-secondary)]" />Live transcript · sample conversation</p>
+        <p className="mt-3 flex items-center gap-1.5 text-[11px] text-white/55"><span className="blink h-1.5 w-1.5 rounded-full bg-[var(--brand-secondary)]" />Live transcript · sample conversation</p>
       </div>
     </div>
   );
@@ -135,7 +135,7 @@ export function ScheduleViz({ t }: { t: number }) {
         <p className="mb-2 flex items-center gap-2 text-[13px] font-semibold text-[var(--c-head)]"><CalendarCheck2 size={15} className="text-[var(--brand-deep)]" />Site visits · November</p>
         <MiniCalendar highlight={t >= 1 ? 15 : -1} booked={[6, 8, 13, 20]} />
         <div className="mt-3 grid grid-cols-2 gap-1.5">
-          {slots.map((s) => <span key={s} className={`rounded-lg border px-2 py-1.5 text-center text-[11.5px] transition-all ${t >= 2 && s === '11:00 AM' ? 'border-[var(--brand-primary)] bg-[var(--brand-primary)] text-white' : 'border-[var(--c-line)] text-[var(--c-text)]'}`}>{s}</span>)}
+          {slots.map((s) => <span key={s} className={`rounded-lg border px-2 py-1.5 text-center text-[11.5px] transition-all ${t >= 2 && s === '11:00 AM' ? 'border-[var(--brand-primary)] bg-[var(--brand-solid)] text-white' : 'border-[var(--c-line)] text-[var(--c-text)]'}`}>{s}</span>)}
         </div>
       </div>
       <div className="flex flex-col gap-2.5">

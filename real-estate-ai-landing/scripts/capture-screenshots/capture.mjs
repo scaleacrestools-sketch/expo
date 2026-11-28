@@ -35,6 +35,7 @@ export const sections = [
 ];
 
 async function settle(page) {
+  await page.waitForSelector('[data-testid="footer"]', { state: 'attached' });
   await page.evaluate(async () => {
     for (let y = 0; y < document.body.scrollHeight; y += 600) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); }
     window.scrollTo(0, 0);
@@ -43,8 +44,9 @@ async function settle(page) {
 }
 
 const browser = await chromium.launch();
+// Full-page captures use 1x scale: a 2x mobile page exceeds the 32,767px height many image viewers support.
 // Desktop: reduced motion shows every animated demo in its completed state, which suits static screenshots.
-for (const [w, tag, scale] of [[1440, 'desktop', 1], [390, 'mobile', 2]]) {
+for (const [w, tag, scale] of [[1440, 'desktop', 1], [390, 'mobile', 1]]) {
   const ctx = await browser.newContext({ viewport: { width: w, height: 900 }, deviceScaleFactor: scale, reducedMotion: 'reduce' });
   const page = await ctx.newPage();
   await page.goto(base, { waitUntil: 'networkidle' });

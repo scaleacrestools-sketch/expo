@@ -85,7 +85,13 @@ export function VoiceAgents() {
 
         <Reveal className="mt-12">
           <div role="tablist" aria-label="Sample call scenarios" className="no-scrollbar mx-auto flex max-w-full gap-1 overflow-x-auto rounded-full border border-[var(--c-line)] bg-white/[0.03] p-1 sm:w-max"
-            onKeyDown={(e) => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const n = (tab + (e.key === 'ArrowRight' ? 1 : 3)) % 4; setTab(n); document.getElementById(`voice-tab-${n}`)?.focus(); } }}>
+            onKeyDown={(e) => {
+              if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) return;
+              e.preventDefault();
+              const cur = Number((document.activeElement?.id || '').replace('voice-tab-', '')) || 0;
+              const n = e.key === 'Home' ? 0 : e.key === 'End' ? 3 : (cur + (e.key === 'ArrowRight' ? 1 : 3)) % 4;
+              setTab(n); document.getElementById(`voice-tab-${n}`)?.focus();
+            }}>
             {voice.conversations.map((c, i) => (
               <button key={c.id} id={`voice-tab-${i}`} role="tab" aria-selected={tab === i} aria-controls="voice-panel" tabIndex={tab === i ? 0 : -1} onClick={() => setTab(i)} data-testid={`voice-tab-${i}`}
                 className={`relative min-h-[42px] flex-none whitespace-nowrap rounded-full px-4 text-[14px] font-medium transition-colors ${tab === i ? 'text-white' : 'text-white/55 hover:text-white'}`}>
@@ -133,10 +139,10 @@ export function VoiceAgents() {
                 <button type="button" onClick={restart} aria-label="Restart sample call" data-testid="voice-restart" className="grid h-11 w-11 place-items-center rounded-full border border-[var(--c-line-strong)] text-white/80 transition hover:border-[var(--brand-secondary)] hover:text-white"><RotateCcw size={17} /></button>
                 <div className="ml-auto flex items-center gap-2 text-[12.5px]" aria-live="polite">
                   {speaker ? (<><span className={`live-dot h-2 w-2 rounded-full ${speaker === 'ai' ? 'bg-[var(--brand-secondary)]' : 'bg-sky-400'}`} /><span className="text-white/80">{speaker === 'ai' ? 'AI agent speaking' : 'Buyer speaking'}</span></>)
-                    : <span className="flex items-center gap-1.5 text-white/45"><Volume2 size={14} />{ended ? 'Call ended' : playing ? 'Listening…' : 'Ready to play'}</span>}
+                    : <span className="flex items-center gap-1.5 text-white/55"><Volume2 size={14} />{ended ? 'Call ended' : playing ? 'Listening…' : 'Ready to play'}</span>}
                 </div>
               </div>
-              <p className="mt-6 text-[11.5px] leading-relaxed text-white/40">
+              <p className="mt-6 text-[11.5px] leading-relaxed text-white/55">
                 {fallback ? 'Audio file unavailable. Playing with your browser’s built-in speech voice instead. ' : ''}
                 Simulated conversation with synthetic open-source TTS voices (Flite / eSpeak NG). Not a real customer call.
               </p>
@@ -149,7 +155,7 @@ export function VoiceAgents() {
 
             {/* Transcript */}
             <div className="flex flex-col p-5 sm:p-8">
-              <p className="text-[12px] font-medium uppercase tracking-[0.12em] text-white/40">Live transcript</p>
+              <p className="text-[12px] font-medium uppercase tracking-[0.12em] text-white/55">Live transcript</p>
               <ol className="mt-4 flex-1 space-y-3" data-testid="voice-transcript">
                 {conv.lines.map((l, i) => {
                   const on = i === activeLine; const past = activeLine > i || ended;
@@ -158,7 +164,7 @@ export function VoiceAgents() {
                       className={`flex gap-3 rounded-xl border p-3 transition-all duration-300 ${on ? 'border-brand/50 bg-brand/10' : 'border-transparent'} ${!on && !past && (playing || activeLine >= 0) ? 'opacity-45' : ''}`}>
                       {l.speaker === 'ai' ? <AgentOrb size={28} live={false} /> : <Avatar name="Buyer" size={28} hue={195} />}
                       <div>
-                        <p className="text-[11.5px] font-medium text-white/45">{l.speaker === 'ai' ? 'AI Agent' : 'Buyer'}</p>
+                        <p className="text-[11.5px] font-medium text-white/55">{l.speaker === 'ai' ? 'AI Agent' : 'Buyer'}</p>
                         <p className="mt-0.5 text-[15px] leading-snug text-white">{lang === 'en' ? l.en : l.hi}</p>
                       </div>
                     </li>

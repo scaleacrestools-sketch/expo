@@ -42,7 +42,7 @@ export function ChecklistVisual() {
           {items.map((it, i) => (
             <li key={it}>
               <button type="button" aria-pressed={on[i]} onClick={() => setOn((p) => p.map((v, j) => (j === i ? !v : v)))} className="flex w-full items-center gap-2.5 rounded-lg px-2 py-1.5 text-left text-[12.5px] transition hover:bg-[var(--light-background-secondary)]">
-                <span className={`grid h-[18px] w-[18px] place-items-center rounded-md transition ${on[i] ? 'bg-[var(--brand-primary)] text-white' : 'border border-[#d4d4d8]'}`}>{on[i] && <Check size={11} strokeWidth={3} />}</span>
+                <span className={`grid h-[18px] w-[18px] place-items-center rounded-md transition ${on[i] ? 'bg-[var(--brand-solid)] text-white' : 'border border-[#d4d4d8]'}`}>{on[i] && <Check size={11} strokeWidth={3} />}</span>
                 <span className={on[i] ? 'text-[var(--c-head)]' : 'text-[var(--c-muted)]'}>{it}</span>
               </button>
             </li>
@@ -94,7 +94,7 @@ export function LanguageVisual() {
   return (
     <div ref={ref} className="p-5 sm:p-6">
       <div className="flex flex-wrap gap-1.5" role="group" aria-label="Preview language">
-        {langs.map((x, i) => <button key={x.l} type="button" aria-pressed={a === i} onClick={() => setPick(i)} className={`min-h-[34px] rounded-full border px-3 text-[12px] font-medium transition ${a === i ? 'border-[var(--brand-primary)] bg-[var(--brand-primary)] text-white' : 'border-[var(--c-line)] bg-white text-[var(--c-text)] hover:border-[var(--brand-secondary)]'}`}>{x.l}</button>)}
+        {langs.map((x, i) => <button key={x.l} type="button" aria-pressed={a === i} onClick={() => setPick(i)} className={`min-h-[34px] rounded-full border px-3 text-[12px] font-medium transition ${a === i ? 'border-[var(--brand-primary)] bg-[var(--brand-solid)] text-white' : 'border-[var(--c-line)] bg-white text-[var(--c-text)] hover:border-[var(--brand-secondary)]'}`}>{x.l}</button>)}
       </div>
       <div className="mt-3 flex items-start gap-2.5 rounded-xl border border-[var(--c-line)] bg-white p-3 shadow-sm">
         <AgentOrb size={26} live={false} />
@@ -114,7 +114,7 @@ export function CalendarVisual() {
         <MiniCalendar booked={[6, 9, 13, 20]} selected={day} highlight={-1} onPick={setDay} />
         <div className="mt-3 grid grid-cols-3 gap-1.5" role="group" aria-label="Available time slots">
           {['10:00', '11:00', '12:30', '14:00', '16:00', '17:30'].map((s) => (
-            <button key={s} type="button" aria-pressed={slot === s} onClick={() => setSlot(s)} className={`min-h-[32px] rounded-lg border text-[11.5px] tabular-nums transition ${slot === s ? 'border-[var(--brand-primary)] bg-[var(--brand-primary)] text-white' : 'border-[var(--c-line)] text-[var(--c-text)] hover:border-[var(--brand-secondary)]'}`}>{s}</button>
+            <button key={s} type="button" aria-pressed={slot === s} onClick={() => setSlot(s)} className={`min-h-[32px] rounded-lg border text-[11.5px] tabular-nums transition ${slot === s ? 'border-[var(--brand-primary)] bg-[var(--brand-solid)] text-white' : 'border-[var(--c-line)] text-[var(--c-text)] hover:border-[var(--brand-secondary)]'}`}>{s}</button>
           ))}
         </div>
         <p className="mt-3 rounded-lg bg-[#f5f1ff] px-2.5 py-2 text-[11.5px] text-[var(--brand-deep)]" aria-live="polite">Nov {day} · {slot} · Sales team notified</p>
@@ -174,7 +174,7 @@ export function CrmSyncVisual() {
         <p className="flex items-center gap-1.5 text-[11.5px] font-semibold text-[var(--c-head)]"><Sparkles size={13} className="text-[var(--brand-deep)]" />AI platform</p>
         {['Lead score · 86', 'Outcome · Visit booked', 'Summary attached'].map((r, i) => <p key={r} className={`mt-1.5 rounded-md bg-[var(--light-background-secondary)] px-2 py-1 text-[11px] text-[var(--c-text)] ${t === i + 1 ? 'ring-1 ring-[var(--brand-primary)]' : ''}`}>{r}</p>)}
       </div>
-      <div className="relative grid h-11 w-11 flex-none place-items-center rounded-full bg-[var(--brand-primary)] text-white shadow-[0_0_24px_rgba(139,92,246,.5)]"><ArrowLeftRight size={17} className={t % 2 ? 'scale-x-[-1] transition' : 'transition'} /></div>
+      <div className="relative grid h-11 w-11 flex-none place-items-center rounded-full bg-[var(--brand-solid)] text-white shadow-[0_0_24px_rgba(139,92,246,.5)]"><ArrowLeftRight size={17} className={t % 2 ? 'scale-x-[-1] transition' : 'transition'} /></div>
       <div className="w-[44%] rounded-2xl border border-[var(--c-line)] bg-white p-3 shadow-[var(--c-shadow)]">
         <p className="flex items-center gap-1.5 text-[11.5px] font-semibold text-[var(--c-head)]"><Database size={13} className="text-sky-600" />Your CRM</p>
         {['Contact updated', 'Activity logged', 'Owner assigned'].map((r, i) => <p key={r} className={`mt-1.5 flex items-center justify-between rounded-md bg-[var(--light-background-secondary)] px-2 py-1 text-[11px] text-[var(--c-text)]`}>{r}{t > i && <Check size={11} className="text-emerald-500" />}</p>)}

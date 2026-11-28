@@ -80,7 +80,7 @@ export function MiniCalendar({ highlight = 6, booked = [3, 10, 17], className = 
           const Cmp = onPick ? 'button' : 'span';
           return (
             <Cmp key={i} {...(onPick ? { type: 'button' as const, onClick: () => onPick(d), 'aria-label': `Day ${d}${b ? ', booked' : ''}`, 'aria-pressed': hl } : {})}
-              className={`grid aspect-square place-items-center rounded-md text-[10.5px] tabular-nums transition ${hl ? 'bg-[var(--brand-primary)] font-semibold text-white shadow-[0_0_16px_rgba(139,92,246,.6)]' : b ? 'bg-brand/15 text-[var(--c-accent-text)]' : 'text-[var(--c-text)]'} ${onPick ? 'hover:ring-1 hover:ring-[var(--brand-secondary)]' : ''}`}>
+              className={`grid aspect-square place-items-center rounded-md text-[10.5px] tabular-nums transition ${hl ? 'bg-[var(--brand-solid)] font-semibold text-white shadow-[0_0_16px_rgba(139,92,246,.6)]' : b ? 'bg-brand/15 text-[var(--c-accent-text)]' : 'text-[var(--c-text)]'} ${onPick ? 'hover:ring-1 hover:ring-[var(--brand-secondary)]' : ''}`}>
               {d}
             </Cmp>
           );

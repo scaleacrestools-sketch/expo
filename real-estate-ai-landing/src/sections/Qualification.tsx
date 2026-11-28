@@ -49,7 +49,7 @@ export function Qualification() {
 
           <div className="hidden items-center lg:flex" aria-hidden="true">
             <div className="flex flex-col items-center gap-2">
-              <span className="grid h-11 w-11 place-items-center rounded-full bg-[var(--brand-primary)] text-white shadow-[0_0_30px_rgba(139,92,246,.45)]"><Sparkles size={18} /></span>
+              <span className="grid h-11 w-11 place-items-center rounded-full bg-[var(--brand-solid)] text-white shadow-[0_0_30px_rgba(139,92,246,.45)]"><Sparkles size={18} /></span>
               <svg width="60" height="16"><path d="M0 8 H56" stroke="#8b5cf6" strokeWidth="2" className="flow-dash" /></svg>
               <ArrowRight size={14} className="-mt-5 ml-12 text-[var(--brand-primary)]" />
               <span className="text-[11px] text-[var(--c-muted)]">Structured</span>
@@ -86,7 +86,7 @@ export function Qualification() {
             const on = answered.has(i);
             return (
               <li key={q} className={`flex items-center gap-3 rounded-2xl border bg-white px-3.5 py-3 transition-all duration-500 ${on ? 'border-brand/40 shadow-[0_10px_30px_-18px_rgba(109,40,217,.6)]' : 'border-[var(--c-line)]'}`}>
-                <span className={`grid h-7 w-7 flex-none place-items-center rounded-full text-[11.5px] font-semibold tabular-nums transition-colors ${on ? 'bg-[var(--brand-primary)] text-white' : 'bg-[var(--light-background-secondary)] text-[var(--c-muted)]'}`}>{on ? <Check size={13} strokeWidth={3} /> : i + 1}</span>
+                <span className={`grid h-7 w-7 flex-none place-items-center rounded-full text-[11.5px] font-semibold tabular-nums transition-colors ${on ? 'bg-[var(--brand-solid)] text-white' : 'bg-[var(--light-background-secondary)] text-[var(--c-muted)]'}`}>{on ? <Check size={13} strokeWidth={3} /> : i + 1}</span>
                 <span className="text-[14px] font-medium leading-snug text-[var(--c-head)]">{q}</span>
               </li>
             );

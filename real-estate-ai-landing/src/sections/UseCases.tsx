@@ -22,7 +22,8 @@ export function UseCases() {
   const onKey = (e: React.KeyboardEvent) => {
     if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) return;
     e.preventDefault();
-    const n = e.key === 'Home' ? 0 : e.key === 'End' ? 3 : (tab + (e.key === 'ArrowRight' ? 1 : 3)) % 4;
+    const cur = Number((document.activeElement?.id || '').replace('uc-tab-', '')); const from = Number.isNaN(cur) ? tab : cur;
+    const n = e.key === 'Home' ? 0 : e.key === 'End' ? 3 : (from + (e.key === 'ArrowRight' ? 1 : 3)) % 4;
     setTab(n); document.getElementById(`uc-tab-${n}`)?.focus();
   };
 
@@ -34,7 +35,7 @@ export function UseCases() {
           <div role="tablist" aria-label="Audiences" onKeyDown={onKey} className="grid grid-cols-2 gap-2 md:grid-cols-4">
             {useCases.tabs.map((x, i) => (
               <button key={x.id} id={`uc-tab-${i}`} role="tab" aria-selected={tab === i} aria-controls="uc-panel" tabIndex={tab === i ? 0 : -1} onClick={() => setTab(i)} data-testid={`uc-tab-${i}`}
-                className={`relative min-h-[52px] rounded-2xl border px-4 py-3 text-left text-[14px] font-medium transition ${tab === i ? 'border-brand/60 bg-[var(--brand-primary)]/[0.12] text-white' : 'border-[var(--c-line)] text-white/60 hover:border-white/20 hover:text-white'}`}>
+                className={`relative min-h-[52px] rounded-2xl border px-4 py-3 text-left text-[14px] font-medium transition ${tab === i ? 'border-brand/60 bg-[var(--brand-solid)]/[0.12] text-white' : 'border-[var(--c-line)] text-white/60 hover:border-white/20 hover:text-white'}`}>
                 {x.label}
                 {tab === i && <motion.span layoutId="uc-bar" className="absolute inset-x-4 bottom-0 h-0.5 rounded-full bg-[var(--brand-secondary)]" />}
               </button>

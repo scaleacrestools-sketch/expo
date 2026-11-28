@@ -83,7 +83,7 @@ export function Navbar() {
           <motion.div id="mobile-menu" data-testid="mobile-menu" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'calc(100dvh - 68px)' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-y-auto bg-[rgba(7,7,10,0.97)] backdrop-blur-xl lg:hidden">
             <div className="container-x flex flex-col gap-1 py-6">
-              <p className="px-1 pb-2 text-[12px] font-medium uppercase tracking-[0.12em] text-white/40">Solutions</p>
+              <p className="px-1 pb-2 text-[12px] font-medium uppercase tracking-[0.12em] text-white/55">Solutions</p>
               <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
                 {nav.solutions.map((s, i) => (
                   <motion.a key={s.label} href={s.href} onClick={() => setMenu(false)} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.04 * i }}

@@ -47,6 +47,7 @@ test('all 18 sections render in order with the correct theme', async ({ page }) 
 
 test('every in-page anchor link points to an existing element', async ({ page }) => {
   await page.goto('/');
+  await expect(page.getByTestId('footer')).toBeAttached(); // deferred sections mounted
   const missing = await page.evaluate(() => [...document.querySelectorAll('a[href^="#"]')].map((a) => a.getAttribute('href')!)
     .filter((h) => !['#demo', '#privacy', '#terms', '#main'].includes(h) && !document.querySelector(h)));
   expect(missing).toEqual([]);
@@ -55,7 +56,7 @@ test('every in-page anchor link points to an existing element', async ({ page })
 test('navigation anchors scroll to sections', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Integrations' }).click();
-  await expect.poll(() => page.evaluate(() => Math.abs(document.querySelector('#integrations')!.getBoundingClientRect().top))).toBeLessThan(120);
+  await expect.poll(() => page.evaluate(() => (document.querySelector('#integrations') ? Math.abs(document.querySelector('#integrations')!.getBoundingClientRect().top) : 99999))).toBeLessThan(120);
 });
 
 test('solutions dropdown opens and closes', async ({ page }) => {
@@ -132,7 +133,7 @@ test('voice agent: tabs, playback, progress and restart', async ({ page }) => {
 test('hero "Hear a Sample Call" jumps to voice section', async ({ page }) => {
   await page.goto('/');
   await page.getByTestId('hero-sample').click();
-  await expect.poll(() => page.evaluate(() => Math.abs(document.querySelector('#voice-agents')!.getBoundingClientRect().top))).toBeLessThan(150);
+  await expect.poll(() => page.evaluate(() => (document.querySelector('#voice-agents') ? Math.abs(document.querySelector('#voice-agents')!.getBoundingClientRect().top) : 99999))).toBeLessThan(150);
 });
 
 test('how it works: steps are selectable', async ({ page }) => {
@@ -166,8 +167,9 @@ test('funnel toggle and tooltip, performance range and chart tooltip', async ({ 
   await page.getByTestId('range-30d').click();
   await expect(page.getByTestId('range-30d')).toHaveAttribute('aria-pressed', 'true');
   const chart = page.getByRole('img', { name: /call volume chart/ });
+  await chart.scrollIntoViewIfNeeded();
   const box = (await chart.boundingBox())!;
-  await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.5);
+  await chart.hover({ position: { x: box.width * 0.5, y: box.height * 0.5 } });
   await expect(page.getByRole('tooltip').filter({ hasText: 'Connected' })).toBeVisible();
   await expect(page.getByTestId('campaign-table').locator('tbody tr')).toHaveCount(3);
 });
@@ -177,8 +179,9 @@ test('features, calendar demo, integrations, comparison and mobile CRM', async (
   await page.getByRole('button', { name: /Day 18/ }).click();
   await expect(page.getByTestId('features-grid')).toContainText('Nov 18');
   await expect(page.getByTestId('features-grid').locator('article')).toHaveCount(10);
-  await expect(page.getByTestId('integration-card')).toHaveCount(12);
-  await page.getByTestId('integration-card').first().hover();
+  const cards = page.locator('[data-testid="integration-card"]:visible');
+  await expect(cards).toHaveCount(12);
+  await cards.first().hover();
   await expect(page.getByRole('tooltip').filter({ hasText: 'lead-form' })).toBeVisible();
   await expect(page.getByTestId('comparison-table').locator('tbody tr')).toHaveCount(9);
   await page.locator('#mobile').scrollIntoViewIfNeeded();

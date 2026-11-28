@@ -36,8 +36,8 @@ export function Hero() {
           {hero.eyebrow}
           <span className="ml-1 grid h-5 w-5 place-items-center rounded-full bg-white/10"><ArrowRight size={11} /></span>
         </motion.a>
-        <motion.h1 {...fade(0.08)} className="h-display text-gradient mx-auto mt-6 max-w-[920px]">{hero.title}</motion.h1>
-        <motion.p {...fade(0.16)} className="lead mx-auto mt-6 max-w-[580px] text-[17px] sm:text-[19px]">{hero.description}</motion.p>
+        <motion.h1 {...(reduce ? {} : { initial: { y: 14 }, animate: { y: 0 }, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const } })} className="h-display text-gradient mx-auto mt-6 max-w-[920px]">{hero.title}</motion.h1>
+        <motion.p {...(reduce ? {} : { initial: { y: 14 }, animate: { y: 0 }, transition: { duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] as const } })} className="lead mx-auto mt-6 max-w-[580px] text-[17px] sm:text-[19px]">{hero.description}</motion.p>
         <motion.div {...fade(0.24)} className="mt-9 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
           <button type="button" onClick={openDemo} className="btn btn-primary h-12 px-6 text-[15.5px]" data-testid="hero-demo">{hero.primaryCta} <ArrowRight size={16} /></button>
           <button type="button" onClick={playSample} className="btn btn-secondary h-12 px-6 text-[15.5px]" data-testid="hero-sample"><Phone size={15} /> {hero.secondaryCta}</button>

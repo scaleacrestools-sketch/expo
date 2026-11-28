@@ -13,6 +13,7 @@
   --brand-secondary: #a78bfa;
   --brand-accent: #c4b5fd;
   --brand-deep: #6d28d9;
+  --brand-solid: #7c3aed; /* solid fill behind small white text (AA contrast) */
   --brand-glow: rgba(139, 92, 246, 0.35);
 
   --dark-background: #07070a;

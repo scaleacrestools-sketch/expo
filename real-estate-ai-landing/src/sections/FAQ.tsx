@@ -32,7 +32,7 @@ export function FAQ() {
                       <button type="button" id={`faq-q-${i}`} aria-expanded={on} aria-controls={`faq-a-${i}`} onClick={() => setOpen(on ? null : i)} data-testid={`faq-q-${i}`}
                         className="group flex w-full items-center justify-between gap-6 py-5 text-left">
                         <span className={`text-[17px] font-medium tracking-[-0.02em] transition-colors sm:text-[18px] ${on ? 'text-white' : 'text-white/80 group-hover:text-white'}`}>{f.q}</span>
-                        <span className={`grid h-9 w-9 flex-none place-items-center rounded-full border transition-all duration-300 ${on ? 'rotate-45 border-[var(--brand-primary)] bg-[var(--brand-primary)] text-white' : 'border-white/15 text-white/70 group-hover:border-white/30'}`} aria-hidden="true"><Plus size={16} /></span>
+                        <span className={`grid h-9 w-9 flex-none place-items-center rounded-full border transition-all duration-300 ${on ? 'rotate-45 border-[var(--brand-primary)] bg-[var(--brand-solid)] text-white' : 'border-white/15 text-white/70 group-hover:border-white/30'}`} aria-hidden="true"><Plus size={16} /></span>
                       </button>
                     </h3>
                     <AnimatePresence initial={false}>

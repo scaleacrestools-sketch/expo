@@ -39,7 +39,7 @@ export function Footer({ onLegal }: { onLegal: (k: 'privacy' | 'terms') => void 
         ))}
       </div>
       <div className="border-t border-white/[0.07]">
-        <div className="container-x flex flex-col items-start justify-between gap-4 py-6 text-[13px] text-white/45 sm:flex-row sm:items-center">
+        <div className="container-x flex flex-col items-start justify-between gap-4 py-6 text-[13px] text-white/55 sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} {brand.companyName}. All rights reserved. Product preview; features described as planned are not yet generally available.</p>
           {socials.length > 0 && (
             <div className="flex gap-2">

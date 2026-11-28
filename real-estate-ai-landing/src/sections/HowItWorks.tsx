@@ -47,7 +47,7 @@ export function HowItWorks() {
                 return (
                   <button key={s.n} id={`hiw-tab-${i}`} role="tab" aria-selected={on} aria-controls="hiw-panel" tabIndex={on ? 0 : -1} onClick={() => pick(i)} data-testid={`step-${i}`}
                     className={`relative flex w-full gap-4 rounded-2xl p-3.5 text-left transition-all duration-300 ${on ? 'bg-white shadow-[var(--c-shadow)] ring-1 ring-[var(--c-line)]' : 'hover:bg-white/60'}`}>
-                    <span className={`relative z-[1] grid h-[28px] w-[28px] flex-none place-items-center rounded-full text-[11.5px] font-semibold transition-colors ${on || i < d ? 'bg-[var(--brand-primary)] text-white' : 'border border-[var(--c-line-strong)] bg-white text-[var(--c-muted)]'}`}>{s.n}</span>
+                    <span className={`relative z-[1] grid h-[28px] w-[28px] flex-none place-items-center rounded-full text-[11.5px] font-semibold transition-colors ${on || i < d ? 'bg-[var(--brand-solid)] text-white' : 'border border-[var(--c-line-strong)] bg-white text-[var(--c-muted)]'}`}>{s.n}</span>
                     <span>
                       <span className={`block text-[16.5px] font-semibold tracking-[-0.02em] ${on ? 'text-[var(--c-head)]' : 'text-[var(--c-text)]'}`}>{s.title}</span>
                       <AnimatePresence initial={false}>
@@ -80,7 +80,7 @@ export function HowItWorks() {
               <div key={s.n} className="card overflow-hidden">
                 <h3>
                   <button className="flex w-full items-center gap-3 p-4 text-left" aria-expanded={on} aria-controls={`hiw-m-${i}`} onClick={() => pick(on ? -1 : i)} data-testid={`step-m-${i}`}>
-                    <span className={`grid h-8 w-8 flex-none place-items-center rounded-full text-[12px] font-semibold ${on ? 'bg-[var(--brand-primary)] text-white' : 'border border-[var(--c-line-strong)] text-[var(--c-muted)]'}`}>{s.n}</span>
+                    <span className={`grid h-8 w-8 flex-none place-items-center rounded-full text-[12px] font-semibold ${on ? 'bg-[var(--brand-solid)] text-white' : 'border border-[var(--c-line-strong)] text-[var(--c-muted)]'}`}>{s.n}</span>
                     <span className="flex-1 text-[16px] font-semibold tracking-[-0.02em] text-[var(--c-head)]">{s.title}</span>
                     <ChevronDown size={18} className={`transition-transform ${on ? 'rotate-180' : ''}`} />
                   </button>

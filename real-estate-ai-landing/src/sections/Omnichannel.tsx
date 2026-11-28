@@ -111,7 +111,7 @@ export function Omnichannel() {
             {/* Sequence */}
             <ol className="relative mt-6 grid grid-cols-2 gap-2 border-t border-white/[0.07] pt-5 sm:grid-cols-4 lg:grid-cols-7" aria-label="Automation sequence">
               {omnichannel.sequence.map((s, i) => (
-                <li key={s} className={`relative rounded-xl border px-3 py-2.5 text-[12.5px] transition-all duration-500 ${i === step ? 'border-brand/60 bg-brand/15 text-white' : i < step ? 'border-white/10 text-white/75' : 'border-white/[0.06] text-white/40'}`}>
+                <li key={s} className={`relative rounded-xl border px-3 py-2.5 text-[12.5px] transition-all duration-500 ${i === step ? 'border-brand/60 bg-brand/15 text-white' : i < step ? 'border-white/10 text-white/75' : 'border-white/[0.06] text-white/55'}`}>
                   <span className="block text-[10.5px] tabular-nums opacity-70">Step {i + 1}</span>{s}
                 </li>
               ))}

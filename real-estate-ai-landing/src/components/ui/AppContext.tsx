@@ -17,8 +17,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setDemo(true);
   }, []);
   const playSample = useCallback(() => {
-    document.getElementById('voice-agents')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    window.setTimeout(() => window.dispatchEvent(new CustomEvent('voice:play-sample')), 700);
+    // The voice section is in the deferred chunk; wait briefly for it if the click comes very early.
+    const start = Date.now();
+    const go = () => {
+      const el = document.getElementById('voice-agents');
+      if (!el) { if (Date.now() - start < 4000) window.setTimeout(go, 50); return; }
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.setTimeout(() => window.dispatchEvent(new CustomEvent('voice:play-sample')), 700);
+    };
+    go();
   }, []);
   const value = useMemo(() => ({
     demoOpen, videoOpen, openDemo, closeDemo: () => setDemo(false),

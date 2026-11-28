@@ -25,7 +25,7 @@ test('mobile menu opens, navigates and closes', async ({ page }) => {
   await expect(page.getByTestId('mobile-menu')).toBeVisible();
   await page.getByTestId('mobile-menu').getByRole('link', { name: 'How It Works' }).click();
   await expect(page.getByTestId('mobile-menu')).toBeHidden();
-  await expect.poll(() => page.evaluate(() => Math.abs(document.querySelector('#how-it-works')!.getBoundingClientRect().top))).toBeLessThan(120);
+  await expect.poll(() => page.evaluate(() => (document.querySelector('#how-it-works') ? Math.abs(document.querySelector('#how-it-works')!.getBoundingClientRect().top) : 99999))).toBeLessThan(120);
 });
 
 test('mobile touch targets on primary controls are at least 40px', async ({ page }) => {
