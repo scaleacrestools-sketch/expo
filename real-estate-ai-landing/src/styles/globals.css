@@ -327,3 +327,58 @@ html.reduce-motion .cmp-row { animation: none; }
 }
 /* Side-entering reveals (x ±28px) must never widen the page */
 section[data-theme] { overflow-x: clip; }
+
+/* ==================================================================
+   V4 — PRODUCT UI DESIGN SYSTEM (white CRM)
+   The marketing site stays dark/violet. Everything that represents the
+   software itself sits inside `.product` and uses these tokens, so every
+   preview reads as a screen of the same light-theme application.
+================================================================== */
+.product {
+  --p-bg: #f7f8fc;            /* application background */
+  --p-surface: #ffffff;       /* cards, tables, panels */
+  --p-text: #171923;          /* primary text */
+  --p-body: #475467;          /* body text */
+  --p-muted: #667085;         /* secondary text */
+  --p-line: #e5e7eb;          /* borders */
+  --p-line-strong: #d0d5dd;
+  --p-accent: #6a3ff0;        /* approved brand violet, AA on white */
+  --p-accent-soft: #f3efff;
+  --p-accent-line: #d9cdff;
+  --p-success: #16a34a; --p-success-soft: #dcfce7;
+  --p-warning: #d97706; --p-warning-soft: #fef3c7;
+  --p-error: #dc2626;   --p-error-soft: #fee2e2;
+  --p-info: #0369a1;    --p-info-soft: #e0f2fe;
+  --p-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --p-shadow-md: 0 1px 2px rgba(16, 24, 40, 0.05), 0 8px 20px -10px rgba(16, 24, 40, 0.12);
+  --p-shadow-float: 0 1px 2px rgba(16, 24, 40, 0.06), 0 18px 44px -14px rgba(16, 24, 40, 0.28);
+  /* Remap the semantic variables so shared components (charts, calendar, badges) render light. */
+  --c-bg: var(--p-bg); --c-card: var(--p-bg); --c-card-2: var(--p-surface);
+  --c-head: var(--p-text); --c-text: var(--p-body); --c-muted: var(--p-muted);
+  --c-line: var(--p-line); --c-line-strong: var(--p-line-strong); --c-chip: #f2f4f7;
+  --c-accent-text: #5b34d6; --c-shadow: var(--p-shadow-md);
+  color: var(--p-body); color-scheme: light;
+  font-feature-settings: 'tnum' 1, 'cv11' 1;
+}
+.product .ui-surface { background: var(--p-surface); border: 1px solid var(--p-line); border-radius: 12px; box-shadow: var(--p-shadow-sm); }
+.product .card { background: var(--p-surface); border-color: var(--p-line); box-shadow: var(--p-shadow-md); }
+.product .badge { font-weight: 500; }
+.product .badge-hot { color: #b91c1c; background: var(--p-error-soft); }
+.product .badge-warm { color: #b45309; background: var(--p-warning-soft); }
+.product .badge-cold { color: var(--p-info); background: var(--p-info-soft); }
+.product .badge-ok { color: #15803d; background: var(--p-success-soft); }
+.product .badge-brand { color: #5b34d6; background: var(--p-accent-soft); }
+.product .badge-neutral { color: var(--p-body); background: #f2f4f7; border: 1px solid var(--p-line); }
+.product .demo-tag { color: var(--p-muted); border-color: var(--p-line-strong); background: #fff; }
+.p-shell { background: var(--p-bg); border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 16px; overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(16, 24, 40, 0.08), 0 30px 80px -30px rgba(8, 5, 21, 0.55), 0 60px 140px -50px rgba(128, 87, 255, 0.45); }
+.theme-light .p-shell { box-shadow: 0 0 0 1px rgba(16, 24, 40, 0.08), 0 24px 60px -28px rgba(40, 24, 110, 0.3); }
+.p-float { background: #fff; border: 1px solid var(--p-line); border-radius: 14px; box-shadow: var(--p-shadow-float); }
+.p-label { font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--p-muted); font-weight: 500; }
+.p-nav-item { display: flex; align-items: center; gap: 10px; border-radius: 8px; padding: 7px 10px; font-size: 12.5px; color: var(--p-body); }
+.p-nav-item[data-active='true'] { background: var(--p-accent-soft); color: #4c2bc0; font-weight: 600; }
+.p-pill { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 10px; border-radius: 8px; border: 1px solid var(--p-line); background: #fff; font-size: 11.5px; color: var(--p-text); box-shadow: var(--p-shadow-sm); white-space: nowrap; }
+@keyframes p-flash { 0% { background-color: var(--p-accent-soft); } 100% { background-color: transparent; } }
+.p-flash { animation: p-flash 1.6s var(--ease-out) both; }
+@keyframes p-pulse-dot { 0%, 100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.45); } 50% { box-shadow: 0 0 0 5px rgba(22, 163, 74, 0); } }
+.p-live { animation: p-pulse-dot 1.6s ease-out infinite; }

@@ -13,7 +13,7 @@ export const motionTokens = {
 };
 /** Product demo loop timings (ms per step). */
 export const loops = {
-  hero: 1700,           // 9 readable stages ≈ 15.3 s cycle
+  hero: 1900,           // 9 readable stages ≈ 17.1 s cycle (V4 guide: 15–20 s)
   howItWorksStep: 1300, // product state inside a workflow visual
   howItWorksAdvance: 10000, // each workflow stage gets ~10 s before the tour advances
   omnichannel: 2200,    // 6 workflow stages ≈ 13 s

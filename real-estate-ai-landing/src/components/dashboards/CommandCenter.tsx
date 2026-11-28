@@ -1,14 +1,12 @@
-import { BarChart3, Bell, CalendarDays, CheckCircle2, LayoutDashboard, Megaphone, Phone, PhoneCall, PhoneOutgoing, Search, Settings, Sparkles, Users } from 'lucide-react';
+import { CalendarCheck2, CalendarDays, PhoneCall, Target, UserCheck } from 'lucide-react';
 import { heroLeads, heroMetrics, heroTrend } from '../../data/demo-data';
 import { story } from '../../data/story';
-import { Waveform } from '../animations/Waveform';
-import { LineChart } from '../charts/LineChart';
-import { AgentOrb, Avatar, MiniCalendar, Panel, Status } from './primitives';
+import { ActivityTimeline, AgentOrb, AppointmentCalendar, BuyerProfile, CallCard, CampaignChart, DashboardHeader, DashboardSidebar, LeadTable, MetricCard, Panel, QualificationChecklist, ScoreBar, SelectPill, StatusBadge, productColors, type LeadRow } from '../product';
 
 /**
- * AI Sales Command Center. `phase` (0–8) drives the hero story:
- * 0 enquiry received · 1 AI agent active · 2 call notification · 3 voice starts · 4 requirements captured
- * 5 qualification progress · 6 lead status changes · 7 site visit requested · 8 dashboard updated
+ * AI Sales Command Center (white CRM). `phase` (0–8) drives the hero story:
+ * 0 enquiry received · 1 AI agent active · 2 call connecting · 3 conversation · 4 requirements captured
+ * 5 qualified · 6 lead status changes · 7 site visit requested · 8 dashboard updated
  */
 export const HERO_STEPS = [
   'New property enquiry received',
@@ -22,148 +20,104 @@ export const HERO_STEPS = [
   'Sales dashboard updated',
 ] as const;
 
-export function CommandCenter({ phase }: { phase: number }) {
-  const live = phase >= 3 && phase <= 5;
-  const callState = phase === 0 ? 'Queued' : phase === 1 ? 'Dialling…' : phase === 2 ? 'Ringing…' : phase <= 5 ? `Connected · 00:${String(14 + phase * 9).padStart(2, '0')}` : 'Call completed';
-  const callTone = phase >= 6 ? 'ok' : phase >= 1 ? 'brand' : 'neutral';
-  const qualPct = phase < 4 ? 0 : phase === 4 ? 45 : 100;
-  const updated = phase >= 8;
-  const metrics = heroMetrics.map((m, i) => ({ ...m, value: updated ? m.value + [1, 0, 1, 1][i] : m.value }));
-  const newStatus = phase >= 7 ? { s: 'Visit requested', t: 'ok' } : phase >= 6 ? { s: 'Qualified · Hot', t: 'hot' } : phase >= 1 ? { s: 'Calling', t: 'brand' } : { s: 'New', t: 'cold' };
-  const nav = [
-    { i: LayoutDashboard, l: 'Overview', a: true }, { i: Users, l: 'Leads' }, { i: PhoneCall, l: 'Calls' }, { i: Megaphone, l: 'Campaigns' },
-    { i: CalendarDays, l: 'Site Visits' }, { i: BarChart3, l: 'Analytics' }, { i: Settings, l: 'Settings' },
-  ];
+const metricMeta = [
+  { icon: PhoneCall, tone: 'accent', delta: '+12%' }, { icon: Target, tone: 'info', delta: '+4 pts' },
+  { icon: UserCheck, tone: 'success', delta: '+15%' }, { icon: CalendarCheck2, tone: 'warning', delta: '+7%' },
+] as const;
 
+export function heroState(phase: number) {
+  const live = phase >= 3 && phase <= 5;
+  const onCall = phase >= 1 && phase <= 5;
+  const call = phase === 0 ? { s: 'Queued', t: 'neutral' } : phase === 1 ? { s: 'Dialling', t: 'brand' } : phase === 2 ? { s: 'Ringing', t: 'brand' } : phase <= 5 ? { s: `Live · 00:${String(14 + phase * 9).padStart(2, '0')}`, t: 'ok' } : { s: 'Completed · 1m 12s', t: 'neutral' };
+  const lead = phase >= 7 ? { s: 'Visit requested', t: 'ok' } : phase >= 5 ? { s: 'Qualified · Hot', t: 'hot' } : phase >= 1 ? { s: 'AI calling', t: 'brand' } : { s: 'New', t: 'cold' };
+  const score = phase < 4 ? 0 : phase === 4 ? 48 : story.score;
+  const done = phase < 4 ? 0 : phase === 4 ? 2 : phase < 7 ? 4 : 5;
+  const updated = phase >= 8;
+  return { live, onCall, call, lead, score, done, updated };
+}
+
+export function CommandCenter({ phase }: { phase: number }) {
+  const { live, onCall, call, lead, score, done, updated } = heroState(phase);
+  const rows: LeadRow[] = heroLeads.map((l, i) => i === 0 ? { ...l, status: lead.s, tone: lead.t, flash: true, isNew: phase === 0 } : { ...l });
+  const profile = [
+    { k: 'Config.', v: story.requirement.configuration, filled: phase >= 4 },
+    { k: 'Budget', v: story.requirement.budgetShort, filled: phase >= 4 },
+    { k: 'Purpose', v: story.requirement.purpose, filled: phase >= 5 },
+    { k: 'Timeline', v: story.requirement.timeline, filled: phase >= 5 },
+  ];
   return (
-    <div className="relative flex min-h-[540px] text-left">
-      {/* Sidebar */}
-      <aside className="hidden w-[172px] flex-none flex-col gap-0.5 border-r border-[var(--c-line)] bg-white/[0.015] p-3 md:flex">
-        <p className="px-2 pb-2 pt-1 text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--c-muted)]">Workspace</p>
-        {nav.map(({ i: I, l, a }) => (
-          <span key={l} className={`flex items-center gap-2.5 rounded-lg px-2.5 py-[7px] text-[12.5px] ${a ? 'bg-white/[0.07] text-[var(--c-head)] shadow-[inset_0_1px_0_rgba(255,255,255,.06)]' : 'text-[var(--c-text)]'}`}><I size={15} />{l}</span>
-        ))}
-        <div className={`mt-auto rounded-xl border p-2.5 transition-colors duration-500 ${phase >= 1 && phase <= 5 ? 'border-brand/40 bg-brand/10' : 'border-[var(--c-line)] bg-[var(--c-card)]'}`}>
-          <div className="flex items-center gap-2"><AgentOrb size={26} live={phase >= 1 && phase <= 5} /><div><p className="text-[11.5px] font-medium text-[var(--c-head)]">{story.agent.name}</p><p className="text-[10px] text-[var(--c-muted)]">AI voice agent · {story.agent.languages}</p></div></div>
-          <p className="mt-2 flex items-center gap-1.5 text-[10px] text-[#7de3bd]"><span className="live-dot h-1.5 w-1.5 rounded-full bg-[#12b881]" />{phase >= 1 && phase <= 5 ? 'On a call' : 'Ready'}</p>
+    <div className="relative flex min-h-[560px]">
+      <DashboardSidebar footer={
+        <div className={`rounded-xl border p-2.5 transition-colors duration-500 ${onCall ? 'border-[var(--p-accent-line)] bg-[var(--p-accent-soft)]' : 'border-[var(--p-line)] bg-[var(--p-bg)]'}`}>
+          <div className="flex items-center gap-2"><AgentOrb size={26} live={onCall} /><div className="min-w-0"><p className="text-[11.5px] font-semibold text-[var(--p-text)]">{story.agent.name}</p><p className="truncate text-[10px] text-[var(--p-muted)]">AI voice agent</p></div></div>
+          <p className="mt-2 flex items-center gap-1.5 text-[10.5px] font-medium text-[#15803d]"><span className="p-live h-1.5 w-1.5 rounded-full bg-[var(--p-success)]" />{onCall ? `On a call · ${story.buyer.short}` : 'Ready for calls'}</p>
         </div>
-      </aside>
+      } />
 
       <div className="min-w-0 flex-1 p-3 sm:p-4">
-        {/* Header */}
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <div>
-            <p className="text-[10.5px] text-[var(--c-muted)]">Campaign</p>
-            <p className="flex items-center gap-2 text-[14px] font-semibold tracking-[-0.02em] text-[var(--c-head)]">{story.project.campaign}<span className="badge badge-ok !py-0 !text-[10px]"><span className="h-1.5 w-1.5 rounded-full bg-current" />Live</span></p>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="hidden items-center gap-1.5 rounded-lg border border-[var(--c-line)] bg-[var(--c-card-2)] px-2.5 py-1.5 text-[11px] text-[var(--c-muted)] sm:flex"><Search size={12} />Search leads</span>
-            <span className="relative grid h-7 w-7 place-items-center rounded-lg border border-[var(--c-line)] text-[var(--c-text)]"><Bell size={13} />{phase >= 7 && <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-brand shadow-[0_0_8px_rgba(128,87,255,.9)]" />}</span>
-          </div>
-        </div>
+        <DashboardHeader title="Overview" notify={phase >= 7}
+          subtitle={<><StatusBadge tone="ok">Live</StatusBadge>{story.project.campaign} · {updated ? 'synced just now' : 'synced 2 min ago'}</>}>
+          <SelectPill>{story.project.name}</SelectPill>
+          <SelectPill icon={CalendarDays}>Last 7 days</SelectPill>
+        </DashboardHeader>
 
         {/* Metrics */}
         <div className="mt-3 grid grid-cols-2 gap-2 lg:grid-cols-4">
-          {metrics.map((m, i) => (
-            <div key={m.label} className="ui-surface p-2.5">
-              <p className="text-[10.5px] text-[var(--c-muted)]">{m.label}</p>
-              <p className="mt-0.5 flex items-baseline gap-1.5 text-[18px] font-semibold tabular-nums tracking-[-0.03em] text-[var(--c-head)]">
-                <span key={m.value} style={updated ? { animation: 'pop .4s var(--ease-out) both' } : undefined}>{m.value.toLocaleString('en-IN')}{m.suffix}</span>
-                {updated && i !== 1 && <span className="text-[10px] font-medium text-[#7de3bd]">+1</span>}
-              </p>
-            </div>
-          ))}
+          {heroMetrics.map((m, i) => {
+            const bump = updated && i !== 1; const v = m.value + (bump ? 1 : 0);
+            return <MetricCard key={m.label} label={m.label} icon={metricMeta[i].icon} tone={metricMeta[i].tone} delta={metricMeta[i].delta} flash={bump}
+              value={<span key={v} style={bump ? { animation: 'pop .45s var(--ease-out) both', display: 'inline-block' } : undefined}>{v.toLocaleString('en-IN')}{m.suffix}{bump && <span className="ml-1.5 align-middle text-[10.5px] font-semibold text-[var(--p-success)]">+1</span>}</span>} />;
+          })}
         </div>
 
         <div className="mt-2 grid gap-2 lg:grid-cols-12">
-          {/* Live call */}
-          <Panel className="lg:col-span-5" title="Live AI call" right={<Status tone={callTone}>{callState}</Status>}>
-            <div className="flex items-center gap-3">
-              <AgentOrb size={34} live={phase >= 1 && phase <= 5} />
-              <div className="min-w-0 flex-1">
-                <p className="text-[12px] font-medium text-[var(--c-head)]">{story.agent.name} → {story.buyer.name}</p>
-                <p className="text-[10.5px] text-[var(--c-muted)]">{story.buyer.phone} · {story.buyer.source} lead</p>
+          {/* Performance chart */}
+          <Panel className="hidden sm:block lg:col-span-5" title="Qualified leads" right={<span className="flex items-center gap-3 text-[10.5px] text-[var(--p-muted)]"><span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[var(--p-accent)]" />12 weeks</span><b key={String(updated)} className="font-semibold text-[#15803d]" style={updated ? { animation: 'pop .4s var(--ease-out) both' } : undefined}>{updated ? '847 · +1 now' : '846 total'}</b></span>}>
+            <CampaignChart ariaLabel="Demo trend of qualified leads over 12 weeks" labels={heroTrend.map((_, i) => `W${i + 1}`)} height={200} fixedHeight={196} labelEvery={2}
+              series={[{ key: 'q', label: 'Qualified', values: updated ? [...heroTrend.slice(0, -1), heroTrend[heroTrend.length - 1] + 6] : heroTrend }]} />
+          </Panel>
+
+          {/* Lead management */}
+          <Panel className="lg:col-span-7" title="Lead management" right={<span className="text-[10.5px] text-[var(--p-muted)]">5 of 128 leads</span>}>
+            <LeadTable rows={rows} />
+          </Panel>
+
+        </div>
+        <div className="mt-2 grid gap-2 lg:grid-cols-[1.3fr_1fr_0.95fr_1.05fr]">
+          {/* AI call activity */}
+          <Panel title="AI call activity" right={<span key={call.s} style={{ animation: 'pop .3s var(--ease-out) both' }}><StatusBadge tone={call.t}>{call.s}</StatusBadge></span>}>
+            <CallCard agent={story.agent.name} buyer={story.buyer.name} meta={`${story.buyer.phone} · ${story.buyer.source}`} live={live}>
+              <div className="mt-2 h-[52px] space-y-1 text-[11px] leading-snug">
+                {phase < 3 && <p className="text-[var(--p-muted)]">{phase === 0 ? 'New enquiry queued for an instant call.' : 'Calling within permitted hours…'}</p>}
+                {phase >= 3 && <p style={{ animation: 'rise .4s var(--ease-out) both' }}><b className="font-semibold text-[#5b34d6]">Aria:</b> Which configuration and budget suit you?</p>}
+                {phase >= 4 && <p style={{ animation: 'rise .4s var(--ease-out) both' }}><b className="font-semibold text-[var(--p-text)]">Rohan:</b> A {story.requirement.configuration}, around {story.requirement.budgetShort}.</p>}
               </div>
-              <span className={`grid h-8 w-8 place-items-center rounded-full transition-colors duration-300 ${live ? 'bg-[#12b881]/20 text-[#7de3bd]' : phase >= 1 && phase <= 2 ? 'bg-brand/20 text-[var(--brand-accent)]' : 'bg-white/5 text-[var(--c-muted)]'}`}>{phase >= 1 && phase <= 2 ? <PhoneOutgoing size={14} className="blink" /> : <Phone size={14} />}</span>
-            </div>
-            <div className="mt-3 rounded-lg border border-[var(--c-line)] bg-[var(--c-card)] px-3 py-2">
-              <Waveform bars={40} active={live} height={28} />
-            </div>
-            <div className="mt-2.5 min-h-[66px] space-y-1.5 text-[11.5px]">
-              {phase >= 3 && <p className="text-[var(--c-text)]" style={{ animation: 'rise .4s var(--ease-out) both' }}><b className="font-medium text-[var(--c-accent-text)]">AI:</b> Which configuration and budget are you considering?</p>}
-              {phase >= 4 && <p className="text-[var(--c-text)]" style={{ animation: 'rise .4s var(--ease-out) both' }}><b className="font-medium text-[var(--c-head)]">Buyer:</b> A {story.requirement.configuration}, around {story.requirement.budgetShort}, for my family.</p>}
-              {phase < 3 && <p className="text-[var(--c-muted)]">{phase === 0 ? 'New Meta Ads enquiry queued for instant follow-up.' : 'Calling within permitted hours…'}</p>}
-            </div>
-            <div className="mt-1 flex flex-wrap gap-1.5">
-              {[story.requirement.configuration, story.requirement.budgetShort, story.requirement.purpose, story.requirement.timeline].map((t, i) => (
-                <span key={t} className={`rounded-md border px-1.5 py-0.5 text-[10.5px] transition-all duration-300 ${phase >= 4 ? 'border-brand/40 bg-brand/10 text-[var(--c-head)] opacity-100' : 'border-transparent opacity-0'}`} style={{ transitionDelay: `${i * 80}ms` }}>{t}</span>
-              ))}
-            </div>
-            <div className="mt-2.5">
-              <div className="flex items-center justify-between text-[10.5px]"><span className="text-[var(--c-muted)]">Qualification</span><span className="tabular-nums text-[var(--c-head)]">{phase >= 5 ? `Score ${story.score} · Hot` : `${qualPct}%`}</span></div>
-              <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-white/[0.06]"><div className="h-full origin-left rounded-full bg-gradient-to-r from-[#6a3ff0] to-[#cbbdff] transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)]" style={{ transform: `scaleX(${qualPct / 100})` }} /></div>
-            </div>
+            </CallCard>
           </Panel>
 
-          {/* CRM table */}
-          <Panel className="lg:col-span-7" title="CRM · Recent leads" right={<span className="text-[10.5px] text-[var(--c-muted)]">{updated ? 'Synced just now' : 'Synced 2 min ago'}</span>}>
-            <table className="w-full text-[11.5px]">
-              <caption className="sr-only">Demo CRM leads</caption>
-              <thead><tr className="text-left text-[10.5px] text-[var(--c-muted)]"><th className="pb-1.5 font-normal">Lead</th><th className="hidden pb-1.5 font-normal sm:table-cell">Source</th><th className="pb-1.5 font-normal">Requirement</th><th className="pb-1.5 text-right font-normal">Status</th></tr></thead>
-              <tbody>
-                {heroLeads.map((l, i) => {
-                  const isNew = i === 0; const st = isNew ? newStatus : { s: l.status, t: l.tone };
-                  return (
-                    <tr key={l.name} className={`border-t border-[var(--c-line)] transition-colors duration-500 ${isNew && phase === 0 ? 'bg-brand/[0.12]' : isNew && phase >= 6 ? 'bg-[#12b881]/[0.06]' : ''}`}>
-                      <td className="py-1.5 pr-1"><span className="flex items-center gap-2"><Avatar name={l.name} size={20} hue={200 + i * 30} /><span className="truncate text-[var(--c-head)]">{l.name}</span>{isNew && phase === 0 && <span className="rounded bg-brand px-1 text-[9px] font-semibold text-white">NEW</span>}</span></td>
-                      <td className="hidden py-1.5 text-[var(--c-text)] sm:table-cell">{l.source}</td>
-                      <td className="py-1.5 text-[var(--c-text)]">{l.need}</td>
-                      <td className="py-1.5 text-right"><span key={st.s} style={isNew ? { animation: 'pop .35s var(--ease-out) both' } : undefined} className="inline-block"><Status tone={st.t}>{st.s}</Status></span></td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+          {/* Qualification status */}
+          <Panel className="hidden sm:block" title="Qualification" right={<span key={score} style={{ animation: 'pop .3s var(--ease-out) both' }}><StatusBadge tone={score >= 75 ? 'hot' : score > 0 ? 'warm' : 'neutral'} dot={false}>{score >= 75 ? 'Hot lead' : score > 0 ? 'In progress' : 'Pending'}</StatusBadge></span>}>
+            <ScoreBar value={score} />
+            <BuyerProfile className="mt-2.5" fields={profile} />
+            <QualificationChecklist className="mt-2.5 hidden" items={['Budget', 'Configuration', 'Purpose', 'Timeline', 'Site visit']} done={done} />
           </Panel>
 
-          <Panel className="hidden sm:block lg:col-span-5" title="Qualified leads · 12 weeks" right={<span key={String(updated)} className="text-[10.5px] text-[#7de3bd]" style={updated ? { animation: 'pop .4s var(--ease-out) both' } : undefined}>▲ {updated ? '847 total · +1 now' : '846 total'}</span>}>
-            <LineChart ariaLabel="Demo trend of qualified leads over 12 weeks" labels={heroTrend.map((_, i) => `W${i + 1}`)} series={[{ key: 'q', label: 'Qualified', color: '#a48bff', values: updated ? [...heroTrend.slice(0, -1), heroTrend[heroTrend.length - 1] + 1] : heroTrend }]} height={110} showAxis={false} />
+          {/* Site visit calendar */}
+          <Panel className="hidden sm:block" title="Site visits" right={<span className="text-[10.5px] text-[var(--p-muted)]">Nov</span>}>
+            <AppointmentCalendar highlight={phase >= 7 ? story.visit.day : -1} booked={[3, 8, 10, 17, 19]} />
+            <p key={String(phase >= 7)} className={`mt-1.5 truncate text-[10.5px] ${phase >= 7 ? 'font-semibold text-[#5b34d6]' : 'text-[var(--p-muted)]'}`} style={phase >= 7 ? { animation: 'rise .4s var(--ease-out) both' } : undefined}>{phase >= 7 ? story.visit.short : '5 booked'}</p>
           </Panel>
-          <Panel className="hidden sm:block lg:col-span-3" title="Site visits" right={<span className="text-[10.5px] text-[var(--c-muted)]">Nov</span>}>
-            <MiniCalendar highlight={phase >= 7 ? story.visit.day : -1} booked={[3, 8, 10, 17, 19]} />
-            <p className={`mt-2 truncate text-[10.5px] transition-colors ${phase >= 7 ? 'text-[var(--c-accent-text)]' : 'text-[var(--c-muted)]'}`}>{phase >= 7 ? `${story.visit.short} requested` : 'No new requests'}</p>
-          </Panel>
-          <Panel className="hidden sm:block lg:col-span-4" title="Buyer profile" right={<span className="text-[10.5px] text-[var(--c-muted)]">{phase >= 8 ? `Owner · ${story.executive.name.split(' ')[0]}` : phase >= 4 ? 'Updating…' : 'Awaiting call'}</span>}>
-            <dl className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px]" data-testid="hero-profile">
-              {[
-                { k: 'Configuration', v: story.requirement.configuration, at: 4 },
-                { k: 'Budget', v: story.requirement.budgetShort, at: 4 },
-                { k: 'Purpose', v: story.requirement.purpose, at: 4 },
-                { k: 'Timeline', v: story.requirement.timeline, at: 4 },
-                { k: 'Intent score', v: `${story.score} · Hot`, at: 5 },
-                { k: 'Next step', v: phase >= 7 ? story.visit.short : 'Site visit', at: 6 },
-              ].map((f, i) => (
-                <div key={f.k} className="min-w-0">
-                  <dt className="text-[9.5px] uppercase tracking-[0.08em] text-[var(--c-muted)]">{f.k}</dt>
-                  <dd className="h-[16px] truncate">{phase >= f.at ? <span className="font-medium text-[var(--c-head)]" style={{ animation: `rise .4s ${i * 70}ms var(--ease-out) both` }}>{f.v}</span> : <span className="mt-1 block h-1.5 w-3/4 rounded-full bg-white/[0.06]" aria-hidden="true" />}</dd>
-                </div>
-              ))}
-            </dl>
-          </Panel>
-        </div>
 
-        {/* Call notification toast (step 2–3) and site-visit toast (step 7) */}
-        <div aria-hidden="true" className={`pointer-events-none absolute right-3 top-2 z-10 w-[250px] rounded-xl border border-white/10 bg-[rgba(17,18,37,.96)] px-3 py-2 shadow-[0_20px_50px_-20px_rgba(0,0,0,.9)] backdrop-blur transition-all duration-300 ${phase === 2 || phase === 3 ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'}`}>
-          <p className="flex items-center gap-2 text-[11.5px] font-semibold text-white"><span className="grid h-6 w-6 place-items-center rounded-full bg-[#12b881]"><Phone size={12} /></span>{phase === 2 ? 'Outbound call' : 'Call connected'}</p>
-          <p className="mt-1 text-[10.5px] text-white/60">{story.agent.name} is calling {story.buyer.name} about {story.project.name}</p>
-        </div>
-        <div aria-hidden="true" className={`pointer-events-none absolute right-3 top-2 z-10 w-[250px] rounded-xl border border-white/10 bg-[rgba(17,18,37,.96)] px-3 py-2 shadow-[0_20px_50px_-20px_rgba(0,0,0,.9)] backdrop-blur transition-all duration-300 ${phase === 7 ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'}`}>
-          <p className="flex items-center gap-2 text-[11.5px] font-semibold text-white"><span className="grid h-6 w-6 place-items-center rounded-full bg-brand"><CalendarDays size={12} /></span>Site visit requested</p>
-          <p className="mt-1 text-[10.5px] text-white/60">{story.buyer.name} · {story.visit.label}, {story.visit.time}</p>
-        </div>
-        <div aria-hidden="true" className={`pointer-events-none absolute right-3 top-2 z-10 w-[250px] rounded-xl border border-white/10 bg-[rgba(17,18,37,.96)] px-3 py-2 shadow-[0_20px_50px_-20px_rgba(0,0,0,.9)] backdrop-blur transition-all duration-300 ${phase === 5 ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'}`}>
-          <p className="flex items-center gap-2 text-[11.5px] font-semibold text-white"><span className="grid h-6 w-6 place-items-center rounded-full bg-[#12b881]"><CheckCircle2 size={12} /></span>Lead qualified</p>
-          <p className="mt-1 flex items-center gap-1 text-[10.5px] text-white/60"><Sparkles size={10} />Score {story.score} · {story.requirement.configuration} · {story.requirement.budgetShort}</p>
+          {/* Recent activity */}
+          <Panel className="hidden sm:block" title="Recent activity">
+            <ActivityTimeline items={[
+              { text: `${story.buyer.source} enquiry`, time: '10:02', color: productColors.blue, shown: true },
+              { text: `Aria called ${story.buyer.short}`, time: '10:02', color: productColors.accent, shown: phase >= 2 },
+              { text: `Qualified · score ${story.score}`, time: '10:04', color: productColors.success, shown: phase >= 5 },
+              { text: `Visit · ${story.visit.short}`, time: '10:04', color: productColors.warning, shown: phase >= 7 },
+              { text: `Assigned to ${story.executive.name.split(' ')[0]}`, time: '10:05', color: productColors.success, shown: phase >= 8 },
+            ]} />
+          </Panel>
         </div>
       </div>
     </div>

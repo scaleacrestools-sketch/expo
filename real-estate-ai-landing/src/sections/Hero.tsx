@@ -1,13 +1,12 @@
 import { motion, useReducedMotion } from 'motion/react';
-import { ArrowRight, CheckCircle2, Phone, Play } from 'lucide-react';
+import { ArrowRight, CalendarCheck2, CheckCircle2, MessageCircle, Phone, PhoneCall, Play, UserPlus } from 'lucide-react';
 import { hero } from '../data/content';
 import { story } from '../data/story';
 import { ease, loops } from '../config/motion';
 import { Section } from '../components/ui/Section';
 import { useApp } from '../components/ui/AppContext';
-import { AppWindow } from '../components/dashboards/primitives';
+import { DashboardShell, NotificationCard, VoiceWaveform } from '../components/product';
 import { CommandCenter, HERO_STEPS } from '../components/dashboards/CommandCenter';
-import { Waveform } from '../components/animations/Waveform';
 import { HeroMobile } from '../components/dashboards/HeroMobile';
 import { useInView } from '../hooks/useInView';
 import { useLoop } from '../hooks/useLoop';
@@ -22,7 +21,7 @@ export function Hero() {
   const fade = (d: number) => (reduce ? {} : { initial: { opacity: 0, y: 12 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.5, delay: d, ease } });
 
   return (
-    <Section id="top" theme="dark" className="overflow-hidden pt-[96px] sm:pt-[112px]" label="Hero">
+    <Section id="top" theme="dark" className="overflow-hidden pt-[88px] sm:pt-[100px]" label="Hero">
       {/* Static background: Agenly-style grid, top glow and horizon behind the product */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="grid-bg absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_65%_50%_at_50%_0%,#000_25%,transparent_75%)]" />
@@ -38,76 +37,70 @@ export function Hero() {
         <motion.a href="#voice-agents" {...fade(0)} className="eyebrow hover:border-brand/50">
           {hero.eyebrow}<ArrowRight size={12} className="opacity-60" />
         </motion.a>
-        <motion.h1 {...rise(0.04)} className="h-display text-gradient mx-auto mt-5 max-w-[880px]">{hero.title}</motion.h1>
-        <motion.p {...rise(0.08)} className="lead mx-auto mt-5 max-w-[560px] text-[17px] sm:text-[18px]">{hero.description}</motion.p>
-        <motion.div {...fade(0.14)} className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+        <motion.h1 {...rise(0.04)} className="h-display text-gradient mx-auto mt-4 max-w-[880px] lg:!text-[68px]">{hero.title}</motion.h1>
+        <motion.p {...rise(0.08)} className="lead mx-auto mt-4 max-w-[560px] text-[17px] sm:text-[18px]">{hero.description}</motion.p>
+        <motion.div {...fade(0.14)} className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
           <button type="button" onClick={openDemo} className="btn btn-primary h-12" data-testid="hero-demo">{hero.primaryCta} <ArrowRight size={16} /></button>
           <button type="button" onClick={openVideo} className="btn btn-secondary h-12" data-testid="hero-video"><span className="grid h-5 w-5 place-items-center rounded-full bg-white text-[#0d0d1c]"><Play size={9} fill="currentColor" className="translate-x-[0.5px]" /></span>{hero.videoCta}</button>
           <button type="button" onClick={playSample} className="btn-ghost justify-center" data-testid="hero-sample"><Phone size={15} className="text-[var(--brand-accent)]" />{hero.secondaryCta}</button>
         </motion.div>
-        <motion.ul {...fade(0.2)} className="mx-auto mt-6 flex max-w-[720px] flex-wrap justify-center gap-x-5 gap-y-2">
+        <motion.ul {...fade(0.2)} className="mx-auto mt-5 flex max-w-[720px] flex-wrap justify-center gap-x-5 gap-y-2">
           {hero.features.map((f) => <li key={f} className="flex items-center gap-1.5 text-[13.5px] text-[var(--c-text)]"><CheckCircle2 size={14} className="text-[var(--brand-secondary)]" />{f}</li>)}
         </motion.ul>
 
-        {/* Product */}
+        {/* Product: white CRM on the dark stage */}
         <motion.div ref={ref} initial={reduce ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2, ease }}
-          className="relative mx-auto mt-10 max-w-[1080px] pb-12 sm:pb-16" data-testid="hero-dashboard" data-phase={phase}>
-          <div className="sm:hidden"><HeroMobile phase={phase} /></div>
-          <div className="relative hidden rounded-[22px] border border-white/10 bg-white/[0.025] p-1.5 shadow-[0_40px_120px_-40px_rgba(24,86,255,0.35)] sm:block sm:p-2">
-            <AppWindow path="campaigns/skyline-launch">
-              <CommandCenter phase={phase} />
-            </AppWindow>
+          className="relative mx-auto mt-8 max-w-[1080px] pb-12 sm:pb-16" data-testid="hero-dashboard" data-phase={phase}>
+          <div aria-hidden="true" className="pointer-events-none absolute -inset-x-10 -top-8 bottom-10 rounded-[40px] bg-[radial-gradient(60%_60%_at_50%_30%,rgba(128,87,255,.35),transparent_70%)] blur-2xl" />
+          <div className="relative sm:hidden"><HeroMobile phase={phase} /></div>
+          <div className="relative hidden rounded-[22px] border border-white/15 bg-white/[0.06] p-1.5 backdrop-blur-sm sm:block">
+            <DashboardShell path="overview"><CommandCenter phase={phase} /></DashboardShell>
           </div>
 
-          {/* Floating layered cards (desktop) */}
-          <FloatCard className="float-a left-[-96px] top-[30%] hidden xl:block min-[1400px]:left-[-188px]" show title="Incoming Lead" tone="#38bdf8" active={phase === 0}>
-            <Row k="Source" v={story.buyer.source} /><Row k="Configuration" v={story.requirement.configuration} /><Row k="Budget" v={story.requirement.budget} />
-          </FloatCard>
-          <FloatCard className="float-b right-[-96px] top-[14%] hidden xl:block min-[1400px]:right-[-188px]" show={phase >= 1} title="AI Call in Progress" tone="#a48bff" active={phase >= 2 && phase <= 4}>
-            <div className="flex items-center gap-2"><span className={`h-2 w-2 rounded-full ${phase >= 3 && phase <= 5 ? 'live-dot bg-[#12b881]' : 'bg-white/30'}`} /><span className="text-[11.5px] text-white/70">{phase >= 3 && phase <= 5 ? 'Conversation active' : phase >= 6 ? 'Call ended · 1m 12s' : 'Connecting…'}</span></div>
-            <Waveform bars={22} active={phase >= 3 && phase <= 5} height={24} className="mt-2" />
-          </FloatCard>
-          <FloatCard className="float-c bottom-[22%] right-[-96px] hidden xl:block min-[1400px]:right-[-188px]" show={phase >= 4} title="Lead Qualified" tone="#12b881" active={phase >= 5 && phase <= 7}>
-            {['Budget captured', 'Configuration captured', 'Site visit requested'].map((t, i) => (
-              <p key={t} className={`flex items-center gap-1.5 text-[11.5px] transition-opacity duration-300 ${phase >= [4, 4, 7][i] ? 'text-white/85' : 'text-white/25'}`}><CheckCircle2 size={12} className="text-[#12b881]" />{t}</p>
-            ))}
-          </FloatCard>
+          {/* Floating product notifications (desktop). They sit outside the dashboard edge and never cover its data. */}
+          <Float className="float-a left-[-84px] top-[54%] xl:block min-[1440px]:left-[-170px] min-[1440px]:top-[18%]" show>
+            <NotificationCard icon={UserPlus} tone="info" title="New lead received">
+              <Row k="Source" v={story.buyer.source} /><Row k="Looking for" v={story.requirement.configuration} /><Row k="Budget" v={story.requirement.budget} />
+            </NotificationCard>
+          </Float>
+          <Float className="float-b right-[-170px] top-[10%] min-[1440px]:block" show={phase >= 1 && phase <= 6}>
+            <NotificationCard icon={PhoneCall} tone="accent" title="AI call in progress">
+              <span className="flex items-center gap-1.5"><span className={`h-1.5 w-1.5 rounded-full ${phase >= 3 && phase <= 5 ? 'p-live bg-[var(--p-success)]' : 'bg-[#d0d5dd]'}`} />{phase >= 3 && phase <= 5 ? 'Conversation active' : phase >= 6 ? 'Call ended · 1m 12s' : 'Connecting…'}</span>
+              <VoiceWaveform bars={20} active={phase >= 3 && phase <= 5} height={20} className="mt-1.5" />
+            </NotificationCard>
+          </Float>
+          <Float className="float-c right-[-170px] top-[44%] min-[1440px]:block" show={phase >= 5}>
+            <NotificationCard icon={CheckCircle2} tone="success" title="Buyer qualified">
+              <span className="block">Score <b className="font-semibold text-[var(--p-text)]">{story.score}</b> · Hot lead</span>
+              <span className="block">{story.requirement.configuration} · {story.requirement.budgetShort} · {story.requirement.timeline}</span>
+            </NotificationCard>
+          </Float>
+          <Float className="float-c bottom-[22%] left-[-170px] min-[1440px]:block" show={phase >= 7}>
+            <NotificationCard icon={CalendarCheck2} tone="warning" title="Site visit requested">{story.visit.label} · {story.visit.time}</NotificationCard>
+          </Float>
+          <Float className="float-a bottom-[12%] right-[-170px] min-[1440px]:block" show={phase >= 8}>
+            <NotificationCard icon={MessageCircle} tone="whatsapp" title="WhatsApp follow-up">Brochure sent · delivered ✓✓</NotificationCard>
+          </Float>
 
           {/* Step indicator */}
-          <div className="mx-auto mt-5 hidden max-w-[640px] sm:flex items-center justify-center gap-3" aria-hidden="true">
+          <div className="relative mx-auto mt-5 hidden max-w-[640px] items-center justify-center gap-3 sm:flex" aria-hidden="true">
             <div className="flex gap-1">{HERO_STEPS.map((_, i) => <span key={i} className={`h-1 rounded-full transition-all duration-300 ${i === phase ? 'w-6 bg-[var(--brand-secondary)]' : i < phase ? 'w-2 bg-white/40' : 'w-2 bg-white/15'}`} />)}</div>
-            <span className="min-w-[220px] text-left text-[12.5px] text-[var(--c-text)]">{String(phase + 1).padStart(2, '0')} · {HERO_STEPS[phase]}</span>
+            <span className="min-w-[230px] text-left text-[12.5px] text-[var(--c-text)]">{String(phase + 1).padStart(2, '0')} · {HERO_STEPS[phase]}</span>
           </div>
-
-          {/* Mobile story strip */}
-          <div className="mt-4 hidden gap-2 text-left sm:grid sm:grid-cols-3 xl:hidden">
-            {[
-              { t: 'Incoming Lead', d: `${story.buyer.source} · ${story.requirement.configuration} · ${story.requirement.budget}`, on: true, c: '#38bdf8' },
-              { t: 'AI Call in Progress', d: phase >= 3 && phase <= 5 ? 'Conversation active' : phase >= 6 ? 'Call ended' : 'Connecting', on: phase >= 1, c: '#a48bff' },
-              { t: 'Lead Qualified', d: `Score ${story.score} · visit requested`, on: phase >= 5, c: '#12b881' },
-            ].map((c) => (
-              <div key={c.t} className={`card flex items-center gap-3 p-3 transition-opacity duration-300 ${c.on ? 'opacity-100' : 'opacity-40'}`}>
-                <span className="h-8 w-1 rounded-full" style={{ background: c.c }} />
-                <div><p className="text-[13px] font-medium text-white">{c.t}</p><p className="text-[12px] text-[var(--c-text)]">{c.d}</p></div>
-              </div>
-            ))}
-          </div>
+          <p className="relative mt-3 text-center text-[12.5px] text-[var(--c-text)] sm:hidden" aria-hidden="true">{HERO_STEPS[phase]}</p>
         </motion.div>
       </div>
     </Section>
   );
 }
 
-function FloatCard({ title, children, className, show, tone, active }: { title: string; children: React.ReactNode; className: string; show: boolean; tone: string; active: boolean }) {
+function Float({ children, className, show }: { children: React.ReactNode; className: string; show: boolean }) {
   return (
-    <div className={`absolute z-10 w-[172px] ${className}`} aria-hidden="true">
-      <div className={`rounded-2xl border bg-[rgba(17,18,37,0.86)] p-3.5 text-left shadow-[0_24px_60px_-20px_rgba(0,0,0,0.9),inset_0_-16px_64px_rgba(116,176,253,.06)] backdrop-blur-xl transition-all duration-300 ${show ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'} ${active ? 'border-white/25' : 'border-white/10'}`}>
-        <p className="mb-2 flex items-center gap-2 text-[12.5px] font-semibold text-white"><span className="h-2 w-2 rounded-full" style={{ background: tone }} />{title}</p>
-        <div className="space-y-1">{children}</div>
-      </div>
+    <div className={`absolute z-10 hidden w-[176px] ${className}`} aria-hidden="true">
+      <div className={`transition-[opacity,transform] duration-500 ease-[cubic-bezier(.22,1,.36,1)] ${show ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-3 scale-95 opacity-0'}`}>{children}</div>
     </div>
   );
 }
 function Row({ k, v }: { k: string; v: string }) {
-  return <p className="flex justify-between text-[11.5px]"><span className="text-white/55">{k}</span><span className="font-medium text-white/90">{v}</span></p>;
+  return <span className="flex justify-between"><span className="text-[var(--p-muted)]">{k}</span><span className="font-semibold text-[var(--p-text)]">{v}</span></span>;
 }
