@@ -30,7 +30,7 @@ export function LeadFunnel() {
                 {([['ai', 'AI-assisted workflow', Bot], ['manual', 'Manual workflow', User]] as const).map(([k, l, I]) => (
                   <button key={k} role="tab" aria-selected={mode === k} onClick={() => setMode(k)} data-testid={`funnel-${k}`}
                     className={`flex min-h-[40px] items-center gap-2 rounded-full px-4 text-[14px] font-medium transition ${mode === k ? 'bg-[#0f0f14] text-white shadow' : 'text-[var(--c-text)] hover:text-[var(--c-head)]'}`}>
-                    <I size={15} />{l}
+                    <I size={15} /><span className="hidden sm:inline">{l}</span><span className="sm:hidden">{l.replace(' workflow', '')}</span>
                   </button>
                 ))}
               </div>
@@ -46,7 +46,8 @@ export function LeadFunnel() {
               <div className="relative">
                 {funnel.stages.map((stage, i) => {
                   const ai = funnel.ai[i], man = funnel.manual[i];
-                  const wAi = 22 + (ai / 1000) * 78, wMan = 22 + (man / 1000) * 78;
+                  const base = typeof window !== 'undefined' && window.innerWidth < 640 ? 36 : 22;
+                  const wAi = base + (ai / 1000) * (100 - base), wMan = base + (man / 1000) * (100 - base);
                   const conv = i > 0 ? Math.round((vals[i] / vals[i - 1]) * 100) : null;
                   return (
                     <div key={stage}>
@@ -83,9 +84,10 @@ export function LeadFunnel() {
               {/* Comparison */}
               <div className="flex flex-col gap-3">
                 <p className="text-[13px] font-medium uppercase tracking-[0.1em] text-[var(--c-muted)]">Per 1,000 enquiries · conceptual</p>
+                <div className="grid grid-cols-2 gap-2 lg:grid-cols-1 lg:gap-3">
                 {funnel.stages.map((s, i) => (
-                  <div key={s} className="rounded-xl border border-[var(--c-line)] bg-[var(--light-background-secondary)] p-3.5">
-                    <div className="flex items-center justify-between text-[13.5px]"><span className="font-medium text-[var(--c-head)]">{s}</span>
+                  <div key={s} className="rounded-xl border border-[var(--c-line)] bg-[var(--light-background-secondary)] p-3 lg:p-3.5">
+                    <div className="flex flex-col gap-0.5 text-[13px] lg:flex-row lg:items-center lg:justify-between lg:text-[13.5px]"><span className="font-medium leading-tight text-[var(--c-head)]">{s}</span>
                       <span className="tabular-nums text-[12.5px]"><b className="text-[var(--brand-deep)]">{funnel.ai[i]}</b> <span className="text-[var(--c-muted)]">vs</span> {funnel.manual[i]}</span></div>
                     <div className="mt-2 space-y-1.5">
                       <div className="h-1.5 overflow-hidden rounded-full bg-white"><div className="h-full rounded-full bg-[var(--brand-primary)] transition-all duration-1000" style={{ width: inView ? `${funnel.ai[i] / 10}%` : 0 }} /></div>
@@ -93,6 +95,7 @@ export function LeadFunnel() {
                     </div>
                   </div>
                 ))}
+                </div>
                 <p className="text-[12.5px] leading-relaxed text-[var(--c-muted)]">Figures are a conceptual illustration of how faster, consistent follow-up can keep more enquiries moving. They are not product benchmarks. Currently showing <b className="text-[var(--c-head)]">{mode === 'ai' ? 'AI-assisted' : 'manual'}</b> values; the other workflow reaches {other[3]} site visits in this example.</p>
               </div>
             </div>

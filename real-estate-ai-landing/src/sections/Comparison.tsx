@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Check, Minus, Settings2, User, Wrench } from 'lucide-react';
 import { comparison } from '../data/content';
 import { Section } from '../components/ui/Section';
@@ -21,11 +22,38 @@ function cell(v: string, ours: boolean) {
 }
 
 export function Comparison() {
+  const [vs, setVs] = useState(1);
   return (
     <Section id="compare" theme="light" label="Feature comparison">
       <div className="container-x section-y">
         <SectionHeader eyebrow={comparison.eyebrow} title={comparison.title} description={comparison.description} />
-        <Reveal className="mt-14">
+        <Reveal className="mt-12 md:hidden" variant="up">
+          {/* Mobile: our platform vs one alternative at a time — no clipped horizontal table */}
+          <div className="mx-auto flex w-full max-w-[360px] rounded-full border border-[var(--c-line)] bg-white p-1 shadow-[0_6px_20px_-12px_rgba(13,20,36,.25)]" role="tablist" aria-label="Compare with">
+            {comparison.columns.slice(1).map((c, i) => (
+              <button key={c} type="button" role="tab" aria-selected={vs === i + 1} data-testid={`compare-vs-${i + 1}`} onClick={() => setVs(i + 1)}
+                className={`flex-1 rounded-full px-3 py-2 text-[13px] font-medium transition-colors duration-200 ${vs === i + 1 ? 'bg-[var(--c-head)] text-white' : 'text-[var(--c-text)]'}`}>vs {c}</button>
+            ))}
+          </div>
+          <div className="card mt-4 overflow-hidden" data-testid="comparison-mobile">
+            <div className="grid grid-cols-[1fr_1fr] border-b border-[var(--c-line)] text-[12px] font-semibold">
+              <span className="flex items-center gap-2 bg-[#f6f2ff] px-3 py-3 text-[var(--c-head)]"><LogoMark size={20} />Our planned platform</span>
+              <span className="flex items-center gap-2 px-3 py-3 text-[var(--c-text)]">{vs === 1 ? <User size={14} /> : <Settings2 size={14} />}{comparison.columns[vs]}</span>
+            </div>
+            <ul>
+              {comparison.rows.map((r, ri) => (
+                <li key={r[0] + vs} className={ri ? 'border-t border-[var(--c-line)]' : ''} style={{ animation: `rise .35s ${ri * 35}ms var(--ease-out) both` }}>
+                  <p className="px-3 pt-3 text-[13.5px] font-semibold text-[var(--c-head)]">{r[0]}</p>
+                  <div className="grid grid-cols-2 gap-2 px-3 pb-3 pt-2 [&_span]:!text-[12.5px]">
+                    <div className="rounded-lg bg-[#f6f2ff] px-2 py-1.5">{cell(r[1], true)}</div>
+                    <div className="rounded-lg bg-[#f7f8fb] px-2 py-1.5">{cell(r[1 + vs], false)}</div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+        <Reveal className="mt-14 hidden md:block" variant="tilt">
           <div className="card relative overflow-hidden">
             <div className="thin-scroll overflow-x-auto" tabIndex={0} role="region" aria-label="Comparison table, scroll horizontally on small screens">
               <table className="w-full min-w-[760px] border-separate border-spacing-0 text-left" data-testid="comparison-table">
@@ -43,7 +71,7 @@ export function Comparison() {
                 </thead>
                 <tbody>
                   {comparison.rows.map((r, ri) => (
-                    <tr key={r[0]} className="group">
+                    <tr key={r[0]} className="group cmp-row" style={{ animationDelay: `${ri * 50}ms` }}>
                       <th scope="row" className={`sticky left-0 z-[1] bg-white px-5 py-4 text-[14.5px] font-medium text-[var(--c-head)] transition-colors group-hover:bg-[#fafafa] ${ri < comparison.rows.length - 1 ? 'border-b border-[var(--c-line)]' : ''}`}>{r[0]}</th>
                       {r.slice(1).map((v, i) => (
                         <td key={i} className={`px-5 py-4 transition-colors ${i === 0 ? 'bg-[#f6f2ff] group-hover:bg-[#f1ebff]' : 'group-hover:bg-[#fafafa]'} ${ri < comparison.rows.length - 1 ? (i === 0 ? 'border-b border-brand/15' : 'border-b border-[var(--c-line)]') : ''}`}>{cell(v, i === 0)}</td>
@@ -54,14 +82,14 @@ export function Comparison() {
               </table>
             </div>
           </div>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[12.5px] text-[var(--c-muted)]">
+        </Reveal>
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[12.5px] text-[var(--c-muted)]">
             <span className="flex items-center gap-1.5"><Check size={13} className="text-emerald-600" />Supported or planned</span>
             <span className="flex items-center gap-1.5"><Settings2 size={13} className="text-sky-600" />Depends on configuration</span>
             <span className="flex items-center gap-1.5"><User size={13} />Depends on people</span>
             <span className="flex items-center gap-1.5"><Minus size={13} className="text-amber-600" />Limited</span>
           </div>
           <p className="mx-auto mt-3 max-w-[640px] text-center text-[12.5px] text-[var(--c-muted)]">This comparison describes intended capabilities by design. It is not a performance or cost claim.</p>
-        </Reveal>
       </div>
     </Section>
   );

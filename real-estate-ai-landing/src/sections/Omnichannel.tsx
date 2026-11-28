@@ -108,27 +108,32 @@ export function Omnichannel() {
               })}
             </div>
 
-            {/* Mobile diagram */}
-            <div className="relative md:hidden">
-              <div className="mx-auto flex w-full max-w-[280px] items-center gap-3 rounded-2xl border border-brand/40 bg-[rgba(16,16,22,.9)] p-3.5 shadow-[0_0_50px_-10px_rgba(139,92,246,.6)]">
-                <AgentOrb size={40} /><div><p className="text-[14px] font-semibold text-white">{brand.productName} AI Agent</p><p className="text-[12px] text-[var(--brand-accent)]">{omnichannel.sequence[step]}</p><p className="text-[11.5px] text-[var(--c-text)]">{story.buyer.short} · {seqDetail[step]}</p></div>
+            {/* Mobile: one lead travelling down a vertical channel timeline */}
+            <div className="relative md:hidden" data-testid="oc-mobile">
+              <div className="flex items-center gap-3 rounded-2xl border border-brand/40 bg-[rgba(13,13,28,.92)] p-3 shadow-[0_0_50px_-12px_rgba(139,92,246,.6)]">
+                <AgentOrb size={36} /><div className="min-w-0"><p className="text-[13.5px] font-semibold text-white">{brand.productName} AI Agent</p><p className="truncate text-[11.5px] text-[var(--c-muted)]">{story.buyer.name} · {story.project.name}</p></div>
+                <span className="ml-auto text-[11px] tabular-nums text-[var(--c-muted)]">{step + 1}/{omnichannel.sequence.length}</span>
               </div>
-              <svg viewBox="0 0 300 30" className="mx-auto block h-[30px] w-[300px]" aria-hidden="true"><path d="M150 0 V30" stroke="rgba(167,139,250,.6)" className="flow-dash" /></svg>
-              <ul className="grid grid-cols-2 gap-2">
-                {nodes.map((n, i) => {
-                  const I = n.icon; const on = isLit(i);
+              <ol className="relative mt-4 pl-1" aria-label="Automation sequence">
+                <span aria-hidden="true" className="absolute bottom-5 left-[21px] top-5 w-px bg-white/10" />
+                <span aria-hidden="true" className="absolute left-[21px] top-5 w-px origin-top bg-gradient-to-b from-[#6a3ff0] to-[#cbbdff] transition-[height] duration-700" style={{ height: `calc(${(step / (omnichannel.sequence.length - 1)) * 100}% - ${(step / (omnichannel.sequence.length - 1)) * 40}px)` }} />
+                {omnichannel.sequence.map((st, i) => {
+                  const n = nodes[seqNode[i]]; const I = n.icon; const on = i === step;
                   return (
-                    <li key={n.label} className={`flex items-center gap-2 rounded-xl border p-2.5 transition-all ${on ? 'border-white/25 bg-white/[0.06]' : 'border-white/10'} ${i === nodes.length - 1 ? 'col-span-2' : ''}`}>
-                      <span className="grid h-8 w-8 flex-none place-items-center rounded-lg" style={{ background: `${n.color}22`, color: n.color }}><I size={15} /></span>
-                      <span className="text-[12.5px] font-medium text-white">{n.label}</span>
+                    <li key={st} className="relative flex gap-3 py-1.5">
+                      <span className={`relative z-[1] grid h-10 w-10 flex-none place-items-center rounded-xl border transition-all duration-300 ${on ? 'scale-105 border-white/30' : i < step ? 'border-white/15' : 'border-white/[0.07] opacity-60'}`} style={{ background: on ? `${n.color}33` : '#111225', color: n.color, boxShadow: on ? `0 0 24px -4px ${n.color}` : undefined }}><I size={16} /></span>
+                      <div className={`min-w-0 flex-1 rounded-xl border px-3 py-2 transition-colors duration-300 ${on ? 'border-brand/50 bg-brand/[0.12]' : 'border-transparent'}`}>
+                        <p className={`text-[13px] font-medium ${on ? 'text-white' : i < step ? 'text-white/75' : 'text-white/50'}`}>{st}{i < step && <span className="ml-1.5 text-[11px] text-[#7de3bd]">✓</span>}</p>
+                        <p className={`text-[11.5px] ${on ? 'text-[var(--c-text)]' : 'text-white/35'}`}>{n.label}{on && <> · <span key={step} style={{ animation: 'rise .3s var(--ease-out) both' }}>{seqDetail[i]}</span></>}</p>
+                      </div>
                     </li>
                   );
                 })}
-              </ul>
+              </ol>
             </div>
 
             {/* Sequence */}
-            <ol className="relative mt-6 grid grid-cols-2 gap-2 border-t border-white/[0.07] pt-5 sm:grid-cols-4 lg:grid-cols-7" aria-label="Automation sequence">
+            <ol className="relative mt-6 hidden grid-cols-2 gap-2 border-t md:grid border-white/[0.07] pt-5 md:grid-cols-4 lg:grid-cols-7" aria-label="Automation sequence">
               {omnichannel.sequence.map((s, i) => (
                 <li key={s} className={`relative rounded-xl border px-3 py-2.5 text-[12.5px] transition-all duration-500 ${i === step ? 'border-brand/60 bg-brand/15 text-white' : i < step ? 'border-white/10 text-white/75' : 'border-white/[0.06] text-white/55'}`}>
                   <span className="block text-[10.5px] tabular-nums opacity-70">Step {i + 1}</span>{s}
