@@ -348,3 +348,23 @@ test('integrations hub: sequential pairs, hover trace, no per-card badges', asyn
   await page.getByTestId('integration-card').nth(0).hover();
   await expect(page.getByTestId('integration-engine').first()).toContainText('Tracing Meta Ads');
 });
+
+test('V4: product interfaces are white inside dark sections', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 700) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); } });
+  const lum = (sel: string) => page.locator(sel).first().evaluate((el) => {
+    // Walk up to the first ancestor with a non-transparent background and return its luminance (0–255).
+    for (let e: Element | null = el; e; e = e.parentElement) { const m = getComputedStyle(e).backgroundColor.match(/[\d.]+/g)!.map(Number); if ((m[3] ?? 1) > 0.5) return 0.2126 * m[0] + 0.7152 * m[1] + 0.0722 * m[2]; }
+    return -1;
+  });
+  for (const sel of ['[data-testid="hero-dashboard"] .p-shell', '[data-testid="performance-dashboard"]', '[data-testid="voice-panel"]', '[data-testid="voice-transcript"] li', '[data-testid="oc-center"]', '[data-testid="uc-panel"] .p-shell', '[data-testid="integration-card"] .product']) {
+    expect(await lum(sel), sel).toBeGreaterThan(235);
+  }
+  // The marketing sections themselves stay dark.
+  for (const id of ['#top', '#performance', '#voice-agents', '#omnichannel', '#use-cases', '#integrations']) {
+    expect(await page.locator(id).evaluate((el) => getComputedStyle(el).backgroundColor), id).toBe('rgb(8, 5, 21)');
+  }
+  // Hero dashboard carries the required CRM parts.
+  const hero = page.getByTestId('hero-dashboard');
+  for (const t of ['Overview', 'Lead management', 'AI call activity', 'Qualification', 'Site visits', 'Recent activity', 'Last 7 days']) await expect(hero.getByText(t, { exact: true }).filter({ visible: true }).first()).toBeVisible();
+});
