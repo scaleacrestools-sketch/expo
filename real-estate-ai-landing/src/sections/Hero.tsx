@@ -8,6 +8,7 @@ import { useApp } from '../components/ui/AppContext';
 import { AppWindow } from '../components/dashboards/primitives';
 import { CommandCenter, HERO_STEPS } from '../components/dashboards/CommandCenter';
 import { Waveform } from '../components/animations/Waveform';
+import { HeroMobile } from '../components/dashboards/HeroMobile';
 import { useInView } from '../hooks/useInView';
 import { useLoop } from '../hooks/useLoop';
 
@@ -51,34 +52,35 @@ export function Hero() {
         {/* Product */}
         <motion.div ref={ref} initial={reduce ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2, ease }}
           className="relative mx-auto mt-10 max-w-[1080px] pb-12 sm:pb-16" data-testid="hero-dashboard" data-phase={phase}>
-          <div className="relative rounded-[22px] border border-white/10 bg-white/[0.025] p-1.5 shadow-[0_40px_120px_-40px_rgba(24,86,255,0.35)] sm:p-2">
+          <div className="sm:hidden"><HeroMobile phase={phase} /></div>
+          <div className="relative hidden rounded-[22px] border border-white/10 bg-white/[0.025] p-1.5 shadow-[0_40px_120px_-40px_rgba(24,86,255,0.35)] sm:block sm:p-2">
             <AppWindow path="campaigns/skyline-launch">
               <CommandCenter phase={phase} />
             </AppWindow>
           </div>
 
           {/* Floating layered cards (desktop) */}
-          <FloatCard className="float-a left-[-188px] top-[30%] hidden min-[1400px]:block" show title="Incoming Lead" tone="#38bdf8" active={phase === 0}>
+          <FloatCard className="float-a left-[-96px] top-[30%] hidden xl:block min-[1400px]:left-[-188px]" show title="Incoming Lead" tone="#38bdf8" active={phase === 0}>
             <Row k="Source" v={story.buyer.source} /><Row k="Configuration" v={story.requirement.configuration} /><Row k="Budget" v={story.requirement.budget} />
           </FloatCard>
-          <FloatCard className="float-b right-[-188px] top-[14%] hidden min-[1400px]:block" show={phase >= 1} title="AI Call in Progress" tone="#a48bff" active={phase >= 2 && phase <= 4}>
+          <FloatCard className="float-b right-[-96px] top-[14%] hidden xl:block min-[1400px]:right-[-188px]" show={phase >= 1} title="AI Call in Progress" tone="#a48bff" active={phase >= 2 && phase <= 4}>
             <div className="flex items-center gap-2"><span className={`h-2 w-2 rounded-full ${phase >= 3 && phase <= 5 ? 'live-dot bg-[#12b881]' : 'bg-white/30'}`} /><span className="text-[11.5px] text-white/70">{phase >= 3 && phase <= 5 ? 'Conversation active' : phase >= 6 ? 'Call ended · 1m 12s' : 'Connecting…'}</span></div>
             <Waveform bars={22} active={phase >= 3 && phase <= 5} height={24} className="mt-2" />
           </FloatCard>
-          <FloatCard className="float-c bottom-[22%] right-[-188px] hidden min-[1400px]:block" show={phase >= 4} title="Lead Qualified" tone="#12b881" active={phase >= 5 && phase <= 7}>
+          <FloatCard className="float-c bottom-[22%] right-[-96px] hidden xl:block min-[1400px]:right-[-188px]" show={phase >= 4} title="Lead Qualified" tone="#12b881" active={phase >= 5 && phase <= 7}>
             {['Budget captured', 'Configuration captured', 'Site visit requested'].map((t, i) => (
               <p key={t} className={`flex items-center gap-1.5 text-[11.5px] transition-opacity duration-300 ${phase >= [4, 4, 7][i] ? 'text-white/85' : 'text-white/25'}`}><CheckCircle2 size={12} className="text-[#12b881]" />{t}</p>
             ))}
           </FloatCard>
 
           {/* Step indicator */}
-          <div className="mx-auto mt-5 flex max-w-[640px] items-center justify-center gap-3" aria-hidden="true">
+          <div className="mx-auto mt-5 hidden max-w-[640px] sm:flex items-center justify-center gap-3" aria-hidden="true">
             <div className="flex gap-1">{HERO_STEPS.map((_, i) => <span key={i} className={`h-1 rounded-full transition-all duration-300 ${i === phase ? 'w-6 bg-[var(--brand-secondary)]' : i < phase ? 'w-2 bg-white/40' : 'w-2 bg-white/15'}`} />)}</div>
             <span className="min-w-[220px] text-left text-[12.5px] text-[var(--c-text)]">{String(phase + 1).padStart(2, '0')} · {HERO_STEPS[phase]}</span>
           </div>
 
           {/* Mobile story strip */}
-          <div className="mt-4 grid gap-2 text-left sm:grid-cols-3 min-[1400px]:hidden">
+          <div className="mt-4 hidden gap-2 text-left sm:grid sm:grid-cols-3 xl:hidden">
             {[
               { t: 'Incoming Lead', d: `${story.buyer.source} · ${story.requirement.configuration} · ${story.requirement.budget}`, on: true, c: '#38bdf8' },
               { t: 'AI Call in Progress', d: phase >= 3 && phase <= 5 ? 'Conversation active' : phase >= 6 ? 'Call ended' : 'Connecting', on: phase >= 1, c: '#a48bff' },

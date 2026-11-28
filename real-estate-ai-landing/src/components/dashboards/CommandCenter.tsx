@@ -126,28 +126,29 @@ export function CommandCenter({ phase }: { phase: number }) {
             </table>
           </Panel>
 
-          <Panel className="hidden sm:block lg:col-span-5" title="Qualified leads · 12 weeks" right={<span className="text-[10.5px] text-[#7de3bd]">▲ 846 total</span>}>
+          <Panel className="hidden sm:block lg:col-span-5" title="Qualified leads · 12 weeks" right={<span key={String(updated)} className="text-[10.5px] text-[#7de3bd]" style={updated ? { animation: 'pop .4s var(--ease-out) both' } : undefined}>▲ {updated ? '847 total · +1 now' : '846 total'}</span>}>
             <LineChart ariaLabel="Demo trend of qualified leads over 12 weeks" labels={heroTrend.map((_, i) => `W${i + 1}`)} series={[{ key: 'q', label: 'Qualified', color: '#a48bff', values: updated ? [...heroTrend.slice(0, -1), heroTrend[heroTrend.length - 1] + 1] : heroTrend }]} height={110} showAxis={false} />
           </Panel>
           <Panel className="hidden sm:block lg:col-span-3" title="Site visits" right={<span className="text-[10.5px] text-[var(--c-muted)]">Nov</span>}>
             <MiniCalendar highlight={phase >= 7 ? story.visit.day : -1} booked={[3, 8, 10, 17, 19]} />
             <p className={`mt-2 truncate text-[10.5px] transition-colors ${phase >= 7 ? 'text-[var(--c-accent-text)]' : 'text-[var(--c-muted)]'}`}>{phase >= 7 ? `${story.visit.short} requested` : 'No new requests'}</p>
           </Panel>
-          <Panel className="hidden sm:block lg:col-span-4" title="Activity">
-            <ul className="space-y-2 text-[11px]">
+          <Panel className="hidden sm:block lg:col-span-4" title="Buyer profile" right={<span className="text-[10.5px] text-[var(--c-muted)]">{phase >= 8 ? `Owner · ${story.executive.name.split(' ')[0]}` : phase >= 4 ? 'Updating…' : 'Awaiting call'}</span>}>
+            <dl className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px]" data-testid="hero-profile">
               {[
-                { t: `New ${story.buyer.source} enquiry`, s: phase >= 0, c: '#38bdf8' },
-                { t: `AI call with ${story.buyer.short}`, s: phase >= 2, c: '#a48bff' },
-                { t: `Qualified · score ${story.score}`, s: phase >= 5, c: '#12b881' },
-                { t: `Visit requested · ${story.visit.short}`, s: phase >= 7, c: '#febc2e' },
-                { t: `Assigned to ${story.executive.name}`, s: phase >= 8, c: '#12b881' },
-              ].map((a) => (
-                <li key={a.t} className="flex h-[16px] items-center gap-2">
-                  <span className="h-1.5 w-1.5 flex-none rounded-full transition-opacity duration-500" style={{ background: a.c, opacity: a.s ? 1 : 0.3 }} />
-                  {a.s ? <span className="truncate text-[var(--c-text)]" style={{ animation: 'rise .4s var(--ease-out) both' }}>{a.t}</span> : <span className="h-1.5 w-3/4 rounded-full bg-white/[0.06]" aria-hidden="true" />}
-                </li>
+                { k: 'Configuration', v: story.requirement.configuration, at: 4 },
+                { k: 'Budget', v: story.requirement.budgetShort, at: 4 },
+                { k: 'Purpose', v: story.requirement.purpose, at: 4 },
+                { k: 'Timeline', v: story.requirement.timeline, at: 4 },
+                { k: 'Intent score', v: `${story.score} · Hot`, at: 5 },
+                { k: 'Next step', v: phase >= 7 ? story.visit.short : 'Site visit', at: 6 },
+              ].map((f, i) => (
+                <div key={f.k} className="min-w-0">
+                  <dt className="text-[9.5px] uppercase tracking-[0.08em] text-[var(--c-muted)]">{f.k}</dt>
+                  <dd className="h-[16px] truncate">{phase >= f.at ? <span className="font-medium text-[var(--c-head)]" style={{ animation: `rise .4s ${i * 70}ms var(--ease-out) both` }}>{f.v}</span> : <span className="mt-1 block h-1.5 w-3/4 rounded-full bg-white/[0.06]" aria-hidden="true" />}</dd>
+                </div>
               ))}
-            </ul>
+            </dl>
           </Panel>
         </div>
 
